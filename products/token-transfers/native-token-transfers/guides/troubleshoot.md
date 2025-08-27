@@ -8,8 +8,8 @@ categories: NTT, Transfer
 
 If you encounter issues during the NTT deployment process, check the following common points:
 
-- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
-    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
+    -  [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} **`{{ ntt.solana_cli_version }}`**
     -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 - **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
 - **Mint authority transfer**:

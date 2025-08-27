@@ -99,7 +99,7 @@ This flexible plugin allows you to combine default routes (such as WTT and CCTP)
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with WTT.
 
@@ -175,7 +175,7 @@ Your selected blockchain network determines the available wallet options when us
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://dashboard.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/wallet-connect.tsx'

@@ -6,6 +6,12 @@ categories: NTT, Transfer
 
 # NTT FAQs
 
+## What is NTT?
+
+Native Token Transfers (NTT) is a framework for moving your own token across multiple chains without wrapping. It preserves your token's native contract design on every chain and keeps control in your hands for metadata, ownership, upgrades, and custom features.
+
+NTT includes configurable controls like rate limiting and access control, and supports deployment modes that fit either new or existing tokens. For a quick video summary, watch the [NTT speed round](https://youtu.be/wdU_6tAeGyg?si=-2wWxC8IZegzB1vl){target=\_blank}.
+
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
 Yes, we have an example of cross-chain lending that leverages [Wormhole’s Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} on GitHub.
@@ -113,7 +119,7 @@ The source chain's transceiver includes the destination chain's transceiver in t
 
 ## How do I create a verifier or transceiver?
 
-To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
+To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
 
 For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
 
@@ -125,8 +131,8 @@ No, using Hetzner servers for Solana deployments is not recommended. Hetzner has
 
 You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
 
-- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
-- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
+- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
 
 !!!Important
     You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.

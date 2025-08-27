@@ -52,7 +52,7 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.

@@ -83,12 +83,36 @@ sequenceDiagram
 !!! note 
     For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
 
+## CCTP vs Wrapped Token Transfers (WTT)
+
+| Feature               | CCTP (native USDC)                                                | WTT (wrapped tokens)                                                        |
+|-----------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Supported assets      | Circle-issued USDC                                                | Standards-compliant tokens (e.g., ERC-20, SPL)                              |
+| Mechanism             | Burn on source, mint on destination                               | Lock on source, mint wrapped on destination                                 |
+| Result on destination | Native USDC                                                       | Wormhole-wrapped token                                                      |
+| Payload               | Optional transfer with payload; executed on the destination when USDC is minted | Optional transfer with payload; executed by the recipient contract during redemption |
+| Use it for            | Native USDC between CCTP-enabled chains                           | Non-USDC assets, or USDC when CCTP isn't supported on the destination       |
+
+Check the [CCTP Supported Networks](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank} to see which routes are available.
+
+## When to Use CCTP
+
+CCTP is the right choice in the following situations:
+
+- **Sending USDC between [CCTP-enabled chains](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank}**: This route appears only if both chains support Circle CCTP and the asset is native USDC.
+- **Sending USDC with an attached payload**: The destination contract can execute logic as the tokens are minted on the target chain.
+
+For other transfers, consider these options:
+
+- **Data-only transfers without moving USDC**: Use [Messaging](/docs/products/messaging/overview/){target=\_blank}.
+- **Destinations without CCTP support**: The transfer routes via [WTT](/docs/products/token-bridge/overview/){target=\_blank}, with the option to include a payload executed on redemption.
+
 ## Use Cases
 
 Integrating Wormhole's messaging with CCTP enables the secure transfer of native USDC across blockchains, unlocking key cross-chain use cases, which include:
 
 - **USDC Payments Across Chains**
-    - **[CCTP](/docs/products/cctp-bridge/get-started/)**: Transfer native USDC using Circle’s burn-and-mint protocol.
+    - **[CCTP](/docs/products/cctp-bridge/get-started/)**: Transfer native USDC using Circle's burn-and-mint protocol.
     - **[Wormhole TypeScript SDK](/docs/tools/typescript-sdk/sdk-reference/)**: Automate attestation delivery and gas handling.
     - **[Connect](/docs/products/connect/overview/)**: Embed multichain USDC transfers directly in your app.
 
@@ -149,7 +173,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -12666,6 +12690,22 @@ categories: Reference
 
     <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Solana</td><td><code>tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xe0418C44F06B0b0D7D1706E01706316DBB0B210E</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8</code></td></tr></tbody></table>
     
+## Guardian Governance
+
+=== "Mainnet"
+
+    | Solana | NGoD1yTeq5KaURrZo7MnCTFzTA4g62ygakJCnzMLCfm |
+| Ethereum | 0x23Fea5514DFC9821479fBE18BA1D7e1A61f6FfCf |
+| Arbitrum | 0x36CF4c88FA548c6Ad9fcDc696e1c27Bb3306163F |
+| Avalanche | 0x169D91C797edF56100F1B765268145660503a423 |
+| Base | 0x838a95B6a3E06B6f11C437e22f3C7561a6ec40F1 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
+| Optimism | 0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8 |
+| Unichain | 0x574b7864119c9223a9870ea614dc91a8ee09e512 |
+
+!!! note
+    Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
+
 
 ## Read-Only Deployments
 

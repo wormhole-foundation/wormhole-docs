@@ -16,6 +16,8 @@ By the end, you'll have a working script that:
 - Quotes and validates the best route.
 - Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift).
 
+For a coding walkthrough, watch the [Intent-Based Swap demo](https://youtu.be/dxA1tsa-8iA?si=5ywoTjjzbsysCRPE){target=\_blank}.
+
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
 

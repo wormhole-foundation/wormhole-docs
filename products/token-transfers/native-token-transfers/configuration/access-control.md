@@ -8,7 +8,7 @@ categories: NTT, Transfer
 
 ## Owner and Pauser Roles
 
-Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
+Pausing the Native Token Transfers (NTT) Manager contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
 
 NTT can be paused on a particular chain by updating the `paused` parameter on the deployment to `true` via the NTT CLI, then performing `ntt push` to sync the local configuration with the on-chain deployment.
 

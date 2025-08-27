@@ -10,12 +10,12 @@ Wormhole Token Transfers let you move assets seamlessly across chains. Developer
 
 ## How Token Transfers Work
 
-Both NTT and WTT rely on Guardian-signed messages ([VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}) to move tokens securely across chains. The difference lies in how tokens are represented on the destination chain.
+Both NTT and WTT rely on Guardian-signed messages ([VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}) to transfer tokens across chains securely. The difference lies in how tokens are represented on the destination chain.
 
 At a high level, the flow looks like this:
 
 1. A user sends tokens to the Wormhole contract on the source chain.
-2. The contract emits a message, which is signed by the Guardians as a VAA.
+2. The contract emits a message, which the Guardians sign as a VAA.
 3. The VAA is submitted to the destination chain.
 4. Depending on the transfer type:
     - **NTT**: Tokens are minted or released from escrow.
@@ -36,16 +36,18 @@ flowchart LR
 
 Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
 
-| Feature                | Native Token Transfers                                                     | Wrapped Token Transfers                                  |
-|------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
-| **Best for**           | DeFi governance, native assets with multichain liquidity, and projects that want full control of their cross-chain token | Consumer apps, games, wrapped-token use cases, and projects that want a fast, managed bridging solution |
-| **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
-| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
-| **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
-| **Token Contracts**    | Native contracts owned by your protocol governance, maintains the same token across chains       | Wrapped asset contract owned by the Wormhole WTT contract, creates a new wrapped version on the destination chain  |
-| **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
-| **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
-| **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
+Choosing between the two models comes down to trade-offs. NTT offers an adaptable, upgradable, and customizable framework that enables teams to retain ownership and define policies across chains. WTT provides the most straightforward and permissionless path, but wrapped token contracts are managed by Wormhole Governance, with no ownership transfer or contract upgradeability possible.
+
+| Feature                | Native Token Transfers                                                                                                                                                               | Wrapped Token Transfers                                                                                                                                                                       |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Best for**           | DeFi governance, native assets with multichain liquidity, stablecoins, institutional use cases, and projects that want full control of their cross-chain token                       | Consumer apps, games, wrapped-token use cases, and projects that want a fast, managed bridging solution                                                                                       |
+| **Mechanism**          | Burn-and-mint or hub-and-spoke                                                                                                                                                       | Lock-and-mint                                                                                                                                                                                 |
+| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant                                                                            | Preconfigured rate limiting and integrated Global Accountant                                                                                                                                  |
+| **Contract Ownership** | User retains ownership and upgrade authority on each chain                                                                                                                           | Managed via Wormhole Governance; wrapped token contracts are controlled by WTT (ownership is not transferable, and integrators cannot upgrade wrapped contracts)                              |
+| **Token Contracts**    | Native contracts owned by your protocol governance, maintain the same token across chains                                                                                           | Wrapped asset contract owned by the Wormhole WTT contract, creates a new wrapped version on the destination chain                                                                             |
+| **Integration**        | Customizable, flexible framework for advanced deployments (optional: deploy via [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} for EVM chains)                           | Straightforward, permissionless deployment                                                                                                                                                    |
+| **User Experience**    | Seamless, users interact with the same token everywhere                                                                                                                              | Wrapped assets may need [explorer metadata updates](/docs/products/token-transfers/wrapped-token-transfers/faqs/#how-do-i-update-the-metadata-of-a-wrapped-token){target=\_blank} for clarity |
+| **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} | [Portal Bridge UI](https://portalbridge.com/){target=\_blank}                                                                                                                                 |
 
 !!! note "Terminology"
     In the SDK and smart contracts, Wrapped Token Transfers (WTT) are referred to as Token Bridge. In documentation, we use WTT for clarity. Both terms describe the same protocol.
