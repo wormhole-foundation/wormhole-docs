@@ -1,10 +1,10 @@
 ---
-title: Efficient VAA Verification on Solana (Shim)
-description: Efficiently verify Wormhole VAAs on Solana without leaving rent-exempt accounts, using the core bridge’s standard instructions.
+title: Solana VAA Verification via Shim
+description: Efficiently verify Wormhole VAAs on Solana using the Verification Shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
 categories: Basics
 ---
 
-# Efficient VAA Verification on Solana (Shim)
+# Solana VAA Verification via Shim
 
 Verifying VAAs on Solana with the legacy Core Bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats on-chain state.
 

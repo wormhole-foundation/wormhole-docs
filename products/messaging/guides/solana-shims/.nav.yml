@@ -1,4 +1,4 @@
 title: Solana Shims
 nav:
-- 'Efficient Solana Emission': sol-emission.md
-- 'Efficient Solana Verification': sol-verification.md
+- 'Solana Message Emission via Shim': sol-emission.md
+- 'Solana VAA Verification via Shim': sol-verification.md

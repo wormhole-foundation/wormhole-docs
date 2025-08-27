@@ -1,10 +1,10 @@
 ---
-title: Efficient Emission on Solana (Shim)
+title: Solana Message Emission via Shim
 description: Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim instead of post_message.
 categories: Basics
 ---
 
-# Efficient Emission on Solana (Shim)
+# Solana Message Emission via Shim
 
 This guide explains how to use Wormhole’s emission shim on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
 
