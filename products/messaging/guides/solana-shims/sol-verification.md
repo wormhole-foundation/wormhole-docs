@@ -6,29 +6,36 @@ categories: Basics
 
 # Efficient VAA Verification on Solana (Shim)
 
-This guide explains how to efficiently verify Wormhole VAAs on Solana by leveraging the core bridge’s [`verify_signatures`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank} and [`post_vaa`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank} instructions, and cleaning up temporary accounts after use.
+Verifying VAAs on Solana with the legacy Core Bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats on-chain state.
 
-The goal is to accumulate all guardian signatures into a temporary `SignatureSet` account using `verify_signatures`, verify the VAA and guardian set using `post_vaa`, and immediately close any accounts you created for this process.
+The Verification Shim solves this by replacing the Core Bridge verification flow with its own instructions:
+
+- `post_signatures`: Accumulates Guardian signatures into a temporary account.
+- `verify_hash`: Validates the VAA by checking the signatures against the active Guardian set and ensuring quorum.
+- `close_signatures`: Closes the temporary account to reclaim lamports.
+
+Because the shim avoids leaving permanent accounts behind, verification becomes much cheaper while keeping the same security guarantees.
+
+This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the Core Bridge’s `verify_signatures` and `post_vaa`.
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
 ## How It Works
 
-The verification shim replaces the legacy multi-account pattern with a flow where you only create a temporary signature set account. After verification, you can close it to reclaim your lamports.
+Instead of Core Bridge instructions like `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
 
-1. **Create a temporary `SignatureSet` account**: Fund it as rent-exempt for the required size.
-2. **Call `verify_signatures`** as many times as needed, using the secp256k1 syscall and all guardian signatures. The SignatureSet account will accumulate valid signatures.
-3. **Call `post_vaa`** to check guardian set validity, consensus, and VAA integrity.
-   - If verification succeeds, proceed with your on-chain logic (e.g., updating state, processing transfers).
-4. **Immediately close** the `GuardianSignatures` account via `close_signatures` to reclaim lamports, if you are the payer.
+1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
+2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
+3. Call `close_signatures`: Immediately close the `GuardianSignatures` account to reclaim the lamports paid for its creation.
 
 ```mermaid
 graph LR
-    A[Create SignatureSet] --> B[verify_signatures]
-    B --> C[post_vaa]
-    C --> D[Process Logic]
-    D --> E[Close SignatureSet & PostedVAA]
+    A[post_signatures] --> B[verify_hash]
+    B --> C[Process Logic]
+    C --> D[close_signatures]
 ```
+
+This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
 
 ## Verify VAA
 
@@ -54,7 +61,7 @@ let digest = keccak::hash(message_hash.as_slice()).to_bytes();
 
 ## Limitations and Security Considerations
 
-- You must be the payer and/or account owner to reclaim lamports from SignatureSet and PostedVAA accounts.
+- You must be the payer and/or account owner to reclaim lamports from `GuardianSignatures` account.
 - The verification proof is ephemeral—no permanent on-chain record unless you keep the account.
 - Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
 - All validation guarantees remain as strong as with the legacy method.
