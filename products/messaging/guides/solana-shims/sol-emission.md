@@ -52,7 +52,7 @@ To interact with the emission shim, you'll need the following:
 To start, import the shim crate so we can call `wormhole_post_message_shim::cpi::post_message`. Then, pull the core bridge addresses needed to be passed along.
 
 ```rs
---8<-- 'code/products/messaging/guides/shims/post_message.rs:2:9'
+--8<-- 'code/products/messaging/guides/shims/post_message.rs::9'
 ```
 
 ## Accounts
@@ -81,7 +81,7 @@ This instruction reuses a single per-emitter message PDA (no per-message rent). 
 
 ## Call post_message
 
-The following function does the emission. It optionally transfers the Core message fee, calls the shim’s `post_message` via CPI, passing nonce, finality, and your payload, and signs the CPI with your emitter PDA.
+The `post_message` function transfers the Core message fee, calls the shim via CPI, passes the nonce, finality, and your payload, and signs the CPI with your emitter PDA.
 
 ```rs
 --8<-- 'code/products/messaging/guides/shims/post_message.rs:62'

@@ -37,26 +37,52 @@ graph LR
 
 This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
 
-## Verify VAA
 
-This instruction is intended to be invoked via CPI call. It verifies a digest against a GuardianSignatures account and a core bridge GuardianSet. Prior to this call, and likely in a separate transaction, `post_signatures` must be called to create the account. Immediately after this call, `close_signatures` should be called to reclaim the lamports.
+## Prerequisites
 
-A v1 VAA digest can be computed as follows:
+To interact with the verification shim, you'll need the following:
 
-```rust
-let message_hash = &solana_program::keccak::hashv(&[&vaa_body]).to_bytes();
-let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
+- [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}
+- The canonical Verification Shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
+- The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.
+- A payer (signer) funded for compute and temporary account rent (you’ll close and reclaim).
+
+## Setup
+
+To start, you'll need to add the shim CPI and declare the external program so your instruction can CPI into it. <!-- finish better intro -->
+
+```rs
+--8<-- 'code/products/messaging/guides/shims/consume_vaa.rs::8'
 ```
 
-A QueryResponse digest can be computed as follows:
+## Accounts
 
-```rust
-use wormhole_query_sdk::MESSAGE_PREFIX;
-let message_hash = [
-  MESSAGE_PREFIX,
-  &solana_program::keccak::hashv(&[&bytes]).to_bytes(),
-].concat();
-let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+You’ll wire three accounts for verification:
+
+- `guardian_set`: Core Bridge GuardianSet PDA for the VAA’s `guardianSetIndex` (shim checks derivation). <!-- ??? -->
+- `guardian_signatures`: Temporary account created by `post_signatures` (shim checks ownership & discriminator).
+- `wormhole_verify_vaa_shim`: The verification shim program.
+
+```rs
+--8<-- 'code/products/messaging/guides/shims/consume_vaa.rs:10:21'
+```
+
+<!-- write this in a proper paragraph -->
+Who owns it: guardian_set → Core Bridge; guardian_signatures → Shim.
+Derive: guardian_set = PDA(["GuardianSet", index_be_bytes], CORE_BRIDGE_PROGRAM_ID).
+Use the index from the VAA header; pass the PDA bump to your instruction.
+
+## Verify the VAA
+
+The `consume_vaa` function computes the digest, calls the shim’s verify_hash, and then you proceed with your business logic (decode, replay-protection, effects).
+
+<!-- make this into a paragraph-->
+Validates Guardian signatures and quorum against the active Guardian set for the VAA’s index.
+Keeps your contract stateless regarding posted VAAs; you handle replay-protection in your own state (e.g., store (emitter, sequence) or digest as “consumed”).
+
+```rs
+--8<-- 'code/products/messaging/guides/shims/consume_vaa.rs:23'
 ```
 
 ## Limitations and Security Considerations
