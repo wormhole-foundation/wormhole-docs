@@ -5734,55 +5734,16 @@ This guide explains how to use Wormhole’s emission shim on Solana to reduce th
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
-## Using the Emission Shim
-
-The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that is closely modeled on the Core Bridge’s `post_message_unreliable`, but not identical. Integrators should follow the [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} when wiring accounts.
-
-The main differences are:
-
-- The shim uses a PDA per emitter for message accounts (so you don’t need to generate a new keypair each time).
-- It emits the message data via an Anchor CPI event for Guardians to observe, instead of storing it in a persistent rent-exempt account.
-
-### Required Accounts
-
-When calling the shim’s `post_message` instruction, you should include the following:
-
-- `bridge`: Core Bridge config.
-- `message`: PDA derived from the emitter; reused by the shim instead of generating new accounts.
-- `emitter`: The emitter address (signer).
-- `sequence`: PDA for sequence tracking.
-- `payer`: Pays compute and any rent needed on first use (signer).
-- `fee_collector`: Fee account.
-- `clock`: Sysvar for current time.
-- `system_program`: Standard Solana system program (for account creation on first use).
-- `wormhole_program`: The Wormhole Core Bridge program.
-- `event_authority`: PDA used by the shim to emit log events (Anchor CPI events).
-- `program`: The shim program itself.
-
-### Data Payload
-
-The instruction takes a `PostMessageData` struct, which consists of:
-
-- `nonce` ++"u32"++: Unique value per message for replay protection.
-- `payload` ++"Vec<u8>"++: The actual message data.
-- `consistency_level` ++"enum"++: How many confirmations are required for the message to be considered valid.
-
-Example Anchor call:
-
-```rust
-shim_program
-    .post_message(
-        ctx.accounts,
-        nonce,
-        payload,
-        consistency_level,
-    )?;
-```
-
 ## How It Works
 
-- **Shim Program**: Provides a `post_message` instruction modeled on the Core Bridge’s `post_message_unreliable`.
-- **Sequence Handling**: The Core Bridge still manages sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
+The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that is closely modeled on the core bridge’s `post_message_unreliable`, but not identical.
+
+The shim differs from the standard `post_message` approach in two key ways. First, it uses a Program Derived Address (PDA) per emitter for message accounts, removing the need to generate a new keypair for each emission. SSecond, instead of writing the message into a persistent, rent-exempt account, it emits the data via an Anchor CPI event, which Guardians can observe directly. This design reduces rent costs and avoids leaving unused accounts behind.
+
+The shim works through a few main components:
+
+- **Shim Program**: Provides a `post_message` instruction modeled on the core bridge’s `post_message_unreliable`.
+- **Sequence Handling**: The core bridge still manages sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
 - **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
 - **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
 
@@ -5798,12 +5759,310 @@ graph LR
     C -- instruction data & event --> D
 ```
 
-The typical flow in your on-chain logic:
+The emission fee is still paid, and the core bridge continues to manage sequence numbers as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
 
-1. Prepare the accounts.
-2. Call the shim’s `post_message`, passing your payload, nonce, and desired consistency level.
+## Prerequisites
 
-The emission fee is still paid, and sequence numbers are still managed by the Core Bridge as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
+To interact with the emission shim, you'll need the following:
+
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
+- [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}
+- The canonical emission shim program already deployed at [`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}.
+- The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} for wiring accounts.
+- A payer (signer) funded with enough SOL to cover compute, first-use PDA rent, and the core bridge message fee.
+
+## Setup
+
+To start, import the shim crate so we can call `wormhole_post_message_shim::cpi::post_message`. Then, pull the core bridge addresses needed to be passed along.
+
+```rs
+declare_program!(wormhole_post_message_shim);
+
+use anchor_lang::prelude::*;
+
+use wormhole_post_message_shim::{program::WormholePostMessageShim, types::Finality};
+use wormhole_solana_consts::{
+    CORE_BRIDGE_CONFIG, CORE_BRIDGE_FEE_COLLECTOR, CORE_BRIDGE_PROGRAM_ID,
+};
+
+#[derive(Accounts)]
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+
+pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
+    // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
+    // The following code could be used to handle this via CPI call.
+    // However, this example handles this complexity on the client side using a `preInstruction`
+    //
+    // let fee = ctx.accounts.wormhole_bridge.fee();
+    // if fee &gt; 0 {
+    //     solana_program::program::invoke(
+    //         &amp;solana_program::system_instruction::transfer(
+    //             &amp;ctx.accounts.payer.key(),
+    //             &amp;ctx.accounts.fee_collector.key(),
+    //             fee,
+    //         ),
+    //         &amp;ctx.accounts.to_account_infos(),
+    //     )?;
+    // }
+
+    wormhole_post_message_shim::cpi::post_message(
+        CpiContext::new_with_signer(
+            ctx.accounts.wormhole_post_message_shim.to_account_info(),
+            wormhole_post_message_shim::cpi::accounts::PostMessage {
+                payer: ctx.accounts.payer.to_account_info(),
+                bridge: ctx.accounts.bridge.to_account_info(),
+                message: ctx.accounts.message.to_account_info(),
+                emitter: ctx.accounts.emitter.to_account_info(),
+                sequence: ctx.accounts.sequence.to_account_info(),
+                fee_collector: ctx.accounts.fee_collector.to_account_info(),
+                clock: ctx.accounts.clock.to_account_info(),
+                system_program: ctx.accounts.system_program.to_account_info(),
+                wormhole_program: ctx.accounts.wormhole_program.to_account_info(),
+                program: ctx.accounts.wormhole_post_message_shim.to_account_info(),
+                event_authority: ctx.accounts.wormhole_post_message_shim_ea.to_account_info(),
+            },
+            &amp;[&amp;[b"emitter", &amp;[ctx.bumps.emitter]]],
+        ),
+        0,
+        Finality::Finalized,
+        b"your message goes here!".to_vec(),
+    )?;
+
+    Ok(())
+}</postmessage>
+```
+
+## Accounts
+
+When calling the shim’s `post_message` instruction, you need to pass:
+
+- `bridge`: Core bridge config.
+- `message`: PDA derived from the emitter; reused by the shim instead of generating new accounts.
+- `emitter`: The emitter address (signer).
+- `sequence`: PDA for sequence tracking.
+- `payer`: Pays compute and any rent needed on first use (signer).
+- `fee_collector`: Fee account.
+- `clock`: Sysvar for current time.
+- `system_program`: Standard Solana system program (for account creation on first use).
+- `wormhole_program`: The Wormhole core bridge program.
+- `event_authority`: PDA used by the shim to emit log events (Anchor CPI events).
+- `program`: The shim program itself.
+
+Define the accounts your instruction needs. The struct below wires the shim and Core together, ensuring your emitter PDA can sign the CPI via seeds.
+
+```rs
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+```
+
+This instruction reuses a single per-emitter message PDA (no per-message rent). When invoked, the shim emits your payload as an Anchor CPI event and, in the same transaction, calls the core bridge with an empty payload, allowing the core bridge to still assign the sequence and enforce fees/finality. Guardians read the Core call (sequence/finality) and the shim event (payload) from the transaction logs, producing a standard VAA without leaving a persistent message account.
+
+## Call post_message
+
+The `post_message` function transfers the Core message fee, calls the shim via CPI, passes the nonce, finality, and your payload, and signs the CPI with your emitter PDA.
+
+```rs
+declare_program!(wormhole_post_message_shim);
+
+use anchor_lang::prelude::*;
+
+use wormhole_post_message_shim::{program::WormholePostMessageShim, types::Finality};
+use wormhole_solana_consts::{
+    CORE_BRIDGE_CONFIG, CORE_BRIDGE_FEE_COLLECTOR, CORE_BRIDGE_PROGRAM_ID,
+};
+
+#[derive(Accounts)]
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+
+pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
+    // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
+    // The following code could be used to handle this via CPI call.
+    // However, this example handles this complexity on the client side using a `preInstruction`
+    //
+    // let fee = ctx.accounts.wormhole_bridge.fee();
+    // if fee &gt; 0 {
+    //     solana_program::program::invoke(
+    //         &amp;solana_program::system_instruction::transfer(
+    //             &amp;ctx.accounts.payer.key(),
+    //             &amp;ctx.accounts.fee_collector.key(),
+    //             fee,
+    //         ),
+    //         &amp;ctx.accounts.to_account_infos(),
+    //     )?;
+    // }
+
+    wormhole_post_message_shim::cpi::post_message(
+        CpiContext::new_with_signer(
+            ctx.accounts.wormhole_post_message_shim.to_account_info(),
+            wormhole_post_message_shim::cpi::accounts::PostMessage {
+                payer: ctx.accounts.payer.to_account_info(),
+                bridge: ctx.accounts.bridge.to_account_info(),
+                message: ctx.accounts.message.to_account_info(),
+                emitter: ctx.accounts.emitter.to_account_info(),
+                sequence: ctx.accounts.sequence.to_account_info(),
+                fee_collector: ctx.accounts.fee_collector.to_account_info(),
+                clock: ctx.accounts.clock.to_account_info(),
+                system_program: ctx.accounts.system_program.to_account_info(),
+                wormhole_program: ctx.accounts.wormhole_program.to_account_info(),
+                program: ctx.accounts.wormhole_post_message_shim.to_account_info(),
+                event_authority: ctx.accounts.wormhole_post_message_shim_ea.to_account_info(),
+            },
+            &amp;[&amp;[b"emitter", &amp;[ctx.bumps.emitter]]],
+        ),
+        0,
+        Finality::Finalized,
+        b"your message goes here!".to_vec(),
+    )?;
+
+    Ok(())
+}</postmessage>
+```
 
 ## Migration Guidance
 
@@ -5834,11 +6093,7 @@ All 19 Guardians are configured to observe shim emissions on mainnet. As with al
 
 By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
 
-
-<!--
-file should focus more on the concrete steps a new integrator would take to publish messages via the emission shim. example program instruction.
-https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/post_message.rs
--->
+For a complete, working reference, see the full example implementation in the Wormhole repo: [`post_message.rs`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/post_message.rs){target=\_blank}.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-verification.md
@@ -5851,9 +6106,9 @@ categories: Basics
 
 # Solana VAA Verification via Shim
 
-Verifying VAAs on Solana with the legacy Core Bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats on-chain state.
+Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
 
-The Verification Shim solves this by replacing the Core Bridge verification flow with its own instructions:
+The verification shim solves this by replacing the core bridge verification flow with its own instructions:
 
 - `post_signatures`: Accumulates Guardian signatures into a temporary account.
 - `verify_hash`: Validates the VAA by checking the signatures against the active Guardian set and ensuring quorum.
@@ -5861,13 +6116,13 @@ The Verification Shim solves this by replacing the Core Bridge verification flow
 
 Because the shim avoids leaving permanent accounts behind, verification becomes much cheaper while keeping the same security guarantees.
 
-This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the Core Bridge’s `verify_signatures` and `post_vaa`.
+This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the core bridge’s `verify_signatures` and `post_vaa` functions.
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
 ## How It Works
 
-Instead of Core Bridge instructions like `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
+Instead of the core bridge instructions, such as `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
 
 1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
 2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
@@ -5882,26 +6137,142 @@ graph LR
 
 This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
 
-## Verify VAA
+## Prerequisites
 
-This instruction is intended to be invoked via CPI call. It verifies a digest against a GuardianSignatures account and a core bridge GuardianSet. Prior to this call, and likely in a separate transaction, `post_signatures` must be called to create the account. Immediately after this call, `close_signatures` should be called to reclaim the lamports.
+To interact with the verification shim, you'll need the following:
 
-A v1 VAA digest can be computed as follows:
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
+- [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}
+- The canonical verification shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
+- The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.
+- A payer (signer) funded for compute and temporary account rent (you’ll close and reclaim).
 
-```rust
-let message_hash = &solana_program::keccak::hashv(&[&vaa_body]).to_bytes();
-let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+## Setup
+
+To start, add the verification shim CPI and declare the external program so your instruction can CPI into it. This lets your program verify a VAA digest against the active Guardian set without creating persistent core bridge accounts.
+
+```rs
+declare_program!(wormhole_verify_vaa_shim);
+
+use anchor_lang::{
+    prelude::*,
+    solana_program::{self, keccak},
+};
+use wormhole_verify_vaa_shim::cpi::accounts::VerifyHash;
+use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
+
+#[derive(Accounts)]
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+
+pub fn consume_vaa(
+    ctx: Context<consumevaa>,
+    guardian_set_bump: u8,
+    vaa_body: Vec<u8>,
+) -&gt; Result&lt;()&gt; {
+    // Compute the message hash.
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
+    let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+    // Verify the hash against the signatures.
+    wormhole_verify_vaa_shim::cpi::verify_hash(
+        CpiContext::new(
+            ctx.accounts.wormhole_verify_vaa_shim.to_account_info(),
+            VerifyHash {
+                guardian_set: ctx.accounts.guardian_set.to_account_info(),
+                guardian_signatures: ctx.accounts.guardian_signatures.to_account_info(),
+            },
+        ),
+        guardian_set_bump,
+        digest,
+    )?;
+    // Decode vaa_body, perform security checks, and do your thing.
+    Ok(())
+}</u8></consumevaa>
 ```
 
-A QueryResponse digest can be computed as follows:
+## Accounts
 
-```rust
-use wormhole_query_sdk::MESSAGE_PREFIX;
-let message_hash = [
-  MESSAGE_PREFIX,
-  &solana_program::keccak::hashv(&[&bytes]).to_bytes(),
-].concat();
-let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+You’ll wire three accounts for verification:
+
+- `guardian_set`: Core bridge GuardianSet PDA for the VAA’s `guardianSetIndex` (shim checks derivation).
+- `guardian_signatures`: Temporary account created by `post_signatures` (shim checks ownership & discriminator).
+- `wormhole_verify_vaa_shim`: The verification shim program.
+
+```rs
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+```
+
+In this wiring, `guardian_set` is a core bridge PDA, and `guardian_signatures` is created and owned by the verification shim. Derive `guardian_set = PDA(["GuardianSet", index_be_bytes], CORE_BRIDGE_PROGRAM_ID)` using the `guardianSetIndex` from the VAA header (big-endian), compute its bump, and pass that bump into your instruction.
+
+## Verify the VAA
+
+The `consume_vaa` function computes the digest, calls the shim’s verify_hash, and then proceeds with your business logic (decode, replay-protection, effects). This step validates Guardian signatures and quorum against the active Guardian set for the VAA’s `guardianSetIndex`, then lets your program proceed without persisting a `PostedVAA`. 
+
+```rs
+declare_program!(wormhole_verify_vaa_shim);
+
+use anchor_lang::{
+    prelude::*,
+    solana_program::{self, keccak},
+};
+use wormhole_verify_vaa_shim::cpi::accounts::VerifyHash;
+use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
+
+#[derive(Accounts)]
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+
+pub fn consume_vaa(
+    ctx: Context<consumevaa>,
+    guardian_set_bump: u8,
+    vaa_body: Vec<u8>,
+) -&gt; Result&lt;()&gt; {
+    // Compute the message hash.
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
+    let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+    // Verify the hash against the signatures.
+    wormhole_verify_vaa_shim::cpi::verify_hash(
+        CpiContext::new(
+            ctx.accounts.wormhole_verify_vaa_shim.to_account_info(),
+            VerifyHash {
+                guardian_set: ctx.accounts.guardian_set.to_account_info(),
+                guardian_signatures: ctx.accounts.guardian_signatures.to_account_info(),
+            },
+        ),
+        guardian_set_bump,
+        digest,
+    )?;
+    // Decode vaa_body, perform security checks, and do your thing.
+    Ok(())
+}</u8></consumevaa>
 ```
 
 ## Limitations and Security Considerations
@@ -5915,7 +6286,7 @@ let digest = keccak::hash(message_hash.as_slice()).to_bytes();
 
 ## Conclusion
 
-By following this flow, you can efficiently verify VAAs on Solana with minimal rent overhead, leaving no unnecessary state behind on-chain.
+By following this flow, you can efficiently verify VAAs on Solana with minimal rent overhead, leaving no unnecessary state behind on-chain. For a complete, working reference, see the full example implementation in the Wormhole repo: [`consume_vaa.rs`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/consume_vaa.rs){target=\_blank}.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md
