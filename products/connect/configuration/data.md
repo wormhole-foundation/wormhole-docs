@@ -99,7 +99,7 @@ This flexible plugin allows you to combine default routes (such as WTT and CCTP)
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with WTT.
 
