@@ -1986,7 +1986,7 @@ pub fn consume_vaa(
 
 You’ll wire three accounts for verification:
 
-- `guardian_set`: Core bridge GuardianSet PDA for the VAA’s `guardianSetIndex` (shim checks derivation).
+- `guardian_set`: Core bridge `GuardianSet` PDA for the VAA’s `guardianSetIndex` (shim checks derivation).
 - `guardian_signatures`: Temporary account created by `post_signatures` (shim checks ownership & discriminator).
 - `wormhole_verify_vaa_shim`: The verification shim program.
 
@@ -2004,11 +2004,11 @@ pub struct ConsumeVaa&lt;'info&gt; {
 }
 ```
 
-In this wiring, `guardian_set` is a core bridge PDA, and `guardian_signatures` is created and owned by the verification shim. Derive `guardian_set = PDA(["GuardianSet", index_be_bytes], CORE_BRIDGE_PROGRAM_ID)` using the `guardianSetIndex` from the VAA header (big-endian), compute its bump, and pass that bump into your instruction.
+Here, `guardian_set` is a core bridge PDA, and `guardian_signatures` is created and owned by the verification shim. Derive `guardian_set = PDA(["GuardianSet", index_be_bytes], CORE_BRIDGE_PROGRAM_ID)` using the `guardianSetIndex` from the VAA header (big-endian), compute its bump, and pass that bump into your instruction.
 
 ## Verify the VAA
 
-The `consume_vaa` function computes the digest, calls the shim’s verify_hash, and then proceeds with your business logic (decode, replay-protection, effects). This step validates Guardian signatures and quorum against the active Guardian set for the VAA’s `guardianSetIndex`, then lets your program proceed without persisting a `PostedVAA`. 
+The `consume_vaa` function computes the digest, calls the shim’s `verify_hash`, and then proceeds with your logic. This step validates Guardian signatures and quorum against the active Guardian set for the VAA’s `guardianSetIndex`, then lets your program proceed without persisting a `PostedVAA`. 
 
 ```rs
 declare_program!(wormhole_verify_vaa_shim);
@@ -2061,7 +2061,7 @@ pub fn consume_vaa(
 ## Limitations and Security Considerations
 
 - You must be the payer and/or account owner to reclaim lamports from `GuardianSignatures` account.
-- The verification proof is ephemeral—no permanent on-chain record unless you keep the account.
+- The verification proof is not permanent on-chain record unless you keep the account.
 - Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
 - All validation guarantees remain as strong as with the legacy method.
 - If you do not close accounts you create, rent will be lost as before.
