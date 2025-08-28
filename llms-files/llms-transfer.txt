@@ -16952,7 +16952,7 @@ Wormhole shims on Solana are lightweight programs that enable cheaper and more f
 
 ## The Core Bridge Account Problem
 
-When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account — a Program Derived Address (PDA) — for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since core bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account, a Program Derived Address (PDA), for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since core bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
 - **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
 - **Lost Lamports to Rent**: Integrators lose SOL for every message, as the lamports needed for rent exemption remain locked in the message accounts indefinitely.
@@ -16980,7 +16980,7 @@ The [Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/){
 
 It works by calling the [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=_blank} instruction on the Post Message Shim program. This emits the Wormhole message as a log event instead of creating a rent-exempt message account.
 
-The shim differs from the standard `post_message` approach in two key ways. First, it uses a Program Derived Address (PDA) per emitter for message accounts, removing the need to generate a new keypair for each emission. SSecond, instead of writing the message into a persistent, rent-exempt account, it emits the data via an Anchor CPI event, which Guardians can observe directly. This design reduces rent costs and avoids leaving unused accounts behind.
+The shim differs from the standard `post_message` approach in two key ways. First, it uses a Program Derived Address (PDA) per emitter for message accounts, removing the need to generate a new keypair for each emission. Second, instead of writing the message into a persistent, rent-exempt account, it emits the data via an Anchor CPI event, which Guardians can observe directly. This design reduces rent costs and avoids leaving unused accounts behind.
 
 The shim works through a few main components:
 
