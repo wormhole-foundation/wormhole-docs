@@ -10,7 +10,7 @@ Wormhole shims on Solana are lightweight programs that enable cheaper and more f
 
 ## The Core Bridge Account Problem
 
-When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account — a Program Derived Address (PDA) — for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since core bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account, a Program Derived Address (PDA), for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since core bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
 - **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
 - **Lost Lamports to Rent**: Integrators lose SOL for every message, as the lamports needed for rent exemption remain locked in the message accounts indefinitely.
