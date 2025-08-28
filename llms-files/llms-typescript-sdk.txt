@@ -5800,17 +5800,17 @@ pub struct PostMessage&lt;'info&gt; {
     pub message: UncheckedAccount&lt;'info&gt;,
 
     #[account(seeds = [b"emitter"], bump)]
-    /// Our emitter
+    // Our emitter
     pub emitter: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut)]
-    /// post_message` requires this account be mutable.
-    /// Explicitly do not re-derive this account. The core bridge verifies the derivation 
-    /// and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
+    // post_message` requires this account be mutable.
+    // Explicitly do not re-derive this account. The core bridge verifies the derivation 
+    // and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
     pub sequence: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
-    /// wormhole::post_message requires this account be mutable.
+    // wormhole::post_message requires this account be mutable.
     pub fee_collector: UncheckedAccount&lt;'info&gt;,
 
     pub clock: Sysvar&lt;'info, Clock&gt;,
@@ -5820,7 +5820,7 @@ pub struct PostMessage&lt;'info&gt; {
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
     pub wormhole_program: UncheckedAccount&lt;'info&gt;,
 
-    /// Shim event authority
+    // Shim event authority
     pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
 }
 
@@ -5902,17 +5902,17 @@ pub struct PostMessage&lt;'info&gt; {
     pub message: UncheckedAccount&lt;'info&gt;,
 
     #[account(seeds = [b"emitter"], bump)]
-    /// Our emitter
+    // Our emitter
     pub emitter: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut)]
-    /// post_message` requires this account be mutable.
-    /// Explicitly do not re-derive this account. The core bridge verifies the derivation 
-    /// and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
+    // post_message` requires this account be mutable.
+    // Explicitly do not re-derive this account. The core bridge verifies the derivation 
+    // and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
     pub sequence: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
-    /// wormhole::post_message requires this account be mutable.
+    // wormhole::post_message requires this account be mutable.
     pub fee_collector: UncheckedAccount&lt;'info&gt;,
 
     pub clock: Sysvar&lt;'info, Clock&gt;,
@@ -5922,7 +5922,7 @@ pub struct PostMessage&lt;'info&gt; {
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
     pub wormhole_program: UncheckedAccount&lt;'info&gt;,
 
-    /// Shim event authority
+    // Shim event authority
     pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
 }
 ```
@@ -5959,17 +5959,17 @@ pub struct PostMessage&lt;'info&gt; {
     pub message: UncheckedAccount&lt;'info&gt;,
 
     #[account(seeds = [b"emitter"], bump)]
-    /// Our emitter
+    // Our emitter
     pub emitter: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut)]
-    /// post_message` requires this account be mutable.
-    /// Explicitly do not re-derive this account. The core bridge verifies the derivation 
-    /// and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
+    // post_message` requires this account be mutable.
+    // Explicitly do not re-derive this account. The core bridge verifies the derivation 
+    // and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
     pub sequence: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
-    /// wormhole::post_message requires this account be mutable.
+    // wormhole::post_message requires this account be mutable.
     pub fee_collector: UncheckedAccount&lt;'info&gt;,
 
     pub clock: Sysvar&lt;'info, Clock&gt;,
@@ -5979,7 +5979,7 @@ pub struct PostMessage&lt;'info&gt; {
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
     pub wormhole_program: UncheckedAccount&lt;'info&gt;,
 
-    /// Shim event authority
+    // Shim event authority
     pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
 }
 
@@ -6051,7 +6051,7 @@ categories: Basics
 
 # Solana VAA Verification via Shim
 
-Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
+Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts for signatures and posted VAAs. These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
 
 The verification shim solves this by replacing the core bridge verification flow with its own instructions:
 
@@ -6091,12 +6091,12 @@ use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
 
 #[derive(Accounts)]
 pub struct ConsumeVaa&lt;'info&gt; {
-    /// CHECK: Guardian set used for signature verification by shim.
-    /// Derivation is checked by the shim.
+    // Guardian set used for signature verification by shim.
+    // Derivation is checked by the shim.
     guardian_set: UncheckedAccount&lt;'info&gt;,
 
-    /// CHECK: Stored guardian signatures to be verified by shim.
-    /// Ownership ownership and discriminator is checked by the shim.
+    // Stored guardian signatures to be verified by shim.
+    // Ownership and discriminator is checked by the shim.
     guardian_signatures: UncheckedAccount&lt;'info&gt;,
 
     wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
@@ -6137,12 +6137,12 @@ You’ll wire three accounts for verification:
 
 ```rs
 pub struct ConsumeVaa&lt;'info&gt; {
-    /// CHECK: Guardian set used for signature verification by shim.
-    /// Derivation is checked by the shim.
+    // Guardian set used for signature verification by shim.
+    // Derivation is checked by the shim.
     guardian_set: UncheckedAccount&lt;'info&gt;,
 
-    /// CHECK: Stored guardian signatures to be verified by shim.
-    /// Ownership ownership and discriminator is checked by the shim.
+    // Stored guardian signatures to be verified by shim.
+    // Ownership and discriminator is checked by the shim.
     guardian_signatures: UncheckedAccount&lt;'info&gt;,
 
     wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
@@ -6167,12 +6167,12 @@ use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
 
 #[derive(Accounts)]
 pub struct ConsumeVaa&lt;'info&gt; {
-    /// CHECK: Guardian set used for signature verification by shim.
-    /// Derivation is checked by the shim.
+    // Guardian set used for signature verification by shim.
+    // Derivation is checked by the shim.
     guardian_set: UncheckedAccount&lt;'info&gt;,
 
-    /// CHECK: Stored guardian signatures to be verified by shim.
-    /// Ownership ownership and discriminator is checked by the shim.
+    // Stored guardian signatures to be verified by shim.
+    // Ownership and discriminator is checked by the shim.
     guardian_signatures: UncheckedAccount&lt;'info&gt;,
 
     wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,

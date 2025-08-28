@@ -6,7 +6,7 @@ categories: Basics
 
 # Solana VAA Verification via Shim
 
-Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
+Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts for signatures and posted VAAs. These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
 
 The verification shim solves this by replacing the core bridge verification flow with its own instructions:
 

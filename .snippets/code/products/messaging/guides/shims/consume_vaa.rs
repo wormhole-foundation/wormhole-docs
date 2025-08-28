@@ -9,12 +9,12 @@ use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
 
 #[derive(Accounts)]
 pub struct ConsumeVaa<'info> {
-    /// CHECK: Guardian set used for signature verification by shim.
-    /// Derivation is checked by the shim.
+    // Guardian set used for signature verification by shim.
+    // Derivation is checked by the shim.
     guardian_set: UncheckedAccount<'info>,
 
-    /// CHECK: Stored guardian signatures to be verified by shim.
-    /// Ownership ownership and discriminator is checked by the shim.
+    // Stored guardian signatures to be verified by shim.
+    // Ownership and discriminator is checked by the shim.
     guardian_signatures: UncheckedAccount<'info>,
 
     wormhole_verify_vaa_shim: Program<'info, WormholeVerifyVaaShim>,

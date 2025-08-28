@@ -23,17 +23,17 @@ pub struct PostMessage<'info> {
     pub message: UncheckedAccount<'info>,
 
     #[account(seeds = [b"emitter"], bump)]
-    /// Our emitter
+    // Our emitter
     pub emitter: UncheckedAccount<'info>,
 
     #[account(mut)]
-    /// post_message` requires this account be mutable.
-    /// Explicitly do not re-derive this account. The core bridge verifies the derivation 
-    /// and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
+    // post_message` requires this account be mutable.
+    // Explicitly do not re-derive this account. The core bridge verifies the derivation 
+    // and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
     pub sequence: UncheckedAccount<'info>,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
-    /// wormhole::post_message requires this account be mutable.
+    // wormhole::post_message requires this account be mutable.
     pub fee_collector: UncheckedAccount<'info>,
 
     pub clock: Sysvar<'info, Clock>,
@@ -43,7 +43,7 @@ pub struct PostMessage<'info> {
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
     pub wormhole_program: UncheckedAccount<'info>,
 
-    /// Shim event authority
+    // Shim event authority
     pub wormhole_post_message_shim_ea: UncheckedAccount<'info>,
 }
 
