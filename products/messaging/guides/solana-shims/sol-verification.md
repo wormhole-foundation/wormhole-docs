@@ -18,24 +18,7 @@ Because the shim avoids leaving permanent accounts behind, verification becomes 
 
 This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the core bridge’s `verify_signatures` and `post_vaa` functions.
 
-For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
-
-## How It Works
-
-Instead of the core bridge instructions, such as `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
-
-1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
-2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
-3. Call `close_signatures`: Immediately close the `GuardianSignatures` account to reclaim the lamports paid for its creation.
-
-```mermaid
-graph LR
-    A[post_signatures] --> B[verify_hash]
-    B --> C[Process Logic]
-    C --> D[close_signatures]
-```
-
-This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
+For more background, see [Verification Shim concept section](/docs/products/messaging/concepts/solana-shim/#verification-shim){target=\_blank}. 
 
 ## Prerequisites
 

@@ -6,36 +6,14 @@ categories: Basics
 
 # Solana Message Emission via Shim
 
-This guide explains how to use Wormhole’s emission shim on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
+The emission shim is a lightweight Solana program that lets integrators emit Wormhole messages without creating a new rent-exempt account for every message. Instead, it passes an empty payload to the core bridge and emits instead the data through transaction logs, cutting rent costs and avoiding state bloat while remaining fully compatible with Guardian observation.
 
-For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
+Migrating from the legacy path is straightforward: no account resizing is needed, and programs can call the shim directly. The Wormhole fee is still paid through the `fee_collector`, with the same parallelization limits as before. Guardians are configured to observe the canonical shim address, reading message data, emitter, and nonce from the transaction logs and CPI events instead of on-chain accounts, while ignoring the empty core bridge payload to prevent duplicate VAAs. On mainnet, all 19 Guardians support shim emissions, and, as with all Wormhole messages, at least 13 attestations are required for a valid VAA.
 
-## How It Works
+!!!note
+    For on-chain programs that only call the shim via CPI, consider emitting a dummy/empty message after migration to avoid edge cases with initial CPI depth (Solana limits the depth of cross-program calls).
 
-The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that is closely modeled on the core bridge’s `post_message_unreliable`, but not identical.
-
-The shim differs from the standard `post_message` approach in two key ways. First, it uses a Program Derived Address (PDA) per emitter for message accounts, removing the need to generate a new keypair for each emission. SSecond, instead of writing the message into a persistent, rent-exempt account, it emits the data via an Anchor CPI event, which Guardians can observe directly. This design reduces rent costs and avoids leaving unused accounts behind.
-
-The shim works through a few main components:
-
-- **Shim Program**: Provides a `post_message` instruction modeled on the core bridge’s `post_message_unreliable`.
-- **Sequence Handling**: The core bridge still manages sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
-- **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
-- **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
-
-```mermaid
-graph LR
-    A[Integrator Program]
-    B[Emission Shim]
-    C[Core Bridge]
-    D[Guardians]
-
-    A -- call post_message --> B
-    B -- emits event & calls core --> C
-    C -- instruction data & event --> D
-```
-
-The emission fee is still paid, and the core bridge continues to manage sequence numbers as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
+For more background, see [Emission Shim concept section](/docs/products/messaging/concepts/solana-shim/#emission-shim){target=\_blank}. 
 
 ## Prerequisites
 
@@ -86,24 +64,6 @@ The `post_message` function transfers the Core message fee, calls the shim via C
 ```rs
 --8<-- 'code/products/messaging/guides/shims/post_message.rs:62'
 ```
-
-## Migration Guidance
-
-If migrating from the legacy emission path:
-
-- No account resizing needed; the shim handles variable-length payloads by always passing an empty payload to the core bridge.
-- For on-chain programs that only call the shim via CPI, consider emitting a dummy/empty message after migration to avoid edge cases with initial CPI depth (Solana limits the depth of cross-program calls).
-- You still pay the Wormhole fee via `fee_collector` (parallelization limits apply).
-
-## Guardian Behavior
-
-Guardians are configured to:
-
-- Watch for instructions to the emission shim’s program address.
-- Extract the message data, emitter, sequence, and nonce from instruction data and the CPI event, not from an on-chain message.
-- Ignore the empty account that the core bridge might write (since the payload is empty), preventing duplicate VAAs.
-
-All 19 Guardians are configured to observe shim emissions on mainnet. As with all Wormhole messages, at least 13 of 19 Guardians must attest for a VAA to be produced and the shim emissions to be processed by the network.
 
 ## Limitations and Security Considerations 
 
