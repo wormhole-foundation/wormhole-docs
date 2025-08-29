@@ -13145,9 +13145,9 @@ To mint tokens after moving the treasury object to the NTT manager on Sui, you n
 
 The flow works as follows:
 
-1. **Take the treasury cap**: Use `state.take_treasury_cap(admin_cap)` to extract the treasury cap
+1. **Take the treasury cap**: Use `state.take_treasury_cap(admin_cap)` to extract the treasury cap.
 2. **Mint assets**: Perform your minting operations with the treasury cap
-3. **Return the treasury cap**: Use `state.return_treasury_cap(treasury_cap)` to return it to the state
+3. **Return the treasury cap**: Use `state.return_treasury_cap(treasury_cap)` to return it to the state.
 
 !!!Important 
     Return the Treasury Cap! If the treasury cap is not returned in the same transaction, the NTT deployment will stop working. The contract will break and become non-functional.
