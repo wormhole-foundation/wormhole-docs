@@ -54,17 +54,17 @@ When calling the shim’s `post_message` instruction, you need to pass:
 Define the accounts your instruction needs. The struct below wires the shim and Core together, ensuring your emitter PDA can sign the CPI via seeds.
 
 ```rs
---8<-- 'code/products/messaging/guides/shims/post_message.rs:10:48'
+--8<-- 'code/products/messaging/guides/shims/post_message.rs:10:60'
 ```
 
 This instruction reuses a single per-emitter message PDA (no per-message rent). When invoked, the shim emits your payload as an Anchor CPI event and, in the same transaction, calls the core bridge with an empty payload, allowing the core bridge to still assign the sequence and enforce fees/finality. Guardians read the Core call (sequence/finality) and the shim event (payload) from the transaction logs, producing a standard VAA without leaving a persistent message account.
 
 ## Call post_message
 
-The `post_message` function transfers the Core message fee, calls the shim via CPI, passes the nonce, finality, and your payload, and signs the CPI with your emitter PDA.
+The `post_message` function builds a `CpiContext` and invokes the shim’s `post_message` instruction, forwarding the nonce, finality, and your payload. The Core Bridge enforces fee requirements and assigns the sequence, while the shim emits the payload as an event in the same transaction.
 
 ```rs
---8<-- 'code/products/messaging/guides/shims/post_message.rs:50'
+--8<-- 'code/products/messaging/guides/shims/post_message.rs:62'
 ```
 
 ## Limitations and Security Considerations 

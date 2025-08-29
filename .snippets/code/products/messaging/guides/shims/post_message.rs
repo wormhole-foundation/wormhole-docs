@@ -15,42 +15,54 @@ pub struct PostMessage<'info> {
     wormhole_post_message_shim: Program<'info, WormholePostMessageShim>,
 
     #[account(mut, address = CORE_BRIDGE_CONFIG)]
-    // post_message requires this account be mutable.
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
     pub bridge: UncheckedAccount<'info>,
 
     #[account(mut, seeds = [&emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
-    // post_message requires this account be signer and mutable.
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
     pub message: UncheckedAccount<'info>,
 
     #[account(seeds = [b"emitter"], bump)]
-    // Our emitter
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
     pub emitter: UncheckedAccount<'info>,
 
     #[account(mut)]
-    // post_message` requires this account be mutable.
-    // Explicitly do not re-derive this account. The core bridge verifies the derivation 
-    // and as of Anchor 0.30.1, auto-derivation for other accounts via IDL doesn't work.
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
     pub sequence: UncheckedAccount<'info>,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
-    // wormhole::post_message requires this account be mutable.
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
     pub fee_collector: UncheckedAccount<'info>,
 
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
     pub clock: Sysvar<'info, Clock>,
 
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
     pub system_program: Program<'info, System>,
 
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
     pub wormhole_program: UncheckedAccount<'info>,
 
-    // Shim event authority
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
     pub wormhole_post_message_shim_ea: UncheckedAccount<'info>,
 }
 
 pub fn post_message(ctx: Context<PostMessage>) -> Result<()> {
-    // post_message may require that a fee be sent to the fee_collector account.
-    // The following code could be used to handle this via CPI call. However, 
-    // this example handles this complexity on the client side using a `preInstruction`
+    // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
+    // The following code could be used to handle this via CPI call.
+    // However, this example handles this complexity on the client side using a `preInstruction`
     //
     // let fee = ctx.accounts.wormhole_bridge.fee();
     // if fee > 0 {
