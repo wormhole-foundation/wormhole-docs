@@ -47,68 +47,19 @@ Common patterns you can implement include:
 **Example: Disable all AutomaticTokenBridge routes**
 
 ```typescript
-import WormholeConnect, {
-    type config,
-} from '@wormhole-foundation/wormhole-connect';
-
-const config: config.WormholeConnectConfig = {
-    // ...
-    isRouteSupportedHandler: async ({ route }) => {
-        if (route === 'AutomaticTokenBridge') {
-            return false;
-        }
-        return true; // keep other routes visible
-    },
-};
+--8<-- 'code/products/connect/faqs/faqs-1.ts'
 ```
 
 **Example: Disable a specific route for a particular token**
 
 ```typescript
-import WormholeConnect, {
-  type config,
-} from '@wormhole-foundation/wormhole-connect';
-
-const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
-
-const config: config.WormholeConnectConfig = {
-  // ...
-  isRouteSupportedHandler: async ({ route, fromToken }) => {
-    const tokenAddress =
-      fromToken.tokenId !== 'native' ? fromToken.tokenId.address : 'native';
-
-    if (
-      BLOCKED_ADDRESSES.has(tokenAddress) &&
-      route === 'AutomaticTokenBridge'
-    ) {
-      return false;
-    }
-    return true; // keep other routes visible
-  },
-};
+--8<-- 'code/products/connect/faqs/faqs-2.ts'
 ```
 
 **Example: Disable AutomaticTokenBridge from a specific chain**
 
 ```typescript
-import WormholeConnect, {
-  type config,
-} from '@wormhole-foundation/wormhole-connect';
-
-const BLOCKED_SOURCE_CHAINS = new Set<Chain>(['INSERT_CHAIN_NAME']);
-
-const config: config.WormholeConnectConfig = {
-  // ...
-  isRouteSupportedHandler: async ({ route, fromChain }) => {
-    if (
-      BLOCKED_SOURCE_CHAINS.has(fromChain) &&
-      route === 'AutomaticTokenBridge'
-    ) {
-      return false;
-    }
-    return true; // keep other routes visible
-  },
-};
+--8<-- 'code/products/connect/faqs/faqs-3.ts'
 ```
 
 ## How can I hide specific tokens from the picker?
@@ -118,24 +69,7 @@ Use `isTokenSupportedHandler` in your `WormholeConnectConfig`. The callback runs
 **Example: hide a token by address**
 
 ```typescript
-import WormholeConnect, {
-  type config,
-} from '@wormhole-foundation/wormhole-connect';
-
-const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
-
-const config: config.WormholeConnectConfig = {
-  // ...
-  isTokenSupportedHandler: (token) => {
-    // Address string provided by Connect
-    const addr = token.addressString;
-
-    if (addr && BLOCKED_ADDRESSES.has(addr)) {
-      return false;
-    }
-    return true; // show all others
-  },
-};
+--8<-- 'code/products/connect/faqs/faqs-4.ts'
 ```
 
 ## Which functions or events does Connect rely on for NTT integration? 
