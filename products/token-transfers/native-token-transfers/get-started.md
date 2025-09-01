@@ -28,10 +28,10 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Deploy an ERC-20 Token on EVM"
     --8<-- 'text/products/native-token-transfers/get-started/deploy-erc20.md'
 
-???- interface "Create and Mint SPL Tokens"
+???- interface "Create and Mint an SPL Token"
     --8<-- 'text/products/native-token-transfers/get-started/deploy-spl.md'
 
-???- interface "Create and Deploy Sui Tokens"
+???- interface "Create and Deploy a Sui Token"
     --8<-- 'text/products/native-token-transfers/get-started/deploy-sui.md'
 
 ## Install NTT CLI

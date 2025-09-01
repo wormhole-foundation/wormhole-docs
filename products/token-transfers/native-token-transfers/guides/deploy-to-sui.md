@@ -25,7 +25,7 @@ Deploying NTT on the Sui network follows a structured process:
      - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
 
-        ???- interface "Create and Deploy Sui Tokens"
+        ???- interface "Create and Deploy a Sui Token"
             --8<-- 'text/products/native-token-transfers/get-started/deploy-sui.md'
 
 2. **Choose your deployment model**:
