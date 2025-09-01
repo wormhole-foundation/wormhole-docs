@@ -122,9 +122,7 @@ import WormholeConnect, {
   type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const BLOCKED_ADDRESSES = new Set<string>([
-  'INSERT_TOKEN_ADDRESS'.toLowerCase(),
-]);
+const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
 
 const config: config.WormholeConnectConfig = {
   // ...
