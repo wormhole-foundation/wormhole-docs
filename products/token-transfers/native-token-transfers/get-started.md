@@ -108,3 +108,4 @@ You have scaffolded your NTT project and initialized the configuration file. Nex
 
 - [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
 - [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
+- [Deploy to Sui](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/){target=\_blank}: Deploy NTT on Sui.
