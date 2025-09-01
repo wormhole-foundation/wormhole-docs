@@ -31,6 +31,9 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Create and Mint SPL Tokens"
     --8<-- 'text/products/native-token-transfers/get-started/deploy-spl.md'
 
+???- interface "Create and Deploy Sui Tokens"
+    --8<-- 'text/products/native-token-transfers/get-started/deploy-sui.md'
+
 ## Install NTT CLI
 
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
