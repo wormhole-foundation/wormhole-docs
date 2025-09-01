@@ -111,6 +111,35 @@ const config: config.WormholeConnectConfig = {
 };
 ```
 
+## How can I hide specific tokens from the picker?
+
+Use `isTokenSupportedHandler` in your `WormholeConnectConfig`. The callback runs for each token candidate; if it returns `false`, that token is not shown in the picker and can't be selected.
+
+**Example: hide a token by address**
+
+```typescript
+import WormholeConnect, {
+  type config,
+} from '@wormhole-foundation/wormhole-connect';
+
+const BLOCKED_ADDRESSES = new Set<string>([
+  'INSERT_TOKEN_ADDRESS'.toLowerCase(),
+]);
+
+const config: config.WormholeConnectConfig = {
+  // ...
+  isTokenSupportedHandler: (token) => {
+    // Address string provided by Connect
+    const addr = token.addressString;
+
+    if (addr && BLOCKED_ADDRESSES.has(addr)) {
+      return false;
+    }
+    return true; // show all others
+  },
+};
+```
+
 ## Which functions or events does Connect rely on for NTT integration? 
 
 Connect relies on the NTT SDK for integration, with platform-specific implementations for Solana and EVM. The critical methods involved include initiate and redeem functions and rate capacity methods. These functions ensure Connect can handle token transfers and manage chain-rate limits.
