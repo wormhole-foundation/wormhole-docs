@@ -6,11 +6,11 @@ categories: Basics
 
 # Solana Message Emission via Shim
 
-The emission shim is a lightweight Solana program that lets integrators emit Wormhole messages without creating a new rent-exempt account for every message. Instead, it passes an empty payload to the core bridge and emits instead the data through transaction logs, cutting rent costs and avoiding state bloat while remaining fully compatible with Guardian observation.
+The emission shim is a lightweight Solana program that lets integrators emit Wormhole messages without creating a new rent-exempt account for every message. It passes an empty payload to the core bridge and emits the message data through transaction logs, reducing rent costs and avoiding state bloat while remaining fully compatible with Guardian observation.
 
 Migrating from the legacy path is straightforward: no account resizing is needed, and programs can call the shim directly. The Wormhole fee is still paid through the `fee_collector`, with the same parallelization limits as before. 
 
-Guardians are configured to observe the canonical shim address, reading message data, emitter, and nonce from the transaction logs and CPI events instead of on-chain accounts, while ignoring the empty core bridge payload to prevent duplicate VAAs. On mainnet, all 19 Guardians support shim emissions, and, as with all Wormhole messages, at least 13 attestations are required for a valid VAA.
+Guardians are configured to observe the canonical shim address, reading message data, emitter, and nonce from the transaction logs and CPI events, rather than on-chain accounts. They also ignore the empty core bridge payload to prevent duplicate VAAs. On mainnet, all 19 Guardians support shim emissions, and, as with all Wormhole messages, at least 13 attestations are required for a valid VAA.
 
 !!!note
     For on-chain programs that only call the shim via CPI, consider emitting a dummy/empty message after migration to avoid edge cases with initial CPI depth (Solana limits the depth of cross-program calls).
@@ -29,7 +29,7 @@ To interact with the emission shim, you'll need the following:
 
 ## Setup
 
-To start, import the shim crate so we can call `wormhole_post_message_shim::cpi::post_message`. Then, pull the core bridge addresses needed to be passed along.
+To start, import the shim crate to call `wormhole_post_message_shim::cpi::post_message`. Then, pull the core bridge addresses needed to be passed along.
 
 ```rs
 --8<-- 'code/products/messaging/guides/shims/post_message.rs::9'
