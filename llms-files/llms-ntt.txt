@@ -6930,26 +6930,27 @@ Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step p
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
 ## How can I transfer ownership of NTT to a multisig on Sui?
+
 1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
-```bash
+    ```bash
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
-```
+    ```
 
 2. Transfer `AdminCap` object over to a multisig:
-```bash
+    ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
-```
+    ```
 
 3. Transfer `UpgradeCap` object over to a multisig:
-```bash
+    ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
-```
+    ```
 
 4. Check new owner of `AdminCap` object:
-```bash
+    ```bash
     sui client object ADMIN_CAP_ID_STEP1 --json \
         | jq -r '.owner'
-```
+    ```
 
 ## How can I mint tokens after moving the treasury object to the NTT manager on Sui?
 
@@ -6958,7 +6959,7 @@ To mint tokens after moving the treasury object to the NTT manager on Sui, you n
 The flow works as follows:
 
 1. **Take the treasury cap**: Use `state.take_treasury_cap(admin_cap)` to extract the treasury cap.
-2. **Mint assets**: Perform your minting operations with the treasury cap
+2. **Mint assets**: Perform your minting operations with the treasury cap.
 3. **Return the treasury cap**: Use `state.return_treasury_cap(treasury_cap)` to return it to the state.
 
 !!!Important 
