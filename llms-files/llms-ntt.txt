@@ -221,111 +221,176 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Deploy an ERC-20 Token on EVM"
     Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-    1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
+1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
-    2. **Clone the repository**: Fetch the example contract repository.
+2. **Clone the repository**: Fetch the example contract repository.
 
-        ```bash
-        git clone https://github.com/wormhole-foundation/example-ntt-token.git
-        cd example-ntt-token
-        ```
-    3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token.git
+    cd example-ntt-token
+    ```
+3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
 
-        ```bash
-        forge create --broadcast \
-            --rpc-url INSERT_RPC_URL \
-            --private-key INSERT_YOUR_PRIVATE_KEY \
-            src/PeerToken.sol:PeerToken \
-            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
-        ```
+    ```bash
+    forge create --broadcast \
+        --rpc-url INSERT_RPC_URL \
+        --private-key INSERT_YOUR_PRIVATE_KEY \
+        src/PeerToken.sol:PeerToken \
+        --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+    ```
 
-    4. **Mint tokens**: Send tokens to your address.
+4. **Mint tokens**: Send tokens to your address.
 
-        ```bash
-        cast send INSERT_TOKEN_ADDRESS \
-            "mint(address,uint256)" \
-            INSERT_RECIPIENT_ADDRESS \
-            INSERT_AMOUNT_IN_WEI \
-            --private-key INSERT_YOUR_PRIVATE_KEY \
-            --rpc-url INSERT_RPC_URL
-        ```
+    ```bash
+    cast send INSERT_TOKEN_ADDRESS \
+        "mint(address,uint256)" \
+        INSERT_RECIPIENT_ADDRESS \
+        INSERT_AMOUNT_IN_WEI \
+        --private-key INSERT_YOUR_PRIVATE_KEY \
+        --rpc-url INSERT_RPC_URL
+    ```
 
-    !!! note
-        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+!!! note
+    This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
-
-???- interface "Create and Mint SPL Tokens"
+???- interface "Create and Mint an SPL Token"
     This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
-    1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
+1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
 
+    ```bash
+    solana-keygen grind --starts-with w:1 --ignore-case
+    ```
+
+2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
+
+    ```bash
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+    ```
+
+3. **Select an RPC URL**: Configure the CLI to use the appropriate network using one of the following commands.
+
+    === "Mainnet"
         ```bash
-        solana-keygen grind --starts-with w:1 --ignore-case
+        solana config set -um
         ```
 
-    2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
-
+    === "Testnet (Solana's Devnet)"
         ```bash
-        solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+        solana config set -ud
         ```
 
-    3. **Select an RPC URL**: Set the CLI to point to the appropriate network for your deployment.
-
-        === "Solana Mainnet"
-            ```bash
-            solana config set -um
-            ```
-
-        === "Solana Testnet"
-            ```bash
-            solana config set -ut
-            ```
-
-        === "Solana Devnet"
-            ```bash
-            solana config set -ud
-            ```
-
-        === "Fogo Testnet"
-            ```bash
-            solana config set --url INSERT_FOGO_TESTNET_RPC_URL
-            ```
-
-    4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
-
-        - On Solana Devnet, you can request an airdrop:
-
-            ```bash
-            solana airdrop 2
-            solana balance
-            ```
-
-    5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
-
+    === "Fogo Testnet"
         ```bash
-        cargo install spl-token-cli
+        solana config set --url INSERT_FOGO_TESTNET_RPC_URL
         ```
-
-    6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
-
-        ```bash
-        spl-token create-token
-        ```
-
-    7. **Create a token account**: Generate an account to hold the token.
-
-        ```bash
-        spl-token create-account INSERT_TOKEN_ADDRESS
-        ```
-
-    8. **Mint tokens**: Send 1000 tokens to the created account.
-
-        ```bash
-        spl-token mint INSERT_TOKEN_ADDRESS 1000
-        ```
-
+                
     !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+        Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
+
+4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
+
+    - On Solana Devnet, you can request an airdrop:
+
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
+
+5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
+
+    ```bash
+    cargo install spl-token-cli
+    ```
+
+6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
+
+    ```bash
+    spl-token create-token
+    ```
+
+7. **Create a token account**: Generate an account to hold the token.
+
+    ```bash
+    spl-token create-account INSERT_TOKEN_ADDRESS
+    ```
+
+8. **Mint tokens**: Send 1000 tokens to the created account.
+
+    ```bash
+    spl-token mint INSERT_TOKEN_ADDRESS 1000
+    ```
+
+!!! note
+    NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+
+???- interface "Create and Deploy a Sui Token"
+    This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
+
+1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+    cd example-ntt-token-sui
+    ```
+
+2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
+
+    1. **Create a new testnet environment**: Configure your Sui client for testnet.
+
+        ```bash
+        sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+        ```
+
+    2. **Generate a new address**: Create a new Ed25519 address for your wallet.
+
+        ```bash
+        sui client new-address ed25519
+        ```
+
+    3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
+
+        ```bash
+        sui client switch --address YOUR_ADDRESS_STEP2
+        ```
+
+    4. **Fund your wallet**: Use the faucet to get test tokens.
+
+        ```bash
+        sui client faucet
+        ```
+
+    5. **Verify funding**: Check that your wallet has been funded.
+
+        ```bash
+        sui client balance
+        ```
+
+3. **Build the project**: Compile the Move contract.
+
+    ```bash
+    sui move build
+    ```
+
+4. **Deploy the token contract**: Deploy to testnet.
+
+    ```bash
+    sui client publish --gas-budget 10000000
+    ```
+
+5. **Mint tokens**: Send tokens to your address.
+
+    ```bash
+    sui client call \
+    --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
+    --module MODULE_NAME_STEP1 \
+    --function mint \
+    --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
+    --gas-budget 10000000
+    ```
+
+!!! note
+    This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
 
 ## Install NTT CLI
 
@@ -401,6 +466,7 @@ You have scaffolded your NTT project and initialized the configuration file. Nex
 
 - [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
 - [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
+- [Deploy to Sui](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/){target=\_blank}: Deploy NTT on Sui.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/reference/cli-commands.md
@@ -7108,40 +7174,39 @@ Deploying NTT on EVM chains follows a structured process:
 1. **Choose your token setup**: Use an existing ERC-20 token or deploy a new one.
 
     ???- interface "Deploy an ERC-20 Token on EVM"
-        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-        1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
+1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
-        2. **Clone the repository**: Fetch the example contract repository.
+2. **Clone the repository**: Fetch the example contract repository.
 
-            ```bash
-            git clone https://github.com/wormhole-foundation/example-ntt-token.git
-            cd example-ntt-token-evm
-            ```
-        
-        3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token.git
+    cd example-ntt-token
+    ```
+3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
 
-            ```bash
-            forge create --broadcast \
-                --rpc-url INSERT_RPC_URL \
-                --private-key INSERT_YOUR_PRIVATE_KEY \
-                src/PeerToken.sol:PeerToken \
-                --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
-            ```
+    ```bash
+    forge create --broadcast \
+        --rpc-url INSERT_RPC_URL \
+        --private-key INSERT_YOUR_PRIVATE_KEY \
+        src/PeerToken.sol:PeerToken \
+        --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+    ```
 
-        4. **Mint tokens**: Send tokens to your address.
+4. **Mint tokens**: Send tokens to your address.
 
-            ```bash
-            cast send INSERT_TOKEN_ADDRESS \
-                "mint(address,uint256)" \
-                INSERT_RECIPIENT_ADDRESS \
-                INSERT_AMOUNT_IN_WEI \
-                --private-key INSERT_YOUR_PRIVATE_KEY \
-                --rpc-url INSERT_RPC_URL
-            ```
+    ```bash
+    cast send INSERT_TOKEN_ADDRESS \
+        "mint(address,uint256)" \
+        INSERT_RECIPIENT_ADDRESS \
+        INSERT_AMOUNT_IN_WEI \
+        --private-key INSERT_YOUR_PRIVATE_KEY \
+        --rpc-url INSERT_RPC_URL
+    ```
 
-        !!! note
-            This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+!!! note
+    This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
 2. **Choose your deployment model**: Choose a deployment model. The NTT framework supports two [deployment models](/docs/products/token-transfers/native-token-transfers/overview/#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
 
@@ -7437,74 +7502,76 @@ Deploying NTT with the CLI on SVM chains follows a structured process:
      - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/products/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new SPL token**: If you don't already have an SPL token deployed, you'll need to deploy and configure it on a supported SVM chain before integrating with Wormhole's NTT.
 
-        ???- interface "Create and Mint SPL Tokens"
-            This section walks you through generating a wallet, deploying an SPL token, creating a token account, and minting tokens on a supported SVM chain.
+        ???- interface "Create and Mint an SPL Token"
+            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
-            1. **Generate a key pair**: Run the following command to create a new wallet.
+1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
 
-                ```bash
-                solana-keygen grind --starts-with w:1 --ignore-case
-                ```
+    ```bash
+    solana-keygen grind --starts-with w:1 --ignore-case
+    ```
 
-            2. **Set CLI configuration**: Configure the Solana CLI to use the generated key pair using the following command.
+2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
 
-                ```bash
-                solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
-                ```
+    ```bash
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+    ```
 
-            3. **Select an RPC URL**: Configure the CLI to use the appropriate network using one of the following commands.
+3. **Select an RPC URL**: Configure the CLI to use the appropriate network using one of the following commands.
 
-                === "Mainnet"
-                    ```bash
-                    solana config set -um
-                    ```
+    === "Mainnet"
+        ```bash
+        solana config set -um
+        ```
 
-                === "Testnet (Solana's Devnet)"
-                    ```bash
-                    solana config set -ud
-                    ```
+    === "Testnet (Solana's Devnet)"
+        ```bash
+        solana config set -ud
+        ```
 
-                === "Fogo Testnet"
-                    ```bash
-                    solana config set --url INSERT_FOGO_TESTNET_RPC_URL
-                    ```
+    === "Fogo Testnet"
+        ```bash
+        solana config set --url INSERT_FOGO_TESTNET_RPC_URL
+        ```
                 
-                !!! note
-                    Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
+    !!! note
+        Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
 
-            4. **Fund your wallet**: Ensure your wallet has enough native tokens to pay for transactions. On Solana devnet, you can request an airdrop.
+4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
 
-                ```bash
-                solana airdrop 2
-                solana balance
-                ```
+    - On Solana Devnet, you can request an airdrop:
 
-            5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
 
-                ```bash
-                cargo install spl-token-cli
-                ```
+5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
 
-            6. **Create a new SPL token**: Initialize the token.
+    ```bash
+    cargo install spl-token-cli
+    ```
 
-                ```bash
-                spl-token create-token
-                ```
+6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
 
-            7. **Create a token account**: Generate an account to hold the token.
+    ```bash
+    spl-token create-token
+    ```
 
-                ```bash
-                spl-token create-account INSERT_TOKEN_ADDRESS
-                ```
+7. **Create a token account**: Generate an account to hold the token.
 
-            8. **Mint tokens**: Send 1000 tokens to the created account.
+    ```bash
+    spl-token create-account INSERT_TOKEN_ADDRESS
+    ```
 
-                ```bash
-                spl-token mint INSERT_TOKEN_ADDRESS 1000
-                ```
+8. **Mint tokens**: Send 1000 tokens to the created account.
 
-            !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+    ```bash
+    spl-token mint INSERT_TOKEN_ADDRESS 1000
+    ```
+
+!!! note
+    NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 2. **Choose your deployment model**:
 
@@ -7739,73 +7806,73 @@ Deploying NTT on the Sui network follows a structured process:
      - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
 
-        ???- interface "Create and Deploy Sui Tokens"
+        ???- interface "Create and Deploy a Sui Token"
             This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
 
-            1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
 
-                ```bash
-                git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
-                cd example-ntt-token-sui
-                ```
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+    cd example-ntt-token-sui
+    ```
 
-            2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
+2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
 
-                1. **Create a new testnet environment**: Configure your Sui client for testnet.
+    1. **Create a new testnet environment**: Configure your Sui client for testnet.
 
-                ```bash
-                sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
-                ```
+        ```bash
+        sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+        ```
 
-                2. **Generate a new address**: Create a new Ed25519 address for your wallet.
+    2. **Generate a new address**: Create a new Ed25519 address for your wallet.
 
-                ```bash
-                sui client new-address ed25519
-                ```
+        ```bash
+        sui client new-address ed25519
+        ```
 
-                3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
+    3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
 
-                ```bash
-                sui client switch --address YOUR_ADDRESS_STEP2
-                ```
+        ```bash
+        sui client switch --address YOUR_ADDRESS_STEP2
+        ```
 
-                4. **Fund your wallet**: Use the faucet to get test tokens.
+    4. **Fund your wallet**: Use the faucet to get test tokens.
 
-                ```bash
-                sui client faucet
-                ```
+        ```bash
+        sui client faucet
+        ```
 
-                5. **Verify funding**: Check that your wallet has been funded.
+    5. **Verify funding**: Check that your wallet has been funded.
 
-                ```bash
-                sui client balance
-                ```
+        ```bash
+        sui client balance
+        ```
 
-            3. **Build the project**: Compile the Move contract.
+3. **Build the project**: Compile the Move contract.
 
-                ```bash
-                sui move build
-                ```
+    ```bash
+    sui move build
+    ```
 
-            4. **Deploy the token contract**: Deploy to testnet.
+4. **Deploy the token contract**: Deploy to testnet.
 
-                ```bash
-                sui client publish --gas-budget 10000000
-                ```
+    ```bash
+    sui client publish --gas-budget 10000000
+    ```
 
-            5. **Mint tokens**: Send tokens to your address.
+5. **Mint tokens**: Send tokens to your address.
 
-                ```bash
-                sui client call \
-                --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
-                --module MODULE_NAME_STEP1 \
-                --function mint \
-                --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
-                --gas-budget 10000000
-                ```
+    ```bash
+    sui client call \
+    --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
+    --module MODULE_NAME_STEP1 \
+    --function mint \
+    --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
+    --gas-budget 10000000
+    ```
 
-            !!! note
-                This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
+!!! note
+    This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
 
 2. **Choose your deployment model**:
 
