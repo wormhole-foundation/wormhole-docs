@@ -1885,7 +1885,7 @@ error OnlyDelegateCall();
 
 ### OwnableInvalidOwner
 
-Error when the owner is not a valid owner account. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/ownable/OwnableUpgradeable.sol){target=\_blank})*
+Error when the owner is not a valid owner account. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error OwnableInvalidOwner(address owner);
@@ -2061,7 +2061,7 @@ error TransceiverAlreadyAttestedToMessage(bytes32 nttManagerMessageHash);
 
 ### TransceiverAlreadyEnabled
 
-Error when attempting to enable a transceiver that is already enabled. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/TransceiverRegistry.sol){target=\_blank})*
+Error when attempting to enable a transceiver that is already enabled. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error TransceiverAlreadyEnabled(address transceiver);
