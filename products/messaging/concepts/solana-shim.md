@@ -17,7 +17,7 @@ When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/
 
 Solana’s rent-exemption model isn't the fundamental limitation; the constraint lies in the legacy `post_message` function of the core bridge, which always creates a new, non-reclaimable account every time it’s called. Even after a message is consumed, these accounts can’t be closed or reused, resulting in unrecoverable rent costs.
 
-Although the `post_message_unreliable` function allows for account reuse, it comes with strict tradeoffs. Once a message is overwritten, it can no longer be recovered, making it non-re-observable if missed by Guardians. It also locks you into the original account size, as the feature predates Solana’s account resizing.
+Although the `post_message_unreliable` function allows for account reuse, it comes with strict tradeoffs. Once a message is overwritten, it can no longer be recovered, making it no longer observable by Guardians. It also locks you into the original account size, as the feature predates Solana’s account resizing.
 
 Verification has similar costs. The `post_vaa` instruction creates additional temporary accounts for signatures and VAA data, which again require rent and aren’t automatically cleaned up. Over time, these add to both storage bloat and unrecoverable SOL.
 

@@ -22,7 +22,7 @@ For more background, see [Emission Shim concept section](/docs/products/messagin
 To interact with the emission shim, you'll need the following:
 
 - [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
-- [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}
+- [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}
 - The canonical emission shim program already deployed at [`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}.
 - The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} for wiring accounts.
 - A payer (signer) funded with enough SOL to cover compute and message fees.
@@ -39,19 +39,19 @@ To start, import the shim crate to call `wormhole_post_message_shim::cpi::post_m
 
 When calling the shim’s `post_message` instruction, you need to pass:
 
-- `bridge`: Wormhole core bridge config.
-- `message`: PDA derived from the emitter; reused by the shim instead of generating new accounts.
-- `emitter`: The emitter address (signer).
-- `sequence`: Emitter's sequence account.
+- `bridge`: Holds the Wormhole core bridge config.
+- `message`: Represents the PDA derived from the emitter and is reused by the shim instead of generating new accounts.
+- `emitter`: Serves as the emitter address (signer).
+- `sequence`: Tracks the emitter's sequence account.
 - `payer`: Pays compute and any rent needed on first use (signer).
-- `fee_collector`: Wormhole fee collector..
-- `clock`: Sysvar for current time.
-- `system_program`: Standard Solana system program (for account creation on first use).
-- `wormhole_program`: The Wormhole core bridge program.
-- `event_authority`: PDA used by the shim to emit log events (Anchor CPI events).
-- `program`: The shim program itself.
+- `fee_collector`: Collects the Wormhole message fee.
+- `clock`: Provides the current Solana time from the sysvar.
+- `system_program`: Supplies the standard Solana system program for account creation on first use.
+- `wormhole_program`: Points to the Wormhole core bridge program.
+- `event_authority`: Acts as the PDA used by the shim to emit log events (Anchor CPI events).
+- `program`: Specifies the shim program itself.
 
-Define the accounts your instruction needs. The struct below wires the shim and Core together, ensuring your emitter PDA can sign the CPI via seeds.
+The struct below defines the accounts required by your instruction and wires the shim to the core bridge, ensuring the emitter PDA can sign the CPI via seeds.
 
 ```rs
 --8<-- 'code/products/messaging/guides/shims/post_message.rs:10:60'
@@ -67,7 +67,7 @@ The `post_message` function builds a `CpiContext` and invokes the shim’s `post
 --8<-- 'code/products/messaging/guides/shims/post_message.rs:62'
 ```
 
-## Limitations and Security Considerations 
+## Limitations and Considerations 
 
 - **Rent**: No persistent account rent is paid for every emission; the cost is now dominated by compute and the emission fee.
 - **Logs**: Since all observability is log-based, re-observation is only possible while Solana transaction history is available.
