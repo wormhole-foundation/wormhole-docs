@@ -3447,7 +3447,7 @@ For more background, see the [Verification Shim concept section](/docs/products/
 To interact with the verification shim, you'll need the following:
 
 - [Rust and Solana CLI installed](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank}.  
-- [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}
+- [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
 - The canonical verification shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
 - The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.
 - A payer (signer) funded for compute and temporary account rent (you’ll close and reclaim).
@@ -3582,9 +3582,9 @@ pub fn consume_vaa(
 
 ## Limitations and Security Considerations
 
-- You must be the payer and/or account owner to reclaim lamports from `GuardianSignatures` account.
-- The verification proof is not permanent on-chain record unless you keep the account.
-- Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
+- You must be the payer and/or account owner to reclaim lamports from the `GuardianSignatures` account.
+- The verification proof is not a permanent on-chain record unless you keep the account.
+- Compute usage (CU) is higher for the rent-efficient pattern, but the total cost is dramatically lower than keeping permanent accounts.
 - All validation guarantees remain as strong as with the legacy method.
 - If you do not close accounts you create, rent will be lost as before.
 - This approach assumes you do not need to later re-validate the VAA from an on-chain artifact.
