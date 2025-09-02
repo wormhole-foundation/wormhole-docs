@@ -76,7 +76,7 @@ The flow works as follows:
 !!!Important 
     Return the Treasury Cap! If the treasury cap is not returned in the same transaction, the NTT deployment will stop working. The contract will break and become non-functional.
 
-We recommend using [Programmable Transaction Blocks (PTBs)](https://docs.sui.io/concepts/transactions/prog-txn-blocks){target=\_blank} for this operation. PTBs allow you to execute multiple operations atomically in a single transaction, ensuring that both the minting operation and returning the treasury cap happen together, preventing any risk of the contract breaking.
+It is recommended to use [Programmable Transaction Blocks (PTBs)](https://docs.sui.io/concepts/transactions/prog-txn-blocks){target=\_blank} for this operation. PTBs allow you to execute multiple operations atomically in a single transaction, ensuring that both the minting operation and returning the treasury cap happen together, preventing any risk of the contract breaking.
 
 ## How can I specify a custom RPC for NTT?
 
