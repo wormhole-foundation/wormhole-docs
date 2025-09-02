@@ -44,7 +44,7 @@ Common patterns you can implement include:
  - Disabling routes by token using `fromToken` or `toToken`.
  - Disabling routes by direction using `fromChain` or `toChain`.
 
-**Example: Disable all AutomaticTokenBridge routes**
+**Example: Disable all `AutomaticTokenBridge` routes**
 
 ```typescript
 --8<-- 'code/products/connect/faqs/faqs-1.ts'
@@ -56,7 +56,7 @@ Common patterns you can implement include:
 --8<-- 'code/products/connect/faqs/faqs-2.ts'
 ```
 
-**Example: Disable AutomaticTokenBridge from a specific chain**
+**Example: Disable `AutomaticTokenBridge` from a specific chain**
 
 ```typescript
 --8<-- 'code/products/connect/faqs/faqs-3.ts'
@@ -66,7 +66,7 @@ Common patterns you can implement include:
 
 Use `isTokenSupportedHandler` in your `WormholeConnectConfig`. The callback runs for each token candidate; if it returns `false`, that token is not shown in the picker and can't be selected.
 
-**Example: hide a token by address**
+**Example: Hide a token by address**
 
 ```typescript
 --8<-- 'code/products/connect/faqs/faqs-4.ts'
