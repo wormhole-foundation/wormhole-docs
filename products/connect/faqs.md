@@ -34,6 +34,44 @@ Gas dropoff allows users to receive gas for transaction fees on the destination 
 
 Connect can be [fully customized](https://connect-in-style.wormhole.com/){target=\_blank} to choose the chains and assets you wish to support. You may also select different themes and colors to tailor Connect for your decentralized application. For details, see the [GitHub readme](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
 
+## How can I disable specific routes?
+
+Use `isRouteSupportedHandler` in your `WormholeConnectConfig`. The callback runs when Connect evaluates a route for the current selection. If it returns `false`, that exact route is hidden in the widget, so the user cannot select it.
+
+Common patterns you can implement include:
+
+ - Disabling all routes of a given type (`AutomaticTokenBridge` or `ManualTokenBridge`).
+ - Disabling routes by token using `fromToken` or `toToken`.
+ - Disabling routes by direction using `fromChain` or `toChain`.
+
+**Example: Disable all `AutomaticTokenBridge` routes**
+
+```typescript
+--8<-- 'code/products/connect/faqs/faqs-1.ts'
+```
+
+**Example: Disable a specific route for a particular token**
+
+```typescript
+--8<-- 'code/products/connect/faqs/faqs-2.ts'
+```
+
+**Example: Disable `AutomaticTokenBridge` from a specific chain**
+
+```typescript
+--8<-- 'code/products/connect/faqs/faqs-3.ts'
+```
+
+## How can I hide specific tokens from the picker?
+
+Use `isTokenSupportedHandler` in your `WormholeConnectConfig`. The callback runs for each token candidate; if it returns `false`, that token is not shown in the picker and can't be selected.
+
+**Example: Hide a token by address**
+
+```typescript
+--8<-- 'code/products/connect/faqs/faqs-4.ts'
+```
+
 ## Which functions or events does Connect rely on for NTT integration? 
 
 Connect relies on the NTT SDK for integration, with platform-specific implementations for Solana and EVM. The critical methods involved include initiate and redeem functions and rate capacity methods. These functions ensure Connect can handle token transfers and manage chain-rate limits.

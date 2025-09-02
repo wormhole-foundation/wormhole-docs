@@ -3529,6 +3529,113 @@ Gas dropoff allows users to receive gas for transaction fees on the destination 
 
 Connect can be [fully customized](https://connect-in-style.wormhole.com/){target=\_blank} to choose the chains and assets you wish to support. You may also select different themes and colors to tailor Connect for your decentralized application. For details, see the [GitHub readme](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
 
+## How can I disable specific routes?
+
+Use `isRouteSupportedHandler` in your `WormholeConnectConfig`. The callback runs when Connect evaluates a route for the current selection. If it returns `false`, that exact route is hidden in the widget, so the user cannot select it.
+
+Common patterns you can implement include:
+
+ - Disabling all routes of a given type (`AutomaticTokenBridge` or `ManualTokenBridge`).
+ - Disabling routes by token using `fromToken` or `toToken`.
+ - Disabling routes by direction using `fromChain` or `toChain`.
+
+**Example: Disable all `AutomaticTokenBridge` routes**
+
+```typescript
+import WormholeConnect, {
+  type config,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: config.WormholeConnectConfig = {
+  // ...
+  isRouteSupportedHandler: async ({ route }) =&gt; {
+    if (route === 'AutomaticTokenBridge') {
+      return false;
+    }
+    return true; // keep other routes visible
+  },
+};
+```
+
+**Example: Disable a specific route for a particular token**
+
+```typescript
+import WormholeConnect, {
+  type config,
+} from '@wormhole-foundation/wormhole-connect';
+
+const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
+
+const config: config.WormholeConnectConfig = {
+  // ...
+  isRouteSupportedHandler: async ({ route, fromToken }) =&gt; {
+    const tokenAddress =
+      fromToken.tokenId !== 'native' ? fromToken.tokenId.address : 'native';
+
+    if (
+      BLOCKED_ADDRESSES.has(tokenAddress) &amp;&amp;
+      route === 'AutomaticTokenBridge'
+    ) {
+      return false;
+    }
+    return true; // keep other routes visible
+  },
+};
+</string>
+```
+
+**Example: Disable `AutomaticTokenBridge` from a specific chain**
+
+```typescript
+import WormholeConnect, {
+  type config,
+} from '@wormhole-foundation/wormhole-connect';
+
+const BLOCKED_SOURCE_CHAINS = new Set<chain>(['INSERT_CHAIN_NAME']);
+
+const config: config.WormholeConnectConfig = {
+  // ...
+  isRouteSupportedHandler: async ({ route, fromChain }) =&gt; {
+    if (
+      BLOCKED_SOURCE_CHAINS.has(fromChain) &amp;&amp;
+      route === 'AutomaticTokenBridge'
+    ) {
+      return false;
+    }
+    return true; // keep other routes visible
+  },
+};
+</chain>
+```
+
+## How can I hide specific tokens from the picker?
+
+Use `isTokenSupportedHandler` in your `WormholeConnectConfig`. The callback runs for each token candidate; if it returns `false`, that token is not shown in the picker and can't be selected.
+
+**Example: Hide a token by address**
+
+```typescript
+import WormholeConnect, {
+  type config,
+} from '@wormhole-foundation/wormhole-connect';
+
+const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
+
+const config: config.WormholeConnectConfig = {
+  // ...
+  isTokenSupportedHandler: (token) =&gt; {
+    // Address string provided by Connect
+    const addr = token.addressString;
+
+    if (addr &amp;&amp; BLOCKED_ADDRESSES.has(addr)) {
+      return false;
+    }
+    return true; // show all others
+  },
+};
+</string>
+```
+
 ## Which functions or events does Connect rely on for NTT integration? 
 
 Connect relies on the NTT SDK for integration, with platform-specific implementations for Solana and EVM. The critical methods involved include initiate and redeem functions and rate capacity methods. These functions ensure Connect can handle token transfers and manage chain-rate limits.
@@ -12745,25 +12852,31 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 <div class="full-width" markdown="">
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Converge | EVM | :x: | :white_check_mark: | :x: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Linea | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Plume | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Plume | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sonic | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |

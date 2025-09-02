@@ -69,9 +69,11 @@ It works by first calling the [`post_signatures`](https://github.com/wormhole-fo
 
 Instead of the core bridge instructions, such as `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
 
+
 1. **Call `post_signatures`**: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
 2. **Call `verify_hash`**: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
 3. **Call `close_signatures`**: Immediately closes the `GuardianSignatures` account to reclaim the lamports paid for its creation.
+
 
 ```mermaid
 graph LR
@@ -84,7 +86,7 @@ This flow ensures verification is both rent-efficient and secure, no permanent a
 
 ## Guardian Observation Methods
 
-| Observation Attributes | Legacy Model           | Shim Model               |
+| Observation Methods  | Legacy Model           | Shim Model               |
 |----------------------|------------------------|--------------------------|
 | Message Storage      | On-chain account       | Transaction logs (CPI)   |
 | Data Permanence      | Permanent              | Until RPC history pruned |
