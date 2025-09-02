@@ -26094,10 +26094,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
+2. Install the required dependencies:
 
     ```bash
-    npm install @wormhole-foundation/sdk@2.4.0
+    npm install @wormhole-foundation/sdk
     npm install -D tsx typescript
     ```
 
@@ -26194,7 +26194,9 @@ export async function getTokenDecimals<n extends="" network="">(
 </number></n,></n></n></n,></c></n,></n,></n,></n>
     ```
 
-2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers.
+2. In `transfer.ts`, choose your transfer mode by selecting the [route](/docs/products/connect/concepts/routes/#wtt-routes){target=\_blank} you pass to the `tokenTransfer()` object: 
+    - `TokenBridge` for manual transfers.
+    - `AutomaticTokenBridge` for automatic transfers.
 
     === "Manual Transfer"
 
@@ -26225,19 +26227,14 @@ import { getSigner, getTokenDecimals } from './helper';
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
-  // Set to false to require manual approval steps
-  const automatic = false;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
-
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
-    nativeGas
+    'TokenBridge',
+    undefined
   );
 
   // Initiate the transfer from Solana
@@ -26289,8 +26286,7 @@ import { getSigner, getTokenDecimals } from './helper';
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
   // Set to false to require manual approval steps
-  const automatic = true;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
+  const nativeGas = amount.units(amount.parse('0.0', 6));
 
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
@@ -26298,8 +26294,7 @@ import { getSigner, getTokenDecimals } from './helper';
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
+    'AutomaticTokenBridge',
     nativeGas
   );
 
@@ -28252,10 +28247,10 @@ In this section, we’ll guide you through initializing the project, installing 
     echo ".env" >> .gitignore
     ```
 
-3. **Install dependencies**: Install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries.
+3. **Install dependencies**: Install the required dependencies.
 
     ```bash
-    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
+    npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
 4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
@@ -28678,7 +28673,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     
     ```
 
-8. **Set transfer mode**: Specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
+8. **Set transfer mode**: Specify that the transfer should be manual by setting `route = 'TokenBridge'`. This means you will need to handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
 
     ```typescript
     
@@ -28700,7 +28695,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
     ```
 
@@ -28725,7 +28720,7 @@ wh: Wormhole<n>,
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -28761,8 +28756,8 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
   // Define the amount of tokens to transfer
   const amt = '1';
 
-  // Set automatic transfer to false for manual transfer
-  const automatic = false;
+  // Set route for manual transfers
+  const route = 'TokenBridge';
 
   // Used to normalize the amount to account for the tokens decimals
   const decimals = await getTokenDecimals(wh, token, sendChain);
@@ -28773,7 +28768,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
 
   process.exit(0);
@@ -28786,7 +28781,7 @@ async function tokenTransfer<n extends="" network="">(
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -28797,7 +28792,7 @@ async function tokenTransfer<n extends="" network="">(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
 
@@ -28808,7 +28803,7 @@ async function tokenTransfer<n extends="" network="">(
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns
@@ -28840,7 +28835,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
     ```
@@ -28854,7 +28849,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
     ```
 
@@ -28921,8 +28916,8 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
   // Define the amount of tokens to transfer
   const amt = '1';
 
-  // Set automatic transfer to false for manual transfer
-  const automatic = false;
+  // Set route for manual transfers
+  const route = 'TokenBridge';
 
   // Used to normalize the amount to account for the tokens decimals
   const decimals = await getTokenDecimals(wh, token, sendChain);
@@ -28933,7 +28928,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
 
   process.exit(0);
@@ -28946,7 +28941,7 @@ async function tokenTransfer<n extends="" network="">(
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -28957,7 +28952,7 @@ async function tokenTransfer<n extends="" network="">(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
 
@@ -28968,7 +28963,7 @@ async function tokenTransfer<n extends="" network="">(
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns
