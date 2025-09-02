@@ -55,10 +55,10 @@ In this section, we’ll guide you through initializing the project, installing 
     echo ".env" >> .gitignore
     ```
 
-3. **Install dependencies**: Install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries.
+3. **Install dependencies**: Install the required dependencies.
 
     ```bash
-    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
+    npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
 4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
@@ -244,7 +244,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:30:30"
     ```
 
-8. **Set transfer mode**: Specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
+8. **Set transfer mode**: Specify that the transfer should be manual by setting `route = 'TokenBridge'`. This means you will need to handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
 
     ```typescript
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:33:33"
