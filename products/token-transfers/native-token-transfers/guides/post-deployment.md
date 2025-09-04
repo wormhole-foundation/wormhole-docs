@@ -39,6 +39,14 @@ The following table outlines post-deployment settings available on the NTT Manag
 
 <div class="grid cards" markdown>
 
+- :octicons-code-16:{ .lg .middle } **Transfer Ownership**
+
+    ---
+
+    Learn how to move ownership of your NTT deployment to a new owner address on EVM, Solana, and Sui with step-by-step instructions.
+
+    [:custom-arrow: Follow the Transfer Ownership guide](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/)
+
 -   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
 
     ---
