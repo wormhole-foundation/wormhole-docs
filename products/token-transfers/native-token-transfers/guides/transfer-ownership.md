@@ -44,7 +44,7 @@ For a practical demonstration of transferring ownership of Wormhole's NTT to a m
 
 The [Sui CLI](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank} supports transferring ownership by moving the NTT Manager’s `AdminCap` and `UpgradeCap` to your multisig. Follow the steps below:
 
-1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
+1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager:
 
     ```bash
     sui client object INSERT_SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
