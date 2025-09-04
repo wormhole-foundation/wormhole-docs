@@ -1316,7 +1316,7 @@ pub fn transfer_lock(
 
 ### transfer_ownership
 
-Initiates a two-step ownership transfer process. *(Defined in example-native-token-transfers)*
+Initiates a two-step [ownership transfer](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/#solana){target=\_blank} process. *(Defined in example-native-token-transfers)*
 
 ```rust
 pub fn transfer_ownership(ctx: Context<TransferOwnership>) -> Result<()>

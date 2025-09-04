@@ -1441,7 +1441,7 @@ function transfer(
 
 ### transferOwnership
 
-Transfer ownership of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
+[Transfer ownership](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/#evm){target=\_blank} of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function transferOwnership(address newOwner) external
