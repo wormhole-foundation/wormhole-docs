@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # Transfer Ownership
 
-After deploying Native Token Transfers (NTT), you may need to move ownership to a multisig or governance account. This page outlines the process for transferring ownership on EVM, Solana, and Sui.
+After deploying Native Token Transfers (NTT), you may need to move ownership to a new owner address (e.g., a multisig). This page outlines the process for transferring ownership on EVM, Solana, and Sui.
 
 ## EVM
 
