@@ -1,0 +1,223 @@
+---
+title: Native Token Transfers SVM Deployment
+description: Deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Deploy NTT to SVM Chains
+
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on SVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between SVM chains.
+
+## Prerequisites
+
+Before deploying NTT on SVM chains, ensure you have the following:
+
+- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed.
+- The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
+
+    === "v3"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
+
+    === "v2/v1"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
+
+
+Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
+
+## Overview of the Deployment Process
+
+Deploying NTT with the CLI on SVM chains follows a structured process:
+
+1. Choose your token setup:
+
+     - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/products/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
+     - **Create a new SPL token**: If you don't already have an SPL token deployed, you'll need to deploy and configure it on a supported SVM chain before integrating with Wormhole's NTT.
+
+        ???- interface "Create and Mint an SPL Token"
+            --8<-- 'text/products/native-token-transfers/get-started/deploy-spl.md'
+
+2. **Choose your deployment model**:
+
+    - **Hub-and-spoke**: Tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required.
+    - **Burn-and-mint**: Tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program.
+
+3. **Deploy and configure NTT**: Use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode.
+
+![SVM NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
+
+Following this process, your token will fully integrate with NTT, enabling seamless transfers between SVM chains and other chains.
+
+## Set Up NTT
+
+To integrate your token with NTT on a SVM chain, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
+
+!!! note
+    If you already have an NTT deployment to another chain (like Ethereum), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Generate an NTT Program Key Pair](#generate-an-ntt-program-key-pair) section.
+
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+???- interface "Install the NTT CLI and Scaffold a New Project"
+
+    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+!!! note
+    When deploying NTT to Solana in `Testnet` mode, you must use [**Devnet tokens**](https://faucet.solana.com/){target=\_blank}. Solana's official testnet cluster is not supported for token creation or deployment in NTT.
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+
+```bash
+solana-keygen grind --starts-with ntt:1 --ignore-case
+```
+
+### Set Mint Authority
+
+If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on a SVM chain. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
+
+For hub-and-spoke and a SVM chain as the hubchain skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt), otherwise follow the burn-and-mint instructions below for the SVM chain as a spoke.
+
+Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
+Options to set the mint authority for your SPL token:
+
+**For undeployed programs:**
+
+- **Set to token authority PDA:**
+```bash
+ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig:**
+
+    1. Create valid SPL Multisig:
+
+        ```bash
+        ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+        ```
+
+    2. Set to created SPL Multisig:
+    ```bash
+    ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+```bash
+ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
+```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
+
+## Deploy and Configure NTT
+
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs//#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+
+After setting up your deployment, finalize the configuration and deploy the NTT program on the SVM chain by following these steps:
+
+1. **Deploy NTT to the SVM chain**: Run the appropriate command based on your deployment mode.
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain INSERT_SVM_CHAIN --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain INSERT_SVM_CHAIN --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
+
+2. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+3. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while SVM chains use nine decimals.
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+    }
+    ```
+
+4. **Push the final deployment**: Once rate limits are set, push the deployment to the SVM chain using the specified key pair to cover gas fees.
+
+    ```bash
+    ntt push --payer INSERT_YOUR_KEYPAIR_JSON
+    ```
+
+### Recovering Rent for Failed SVM Deployments
+
+Failed SVM deployments don't result in loss of tokens. Instead, the native tokens may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on SVM chains, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+
+    ---
+
+    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+
+    [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
+
+</div>

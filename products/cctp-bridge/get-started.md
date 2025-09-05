@@ -16,8 +16,8 @@ You will initiate the transfer on the source chain, and Wormhole's relayer will 
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
+ - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}.
 
 This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [AVAX](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}, as well as a Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any [supported EVM chains](/docs/products/reference/supported-networks/#cctp){target=\_blank} that support CCTP.
 
@@ -44,7 +44,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -83,4 +83,4 @@ To verify the transaction and view its details, paste the transaction hash into 
 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
- - [**Circle CCTP Documentation**](https://developers.circle.com/cctp){target=\_blank}: Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+ - **[Circle CCTP Documentation](https://developers.circle.com/cctp)**: Learn how USDC cross-chain transfers work and explore advanced CCTP features.

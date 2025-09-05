@@ -6,15 +6,19 @@ categories: Queries
 
 # Queries FAQs
 
+## What is Queries?
+
+Queries is Wormhole's on-demand, Guardian-attested data service. It lets you fetch real-time, verifiable on-chain data via a simple REST endpoint and use the signed result on-chain without sending a transaction or paying gas. You can request data on one chain and use the verified result on another. For a quick video summary, watch the [Queries speed round](https://www.youtube.com/watch?v=q-s8j7GAlfQ){target=\_blank}.
+
 ## What libraries are available to handle queries?
 
- - The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses
+ - The [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.
 
-- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case
+- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case.
 
-- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests
+- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests.
 
-- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses
+- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses.
 
 !!! note
     A Rust SDK for Solana is being actively investigated by the Wormhole contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repository as a proof of concept.
@@ -37,7 +41,7 @@ The Guardian node calculates an ECDSA signature using [`Sign` function of the cr
 See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0009_guardian_signer.md){target=\_blank} white paper for more background. Once this signature is created, the Guardian's index in the Guardian set is appended to the end.
 
 !!! note
-    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
+    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
 
 ## Can anyone run a query proxy server?
 

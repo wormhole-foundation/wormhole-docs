@@ -106,7 +106,7 @@ Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Co
 npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
 ```
 
-If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://book.getfoundry.sh/anvil/){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
+If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://getfoundry.sh/anvil/overview#anvil){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
 
 ## Make a Query Request
 
@@ -132,15 +132,15 @@ forge install wormhole-foundation/wormhole-solidity-sdk
 
 Broadly, using a query response on-chain comes down to three main steps:
 
-   1. Parse and verify the query response
-   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current Guardian set stored in the Core bridge contract
+   1. Parse and verify the query response.
+   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current Guardian set stored in the Core bridge contract.
    3. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following:
     - Is the request against the expected chain?
-    - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing
-    - Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks
-    - Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases
+    - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing.
+    - Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks.
+    - Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases.
     - Is the result of the expected length for the expected result type?
-   4. Run `abi.decode` on the result 
+   4. Run `abi.decode` on the result.
 
 See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
 

@@ -57,19 +57,43 @@ sequenceDiagram
 !!! note 
     For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
 
+## CCTP vs Wrapped Token Transfers (WTT)
+
+| Feature               | CCTP (native USDC)                                                | WTT (wrapped tokens)                                                        |
+|-----------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Supported assets      | Circle-issued USDC                                                | Standards-compliant tokens (e.g., ERC-20, SPL)                              |
+| Mechanism             | Burn on source, mint on destination                               | Lock on source, mint wrapped on destination                                 |
+| Result on destination | Native USDC                                                       | Wormhole-wrapped token                                                      |
+| Payload               | Optional transfer with payload; executed on the destination when USDC is minted | Optional transfer with payload; executed by the recipient contract during redemption |
+| Use it for            | Native USDC between CCTP-enabled chains                           | Non-USDC assets, or USDC when CCTP isn't supported on the destination       |
+
+Check the [CCTP Supported Networks](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank} to see which routes are available.
+
+## When to Use CCTP
+
+CCTP is the right choice in the following situations:
+
+- **Sending USDC between [CCTP-enabled chains](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank}**: This route appears only if both chains support Circle CCTP and the asset is native USDC.
+- **Sending USDC with an attached payload**: The destination contract can execute logic as the tokens are minted on the target chain.
+
+For other transfers, consider these options:
+
+- **Data-only transfers without moving USDC**: Use [Messaging](/docs/products/messaging/overview/){target=\_blank}.
+- **Destinations without CCTP support**: The transfer routes via [WTT](/docs/products/token-bridge/overview/){target=\_blank}, with the option to include a payload executed on redemption.
+
 ## Use Cases
 
 Integrating Wormhole's messaging with CCTP enables the secure transfer of native USDC across blockchains, unlocking key cross-chain use cases, which include:
 
 - **USDC Payments Across Chains**
-    - [**CCTP**](/docs/products/cctp-bridge/get-started/): Transfer native USDC using Circle’s burn-and-mint protocol.
-    - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/): Automate attestation delivery and gas handling.
-    - [**Connect**](/docs/products/connect/overview/): Embed multichain USDC transfers directly in your app.
+    - **[CCTP](/docs/products/cctp-bridge/get-started/)**: Transfer native USDC using Circle's burn-and-mint protocol.
+    - **[Wormhole TypeScript SDK](/docs/tools/typescript-sdk/sdk-reference/)**: Automate attestation delivery and gas handling.
+    - **[Connect](/docs/products/connect/overview/)**: Embed multichain USDC transfers directly in your app.
 
 ## Next Steps
 
 Now that you're familiar with CCTP, here is a list of resources for more hands-on practice:
 
-- [**Get started with CCTP Bridge**](/docs/products/cctp-bridge/get-started/): Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
-- [**Complete USDC Transfer Flow**](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
-- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/cctp){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
+- **[Get Started with CCTP Bridge](/docs/products/cctp-bridge/get-started/)**: Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
+- **[Complete USDC Transfer Flow](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)**: Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
+- **[Checkout Circle's CCTP Docs](https://developers.circle.com/cctp){target=\_blank}**: Learn more about Circle's cross-chain transfer protocol in their documentation.

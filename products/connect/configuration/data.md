@@ -50,24 +50,27 @@ Connect lets you customize the available chains to match your project's needs. Y
 
 ### Configuring Routes
 
-By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wrapped tokens) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
+By default, Connect offers two bridging protocols: Wrapped Token Transfers (WTT) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 #### Available Route Plugins
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-- [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}: Manually redeemed Wormhole Token Bridge route.
-- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}: Automatically redeemed (relayed) Token Bridge route. 
-- [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}: Manually redeemed CCTP route.
-- [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}: Automatically redeemed (relayed) CCTP route.
+- **[`TokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}**: Manually redeemed Wormhole WTT route.
+- **[`AutomaticTokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) WTT route.
+- **[`CCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}**: Manually redeemed CCTP route.
+- **[`AutomaticCCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) CCTP route.
 - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
-- [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank}: Function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route.
-- [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}: Function that returns the manually-redeemed NTT route.
+- **[`nttAutomaticRoute(nttConfig)`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank}**: Function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route.
+- **[`nttManualRoute(nttConfig)`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}**: Function that returns the manually-redeemed NTT route.
 - **`nttRoutes(nttConfig)`**: Function that returns both NTT routes as an array.
-- [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank}: Route that offers multiple Mayan protocols.
-- [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank}: Route for Mayan's Swift protocol only.
-- [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank}: Route for Mayan's MCTP protocol only.
-- [**`MayanRouteWH`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank}: Route for Mayan's original Wormhole transfer protocol.
+- **[`MayanRoute`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank}**: Route that offers multiple Mayan protocols.
+- **[`MayanRouteSWIFT`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank}**: Route for Mayan's Swift protocol only.
+- **[`MayanRouteMCTP`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank}**: Route for Mayan's MCTP protocol only.
+- **[`MayanRouteWH`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank}**: Route for Mayan's original Wormhole transfer protocol.
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
@@ -83,22 +86,22 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/example-all-routes.ts'
 ```
 
-This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
+This flexible plugin allows you to combine default routes (such as WTT and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
 ### Adding Custom Tokens {: #custom-tokens }
 
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
 
-This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
+This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with WTT.
 
 See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
@@ -108,7 +111,7 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT in your app, follow these steps:
 
@@ -167,12 +170,12 @@ Landing transactions on Solana can require finely tuned priority fees when there
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
- - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported
- - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}
+ - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported.
+ - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}.
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://dashboard.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/wallet-connect.tsx'
