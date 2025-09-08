@@ -26,7 +26,7 @@ import { getSigner } from './helpers/index.js';
   const sender = await getSigner(ctx);
   const receiver = await getSigner(rcv);
 
-  // Get a Token Bridge contract client on the source
+  // Get a WTT (Token Bridge) contract client on the source
   const sndTb = await ctx.getTokenBridge();
 
   // Send the native token of the source chain
@@ -60,7 +60,7 @@ import { getSigner } from './helpers/index.js';
     60_000
   );
 
-  // Now get the token bridge on the redeem side
+  // Now get WTT (Token Bridge) on the redeem side
   const rcvTb = await rcv.getTokenBridge();
 
   // Create a transaction stream for redeeming
@@ -71,7 +71,7 @@ import { getSigner } from './helpers/index.js';
   console.log('Sent: ', rcvTxids);
 
   // Now check if the transfer is completed according to
-  // the destination token bridge
+  // the destination WTT (Token Bridge)
   const finished = await rcvTb.isTransferCompleted(vaa!);
   console.log('Transfer completed: ', finished);
 })();

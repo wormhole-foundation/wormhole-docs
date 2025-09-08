@@ -131,23 +131,23 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Protocol              | Installation Command                                           |
     |-----------------------|----------------------------------------------------------------|
     | EVM Core              | <pre>```@wormhole-foundation/sdk-evm-core```</pre>             |
-    | EVM Token Bridge      | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
+    | EVM WTT               | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
     | EVM CCTP              | <pre>```@wormhole-foundation/sdk-evm-cctp```</pre>             |
     | EVM Portico           | <pre>```@wormhole-foundation/sdk-evm-portico```</pre>          |
     | EVM TBTC              | <pre>```@wormhole-foundation/sdk-evm-tbtc```</pre>             |
     | Solana Core           | <pre>```@wormhole-foundation/sdk-solana-core```</pre>          |
-    | Solana Token Bridge   | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
+    | Solana WTT            | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
     | Solana CCTP           | <pre>```@wormhole-foundation/sdk-solana-cctp```</pre>          |
     | Solana TBTC           | <pre>```@wormhole-foundation/sdk-solana-tbtc```</pre>          |
     | Algorand Core         | <pre>```@wormhole-foundation/sdk-algorand-core```</pre>        |
-    | Algorand Token Bridge | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
+    | Algorand WTT          | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
     | Aptos Core            | <pre>```@wormhole-foundation/sdk-aptos-core```</pre>           |
-    | Aptos Token Bridge    | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
+    | Aptos WTT             | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
     | Aptos CCTP            | <pre>```@wormhole-foundation/sdk-aptos-cctp```</pre>           |
     | Cosmos Core           | <pre>```@wormhole-foundation/sdk-cosmwasm-core```</pre>        |
-    | Cosmos Token Bridge   | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
+    | Cosmos WTT            | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
     | Sui Core              | <pre>```@wormhole-foundation/sdk-sui-core```</pre>             |
-    | Sui Token Bridge      | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
+    | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
 
@@ -179,12 +179,15 @@ Example workflow on Solana Testnet:
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
-#### Token Bridge
+#### Wrapped Token Transfers (WTT)
 
-The most familiar protocol built on Wormhole is the Token Bridge. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+The most familiar protocol built on Wormhole is WTT. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge-snippet.ts'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/wtt-snippet.ts'
 ```
 
 ## Transfers
@@ -206,15 +209,15 @@ The example below shows how to initiate and complete a `TokenTransfer`. After cr
 For automatic transfers, the process ends after initiation. Manual transfers require attestation before completion.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts:120:158'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts:120:158'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    --8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts'
+    --8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts'
     ```
 
-Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
 

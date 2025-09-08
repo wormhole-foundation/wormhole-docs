@@ -7,7 +7,7 @@ description: Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormholescan-api){target=\_blank}
 
-The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, [VAA details](/docs/protocol/infrastructure/vaas/){target=\_blank}, and more.
+The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/token-transfers/native-token-transfers/overview/) metadata, [VAA details](/docs/protocol/infrastructure/vaas/){target=\_blank}, and more.
 
 In this guide, you will learn how to build a simple TypeScript project that:
 

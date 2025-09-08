@@ -157,7 +157,7 @@ export function buildConfig(
     cta: customConfig?.cta,
     explorer: customConfig?.explorer,
     attestUrl: {
-      mainnet: 'https://portalbridge.com/advanced-tools/#/register',
+      mainnet: 'https://portalbridge.com/legacy-tools/#/register',
       devnet: '',
       testnet:
         'https://wormhole-foundation.github.io/example-token-bridge-ui/#/register',

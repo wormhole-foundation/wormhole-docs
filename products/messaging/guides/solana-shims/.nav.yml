@@ -1,0 +1,4 @@
+title: Solana Shims
+nav:
+- 'Solana Message Emission via Shim': sol-emission.md
+- 'Solana VAA Verification via Shim': sol-verification.md

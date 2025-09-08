@@ -8,14 +8,16 @@ import {
 } from '@wormhole-foundation/sdk-connect';
 import { getEvmSignerForKey } from '@wormhole-foundation/sdk-evm';
 import { getSolanaSigner } from '@wormhole-foundation/sdk-solana';
+import { JsonRpcProvider } from "ethers";
 
 /**
- * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY)
+ * Create a helper function that returns a signer for the given chain using locally scoped credentials.
+ * The required values (MAINNET_ETH_PRIVATE_KEY, ETHEREUM_MAINNET_RPC)
  * must be loaded securely beforehand, for example via a keystore,
  * secrets manager, or environment variables (not recommended).
  */
-// Define Transfer Interface
+
+// Define transfer interface.
 export interface SignerContext<N extends Network, C extends Chain> {
   signer: Signer<N, C>;
   address: ChainAddress<C>;
@@ -27,16 +29,16 @@ export async function getSigner<N extends Network, C extends Chain>(
   let signer: Signer;
   const platform = chain.platform.utils()._platform;
   switch (platform) {
-    case 'Solana':
+    case "Solana":
       signer = await getSolanaSigner(
         await chain.getRpc(),
-        getEnv('MAINNET_SOL_PRIVATE_KEY')
+        "MAINNET_SOL_PRIVATE_KEY"
       );
       break;
     case 'Evm':
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
-        getEnv('MAINNET_ETH_PRIVATE_KEY')
+        'MAINNET_ETH_PRIVATE_KEY'
       );
       break;
     default:

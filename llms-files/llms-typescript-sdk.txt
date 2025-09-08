@@ -17,7 +17,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/get-started.md [type: get-started]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/sdk-reference.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/protocols-payloads.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/sdk-layout.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/vaas-protocols.md [type: guide]
@@ -326,7 +326,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
+- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
 --- END CONTENT ---
@@ -343,11 +343,11 @@ categories: Typescript SDK
 
 :simple-github: [Repository on GitHub](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
 
-The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers, Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
+The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers (NTT), Wrapped Token Transfers (WTT), CCTP, and Settlement, giving developers a consistent API across multiple chains.
 
 This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
 
-If you want to build more advanced integrations, such as token transfers using the Token Bridge or CCTP Bridge, skip ahead to [Next Steps](#next-steps).
+If you want to build more advanced integrations, such as token transfers using WTT or CCTP Bridge, skip ahead to [Next Steps](#next-steps).
 
 ## Install the SDK
 
@@ -388,7 +388,7 @@ npm install @wormhole-foundation/sdk-evm
         - `@wormhole-foundation/sdk-cosmwasm-core`
         - `@wormhole-foundation/sdk-sui-core`
 
-    - Token Bridge
+    - WTT
         - `@wormhole-foundation/sdk-evm-tokenbridge`
         - `@wormhole-foundation/sdk-solana-tokenbridge`
         - `@wormhole-foundation/sdk-algorand-tokenbridge`
@@ -449,7 +449,7 @@ import { getSigner } from './helpers/index.js';
   const sender = await getSigner(ctx);
   const receiver = await getSigner(rcv);
 
-  // Get a Token Bridge contract client on the source
+  // Get a WTT (Token Bridge) contract client on the source
   const sndTb = await ctx.getTokenBridge();
 
   // Send the native token of the source chain
@@ -483,7 +483,7 @@ import { getSigner } from './helpers/index.js';
     60_000
   );
 
-  // Now get the token bridge on the redeem side
+  // Now get WTT (Token Bridge) on the redeem side
   const rcvTb = await rcv.getTokenBridge();
 
   // Create a transaction stream for redeeming
@@ -494,7 +494,7 @@ import { getSigner } from './helpers/index.js';
   console.log('Sent: ', rcvTxids);
 
   // Now check if the transfer is completed according to
-  // the destination token bridge
+  // the destination WTT (Token Bridge)
   const finished = await rcvTb.isTransferCompleted(vaa!);
   console.log('Transfer completed: ', finished);
 })();
@@ -674,7 +674,7 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 - [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
 - [Send a multichain message](/docs/products/messaging/get-started/)
-- [Transfer assets via the Token Bridge](/docs/products/token-bridge/tutorials/transfer-workflow/)
+- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
 - [Transfer USDC via the CCTP Bridge](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
 --- END CONTENT ---
 
@@ -882,23 +882,23 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Protocol              | Installation Command                                           |
     |-----------------------|----------------------------------------------------------------|
     | EVM Core              | <pre>```@wormhole-foundation/sdk-evm-core```</pre>             |
-    | EVM Token Bridge      | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
+    | EVM WTT               | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
     | EVM CCTP              | <pre>```@wormhole-foundation/sdk-evm-cctp```</pre>             |
     | EVM Portico           | <pre>```@wormhole-foundation/sdk-evm-portico```</pre>          |
     | EVM TBTC              | <pre>```@wormhole-foundation/sdk-evm-tbtc```</pre>             |
     | Solana Core           | <pre>```@wormhole-foundation/sdk-solana-core```</pre>          |
-    | Solana Token Bridge   | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
+    | Solana WTT            | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
     | Solana CCTP           | <pre>```@wormhole-foundation/sdk-solana-cctp```</pre>          |
     | Solana TBTC           | <pre>```@wormhole-foundation/sdk-solana-tbtc```</pre>          |
     | Algorand Core         | <pre>```@wormhole-foundation/sdk-algorand-core```</pre>        |
-    | Algorand Token Bridge | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
+    | Algorand WTT          | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
     | Aptos Core            | <pre>```@wormhole-foundation/sdk-aptos-core```</pre>           |
-    | Aptos Token Bridge    | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
+    | Aptos WTT             | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
     | Aptos CCTP            | <pre>```@wormhole-foundation/sdk-aptos-cctp```</pre>           |
     | Cosmos Core           | <pre>```@wormhole-foundation/sdk-cosmwasm-core```</pre>        |
-    | Cosmos Token Bridge   | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
+    | Cosmos WTT            | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
     | Sui Core              | <pre>```@wormhole-foundation/sdk-sui-core```</pre>             |
-    | Sui Token Bridge      | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
+    | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
 
@@ -976,9 +976,12 @@ import evm from '@wormhole-foundation/sdk/evm';
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
-#### Token Bridge
+#### Wrapped Token Transfers (WTT)
 
-The most familiar protocol built on Wormhole is the Token Bridge. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+The most familiar protocol built on Wormhole is WTT. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ```ts
 import { signSendWait } from '@wormhole-foundation/sdk';
@@ -1089,7 +1092,7 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
   // const token = Wormhole.tokenId("Avalanche", "0xb10563644a6AB8948ee6d7f5b0a1fb15AaEa1E03");
 
   // Normalized given token decimals later but can just pass bigints as base units
-  // Note: The Token bridge will dedust past 8 decimals
+  // Note: The WTT (Token Bridge) will dedust past 8 decimals
   // This means any amount specified past that point will be returned
   // To the caller
   const amt = '0.05';
@@ -1225,7 +1228,7 @@ async function tokenTransfer<n extends="" network="">(
 </tokentransfer<n></n,></n,></n></n>
     ```
 
-Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
 
@@ -1567,8 +1570,8 @@ The following section demonstrates setting up and validating a token transfer us
 
 ```ts
 const resolver = wh.resolver([
-    routes.TokenBridgeRoute, // manual token bridge
-    routes.AutomaticTokenBridgeRoute, // automatic token bridge
+    routes.TokenBridgeRoute, // manual WTT (Token Bridge)
+    routes.AutomaticTokenBridgeRoute, // automatic WTT (Token Bridge)
     routes.CCTPRoute, // manual CCTP
     routes.AutomaticCCTPRoute, // automatic CCTP
     routes.AutomaticPorticoRoute, // Native eth transfers
@@ -1684,8 +1687,8 @@ import { getSigner } from './helpers/index.js';
 
   // Create new resolver, passing the set of routes to consider
   const resolver = wh.resolver([
-    routes.TokenBridgeRoute, // manual token bridge
-    routes.AutomaticTokenBridgeRoute, // automatic token bridge
+    routes.TokenBridgeRoute, // manual WTT (Token Bridge)
+    routes.AutomaticTokenBridgeRoute, // automatic WTT (Token Bridge)
     routes.CCTPRoute, // manual CCTP
     routes.AutomaticCCTPRoute, // automatic CCTP
     routes.AutomaticPorticoRoute, // Native eth transfers
@@ -2902,25 +2905,28 @@ It's important to note that this tutorial does not update VAAs in the Wormhole n
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
 --- BEGIN CONTENT ---
 ---
 title: Transfer Wrapped Assets
-description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
-categories: Token Bridge, Transfer, Typescript SDK
+description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
+categories: WTT, Transfer, Typescript SDK
 ---
 
 # Transfer Wrapped Assets
 
-This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#wtt){target=\_blank}.
 
 Completing this guide will help you accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain.
 - Create a token attestation to register a wrapped version of a token on a destination chain.
-- Transfer wrapped assets using Token Bridge's automatic or manual transfers.
+- Transfer wrapped assets using WTT's automatic or manual transfers.
 - Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 - Manually redeem a signed VAA to claim tokens on a destination chain.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -2941,8 +2947,8 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 1. Create a new directory and initialize a Node.js project using the following commands:
    ```bash
-   mkdir token-bridge-demo
-   cd token-bridge-demo
+   mkdir wtt-demo
+   cd wtt-demo
    npm init -y
    ```
 
@@ -3048,7 +3054,7 @@ export async function getTokenDecimals<n extends="" network="">(
 
 ## Verify Token Registration (Attestation)
 
-Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's WTT contract to create a corresponding wrapped version with the same attributes as the native token.
 
 Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
 
@@ -3086,7 +3092,7 @@ async function transferTokens() {
   const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
   const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
 
-  // Check if the token is registered with destinationChain token bridge contract
+  // Check if the token is registered with destinationChain WTT (Token Bridge) contract
   // Registered = returns the wrapped token ID, continues with transfer
   // Not registered = runs the attestation flow to register the token
   let wrappedToken: TokenId;
@@ -3197,7 +3203,7 @@ async function attestToken() {
   const sourceSigner = await getSigner(sourceChain);
   const destinationSigner = await getSigner(destinationChain, gasLimit);
 
-  // Retrieve the token bridge context for the source chain
+  // Retrieve the WTT (Token Bridge) context for the source chain
   // This is where you will send the transaction to attest the token
   const tb = await sourceChain.getTokenBridge();
   // Define the token to attest
@@ -3233,7 +3239,7 @@ async function attestToken() {
       timeout
     );
     if (!vaa) throw new Error('❌ VAA not found before timeout.');
-    // Get the token bridge context for the destination chain
+    // Get the WTT (Token Bridge) context for the source chaindestination chain
     // and submit the attestation VAA
     const destTb = await destinationChain.getTokenBridge();
     const payer = toNative(
@@ -3288,7 +3294,7 @@ attestToken().catch((e) =&gt; {
 
             This code does the following:
         
-            - Gets the Token Bridge protocol for the source chain.
+            - Gets the WTT protocol for the source chain.
             - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
             - Calls `createAttestation`, signs, and then sends the transaction.
             - Waits for the signed VAA confirming the attestation creation.
@@ -3344,7 +3350,7 @@ attestToken().catch((e) =&gt; {
 
 ## Initiate Transfer on Source Chain
 
-Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-bridge/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
+Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
 
 Follow these steps to add the remaining logic to initiate the token transfer on the source chain. Add the below code where the comment says `// Insert Initiate Transfer on Source Chain code` in your `transfer.ts` file:
 
@@ -3412,7 +3418,7 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
     This code does the following:
 
     - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for [native gas drop-off](/docs/products/token-bridge/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Sets an optional amount for [native gas drop-off](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
     - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
@@ -3524,12 +3530,12 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
-Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
 ## Next Steps
 
-- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working Token Bridge integration.
-- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in Token Bridge contracts.
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
 --- END CONTENT ---
 
@@ -3759,11 +3765,14 @@ export function layoutDiscriminator<b boolean="false" extends="">(
  - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload.
  - The `allowAmbiguous` parameter determines whether layouts with overlapping characteristics are permitted.
 
-### Real-World Example: Token Bridge Protocol
+### Real-World Example: Wrapped Token Transfers (WTT) Protocol
 
 Integrating protocols with their respective payloads exemplifies how the Wormhole SDK leverages layouts and type-safe registration mechanisms to ensure efficient cross-chain communication. This section focuses on how protocols like `TokenBridge` use payloads to facilitate specific operations.
 
-#### Token Bridge Protocol and Payloads
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+#### WTT Protocol and Payloads
 
 The `TokenBridge` protocol enables cross-chain token transfers through its payloads. Key payloads include:
 
@@ -3831,7 +3840,7 @@ This registration links the `TokenBridge` payload literals to their respective l
 
 You can explore the complete `TokenBridge` protocol and payload definitions in the [`TokenBridge` layout file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts){target=\_blank}.
 
-#### Token Bridge Payloads
+#### WTT Payloads
 
 The following payloads are registered for the `TokenBridge` protocol:
 
@@ -4595,7 +4604,7 @@ Understanding the structure of VAAs is fundamental to working with Wormhole's SD
 
 The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed the core data and hashed (using `keccak256`) to generate the VAA's unique identifier.
 
-When integrating protocols like Token Bridge or Wormhole Relayer:
+When integrating protocols like Wrapped Token Transfers (WTT) or Wormhole Relayer:
 
 - The TypeScript SDK handles VAAs off-chain, focusing on deserialization, validation, and payload extraction before submission.
 - The Solidity SDK processes VAAs on-chain, using libraries like [`VaaLib`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/VaaLib.sol){target=\_blank} to decode and execute protocol actions.
@@ -4604,13 +4613,13 @@ When integrating protocols like Token Bridge or Wormhole Relayer:
 
 ### How VAAs Enable Protocol-Specific Messaging
 
-VAAs are the backbone of Wormhole's cross-chain communication, encapsulating critical protocol payloads that drive actions on different blockchains. Each protocol—such as [Token Bridge](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/tokenBridge){target=\_blank}, [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/relayer){target=\_blank}, or [Circle CCTP](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/circleBridge){target=\_blank}—uses VAAs to securely transmit its messages across chains.
+VAAs are the backbone of Wormhole's cross-chain communication, encapsulating critical protocol payloads that drive actions on different blockchains. Each protocol—such as [WTT](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/tokenBridge){target=\_blank}, [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/relayer){target=\_blank}, or [Circle CCTP](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/circleBridge){target=\_blank}—uses VAAs to securely transmit its messages across chains.
 
 Examples of mapping protocols to VAAs:
 
 | Protocol         | Payload Purpose                                           | Example                            |
 |------------------|-----------------------------------------------------------|------------------------------------|
-| Token Bridge     | Transfers token data and metadata.                        | Token transfer or redemption.      |
+| WTT              | Transfers token data and metadata.                        | Token transfer or redemption.      |
 | Wormhole Relayer | Manages delivery instructions for messages across chains. | Delivery fee or refund handling.   |
 | Circle CCTP      | Facilitates stablecoin mint-and-burn operations.          | Circle-issued stablecoin transfer. |
 
@@ -4693,7 +4702,10 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: get-started]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/concepts/solana-shim.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-emission.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-verification.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorial]
@@ -4746,7 +4758,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
     - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
@@ -4757,7 +4769,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Gas Abstraction**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate gas logic.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
 
 - **Bridging Intent Library**
 
@@ -4767,7 +4779,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
+    - **[Wrapped Token Transfers](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -4775,6 +4787,12 @@ Follow these steps to work with Wormhole Messaging:
 
 - **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
 - **[Use Wormhole Relayers](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}**: Send and receive messages without off-chain infrastructure.
+
+For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+
+- [**Solana Shims**](/docs/products/messaging/concepts/solana-shim/){target=\_blank} : Learn about the purpose and benefits of using shims on Solana.
+- [**Emission Shim**](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}: Emit messages without creating permanent accounts, reducing rent costs.
+- [**Verification Shim**](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}: Efficiently verify Wormhole VAAs without leaving rent-exempt accounts.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md
@@ -4789,7 +4807,7 @@ categories: Transfer, Basics
 
 Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
 
-Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Wrapped Token Transfers (WTT) for a secure lock-and-mint mechanism.
 
 Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
 
@@ -4797,15 +4815,15 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
-- **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
+- **[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
+- **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
 - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
 <div markdown class="full-width">
 
 ::spantable::
 
-|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|                                | Criteria                              | NTT                | WTT                | Settlement         |
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
 | Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -4821,24 +4839,7 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 </div>
 
-## Choose a Transfer Mechanism
-
-Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
-
-| Feature                | Native Token Transfers                                                     | Token Bridge                                  |
-|------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
-| **Best for**           | DeFi governance, native assets with multichain liquidity                   | Consumer apps, games, wrapped-token use cases |
-| **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
-| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
-| **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
-| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process. |
-| **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
-| **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
-
-
-In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+For a deeper dive into how token transfers work and the differences between NTT and WTT, see the [Token Transfers Overview](/docs/products/token-transfers/overview/){target=\_blank}.
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
 
@@ -5157,7 +5158,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
+- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
 --- END CONTENT ---
@@ -5239,6 +5240,129 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/concepts/solana-shim.md
+--- BEGIN CONTENT ---
+---
+title: Solana Shims
+description: Understand how Wormhole uses shim programs on Solana to optimize message emission and VAA verification without modifying the Core Bridge.
+categories: Basics
+---
+
+# Solana Shims
+
+Wormhole shims on Solana are lightweight programs that enable cheaper and more flexible message emission and verification while preserving Guardian observation guarantees. They are designed for integrators who want to reduce Solana rent costs without sacrificing core protocol security or Guardian compatibility.
+
+## The Core Bridge Account Problem
+
+When you emit a message on Solana using the legacy [Wormhole core bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account, a Program Derived Address (PDA), for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since the core bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+
+- **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
+- **Lost Lamports to Rent**: Integrators lose SOL for every message, as the lamports needed for rent exemption remain locked in the message accounts indefinitely.
+
+Solana’s rent-exemption model isn't the fundamental limitation; the constraint lies in the legacy `post_message` function of the core bridge, which always creates a new, non-reclaimable account every time it’s called. Even after a message is consumed, these accounts can’t be closed or reused, resulting in unrecoverable rent costs.
+
+Although the `post_message_unreliable` function allows for account reuse, it comes with strict tradeoffs. Once a message is overwritten, it can no longer be recovered, making it no longer observable by Guardians. It also locks you into the original account size, as the feature predates Solana’s account resizing.
+
+Verification has similar costs. The `post_vaa` instruction creates additional temporary accounts for signatures and VAA data, which again require rent and aren’t automatically cleaned up. Over time, these add to both storage bloat and unrecoverable SOL.
+
+This design ensures reliability, as message data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
+
+## What Are the Solana Shims?
+
+To address the limitations of the core bridge, Wormhole deploys two specialized Solana programs called shims:
+
+- **[Post Message Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}**: Emits Wormhole messages efficiently, without creating new message accounts for each emission, reducing rent costs.
+- **[Verify VAA Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}**: Verifies VAAs on-chain without leaving permanent accounts.
+
+Both act as lightweight wrappers around the existing core bridge. There are two different options, depending on whether you are emitting messages or verifying VAAs:
+
+### Emission Shim
+
+The [Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank} is a Solana program deployed at [`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the core bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This eliminates rent costs and prevents long-term state bloat. Guardians are configured to observe this canonical shim, allowing integrators to send messages through it without additional setup.
+
+It works by calling the [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=_blank} instruction on the Post Message Shim program. This emits the Wormhole message as a log event instead of creating a rent-exempt message account.
+
+The shim differs from the standard `post_message` approach in two key ways. First, it utilizes a Program Derived Address (PDA) per emitter for message accounts, eliminating the need to generate a new key pair for each emission. Second, instead of writing the message into a persistent, rent-exempt account, it emits the data via an Anchor CPI event, which Guardians can observe directly. This design reduces rent costs and prevents unused accounts from being left behind.
+
+The shim works through a few main components:
+
+- **Shim Program**: Provides a `post_message` instruction modeled on the core bridge’s `post_message_unreliable`.
+- **Sequence Handling**: The core bridge continues to manage sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
+- **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
+- **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
+
+```mermaid
+graph LR
+    A[Integrator Program]
+    B[Emission Shim]
+    C[Core Bridge]
+    D[Guardians]
+
+    A -- call post_message --> B
+    B -- emits event & calls core --> C
+    C -- instruction data & event --> D
+```
+
+The emission fee is still paid, and the core bridge continues to manage sequence numbers as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
+
+### Verification Shim 
+
+The [Verification Shim](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank} is a Solana program deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}. It provides a [`verify_hash`](https://github.com/wormhole-foundation/wormhole/blob/4656bd4a72cb99f4e94a771a802856c9451af844/svm/wormhole-core-shims/programs/verify-vaa/src/lib.rs#L195){target=\_blank} instruction that checks Guardian signatures against the active Guardian set for a VAA's digest. It ensures quorum, validates each signature in order, recovers the public keys, and matches them against the Guardian set. If all checks pass, the VAA is verified without creating persistent rent-exempt accounts. This replaces using the core bridge’s `post_vaa`. Integrators can call the canonical shim, but existing programs may need to be modified to adopt this approach.
+
+It works by first calling the [`post_signatures`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json#L43){target=_blank} on the Verification Shim to store Guardian signatures in a temporary account. Then, from within your program, call [`verify_hash`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/programs/verify-vaa/README.md#verify-hash-technical-details){target=_blank} to check the VAA’s digest against Guardian signatures. In the same transaction, close the signatures account with [`close_signatures`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json#L11){target=\_blank} to reclaim rent. 
+
+Instead of the core bridge instructions, such as `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
+
+1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
+2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
+3. Call `close_signatures`: Immediately closes the `GuardianSignatures` account to reclaim the lamports paid for its creation.
+
+```mermaid
+graph LR
+    A[post_signatures] --> B[verify_hash]
+    B --> C[Process Logic]
+    C --> D[close_signatures]
+```
+
+This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
+
+## Guardian Observation Methods
+
+|                      | Legacy Model           | Shim Model               |
+|----------------------|------------------------|--------------------------|
+| Message Storage      | On-chain account       | Transaction logs (CPI)   |
+| Data Permanence      | Permanent              | Until RPC history pruned |
+| Guardian Observation | Reads account data     | Reads transaction logs   |
+| Cost                 | High (rent + compute)  | Low (compute only)       |
+| Closing Accounts     | Not possible           | Not needed               |
+
+With shims, the message’s existence depends on the transaction log, so cost drops, but indefinite on-chain visibility is no longer guaranteed. Sequence tracking remains the same as the legacy model, so integrators can switch between the two without disrupting sequence numbers.
+
+## Transaction Costs
+
+Solana charges for two main resources when processing transactions: compute units (for execution) and rent (for storing data on-chain). Understanding how each contributes to the overall cost is key to seeing why shims are cheaper.
+
+- **Compute Units (CU)**: Solana measures CPU resource usage per transaction as “compute units”. Each transaction has a CU limit (usually ~200,000 — which can be increased for a fee).
+- **Rent**: One-time cost in SOL to keep an account on-chain. Most of the core bridge’s cost comes from rent, not CUs.
+
+Even though the shim uses slightly more compute (extra logic for logging), it avoids account creation entirely. Since rent is the most significant cost, the total emission cost drops.
+
+## Safety, Tradeoffs & Limitations
+
+Shims preserve the same security guarantees as the core bridge so that integrators can adopt shims without weakening protocol safety. The only difference is where data lives: instead of being stored permanently in message accounts, it is emitted in transaction logs or held temporarily until verification completes. Guardians are explicitly configured to observe shim output, ensuring messages and VAAs remain verifiable across the network.
+
+The main tradeoff is durability. In the legacy model, messages and VAAs were always available on-chain for re-observation. With shims, message data persists only as long as transaction history is retained by RPC providers. This is sufficient for Guardian observation, but doesn’t provide indefinite public access to raw message data. Applications that rely on long-term on-chain storage may still prefer the legacy path, while most integrators benefit from the reduced cost and state bloat.
+
+Finally, adopting shims may require some integration changes. For emission, developers should route messages through the Post Message Shim rather than directly through the core bridge. For verification, programs must update their logic to call `verify_hash` and manage temporary accounts in the same transaction. These are lightweight adjustments, but they are necessary to take full advantage of the cost savings.
+
+## Next Steps
+
+To put these concepts into practice, explore the dedicated guides for emission and verification on Solana:
+
+- [Efficient Emission on Solana](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
+- [Efficient Verification on Solana](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
+--- END CONTENT ---
+
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md
 --- BEGIN CONTENT ---
 ---
@@ -5274,7 +5398,7 @@ While the implementation details of the Core Contracts vary by network, the core
 
 ### Sending Messages
 
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}.
 
 === "EVM"
 
@@ -5613,6 +5737,520 @@ For a deeper understanding of the Core Contract implementation for a specific bl
 - [Solana Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/solana/bridge/program){target=\_blank}
 - [Sui Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/sui/wormhole){target=\_blank}
 - [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-emission.md
+--- BEGIN CONTENT ---
+---
+title: Solana Message Emission via Shim
+description: Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim instead of post_message.
+categories: Basics
+---
+
+# Solana Message Emission via Shim
+
+The emission shim is a lightweight Solana program that lets integrators emit Wormhole messages without creating a new rent-exempt account for every message. It passes an empty payload to the core bridge and emits the message data through transaction logs, reducing rent costs and avoiding state bloat while remaining fully compatible with Guardian observation.
+
+Migrating from the legacy path is straightforward: no account resizing is needed, and programs can call the shim directly. The Wormhole fee is still paid through the `fee_collector`, with the same parallelization limits as before. 
+
+Guardians are configured to observe the canonical shim address, reading message data, emitter, and nonce from the transaction logs and CPI events, rather than on-chain accounts. They also ignore the empty core bridge payload to prevent duplicate VAAs. On mainnet, all 19 Guardians support shim emissions, and, as with all Wormhole messages, at least 13 attestations are required for a valid VAA.
+
+!!!note
+    For on-chain programs that only call the shim via CPI, consider emitting a dummy/empty message after migration to avoid edge cases with initial CPI depth (Solana limits the depth of cross-program calls).
+
+For more background, see [Emission Shim concept section](/docs/products/messaging/concepts/solana-shim/#emission-shim){target=\_blank}. 
+
+## Prerequisites
+
+To interact with the emission shim, you'll need the following:
+
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
+- [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
+- The canonical emission shim program already deployed at [`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}.
+- The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} for wiring accounts.
+- A payer (signer) funded with enough SOL to cover compute and message fees.
+
+## Setup
+
+To start, import the shim crate to call `wormhole_post_message_shim::cpi::post_message`. Then, pull the core bridge addresses needed to be passed along.
+
+```rs
+declare_program!(wormhole_post_message_shim);
+
+use anchor_lang::prelude::*;
+
+use wormhole_post_message_shim::{program::WormholePostMessageShim, types::Finality};
+use wormhole_solana_consts::{
+    CORE_BRIDGE_CONFIG, CORE_BRIDGE_FEE_COLLECTOR, CORE_BRIDGE_PROGRAM_ID,
+};
+
+#[derive(Accounts)]
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+
+pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
+    // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
+    // The following code could be used to handle this via CPI call.
+    // However, this example handles this complexity on the client side using a `preInstruction`
+    //
+    // let fee = ctx.accounts.wormhole_bridge.fee();
+    // if fee &gt; 0 {
+    //     solana_program::program::invoke(
+    //         &amp;solana_program::system_instruction::transfer(
+    //             &amp;ctx.accounts.payer.key(),
+    //             &amp;ctx.accounts.fee_collector.key(),
+    //             fee,
+    //         ),
+    //         &amp;ctx.accounts.to_account_infos(),
+    //     )?;
+    // }
+
+    wormhole_post_message_shim::cpi::post_message(
+        CpiContext::new_with_signer(
+            ctx.accounts.wormhole_post_message_shim.to_account_info(),
+            wormhole_post_message_shim::cpi::accounts::PostMessage {
+                payer: ctx.accounts.payer.to_account_info(),
+                bridge: ctx.accounts.bridge.to_account_info(),
+                message: ctx.accounts.message.to_account_info(),
+                emitter: ctx.accounts.emitter.to_account_info(),
+                sequence: ctx.accounts.sequence.to_account_info(),
+                fee_collector: ctx.accounts.fee_collector.to_account_info(),
+                clock: ctx.accounts.clock.to_account_info(),
+                system_program: ctx.accounts.system_program.to_account_info(),
+                wormhole_program: ctx.accounts.wormhole_program.to_account_info(),
+                program: ctx.accounts.wormhole_post_message_shim.to_account_info(),
+                event_authority: ctx.accounts.wormhole_post_message_shim_ea.to_account_info(),
+            },
+            &amp;[&amp;[b"emitter", &amp;[ctx.bumps.emitter]]],
+        ),
+        0,
+        Finality::Finalized,
+        b"your message goes here!".to_vec(),
+    )?;
+
+    Ok(())
+}</postmessage>
+```
+
+## Accounts
+
+When calling the shim’s `post_message` instruction, you need to pass:
+
+- `bridge`: Holds the Wormhole core bridge config.
+- `message`: Represents the PDA derived from the emitter and is reused by the shim instead of generating new accounts.
+- `emitter`: Serves as the emitter address (signer).
+- `sequence`: Tracks the emitter's sequence account.
+- `payer`: Pays compute and any rent needed on first use (signer).
+- `fee_collector`: Collects the Wormhole message fee.
+- `clock`: Provides the current Solana time from the sysvar.
+- `system_program`: Supplies the standard Solana system program for account creation on first use.
+- `wormhole_program`: Points to the Wormhole core bridge program.
+- `event_authority`: Acts as the PDA used by the shim to emit log events (Anchor CPI events).
+- `program`: Specifies the shim program itself.
+
+The struct below defines the accounts required by your instruction and wires the shim to the core bridge, ensuring the emitter PDA can sign the CPI via seeds.
+
+```rs
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+```
+
+This instruction reuses a single per-emitter message PDA (no per-message rent). When invoked, the shim emits your payload as an Anchor CPI event and, in the same transaction, calls the core bridge with an empty payload, allowing the core bridge to still assign the sequence and enforce fees/finality. Guardians read the Core call (sequence/finality) and the shim event (payload) from the transaction logs, producing a standard VAA without leaving a persistent message account.
+
+## Call post_message
+
+The `post_message` function builds a `CpiContext` and invokes the shim’s `post_message` instruction, forwarding the nonce, finality, and your payload. The Core Bridge enforces fee requirements and assigns the sequence, while the shim emits the payload as an event in the same transaction.
+
+```rs
+declare_program!(wormhole_post_message_shim);
+
+use anchor_lang::prelude::*;
+
+use wormhole_post_message_shim::{program::WormholePostMessageShim, types::Finality};
+use wormhole_solana_consts::{
+    CORE_BRIDGE_CONFIG, CORE_BRIDGE_FEE_COLLECTOR, CORE_BRIDGE_PROGRAM_ID,
+};
+
+#[derive(Accounts)]
+pub struct PostMessage&lt;'info&gt; {
+    #[account(mut)]
+    payer: Signer&lt;'info&gt;,
+
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_CONFIG)]
+    /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub bridge: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub message: UncheckedAccount&lt;'info&gt;,
+
+    #[account(seeds = [b"emitter"], bump)]
+    /// CHECK: Our emitter
+    /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
+    pub emitter: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut)]
+    /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
+    /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
+    /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
+    pub sequence: UncheckedAccount&lt;'info&gt;,
+
+    #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
+    /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
+
+    /// Clock sysvar.
+    /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
+    pub clock: Sysvar&lt;'info, Clock&gt;,
+
+    /// System program.
+    /// Type for IDL generation / convenience, it will be enforced by the core bridge.
+    pub system_program: Program&lt;'info, System&gt;,
+
+    #[account(address = CORE_BRIDGE_PROGRAM_ID)]
+    /// CHECK: Wormhole program.
+    /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Shim event authority
+    /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
+    /// Address will be enforced by the shim.
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
+}
+
+pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
+    // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
+    // The following code could be used to handle this via CPI call.
+    // However, this example handles this complexity on the client side using a `preInstruction`
+    //
+    // let fee = ctx.accounts.wormhole_bridge.fee();
+    // if fee &gt; 0 {
+    //     solana_program::program::invoke(
+    //         &amp;solana_program::system_instruction::transfer(
+    //             &amp;ctx.accounts.payer.key(),
+    //             &amp;ctx.accounts.fee_collector.key(),
+    //             fee,
+    //         ),
+    //         &amp;ctx.accounts.to_account_infos(),
+    //     )?;
+    // }
+
+    wormhole_post_message_shim::cpi::post_message(
+        CpiContext::new_with_signer(
+            ctx.accounts.wormhole_post_message_shim.to_account_info(),
+            wormhole_post_message_shim::cpi::accounts::PostMessage {
+                payer: ctx.accounts.payer.to_account_info(),
+                bridge: ctx.accounts.bridge.to_account_info(),
+                message: ctx.accounts.message.to_account_info(),
+                emitter: ctx.accounts.emitter.to_account_info(),
+                sequence: ctx.accounts.sequence.to_account_info(),
+                fee_collector: ctx.accounts.fee_collector.to_account_info(),
+                clock: ctx.accounts.clock.to_account_info(),
+                system_program: ctx.accounts.system_program.to_account_info(),
+                wormhole_program: ctx.accounts.wormhole_program.to_account_info(),
+                program: ctx.accounts.wormhole_post_message_shim.to_account_info(),
+                event_authority: ctx.accounts.wormhole_post_message_shim_ea.to_account_info(),
+            },
+            &amp;[&amp;[b"emitter", &amp;[ctx.bumps.emitter]]],
+        ),
+        0,
+        Finality::Finalized,
+        b"your message goes here!".to_vec(),
+    )?;
+
+    Ok(())
+}</postmessage>
+```
+
+## Limitations and Considerations 
+
+- **Rent**: No persistent account rent is paid for every emission; the cost is now dominated by compute and the emission fee.
+- **Logs**: Since all observability is log-based, re-observation is only possible while Solana transaction history is available.
+- **Parallelization**: Still limited by the `fee_collector` account being mutable.
+- **CPI Depth**: The first shim call for an emitter adds one extra stack depth. This is only relevant if you are near the Solana CPI limit (4).
+
+## Conclusion
+
+By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
+
+For a complete, working reference, see the full example implementation in the Wormhole repo: [`post_message.rs`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/post_message.rs){target=\_blank}.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-verification.md
+--- BEGIN CONTENT ---
+---
+title: Solana VAA Verification via Shim
+description: Efficiently verify Wormhole VAAs on Solana using the Verification Shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
+categories: Basics
+---
+
+# Solana VAA Verification via Shim
+
+Verifying VAAs on Solana with the legacy core bridge requires creating multiple rent-exempt accounts for signatures and posted VAAs. These accounts persist even after verification is complete, which increases costs and bloats the on-chain state.
+
+The verification shim solves this by replacing the core bridge verification flow with its own instructions:
+
+- `post_signatures`: Accumulates Guardian signatures into a temporary account.
+- `verify_hash`: Validates the VAA by checking the signatures against the active Guardian set and ensuring quorum.
+- `close_signatures`: Closes the temporary account to reclaim lamports.
+
+Because the shim avoids leaving permanent accounts behind, verification becomes much cheaper while keeping the same security guarantees.
+
+This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the core bridge’s `verify_signatures` and `post_vaa` functions.
+
+For more background, see the [Verification Shim concept section](/docs/products/messaging/concepts/solana-shim/#verification-shim){target=\_blank}. 
+
+## Prerequisites
+
+To interact with the verification shim, you'll need the following:
+
+- [Rust and Solana CLI installed](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank}.  
+- [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
+- The canonical verification shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
+- The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.
+- A payer (signer) funded for compute and temporary account rent (you’ll close and reclaim).
+
+## Setup
+
+To start, add the verification shim CPI and declare the external program so your instruction can CPI into it. This lets your program verify a VAA digest against the active Guardian set without creating persistent core bridge accounts.
+
+```rs
+declare_program!(wormhole_verify_vaa_shim);
+
+use anchor_lang::{
+    prelude::*,
+    solana_program::{self, keccak},
+};
+use wormhole_verify_vaa_shim::cpi::accounts::VerifyHash;
+use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
+
+#[derive(Accounts)]
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+
+pub fn consume_vaa(
+    ctx: Context<consumevaa>,
+    guardian_set_bump: u8,
+    vaa_body: Vec<u8>,
+) -&gt; Result&lt;()&gt; {
+    // Compute the message hash.
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
+    let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+    // Verify the hash against the signatures.
+    wormhole_verify_vaa_shim::cpi::verify_hash(
+        CpiContext::new(
+            ctx.accounts.wormhole_verify_vaa_shim.to_account_info(),
+            VerifyHash {
+                guardian_set: ctx.accounts.guardian_set.to_account_info(),
+                guardian_signatures: ctx.accounts.guardian_signatures.to_account_info(),
+            },
+        ),
+        guardian_set_bump,
+        digest,
+    )?;
+    // Decode vaa_body, perform security checks, and do your thing.
+    Ok(())
+}</u8></consumevaa>
+```
+
+## Accounts
+
+You’ll wire three accounts for verification:
+
+- `guardian_set`: Core bridge `GuardianSet` PDA for the VAA’s `guardianSetIndex` (shim checks derivation).
+- `guardian_signatures`: Temporary account created by `post_signatures` (shim checks ownership & discriminator).
+- `wormhole_verify_vaa_shim`: The verification shim program.
+
+```rs
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+```
+
+Here, `guardian_set` is a core bridge PDA, and `guardian_signatures` is created and owned by the verification shim. Derive `guardian_set = PDA(["GuardianSet", index_be_bytes], CORE_BRIDGE_PROGRAM_ID)` using the `guardianSetIndex` from the VAA header (big-endian), compute its bump, and pass that bump into your instruction.
+
+## Verify the VAA
+
+The `consume_vaa` function computes the digest, calls the shim’s `verify_hash`, and then proceeds with your logic. This step validates Guardian signatures and quorum against the active Guardian set for the VAA’s `guardianSetIndex`, then lets your program proceed without persisting a `PostedVAA`. 
+
+```rs
+declare_program!(wormhole_verify_vaa_shim);
+
+use anchor_lang::{
+    prelude::*,
+    solana_program::{self, keccak},
+};
+use wormhole_verify_vaa_shim::cpi::accounts::VerifyHash;
+use wormhole_verify_vaa_shim::program::WormholeVerifyVaaShim;
+
+#[derive(Accounts)]
+pub struct ConsumeVaa&lt;'info&gt; {
+    /// CHECK: Guardian set used for signature verification by shim.
+    /// Derivation is checked by the shim.
+    guardian_set: UncheckedAccount&lt;'info&gt;,
+
+    /// CHECK: Stored guardian signatures to be verified by shim.
+    /// Ownership ownership and discriminator is checked by the shim.
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
+
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
+}
+
+pub fn consume_vaa(
+    ctx: Context<consumevaa>,
+    guardian_set_bump: u8,
+    vaa_body: Vec<u8>,
+) -&gt; Result&lt;()&gt; {
+    // Compute the message hash.
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
+    let digest = keccak::hash(message_hash.as_slice()).to_bytes();
+    // Verify the hash against the signatures.
+    wormhole_verify_vaa_shim::cpi::verify_hash(
+        CpiContext::new(
+            ctx.accounts.wormhole_verify_vaa_shim.to_account_info(),
+            VerifyHash {
+                guardian_set: ctx.accounts.guardian_set.to_account_info(),
+                guardian_signatures: ctx.accounts.guardian_signatures.to_account_info(),
+            },
+        ),
+        guardian_set_bump,
+        digest,
+    )?;
+    // Decode vaa_body, perform security checks, and do your thing.
+    Ok(())
+}</u8></consumevaa>
+```
+
+## Limitations and Security Considerations
+
+- You must be the payer and/or account owner to reclaim lamports from the `GuardianSignatures` account.
+- The verification proof is not a permanent on-chain record unless you keep the account.
+- Compute usage (CU) is higher for the rent-efficient pattern, but the total cost is dramatically lower than keeping permanent accounts.
+- All validation guarantees remain as strong as with the legacy method.
+- If you do not close accounts you create, rent will be lost as before.
+- This approach assumes you do not need to later re-validate the VAA from an on-chain artifact.
+
+## Conclusion
+
+By following this flow, you can efficiently verify VAAs on Solana with minimal rent overhead, leaving no unnecessary state behind on-chain. For a complete, working reference, see the full example implementation in the Wormhole repo: [`consume_vaa.rs`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/consume_vaa.rs){target=\_blank}.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md
@@ -6810,7 +7448,7 @@ To simplify this process, we've included a tool for verifying if a token has an 
 <span data-ty=""> &gt; npx ts-node script/check-attestation.ts</span>
 <span data-ty=""> </span>
 <span data-ty=""> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
-<span data-ty=""> Enter the Token Bridge contract address on the TARGET chain: 0x05...E153</span>
+<span data-ty=""> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
 <span data-ty=""> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
 <span data-ty=""> Enter the SOURCE chain ID: 6</span>
 <span data-ty=""> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
@@ -9477,7 +10115,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Token Bridge, the Token Bridge contract itself interacts with the Core Contract.
+    - In products like Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 
@@ -9540,7 +10178,7 @@ This page will guide you through the structural layout of these tools—how they
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
 - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
-- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}<!--, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank},--> and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
 
@@ -9612,7 +10250,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
@@ -9931,7 +10569,7 @@ This page provides a comprehensive guide to where the Spy fits within the Wormho
 - **Real-time monitoring of Wormhole messages**: The Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time.
 - **Filterable and observable message streams**: Users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest.
 - **Integration-friendly event streaming**: The Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services.
-- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
+- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (WTT, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
 - **Lightweight and infrastructure-ready**: The Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure.
 
 ## Integrator Use Case
@@ -10089,7 +10727,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
+Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Wrapped Token Transfer (WTT) is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
 Transferring tokens from the sending chain to the destination chain requires the following steps:
 
@@ -10114,7 +10752,7 @@ Note that the destination chain is agnostic regarding how the tokens on the send
 
 ### Attestation
 
-While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
+While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, WTT supports token attestation.
 
 To create a token attestation, the sending chain emits a message containing metadata about a token, which the destination chain may use to preserve the name, symbol, and decimal precision of a token address.
 
@@ -10139,7 +10777,7 @@ Be aware of the following considerations when working with attestations:
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
+- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, WTT requires an attestation for each token transfer.
 
 ### Token Transfer with Message
 
@@ -10156,7 +10794,7 @@ This VAA type was previously known as Contract Controlled Transfer and is also s
 - **`token_chain` ++"u16"++**: Numeric ID for the source chain.
 - **`to` ++"u8[32]"++**: Address on the destination chain.
 - **`to_chain` ++"u16"++**: Numeric ID for the destination chain.
-- **`from_address` ++"u8[32]"++**: Address that called the Token Bridge on the source chain.
+- **`from_address` ++"u8[32]"++**: Address that called WTT on the source chain.
 - **`payload` ++"[]byte"++**: Message, arbitrary bytes, app-specific.
 
 ### Governance
@@ -10186,7 +10824,7 @@ new_contract: 0x348567293758957162374959376192374884562522281937446234828323
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
 - [Core governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
-- [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
+- [WTT governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 
@@ -10348,7 +10986,7 @@ Governance is the process through which contract upgrades happen. Guardians manu
 
 This means that governance actions are held to the same security standard as the rest of the system. A two-thirds supermajority of the Guardians is required to pass any governance action.
 
-Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
+Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed Wrapped Token Transfers (WTT) contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
 
 All governance actions and contract upgrades have been managed via Wormhole's on-chain governance system.
 
@@ -10426,6 +11064,9 @@ The following section contains reference material for Wormhole, including chain 
 ---
 
 ## List of Shared Concept Pages:
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-evm.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-solana.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/relayer-contract.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: reference]
@@ -10434,6 +11075,2249 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: reference]
 
 ## Full content for shared concepts:
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-evm.md
+--- BEGIN CONTENT ---
+---
+title: Core Contract (EVM)
+description: Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
+categories: Reference
+---
+
+# Core Contract (EVM)
+
+The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank} chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
+
+## Structure Overview
+
+The Wormhole Core system consists of a proxy contract and a modular implementation constructed through layered inheritance.
+
+```text
+Wormhole.sol (Proxy)
+└── Implementation.sol
+    └── Governance.sol
+        ├── Getters.sol
+        ├── GovernanceStructs.sol
+        ├── Messages.sol
+        ├── Setters.sol
+        └── Structs.sol
+```
+
+**Key Components:**
+
+ - **Wormhole.sol**: The upgradeable proxy contract that delegates all logic to `Implementation.sol`.
+ - **Implementation.sol**: The main logic contract, which handles message publication and initialization. Inherits from Governance.sol.
+ - **Governance.sol**: Core governance logic for processing upgrades, setting fees, and updating the Guardian set. Also responsible for verifying governance VAAs and performing privileged actions.
+ - **Getters.sol**: Exposes view functions to access internal contract state, such as current Guardian sets, fees, and contract configuration.
+ - **GovernanceStructs.sol**: Provides structures and helpers for processing governance-related VAAs.
+ - **Messages.sol**: Handles VAA parsing and verification.
+ - **Setters.sol**: Contains internal functions for mutating contract state.
+ - **Structs.sol**: Defines core data structures like GuardianSet and VM (VAA Message) used across multiple modules.
+
+## State Variables
+
+ - **`provider` ++"Structs.Provider"++**: Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
+ - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all Guardian sets by index.
+ - **`guardianSetIndex` ++"uint32"++**: Index of the currently active Guardian set.
+ - **`guardianSetExpiry` ++"uint32"++**: How long a Guardian set remains valid after it's replaced (in seconds).
+ - **`sequences` ++"mapping(address => uint64)"++**: Tracks message sequences per emitter (used to enforce message ordering).
+ - **`consumedGovernanceActions` ++"mapping(bytes32 => bool)"++**: Used to prevent governance VAAs from being reused (replay protection).
+ - **`initializedImplementations` ++"mapping(address => bool)"++**: Tracks which implementation addresses have been initialized (for upgrade safety).
+ - **`messageFee` ++"uint256"++**: The amount (in native gas token) required to post a message. Set via governance.
+ - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g., 1 for Ethereum, 10 for Optimism). Used in fork recovery.
+
+## Events
+
+### LogMessagePublished
+
+Emitted when a message is published via `publishMessage`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+```solidity
+event LogMessagePublished(
+    address indexed sender,
+    uint64 sequence,
+    uint32 nonce,
+    bytes payload,
+    uint8 consistencyLevel
+)
+```
+
+??? interface "Parameters"
+
+    `sender` ++"address"++  
+
+    Address that called `publishMessage`.
+
+    ---
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the message.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    The provided nonce.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    The payload that was published.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Finality level requested.
+
+### ContractUpgraded
+
+Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+```solidity
+event ContractUpgraded(
+    address indexed oldContract,
+    address indexed newContract
+)
+```
+
+??? interface "Parameters"
+
+    `oldContract` ++"address"++
+
+    The address of the previous implementation.
+
+    ---
+
+    `newContract` ++"address"++
+
+    The address of the new implementation.
+
+### GuardianSetAdded
+
+Emitted when a new Guardian set is registered via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+```solidity
+event GuardianSetAdded(
+    uint32 indexed index
+)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    Index of the newly added Guardian set.
+
+### LogGuardianSetChanged
+
+Emitted when the active Guardian set is changed. *(Defined in [State.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/State.sol){target=\_blank})*
+
+```solidity
+event LogGuardianSetChanged(
+    uint32 oldGuardianIndex,
+    uint32 newGuardianIndex
+)
+```
+
+??? interface "Parameters"
+
+    `oldGuardianIndex` ++"uint32"++
+
+    The previous active Guardian set index.
+
+    ---
+
+    `newGuardianIndex` ++"uint32"++
+
+    The new active Guardian set index.
+
+## Functions
+
+### publishMessage
+
+Publishes a message to Wormhole's Guardian Network. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+```solidity
+function publishMessage(
+    uint32 nonce,
+    bytes memory payload,
+    uint8 consistencyLevel
+) public payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `nonce` ++"uint32"++
+
+    Custom sequence identifier for the emitter.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Arbitrary user data to be included in the message.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Finality requirement for Guardian attestation (e.g., safe or finalized).
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Unique sequence number assigned to this message.
+
+### getCurrentGuardianSetIndex
+
+Returns the index of the currently active Guardian set. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
+
+```solidity
+function getCurrentGuardianSetIndex() external view returns (uint32)
+```
+
+??? interface "Returns"
+
+    `index` ++"uint32"++
+
+    The index of the active Guardian set used to verify signatures.
+
+### getGuardianSet
+
+Retrieves metadata for a given Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    Guardian set index to query.
+
+??? interface "Returns"
+
+    `keys` ++"address[]"++
+
+    Public keys of the guardians in this set.
+
+    ---
+
+    `expirationTime` ++"uint32"++
+
+    Timestamp after which the Guardian set is considered expired.
+
+### getGuardianSetExpiry
+
+Returns the expiration time of a specific Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function getGuardianSetExpiry(uint32 index) external view returns (uint32)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    The index of the Guardian set to query.
+
+??? interface "Returns"
+
+    `expiry` ++"uint32"++
+
+    UNIX timestamp after which the set is no longer valid.
+
+### messageFee
+
+Returns the current fee (in native tokens) required to publish a message. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function messageFee() public view returns (uint256)
+```
+
+??? interface "Returns"
+
+    `fee` ++"uint256"++
+
+    Fee in Wei required to publish a message successfully. Must be sent as `msg.value`.
+
+### nextSequence
+
+Retrieves the next sequence number for a given emitter address. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function nextSequence(address emitter) external view returns (uint64)
+```
+
+??? interface "Parameters"
+
+    `emitter` ++"address"++
+
+    The address for which the next sequence will be issued.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The next sequence number for the specified emitter.
+
+### parseAndVerifyVM
+
+Verifies signatures and parses a signed VAA. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
+
+```solidity
+function parseAndVerifyVM(bytes memory encodedVM)
+    external
+    view
+    returns (
+        VM memory vm,
+        bool valid,
+        string memory reason
+    )
+```
+
+??? interface "Parameters"
+
+    `encodedVM` ++"bytes"++
+
+    Serialized signed VAA from Guardians.
+
+??? interface "Returns"
+
+    `vm` ++"VM memory"++
+
+    Full parsed VAA contents
+
+    ---
+
+    `valid` ++"bool"++
+
+    Whether the VAA is valid according to the current Guardian set.
+
+    ---
+
+    `reason` ++"string"++
+
+    Reason for invalidity if `valid` is false (invalid).
+
+### verifyVM
+
+Performs low-level VAA signature verification. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
+
+```solidity
+function verifyVM(bytes memory encodedVM)
+    public view returns (bool isValid, string memory reason)
+```
+
+??? interface "Parameters"
+
+    `encodedVM` ++"bytes"++
+
+    Serialized signed VAA to verify.
+
+??? interface "Returns"
+
+    `isValid` ++"bool"++
+
+    `true` if the signatures are valid and meet the quorum.
+
+    ---
+
+    `reason` ++"string"++
+
+    Explanation for failure if `isValid` is `false`.
+
+### verifySignatures
+
+Used to verify individual Guardian signatures against a VAA digest. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
+
+```solidity
+function verifySignatures(
+    bytes32 hash,
+    Structs.Signature[] memory signatures,
+    GuardianSet memory guardianSet
+) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `hash` ++"bytes32"++
+
+    The message digest to verify.
+
+    ---
+
+    `signatures` ++"Structs.Signature[]"++
+
+    An array of Guardian signatures.
+
+    ---
+
+    `guardianSet` ++"GuardianSet memory"++
+
+    Guardian set to validate against.
+
+??? interface "Returns"
+
+    `isValid` ++"bool"++
+
+    `true` if the required number of valid signatures is present.
+
+### quorum
+
+Returns the number of Guardian signatures required to reach quorum. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+```solidity
+function quorum() public view returns (uint8)
+```
+
+??? interface "Returns"
+
+    `quorum` ++"uint8"++
+
+    Number of valid Guardian signatures required to reach consensus for VAA verification.
+
+### chainId
+
+Returns Wormhole chain ID used internally by the protocol. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function chainId() public view returns (uint16)
+```
+
+??? interface "Returns"
+
+    `id` ++"uint16"++
+
+    Wormhole-specific chain identifier. 
+
+### evmChainId
+
+Returns the EVM chain ID (i.e., value from `block.chainid`). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+
+```solidity
+function evmChainId() public view returns (uint256)
+```
+
+??? interface "Returns"
+
+    `id` ++"uint256"++
+
+    Native EVM chain ID for the current network.
+
+## Errors
+
+### Invalid Fee
+
+Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+### Unsupported
+
+Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+### The Wormhole Contract Does Not Accept Assets
+
+Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+### Already Initialized
+
+Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank}, via `initializer` modifier)*
+
+### Unknown Chain ID
+
+Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
+
+### Invalid Fork
+
+Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Invalid Module
+
+Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Invalid Chain
+
+Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### New Guardian Set is Empty
+
+Reverts when trying to register a new Guardian set that has no keys. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Index Must Increase in Steps of 1
+
+Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Not a Fork
+
+Reverts when trying to recover chain ID on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Invalid EVM Chain
+
+Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Governance Action Already Consumed
+
+Reverts when the same governance VAA is submitted more than once. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Wrong Governance Contract
+
+Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Wrong Governance Chain
+
+Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+
+### Not Signed by Current Guardian Set
+
+Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-solana.md
+--- BEGIN CONTENT ---
+---
+title: Core Contract (Solana)
+description: Reference for the Wormhole Core program on Solana. Covers architecture, PDA accounts, and instructions for posting, verifying, and processing VAAs.
+categories: Reference
+---
+
+# Core Contract (Solana)
+
+The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, Guardian set updates, and upgradeability.
+
+## Structure Overview
+
+The Wormhole Core program on Solana is implemented using modular Rust files. Logic is separated across instruction dispatch, account definitions, core types, and signature verification.
+
+```text
+lib.rs
+├── instructions.rs
+├── accounts.rs
+├── api.rs
+│   ├── post_message
+│   ├── verify_signatures
+│   ├── post_vaa
+│   ├── upgrade_contract
+│   └── upgrade_guardian_set
+├── types.rs
+└── vaa.rs
+```
+
+**Key Components:**
+
+ - **lib.rs**: Program entry point and instruction dispatcher. Registers all handlers and exposes the on-chain processor.
+ - **instructions.rs**: Defines the `WormholeInstruction` enum and maps it to individual instruction handlers.
+ - **accounts.rs**: Specifies the account constraints and validation logic for each instruction.
+ - **api.rs**: Contains the main logic for processing instructions such as message posting, VAA verification, upgrades, and governance actions.
+ - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and `GuardianSet` formats.
+ - **vaa.rs**: Implements VAA parsing, hashing, and signature-related logic used to verify Wormhole messages.
+ - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
+ - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
+
+## State Accounts
+
+Below are on-chain PDAs used to store persistent state for the core contract. All are derived using deterministic seeds with the program ID.
+
+ - **`bridge` ++"BridgeData"++**: Stores global config like the active Guardian set index, message fee, and Guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
+ - **`guardianSets` ++"GuardianSetData"++**: Mapping of Guardian sets by index. Each Guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
+ - **`sequences` ++"SequenceTracker"++**: Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed `["Sequence", emitter]`)
+ - **`postedVAAs` ++"PostedVAAData"++**: Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed `["PostedVAA", hash]`)
+ - **`claims` ++"ClaimData"++**: Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed `["Claim", emitter, sequence]`)
+ - **`feeCollector` ++"FeeCollector"++**: Holds lamports collected via message fees, and can be drained via governance. (Derived at PDA seed `["fee_collector"]`)
+
+## Instructions
+
+### initialize
+
+Initializes the Wormhole Core contract on Solana with a Guardian set and fee configuration. This should be called only once at deployment time. *(Defined in [api/initialize.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/initialize.rs){target=\_blank})*
+
+```rust
+initialize(
+    payer: Pubkey,
+    fee: u64,
+    guardian_set_expiration_time: u32,
+    initial_guardians: &[[u8; 20]]
+)
+```
+
+??? interface "Accounts"
+
+    - **`Bridge`**: PDA to store global configuration.
+    - **`GuardianSet`**: PDA for Guardian set at index 0.
+    - **`FeeCollector`**: PDA to collect message posting fees.
+    - **`Payer`**: Funds account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
+
+??? interface "Parameters"
+
+    `fee` ++"u64"++
+
+    Fee in lamports required to post messages.
+
+    ---
+
+    `guardian_set_expiration_time` ++"u32"++
+
+    Time in seconds after which the Guardian set expires.
+
+    ---
+
+    `initial_guardians` ++"[[u8; 20]]"++
+
+    List of Guardian public key hashes (Ethereum-style addresses).
+
+### post_message
+
+Posts a Wormhole message to the Solana Core contract. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
+
+```rust
+PostMessage {
+    nonce: u32,
+    payload: Vec<u8>,
+    consistency_level: u8
+}
+```
+
+??? interface "Accounts"
+
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
+
+??? interface "Parameters"
+
+    `nonce` ++"u32"++
+
+    Unique nonce to disambiguate messages with the same payload.
+
+    ---
+
+    `payload` ++"Vec<u8>"++
+
+    The arbitrary message payload to be posted.
+
+    ---
+
+    `consistency_level` ++"u8"++
+
+    Level of finality required before the message is processed.
+
+    `1` = Confirmed, `32` = Finalized.
+
+### post_message_unreliable
+
+Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
+
+```rust
+PostMessageUnreliable {
+    nonce: u32,
+    payload: Vec<u8>,
+    consistency_level: u8
+}
+```
+
+??? interface "Accounts"
+
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
+
+??? interface "Parameters"
+
+    `nonce` ++"u32"++
+
+    Unique nonce to disambiguate messages with the same payload.
+
+    ---
+
+    `payload` ++"Vec<u8>"++
+
+    The arbitrary message payload to be posted.
+
+    ---
+
+    `consistency_level` ++"u8"++
+
+    Level of finality required before the message is processed. `1` = Confirmed, `32` = Finalized.
+
+### verify_signatures
+
+Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in [api/verify_signature.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank})*
+
+```rust
+VerifySignatures {
+    signers: [i8; 19]
+}
+```
+
+??? interface "Accounts"
+
+    - **`Payer`**: Pays for account creation and fees.
+    - **`GuardianSet`**: PDA holding the current Guardian set.
+    - **`SignatureSet`**: PDA that will store the verified signature data.
+    - **`InstructionsSysvar`**: Required to access prior instructions (e.g., secp256k1 sigverify).
+    - **`Rent`, `SystemProgram`**: Solana system accounts.
+
+??? interface "Parameters"
+
+    `signers` ++"[i8; 19]"++
+
+    A mapping from Guardian index to its position in the instruction payload (or -1 if not present).
+
+    Used to correlate secp256k1 verify instructions with Guardian set entries.
+
+### post_vaa
+
+Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in [api/post_vaa.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank})*
+
+```rust
+PostVAA {
+    version: u8,
+    guardian_set_index: u32,
+    timestamp: u32,
+    nonce: u32,
+    emitter_chain: u16,
+    emitter_address: [u8; 32],
+    sequence: u64,
+    consistency_level: u8,
+    payload: Vec<u8>
+}
+```
+
+??? interface "Accounts"
+
+    - **`GuardianSet`**: PDA of the Guardian set used to verify the VAA.
+    - **`Bridge`**: Global Wormhole state.
+    - **`SignatureSet`**: Verified signature PDA (from verify_signatures).
+    - **`PostedVAA`**: PDA where the VAA will be stored.
+    - **`Payer`**: Funds the account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
+
+??? interface "Parameters"
+
+    `version` ++"u8"++
+
+    VAA protocol version.
+
+    ---
+
+    `guardian_set_index` ++"u32"++
+
+    Index of the Guardian Set that signed this VAA.
+
+    ---
+
+    `timestamp` ++"u32"++
+
+    The time the emitter submitted the message.
+
+    ---
+
+    `nonce` ++"u32"++
+
+    Unique identifier for the message.
+
+    ---
+
+    `emitter_chain` ++"u16"++
+
+    ID of the chain where the message originated.
+
+    ---
+
+    `emitter_address` ++"[u8; 32]"++
+
+    Address of the contract or account that emitted the message.
+
+    ---
+
+    `sequence` ++"u64"++
+
+    Monotonically increasing sequence number for the emitter.
+
+    ---
+
+    `consistency_level` ++"u8"++
+
+    Required confirmation level before the message is accepted.
+    
+    `1` = Confirmed, `32` = Finalized.
+
+    ---
+
+    `payload` ++"Vec<u8>"++
+
+    Arbitrary data being transferred in the message.
+
+### set_fees
+
+Updates the message posting fee for the core bridge contract. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
+
+```rust
+SetFees {}
+```
+
+This function is called via governance and requires a valid governance VAA. The VAA payload must contain the new fee value.
+
+??? interface "Accounts"
+
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: The PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
+
+### transfer_fees
+
+Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
+
+```rust
+TransferFees {}
+```
+
+This function is triggered via a governance VAA and transfers the fee balance from the `FeeCollector` to the recipient address specified in the VAA payload.
+
+??? interface "Accounts"
+
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`FeeCollector`**: PDA holding the accumulated fees.
+    - **`Recipient`**: The account that will receive the fees.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`Rent`, `SystemProgram`**: Standard Solana system accounts.
+
+### upgrade_contract
+
+Upgrades the deployed Wormhole program using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
+
+```rust
+UpgradeContract {}
+```
+
+This instruction allows authorized governance messages to trigger an upgrade of the on-chain Wormhole program logic to a new address.
+
+??? interface "Accounts"
+
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`UpgradeAuthority`**: PDA with authority to perform the upgrade (seeded with "upgrade").
+    - **`Spill`**: Account that receives remaining funds from the upgrade buffer.
+    - **`NewContract`**: Account holding the new program data.
+    - **`ProgramData`**: Metadata account for the upgradable program.
+    - **`Program`**: Current program to be upgraded.
+    - **`Rent`, `Clock`**: System accounts used during the upgrade process.
+    - **`BPFLoaderUpgradeable`**: Solana system program for upgrades.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
+
+### upgrade_guardian_set
+
+Upgrades the current Guardian set using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
+
+```rust
+UpgradeGuardianSet {}
+```
+
+This instruction replaces the active Guardian set with a new one, allowing the Wormhole network to rotate its validator keys securely through governance.
+
+??? interface "Accounts"
+
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`GuardianSetOld`**: Current (active) Guardian set PDA.
+    - **`GuardianSetNew`**: PDA for the newly proposed Guardian set.
+    - **`SystemProgram`**: Standard Solana system accounts.
+
+## Errors
+
+### GuardianSetMismatch
+
+The Guardian set index does not match the expected value. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InstructionAtWrongIndex
+
+The instruction was found at the wrong index. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InsufficientFees
+
+Insufficient fees were provided to post the message. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidFeeRecipient
+
+The recipient address does not match the one specified in the governance VAA. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGovernanceAction
+
+The action specified in the governance payload is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGovernanceChain
+
+The governance VAA was not emitted by a valid governance chain. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGovernanceKey
+
+The emitter address in the governance VAA is not the expected governance key. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGovernanceModule
+
+The module string in the governance VAA header is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGovernanceWithdrawal
+
+Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidGuardianSetUpgrade
+
+The Guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidHash
+
+The hash computed from the VAA does not match the expected result. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidSecpInstruction
+
+The SECP256k1 instruction used for signature verification is malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### MathOverflow
+
+An arithmetic overflow occurred during computation. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### PostVAAConsensusFailed
+
+Not enough valid signatures were collected to achieve quorum. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### PostVAAGuardianSetExpired
+
+The Guardian set used to verify the VAA has already expired. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### TooManyGuardians
+
+The Guardian set exceeds the maximum allowed number of guardians. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### VAAAlreadyExecuted
+
+The VAA has already been executed and cannot be processed again. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### VAAInvalid
+
+The VAA is structurally invalid or fails to decode. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### InvalidPayloadLength
+
+The payload length is incorrect or malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+
+### EmitterChanged
+
+The emitter address changed unexpectedly. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/relayer-contract.md
+--- BEGIN CONTENT ---
+---
+title: Relayer Contract
+description: Reference for the Wormhole Relayer contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
+categories: Reference
+---
+
+# Relayer Contract
+
+The [Wormhole Relayer Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayer.sol){target=\_blank} enables cross-chain message delivery with automatic execution on the destination chain. It publishes delivery instructions as Wormhole messages and defines the logic to process them via the `deliver` function. The contract supports optional value forwarding, gas refunds, message overrides, and integration with third-party delivery providers.
+
+## Structure Overview
+
+The Wormhole Relayer system on EVM is implemented as a modular, upgradeable contract suite, organized through layered inheritance and interfaces.
+
+```text
+IWormholeRelayer.sol (Interface)
+└── WormholeRelayerBase.sol
+    ├── WormholeRelayer.sol
+    ├── CircleRelayer.sol
+    └── TypedUnits.sol
+DeliveryProvider.sol (Standalone)
+```
+
+**Key Components:**
+
+ - **IWormholeRelayer.sol**: Defines the public interface for the Wormhole Relayer, including delivery functions and fee quoting.
+ - **WormholeRelayerBase.sol**: Base logic contract shared by both WormholeRelayer and CircleRelayer. Handles delivery processing, fee management, and VAA parsing.
+ - **WormholeRelayer.sol**: Main relayer implementation used with the Wormhole Messaging protocol. Inherits from `WormholeRelayerBase`.
+ - **CircleRelayer.sol**: Specialized implementation for Circle messages. Also extends `WormholeRelayerBase`, but is out of scope for this reference.
+ - **TypedUnits.sol**: Utility module for safe unit conversions, fee accounting, and delivery quote handling.
+ - **DeliveryProvider.sol**: Separate contract that sets and manages delivery pricing and supported chains. Queried by the relayer when calculating fees.
+
+## State Variables
+
+ - **`chainId` ++"uint16"++**: Wormhole chain ID for the current network (e.g., 2 for Ethereum).
+ - **`wormhole` ++"IWormhole"++**: Address of the core Wormhole messaging contract used to verify VAAs.
+ - **`deliveryProvider` ++"address"++**: Address of the Delivery Provider contract responsible for quoting and setting delivery prices.
+ - **`rewardAddress` ++"address"++**: Address that receives excess fees collected from users.
+ - **`gasOverheads` ++"mapping(uint16 => GasOverhead)"++**: Per-chain gas overheads used to calculate delivery costs.
+ - **`supportedChains` ++"mapping(uint16 => bool)"++**: Tracks which destination chains are supported for message delivery.
+ - **`deliveries` ++"mapping(bytes32 => bool)"++**: Records completed deliveries (by VAA hash) to prevent replay.
+ - **`deliverySuccessBlock` ++"mapping(bytes32 => uint256)"++**: Stores the block number when a delivery succeeded (used for auditing).
+ - **`owner` ++"address"++**: Contract owner with permission to update system parameters (e.g., gas overheads).
+ - **`chainHash` ++"uint256"++**: EVM chain ID hash used for cross-checking delivery source chain.
+ - **`implementation` ++"address"++**: Address of the current logic contract (used in proxy pattern).
+
+## Events
+
+### SendEvent
+
+Emitted when a send instruction is published and payment is handled. *(Defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+```solidity
+event SendEvent(
+    uint64 indexed sequence,
+    LocalNative deliveryQuote,
+    LocalNative paymentForExtraReceiverValue
+);
+```
+
+??? interface "Parameters"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction message.
+
+    ---
+
+    `deliveryQuote` ++"LocalNative"++
+
+    Price charged by the delivery provider (in source chain currency units).
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra amount (in source chain currency units) used to top up the receiver value on the target chain.
+
+### Delivery
+
+Emitted after a delivery attempt is executed by a delivery provider. *(Defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+```solidity
+event Delivery(
+    address indexed recipientContract,
+    uint16 indexed sourceChain,
+    uint64 indexed sequence,
+    bytes32 deliveryVaaHash,
+    DeliveryStatus status,
+    Gas gasUsed,
+    RefundStatus refundStatus,
+    bytes additionalStatusInfo,
+    bytes overridesInfo
+);
+```
+
+??? interface "Parameters"
+
+    `recipientContract` ++"address"++
+
+    Target contract that was called.
+
+    ---
+
+    `sourceChain` ++"uint16"++
+
+    Wormhole chain ID where the delivery was requested.
+
+    ---
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the delivery VAA on the source chain.
+
+    ---
+
+    `deliveryVaaHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+    ---
+
+    `status` ++"DeliveryStatus"++
+
+    `SUCCESS` if the target call did not revert; `RECEIVER_FAILURE` if it reverted.
+
+    ---
+
+    `gasUsed` ++"Gas"++
+
+    Gas consumed when calling the target contract.
+
+    ---
+
+    `refundStatus` ++"RefundStatus"++
+
+    Result of the refund path (same-chain or cross-chain) or `NO_REFUND_REQUESTED`.
+
+    ---
+
+    `additionalStatusInfo` ++"bytes"++
+
+    Empty on success; otherwise, truncated return data from the revert.
+
+    ---
+
+    `overridesInfo` ++"bytes"++
+
+    Empty if not an override; otherwise, an encoded `DeliveryOverride`.
+
+### ContractUpgraded (WormholeRelayer)
+
+Emitted when the Wormhole Relayer contract is upgraded to a new implementation via governance. *(Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})*
+
+```solidity
+event ContractUpgraded(
+    address indexed oldContract,
+    address indexed newContract
+);
+```
+
+??? interface "Parameters"
+
+    `oldContract` ++"address"++
+
+    Address of the previous implementation.
+
+    ---
+
+    `newContract` ++"address"++
+
+    Address of the new implementation.
+
+### ContractUpgraded (DeliveryProvider)
+
+Emitted when the Delivery Provider contract is upgraded to a new implementation. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event ContractUpgraded(
+    address indexed oldContract,
+    address indexed newContract
+);
+```
+
+??? interface "Parameters"
+
+    `oldContract` ++"address"++
+
+    Address of the previous implementation.
+
+    ---
+
+    `newContract` ++"address"++
+
+    Address of the new implementation.
+
+### ChainSupportUpdated
+
+Emitted when Delivery Provider support for a target chain is changed. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event ChainSupportUpdated(
+    uint16 targetChain,
+    bool isSupported
+);
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID whose support setting changed.
+
+    ---
+
+    `isSupported` ++"bool"++
+
+    Whether deliveries to `targetChain` are supported.
+
+### OwnershipTransfered
+
+Emitted when Delivery Provider ownership is transferred. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event OwnershipTransfered(
+    address indexed oldOwner,
+    address indexed newOwner
+);
+```
+
+??? interface "Parameters"
+
+    `oldOwner` ++"address"++
+
+    Previous owner.
+
+    ---
+
+    `newOwner` ++"address"++
+
+    New owner.
+
+### RewardAddressUpdated
+
+Emitted when the Delivery Provider reward address is updated. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event RewardAddressUpdated(
+    address indexed newAddress
+);
+```
+
+??? interface "Parameters"
+
+    `newAddress` ++"address"++
+
+    New reward address.
+
+### TargetChainAddressUpdated
+
+Emitted when the Delivery Provider's peer address for a target chain is updated. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event TargetChainAddressUpdated(
+    uint16 indexed targetChain,
+    bytes32 indexed newAddress
+);
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID whose peer address changed.
+
+    ---
+
+    `newAddress` ++"bytes32"++
+
+    New peer address in Wormhole bytes32 format.
+
+### DeliverGasOverheadUpdated
+
+Emitted when the configured gas overhead for deliveries is updated. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event DeliverGasOverheadUpdated(
+    Gas indexed oldGasOverhead,
+    Gas indexed newGasOverhead
+);
+```
+
+??? interface "Parameters"
+
+    `oldGasOverhead` ++"Gas"++
+
+    Previous overhead value.
+
+    ---
+
+    `newGasOverhead` ++"Gas"++
+
+    New overhead value.
+
+### WormholeRelayerUpdated
+
+Emitted when the Delivery Provider's associated Wormhole Relayer address is updated. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event WormholeRelayerUpdated(
+    address coreRelayer
+);
+```
+
+??? interface "Parameters"
+
+    `coreRelayer` ++"address"++
+
+    New Wormhole Relayer contract address on this chain.
+
+### AssetConversionBufferUpdated
+
+Emitted when the Delivery Provider's asset conversion buffer is updated. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+```solidity
+event AssetConversionBufferUpdated(
+    uint16 targetChain,
+    uint16 buffer,
+    uint16 bufferDenominator
+);
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID whose buffer settings changed.
+
+    ---
+
+    `buffer` ++"uint16"++
+
+    Buffer numerator.
+
+    ---
+
+    `bufferDenominator` ++"uint16"++
+
+    Buffer denominator.
+
+## Functions
+
+### sendPayloadToEvm
+
+Publishes an instruction for the default delivery provider to relay a payload to an EVM target. Must be called with `msg.value == quoteEVMDeliveryPrice(targetChain, receiverValue, gasLimit)`. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function sendPayloadToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+    
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+    
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+    
+    Value (destination chain Wei) to forward to `targetAddress`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress`.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendPayloadToEvm (with refund)
+
+Same as above, but sends any refund to refundAddress on refundChain. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function sendPayloadToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    uint16 refundChain,
+    address refundAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+    
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+    
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+    
+    Value (destination chain Wei) to forward to `targetAddress`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+    
+    Gas limit for calling `targetAddress`.
+
+    ---
+
+    `refundChain` ++"uint16"++
+    
+    Wormhole chain ID where refunds should be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` to receive refunds.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendVaasToEvm (with refund)
+
+Publishes an instruction (default delivery provider) to relay a payload and additional VAAs. Refunds go to `refundAddress` on `refundChain`. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function sendVaasToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    VaaKey[] memory vaaKeys,
+    uint16 refundChain,
+    address refundAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---  
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---  
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---  
+
+    `receiverValue` ++"TargetNative"++
+
+    Value (destination chain Wei) to forward to `targetAddress`.
+
+    ---  
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress`.
+
+    ---  
+
+    `vaaKeys` ++"VaaKey[]"++
+
+    Extra Wormhole messages (VAAs) to deliver along with `payload`.
+
+    ---  
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---  
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` that receives any refund.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendToEvm (MessageKeys)
+
+Publishes an instruction using a specific delivery provider, optionally attaching extra receiver value funded on the source chain and arbitrary MessageKeys (e.g., VAAs or other supported keys). *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function sendToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    LocalNative paymentForExtraReceiverValue,
+    Gas gasLimit,
+    uint16 refundChain,
+    address refundAddress,
+    address deliveryProviderAddress,
+    MessageKey[] memory messageKeys,
+    uint8 consistencyLevel
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++  
+    Value (destination chain Wei) to forward to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra source chain amount. The delivery provider converts this to destination native and adds it to `receiverValue`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress` on the destination chain.
+
+    ---
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` that receives any refund.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Chosen delivery provider (must implement `IDeliveryProvider`).
+
+    ---
+
+    `messageKeys` ++"MessageKey[]"++
+
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider; otherwise the call reverts.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Wormhole publishing consistency (e.g., instant vs. finalized) used when emitting the delivery instruction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### send (MessageKeys, generic)
+
+Generic chain-agnostic form (addresses are Wormhole-formatted bytes32, and execution params are encoded). *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function send(
+    uint16 targetChain,
+    bytes32 targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    LocalNative paymentForExtraReceiverValue,
+    bytes memory encodedExecutionParameters,
+    uint16 refundChain,
+    bytes32 refundAddress,
+    address deliveryProviderAddress,
+    MessageKey[] memory messageKeys,
+    uint8 consistencyLevel
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"bytes32"++
+
+    Wormhole-formatted 32-byte address of the destination contract.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination chain native (e.g., Wei) forwarded to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra source chain native to be converted by the delivery provider and added to `receiverValue`.
+
+    ---
+
+    `encodedExecutionParameters` ++"bytes"++
+
+    Versioned execution params for the target chain (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
+
+    ---
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    Wormhole-formatted address on `refundChain` that receives any refund.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Chosen delivery provider (must implement `IDeliveryProvider`).
+
+    ---
+
+    `messageKeys` ++"MessageKey[]"++
+
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Wormhole publishing consistency used when emitting the delivery instruction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### resendToEvm
+
+Requests a previously published delivery instruction to be redelivered (EVM convenience). *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function resendToEvm(
+    VaaKey memory deliveryVaaKey,
+    uint16 targetChain,
+    TargetNative newReceiverValue,
+    Gas newGasLimit,
+    address newDeliveryProviderAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `deliveryVaaKey` ++"VaaKey"++
+
+    Identifies the original delivery instruction VAA.
+
+    ---  
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
+
+    `newReceiverValue` ++"TargetNative"++
+
+    Updated value sent to the target contract.
+
+    ---  
+
+    `newGasLimit` ++"Gas"++
+
+    Updated gas limit for the target call.
+
+    ---  
+
+    `newDeliveryProviderAddress` ++"address"++
+
+    Delivery provider to use for the redelivery.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the redelivery instruction.
+
+### resend (generic)
+
+Generic redelivery (chain-agnostic execution params). *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function resend(
+    VaaKey memory deliveryVaaKey,
+    uint16 targetChain,
+    TargetNative newReceiverValue,
+    bytes memory newEncodedExecutionParameters,
+    address newDeliveryProviderAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `deliveryVaaKey` ++"VaaKey"++
+    
+    Identifies the original delivery instruction VAA.
+
+    ---  
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
+
+    `newReceiverValue` ++"TargetNative"++
+    
+    Updated value to forward to the target contract on the destination chain.
+
+    ---  
+
+    `newEncodedExecutionParameters` ++"bytes"++
+    
+    Versioned, chain-specific execution params for the redelivery (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
+
+    ---  
+
+    `newDeliveryProviderAddress` ++"address"++
+    
+    Delivery provider to use for the redelivery (must implement `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the redelivery instruction.
+
+### quoteEVMDeliveryPrice (default provider)
+
+Returns the price and refund-per-gas info for an EVM delivery using the default provider. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function quoteEVMDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    Gas gasLimit
+) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination chain Wei that will be forwarded to the target contract.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit that will be used to call the target contract.
+
+??? interface "Returns"
+
+    `nativePriceQuote` ++"LocalNative"++
+
+    Source chain price to request the delivery.
+    
+    ---
+
+    `targetChainRefundPerGasUnused` ++"GasPrice"++
+
+    Refund rate per unused gas on target chain.
+
+### quoteEVMDeliveryPrice (explicit provider)
+
+Same as above, but quotes using a given provider. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function quoteEVMDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    address deliveryProviderAddress
+) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination chain Wei to forward to the target contract.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit to call the target contract with.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `nativePriceQuote` ++"LocalNative"++
+
+    Source chain price to request this delivery.
+
+    ---
+
+    `targetChainRefundPerGasUnused` ++"GasPrice"++
+
+    Refund rate per unit of unused gas on the destination chain.
+
+### quoteDeliveryPrice (generic)
+
+Generic quote (versioned execution params), returning price and provider's encoded execution info. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function quoteDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    bytes memory encodedExecutionParameters,
+    address deliveryProviderAddress
+) external view returns (LocalNative nativePriceQuote, bytes memory encodedExecutionInfo)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination chain Wei to forward to the target contract.
+
+    ---
+
+    `encodedExecutionParameters` ++"bytes"++
+
+    Versioned execution parameters (e.g., for `EVM_V1`, encodes the gas limit).
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `nativePriceQuote` ++"LocalNative"++
+
+    Source chain price to request this delivery.
+
+    ---
+
+    `encodedExecutionInfo` ++"bytes"++
+
+    Provider's encoded execution info (e.g., for `EVM_V1`, includes gas limit and refund-per-gas).
+
+### quoteNativeForChain
+
+Converts a source chain amount into extra value that will be delivered on the target chain. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function quoteNativeForChain(
+    uint16 targetChain,
+    LocalNative currentChainAmount,
+    address deliveryProviderAddress
+) external view returns (TargetNative targetChainAmount)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `currentChainAmount` ++"LocalNative"++
+
+    Amount paid on the source chain to fund extra receiver value.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `targetChainAmount` ++"TargetNative"++
+
+    Extra destination chain Wei that will be added to the call's value.
+
+### getDefaultDeliveryProvider
+
+Returns the current default delivery provider address. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+
+```solidity
+function getDefaultDeliveryProvider() external view returns (address deliveryProvider)
+```
+
+??? interface "Returns"
+
+    `deliveryProvider` ++"address"++
+
+    Address of the default `IDeliveryProvider` on this chain.
+
+### deliver
+
+Called by a delivery provider to execute a delivery on the target chain. *(Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})*
+
+```solidity
+function deliver(
+    bytes[] memory encodedVMs,
+    bytes memory encodedDeliveryVAA,
+    address payable relayerRefundAddress,
+    bytes memory deliveryOverrides
+) external payable
+```
+
+??? interface "Parameters"
+
+    `encodedVMs` ++"bytes[]"+
+
+    Signed Wormhole messages to relay.
+
+    ---
+
+    `encodedDeliveryVAA` ++"bytes"++
+
+    Signed WormholeRelayer instruction VAA.
+
+    ---
+
+    `relayerRefundAddress` ++"address payable"++
+
+    Address to receive any relayer refund.
+
+    ---
+
+    `deliveryOverrides` ++"bytes"++
+
+    Optional encoded overrides (or empty).
+
+### deliveryAttempted
+
+Checks whether a delivery attempt has been made for a given hash. *(Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})*
+
+```solidity
+function deliveryAttempted(bytes32 deliveryHash) external view returns (bool attempted)
+```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `attempted` ++"bool"++
+
+    `true` if a success or failure block was recorded for this hash.
+
+### deliverySuccessBlock
+
+Block number when a delivery was successfully executed. *(Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})*
+
+```solidity
+function deliverySuccessBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
+```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `blockNumber` ++"uint256"++
+
+    Block number where the delivery was marked successful (0 if never successful).
+
+### deliveryFailureBlock
+
+Block number of the latest failed delivery attempt. *(Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})*
+
+```solidity
+function deliveryFailureBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
+```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `blockNumber` ++"uint256"++
+
+    Block number of the most recent failed attempt (0 if none).
+
+### getRegisteredWormholeRelayerContract
+
+Returns the registered Wormhole Relayer contract address (wormhole format) for a given chain ID. *(Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})*
+
+```solidity
+function getRegisteredWormholeRelayerContract(uint16 chainId) external view returns (bytes32)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    Wormhole chain ID.
+
+??? interface "Returns"
+
+    `address` ++"bytes32"++
+
+    Wormhole-formatted address of the relayer contract registered for `chainId` (zero if none).
+
+### registerWormholeRelayerContract
+
+Registers a Wormhole Relayer contract deployed on another chain (governance VM required). *(Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})*
+
+```solidity
+function registerWormholeRelayerContract(bytes memory encodedVm) external
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the `foreignChainId` and `foreignContractAddress`.
+
+### setDefaultDeliveryProvider
+
+Sets the default delivery provider via a governance VM. *(Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})*
+
+```solidity
+function setDefaultDeliveryProvider(bytes memory encodedVm) external
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the new provider address.
+
+### submitContractUpgrade
+
+Upgrades the Wormhole Relayer contract to a new implementation (governance VM required). *(Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})*
+
+```solidity
+function submitContractUpgrade(bytes memory encodedVm) external
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the new implementation address.
+
+## Errors
+
+### InvalidDeliveryVaa
+
+Thrown when the delivery VAA fails `parseAndVerifyVM`. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### InvalidEmitter
+
+Emitted when the VAA emitter is not the registered Wormhole Relayer for the source chain. *(Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### InsufficientRelayerFunds
+
+Reverts if `msg.value` is less than the required execution + refund budget on the target chain. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### TargetChainIsNotThisChain
+
+Reverts when the instruction's `targetChain` does not match the current chain. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### MessageKeysLengthDoesNotMatchMessagesLength
+
+Reverts when the provided message keys do not match the number of delivered messages. (Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}), defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
+
+### VaaKeysDoNotMatchVaas
+
+Reverts when described VAAs don't match the actual VAAs delivered. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### InvalidOverrideGasLimit
+
+Reverts if a redelivery override sets a gas limit lower than the original. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### InvalidOverrideReceiverValue
+
+Reverts if a redelivery override sets a receiver value lower than the original. *(Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### InvalidMsgValue
+
+Reverts when msg.value does not equal `wormholeMessageFee` + `deliveryQuote` + `paymentForExtraReceiverValue`. *(Used in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### ReentrantDelivery
+
+Reverts on re-entrant calls to relayer entrypoints guarded by `nonReentrant`. *(Used in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank}, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
+
+### CallerNotApproved(address msgSender)
+
+Custom error declared for access checks. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### PriceIsZero(uint16 chain)
+
+Reverts if a required price value for a chain is zero during quoting/conversion. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### Overflow(uint256 value, uint256 max)
+
+Reverts when an internal quote exceeds a type's allowed maximum (e.g., gas overhead/price bounds). *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### MaxRefundGreaterThanGasLimitCost(uint256 maxRefund, uint256 gasLimitCost)
+
+Declared to guard refund limits vs. gas limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### MaxRefundGreaterThanGasLimitCostOnSourceChain(uint256 maxRefund, uint256 gasLimitCost)
+
+Declared to guard source chain refund limits vs. gas limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### ExceedsMaximumBudget(uint16 targetChain, uint256 exceedingValue, uint256 maximumBudget)
+
+Reverts when required target-chain Wei (receiver value + gas) exceeds that chain's configured maximum budget. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+
+### ChainIdIsZero()
+
+Reverts if an update is attempted with `chainId = 0`. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### GasPriceIsZero()
+
+Reverts if a price update sets gas price to zero. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### NativeCurrencyPriceIsZero()
+
+Reverts if a price update sets native currency price to zero. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### FailedToInitializeImplementation(string reason)
+
+Reverts if the implementation's `initialize()` delegatecall fails during upgrade/setup. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank} and [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})*
+
+### WrongChainId()
+
+Reverts when an operation is invoked with a chainId that doesn't match the contract's configured chain. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### AddressIsZero()
+
+Reverts if a zero address is provided where a nonzero address is required (e.g., ownership handoff). *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### CallerMustBePendingOwner()
+
+Reverts if `confirmOwnershipTransferRequest` is called by an address other than `pendingOwner`. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### CallerMustBeOwner()
+
+Reverts on functions guarded by `onlyOwner` when `msg.sender` is not the owner. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### CallerMustBeOwnerOrPricingWallet()
+
+Reverts on functions guarded by `onlyOwnerOrPricingWallet` when caller is neither. *(Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})*
+
+### ImplementationAlreadyInitialized()
+
+Reverts if `initialize()` is called on an implementation that was already initialized. *(Defined in [DeliveryProviderImplementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderImplementation.sol){target=\_blank})*
+
+### ImplementationAddressIsZero()
+
+Reverts if `setup()` is called with a zero implementation address. *(Defined in [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})*
+
+### UnexpectedExecutionInfoVersion
+
+Reverts when the `executionInfoVersion` in the delivery VAA does not match the expected version. *(Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})*
+
+### VersionMismatchOverride
+
+Reverts when the override's `executionInfoVersion` does not match the original delivery's version. *(Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})*
+--- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md
 --- BEGIN CONTENT ---
@@ -10506,6 +13390,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 |  |
 | World Chain | 45 | 480 |
 | X Layer | 37 | 196 |
+| XRPL-EVM | 57 | 1440000 |
 
 === "Testnet"
 
@@ -10556,6 +13441,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 | Unichain Sepolia-1301 |
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
+| XRPL-EVM | 57 | 1449000 |
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
@@ -10614,6 +13500,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
 | World Chain |  |  | 0 |  | ~ 18min |  |
 | X Layer | 200 | 201 |  | finalized | ~ 16min |  |
+| XRPL-EVM |  |  | 0 |  | ~ 10s |  |
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
@@ -10665,6 +13552,7 @@ categories: Reference
 | Unichain | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | World Chain | 0xcbcEe4e081464A15d8Ad5f58BB493954421eB506 |
 | X Layer | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
+| XRPL-EVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Testnet"
 
@@ -10705,6 +13593,7 @@ categories: Reference
 | Unichain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | World Chain | 0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A |
 | X Layer | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
+| XRPL-EVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Devnet"
 
@@ -10717,10 +13606,10 @@ categories: Reference
 | Sui | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
 <!--CORE_ADDRESS-->
 
-## Token Bridge
+## Wrapped Token Transfers (WTT)
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--TOKEN_BRIDGE_ADDRESS-->
+<!--WTT_ADDRESS-->
 
 === "Mainnet"
 
@@ -10750,6 +13639,7 @@ categories: Reference
 | Unichain | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | World Chain | 0xc309275443519adca74c9136b02A38eF96E3a1f6 |
 | X Layer | 0x5537857664B0f9eFe38C9f320F75fEf23234D904 |
+| XRPL-EVM | 0x47F5195163270345fb4d7B9319Eda8C64C75E278 |
 
 === "Testnet"
 
@@ -10785,6 +13675,7 @@ categories: Reference
 | Unichain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | World Chain | 0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2 |
 | X Layer | 0xdA91a06299BBF302091B053c6B9EF86Eff0f930D |
+| XRPL-EVM | 0x7d8eBc211C4221eA18E511E4f0fD50c5A539f275 |
 
 === "Devnet"
 
@@ -10795,7 +13686,7 @@ categories: Reference
 | BNB Smart Chain | 0x0290FB167208Af455bB137780163b7B7a9a10C16 |
 | NEAR | token.test.near |
 | Sui | 0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690 |
-<!--TOKEN_BRIDGE_ADDRESS-->
+<!--WTT_ADDRESS-->
 
 ## Wormhole Relayer
 
@@ -10844,6 +13735,7 @@ categories: Reference
 | Polygon Amoy | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Seievm | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Unichain | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
+| XRPL-EVM | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 
 === "Devnet"
 
@@ -10889,6 +13781,22 @@ categories: Reference
 
     <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Solana</td><td><code>tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xe0418C44F06B0b0D7D1706E01706316DBB0B210E</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8</code></td></tr></tbody></table>
     
+## Guardian Governance
+
+=== "Mainnet"
+
+    | Solana | NGoD1yTeq5KaURrZo7MnCTFzTA4g62ygakJCnzMLCfm |
+| Ethereum | 0x23Fea5514DFC9821479fBE18BA1D7e1A61f6FfCf |
+| Arbitrum | 0x36CF4c88FA548c6Ad9fcDc696e1c27Bb3306163F |
+| Avalanche | 0x169D91C797edF56100F1B765268145660503a423 |
+| Base | 0x838a95B6a3E06B6f11C437e22f3C7561a6ec40F1 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
+| Optimism | 0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8 |
+| Unichain | 0x574b7864119c9223a9870ea614dc91a8ee09e512 |
+
+!!! note
+    Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
+
 
 ## Read-Only Deployments
 
@@ -10964,34 +13872,41 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 <div class="full-width" markdown="">
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Converge | EVM | :x: | :white_check_mark: | :x: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Linea | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Plume | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Plume | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sonic | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPL-EVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
-### Token Bridge
+### WTT
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
+<!--SUPPORTED_BLOCKCHAIN_WTT-->
 <div class="full-width" markdown="">
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11024,6 +13939,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### CCTP
@@ -11096,6 +14012,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -11141,6 +14058,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Unichain | EVM | ETH | QuickNode Faucet |
 | World Chain | EVM | ETH | Alchemy Faucet |
 | X Layer | EVM | OKB | X Layer Official Faucet |
+| XRPL-EVM | EVM | XRP | XRPL Official Faucet |
 
 ### SVM
 
