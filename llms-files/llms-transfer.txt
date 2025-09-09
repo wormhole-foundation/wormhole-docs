@@ -17207,9 +17207,11 @@ It works by first calling the [`post_signatures`](https://github.com/wormhole-fo
 
 Instead of the core bridge instructions, such as `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
 
-1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
-2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
-3. Call `close_signatures`: Immediately closes the `GuardianSignatures` account to reclaim the lamports paid for its creation.
+
+1. **Call `post_signatures`**: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
+2. **Call `verify_hash`**: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
+3. **Call `close_signatures`**: Immediately closes the `GuardianSignatures` account to reclaim the lamports paid for its creation.
+
 
 ```mermaid
 graph LR
@@ -17222,7 +17224,7 @@ This flow ensures verification is both rent-efficient and secure, no permanent a
 
 ## Guardian Observation Methods
 
-|                      | Legacy Model           | Shim Model               |
+| Observation Methods  | Legacy Model           | Shim Model               |
 |----------------------|------------------------|--------------------------|
 | Message Storage      | On-chain account       | Transaction logs (CPI)   |
 | Data Permanence      | Permanent              | Until RPC history pruned |
@@ -17778,17 +17780,17 @@ pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
 
 When calling the shim’s `post_message` instruction, you need to pass:
 
-- `bridge`: Holds the Wormhole core bridge config.
-- `message`: Represents the PDA derived from the emitter and is reused by the shim instead of generating new accounts.
-- `emitter`: Serves as the emitter address (signer).
-- `sequence`: Tracks the emitter's sequence account.
-- `payer`: Pays compute and any rent needed on first use (signer).
-- `fee_collector`: Collects the Wormhole message fee.
-- `clock`: Provides the current Solana time from the sysvar.
-- `system_program`: Supplies the standard Solana system program for account creation on first use.
-- `wormhole_program`: Points to the Wormhole core bridge program.
-- `event_authority`: Acts as the PDA used by the shim to emit log events (Anchor CPI events).
-- `program`: Specifies the shim program itself.
+- **`bridge`**: Holds the Wormhole core bridge config.
+- **`message`**: Represents the PDA derived from the emitter and is reused by the shim instead of generating new accounts.
+- **`emitter`**: Serves as the emitter address (signer).
+- **`sequence`**: Tracks the emitter's sequence account.
+- **`payer`**: Pays compute and any rent needed on first use (signer).
+- **`fee_collector`**: Collects the Wormhole message fee.
+- **`clock`**: Provides the current Solana time from the sysvar.
+- **`system_program`**: Supplies the standard Solana system program for account creation on first use.
+- **`wormhole_program`**: Points to the Wormhole core bridge program.
+- **`event_authority`**: Acts as the PDA used by the shim to emit log events (Anchor CPI events).
+- **`program`**: Specifies the shim program itself.
 
 The struct below defines the accounts required by your instruction and wires the shim to the core bridge, ensuring the emitter PDA can sign the CPI via seeds.
 
