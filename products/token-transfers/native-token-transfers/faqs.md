@@ -41,26 +41,42 @@ Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step p
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
 ## How can I transfer ownership of NTT to a multisig on Sui?
+
 1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
-```bash
+    ```bash
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
-```
+    ```
 
 2. Transfer `AdminCap` object over to a multisig:
-```bash
+    ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
-```
+    ```
 
 3. Transfer `UpgradeCap` object over to a multisig:
-```bash
+    ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
-```
+    ```
 
 4. Check new owner of `AdminCap` object:
-```bash
+    ```bash
     sui client object ADMIN_CAP_ID_STEP1 --json \
         | jq -r '.owner'
-```
+    ```
+
+## How can I mint tokens after moving the treasury object to the NTT manager on Sui?
+
+To mint tokens after moving the treasury object to the NTT manager on Sui, you need to use the `take_treasury_cap` function from the [NTT contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sui/packages/ntt/sources/state.move#L307C16-L307C33){target=\_blank}. This function allows the admin to temporarily take the treasury cap to mint assets.
+
+The flow works as follows:
+
+1. **Take the treasury cap**: Use `state.take_treasury_cap(admin_cap)` to extract the treasury cap.
+2. **Mint assets**: Perform your minting operations with the treasury cap.
+3. **Return the treasury cap**: Use `state.return_treasury_cap(treasury_cap)` to return it to the state.
+
+!!!Important 
+    Return the Treasury Cap! If the treasury cap is not returned in the same transaction, the NTT deployment will stop working. The contract will break and become non-functional.
+
+It is recommended to use [Programmable Transaction Blocks (PTBs)](https://docs.sui.io/concepts/transactions/prog-txn-blocks){target=\_blank} for this operation. PTBs allow you to execute multiple operations atomically in a single transaction, ensuring that both the minting operation and returning the treasury cap happen together, preventing any risk of the contract breaking.
 
 ## How can I specify a custom RPC for NTT?
 
