@@ -49,24 +49,18 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file**: Ensure your private key isn't accidentally exposed or committed to version control.
-
-    ```bash
-    echo ".env" >> .gitignore
-    ```
-
-3. **Install dependencies**: Install the required dependencies.
+2. **Install dependencies**: Install the required dependencies.
 
     ```bash
     npm install @wormhole-foundation/sdk tsx
     ```
 
-4. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
+3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
+4. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
     1. Create the helpers file.
 
@@ -81,7 +75,6 @@ In this section, we’ll guide you through initializing the project, installing 
         --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-1.ts"
         ```
 
-        - **`getEnv`**: Fetches environment variables like your private key from the `.env` file.
         - **`getSigner`**: Based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file.
         - **`getTokenDecimals`**: Fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers.
 
