@@ -8355,7 +8355,7 @@ Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step p
 
 1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
 2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
-3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA).
+3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a [Program Derived Address (PDA)](https://solana.com/docs/core/pda){target=\_blank}.
 
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools), which provides scripts and guidance for managing an NTT program using Squads' multisig functionality, including procedures for ownership transfer.
 
