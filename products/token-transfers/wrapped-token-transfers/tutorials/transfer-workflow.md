@@ -61,22 +61,10 @@ In this section, we’ll guide you through initializing the project, installing 
     npm install @wormhole-foundation/sdk tsx
     ```
 
-4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
+4. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
-    ```bash
-    touch .env
-    ```
-
-    Inside the `.env` file, add your private keys.
-
-    ```env
-    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
-    ```
-
-    !!! note
-        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
 5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
