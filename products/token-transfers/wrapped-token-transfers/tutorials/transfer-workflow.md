@@ -244,7 +244,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:30:30"
     ```
 
-8. **Set transfer mode**: Specify that the transfer should be manual by setting `route = 'TokenBridge'`. This means you will need to handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
+8. **Set transfer mode**: Specify manual or automatic transfer using `route`. Set `route  = 'TokenBridge'` for manual transfers, where you will handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
 
     ```typescript
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:33:33"
