@@ -2832,7 +2832,7 @@ In this section, we’ll guide you through initializing the project, installing 
 3. **Install dependencies**: Install the required dependencies.
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv tsx
+    npm install @wormhole-foundation/sdk tsx
     ```
 
 4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
