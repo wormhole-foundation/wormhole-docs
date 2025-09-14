@@ -44,15 +44,33 @@ Use the `delegates(address)` view function to check the current delegate for a g
 
 ## Solana Integration
 
-On Solana, staking means moving W tokens into a stake account and assigning a delegate. You can stake any amount and delegate to any valid account (including yourself).
+
+On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. You can stake any amount and you can delegate to yourself or to a third party.
+
+### Prerequisites
+
+- `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor` installed.
+- A Connection to the target cluster (e.g., mainnet).
+- The W token mint on Solana.
+- The Staking program ID (Anchor program) and its IDL.
+
+### Inputs to  provide
+
+| Input.       | Type         | Description                                     | Example                                                 |
+|--------------|--------------|-------------------------------------------------|---------------------------------------------------------|
+| `connection` | `Connection` | An RPC connection to the target Solana cluster. | `new Connection('https://api.mainnet-beta.solana.com')` |
+| `wallet` | `AnchorProvider.wallet` | The wallet that signs transactions and pays fees. | `provider.wallet` |
+| `programId` | `PublicKey` | The deployed staking program ID. | `new PublicKey('MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B')` |
+| `idl` | `Idl` | The IDL for the staking program. | Loaded JSON file |
+| `wMint` | `PublicKey` | The W token mint address on Solana. | `new PublicKey('85VBFQZC9TZkfaptBWjvUw7YbZjy52A6mjtPGjstQAmQ')` |
+| `userPublicKey` | `PublicKey` | The staker’s wallet public key. | `wallet.publicKey` |
+| `delegateePublicKey` | `PublicKey` | The address of the delegate who will receive voting power. | `new PublicKey('<DELEGATE_ADDRESS>')` |
+| `currentDelegatePublicKey` | `PublicKey` | Your current delegate’s address when switching delegates (or `null` if staking for the first time). | `null` |
+| `amount` | `BN` or `bigint` | The number of W tokens to stake in base units (respecting the token’s decimals). | `new BN(10 * 10 ** 9)` if W has 9 decimals |
 
 ### Staking Flow (Solana)
 
 Initialize the staking program and config. See [Program IDs and ABIs section](/docs/protocol/staking/w-staking/#program-ids-and-abis) for more details.
-
-```js   
---8<-- 'code/protocol/staking/staking-flow.js'
-```
 
 Staking steps:
 
@@ -62,7 +80,13 @@ Staking steps:
 4. Create a delegate stake account if needed.
 5. Send the `delegate()` instruction.
 
+```js   
+--8<-- 'code/protocol/staking/staking-flow.js'
+```
+
 ### Unstaking Flow (Solana)
+
+Use `withdrawTokens(amount, currentDelegate, recipient)` to pull staked W back to your ATA. If you self-delegated, `currentDelegate` is your own key.
 
 ```js 
 --8<-- 'code/protocol/staking/unstaking-flow.js'
