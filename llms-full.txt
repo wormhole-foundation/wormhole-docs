@@ -31290,7 +31290,7 @@ On Solana, staking means moving W tokens into a stake account and assigning a de
 Initialize the staking program and config. See [Program IDs and ABIs section](/docs/protocol/staking/w-staking/#program-ids-and-abis) for more details.
 
 ```js   
-const program = new anchor.Program<Staking>(simplerStakingIDL, {
+const program = new anchor.Program<staking>(simplerStakingIDL, {
   connection,
 })
 const [config] = PublicKey.findProgramAddressSync(
@@ -31391,7 +31391,7 @@ createStakeAccTx.add(transferIx)
 // 4. Create a delegate account if not self-delegation
 const delegateeAccountInfo = await connection.getAccountInfo(delegateeStakeAccountMetadata)
 const isSelfDelegation = delegateePublicKey.equals(userPublicKey)
-if (!delegateeAccountInfo && !isSelfDelegation) {
+if (!delegateeAccountInfo &amp;&amp; !isSelfDelegation) {
   const [delegateeCustodyAuthority] = PublicKey.findProgramAddressSync([
     Buffer.from('authority'),
     delegateePublicKey.toBuffer()
@@ -31440,7 +31440,7 @@ const delegateIx = await program.methods
     program: program.programId,
   })
   .instruction()
-createStakeAccTx.add(delegateIx)
+createStakeAccTx.add(delegateIx)</staking>
 ```
 
 Staking steps:
