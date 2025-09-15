@@ -10631,7 +10631,8 @@ In an automatic CCTP transfer, you submit one transaction on the source chain, a
 
 This section will guide you through performing an automatic USDC transfer across chains using the Wormhole SDK and Circle's CCTP.
 
-![Automatic CCTP transfer flow and architecture](/docs/images/products/cctp/tutorials/automatic-cctp.webp)
+![Automatic CCTP transfer flow and architecture](/docs/images/products/cctp/tutorials/automatic-cctp.webp#only-dark)
+![Automatic CCTP transfer flow and architecture](/docs/images/products/cctp/tutorials/automatic-cctp-light.webp#only-light)
 
 ### Set Up the Transfer Environment
 
