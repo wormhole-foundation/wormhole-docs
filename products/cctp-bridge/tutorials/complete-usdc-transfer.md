@@ -49,13 +49,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file**: Ensure your private key isn't accidentally exposed or committed to version control.
-
-    ```bash
-    echo ".env" >> .gitignore
-    ```
-
-3. **Install dependencies**: Install the Wormhole SDK.
+2. **Install dependencies**: Install the Wormhole SDK.
 
     ```bash
     npm install @wormhole-foundation/sdk
