@@ -24,7 +24,8 @@ At the end of this guide, you’ll have a fully functional setup for transferrin
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
-![Manual WTT transfer flow and architecture](/docs/images/products/wrapped-token-transfers/tutorials/transfer-workflow/manual-wtt.webp)
+![Manual WTT transfer flow and architecture](/docs/images/products/wrapped-token-transfers/tutorials/transfer-workflow/manual-wtt.webp#only-dark)
+![Manual WTT transfer flow and architecture](/docs/images/products/wrapped-token-transfers/tutorials/transfer-workflow/manual-wtt-light.webp#only-light)
 
 ## Prerequisites
 
