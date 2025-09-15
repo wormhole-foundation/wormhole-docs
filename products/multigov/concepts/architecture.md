@@ -79,6 +79,6 @@ MultiGov relies on Wormhole's infrastructure for all multichain messaging, ensur
 
 ## Conclusion
 
-MultiGov’s hub-and-spoke architecture centralizes proposal authority on the hub while distributing participation and execution to spokes. Wormhole Messaging carries authenticated multichain actions, and Wormhole Queries provide reliable state reads for metadata and vote proofs. With clear trust boundaries, timelocks, guardian verification, and checkpointing, the system remains coherent across heterogeneous chains.
+MultiGov’s hub-and-spoke architecture centralizes proposal authority on the hub while distributing participation and execution to spokes. [Wormhole Messaging](/docs/products/messaging/overview/){target=\_blank} carries authenticated multichain actions, and [Wormhole Queries](/docs/products/queries/overview/){target=\_blank} provide reliable state reads for metadata and vote proofs. With clear trust boundaries, timelocks, guardian verification, and checkpointing, the system remains coherent across heterogeneous chains.
 
 For the end-to-end lifecycle—from proposal creation to multichain execution, see the **[Flow of a Proposal](/docs/products/multigov/concepts/proposal-flow/)**.
