@@ -39,10 +39,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
+2. Install the required dependencies:
 
     ```bash
-    npm install @wormhole-foundation/sdk@2.4.0
+    npm install @wormhole-foundation/sdk
     npm install -D tsx typescript
     ```
 
@@ -69,7 +69,9 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
     --8<-- "code/products/wrapped-token-transfers/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers.
+2. In `transfer.ts`, choose your transfer mode by selecting the [route](/docs/products/connect/concepts/routes/#wtt-routes){target=\_blank} you pass to the `tokenTransfer()` object: 
+    - `TokenBridge` for manual transfers.
+    - `AutomaticTokenBridge` for automatic transfers.
 
     === "Manual Transfer"
 

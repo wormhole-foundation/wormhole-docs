@@ -225,10 +225,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
+2. Install the required dependencies:
 
     ```bash
-    npm install @wormhole-foundation/sdk@2.4.0
+    npm install @wormhole-foundation/sdk
     npm install -D tsx typescript
     ```
 
@@ -325,7 +325,9 @@ export async function getTokenDecimals<n extends="" network="">(
 </number></n,></n></n></n,></c></n,></n,></n,></n>
     ```
 
-2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers.
+2. In `transfer.ts`, choose your transfer mode by selecting the [route](/docs/products/connect/concepts/routes/#wtt-routes){target=\_blank} you pass to the `tokenTransfer()` object: 
+    - `TokenBridge` for manual transfers.
+    - `AutomaticTokenBridge` for automatic transfers.
 
     === "Manual Transfer"
 
@@ -356,19 +358,14 @@ import { getSigner, getTokenDecimals } from './helper';
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
-  // Set to false to require manual approval steps
-  const automatic = false;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
-
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
-    nativeGas
+    'TokenBridge',
+    undefined
   );
 
   // Initiate the transfer from Solana
@@ -420,8 +417,7 @@ import { getSigner, getTokenDecimals } from './helper';
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
   // Set to false to require manual approval steps
-  const automatic = true;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
+  const nativeGas = amount.units(amount.parse('0.0', 6));
 
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
@@ -429,8 +425,7 @@ import { getSigner, getTokenDecimals } from './helper';
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
+    'AutomaticTokenBridge',
     nativeGas
   );
 
@@ -1252,7 +1247,7 @@ attestToken().catch((e) =&gt; {
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
 
     - **Defines the token to check**: Use the contract address on the source chain for this value.
-    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: Part of the [`Wormhole` class]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method does the following:
+    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L277){target=\_blank}**: Part of the `Wormhole` class, the method does the following:
         - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
         - Checks for a corresponding wrapped version of the destination chain's WTT contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
@@ -1315,7 +1310,7 @@ This code does the following:
 
 - **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
-- **Calls `createAttestation`**: Defined in the [`TokenBridge` interface]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
+- **Calls `createAttestation`**: Defined in the `TokenBridge` interface, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L237){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
     - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
@@ -2828,36 +2823,18 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file**: Ensure your private key isn't accidentally exposed or committed to version control.
+2. **Install dependencies**: Install the required dependencies.
 
     ```bash
-    echo ".env" >> .gitignore
+    npm install @wormhole-foundation/sdk tsx
     ```
 
-3. **Install dependencies**: Install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries.
+3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
-    ```bash
-    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
-    ```
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
-
-    ```bash
-    touch .env
-    ```
-
-    Inside the `.env` file, add your private keys.
-
-    ```env
-    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
-    ```
-
-    !!! note
-        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
-
-5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
+4. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
     1. Create the helpers file.
 
@@ -2892,13 +2869,6 @@ export interface SignerStuff<n c="" chain="" extends="" network,=""> {
   address: ChainAddress<c>;
 }
 
-// Function to fetch environment variables (like your private key)
-function getEnv(key: string): string {
-  const val = process.env[key];
-  if (!val) throw new Error(`Missing environment variable: ${key}`);
-  return val;
-}
-
 // Signer setup function for different blockchain platforms
 export async function getSigner<n c="" chain="" extends="" network,="">(
   chain: ChainContext<n, c="">,
@@ -2915,27 +2885,23 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
     case 'Solana':
       signer = await (
         await solana()
-      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'SOL_PRIVATE_KEY');
       break;
     case 'Evm':
       const evmSignerOptions = gasLimit ? { gasLimit } : {};
       signer = await (
         await evm()
-      ).getSigner(
-        await chain.getRpc(),
-        getEnv('ETH_PRIVATE_KEY'),
-        evmSignerOptions
-      );
+      ).getSigner(await chain.getRpc(), 'ETH_PRIVATE_KEY', evmSignerOptions);
       break;
     case 'Sui':
       signer = await (
         await sui()
-      ).getSigner(await chain.getRpc(), getEnv('SUI_MNEMONIC'));
+      ).getSigner(await chain.getRpc(), 'SUI_MNEMONIC');
       break;
     case 'Aptos':
       signer = await (
         await aptos()
-      ).getSigner(await chain.getRpc(), getEnv('APTOS_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'APTOS_PRIVATE_KEY');
       break;
     default:
       throw new Error('Unsupported platform: ' + platform);
@@ -2962,7 +2928,6 @@ export async function getTokenDecimals&lt;
 </number></n,></n></n,></c></n,></n,></n,></n></c></n,></n,></n>
         ```
 
-        - **`getEnv`**: Fetches environment variables like your private key from the `.env` file.
         - **`getSigner`**: Based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file.
         - **`getTokenDecimals`**: Fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers.
 
@@ -3260,7 +3225,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     
     ```
 
-8. **Set transfer mode**: Specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
+8. **Set transfer mode**: Specify manual or automatic transfer using `route`. Set `route  = 'TokenBridge'` for manual transfers, where you will handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
 
     ```typescript
     
@@ -3282,7 +3247,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
     ```
 
@@ -3307,7 +3272,7 @@ wh: Wormhole<n>,
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -3343,8 +3308,8 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
   // Define the amount of tokens to transfer
   const amt = '1';
 
-  // Set automatic transfer to false for manual transfer
-  const automatic = false;
+  // Set route for manual transfers
+  const route = 'TokenBridge';
 
   // Used to normalize the amount to account for the tokens decimals
   const decimals = await getTokenDecimals(wh, token, sendChain);
@@ -3355,7 +3320,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
 
   process.exit(0);
@@ -3368,7 +3333,7 @@ async function tokenTransfer<n extends="" network="">(
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -3379,7 +3344,7 @@ async function tokenTransfer<n extends="" network="">(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
 
@@ -3390,7 +3355,7 @@ async function tokenTransfer<n extends="" network="">(
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns
@@ -3422,7 +3387,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
     ```
@@ -3436,7 +3401,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
     ```
 
@@ -3503,8 +3468,8 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
   // Define the amount of tokens to transfer
   const amt = '1';
 
-  // Set automatic transfer to false for manual transfer
-  const automatic = false;
+  // Set route for manual transfers
+  const route = 'TokenBridge';
 
   // Used to normalize the amount to account for the tokens decimals
   const decimals = await getTokenDecimals(wh, token, sendChain);
@@ -3515,7 +3480,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
 
   process.exit(0);
@@ -3528,7 +3493,7 @@ async function tokenTransfer<n extends="" network="">(
     amount: bigint;
     source: SignerStuff<n, chain="">;
     destination: SignerStuff<n, chain="">;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -3539,7 +3504,7 @@ async function tokenTransfer<n extends="" network="">(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
 
@@ -3550,7 +3515,7 @@ async function tokenTransfer<n extends="" network="">(
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns
@@ -12803,7 +12768,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### WTT
@@ -12856,6 +12821,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
