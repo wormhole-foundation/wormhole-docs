@@ -3835,7 +3835,7 @@ function receiveWormholeMessages(
     bytes[] memory additionalVaas,  // Any additional VAAs that are needed (Note: these are unverified) 
     bytes32 sourceAddress,          // The address of the source contract
     uint16 sourceChain,             // The Wormhole chain ID
-    bytes32 deliveryHash            // A hash of contents, useful for replay protection
+    bytes32 deliveryHash            // A hash of contents, useful for core Wormhole replay protection
 ) external payable;
 ```
 
@@ -3875,7 +3875,6 @@ Some implementation details should be considered during development to ensure sa
 - Receiving a message from a relayer.
 - Checking for expected emitter.
 - Calling `parseAndVerify` on any additional VAAs.
-- Replay protection.
 - Message ordering (no guarantees on order of messages delivered).
 - Forwarding and call chaining.
 - Refunding overpayment of `gasLimit`.
