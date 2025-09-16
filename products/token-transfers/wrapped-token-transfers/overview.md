@@ -76,4 +76,4 @@ If you are looking for more guided practice, take a look at:
 
 - **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/)**: Perform token transfers using WTT, including manual and automatic transfers.
 - **[Complete Token Transfer Flow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
-- **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token//)**: Craft a multichain token using Wormhole's Portal Bridge.
+- **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)**: Craft a multichain token using Wormhole's Portal Bridge.

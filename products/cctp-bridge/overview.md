@@ -55,7 +55,7 @@ sequenceDiagram
 ```
 
 !!! note 
-    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
+    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/cctp-supported-blockchains#cctp-domains){target=\_blank}.
 
 ## CCTP vs Wrapped Token Transfers (WTT)
 

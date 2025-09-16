@@ -128,7 +128,7 @@ sequenceDiagram
 ```
 
 !!! note 
-    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
+    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/cctp-supported-blockchains#cctp-domains){target=\_blank}.
 
 ## CCTP vs Wrapped Token Transfers (WTT)
 
@@ -642,7 +642,7 @@ If you are looking for more guided practice, take a look at:
 
 - **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/)**: Perform token transfers using WTT, including manual and automatic transfers.
 - **[Complete Token Transfer Flow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
-- **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token//)**: Craft a multichain token using Wormhole's Portal Bridge.
+- **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)**: Craft a multichain token using Wormhole's Portal Bridge.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/cctp-bridge/get-started.md
@@ -1246,14 +1246,14 @@ Before you begin, make sure you have:
 To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
 
 ???- interface "Deploy an ERC-20 Token on EVM"
-    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
 1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
 2. **Clone the repository**: Fetch the example contract repository.
 
     ```bash
-    git clone https://github.com/wormhole-foundation/example-ntt-token.git
+    git clone https://github.com/wormhole-foundation/example-ntt-token-evm.git
     cd example-ntt-token
     ```
 3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
@@ -7652,7 +7652,7 @@ The Circle Integration contract emits Wormhole messages with arbitrary payloads 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
 !!! note
-    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/cctp/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
+    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/cctp/cctp-supported-blockchains#cctp-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
 
 ??? code "Circle Integration contract"
     ```solidity
@@ -13462,14 +13462,14 @@ Deploying NTT on EVM chains follows a structured process:
 1. **Choose your token setup**: Use an existing ERC-20 token or deploy a new one.
 
     ???- interface "Deploy an ERC-20 Token on EVM"
-        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
 1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
 2. **Clone the repository**: Fetch the example contract repository.
 
     ```bash
-    git clone https://github.com/wormhole-foundation/example-ntt-token.git
+    git clone https://github.com/wormhole-foundation/example-ntt-token-evm.git
     cd example-ntt-token
     ```
 3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
@@ -13558,7 +13558,7 @@ interface INttToken {
 
         This setup maintains a consistent total supply across all chains.
 
-    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank}.
 
 3. **Configure your chains**: Use the NTT CLI to add EVM chains and configure deployment parameters.
 4. **Set Mint Authority**: Set the NTT Manager as a minter for your tokens on the relevant chains.
@@ -13971,7 +13971,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs//#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on the SVM chain by following these steps:
 
@@ -17731,7 +17731,7 @@ For more background, see [Emission Shim concept section](/docs/products/messagin
 
 To interact with the emission shim, you'll need the following:
 
-- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.  
+- [Rust and Solana CLI](https://solana.com/docs/intro/installation){target=\_blank} installed.  
 - [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
 - The canonical emission shim program already deployed at [`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}.
 - The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} for wiring accounts.
@@ -18072,7 +18072,7 @@ For more background, see the [Verification Shim concept section](/docs/products/
 
 To interact with the verification shim, you'll need the following:
 
-- [Rust and Solana CLI installed](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank}.  
+- [Rust and Solana CLI installed](https://solana.com/docs/intro/installation){target=\_blank}.  
 - [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
 - The canonical verification shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
 - The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.
