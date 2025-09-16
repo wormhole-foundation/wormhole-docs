@@ -1441,7 +1441,7 @@ function transfer(
 
 ### transferOwnership
 
-Transfer ownership of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
+[Transfer ownership](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/#evm){target=\_blank} of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function transferOwnership(address newOwner) external
@@ -1899,7 +1899,7 @@ error OwnableInvalidOwner(address owner);
 
 ### OwnableUnauthorizedAccount
 
-Error when the caller account is not authorized to perform an operation. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/ownable/OwnableUpgradeable.sol){target=\_blank})*
+Error when the caller account is not authorized to perform an operation. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error OwnableUnauthorizedAccount(address account);
@@ -2039,7 +2039,7 @@ error ThresholdTooHigh(uint256 threshold, uint256 transceivers);
 
 ### TooManyTransceivers
 
-Error when the number of registered transceivers exceeds 64. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/TransceiverRegistry.sol){target=\_blank})*
+Error when the number of registered transceivers exceeds 64. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error TooManyTransceivers();
@@ -2095,7 +2095,7 @@ error TransferAmountHasDust(uint256 amount, uint256 dust);
 
 ### UndefinedRateLimiting
 
-If the rate limiting behavior isn't explicitly defined in the constructor. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/RateLimiter.sol){target=\_blank})*
+If the rate limiting behavior isn't explicitly defined in the constructor. *(Defined in [IRateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IRateLimiter.sol){target=\_blank})*
 
 ```sol
 error UndefinedRateLimiting();
