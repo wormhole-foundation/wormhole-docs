@@ -114,7 +114,6 @@ Some implementation details should be considered during development to ensure sa
 - Receiving a message from a relayer.
 - Checking for expected emitter.
 - Calling `parseAndVerify` on any additional VAAs.
-- Replay protection.
 - Message ordering (no guarantees on order of messages delivered).
 - Forwarding and call chaining.
 - Refunding overpayment of `gasLimit`.
