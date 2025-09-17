@@ -2735,6 +2735,7 @@ categories: Reference
 | HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
 | Optimism | 0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8 |
 | Unichain | 0x574b7864119c9223a9870ea614dc91a8ee09e512 |
+| XRPL-EVM | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
 
 !!! note
     Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
