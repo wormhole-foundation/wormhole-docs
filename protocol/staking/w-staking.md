@@ -5,7 +5,7 @@ description: Integrate W staking into your app on EVM and Solana. Learn flows, c
 
 # W Staking Integration
 
-W staking allows users to stake their W tokens to participate in governance and earn staking rewards in return, while retaining control over their tokens. This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the Tally API.
+W staking allows users to stake their W tokens to participate in governance and earn staking rewards in return, while retaining control over their tokens. This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the [Tally API](https://apidocs.tally.xyz/){target=\_blank}.
 
 ## Overview
 
@@ -52,7 +52,7 @@ On Solana, staking means moving W into a stake custody account that’s tied to 
 - `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor` installed.
 - A Connection to the target cluster (e.g., mainnet).
 - The W token mint on Solana.
-- The Staking program ID (Anchor program) and its IDL.
+- The [Staking program ID](#program-ids-and-abis){target=\_blank} (Anchor program) and its IDL.
 
 ### Inputs to  provide
 
@@ -86,17 +86,18 @@ Staking steps:
 
 ### Unstaking Flow (Solana)
 
-Use `withdrawTokens(amount, currentDelegate, recipient)` to pull staked W back to your ATA. If you self-delegated, `currentDelegate` is your own key.
+Unstaking moves your staked W tokens back into your wallet’s Associated Token Account (ATA). To do this, the staking program withdraws tokens from the custody account and returns them to the user.
+
+Unstaking steps:
+
+1. Confirm the user’s stake metadata and custody accounts.
+2. Call the `withdrawTokens()` instruction to move tokens back to the user’s ATA.
 
 ```js 
 --8<-- 'code/protocol/staking/unstaking-flow.js'
 ```
 
-1. Confirm the user’s stake metadata and custody accounts.
-2. Call `withdrawTokens()` to move tokens back to the user’s ATA (Associated Token Account).
-
 !!!note "Important Notes"
-    - Solana integration uses `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor`.
     - Delegating to an active voter is generally recommended (see [Tally API](https://apidocs.tally.xyz/){target=\_blank}).
     - Both self and third-party delegation are supported.
 
