@@ -89,7 +89,7 @@ Since attestation is a one-time process, it is good practice when working with e
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
 
     - **Defines the token to check**: Use the contract address on the source chain for this value.
-    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: Part of the [`Wormhole` class]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method does the following:
+    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L277){target=\_blank}**: Part of the `Wormhole` class, the method does the following:
         - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
         - Checks for a corresponding wrapped version of the destination chain's WTT contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
@@ -122,7 +122,7 @@ This code does the following:
 
 - **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
-- **Calls `createAttestation`**: Defined in the [`TokenBridge` interface]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
+- **Calls `createAttestation`**: Defined in the `TokenBridge` interface, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L237){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
     - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
