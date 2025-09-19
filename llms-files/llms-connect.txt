@@ -3835,7 +3835,7 @@ function receiveWormholeMessages(
     bytes[] memory additionalVaas,  // Any additional VAAs that are needed (Note: these are unverified) 
     bytes32 sourceAddress,          // The address of the source contract
     uint16 sourceChain,             // The Wormhole chain ID
-    bytes32 deliveryHash            // A hash of contents, useful for replay protection
+    bytes32 deliveryHash            // A hash of contents, useful for core Wormhole replay protection
 ) external payable;
 ```
 
@@ -3875,7 +3875,6 @@ Some implementation details should be considered during development to ensure sa
 - Receiving a message from a relayer.
 - Checking for expected emitter.
 - Calling `parseAndVerify` on any additional VAAs.
-- Replay protection.
 - Message ordering (no guarantees on order of messages delivered).
 - Forwarding and call chaining.
 - Refunding overpayment of `gasLimit`.
@@ -11320,7 +11319,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 <div class="full-width" markdown="">
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11401,6 +11399,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |

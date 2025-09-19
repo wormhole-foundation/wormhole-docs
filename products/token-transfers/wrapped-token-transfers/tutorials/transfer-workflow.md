@@ -49,36 +49,18 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file**: Ensure your private key isn't accidentally exposed or committed to version control.
+2. **Install dependencies**: Install the required dependencies.
 
     ```bash
-    echo ".env" >> .gitignore
+    npm install @wormhole-foundation/sdk tsx
     ```
 
-3. **Install dependencies**: Install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries.
+3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
-    ```bash
-    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
-    ```
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-4. **Set up environment variables**: To securely store your private key, create a `.env` file in the root of your project.
-
-    ```bash
-    touch .env
-    ```
-
-    Inside the `.env` file, add your private keys.
-
-    ```env
-    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
-    ```
-
-    !!! note
-        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
-
-5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
+4. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
     1. Create the helpers file.
 
@@ -93,7 +75,6 @@ In this section, we’ll guide you through initializing the project, installing 
         --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-1.ts"
         ```
 
-        - **`getEnv`**: Fetches environment variables like your private key from the `.env` file.
         - **`getSigner`**: Based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file.
         - **`getTokenDecimals`**: Fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers.
 
@@ -244,7 +225,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:30:30"
     ```
 
-8. **Set transfer mode**: Specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
+8. **Set transfer mode**: Specify manual or automatic transfer using `route`. Set `route  = 'TokenBridge'` for manual transfers, where you will handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
 
     ```typescript
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:33:33"

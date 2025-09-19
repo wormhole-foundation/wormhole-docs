@@ -29,8 +29,8 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
   // Define the amount of tokens to transfer
   const amt = '1';
 
-  // Set automatic transfer to false for manual transfer
-  const automatic = false;
+  // Set route for manual transfers
+  const route = 'TokenBridge';
 
   // Used to normalize the amount to account for the tokens decimals
   const decimals = await getTokenDecimals(wh, token, sendChain);
@@ -41,7 +41,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     amount: amount.units(amount.parse(amt, decimals)),
     source,
     destination,
-    automatic,
+    route,
   });
 
   process.exit(0);
@@ -54,7 +54,7 @@ async function tokenTransfer<N extends Network>(
     amount: bigint;
     source: SignerStuff<N, Chain>;
     destination: SignerStuff<N, Chain>;
-    automatic: boolean;
+    route: string;
     payload?: Uint8Array;
   }
 ) {
@@ -65,7 +65,7 @@ async function tokenTransfer<N extends Network>(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.automatic ?? false,
+    route.route,
     route.payload
   );
 
@@ -76,7 +76,7 @@ async function tokenTransfer<N extends Network>(
     xfer.transfer
   );
 
-  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+  if (xfer.transfer.route === 'AutomaticTokenBridge' && quote.destinationToken.amount < 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns
