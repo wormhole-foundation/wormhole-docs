@@ -54,7 +54,7 @@ On Solana, staking means moving W into a stake custody account that’s tied to 
 - The W token mint on Solana.
 - The [Staking program ID](#program-ids-and-abis){target=\_blank} (Anchor program) and its IDL.
 
-### Inputs to  provide
+### Inputs to  Provide
 
 | Input        | Type         | Description                                     | Example                                                 |
 |--------------|--------------|-------------------------------------------------|---------------------------------------------------------|
