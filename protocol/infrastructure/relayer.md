@@ -48,7 +48,14 @@ Choosing between manual and automated relaying often comes down to the specific 
 
 To simplify the adoption of automated relaying, Wormhole provides its relayer infrastructure and APIs for developers. Wormhole Relayers is an umbrella term for Wormhole’s suite of relayer solutions, which currently includes the [messaging executor framework](#executor) and the [standard relayer](#standard-relayer) (currently being phased out), as well as the option of building [custom relayers](#custom-relaying) using Wormhole’s tooling. All of these approaches adhere to Wormhole’s core principle of trustless delivery – not trusting the Wormhole relayer operators any more than any blockchain infrastructure. Below is an overview of each option and its role in cross-chain dApp development.
 
-<!-- TODO comparison table between relayer methods -->
+| Aspect              | **Executor**                                     | **Standard Relayer**                | **Custom Relayer**           |
+|---------------------|--------------------------------------------------|-------------------------------------|------------------------------|
+| **Who Runs It**     | Permissionless network of providers              | Wormhole contributor–run nodes      | Application team             |
+| **Chain Support**   | Multichain, including non-EVM                    | EVM only                            | Any Wormhole-supported chain |
+| **Integration**     | Executor contracts with request–quote model      | On-chain functions                  | Custom backend service       |
+| **Infrastructure**  | None (on-chain only)                             | None (on-chain only)                | Full backend required, 24/7 availability |
+| **User Experience** | Seamless, broader chain support                  | Seamless, EVM only                  | App-specific optimizations possible |
+| **Trade-offs**      | Early rollout, limited initial availability      | EVM-only, no off-chain logic        | High DevOps cost, must stay secure |
 
 ### Executor
 
