@@ -45,7 +45,7 @@ Use the `delegates(address)` view function to check the current delegate for a g
 ## Solana Integration
 
 
-On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. You can stake any amount and you can delegate to yourself or to a third party.
+On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. Any amount can be staked, and the delegate can be yourself or another party.
 
 ### Prerequisites
 
