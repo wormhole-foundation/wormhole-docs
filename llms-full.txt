@@ -31320,7 +31320,7 @@ Use the `delegates(address)` view function to check the current delegate for a g
 ## Solana Integration
 
 
-On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. You can stake any amount and you can delegate to yourself or to a third party.
+On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. Any amount can be staked, and the delegate can be yourself or another party.
 
 ### Prerequisites
 
@@ -31329,9 +31329,9 @@ On Solana, staking means moving W into a stake custody account that’s tied to 
 - The W token mint on Solana.
 - The [Staking program ID](#program-ids-and-abis){target=\_blank} (Anchor program) and its IDL.
 
-### Inputs to  provide
+### Inputs to  Provide
 
-| Input.       | Type         | Description                                     | Example                                                 |
+| Input        | Type         | Description                                     | Example                                                 |
 |--------------|--------------|-------------------------------------------------|---------------------------------------------------------|
 | `connection` | `Connection` | An RPC connection to the target Solana cluster. | `new Connection('https://api.mainnet-beta.solana.com')` |
 | `wallet` | `AnchorProvider.wallet` | The wallet that signs transactions and pays fees. | `provider.wallet` |
