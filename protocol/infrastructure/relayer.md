@@ -48,14 +48,14 @@ Choosing between manual and automated relaying often comes down to the specific 
 
 To simplify the adoption of automated relaying, Wormhole provides its relayer infrastructure and APIs for developers to utilize. Wormhole Relayers is an umbrella term for Wormhole’s suite of relayer solutions, which currently includes the [messaging executor framework](#executor) and the [standard relayer](#standard-relayer) (currently being phased out), as well as the option of building [custom relayers](#custom-relaying) using Wormhole’s tooling. All of these approaches adhere to Wormhole’s core principle of trustless delivery – not trusting the Wormhole relayer operators any more than any blockchain infrastructure. Below is an overview of each option and its role in cross-chain dApp development.
 
-| Aspect              | **Executor**                                     | **Standard Relayer**                | **Custom Relayer**           |
-|---------------------|--------------------------------------------------|-------------------------------------|------------------------------|
-| **Who Runs It**     | Permissionless network of providers              | Wormhole contributor–run nodes      | Application team             |
-| **Chain Support**   | Multichain, including non-EVM                    | EVM only                            | Any Wormhole-supported chain |
-| **Integration**     | Executor contracts with request–quote model      | On-chain functions                  | Custom backend service       |
-| **Infrastructure**  | None (on-chain only)                             | None (on-chain only)                | Full backend required, 24/7 availability |
-| **User Experience** | Seamless, broader chain support                  | Seamless, EVM only                  | App-specific optimizations possible |
-| **Trade-offs**      | Early rollout, limited initial availability      | EVM-only, no off-chain logic        | High DevOps cost, must stay secure |
+| Aspect          | Executor.                                        | Standard Relayer.                   | Custom Relayer.              |
+|-----------------|--------------------------------------------------|-------------------------------------|------------------------------|
+| Who Runs It     | Permissionless network of providers              | Wormhole contributor–run nodes      | Application team             |
+| Chain Support   | Multichain, including non-EVM                    | EVM only                            | Any Wormhole-supported chain |
+| Integration     | Executor contracts with request–quote model      | On-chain functions                  | Custom backend service       |
+| Infrastructure  | None (on-chain only)                             | None (on-chain only)                | Full backend required, 24/7 availability |
+| User Experience | Seamless, broader chain support                  | Seamless, EVM only                  | App-specific optimizations possible |
+| Trade-offs      | Early rollout, limited initial availability      | EVM-only, no off-chain logic        | High DevOps cost, must stay secure |
 
 ### Executor
 
@@ -98,7 +98,7 @@ The standard relayer favors simplicity over flexibility. All computation must ha
 
 Using the standard relayer involves a fee that covers the target chain’s gas costs plus a small service fee. Fees are paid when calling the send function on the source chain and are distributed to relayer providers.
 
-### Custom Relayer
+## Custom Relayer
 
 For projects with special requirements or the need for complete control, custom relaying is an option. This involves building and running a relayer service tailored to the application. A custom relayer typically runs as a backend service that listens for specific VAAs from the Wormhole network (often via a [Spy](/docs/protocol/infrastructure/spy/){target=\_blank}) and then submits transactions to the destination chain when relevant messages are observed. Because Wormhole VAAs are public and trustless, anyone can run a relayer — an integrator could even operate a private relayer that only handles their own protocol’s messages.
 
