@@ -4,10 +4,6 @@ description: Discover the role of relayers in the Wormhole network, including cl
 categories: Basics
 ---
 
-<!-- TODO
-- links to repositories and addresses https://wormholelabs.notion.site/Executor-Addresses-Public-1f93029e88cb80df940eeb8867a01081 
--->
-
 # Relayers
 
 This page provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating multichain processes.
@@ -95,43 +91,23 @@ The standard relayer favors simplicity over flexibility. All computation must ha
 
 Use of the standard relayer involves a fee that covers the target chain’s gas plus a small service fee. Fees are paid when calling the send function on the source chain, and are distributed to relayer providers.
 
-### Custom Relaying
+### Custom Relayer
 
-For projects with special requirements or projects requiring complete control, custom relaying is an option. This means building and running a relayer service tailored to the application. A custom relayer typically runs as a backend service that listens for specific VAAs from the Wormhole network and then submits transactions to the destination chain when relevant messages are observed. Because Wormhole VAAs are public and trustless, anyone can do this – an integrator could run a private relayer that only handles their protocol’s messages.
+For projects with special requirements or the need for complete control, custom relaying is an option. This involves building and running a relayer service tailored to the application. A custom relayer typically runs as a backend service that listens for specific VAAs from the Wormhole network (often via a [Spy](/docs/protocol/infrastructure/spy/){target=\_blank}) and then submits transactions to the destination chain when relevant messages are observed. Because Wormhole VAAs are public and trustless, anyone can run a relayer — an integrator could even operate a private relayer that only handles their own protocol’s messages.
 
-The primary reason teams choose this route is flexibility and optimization; another reason may be specific chains where a Wormhole relayer is still not available. With a custom off-chain component, developers can incorporate logic that isn’t feasible on-chain. For instance, they might aggregate several messages and relay them in one transaction (batching), or wait for certain conditions (timing, price feeds, etc.) before delivering, or perform computations off-chain to reduce on-chain gas costs. Custom relayers also let developers define their incentive structures – e.g., have the protocol’s treasury fund the relayer, or implement a fee system tailored to their users. And importantly, a well-designed custom relayer can greatly enhance UX: the user experience can be just as smooth as with Wormhole’s relayers, but with optimizations specific to an app.
+The primary motivation for choosing this route is flexibility and optimization; another reason may be specific chains where a Wormhole relayer is still not available. With an off-chain component, developers can:  
 
-However, going custom comes with overhead, such as running and monitoring the relayer service 24/7, ensuring it’s always available to handle messages; infrastructure (servers or cloud functions), and devops to maintain it. There’s also added complexity in development – handling the Wormhole messages, ensuring security holes are not introduced (never treat the relayer as fully trusted; always have the contracts verify the VAAs), and possibly managing cross-chain fee payments. 
+- Apply conditional logic like aggregating multiple messages and relay them in a single transaction (batching).  
+- Trigger delivery logic (e.g., timing, price feeds, external signals) before delivery.  
+- Perform computations off-chain to reduce on-chain gas costs.  
+- Design custom incentive structures (e.g., funded by a protocol treasury or user-paid fees).  
+- Enhance the user experience with optimizations specific to an app.
 
-The [Wormhole Relayer Engine](https://github.com/wormhole-foundation/relayer-engine) is a tool that can help building a custom relayer, allowing developers to focus on their specific logic while the engine handles much of the boilerplate (listening to guardians, parsing messages, etc.). Using such a library, developers can filter for just the messages the application cares about and then decide how to process them (e.g., forward to multiple chains, do some off-chain verification, etc.).
+**Trade-offs**
 
-<!--
-## Custom Relayers
+Running a custom relayer comes with significant overhead. The service must be available 24/7, requiring infrastructure (servers or cloud functions) and ongoing DevOps. Development is also more complex, as integrators must handle Wormhole messages securely, avoid introducing trust assumptions (contracts must always verify VAAs), and potentially manage cross-chain fee payments. In short, custom relayers increase flexibility at the cost of additional responsibility.
 
-Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They can perform off-chain computations and can be customized to suit a variety of use cases.
-
-The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/protocol/infrastructure/spy/).
-
-### Key Features
-
-- **Optimization**: Capable of performing trustless off-chain computations which can optimize gas costs.
-- **Customizability**: Allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more.
-- **Incentive structure**: Developers have the freedom to design an incentive structure suitable for their application.
-- **Enhanced UX**: The ability to retrieve a VAA from the Guardian Network and perform an action on the target chain using the VAA on behalf of the user can simplify the user experience.
-
-### Implementation
-
-A plugin relayer to make the development of custom relayers easier is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This plugin sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
-
-### Considerations
-
-Remember, despite their name, custom relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
-
-- Development work and hosting of relayers are required.
-- The fee-modeling can become complex, as relayers are responsible for paying target chain fees.
-- Relayers are responsible for availability, and adding dependencies for the cross-chain application.
--->
-
+To simplify development, Wormhole provides the [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}, a tool that abstracts common boilerplate tasks, such as listening to Guardians, parsing messages, and handling retries.  Developers can focus on application-specific logic, such as filtering only the VAAs relevant to their protocol, forwarding to multiple chains, or applying off-chain checks.
 
 ## Next Steps
 
