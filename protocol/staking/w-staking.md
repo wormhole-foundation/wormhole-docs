@@ -56,7 +56,7 @@ On Solana, staking means moving W into a stake custody account that’s tied to 
 
 ### Inputs to  provide
 
-| Input.       | Type         | Description                                     | Example                                                 |
+| Input        | Type         | Description                                     | Example                                                 |
 |--------------|--------------|-------------------------------------------------|---------------------------------------------------------|
 | `connection` | `Connection` | An RPC connection to the target Solana cluster. | `new Connection('https://api.mainnet-beta.solana.com')` |
 | `wallet` | `AnchorProvider.wallet` | The wallet that signs transactions and pays fees. | `provider.wallet` |
