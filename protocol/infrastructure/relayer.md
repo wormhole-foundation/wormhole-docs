@@ -81,7 +81,7 @@ For developers, integrating the Executor framework can be as straightforward as 
 
 The Messaging Executor is a recent addition, and its availability might initially be limited to specific chains as it rolls out. It works alongside the Wormhole core messaging contract, complementing the existing relayer system. As the Executor network grows, developers get the advantage of broader chain support without having to custom-build their relayers for those environments. Just like the standard relayer, the Executor remains trust-minimized – an execution provider cannot violate the security of the message, and their signed quote simply helps ensure they are paid for the service.
 
-For more technical details, see the [open-source example executor implementation](https://github.com/wormholelabs-xyz/example-messaging-executor#:~:text=A%20permissionless%2C%20extensible%2C%20and%20low,for%20Wormhole%20and%20other%20protocols). It covers how quotes, requests, and the off-chain API work in the Executor system.
+For more technical details, see the [open-source example executor implementation](https://github.com/wormholelabs-xyz/example-messaging-executor){target=\_blank}. It covers how quotes, requests, and the off-chain API work in the Executor system.
 
 ### Standard Relayer
 
