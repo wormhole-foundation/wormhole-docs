@@ -82,46 +82,18 @@ For more technical details, see the [open-source example executor implementation
 
 ### Standard Relayer
 
-ut of the box for EVM chains. This is a decentralized network of relayer nodes run by Wormhole Contributors, which will pick up any eligible message and deliver it to the destination on the user’s behalf. Importantly, integrators do not need to run a server or backend to use it, as users interact with the relayer through on-chain contracts. Specifically, on the source chain, contracts will call the Wormhole Relayer contract’s send function (e.g., sendPayloadToEvm) to request a cross-chain delivery, providing the target chain and paying a fee. Then the relayer network transports the VAA and calls the target contract on the destination chain to pass along the message data. The target contract must implement a standard interface (such as `IWormholeReceiver`) to handle the incoming message.
+The standard relayer refers to the Wormhole-operated relayer network available out of the box for EVM chains. This decentralized network of relayer nodes, run by Wormhole Contributors, automatically picks up eligible messages and delivers them to the destination chain. Importantly, integrators do not need to operate any backend infrastructure: interaction happens entirely through on-chain contracts. On the source chain, a contract calls the Wormhole relayer contract’s send function (e.g., [`sendPayloadToEvm`](https://github.com/wormhole-foundation/wormhole/blob/a194cd1445460363843d5e72517f585552c83699/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayer.sol#L86){target=\_blank}) to request delivery, specifying the target chain and paying the associated fee. Then the relayer network transports the VAA and calls the target contract on the destination chain to pass along the message data. The target contract must implement a standard interface (such as [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole/blob/a194cd1445460363843d5e72517f585552c83699/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol#L8){target=\_blank}) to handle the incoming message.
 
-Using the standard relayer offers two big benefits for developers: ease of integration and zero infrastructure to maintain. There is no need to set up servers or constantly listen to the Guardian network – everything is handled by the Wormhole relayer service. This lowers operational costs and complexity for cross-chain messaging. From a developer’s perspective, sending a cross-chain message becomes almost as simple as emitting an event or calling a function, and receiving it is like handling a callback in the contract. Because the relayer is untrusted (in the security sense), integrators and users retain full security guarantees of Wormhole VAAs.
+Using the standard relayer provides two main benefits: ease of integration and no infrastructure to maintain. Developers do not need to run servers or monitor the Guardian network; everything is handled by the relayer service. This lowers operational costs and complexity for cross-chain messaging. Sending a cross-chain message becomes almost as simple as emitting an event or calling a function, and receiving it is comparable to handling a callback. Because relayers cannot alter VAAs, the security model remains trust-minimized: Wormhole’s Guardian signatures provide full verification, and the relayer only affects availability.
 
-**Trade-offs**: The standard relayer favors simplicity over flexibility. All computation for handling the message must happen on-chain (the relayer will not do any custom logic). This means things like complex conditional logic, multi-step workflows, or gas-intensive computations cannot be offloaded. Additionally, the Wormhole relayer network currently supports only EVM-compatible blockchains. Non-EVM chains (Solana, Sui, etc.) aren’t covered by the standard relayer at the moment.
+**Trade-offs**
+
+The standard relayer favors simplicity over flexibility. All computation must happen on-chain, as the relayer performs no off-chain logic. As a result, advanced workflows - like complex conditional logic, multi-step workflows, or gas-intensive computations - cannot be off-loaded. Additionally, the Wormhole relayer network currently supports only EVM-compatible blockchains. Non-EVM chains (Solana, Sui, etc.) aren’t covered by the standard relayer.
 
 !!!note
-    Wormhole provides other forms of relaying for some applications like NTT
+    Wormhole provides other relaying options for specific use cases, such as Native Token Transfers (NTT).
 
-Finally, there is a fee to use the relayer service, which covers the target chain’s gas and a service fee – this is typically handled via the send call in the source chain, and the fee goes to the relayer providers.
-
-<!--
-
-## Client-Side Relaying
-
-Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to complete the cross-chain process.
-
-### Key Features
-
-- **Cost-efficiency**: Users only pay the transaction fee for the second transaction, eliminating any additional costs.
-- **No backend infrastructure**: The process is wholly client-based, eliminating the need for a backend relaying infrastructure.
-
-### Implementation
-
-Users themselves carry out the three steps of the cross-chain process:
-
-1. Perform an action on chain A.
-2. Retrieve the resulting VAA from the Guardian Network.
-3. Perform an action on chain B using the VAA.
-
-### Considerations
-
-Though simple, this type of relaying is generally not recommended if your aim is a highly polished user experience. It can, however, be useful for getting a Minimum Viable Product (MVP) up and running.
-
-- Users must sign all required transactions with their own wallet.
-- Users must have funds to pay the transaction fees on every chain involved.
-- The user experience may be cumbersome due to the manual steps involved.
-
--->
-
+Use of the standard relayer involves a fee that covers the target chain’s gas plus a small service fee. Fees are paid when calling the send function on the source chain, and are distributed to relayer providers.
 
 ### Custom Relaying
 
@@ -192,29 +164,3 @@ Remember, despite their name, custom relayers still need to be considered trustl
 </div>
 
 
-<!--
-## Wormhole Relayers
-
-Wormhole relayers are a component of a decentralized network in the Wormhole protocol. They facilitate the delivery of VAAs to recipient contracts compatible with the standard relayer API.
-
-### Key Features
-
-- **Lower operational costs**: No need to develop, host, or maintain individual relayers.
-- **Simplified integration**: Because there is no need to run a relayer, integration is as simple as calling a function and implementing an interface.
-
-### Implementation
-
-The Wormhole relayer integration involves two key steps:
-
-- **Delivery request**: Request delivery from the ecosystem Wormhole relayer contract.
-- **Relay reception**: Implement a [`receiveWormholeMessages`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/bacbe82e6ae3f7f5ec7cdcd7d480f1e528471bbb/src/interfaces/IWormholeReceiver.sol#L44-L50){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA.
-
-### Considerations
-
-Developers should note that the choice of relayers depends on their project's specific requirements and constraints. Wormhole relayers offer simplicity and convenience but limit customization and optimization opportunities compared to custom relayers.
-
-- All computations are performed on-chain.
-- Potentially less gas-efficient compared to custom relayers.
-- Optimization features like conditional delivery, batching, and off-chain calculations might be restricted.
-- Support may not be available for all chains.
--->
