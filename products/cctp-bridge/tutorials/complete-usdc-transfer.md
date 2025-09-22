@@ -251,7 +251,7 @@ The setup for automatic transfers is similar to manual transfers, with the key d
 --8<-- "code/products/cctp-bridge/tutorials/complete-usdc-transfer/cctp-sdk-3.ts:22:22"
 ```
 
-#### Set native gas amount
+#### Set Native Gas Amount
 
 Optionally include a native gas drop for the destination, allowing your receiver to execute without pre-funding. Specify the amount in the destination chain's native token (wei); use 0 to skip.
 
