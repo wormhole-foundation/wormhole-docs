@@ -10432,6 +10432,12 @@ Choosing between manual and automated relaying often comes down to the specific 
 
 To simplify the adoption of automated relaying, Wormhole provides its relayer infrastructure and APIs for developers to utilize. Wormhole Relayers is an umbrella term for Wormhole’s suite of relayer solutions, which currently includes the [messaging executor framework](#executor) and the [standard relayer](#standard-relayer) (currently being phased out), as well as the option of building [custom relayers](#custom-relaying) using Wormhole’s tooling. All of these approaches adhere to Wormhole’s core principle of trustless delivery – not trusting the Wormhole relayer operators any more than any blockchain infrastructure. Below is an overview of each option and its role in cross-chain dApp development.
 
+Wormhole currently supports three types of relayers:  
+
+- **Executor**: A permissionless, next-generation framework that enables anyone to act as a relayer, with support for multichain delivery and custom pricing through a request–quote model.  
+- **Standard Relayer**: A Wormhole-operated network available out of the box for EVM chains, providing simple integration without backend infrastructure.  
+- **Custom Relayer**: An application-run service tailored to specific needs, offering maximum flexibility and optimization at the cost of higher operational overhead.  
+
 | Aspect          | Executor.                                        | Standard Relayer.                   | Custom Relayer.              |
 |-----------------|--------------------------------------------------|-------------------------------------|------------------------------|
 | Who Runs It     | Permissionless network of providers              | Wormhole contributor–run nodes      | Application team             |
@@ -10475,12 +10481,13 @@ Using the standard relayer provides two main benefits: ease of integration and n
 
 **Trade-offs**
 
-The standard relayer favors simplicity over flexibility. All computation must happen on-chain, as the relayer performs no off-chain logic. As a result, advanced workflows - like complex conditional logic, multi-step workflows, or gas-intensive computations - cannot be offloaded. Additionally, the Wormhole relayer network currently supports only EVM-compatible blockchains. Non-EVM chains (Solana, Sui, etc.) aren’t covered by the standard relayer.
+- All computation must be performed on-chain; no off-chain logic supported.  
+- Cannot handle advanced workflows such as conditional logic, multi-step processes, or gas-heavy computations.  
+- Limited to EVM-compatible blockchains (no support for Solana, Sui, etc.).  
+- Requires fees to cover destination chain gas and a service charge, paid on the source chain.  
 
 !!!note
     Wormhole provides other relaying options for specific use cases, such as Native Token Transfers (NTT).
-
-Using the standard relayer involves a fee that covers the target chain’s gas costs plus a small service fee. Fees are paid when calling the send function on the source chain and are distributed to relayer providers.
 
 ## Custom Relayer
 
@@ -10496,9 +10503,13 @@ The primary motivation for choosing this route is flexibility and optimization; 
 
 **Trade-offs**
 
-Running a custom relayer comes with significant overhead. The service must be available 24/7, requiring infrastructure (such as servers or cloud functions) and ongoing DevOps support. Development is also more complex, as integrators must handle Wormhole messages securely, avoid introducing trust assumptions (contracts must always verify VAAs), and potentially manage cross-chain fee payments. In short, custom relayers increase flexibility at the cost of additional responsibility.
+- Must run 24/7 with dedicated infrastructure (servers or cloud functions).  
+- Requires ongoing DevOps and monitoring to ensure availability.  
+- More complex development: integrators must handle Wormhole messages securely and always verify VAAs.  
+- May need to manage cross-chain fee payments.  
+- Provides maximum flexibility, but with higher operational responsibility.  
 
-To simplify development, Wormhole provides the [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}, a tool that abstracts common boilerplate tasks, such as listening to Guardians, parsing messages, and handling retries.  Developers can focus on application-specific logic, such as filtering only the VAAs relevant to their protocol, forwarding to multiple chains, or applying off-chain checks.
+To simplify development, Wormhole provides the [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}, a tool that abstracts boilerplate tasks such as listening to Guardians, parsing messages, and handling retries. Developers can then focus on application-specific logic, such as filtering relevant VAAs, forwarding to multiple chains, or applying off-chain checks.
 
 ## Next Steps
 
