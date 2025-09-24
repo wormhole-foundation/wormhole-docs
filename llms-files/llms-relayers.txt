@@ -6289,8 +6289,8 @@ To simplify the adoption of automated relaying, Wormhole provides its relayer in
 Wormhole currently supports three types of relayers:  
 
 - **Executor**: A permissionless, next-generation framework that enables anyone to act as a relayer, with support for multichain delivery and custom pricing through a request–quote model.  
-- **Standard Relayer**: A Wormhole-operated network available out of the box for EVM chains, providing simple integration without backend infrastructure.  
-- **Custom Relayer**: An application-run service tailored to specific needs, offering maximum flexibility and optimization at the cost of higher operational overhead.  
+- **Standard relayer**: A Wormhole-operated network available out of the box for EVM chains, providing simple integration without backend infrastructure.  
+- **Custom relayer**: An application-run service tailored to specific needs, offering maximum flexibility and optimization at the cost of higher operational overhead.  
 
 | Aspect          | Executor.                                        | Standard Relayer.                   | Custom Relayer.              |
 |-----------------|--------------------------------------------------|-------------------------------------|------------------------------|
