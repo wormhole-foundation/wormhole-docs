@@ -12948,10 +12948,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 | Pythnet | SVM | ETH | Superchain Faucet |
 
-### 
-
-N/A
-
 ### AVM
 
 | Algorand | AVM | ALGO | Official Algorand Faucet |
