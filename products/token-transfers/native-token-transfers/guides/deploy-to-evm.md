@@ -55,7 +55,7 @@ Deploying NTT on EVM chains follows a structured process:
 
         This setup maintains a consistent total supply across all chains.
 
-    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank}.
 
 3. **Configure your chains**: Use the NTT CLI to add EVM chains and configure deployment parameters.
 4. **Set Mint Authority**: Set the NTT Manager as a minter for your tokens on the relevant chains.

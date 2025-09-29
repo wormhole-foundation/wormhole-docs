@@ -20,7 +20,7 @@ MultiGov is designed to be flexible but stable. Due to the system's complexity a
     - A new proposal would have to authorize the governor to use the newly created hub vote pool and will also handle registering the appropriate query decoders and registering the appropriate spoke `SpokeVoteAggregators`.
 
 - `SpokeMessageExecutor`:
-    - Upgradeable via [UUPS](https://www.rareskills.io/post/uups-proxy){target=\_blank} proxy pattern.
+    - Upgradeable via [UUPS](https://rareskills.io/post/uups-proxy){target=\_blank} proxy pattern.
     - Stores critical parameters in `SpokeMessageExecutorStorage`.
 
 - `HubEvmSpokeAggregateProposer`:
