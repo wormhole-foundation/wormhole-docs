@@ -244,7 +244,7 @@ The program implements its functionality through instructions, using specialized
 
 Each account is implemented as a Solana PDA (Program Derived Address) and utilizes Anchor's account framework for serialization and management.
 
-## Detailed Architecture Diagram
+## Key Components in Action
 
 This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
 
@@ -263,9 +263,9 @@ MultiGov relies on Wormhole's infrastructure for all multichain messaging, ensur
 
 ## Conclusion
 
-MultiGov’s hub-and-spoke architecture centralizes proposal authority on the hub while distributing participation and execution to spokes. [Wormhole Messaging](/docs/products/messaging/overview/){target=\_blank} carries authenticated multichain actions, and [Wormhole Queries](/docs/products/queries/overview/){target=\_blank} provide reliable state reads for metadata and vote proofs. With clear trust boundaries, timelocks, guardian verification, and checkpointing, the system remains coherent across heterogeneous chains.
+MultiGov’s hub-and-spoke architecture centralizes proposal authority on the hub while distributing participation and execution to spokes. [Wormhole Messaging](/docs/products/messaging/overview/){target=\_blank} carries authenticated multichain actions, and [Wormhole Queries](/docs/products/queries/overview/){target=\_blank} provide reliable state reads for metadata and vote proofs. With clear trust boundaries, timelocks, Guardian verification, and checkpointing, the system remains coherent across heterogeneous chains.
 
-For the end-to-end lifecycle—from proposal creation to multichain execution, see the **[Flow of a Proposal](/docs/products/multigov/concepts/proposal-flow/)**.
+For the end-to-end lifecycle—from proposal creation to multichain execution, see the [Flow of a Proposal](/docs/products/multigov/concepts/proposal-flow/) page.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/concepts/proposal-flow.md
@@ -284,31 +284,31 @@ This page covers the general lifecycle shared by all chains, EVM-specific detail
 
 ## Proposal Flow 
 
-1. **Proposal Creation (Hub)**: 
+1. **Proposal Creation (Hub)**
 
     The proposer, typically a DAO member or smart contract, creates a proposal and submits it to the [`HubGovernor`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubGovernor.sol){target=\_blank} contract on the hub chain. This proposal includes proposal targets, calldata, metadata, payloads, and the voting timeline. Once submitted, it becomes immutable and is broadcast to all supported spoke chains.
 
-2. **Voting Period Begins**: 
+2. **Voting Period Begins**
 
     When the proposal is activated, both the `HubGovernor` and each `SpokeGovernor` enter a voting state. On each chain, governance participants can review the proposal and prepare to cast votes using their local voting power.
 
-3. **Users Vote on Spokes**: 
+3. **Users Vote on Spokes**
 
     Individual voters interact with their local spoke voting module to cast a vote (for, against, or abstain). Votes are validated and recorded on the spoke chain and prepared as a spoke-level aggregate.
 
-4. **Votes Relayed to Hub**:
+4. **Votes Relayed to Hub**
 
-    Spokes submit their aggregated votes back to the hub using Wormhole: either by emitting a vote message (VAA) or by exposing the aggregate via Queries and submitting the guardian-signed response on the hub. The hub verifies each aggregate before including it in the tally.
+    Spokes submit their aggregated votes back to the hub using Wormhole: either by emitting a vote message (VAA) or by exposing the aggregate via [Queries](/docs/products/queries/overview){target=\_blank} and submitting the Guardian-signed response on the hub. The hub verifies each aggregate before including it in the tally.
 
-5. **Voting Period Ends**: 
+5. **Voting Period Ends**
 
     After the vote deadline (defined at proposal creation), the `HubGovernor` contract stops accepting new votes. All final tallies are frozen and no additional state transitions can occur until result finalization.   
 
-6. **Tally Finalized and Proposal Queued for Execution**: 
+6. **Tally Finalized and Proposal Queued for Execution**
 
     The `HubGovernor` evaluates the total votes, checks quorum thresholds, and determines whether the proposal passed or failed. If successful, it marks the proposal as ready for execution. Failed proposals are simply archived.
 
-7. **Proposal Executed**: 
+7. **Proposal Executed**
 
     The `HubGovernor` executes the proposal. If the action payload is on the hub chain, it’s executed directly. If actions target spoke chains, messages are composed and sent via Wormhole Messaging, then delivered by a relayer to the target executor contract or system.
 
@@ -322,7 +322,7 @@ sequenceDiagram
   participant Wormhole
   participant Executor
 
-  Proposer->>HubGovernor: Create Proposal
+  Proposer->>HubGovernor: Create proposal
   Note right of HubGovernor: Proposal ID assigned
   
   SpokeGovernor1->>SpokeGovernor1: User votes
@@ -344,16 +344,16 @@ sequenceDiagram
 
 ## EVM Proposal Flow Details
 
-On EVM, proposals are created on `HubGovernor.propose(...)` or via [`HubEvmSpokeAggregateProposer`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubEvmSpokeAggregateProposer.sol){target=\_blank}, which can aggregate proposer voting power across registered spokes to meet the threshold. Proposal metadata is exposed by `HubProposalMetadata` and typically surfaced on each spoke by a `SpokeMetadataCollector`, keeping local views consistent with the hub.
+On EVM, proposals are created using [`HubGovernor.propose(...)`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubGovernor.sol#L135){target=\_blank} or via [`HubEvmSpokeAggregateProposer`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubEvmSpokeAggregateProposer.sol), which aggregates proposer voting power across registered spokes to meet the threshold. [`HubProposalMetadata`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubProposalMetadata.sol){target=\_blank} exposes proposal metadata and is typically surfaced on each spoke by a [`SpokeMetadataCollector`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeMetadataCollector.sol){target=\_blank}, keeping local views consistent with the hub.
 
-Voters cast on the spoke’s [`SpokeVoteAggregator`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeVoteAggregator.sol){target=\_blank}, which validates eligibility and produces a spoke-level aggregate. That aggregate is relayed to the hub as a Wormhole message; a relayer submits the resulting VAA to [`HubVotePool`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubVotePool.sol){target=\_blank}, which verifies and forwards totals to `HubGovernor` for inclusion in the global tally. After timelock, cross-chain actions are dispatched via `HubMessageDispatcher.dispatch(...)` and executed by each [`SpokeMessageExecutor`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeMessageExecutor.sol){target=\_blank} under [`SpokeAirlock`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeAirlock.sol){target=\_blank} authority. In practice, configure timestamped snapshots compatible with cross-chain voting (e.g., `ERC20Votes` with the appropriate `CLOCK_MODE`) and register all expected spokes on `HubVotePool`.
+Voters cast on the spoke’s [`SpokeVoteAggregator`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeVoteAggregator.sol), which validates eligibility and produces a spoke-level aggregate. That aggregate is relayed to the hub as a Wormhole message; a relayer submits the resulting VAA to [`HubVotePool`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubVotePool.sol), which verifies and forwards totals to `HubGovernor` for inclusion in the global tally. After the timelock, cross-chain actions are dispatched via [`HubMessageDispatcher.dispatch(...)`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/HubMessageDispatcher.sol#L29){target=\_blank} and executed by each [`SpokeMessageExecutor`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeMessageExecutor.sol) under the authority of [`SpokeAirlock`](https://github.com/wormhole-foundation/multigov/blob/main/evm/src/SpokeAirlock.sol). In practice, configure timestamped snapshots compatible with cross-chain voting (e.g., `ERC20Votes` with the appropriate `CLOCK_MODE`) and register all expected spokes on `HubVotePool`.
 
 
 ## Solana (SVM) Proposal Flow Details
 
-Proposals that target Solana include a `SolanaPayload` in hub calldata describing the destination program and instructions to run. The Solana spoke ingests hub proposals by fetching `HubProposalMetadata` via [Wormhole Queries](/docs/products/queries/overview/){target=\_blank}, initializing local state with `AddProposal`, and posting guardian signatures through `PostSignatures`. Verification artifacts and proposal state live in [Anchor PDAs](https://www.anchor-lang.com/docs/basics/pda){target=\_blank} (e.g., `ProposalData`,`GuardianSignatures`), keeping the spoke view cryptographically aligned with the hub.
+Proposals that target Solana include a [`SolanaPayload`](https://github.com/wormhole-foundation/multigov/blob/main/solana/app/e2e/01_createProposeWithSolanaExecution.ts#L40){target=\_blank} in hub calldata describing the destination program and instructions to run. The Solana spoke ingests hub proposals by fetching `HubProposalMetadata` via [Wormhole Queries](/docs/products/queries/overview/), initializing local state with `AddProposal`, and posting Guardian signatures through `PostSignatures`. Verification artifacts and proposal states live in [Anchor PDAs](https://www.anchor-lang.com/docs/basics/pda) (e.g., `ProposalData`, `GuardianSignatures`), ensuring the spoke view remains cryptographically aligned with the hub.
 
-Voters interact with `CastVote`, which derives weight from checkpointed stake/vesting PDAs and records for/against/abstain. The vote aggregate is exposed in a PDA and read via a Query; guardians sign the response, and the signed result is submitted to `HubVotePool.crossChainVote(...)` for verification and forwarding to `HubGovernor`. When execution targets Solana, the hub dispatches a Solana-bound message; on Solana, `ReceiveMessage` verifies the VAA and `SpokeAirlock` performs the authorized instructions. Program-level specifics include PDAs for custody and replay safety and `VoteWeightWindowLengths` to prevent double counting.
+Voters interact with `CastVote`, which derives weight from checkpointed stake/vesting PDAs and records for/against/abstain. The vote aggregate is exposed in a PDA and read via a Query; Guardians sign the response, and the signed result is submitted to `HubVotePool.crossChainVote(...)` for verification and forwarding to `HubGovernor`. When execution targets Solana, the hub dispatches a Solana-bound message. On Solana, `ReceiveMessage` verifies the VAA, and `SpokeAirlock` performs the authorized instructions. Program-level specifics include PDAs for custody and replay safety, as well as `VoteWeightWindowLengths` to prevent double-counting.
 
 ## Conclusion
 
@@ -361,12 +361,12 @@ MultiGov keeps proposal authority unified at the hub while distributing particip
 
 Core guarantees:
 
-- **Single source of truth:** The hub finalizes tallies, enforces quorum/timelock, and authorizes any cross-chain actions.
-- **Local first:** Votes are cast and validated on each spoke; only aggregates cross chains.
-- **Verified transport:** All multichain messages are Guardian-verified; spoke execution is gated by the spoke’s authority module.
-- **Replay and double-count safety:** Checkpoint windows, PDAs/decoders, and replay guards prevent re-execution and double voting.
+- **Single source of truth**: The hub finalizes tallies, enforces quorum/timelock, and authorizes any cross-chain actions.
+- **Local first**: Votes are cast and validated on each spoke; only aggregates cross chains.
+- **Verified transport**: All multichain messages are Guardian-verified; spoke execution is gated by the spoke’s authority module.
+- **Replay and double-count safety**: Checkpoint windows, PDAs/decoders, and replay guards prevent re-execution and double voting.
 
-For components and more architecture details, see the **[MultiGov Architecture](/docs/products/multigov/concepts/architecture/){target=\_blank}** page.
+For components and more architecture details, see the [MultiGov Architecture](/docs/products/multigov/concepts/architecture/){target=\_blank} page.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/faqs.md
