@@ -60,7 +60,7 @@ The program implements its functionality through instructions, using specialized
 
 Each account is implemented as a Solana PDA (Program Derived Address) and utilizes Anchor's account framework for serialization and management.
 
-## Detailed Architecture Diagram
+## Key Components in Action
 
 This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
 
