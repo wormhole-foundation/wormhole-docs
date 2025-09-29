@@ -1,11 +1,11 @@
-Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
 1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
 2. **Clone the repository**: Fetch the example contract repository.
 
     ```bash
-    git clone https://github.com/wormhole-foundation/example-ntt-token.git
+    git clone https://github.com/wormhole-foundation/example-ntt-token-evm.git
     cd example-ntt-token
     ```
 3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
