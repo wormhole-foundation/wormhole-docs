@@ -7,7 +7,7 @@ description: Integrate W staking into your app on EVM and Solana. Learn flows, c
 
 W staking allows users to stake their W tokens to participate in governance and earn staking rewards in return, while retaining control over their tokens. This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the [Tally API](https://apidocs.tally.xyz/){target=\_blank}.
 
-##  Staking and Voting Comparison
+## Staking and Voting Comparison
 
 |                     | EVM (ETH, OP, ARB, BASE)                          | Solana                                         |
 |---------------------|---------------------------------------------------|------------------------------------------------|
