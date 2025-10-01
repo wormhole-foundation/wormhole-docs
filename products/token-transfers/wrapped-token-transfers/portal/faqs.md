@@ -46,6 +46,7 @@ This field is optional. If left empty, the tokens will be sent to your connected
 
 ## Why is the token that I deployed using the WTT / NTT framework not showing up in the Portalbridge UI?
 
- While deploying tokens to new chains via Wormhole is fully permissionless, these tokens do not automatically show up on the [Portal](https://portalbridge.com/){target=\_blank} UI. Wormhole Contributors maintain discretion in configuring tokens for Portal to prevent abuse. You can quickly spin up your own UI for token transfers using Wormhole Connect. See the demo repositories to get started: 
- - [**Basic Connect Demo**](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
- - [**NTT Connect Demo**](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
+While deploying tokens to new chains via Wormhole is fully permissionless, these tokens do not automatically show up on the [Portal](https://portalbridge.com/){target=\_blank} UI. Wormhole Contributors maintain discretion in configuring tokens for Portal to prevent abuse. You can quickly spin up your own UI for token transfers using Wormhole Connect. See the demo repositories to get started:
+
+- [**Basic Connect Demo**](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
+- [**NTT Connect Demo**](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
