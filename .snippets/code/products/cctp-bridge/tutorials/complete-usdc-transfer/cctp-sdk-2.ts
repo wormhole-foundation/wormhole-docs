@@ -1,4 +1,4 @@
-import { wormhole } from '@wormhole-foundation/sdk';
+import { wormhole, amount } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { getSigner } from './helpers/helpers';
@@ -19,7 +19,7 @@ import { getSigner } from './helpers/helpers';
 
   const automatic = false;
 
-  // Create the Circle transfer object 
+  // Create the Circle transfer object
   const xfer = await wh.circleTransfer(
     amt,
     source.address,

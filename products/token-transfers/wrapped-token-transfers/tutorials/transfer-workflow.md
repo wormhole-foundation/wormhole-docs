@@ -24,6 +24,9 @@ At the end of this guide, you’ll have a fully functional setup for transferrin
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
+![Manual WTT transfer flow and architecture](/docs/images/products/wrapped-token-transfers/tutorials/transfer-workflow/manual-wtt.webp#only-dark)
+![Manual WTT transfer flow and architecture](/docs/images/products/wrapped-token-transfers/tutorials/transfer-workflow/manual-wtt-light.webp#only-light)
+
 ## Prerequisites
 
 Before you begin, ensure you have the following:
@@ -35,7 +38,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Contract Addresses](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank} page, which includes every network where Wormhole smart contracts are deployed, across both mainnet and testnet.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Supported Networks](/docs/products/reference/supported-networks/#wtt){target=\_blank} page, which includes every network where WTT is supported, across both mainnet and testnet.
 
 ## Project Setup
 
