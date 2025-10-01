@@ -50,7 +50,7 @@ On Solana, staking means moving W into a stake custody account that’s tied to 
 ### Prerequisites
 
 - `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor` installed.
-- A Connection to the target cluster (e.g., mainnet).
+- A connection to the target cluster (e.g., mainnet).
 - The W token mint on Solana.
 - The [Staking program ID](#program-ids-and-abis){target=\_blank} (Anchor program) and its IDL.
 
