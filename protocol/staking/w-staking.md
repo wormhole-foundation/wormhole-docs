@@ -9,20 +9,22 @@ W staking allows users to stake their W tokens to participate in governance and 
 
 ## Staking and Voting Comparison
 
-|                     | EVM (ETH, OP, ARB, BASE)                          | Solana                                         |
+| Feature             | EVM                                               | Solana                                         |
 |---------------------|---------------------------------------------------|------------------------------------------------|
 | **Staking**         | Delegate your W tokens to another address.<br>Tokens stay in your wallet. | Move W tokens into a stake account and assign a delegate. |
 | **Unstaking**       | Delegation removed; no token movement.                   | Withdraw tokens from stake account.     |
 | **Partial Staking** | Not supported (delegation applies to your full balance). | Supported; stake any amount of W.       |
 | **Voting Power**    | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the amount staked. |
 
-## EVM Integration (ETH, OP, ARB, BASE)
+## EVM Integration
 
 On EVM chains, staking is done by delegating your W balance to a delegate address using a single contract call. Tokens remain in your wallet, and delegation applies to your entire W balance.
 
 ### W Token Contract Call
 
 ```js 
+import {writeContractAsync} from 'wagmi/actions'
+
 const tx = await writeContractAsync({
   address: W_TOKEN_ADDRESS,
   abi: ERC1967,
@@ -43,7 +45,6 @@ Use the `delegates(address)` view function to check the current delegate for a g
     - Wormhole maintains a list of delegates using the Tally API (covers EVM and Solana).
 
 ## Solana Integration
-
 
 On Solana, staking means moving W into a stake custody account that’s tied to the staker and assigning a delegate for the voting power of the amount you staked. Any amount can be staked, and the delegate can be yourself or another party.
 

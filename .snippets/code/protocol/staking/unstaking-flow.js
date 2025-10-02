@@ -1,10 +1,10 @@
 const withdrawIx = await program.methods
-.withdrawTokens(
+  .withdrawTokens(
     new BN(amount.toString()),
     delegateePublicKey, // current delegate (who owns your stake)
-    userPublicKey, // recipient of the withdrawn tokens
-)
-.accountsStrict({
+    userPublicKey // recipient of the withdrawn tokens
+  )
+  .accountsStrict({
     payer: walletProvider.publicKey,
     currentDelegateStakeAccountCheckpoints,
     currentDelegateStakeAccountMetadata,
@@ -17,7 +17,7 @@ const withdrawIx = await program.methods
     systemProgram: anchor.web3.SystemProgram.programId,
     eventAuthority,
     program: program.programId,
-})
-.instruction()
+  })
+  .instruction();
 
-withdrawTx.add(withdrawIx)
+withdrawTx.add(withdrawIx);
