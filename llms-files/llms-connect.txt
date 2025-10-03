@@ -10968,7 +10968,6 @@ categories: Reference
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CORE_ADDRESS-->
-
 === "Mainnet"
 
     | Ethereum | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
@@ -11064,7 +11063,6 @@ categories: Reference
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--WTT_ADDRESS-->
-
 === "Mainnet"
 
     | Ethereum | 0x3ee18B2214AFF97000D974cf647E7C347E8fa585 |
@@ -11147,7 +11145,6 @@ categories: Reference
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--RELAYER_BRIDGE_ADDRESS-->
-
 === "Mainnet"
 
     | Ethereum | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
@@ -11202,7 +11199,6 @@ categories: Reference
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CCTP_ADDRESS-->
-
 === "Mainnet"
 
     | Ethereum | 0xAaDA05BD399372f0b0463744C09113c137636f6a |
@@ -11219,11 +11215,6 @@ categories: Reference
 | Avalanche | 0x58f4c17449c90665891c42e14d34aae7a26a472e |
 | Base Sepolia | 0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c |
 | Optimism Sepolia | 0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c |
-
-=== "Devnet"
-
-    N/A
-  
 <!--CCTP_ADDRESS-->
 
 ## Settlement Token Router
@@ -11240,7 +11231,6 @@ categories: Reference
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--EXECUTOR_ADDRESS-->
-
 === "Mainnet"
 
     | Ethereum | 0x84EEe8dBa37C36947397E1E11251cA9A06Fc6F8a |
@@ -11252,7 +11242,9 @@ categories: Reference
 | Berachain | 0x0Dd7a5a32311b8D87A615Cc7f079B632D3d5e2D3 |
 | BNB Smart Chain | 0xeC8cCCD058DbF28e5D002869Aa9aFa3992bf4ee0 |
 | Celo | 0xe6Ea5087c6860B94Cf098a403506262D8F28cF05 |
+| CreditCoin | 0xd2e420188f17607Aa6344ee19c3e76Cf86CA7BDe |
 | HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xd7717899cc4381033Bc200431286D0AC14265F78 |
+| Ink | 0x3e44a5F45cbD400acBEF534F51e616043B211Ddd |
 | Linea | 0x23aF2B5296122544A9A7861da43405D5B15a9bD3 |
 | Mezo | 0x0f9b8E144Cc5C5e7C0073829Afd30F26A50c5606 |
 | Moonbeam | 0x85D06449C78064c2E02d787e9DC71716786F8D19 |
@@ -11283,11 +11275,6 @@ categories: Reference
 | Seievm | 0x25f1c923Fb7A5aEFA5F0A2b419fC70f2368e66e5 |
 | Sui | 0x4000cfe2955d8355b3d3cf186f854fea9f787a457257056926fde1ec977670eb |
 | XRPL-EVM | 0x4d9525D94D275dEB495b7C8840b154Ae04cfaC2A |
-
-=== "Devnet"
-
-    N/A
-  
 <!--EXECUTOR_ADDRESS-->
     
 ## Guardian Governance
