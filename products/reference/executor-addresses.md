@@ -6,7 +6,7 @@ categories: Reference
 
 # Executor Addresses
 
-??? interface "## Executor"
+??? interface "Executor"
 
     --8<-- 'text/products/reference/contract-addresses/executor.md'
 
@@ -24,8 +24,12 @@ categories: Reference
 
 ??? interface "VAAv1ReceiveWithGasDropOff"
 
-??? interface "TokenBridgeRelayer"
+??? interface "WTTRelayer"
 
-??? interface "TokenBridgeRelayerWithReferrer"
+    --8<-- 'text/products/reference/contract-addresses/wtt-executor.md'
+
+??? interface "WTTRelayerWithReferrer"
+
+    --8<-- 'text/products/reference/contract-addresses/wtt-executor-with-referrer.md'
 
 ??? interface "MayanForwarderWithReferrer"
