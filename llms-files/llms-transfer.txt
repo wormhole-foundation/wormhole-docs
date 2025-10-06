@@ -13501,7 +13501,9 @@ Deploying NTT on EVM chains follows a structured process:
         - `burn(uint256 amount)`
         - `mint(address account, uint256 amount)`
 
-        These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
+        You’ll also need to set mint authority to the relevant `NttManager` contract.
+
+        These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for examples of the mentioned functions, as well as optional errors and events.
 
         ??? interface "`INttToken` Interface"
             ```solidity
@@ -13542,8 +13544,6 @@ interface INttToken {
     function burn(uint256 amount) external;
 }
             ```
-
-        You’ll also need to set mint authority to the relevant `NttManager` contract.
 
     ??? interface "Hub-and-Spoke"
 
@@ -16653,6 +16653,13 @@ This flexibility allows you to enter any wallet address as the recipient rather 
 ![](/docs/images/products/wrapped-token-transfers/portal-bridge/faqs/portal-wallet-address.webp){.half}
 
 This field is optional. If left empty, the tokens will be sent to your connected wallet.
+
+## Why is the token that I deployed using the WTT / NTT framework not showing up in the Portal Bridge UI?
+
+While deploying tokens to new chains via Wormhole is fully permissionless, these tokens do not automatically show up on the [Portal](https://portalbridge.com/){target=\_blank} UI. Wormhole Contributors maintain discretion in configuring tokens for Portal to prevent abuse. You can quickly spin up your own UI for token transfers using Wormhole Connect. See the demo repositories to get started:
+
+- [**Basic Connect Demo**](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
+- [**NTT Connect Demo**](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
 --- END CONTENT ---
 
 ## Shared Concepts from basics
