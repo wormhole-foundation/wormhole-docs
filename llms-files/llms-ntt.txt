@@ -735,7 +735,7 @@ Wormhole’s NTT framework supports two [deployment models](/docs/products/nativ
 
     You’ll also need to set the mint authority to the relevant `NttManager` contract. Example scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
 
-    Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} as an example of the above mentioned functions and additionally optional errors, and events.
+    Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for examples of the mentioned functions, as well as any optional errors and events.
 
     ??? interface "`INttToken` Interface"
         ```solidity
