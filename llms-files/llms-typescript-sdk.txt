@@ -14128,7 +14128,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 | Celestia | CosmWasm | TIA | Discord Faucet |
 | Cosmos Hub | CosmWasm | ATOM | Discord Faucet |
-| Evmos | CosmWasm | TEVMOS | Official Evmos Faucet |
 | Injective | CosmWasm | INJ | Official Injective Faucet |
 | Kujira | CosmWasm | KUJI | Discord Faucet |
 | Neutron | CosmWasm | NTRN | List of Faucets |
