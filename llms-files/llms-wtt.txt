@@ -12721,6 +12721,16 @@ categories: Reference
 | Unichain | 0x574b7864119c9223a9870ea614dc91a8ee09e512 |
 | XRPL-EVM | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
 
+=== "Testnet"
+
+    <!--GOVERNANCE_TESTNET-->
+| Ethereum Sepolia | 0x9517F0164c1d089ad72E669E57b9088790966dBd |
+| Arbitrum Sepolia | 0x81b65A48DCAccBA04aCa3C055C4112b0715b90c0 |
+| Base Sepolia | 0x720A59128B96Eda6EC2940c7899406E4dc56d0DC |
+| Optimism Sepolia | 0xcE1DE1eA4b040D324a07719043A6234C94fd0b5d |
+| XRPL-EVM | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
+<!--GOVERNANCE_TESTNET-->
+
 !!! note
     Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
 
