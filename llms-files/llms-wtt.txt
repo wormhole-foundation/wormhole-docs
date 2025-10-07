@@ -2801,6 +2801,8 @@ Existing solutions for cross-chain transfers can be complex and inefficient, req
 
 At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s WTT protocol.
 
+If your goal is to transfer native USDC between chains that support CCTP, we recommend using the [CCTP protocol](/docs/products/cctp-bridge/overview/){target=\_blank}. WTT is intended for other assets or for USDC on chains where CCTP is not available.
+
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
