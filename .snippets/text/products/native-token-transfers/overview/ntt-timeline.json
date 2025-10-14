@@ -6,7 +6,7 @@
     },
     {
         "title": "Deploy NTT",
-        "content": "Use these resources to deploy NTT across supported chains: <br><br>**→** [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/)  \n\n**→** [Deploy to EVM Chains via Launchpad](/docs/products/token-transfers/native-token-transfers/guides/evm-launchpad/)   \n**→** [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/)",
+        "content": "Use these resources to deploy NTT across supported chains: <br><br>**→** [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/)   \n**→** [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-2:"
     },
     {
