@@ -17187,6 +17187,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sei | 32 | pacific-1 |
 | Seievm | 40 |  |
 | Sonic | 52 | 146 |
+| Stacks | 60 | 1 |
 | Stargaze | 4005 | stargaze-1 |
 | Sui | 21 | 35834a8a |
 | Unichain | 44 |  |
@@ -17241,6 +17242,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sei | 32 | atlantic-2 |
 | Seievm | 40 |  |
 | Sonic | 52 | 57054 |
+| Stacks | 60 | 2147483648 |
 | Stargaze | 4005 |  |
 | Sui | 21 | 4c78adac |
 | Unichain | 44 | Unichain Sepolia-1301 |
@@ -17302,6 +17304,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Sei |  |  | 0 |  | ~ 1s |  |
 | Seievm |  |  | 0 |  | ~ 1s |  |
 | Sonic |  |  | 0 |  | ~ 1s |  |
+| Stacks |  |  | 0 |  | ~ 61min |  |
 | Stargaze |  |  | 0 |  | ~ 5s |  |
 | Sui |  |  | 0 |  | ~ 3s | Details |
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
@@ -17413,6 +17416,7 @@ categories: Reference
 | Aptos | 0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017 |
 | BNB Smart Chain | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550 |
 | NEAR | wormhole.test.near |
+| Stacks | ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM |
 | Sui | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
 <!--CORE_ADDRESS-->
 
