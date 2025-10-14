@@ -43,7 +43,7 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies:
+2. Install the required dependencies. This example uses the Mayan Swift route version `1.x` and Wormhole SDK version `3.x`:
 
     ```bash
     npm install @wormhole-foundation/sdk-connect \
