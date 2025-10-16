@@ -10,18 +10,18 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/executor.md'
 
-## CCTPWithExecutor
+## CCTP With Executor
 
 --8<-- 'text/products/reference/contract-addresses/cctp-executor.md'
 
-## NTTWithExecutor
+## NTT With Executor
 
 --8<-- 'text/products/reference/contract-addresses/ntt-executor.md'
 
-## WTTRelayer
+## WTT Executor
 
 --8<-- 'text/products/reference/contract-addresses/wtt-executor.md'
 
-## WTTRelayerWithReferrer
+## WTT Relayer With Referrer
 
 --8<-- 'text/products/reference/contract-addresses/wtt-executor-with-referrer.md'

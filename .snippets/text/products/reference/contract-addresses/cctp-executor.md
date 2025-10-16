@@ -1,7 +1,7 @@
 === "Mainnet v1"
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
-    <tr><td>Ethereum</td><td><code> 0xeEFb36c4458dA7798742cf038C5c27E07aB9c51E</code></td></tr>
+    <tr><td>Ethereum</td><td><code>0xeEFb36c4458dA7798742cf038C5c27E07aB9c51E</code></td></tr>
     <tr><td>Solana</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr>
     <tr><td>Arbitrum</td><td><code>0x55Dd4466BFec29527C54A72fd306efb54e5F7027</code></td></tr>
     <tr><td>Avalanche</td><td><code>0xd331819478b74d8a7B8EA631118B4a4e50F6EbD1</code></td></tr>
@@ -25,7 +25,7 @@
 === "Mainnet v2"
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
-    <tr><td>Ethereum</td><td><code> 0x2cCf230467FE7387674BAa657747F0B5485c7fEC</code></td></tr>
+    <tr><td>Ethereum</td><td><code>0x2cCf230467FE7387674BAa657747F0B5485c7fEC</code></td></tr>
     <tr><td>Solana</td><td><code>Supported</code></td></tr>
     <tr><td>Arbitrum</td><td><code>0x8442d68524217601ed126f6859694e4b0c7c66a1</code></td></tr>
     <tr><td>Avalanche</td><td><code>0x3952914628650Ca510404872D84DfF10A844C5B5</code></td></tr>
