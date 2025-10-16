@@ -12,9 +12,7 @@ categories: Reference
 
 ## CCTPWithExecutor
 
---8<-- 'text/products/reference/contract-addresses/cctp-v1-executor.md'
-
---8<-- 'text/products/reference/contract-addresses/cctp-v2-executor.md'
+--8<-- 'text/products/reference/contract-addresses/cctp-executor.md'
 
 ## NTTWithExecutor
 
