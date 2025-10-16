@@ -1,3 +1,4 @@
 title: Concepts
 nav:
 - 'Architecture': architecture.md
+- 'Flow of a Proposal': proposal-flow.md

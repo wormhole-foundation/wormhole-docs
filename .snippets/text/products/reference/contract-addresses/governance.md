@@ -12,3 +12,9 @@
     <tr><td>XRPL-EVM</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
     </tbody>
     </table>
+
+=== "Testnet"
+
+    <!--GOVERNANCE_TESTNET-->
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x9517F0164c1d089ad72E669E57b9088790966dBd</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x81b65A48DCAccBA04aCa3C055C4112b0715b90c0</code></td></tr><tr><td>Base Sepolia</td><td><code>0x720A59128B96Eda6EC2940c7899406E4dc56d0DC</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xcE1DE1eA4b040D324a07719043A6234C94fd0b5d</code></td></tr><tr><td>XRPL-EVM</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr></tbody></table>
+<!--GOVERNANCE_TESTNET-->

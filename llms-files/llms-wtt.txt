@@ -78,8 +78,8 @@ Choosing between the two models comes down to trade-offs. NTT offers an adaptabl
 | **Mechanism**          | Burn-and-mint or hub-and-spoke                                                                                                                                                       | Lock-and-mint                                                                                                                                                                                 |
 | **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant                                                                            | Preconfigured rate limiting and integrated Global Accountant                                                                                                                                  |
 | **Contract Ownership** | User retains ownership and upgrade authority on each chain                                                                                                                           | Managed via Wormhole Governance; wrapped token contracts are controlled by WTT (ownership is not transferable, and integrators cannot upgrade wrapped contracts)                              |
-| **Token Contracts**    | Native contracts owned by your protocol governance, maintain the same token across chains                                                                                           | Wrapped asset contract owned by the Wormhole WTT contract, creates a new wrapped version on the destination chain                                                                             |
-| **Integration**        | Customizable, flexible framework for advanced deployments (optional: deploy via [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} for EVM chains)                           | Straightforward, permissionless deployment                                                                                                                                                    |
+| **Token Contracts**    | Native contracts owned by your protocol governance, maintain the same token across chains                                                                                            | Wrapped asset contract owned by the Wormhole WTT contract, creates a new wrapped version on the destination chain                                                                             |
+| **Integration**        | Customizable, flexible framework for advanced deployments                                                                                                                            | Straightforward, permissionless deployment                                                                                                                                                    |
 | **User Experience**    | Seamless, users interact with the same token everywhere                                                                                                                              | Wrapped assets may need [explorer metadata updates](/docs/products/token-transfers/wrapped-token-transfers/faqs/#how-do-i-update-the-metadata-of-a-wrapped-token){target=\_blank} for clarity |
 | **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} | [Portal Bridge UI](https://portalbridge.com/){target=\_blank}                                                                                                                                 |
 
@@ -2667,6 +2667,13 @@ This flexibility allows you to enter any wallet address as the recipient rather 
 ![](/docs/images/products/wrapped-token-transfers/portal-bridge/faqs/portal-wallet-address.webp){.half}
 
 This field is optional. If left empty, the tokens will be sent to your connected wallet.
+
+## Why is the token that I deployed using the WTT / NTT framework not showing up in the Portal Bridge UI?
+
+While deploying tokens to new chains via Wormhole is fully permissionless, these tokens do not automatically show up on the [Portal](https://portalbridge.com/){target=\_blank} UI. Wormhole Contributors maintain discretion in configuring tokens for Portal to prevent abuse. You can quickly spin up your own UI for token transfers using Wormhole Connect. See the demo repositories to get started:
+
+- [**Basic Connect Demo**](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
+- [**NTT Connect Demo**](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
@@ -2793,6 +2800,8 @@ By leveraging Wormhole’s WTT, this guide shows you how to build an application
 Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the WTT protocol from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
 
 At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s WTT protocol.
+
+If your goal is to transfer native USDC between chains that support CCTP, we recommend using the [CCTP protocol](/docs/products/cctp-bridge/overview/){target=\_blank}. WTT is intended for other assets or for USDC on chains where CCTP is not available.
 
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
@@ -9047,7 +9056,8 @@ This page will guide you through the structural layout of these tools—how they
 
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
-- **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
+<!-- - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments). -->
+- **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface).
 - **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}<!--, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank},--> and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
@@ -12714,6 +12724,16 @@ categories: Reference
 | Unichain | 0x574b7864119c9223a9870ea614dc91a8ee09e512 |
 | XRPL-EVM | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
 
+=== "Testnet"
+
+    <!--GOVERNANCE_TESTNET-->
+| Ethereum Sepolia | 0x9517F0164c1d089ad72E669E57b9088790966dBd |
+| Arbitrum Sepolia | 0x81b65A48DCAccBA04aCa3C055C4112b0715b90c0 |
+| Base Sepolia | 0x720A59128B96Eda6EC2940c7899406E4dc56d0DC |
+| Optimism Sepolia | 0xcE1DE1eA4b040D324a07719043A6234C94fd0b5d |
+| XRPL-EVM | 0x574B7864119C9223A9870Ea614dC91A8EE09E512 |
+<!--GOVERNANCE_TESTNET-->
+
 !!! note
     Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
 
@@ -12999,7 +13019,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 | Celestia | CosmWasm | TIA | Discord Faucet |
 | Cosmos Hub | CosmWasm | ATOM | Discord Faucet |
-| Evmos | CosmWasm | TEVMOS | Official Evmos Faucet |
 | Injective | CosmWasm | INJ | Official Injective Faucet |
 | Kujira | CosmWasm | KUJI | Discord Faucet |
 | Neutron | CosmWasm | NTRN | List of Faucets |
