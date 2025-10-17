@@ -31,7 +31,7 @@ Because the network is open, multiple providers may compete to fulfill the same 
 Relay Providers may operate multiple wallets, each capable of performing execution or receiving payment. They can choose whether payments are collected per-wallet or directed to a central [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined by the Quoter.
 
 Providers should provide a public API that allows integrators to track request status — such as when a request was created, whether additional gas was added, the transaction that performed execution, and any issued refunds.  
-To improve transparency, providers may also publish a *ervice-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
+To improve transparency, providers may also publish a *Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
 
 !!!note
     The framework does not prevent repeated execution attempts. Providers should implement their own safeguards to avoid duplicate deliveries.
