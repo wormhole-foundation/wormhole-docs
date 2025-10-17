@@ -62,7 +62,7 @@ Wormhole currently supports two types of relayers:
 | Integration     | Executor contracts with request–quote model      | Custom backend service       |
 | Infrastructure  | None (on-chain only)                             | Full backend required, 24/7 availability |
 | User Experience | Seamless, broader chain support                  | App-specific optimizations possible |
-| Trade-offs      | Early rollout, limited initial availabilit       | High DevOps cost, must stay secure |
+| Trade-offs      | Early rollout, limited initial availability      | High DevOps cost, must stay secure |
 
 ### Executor
 
