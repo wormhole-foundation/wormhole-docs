@@ -59,7 +59,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     --8<-- "code/products/messaging/tutorials/replace-signatures/replace-sigs-1.json"
     ```
 
-4. **Install dependencies**: Add the required packages.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
 
     ```bash
     npm install @wormhole-foundation/sdk axios web3 tsx @types/node
