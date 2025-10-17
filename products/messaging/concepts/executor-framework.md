@@ -20,25 +20,18 @@ This modular structure enables permissionless, verifiable, and cost-efficient me
 
 ## Relay Provider
 
-A Relay Provider is an off-chain participant that performs message execution between chains. Each provider must operate at least one Quoter service that issues signed quotes describing how and when an execution will be performed.
+A Relay Provider is an off-chain service that performs message execution between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service.
 
-A quote specifies the source and destination chains, pricing, and an expiry time before which the Executor contract can accept the quote. Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+Each provider runs infrastructure that listens for execution requests emitted by the Executor contract on supported chains. When a request matches one of their quotes, the provider retrieves the associated VAA from the Guardians and performs the message execution on the destination chain.  
+
+Each provider must operate at least one Quoter service that issues signed quotes describing how and when an execution will be performed. A quote specifies the source and destination chains, pricing, and an expiry time before which the Executor contract can accept the quote. Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+
+Because the network is open, multiple providers may compete to fulfill the same request. Each quote defines the conditions under which a provider is willing to execute, enabling competitive pricing and redundancy across the system. All executions remain trust-minimized: the provider cannot alter or forge the message, since validity is enforced through the Wormhole VAA and Guardian verification process.
 
 Relay Providers may operate multiple wallets, each capable of performing execution or receiving payment. They can choose whether payments are collected per-wallet or directed to a central [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined by the Quoter.
 
-Providers should provide a public API that allows clients to check the status of an execution request and should return details such as when the request was initiated, any additional gas payments made, and the transaction in which execution occurred. It should also report whether a refund was issued, along with the transaction details, or the reason why a refund was not applicable.
-
-To improve transparency, each provider should define a Service-Level Agreement (SLA) describing:
-
-- Supported execution types.
-- Time limits for retrying execution attempts.
-- Conditions and timing of refunds.
-- Expected execution behavior and error handling.
-
-Providers must monitor the Executor contract on all supported chains for:
-
-- **Request for Execution**: emitted when a new execution request is created.
-- **Add Relay Instructions**: emitted when additional gas or payment is added to a request.
+Providers should provide a public API that allows integrators to track request status — such as when a request was created, whether additional gas was added, the transaction that performed execution, and any issued refunds.  
+To improve transparency, providers may also publish a *ervice-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
 
 !!!note
     The framework does not prevent repeated execution attempts. Providers should implement their own safeguards to avoid duplicate deliveries.

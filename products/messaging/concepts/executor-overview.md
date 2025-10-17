@@ -8,13 +8,15 @@ categories: Basics
 
 The Executor is a shared execution framework used to deliver Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
 
-The Executor replaces the need for application-specific relayers or custom delivery infrastructure. Instead, it provides a unified interface for submitting execution requests and a network of off-chain providers who can fulfill them. The Executor framework is designed to:
+The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-executor/tree/main){target=_blank} enables anyone to act as a relayer within a permissionless network that uses a request-and-quote model for delivering messages. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
 
-- Provide a common standard for cross-chain message execution.  
-- Reduce the need for custom infrastructure by using a shared contract.  
-- Allow third-party execution providers to quote and fulfill requests.  
-- Support market-based pricing, where quotes define delivery terms.  
-- Maintain security separation between integrators and executors.
+At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. The difference lies in how delivery requests are initiated and fulfilled.  
+
+1. Applications call a lightweight, stateless Executor contract on the source chain, providing the target chain, target address, and a signed fee quote from a chosen provider.  
+2. The contract emits an event representing the execution request, which any off-chain provider can detect.  
+3. A matching provider then retrieves the VAA and performs the delivery on the destination chain.
+
+By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework allows developers to integrate Wormhole relaying with broader chain compatibility and without deploying or maintaining their own relayers.
 
 ## Components 
 
