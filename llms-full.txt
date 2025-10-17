@@ -20307,6 +20307,9 @@ Deploying NTT on the Sui network follows a structured process:
      - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
 
+        !!! warning "Token Compatibility Requirement"
+            Your Sui token must be created with the legacy `CoinMetadata` type for NTT compatibility. Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
+
         ???- interface "Create and Deploy a Sui Token"
             This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
 
@@ -29771,6 +29774,7 @@ Before you begin, ensure you have the following:
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
  - Native tokens (testnet or mainnet) in Solana and Sui wallets.
  - A wallet with a private key, funded with native tokens (testnet or mainnet) for gas fees.
+ - **Sui token compatibility**: If you're working with custom Sui tokens, ensure they are created with the legacy `CoinMetadata` type for WTT. Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
 
 ## Supported Chains
 
