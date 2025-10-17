@@ -3,10 +3,6 @@ title: Executor Overview
 description: Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
 categories: Basics
 ---
-<!-- add links -->
-<!-- link this in protocol/relayer -->
-<!-- grammarly -->
-<!-- Trust model & how it interacts with the Guardian network-->
 
 # Executor
 
@@ -25,11 +21,11 @@ The Executor replaces the need for application-specific relayers or custom deliv
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
 - **Executor Contract**: The shared on-chain contract or program used to make execution requests. 
 - **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
-- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g. NTT, VAA v1, etc) to be executed on another chain. 
-- **Quoter**: An off-chain service that produces signed quotes. Each Relay Provider is identified by its Quoter’s EVM public key. 
+- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc) to be executed on another chain. 
+- **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
-For a deeper look at how these components interact, see the Executor framework page. <!-- add link -->
+For a deeper look at how these components interact, see the [Executor framework](docs/products/messaging/concepts/executor-framework/){target=\_blank}.
 
 ## Request Flow
 
@@ -90,8 +86,4 @@ sequenceDiagram
 
 ## Security Considerations
 
-The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is designed to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole v1 VAAs.
-
-## Next Steps
-
-Learn more about the on-chain and off-chain design in the Executor framework page. <!-- add link -->
+The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole v1 VAAs.
