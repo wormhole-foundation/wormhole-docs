@@ -60,7 +60,7 @@ requestExecution(
 )
 ```
 
-When `requestExecution`  is called, the contract checks that:
+When `requestExecution` is called, the contract checks that:
 
 - The quote’s source chain matches the chain of deployment.
 - The destination matches the provided destination chain.
