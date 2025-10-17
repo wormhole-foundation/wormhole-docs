@@ -25,6 +25,9 @@ Deploying NTT on the Sui network follows a structured process:
      - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
 
+        !!! warning "Token Compatibility Requirement"
+            Your Sui token must be created with the legacy `CoinMetadata` type for NTT compatibility. Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
+
         ???- interface "Create and Deploy a Sui Token"
             --8<-- 'text/products/native-token-transfers/get-started/deploy-sui.md'
 
