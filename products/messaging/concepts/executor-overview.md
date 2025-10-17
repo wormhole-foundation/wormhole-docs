@@ -5,6 +5,9 @@ categories: Basics
 ---
 <!-- add links -->
 <!-- link this in protocol/relayer -->
+<!-- grammarly -->
+<!-- Trust model & how it interacts with the Guardian network-->
+
 # Executor
 
 The Executor is a shared execution framework used to deliver Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
@@ -18,13 +21,15 @@ The Executor replaces the need for application-specific relayers or custom deliv
 - Maintain security separation between integrators and executors.
 
 ## Components 
-<!-- add link to architecture page -->
+
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
 - **Executor Contract**: The shared on-chain contract or program used to make execution requests. 
 - **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
 - **Execution Request**: A request generated on-chain or off-chain for a given message (e.g. NTT, VAA v1, etc) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. Each Relay Provider is identified by its Quoter’s EVM public key. 
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
+
+For a deeper look at how these components interact, see the Executor framework page. <!-- add link -->
 
 ## Request Flow
 
@@ -87,4 +92,6 @@ sequenceDiagram
 
 The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is designed to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole v1 VAAs.
 
-<!-- next steps -->
+## Next Steps
+
+Learn more about the on-chain and off-chain design in the Executor framework page. <!-- add link -->
