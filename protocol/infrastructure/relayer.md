@@ -6,6 +6,9 @@ categories: Basics
 
 # Relayers
 
+!!!warning 
+    The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to migrate to the [messaging executor framework](#executor).
+
 This page provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating multichain processes.
 
 Relaying refers to the process of delivering a cross-chain message, specifically a [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, from its source chain to the destination chain. In a multichain application, after a message is emitted on the source chain and signed by Wormhole’s Guardians, it must be carried over to the target chain’s contract – this is the relayer's responsibility. 
@@ -45,7 +48,7 @@ Choosing between manual and automated relaying often comes down to the specific 
 
 
 ## Wormhole Relayers
-<!-- add warning about standard relayer being deprecated -->
+
 To simplify the adoption of automated relaying, Wormhole provides its relayer infrastructure and APIs for developers to utilize. Wormhole Relayers is an umbrella term for Wormhole’s suite of relayer solutions, which currently includes the [messaging executor framework](#executor) and the [standard relayer](#standard-relayer) (currently being phased out), as well as the option of building [custom relayers](#custom-relaying) using Wormhole’s tooling. All of these approaches adhere to Wormhole’s core principle of trustless delivery – not trusting the Wormhole relayer operators any more than any blockchain infrastructure. Below is an overview of each option and its role in cross-chain dApp development.
 
 Wormhole currently supports three types of relayers:  
