@@ -23,7 +23,7 @@ By decentralizing message execution and supporting both EVM and non-EVM environm
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
 - **Executor Contract**: The shared on-chain contract or program used to make execution requests. 
 - **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
-- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc) to be executed on another chain. 
+- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
@@ -88,4 +88,4 @@ sequenceDiagram
 
 ## Security Considerations
 
-The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole v1 VAAs.
+The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs.

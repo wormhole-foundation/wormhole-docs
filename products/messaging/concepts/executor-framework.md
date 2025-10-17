@@ -70,8 +70,8 @@ If all checks pass, payment is transferred to the [`payeeAddress`](https://githu
 
 To remain lightweight and chain-agnostic, the Executor contract performs only minimal validation:
 
-- No signature verification: The client is responsible for verifying the quote before submission.
-- No message inspection: The contract does not parse or validate the message payload.
-- No payment enforcement: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
+- **No signature verification**: The client is responsible for verifying the quote before submission.
+- **No message inspection**: The contract does not parse or validate the message payload.
+- **No payment enforcement**: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
 
 This minimal design keeps the contract generic, inexpensive, and compatible with multiple message formats and future Wormhole protocols.
