@@ -115,23 +115,27 @@ Here, you will use ethers to parse the ABI-encoded return values and scale the r
 
 ## Price Widget
 
-1. Create `src/components/PriceWidget.tsx`:
+In this section, you will build a client component that fetches the signed price from your API, renders it with a freshness badge, and refreshes on an interval without overlapping requests.
 
-    ```ts title="PriceWidget.tsx"
+1. **Create the widget component**: Create a client component that calls `/api/queries`, renders the current price, shows the last update time and block number, and displays a freshness badge based on the heartbeat. It uses a ref to avoid overlapping requests and a timed interval to refresh automatically.
+
+    ```ts title="src/components/PriceWidget.tsx"
     ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-7.ts"
     ```
 
-2. Add it to the home page at `src/app/page.tsx`:
+2. **Add the widget to the home page**: Render the widget on the home page with a simple heading and container so users see the price as soon as they load the app.
 
-    ```ts title="page.tsx"
+    ```ts title="src/app/page.tsx"
     ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-8.ts"
     ```
 
-3. Run the app:
+## Run the App
 
-    ```bash
-    npm run dev
-    ```
+Start the development server and confirm that the live widget displays data correctly:
+
+```bash
+npm run dev
+```
 
 Open [http://localhost:3000](http://localhost:3000) to see your app running. You should see the widget displaying the current ETH/USD price, along with the last update time, the block number, and a freshness badge showing whether the data is still within its heartbeat window.
 
