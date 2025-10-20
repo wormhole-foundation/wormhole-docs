@@ -82,7 +82,7 @@ In this section, you will create a new Next.js project, install the required dep
 
 In this section, you will implement the backend that powers the widget. You will encode the Witnet call, create and send a Wormhole Query, decode the signed response, and expose an API route for the frontend.
 
-1. **Encode the Witnet call and build the request**: Encode the function call for Witnet’s Price Router using the feed ID and package it into a Wormhole Query request. This query will be anchored to the latest block so that the data you receive is verifiably tied to a recent snapshot of the chain state. This helper will return a serialized request that can be sent to the Wormhole Query Proxy.
+1. **Encode the Witnet call and build the request**: Encode the function call for Witnet's Price Router using the feed ID and package it into a Wormhole Query request. This query will be anchored to the latest block so that the data you receive is verifiably tied to a recent snapshot of the chain state. This helper will return a serialized request that can be sent to the Wormhole Query Proxy.
 
     ```ts title="src/lib/queries/buildRequest.ts"
     ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-2.ts"
@@ -95,7 +95,7 @@ In this section, you will implement the backend that powers the widget. You will
     ```
 
 3. **Decode and verify the response**: Once you receive the signed response, you will decode it to extract the Witnet price data.
-Here, you will use ethers to parse the ABI-encoded return values and scale the raw integer to a readable decimal value based on the feed’s configured number of decimals. This function will output a clean result containing the latest price, timestamp, and transaction reference from the Witnet feed.
+Here, you will use ethers to parse the ABI-encoded return values and scale the raw integer to a readable decimal value based on the feed's configured number of decimals. This function will output a clean result containing the latest price, timestamp, and transaction reference from the Witnet feed.
 
     ```ts title="src/lib/queries/decode.ts"
     ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-4.ts"
@@ -150,11 +150,11 @@ Your app should look like this:
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the Wormhole’s Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the Wormhole's Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
 
 ## Conclusion
 
-You’ve successfully built a live crypto price widget that fetches verified data from Wormhole Queries and Witnet. Your app encodes a feed request, sends it through the Guardian network for verification, and displays the latest signed price in a simple, responsive widget.
+You've successfully built a live crypto price widget that fetches verified data from Wormhole Queries and Witnet. Your app encodes a feed request, sends it through the Guardian network for verification, and displays the latest signed price in a simple, responsive widget.
 
 This same flow can be extended to fetch other types of on-chain data or integrate multiple feeds for dashboards and analytics tools.
 
