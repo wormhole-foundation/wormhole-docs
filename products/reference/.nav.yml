@@ -4,6 +4,7 @@ nav:
 - 'Contract Addresses': contract-addresses.md
 - 'Wormhole Finality': consistency-levels.md
 - 'Wormhole-Formatted Addresses': wormhole-formatted-addresses.md
+- 'Executor Addresses': executor-addresses.md
 - 'Supported Networks': supported-networks.md
 - 'Testnet Faucets': testnet-faucets.md
 - 'Glossary': glossary.md

@@ -53,7 +53,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     --8<-- "code/products/messaging/guides/wormholescan-api/whscan-1.json"
     ```
 
-4. **Install dependencies**: add the required packages.
+4. **Install dependencies**: add the required packages. This guide uses the SDK version `3.x`.
 
     ```bash
     npm install @wormhole-foundation/sdk axios

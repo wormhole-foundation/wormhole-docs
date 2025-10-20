@@ -226,7 +226,7 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
 
     ```bash
     npm install @wormhole-foundation/sdk
@@ -261,12 +261,7 @@ Before you begin, ensure you have the following:
 // Platform-specific modules
 import EvmPlatformLoader from '@wormhole-foundation/sdk/evm';
 import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
-import {
-  ethers,
-  Wallet,
-  JsonRpcProvider,
-  Signer as EthersSigner,
-} from 'ethers';
+import { Wallet, JsonRpcProvider, Signer as EthersSigner } from 'ethers';
 
 /**
  * The required value (SEPOLIA_PRIVATE_KEY) must
@@ -300,7 +295,7 @@ async function main() {
     const wallet = new Wallet(SEPOLIA_PRIVATE_KEY);
     ethersJsSigner = wallet.connect(ethersJsProvider);
     console.log(
-      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`,
+      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`
     );
   } catch (error) {
     console.error('Failed to get Ethers.js signer and provider:', error);
@@ -323,7 +318,7 @@ async function main() {
   try {
     sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
     console.log(
-      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`,
+      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`
     );
   } catch (error) {
     console.error('Failed to get Wormhole SDK Signer:', error);
@@ -347,30 +342,30 @@ async function main() {
     // Generate the unsigned transactions
     const whSignerAddress: NativeAddress<chain> = toNative(
       sdkSigner.chain(),
-      sdkSigner.address(),
+      sdkSigner.address()
     );
     console.log(
       `Preparing to publish message from ${whSignerAddress.toString()} on ${
         sourceChainContext.chain
-      }...`,
+      }...`
     );
 
     const unsignedTxs: AsyncGenerator<unsignedtransaction<network, chain="">&gt; =
       coreProtocolClient.publishMessage(
-        whSignerAddress, 
+        whSignerAddress,
         payload,
         messageNonce,
-        consistencyLevel,
+        consistencyLevel
       );
 
     // Sign and send the transactions
     console.log(
-      'Signing and sending the message publication transaction(s)...',
+      'Signing and sending the message publication transaction(s)...'
     );
     const txIds: TransactionId[] = await signSendWait(
       sourceChainContext,
       unsignedTxs,
-      sdkSigner,
+      sdkSigner
     );
 
     if (!txIds || txIds.length === 0) {
@@ -381,17 +376,17 @@ async function main() {
 
     console.log(`Primary transaction ID for parsing: ${primaryTxid}`);
     console.log(
-      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`,
+      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`
     );
 
     console.log(
-      '\nWaiting a few seconds for transaction to propagate before parsing...',
+      '\nWaiting a few seconds for transaction to propagate before parsing...'
     );
     await new Promise((resolve) =&gt; setTimeout(resolve, 8000));
 
     // Retrieve VAA identifiers
     console.log(
-      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`,
+      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`
     );
     const messageIds: WormholeMessageId[] =
       await sourceChainContext.parseTransaction(primaryTxid);
@@ -405,13 +400,13 @@ async function main() {
       console.log('-----------------------------------------');
     } else {
       console.error(
-        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`,
+        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`
       );
     }
   } catch (error) {
     console.error(
       'Error during message publishing or VAA identifier retrieval:',
-      error,
+      error
     );
     if (error instanceof Error &amp;&amp; error.stack) {
       console.error('Stack Trace:', error.stack);
@@ -425,7 +420,8 @@ main().catch((e) =&gt; {
     console.error('Stack Trace:', e.stack);
   }
   process.exit(1);
-});</unsignedtransaction<network,></chain></network></network,>
+});
+</unsignedtransaction<network,></chain></network></network,>
     ```
 
     This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
@@ -1777,7 +1773,7 @@ categories: Basics
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
 
-Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two Testnets—Avalanche Fuji and Celo Alfajores—and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
+Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two testnets, Avalanche Fuji and Celo Alfajores, and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
 
 By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the Wormhole relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
@@ -4371,7 +4367,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 }
     ```
 
-4. **Install dependencies**: Add the required packages.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
 
     ```bash
     npm install @wormhole-foundation/sdk axios web3 tsx @types/node
