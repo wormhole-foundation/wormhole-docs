@@ -17,7 +17,6 @@ Wormhole Queries make it possible to fetch verified off-chain data directly on-c
 Before starting, make sure you have the following set up:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your system
- - [Next.js](https://nextjs.org/docs/app/getting-started/installation){target=\_blank} project environment (you can use an existing one or create a new app)
  - A [Wormhole Queries API key](/docs/products/queries/get-started/#request-an-api-key){target=\_blank}
  - Access to an EVM-compatible [testnet RPC](https://chainlist.org/?testnets=true){target=\_blank}, such as Arbitrum Sepolia
  - A [Witnet data feed identifier](https://docs.witnet.io/smart-contracts/witnet-data-feeds/addresses){target=\_blank} (this tutorial uses the ETH/USD feed as an example)
@@ -27,70 +26,65 @@ Before starting, make sure you have the following set up:
 
 ## Project Setup
 
-1. Create a new Next.js app:
+1. **Create a new Next.js app**: Enable TypeScript, Tailwind CSS, and the `src/` directory when prompted. Other options are up to you. 
 
     ```bash
     npx create-next-app@latest live-crypto-prices
     cd live-crypto-prices
     ```
 
-    Enable TypeScript, Tailwind CSS, and the `src/` directory when prompted. Other options are up to you. 
-
-2. Install dependencies:
+2. **Install dependencies**: Add the required packages.
 
     ```bash
     npm install @wormhole-foundation/wormhole-query-sdk axios ethers
     ```
 
-3. Start the dev server to verify the base app:
+    - [`@wormhole-foundation/wormhole-query-sdk`](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}: Build, send, and decode Wormhole Queries.
+    - [`axios`](https://www.npmjs.com/package/axios){target=\_blank}: Make JSON-RPC and Query Proxy requests.
+    - [`ethers`](https://www.npmjs.com/package/ethers){target=\_blank}: Handle ABI encoding and decoding for Witnet calls.
 
-    ```bash
-    npm run dev
+3. **Add environment variables**: Create a file named `.env.local` in the project root.
+
+    ```env
+    # Wormhole Query Proxy
+    QUERY_URL=https://testnet.query.wormhole.com/v1/query
+    QUERIES_API_KEY=INSERT_API_KEY
+
+    # Chain and RPC
+    WORMHOLE_CHAIN_ID=10003
+    RPC_URL=https://arbitrum-sepolia.drpc.org
+
+    # Witnet Price Router on Arbitrum Sepolia
+    CALL_TO=0x1111AbA2164AcdC6D291b08DfB374280035E1111
+
+    # ETH/USD feed on Witnet, six decimals
+    FEED_ID4=0x3d15f701
+    FEED_DECIMALS=6
+    FEED_HEARTBEAT_SEC=86400
     ```
 
-    Open [http://localhost:3000](http://localhost:3000) to see the default Next.js welcome page.
+    !!! warning
+        Make sure to add the `.env.local` file to your `.gitignore` to exclude it from version control. Never commit API keys to your repository.
 
-## Configure the Environment
+    You can choose a different Witnet feed or network if you prefer. Just update `CALL_TO`, `FEED_ID4`, `FEED_DECIMALS`, and `WORMHOLE_CHAIN_ID`.
+    
+    They allow the app to fetch a live ETH/USD price with proper scaling, timestamps, and a signed response.
 
-Create a file named `.env.local` in the project root, then paste the following values. These defaults use Arbitrum Sepolia as the example network; you can replace them later with any supported chain or Witnet feed.
+4. **Add a configuration file**: Create `src/lib/config.ts` to access environment variables throughout the app.
 
-```env
-# Wormhole Query Proxy
-QUERY_URL=https://testnet.query.wormhole.com/v1/query
-QUERIES_API_KEY=INSERT_API_KEY
+    ```typescript
+    export const QUERY_URL = process.env.QUERY_URL!;
+    export const QUERIES_API_KEY = process.env.QUERIES_API_KEY!;
+    export const RPC_URL = process.env.RPC_URL!;
 
-# Chain and RPC
-WORMHOLE_CHAIN_ID=10003
-RPC_URL=https://arbitrum-sepolia.drpc.org
-
-# Witnet Price Router on Arbitrum Sepolia
-CALL_TO=0x1111AbA2164AcdC6D291b08DfB374280035E1111
-
-# ETH/USD feed on Witnet, six decimals
-FEED_ID4=0x3d15f701
-FEED_DECIMALS=6
-FEED_HEARTBEAT_SEC=86400
-```
-
-These values will let the app fetch a live ETH, USD price with proper scaling, timestamps, and a signed response.
-
-Next, create a small configuration file at `src/lib/config.ts` to access these environment variables in your code easily:
-
-```typescript
-export const QUERY_URL = process.env.QUERY_URL!;
-export const QUERIES_API_KEY = process.env.QUERIES_API_KEY!;
-export const RPC_URL = process.env.RPC_URL!;
-
-export const DEFAULTS = {
-  chainId: Number(process.env.WORMHOLE_CHAIN_ID || 0),
-  to: process.env.CALL_TO || '',
-  feedId4: process.env.FEED_ID4 || '',
-  feedDecimals: Number(process.env.FEED_DECIMALS || 0),
-  feedHeartbeatSec: Number(process.env.FEED_HEARTBEAT_SEC || 0),
-};
-```
-
-You can choose a different Witnet feed or network if you prefer. Just update `CALL_TO`, `FEED_ID4`, `FEED_DECIMALS`, and `WORMHOLE_CHAIN_ID`, then restart the dev server so the new environment values are loaded.
+    export const DEFAULTS = {
+    chainId: Number(process.env.WORMHOLE_CHAIN_ID || 0),
+    to: process.env.CALL_TO || '',
+    feedId4: process.env.FEED_ID4 || '',
+    feedDecimals: Number(process.env.FEED_DECIMALS || 0),
+    feedHeartbeatSec: Number(process.env.FEED_HEARTBEAT_SEC || 0),
+    };
+    ```
 
 ## Build the Server Helpers
 
@@ -459,4 +453,10 @@ If you are ready, next we can create the PriceWidget component that calls this r
     npm run dev
     ```
 
-Open [http://localhost:3000](http://localhost:3000), you should see the price, the last update time, and a freshness badge that flips to stale when the heartbeat window is exceeded.
+Open [http://localhost:3000](http://localhost:3000) to see your app running. You should see the widget displaying the current ETH/USD price, along with the last update time, the block number, and a freshness badge showing whether the data is still within its heartbeat window.
+
+The price will not update every few seconds, because Witnet feeds refresh only when a particular time or price deviation threshold is reached. This ensures data remains reliable and prevents unnecessary network updates.
+
+Your app should look like this:
+
+![Frontend of Queries Live Prices Widget](/docs/images/products/queries/tutorials/live-crypto-prices/live-crypto-prices-1.webp){.half}
