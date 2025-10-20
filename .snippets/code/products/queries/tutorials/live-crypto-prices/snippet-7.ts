@@ -5,11 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 // Expected API success shape from /api/queries
 type ApiOk = {
   ok: true;
-  asset: string;
   price: string;
   updatedAt: number | string;
   blockNumber: string;
-  ageSec: number;
+  blockTimeMicros: number;
+  decimals: number;
   stale: boolean;
 };
 

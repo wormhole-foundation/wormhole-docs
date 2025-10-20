@@ -139,7 +139,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to see your app running. You should see the widget displaying the current ETH/USD price, along with the last update time, the block number, and a freshness badge showing whether the data is still within its heartbeat window.
 
-The price will not update every few seconds, because Witnet feeds refresh only when a particular time or price deviation threshold is reached. This ensures data remains reliable and prevents unnecessary network updates.
+The price may not update every few seconds, because Witnet feeds refresh only when a particular time or price deviation threshold is reached. This ensures data remains reliable and prevents unnecessary network updates.
 
 Your app should look like this:
 
