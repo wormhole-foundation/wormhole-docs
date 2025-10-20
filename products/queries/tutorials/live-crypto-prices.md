@@ -50,5 +50,45 @@ Before starting, make sure you have the following set up:
 
     Open [http://localhost:3000](http://localhost:3000) to see the default Next.js welcome page.
 
+## Configure environment
 
+Create a file named `.env.local` in the project root, then paste the following values. These defaults use Arbitrum Sepolia as the example network; you can replace them later with any supported chain or Witnet feed.
+
+```env
+# Wormhole Query Proxy
+QUERY_URL=https://testnet.query.wormhole.com/v1/query
+QUERIES_API_KEY=INSERT_API_KEY
+
+# Chain and RPC
+WORMHOLE_CHAIN_ID=10003
+RPC_URL=https://arbitrum-sepolia.drpc.org
+
+# Witnet Price Router on Arbitrum Sepolia
+CALL_TO=0x1111AbA2164AcdC6D291b08DfB374280035E1111
+
+# ETH/USD feed on Witnet, six decimals
+FEED_ID4=0x3d15f701
+FEED_DECIMALS=6
+FEED_HEARTBEAT_SEC=86400
+```
+
+These values will let the app fetch a live ETH, USD price with proper scaling, timestamps, and a signed response.
+
+Next, create a small configuration file at `src/lib/config.ts` to access these environment variables in your code easily:
+
+```typescript
+export const QUERY_URL = process.env.QUERY_URL!;
+export const QUERIES_API_KEY = process.env.QUERIES_API_KEY!;
+export const RPC_URL = process.env.RPC_URL!;
+
+export const DEFAULTS = {
+  chainId: Number(process.env.WORMHOLE_CHAIN_ID || 0),
+  to: process.env.CALL_TO || '',
+  feedId4: process.env.FEED_ID4 || '',
+  feedDecimals: Number(process.env.FEED_DECIMALS || 0),
+  feedHeartbeatSec: Number(process.env.FEED_HEARTBEAT_SEC || 0),
+};
+```
+
+You can choose a different Witnet feed or network if you prefer. Just update `CALL_TO`, `FEED_ID4`, `FEED_DECIMALS`, and `WORMHOLE_CHAIN_ID`, then restart the dev server so the new environment values are loaded.
 
