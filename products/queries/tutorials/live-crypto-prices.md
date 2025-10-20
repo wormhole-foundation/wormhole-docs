@@ -25,3 +25,30 @@ Before starting, make sure you have the following set up:
 !!! note
     You can use a different Witnet feed or testnet if you prefer. Make sure to update the environment variables later in this tutorial with the correct values for your setup.
 
+## Project Setup
+
+1. Create a new Next.js app:
+
+    ```bash
+    npx create-next-app@latest live-crypto-prices
+    cd live-crypto-prices
+    ```
+
+    Enable TypeScript, Tailwind CSS, and the `src/` directory when prompted. Other options are up to you. 
+
+2. Install dependencies:
+
+    ```bash
+    npm install @wormhole-foundation/wormhole-query-sdk axios ethers
+    ```
+
+3. Start the dev server to verify the base app:
+
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) to see the default Next.js welcome page.
+
+
+
