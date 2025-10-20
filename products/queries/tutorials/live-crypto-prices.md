@@ -74,7 +74,7 @@ In this section, you will create a new Next.js project, install the required dep
 
 4. **Add a configuration file**: Create `src/lib/config.ts` to access environment variables throughout the app.
 
-    ```ts title="config.ts"
+    ```ts title="src/lib/config.ts"
     ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-1.ts"
     ```
 
@@ -145,9 +145,12 @@ Your app should look like this:
 
 ![Frontend of Queries Live Prices Widget](/docs/images/products/queries/tutorials/live-crypto-prices/live-crypto-prices-1.webp){.half}
 
+???- tip "Troubleshooting"
+    If you encounter a “Request failed with status code 403” error, it likely means your Queries API key is missing or incorrect. Check the `QUERIES_API_KEY` value in your `.env.local` file and restart the development server after updating it.
+
 ## Resources
 
-You can explore the complete project and find all related scripts and configuration files in Wormhole’s Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the Wormhole’s Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
 
 ## Conclusion
 
