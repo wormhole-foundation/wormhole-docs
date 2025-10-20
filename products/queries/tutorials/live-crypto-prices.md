@@ -74,7 +74,7 @@ In this section, you will create a new Next.js project, install the required dep
 
 4. **Add a configuration file**: Create `src/lib/config.ts` to access environment variables throughout the app.
 
-    ```typescript
+    ```ts title="config.ts"
     export const QUERY_URL = process.env.QUERY_URL!;
     export const QUERIES_API_KEY = process.env.QUERIES_API_KEY!;
     export const RPC_URL = process.env.RPC_URL!;
@@ -88,11 +88,13 @@ In this section, you will create a new Next.js project, install the required dep
     };
     ```
 
-## Build the Server Helpers
+## Build the Server Logic
 
-1. Encode the Witnet call and build the request. Create a `src/lib/queries/buildRequest.ts` file:
+In this section, you will implement the backend that powers the widget. You will encode the Witnet call, create and send a Wormhole Query, decode the signed response, and expose an API route for the frontend.
 
-    ```typescript
+1. **Encode the Witnet call and build the request**: Encode the function call for Witnet’s Price Router using the feed ID and package it into a Wormhole Query request. This query will be anchored to the latest block so that the data you receive is verifiably tied to a recent snapshot of the chain state. This helper will return a serialized request that can be sent to the Wormhole Query Proxy.
+
+    ```ts title="src/lib/queries/buildRequest.ts"
     import axios from 'axios';
     import {
     EthCallQueryRequest,
@@ -141,11 +143,9 @@ In this section, you will create a new Next.js project, install the required dep
     }
     ```
 
-    This module encodes `latestPrice(bytes4)` with your feed id, anchors the call to the latest block, and serializes a single chain `EthCallQueryRequest`.
+2. **Send the serialized request to the Query Proxy**: Next, you will send the serialized query to the Wormhole Query Proxy, which forwards it to the Guardians for verification. The proxy returns a signed response containing the requested data and proof that the Guardians verified it. This step ensures that all the data your app consumes comes from a trusted and authenticated source.
 
-2. Post the serialized query to the Query Proxy. Create a `src/lib/queries/client.ts` file:
-
-    ```typescript
+    ```ts title="src/lib/queries/client.ts"
     import axios from 'axios';
 
     export async function postQuery({
@@ -172,11 +172,10 @@ In this section, you will create a new Next.js project, install the required dep
     }
     ```
 
-    This sends your serialized request to the Proxy and returns the raw payload that contains the Guardian signed response.
+3. **Decode and verify the response**: Once you receive the signed response, you will decode it to extract the Witnet price data.
+Here, you will use ethers to parse the ABI-encoded return values and scale the raw integer to a readable decimal value based on the feed’s configured number of decimals. This function will output a clean result containing the latest price, timestamp, and transaction reference from the Witnet feed.
 
-3. Parse and decode the response. Create a `src/lib/queries/decode.ts` file:
-
-    ```typescript
+    ```ts title="src/lib/queries/decode.ts"
     import { EthCallQueryResponse, QueryResponse } from '@wormhole-foundation/wormhole-query-sdk';
     import { Interface, Result } from 'ethers';
 
@@ -221,102 +220,90 @@ In this section, you will create a new Next.js project, install the required dep
     }
     ```
 
-    This parses the first `EthCall` result from the proxy response, decodes Witnet’s tuple, and scales the integer value to a human readable string.
+4. **Add Shared Types**: Create a `src/lib/types.ts` file to define the structure of your API responses. These types ensure consistency between the backend and frontend, keeping the data shape predictable and type safe. You will import these types in both the API route and the widget to keep your responses aligned across the app.
 
-## Add Shared Types
+    ```ts title="src/lib/types.ts"
+    export interface QueryApiSuccess {
+        ok: true;
+        blockNumber: string;
+        blockTimeMicros: string;
+        price: string;
+        decimals: number;
+        updatedAt: string;
+        stale?: boolean;
+    }
 
-Create a `src/lib/types.ts` file:
+    export interface QueryApiError {
+        ok: false;
+        error: string;
+    }
+    export type QueryApiResponse = QueryApiSuccess | QueryApiError;
+    ```
 
-```typescript
-export interface QueryApiSuccess {
-	ok: true;
-	blockNumber: string;
-	blockTimeMicros: string;
-	price: string;
-	decimals: number;
-	updatedAt: string;
-	stale?: boolean;
-}
+5. **Add an API route for the frontend**: Finally, expose an API endpoint at `/api/queries`. This route ties everything together: it builds the query, sends it, decodes the response, and returns a structured JSON payload with the current price, timestamp, block number, and a stale flag that indicates whether the feed data is still fresh. The frontend widget will call this endpoint every few seconds to display the live, verified price data.
 
-export interface QueryApiError {
-	ok: false;
-	error: string;
-}
-export type QueryApiResponse = QueryApiSuccess | QueryApiError;
-```
+    ```ts title="src/app/api/queries/route.ts"
+    import { NextResponse } from 'next/server';
+    import { buildEthCallRequest, encodeWitnetLatestPrice } from '@/lib/queries/buildRequest';
+    import { postQuery } from '@/lib/queries/client';
+    import { QUERY_URL, QUERIES_API_KEY, RPC_URL, DEFAULTS } from '@/lib/config';
+    import { parseFirstEthCallResult, decodeWitnetLatestPrice } from '@/lib/queries/decode';
+    import type { QueryApiSuccess, QueryApiError } from '@/lib/types';
 
-These types ensure that both your API route and frontend stay consistent.
+    export async function GET() {
+        const t0 = Date.now();
+        try {
+            const data = encodeWitnetLatestPrice(DEFAULTS.feedId4);
 
-## Create the API Route
+            const bytes = await buildEthCallRequest({
+                rpcUrl: RPC_URL,
+                chainId: DEFAULTS.chainId,
+                to: DEFAULTS.to,
+                data,
+            });
+            const t1 = Date.now();
 
-Create a `src/app/api/queries/route.ts` file:
+            const proxyResponse = await postQuery({
+                queryUrl: QUERY_URL,
+                apiKey: QUERIES_API_KEY,
+                bytes,
+                timeoutMs: 25_000,
+            });
+            const t2 = Date.now();
 
-```typescript
-import { NextResponse } from 'next/server';
-import { buildEthCallRequest, encodeWitnetLatestPrice } from '@/lib/queries/buildRequest';
-import { postQuery } from '@/lib/queries/client';
-import { QUERY_URL, QUERIES_API_KEY, RPC_URL, DEFAULTS } from '@/lib/config';
-import { parseFirstEthCallResult, decodeWitnetLatestPrice } from '@/lib/queries/decode';
-import type { QueryApiSuccess, QueryApiError } from '@/lib/types';
+            const { chainResp, raw } = parseFirstEthCallResult(proxyResponse);
+            const { price, timestampSec } = decodeWitnetLatestPrice(raw, DEFAULTS.feedDecimals);
 
-export async function GET() {
-	const t0 = Date.now();
-	try {
-		const data = encodeWitnetLatestPrice(DEFAULTS.feedId4);
+            // Log timings so we can see which leg is slow
+            console.log(`RPC ${t1 - t0}ms → Proxy ${t2 - t1}ms`);
 
-		const bytes = await buildEthCallRequest({
-			rpcUrl: RPC_URL,
-			chainId: DEFAULTS.chainId,
-			to: DEFAULTS.to,
-			data,
-		});
-		const t1 = Date.now();
+            const heartbeat = Number(process.env.FEED_HEARTBEAT_SEC || 0);
+            const stale = heartbeat > 0 && Date.now() / 1000 - timestampSec > heartbeat;
 
-		const proxyResponse = await postQuery({
-			queryUrl: QUERY_URL,
-			apiKey: QUERIES_API_KEY,
-			bytes,
-			timeoutMs: 25_000,
-		});
-		const t2 = Date.now();
-
-		const { chainResp, raw } = parseFirstEthCallResult(proxyResponse);
-		const { price, timestampSec } = decodeWitnetLatestPrice(raw, DEFAULTS.feedDecimals);
-
-		// Log timings so we can see which leg is slow
-		console.log(`RPC ${t1 - t0}ms → Proxy ${t2 - t1}ms`);
-
-		const heartbeat = Number(process.env.FEED_HEARTBEAT_SEC || 0);
-		const stale = heartbeat > 0 && Date.now() / 1000 - timestampSec > heartbeat;
-
-		const body: QueryApiSuccess = {
-			ok: true,
-			blockNumber: chainResp.blockNumber.toString(),
-			blockTimeMicros: chainResp.blockTime.toString(),
-			price,
-			decimals: DEFAULTS.feedDecimals,
-			updatedAt: new Date(timestampSec * 1000).toISOString(),
-			stale,
-		};
-		return NextResponse.json(body);
-	} catch (e: unknown) {
-		const message = e instanceof Error ? e.message : String(e);
-		console.error('Error in /api/queries:', message);
-		const body: QueryApiError = { ok: false, error: message };
-		return NextResponse.json(body, { status: 500 });
-	}
-}
-```
-
-That gives you a clean endpoint at `/api/price` which returns a small JSON payload with the price, timestamp, block number, and a stale flag based on the feed heartbeat.
-
-If you are ready, next we can create the PriceWidget component that calls this route, renders the value, and auto refreshes on an interval.
+            const body: QueryApiSuccess = {
+                ok: true,
+                blockNumber: chainResp.blockNumber.toString(),
+                blockTimeMicros: chainResp.blockTime.toString(),
+                price,
+                decimals: DEFAULTS.feedDecimals,
+                updatedAt: new Date(timestampSec * 1000).toISOString(),
+                stale,
+            };
+            return NextResponse.json(body);
+        } catch (e: unknown) {
+            const message = e instanceof Error ? e.message : String(e);
+            console.error('Error in /api/queries:', message);
+            const body: QueryApiError = { ok: false, error: message };
+            return NextResponse.json(body, { status: 500 });
+        }
+    }
+    ```
 
 ## Price Widget
 
 1. Create `src/components/PriceWidget.tsx`:
 
-    ```typescript
+    ```ts title="PriceWidget.tsx"
     'use client';
 
     import { useEffect, useRef, useState } from 'react';
@@ -436,7 +423,7 @@ If you are ready, next we can create the PriceWidget component that calls this r
 
 2. Add it to the home page at `src/app/page.tsx`:
 
-    ```typescript
+    ```ts title="page.tsx"
     import PriceWidget from '@/components/PriceWidget';
 
     export default function Page() {
