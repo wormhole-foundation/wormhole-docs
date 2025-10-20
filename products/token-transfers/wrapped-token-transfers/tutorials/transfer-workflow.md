@@ -37,6 +37,7 @@ Before you begin, ensure you have the following:
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
  - Native tokens (testnet or mainnet) in Solana and Sui wallets.
  - A wallet with a private key, funded with native tokens (testnet or mainnet) for gas fees.
+ - **Sui token compatibility**: If you're working with custom Sui tokens, ensure they are created with the legacy `CoinMetadata` type for WTT. Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
 
 ## Supported Chains
 
@@ -54,7 +55,7 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the required dependencies.
+2. **Install dependencies**: Install the required dependencies. This tutorial uses the SDK version `3.x`:
 
     ```bash
     npm install @wormhole-foundation/sdk tsx

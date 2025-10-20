@@ -1,0 +1,54 @@
+=== "Mainnet v1"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
+    <tr><td>Ethereum</td><td><code>0xeEFb36c4458dA7798742cf038C5c27E07aB9c51E</code></td></tr>
+    <tr><td>Solana</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr>
+    <tr><td>Arbitrum</td><td><code>0x55Dd4466BFec29527C54A72fd306efb54e5F7027</code></td></tr>
+    <tr><td>Avalanche</td><td><code>0xd331819478b74d8a7B8EA631118B4a4e50F6EbD1</code></td></tr>
+    <tr><td>Aptos</td><td><code>0x9f5ad7d5c2d067ca4abb6d8d6aba44c15596b71a1def8eb4596089b527bb2eb1</code></td></tr>
+    <tr><td>Base</td><td><code>0x08FEB1838C3d7F8509DA1EBb9a11a94c1f006cb2</code></td></tr>
+    <tr><td>Optimism</td><td><code>0xBC6f9d1CBa49DB365728478cefa02F6743617637</code></td></tr>
+    <tr><td>Polygon</td><td><code>0x007995f2AEcfBC745f20a7AE8D3a02c0EbF46264</code></td></tr>
+    <tr><td>Unichain</td><td><code>0xA7aBDb8f2108901c586543BD5e10E4fA263F4A47</code></td></tr></tbody></table>
+
+=== "Testnet v1"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
+    <tr><td>Ethereum Sepolia</td><td><code>0x0F78904c750801391EbBf308181e9d6fc892B0f3</code></td></tr>
+    <tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr>
+    <tr><td>Arbitrum Sepolia</td><td><code>0xc9c0A1030331D5dA0599D243eFd4682D906066D9</code></td></tr>
+    <tr><td>Avalanche Fuji</td><td><code>0x2cfEC91B50f657Cc86Ec693542527ac3e03bF742</code></td></tr>
+    <tr><td>Aptos</td><td><code>0x14a12d1fd6ef371b70c2113155534ec152ec7f779e281b54866c796c9a4a58d3?</code></td></tr>
+    <tr><td>Base Sepolia</td><td><code>0x4983C6bD3bB7DA9EECe71cfa7AE4C67CAbf362F0</code></td></tr>
+    <tr><td>Optimism Sepolia</td><td><code>0x1F2e73E9AF5eecEdAF03b4F295f83BD587290867</code></td></tr></tbody></table>
+
+=== "Mainnet v2"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
+    <tr><td>Ethereum</td><td><code>0x2cCf230467FE7387674BAa657747F0B5485c7fEC</code></td></tr>
+    <tr><td>Solana</td><td><code>Supported</code></td></tr>
+    <tr><td>Arbitrum</td><td><code>0x8442d68524217601ed126f6859694e4b0c7c66a1</code></td></tr>
+    <tr><td>Avalanche</td><td><code>0x3952914628650Ca510404872D84DfF10A844C5B5</code></td></tr>
+    <tr><td>Base</td><td><code>0xbd8d42f40a11b37bD1b3770D754f9629F7cd5679</code></td></tr>
+    <tr><td>Codex</td><td><code>0xE1Df8709CAa70c5eCEa0c27871cA7029Fcb0A0bd</code></td></tr>
+    <tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>0xACD054f83c0b852d02503191e2c26527A7E72B1f</code></td></tr>
+    <tr><td>Ink</td><td><code>0xD64341A38a5eAfb9EB9BACf8A5C52Fe858c4ABE9</code></td></tr>
+    <tr><td>Linea</td><td><code>0xc48c126468BE919068dE1983F00F65af759a4E87</code></td></tr>
+    <tr><td>Optimism</td><td><code>0xd0a8940b2e743e33b682daec4d52b46713606c9d</code></td></tr>
+    <tr><td>Plume</td><td><code>0x486228859880ec6c05175035bEe2e5383D23B0fE</code></td></tr>
+    <tr><td>Polygon</td><td><code>0xc8a8e6d760dcbd5d6746e2f66cd2ffa722dd1e59</code></td></tr>
+    <tr><td>Seievm</td><td><code>0xf4FefFc03EEFB06B009bFB168b60B30edf7abc12</code></td></tr>
+    <tr><td>Sonic</td><td><code>0xc39BF082ec91D9bC385F956D24a8D66C0c26223d</code></td></tr>
+    <tr><td>Unichain</td><td><code>0xD5D5D640D8b758672Cc7A078734175c4433866d5</code></td></tr>
+    <tr><td>World Chain</td><td><code>0x789f2b91f7B35D5B890983328340c4600339B354</code></td></tr></tbody></table>
+
+
+=== "Testnet v2"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
+    <tr><td>Ethereum Sepolia</td><td><code>0x0F18DD26D0B41fb1eaa9cF34D1Ec6022aA69a8e2</code></td></tr>
+    <tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr>
+    <tr><td>Arbitrum Sepolia</td><td><code>0xC92946F22eA76bcB5Ee020525aC32d2098040570</code></td></tr>
+    <tr><td>Avalanche Fuji</td><td><code>0x4058F0C3924eDaB19c15597C438968ed49C1a213</code></td></tr>
+    <tr><td>Base Sepolia</td><td><code>0xC400FcC0e92d3406747FBb6f513D3aa8B038fcE9</code></td></tr>
+    <tr><td>Optimism Sepolia</td><td><code>0xCCA1Cb361E3206faFcDBaCD99e02b32d730cf695</code></td></tr></tbody></table>
