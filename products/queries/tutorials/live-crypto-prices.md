@@ -18,7 +18,7 @@ Before starting, make sure you have the following set up:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your system
  - [Next.js](https://nextjs.org/docs/app/getting-started/installation){target=\_blank} project environment (you can use an existing one or create a new app)
- - A Wormhole Queries API key, you can get one from the Queries dashboard
+ - A [Wormhole Queries API key](/docs/products/queries/get-started/#request-an-api-key){target=\_blank}
  - Access to an EVM-compatible [testnet RPC](https://chainlist.org/?testnets=true){target=\_blank}, such as Arbitrum Sepolia
  - A [Witnet data feed identifier](https://docs.witnet.io/smart-contracts/witnet-data-feeds/addresses){target=\_blank} (this tutorial uses the ETH/USD feed as an example)
 
@@ -227,6 +227,30 @@ You can choose a different Witnet feed or network if you prefer. Just update `CA
 
     This parses the first `EthCall` result from the proxy response, decodes Witnet’s tuple, and scales the integer value to a human readable string.
 
+## Add Shared Types
+
+Create a `src/lib/types.ts` file:
+
+```typescript
+export interface QueryApiSuccess {
+	ok: true;
+	blockNumber: string;
+	blockTimeMicros: string;
+	price: string;
+	decimals: number;
+	updatedAt: string;
+	stale?: boolean;
+}
+
+export interface QueryApiError {
+	ok: false;
+	error: string;
+}
+export type QueryApiResponse = QueryApiSuccess | QueryApiError;
+```
+
+These types ensure that both your API route and frontend stay consistent.
+
 ## Create the API Route
 
 Create a `src/app/api/queries/route.ts` file:
@@ -292,3 +316,147 @@ That gives you a clean endpoint at `/api/price` which returns a small JSON paylo
 
 If you are ready, next we can create the PriceWidget component that calls this route, renders the value, and auto refreshes on an interval.
 
+## Price Widget
+
+1. Create `src/components/PriceWidget.tsx`:
+
+    ```typescript
+    'use client';
+
+    import { useEffect, useRef, useState } from 'react';
+
+    type ApiOk = {
+        ok: true;
+        asset: string;
+        price: string;
+        updatedAt: number | string;
+        blockNumber: string;
+        ageSec: number;
+        stale: boolean;
+    };
+
+    type ApiErr = { ok: false; error: string };
+
+    function formatTime(ts: number | string) {
+        let n: number;
+        if (typeof ts === 'string') {
+            const numeric = Number(ts);
+            if (Number.isFinite(numeric)) {
+                n = numeric;
+            } else {
+                const parsed = new Date(ts);
+                return Number.isNaN(parsed.getTime()) ? '—' : parsed.toLocaleString();
+            }
+        } else {
+            n = ts;
+        }
+        if (!Number.isFinite(n)) return '—';
+        // If it looks like seconds, convert to ms
+        const ms = n < 1_000_000_000_000 ? n * 1000 : n;
+        const d = new Date(ms);
+        return Number.isNaN(d.getTime()) ? '—' : d.toLocaleString();
+    }
+
+    export default function PriceWidget() {
+        const [data, setData] = useState<ApiOk | null>(null);
+        const [error, setError] = useState<string | null>(null);
+        const [loading, setLoading] = useState(false);
+        const timer = useRef<NodeJS.Timeout | null>(null);
+        const inFlight = useRef(false);
+
+        async function fetchPrice() {
+            if (inFlight.current) return;
+            inFlight.current = true;
+            setLoading(true);
+            setError(null);
+
+            try {
+                const res = await fetch('/api/queries', { cache: 'no-store' });
+                const json: ApiOk | ApiErr = await res.json();
+                if (!json.ok) throw new Error(json.error);
+                setData(json);
+            } catch (e: any) {
+                setError(e?.message || 'Failed to fetch price');
+            } finally {
+                setLoading(false);
+                inFlight.current = false;
+            }
+        }
+
+        useEffect(() => {
+            fetchPrice();
+            timer.current = setInterval(fetchPrice, 30_000);
+            return () => {
+                if (timer.current) clearInterval(timer.current);
+            };
+        }, []);
+
+        return (
+            <div className='mx-auto w-full max-w-md rounded-2xl border border-gray-200 p-6 shadow-sm'>
+                <div className='mb-4 flex items-center justify-between'>
+                    <h2 className='text-lg font-semibold'>Live Price</h2>
+                    {data?.stale ? (
+                        <span className='rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800'>
+                            Stale
+                        </span>
+                    ) : (
+                        <span className='rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800'>
+                            Fresh
+                        </span>
+                    )}
+                </div>
+
+                <div className='space-y-2'>
+                    <div className='text-3xl font-bold tabular-nums'>
+                        {loading && !data ? 'Loading…' : data ? data.price : '—'}
+                    </div>
+
+                    <div className='text-sm text-gray-600'>
+                        {data ? (
+                            <>
+                                Updated at {formatTime(data.updatedAt)}, block {data.blockNumber}
+                            </>
+                        ) : error ? (
+                            <span className='text-red-600'>{error}</span>
+                        ) : (
+                            'Fetching latest price'
+                        )}
+                    </div>
+                </div>
+
+                <div className='mt-4'>
+                    <button
+                        onClick={fetchPrice}
+                        className='w-full rounded-xl bg-gray-900 px-4 py-2 text-white hover:opacity-90'
+                        disabled={loading}
+                    >
+                        {loading ? 'Refreshing…' : 'Refresh now'}
+                    </button>
+                </div>
+            </div>
+        );
+    }
+    ```
+
+2. Add it to the home page at `src/app/page.tsx`:
+
+    ```typescript
+    import PriceWidget from '@/components/PriceWidget';
+
+    export default function Page() {
+        return (
+            <main className='mx-auto flex max-w-2xl flex-col items-center p-6'>
+                <h1 className='mb-6 text-center text-2xl font-bold'>Live Crypto Price Widget</h1>
+                <PriceWidget />
+            </main>
+        );
+    }
+    ```
+
+3. Run the app:
+
+    ```bash
+    npm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000), you should see the price, the last update time, and a freshness badge that flips to stale when the heartbeat window is exceeded.
