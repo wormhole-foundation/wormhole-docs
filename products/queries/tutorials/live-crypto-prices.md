@@ -26,6 +26,8 @@ Before starting, make sure you have the following set up:
 
 ## Project Setup
 
+In this section, you will create a new Next.js project, install the required dependencies, and configure the environment variables needed to fetch data from Wormhole Queries.
+
 1. **Create a new Next.js app**: Enable TypeScript, Tailwind CSS, and the `src/` directory when prompted. Other options are up to you. 
 
     ```bash
