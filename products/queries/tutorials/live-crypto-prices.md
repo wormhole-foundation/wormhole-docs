@@ -50,7 +50,7 @@ Before starting, make sure you have the following set up:
 
     Open [http://localhost:3000](http://localhost:3000) to see the default Next.js welcome page.
 
-## Configure environment
+## Configure the Environment
 
 Create a file named `.env.local` in the project root, then paste the following values. These defaults use Arbitrum Sepolia as the example network; you can replace them later with any supported chain or Witnet feed.
 
@@ -91,4 +91,139 @@ export const DEFAULTS = {
 ```
 
 You can choose a different Witnet feed or network if you prefer. Just update `CALL_TO`, `FEED_ID4`, `FEED_DECIMALS`, and `WORMHOLE_CHAIN_ID`, then restart the dev server so the new environment values are loaded.
+
+## Build the Server Helpers
+
+1. Encode the Witnet call and build the request. Create a `src/lib/queries/buildRequest.ts` file:
+
+    ```typescript
+    import axios from 'axios';
+    import {
+    EthCallQueryRequest,
+    PerChainQueryRequest,
+    QueryRequest,
+    } from '@wormhole-foundation/wormhole-query-sdk';
+    import { Interface } from 'ethers';
+
+    const WITNET_IFACE = new Interface([
+    // matches the proxy’s Read as Proxy surface
+    'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
+    ]);
+
+    /** Encode calldata for Witnet Router: latestPrice(bytes4) */
+    export function encodeWitnetLatestPrice(id4: string): string {
+    if (!/^0x[0-9a-fA-F]{8}$/.test(id4)) {
+        throw new Error(`Invalid FEED_ID4: ${id4}`);
+    }
+    return WITNET_IFACE.encodeFunctionData('latestPrice', [id4 as `0x${string}`]);
+    }
+
+    export async function buildEthCallRequest(params: {
+    rpcUrl: string;
+    chainId: number; // Wormhole chain id
+    to: string;
+    data: string; // 0x-prefixed calldata
+    }) {
+    const { rpcUrl, chainId, to, data } = params;
+
+    // Fetch the latest block, short timeout so the request never hangs
+    const latestBlock: string = (
+        await axios.post(
+        rpcUrl,
+        { method: 'eth_getBlockByNumber', params: ['latest', false], id: 1, jsonrpc: '2.0' },
+        { timeout: 5_000, headers: { 'Content-Type': 'application/json' } }
+        )
+    ).data?.result?.number;
+
+    if (!latestBlock) throw new Error('Failed to fetch latest block');
+
+    const request = new QueryRequest(1, [
+        new PerChainQueryRequest(chainId, new EthCallQueryRequest(latestBlock, [{ to, data }]))
+    ]);
+
+    return request.serialize(); // Uint8Array
+    }
+    ```
+
+    This module encodes `latestPrice(bytes4)` with your feed id, anchors the call to the latest block, and serializes a single chain `EthCallQueryRequest`.
+
+2. Post the serialized query to the Query Proxy. Create a `src/lib/queries/client.ts` file:
+
+    ```typescript
+    import axios from 'axios';
+
+    export async function postQuery({
+    queryUrl,
+    apiKey,
+    bytes,
+    timeoutMs = 25_000,
+    }: {
+    queryUrl: string;
+    apiKey: string;
+    bytes: Uint8Array;
+    timeoutMs?: number;
+    }) {
+    const res = await axios.post(
+        queryUrl,
+        { bytes: Buffer.from(bytes).toString('hex') },
+        {
+        timeout: timeoutMs,
+        headers: { 'X-API-Key': apiKey, 'Content-Type': 'application/json' },
+        validateStatus: (s) => s === 200,
+        }
+    );
+    return res.data; // throws on non-200
+    }
+    ```
+
+    This sends your serialized request to the Proxy and returns the raw payload that contains the Guardian signed response.
+
+3. Parse and decode the response. Create a `src/lib/queries/decode.ts` file:
+
+    ```typescript
+    import { EthCallQueryResponse, QueryResponse } from '@wormhole-foundation/wormhole-query-sdk';
+    import { Interface, Result } from 'ethers';
+
+    const WITNET_IFACE = new Interface([
+    'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
+    ]);
+
+    export function parseFirstEthCallResult(proxyResponse: { bytes: string }): {
+    chainResp: EthCallQueryResponse;
+    raw: string;
+    } {
+    const qr = QueryResponse.from(proxyResponse.bytes);
+    const chainResp = qr.responses[0].response as EthCallQueryResponse;
+    const raw = chainResp.results[0]; // hex string
+    return { chainResp, raw };
+    }
+
+    export function decodeWitnetLatestPrice(
+    raw: string,
+    decimals: number
+    ): { price: string; timestampSec: number; drTxHash: string } {
+    const r: Result = WITNET_IFACE.decodeFunctionResult('latestPrice', raw);
+    const value = BigInt(r[0].toString());
+    const timestampSec = Number(r[1].toString());
+    const drTxHash = r[2] as string;
+
+    return {
+        price: scaleBigintToDecimalString(value, decimals),
+        timestampSec,
+        drTxHash,
+    };
+    }
+
+    function scaleBigintToDecimalString(value: bigint, decimals: number): string {
+    const zero = BigInt(0);
+    const neg = value < zero ? '-' : '';
+    const v = value < zero ? -value : value;
+    const s = v.toString().padStart(decimals + 1, '0');
+    const i = s.slice(0, -decimals);
+    const f = s.slice(-decimals).replace(/0+$/, '');
+    return neg + (f ? `${i}.${f}` : i);
+    }
+    ```
+
+    This parses the first `EthCall` result from the proxy response, decodes Witnet’s tuple, and scales the integer value to a human readable string.
 
