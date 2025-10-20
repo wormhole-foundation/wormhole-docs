@@ -6,16 +6,19 @@ import {
 } from '@wormhole-foundation/wormhole-query-sdk';
 import { Interface } from 'ethers';
 
+// ABI interface for Witnet's Price Router
 const WITNET_IFACE = new Interface([
-  // matches the proxy’s Read as Proxy surface
+  // Function signature for reading the latest price feed
   'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
 ]);
 
-/** Encode calldata for Witnet Router: latestPrice(bytes4) */
+// Encode calldata for Witnet Router: latestPrice(bytes4)
 export function encodeWitnetLatestPrice(id4: string): string {
+  // Validate feed ID format (must be a 4-byte hex)
   if (!/^0x[0-9a-fA-F]{8}$/.test(id4)) {
     throw new Error(`Invalid FEED_ID4: ${id4}`);
   }
+  // Return ABI-encoded call data for latestPrice(bytes4)
   return WITNET_IFACE.encodeFunctionData('latestPrice', [id4 as `0x${string}`]);
 }
 
@@ -27,7 +30,8 @@ export async function buildEthCallRequest(params: {
 }) {
   const { rpcUrl, chainId, to, data } = params;
 
-  // Fetch the latest block, short timeout so the request never hangs
+  // Get the latest block number via JSON-RPC
+  // Short timeout prevents long hangs in the dev environment
   const latestBlock: string = (
     await axios.post(
       rpcUrl,
@@ -43,6 +47,7 @@ export async function buildEthCallRequest(params: {
 
   if (!latestBlock) throw new Error('Failed to fetch latest block');
 
+  // Build a Wormhole Query that wraps an EthCall to the Witnet contract
   const request = new QueryRequest(1, [
     new PerChainQueryRequest(
       chainId,
@@ -50,5 +55,6 @@ export async function buildEthCallRequest(params: {
     ),
   ]);
 
+  // Serialize to bytes for sending to the Wormhole Query Proxy
   return request.serialize(); // Uint8Array
 }

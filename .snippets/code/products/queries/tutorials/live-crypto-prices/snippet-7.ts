@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+// Expected API success shape from /api/queries
 type ApiOk = {
   ok: true;
   asset: string;
@@ -12,8 +13,10 @@ type ApiOk = {
   stale: boolean;
 };
 
+// API error shape
 type ApiErr = { ok: false; error: string };
 
+// Format timestamps for display
 function formatTime(ts: number | string) {
   let n: number;
   if (typeof ts === 'string') {
@@ -35,14 +38,18 @@ function formatTime(ts: number | string) {
 }
 
 export default function PriceWidget() {
+  // UI state: fetched data, loading state, and any errors
   const [data, setData] = useState<ApiOk | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Keep track of polling and prevent overlapping requests
   const timer = useRef<NodeJS.Timeout | null>(null);
   const inFlight = useRef(false);
 
+  // Fetch price data from the API route
   async function fetchPrice() {
-    if (inFlight.current) return;
+    if (inFlight.current) return; // avoid concurrent requests
     inFlight.current = true;
     setLoading(true);
     setError(null);
@@ -60,6 +67,7 @@ export default function PriceWidget() {
     }
   }
 
+  // Fetch immediately and refresh every 30 seconds
   useEffect(() => {
     fetchPrice();
     timer.current = setInterval(fetchPrice, 30_000);

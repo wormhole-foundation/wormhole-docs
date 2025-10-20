@@ -4,24 +4,31 @@ import {
 } from '@wormhole-foundation/wormhole-query-sdk';
 import { Interface, Result } from 'ethers';
 
+// ABI interface for decoding Witnet's latestPrice response
 const WITNET_IFACE = new Interface([
   'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
 ]);
 
+// Parse the first EthCall result from the proxy's response
 export function parseFirstEthCallResult(proxyResponse: { bytes: string }): {
   chainResp: EthCallQueryResponse;
   raw: string;
 } {
+  // Decode the top-level QueryResponse from Wormhole Guardians
   const qr = QueryResponse.from(proxyResponse.bytes);
+
+  // Extract the first chain response and its raw call result
   const chainResp = qr.responses[0].response as EthCallQueryResponse;
-  const raw = chainResp.results[0]; // hex string
+  const raw = chainResp.results[0];
   return { chainResp, raw };
 }
 
+// Decode Witnet's latestPrice return tuple into readable fields
 export function decodeWitnetLatestPrice(
   raw: string,
   decimals: number
 ): { price: string; timestampSec: number; drTxHash: string } {
+  // Decode ABI-encoded result from the router call
   const r: Result = WITNET_IFACE.decodeFunctionResult('latestPrice', raw);
   const value = BigInt(r[0].toString());
   const timestampSec = Number(r[1].toString());
@@ -34,6 +41,7 @@ export function decodeWitnetLatestPrice(
   };
 }
 
+// Convert a bigint price into a human-readable decimal string
 function scaleBigintToDecimalString(value: bigint, decimals: number): string {
   const zero = BigInt(0);
   const neg = value < zero ? '-' : '';

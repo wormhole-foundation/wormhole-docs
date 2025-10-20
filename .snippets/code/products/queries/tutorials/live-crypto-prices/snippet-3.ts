@@ -11,6 +11,7 @@ export async function postQuery({
   bytes: Uint8Array;
   timeoutMs?: number;
 }) {
+  // Convert the query bytes to hex and POST to the proxy
   const res = await axios.post(
     queryUrl,
     { bytes: Buffer.from(bytes).toString('hex') },
