@@ -144,3 +144,15 @@ The price will not update every few seconds, because Witnet feeds refresh only w
 Your app should look like this:
 
 ![Frontend of Queries Live Prices Widget](/docs/images/products/queries/tutorials/live-crypto-prices/live-crypto-prices-1.webp){.half}
+
+## Resources
+
+You can explore the complete project and find all related scripts and configuration files in Wormhole’s Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
+
+## Conclusion
+
+You’ve successfully built a live crypto price widget that fetches verified data from Wormhole Queries and Witnet. Your app encodes a feed request, sends it through the Guardian network for verification, and displays the latest signed price in a simple, responsive widget.
+
+This same flow can be extended to fetch other types of on-chain data or integrate multiple feeds for dashboards and analytics tools.
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
