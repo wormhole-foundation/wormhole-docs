@@ -71,7 +71,7 @@ export default function PriceWidget() {
   return (
     <div className="mx-auto w-full max-w-md rounded-2xl border border-gray-200 p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Live Price</h2>
+        <h2 className="text-lg font-semibold">ETH/USD Live Price</h2>
         {data?.stale ? (
           <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
             Stale
