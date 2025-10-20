@@ -14,3 +14,14 @@ Wormhole Queries make it possible to fetch verified off-chain data directly on-c
 
 ## Prerequisites
 
+Before starting, make sure you have the following set up:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your system
+ - [Next.js](https://nextjs.org/docs/app/getting-started/installation){target=\_blank} project environment (you can use an existing one or create a new app)
+ - A Wormhole Queries API key, you can get one from the Queries dashboard
+ - Access to an EVM-compatible [testnet RPC](https://chainlist.org/?testnets=true){target=\_blank}, such as Arbitrum Sepolia
+ - A [Witnet data feed identifier](https://docs.witnet.io/smart-contracts/witnet-data-feeds/addresses){target=\_blank} (this tutorial uses the ETH/USD feed as an example)
+
+!!! note
+    You can use a different Witnet feed or testnet if you prefer. Make sure to update the environment variables later in this tutorial with the correct values for your setup.
+
