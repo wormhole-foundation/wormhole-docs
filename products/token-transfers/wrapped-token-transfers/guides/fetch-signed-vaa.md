@@ -27,10 +27,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.8.8`:
 
-   ```bash
-   npm install @wormhole-foundation/sdk -D tsx typescript
+    ```bash
+   npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
    ```
 
 ## Fetch VAA via TypeScript SDK
