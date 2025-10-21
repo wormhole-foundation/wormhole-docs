@@ -569,9 +569,9 @@ By decentralizing message execution and supporting both EVM and non-EVM environm
 ## Components 
 
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
-- **Executor Contract**: The shared on-chain contract or program used to make execution requests. 
+- **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
 - **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
-- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc) to be executed on another chain. 
+- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
@@ -584,7 +584,7 @@ Message execution starts on the source chain, where an integrator creates an exe
 1. A client requests a quote from a Quoter, specifying source and destination chains.  
 2. The Quoter returns a signed quote with pricing and parameters.  
 3. The client sends a message through an integrator contract, including the signed quote.  
-4. The integrator publishes the message via the Wormhole Core contract.  
+4. The integrator publishes the message via the[ Wormhole Core contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}.  
 5. The integrator then calls the Executor contract to register the execution request.
 
 ```mermaid
@@ -636,7 +636,7 @@ sequenceDiagram
 
 ## Security Considerations
 
-The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole v1 VAAs.
+The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md
@@ -1196,7 +1196,7 @@ To improve transparency, providers may also publish a *Service-Level Agreement (
 
 ## Executor Contract
 
-Each supported chain hosts a stateless, permissionless Executor contract. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
+Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
 
 When called, the Executor contract:
 
@@ -1228,9 +1228,9 @@ If all checks pass, payment is transferred to the [`payeeAddress`](https://githu
 
 To remain lightweight and chain-agnostic, the Executor contract performs only minimal validation:
 
-- No signature verification: The client is responsible for verifying the quote before submission.
-- No message inspection: The contract does not parse or validate the message payload.
-- No payment enforcement: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
+- **No signature verification**: The client is responsible for verifying the quote before submission.
+- **No message inspection**: The contract does not parse or validate the message payload.
+- **No payment enforcement**: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
 
 This minimal design keeps the contract generic, inexpensive, and compatible with multiple message formats and future Wormhole protocols.
 --- END CONTENT ---
