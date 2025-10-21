@@ -49,7 +49,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the Wormhole SDK.
+2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `3.x`.
 
     ```bash
     npm install @wormhole-foundation/sdk
