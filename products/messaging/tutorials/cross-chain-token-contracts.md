@@ -250,7 +250,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/products/messaging/tutorials/cross-chain-token-transfers/snippet-3.json"
         ```
 
-        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core contract.
+        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the relayer, and the Wormhole Core contract.
 
         For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
@@ -397,7 +397,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - It defines the wallet related to the target chain.
         - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation.
         - It creates a new contract factory using the ABI, bytecode, and wallet.
-        - It deploys the contract to the selected chain passing in the Wormhole Relayer, `TokenBridge`, and Wormhole addresses.
+        - It deploys the contract to the selected chain passing in the relayer, `TokenBridge`, and Wormhole addresses.
 
     11. Save the deployed contract addresses:
 

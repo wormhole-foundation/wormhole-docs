@@ -14,7 +14,7 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/wtt.md'
 
-## Wormhole Relayer
+## Wormhole Relayer <!-- TODO: delete?-->
 
 --8<-- 'text/products/reference/contract-addresses/relayer.md'
 

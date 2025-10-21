@@ -117,9 +117,9 @@ Both chains emit events or logs when transfers are rate-limited or queued.
 
 ### Send
 
-After being forwarded to the Transceiver, the message is transmitted across the chain. Transceivers are responsible for delivering the message containing the token transfer details. Depending on the Transceiver's implementation, messages may be routed through different systems, such as Wormhole relayers or other custom relaying solutions. Once the message is transmitted, an event is emitted to signal successful transmission.
+After being forwarded to the Transceiver, the message is transmitted across the chain. Transceivers are responsible for delivering the message containing the token transfer details. Depending on the Transceiver's implementation, messages may be routed through different systems, such as the Executor or other custom relaying solutions. Once the message is transmitted, an event is emitted to signal successful transmission.
 
-- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use Wormhole relayers or custom relaying solutions to forward the message.
+- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use the Executor or custom relaying solutions to forward the message.
 - In SVM, the transfer message is placed in an Outbox and released via the `release_outbound` instruction. The SVM transceiver, such as the Wormhole Transceiver, may send the message using the `post_message` instruction, which Wormhole Guardians observe for verification.
 
 In both cases, an event or log (e.g., `SendTransceiverMessage` on EVM or a similar log on SVM) is emitted to signal that the message has been transmitted.
