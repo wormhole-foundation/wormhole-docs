@@ -21,7 +21,7 @@ By decentralizing message execution and supporting both EVM and non-EVM environm
 ## Components 
 
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
-- **Executor Contract**: The shared on-chain contract or program used to make execution requests. 
+- **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
 - **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
 - **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
@@ -36,7 +36,7 @@ Message execution starts on the source chain, where an integrator creates an exe
 1. A client requests a quote from a Quoter, specifying source and destination chains.  
 2. The Quoter returns a signed quote with pricing and parameters.  
 3. The client sends a message through an integrator contract, including the signed quote.  
-4. The integrator publishes the message via the Wormhole Core contract.  
+4. The integrator publishes the message via the[ Wormhole Core contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}.  
 5. The integrator then calls the Executor contract to register the execution request.
 
 ```mermaid

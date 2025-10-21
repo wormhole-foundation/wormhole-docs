@@ -38,7 +38,7 @@ To improve transparency, providers may also publish a *Service-Level Agreement (
 
 ## Executor Contract
 
-Each supported chain hosts a stateless, permissionless Executor contract. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
+Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
 
 When called, the Executor contract:
 
