@@ -6421,7 +6421,7 @@ categories: Basics
 # Relayers
 
 !!!warning 
-    The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to migrate to the [messaging executor framework](#executor).
+    The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to migrate to the [Executor framework](#executor).
 
 This page provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating multichain processes.
 
