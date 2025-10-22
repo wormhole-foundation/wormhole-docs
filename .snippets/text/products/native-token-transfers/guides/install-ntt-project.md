@@ -13,7 +13,7 @@
     ```bash
     npm ci
     cd cli
-    ./install
+    ./install.sh
     ```
 
     Verify installation:

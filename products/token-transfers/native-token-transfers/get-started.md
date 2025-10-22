@@ -41,6 +41,13 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 
 --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:3:17'
 
+??? warning "Install permission denied?"
+    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
+
+    ```bash
+    chmod u+x ./install.sh
+    ```
+
 2. Verify the NTT CLI is installed:
 
 --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:21:23'

@@ -19585,7 +19585,14 @@ git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
     ```bash
     npm ci
     cd cli
-    ./install
+    ./install.sh
+    ```
+
+??? warning "Install permission denied?"
+    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
+
+    ```bash
+    chmod u+x ./install.sh
     ```
 
 2. Verify the NTT CLI is installed:
@@ -19813,7 +19820,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     ```bash
     npm ci
     cd cli
-    ./install
+    ./install.sh
     ```
 
     Verify installation:
@@ -20132,7 +20139,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     ```bash
     npm ci
     cd cli
-    ./install
+    ./install.sh
     ```
 
     Verify installation:
@@ -20445,7 +20452,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     ```bash
     npm ci
     cd cli
-    ./install
+    ./install.sh
     ```
 
     Verify installation:
