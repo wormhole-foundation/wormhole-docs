@@ -1,7 +1,9 @@
 1. Install the NTT CLI:
 
     ```bash
-    git clone https://github.com/wormhole-foundation/native-token-transfers.git
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
     ```
 
     ```bash

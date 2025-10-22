@@ -39,25 +39,11 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 
 1. Run the installation commands in your terminal:
 
-    ```bash
-    git clone https://github.com/wormhole-foundation/native-token-transfers.git
-    ```
-
-    ```bash
-    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
-    ```
-
-    ```bash
-    npm ci
-    cd cli
-    ./install
-    ```
+--8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:3:17'
 
 2. Verify the NTT CLI is installed:
 
-    ```bash
-    ntt --version
-    ```
+--8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:21:23'
 
 ??? warning "Command not found?"
     If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
