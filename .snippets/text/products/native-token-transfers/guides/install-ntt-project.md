@@ -1,7 +1,17 @@
 1. Install the NTT CLI:
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    git clone https://github.com/wormhole-foundation/native-token-transfers.git
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install
     ```
 
     Verify installation:

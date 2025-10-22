@@ -17,7 +17,6 @@ For a coding walkthrough on deploying NTT with the CLI, watch the [NTT deploymen
 Before you begin, make sure you have:
 
 - [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
-- [Bun installed](https://bun.sh/){target=\_blank}.
 - A wallet private key with tokens on supported chains.
 - ERC-20 or SPL tokens already deployed on the source and destination chains.
 
@@ -38,10 +37,20 @@ To use NTT, you must have a token already deployed on the source and destination
 
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
-1. Run the installation command in your terminal:
+1. Run the installation commands in your terminal:
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    git clone https://github.com/wormhole-foundation/native-token-transfers.git
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install
     ```
 
 2. Verify the NTT CLI is installed:
@@ -51,7 +60,7 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
     ```
 
 ??? warning "Command not found?"
-    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
     
     Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
 
