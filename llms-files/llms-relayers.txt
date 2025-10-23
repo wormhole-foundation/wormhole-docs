@@ -10457,7 +10457,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Plasma | EVM | XPL | Plasma Faucet |
 | Plume | EVM | PLUME | Official Plume Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
-| Scroll | EVM | ETH | List of Faucets |
+| Scroll | EVM | SCR | List of Faucets |
 | Seievm | EVM | SEI | Sei Atlantic-2 Faucet |
 | Unichain | EVM | ETH | QuickNode Faucet |
 | World Chain | EVM | ETH | Alchemy Faucet |
