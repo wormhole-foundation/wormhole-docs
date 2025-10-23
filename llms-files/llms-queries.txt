@@ -1460,7 +1460,7 @@ The Executor framework separates responsibilities between three independent part
 |-------------------|-----------------------------------------------------------------------| 
 | Integrator        | Creates and submits execution requests using valid quotes.            | 
 | Executor Contract | Publishes requests, transfers payment, and emits observable events.   | 
-| Relay Provider	| Monitors events, issues signed quotes and performs message execution. | 
+| Relay Provider	| Monitors events, issues and validates signed quotes and performs message execution. | 
 
 This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
 
