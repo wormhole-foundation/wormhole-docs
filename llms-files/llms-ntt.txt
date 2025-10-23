@@ -210,7 +210,6 @@ For a coding walkthrough on deploying NTT with the CLI, watch the [NTT deploymen
 Before you begin, make sure you have:
 
 - [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
-- [Bun installed](https://bun.sh/){target=\_blank}.
 - A wallet private key with tokens on supported chains.
 - ERC-20 or SPL tokens already deployed on the source and destination chains.
 
@@ -396,20 +395,37 @@ To use NTT, you must have a token already deployed on the source and destination
 
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
-1. Run the installation command in your terminal:
+1. Run the installation commands in your terminal:
+
+git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
+    ```
+
+??? warning "Install permission denied?"
+    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
+
+    ```bash
+    chmod u+x ./install.sh
     ```
 
 2. Verify the NTT CLI is installed:
 
-    ```bash
-    ntt --version
+ntt --version
     ```
 
 ??? warning "Command not found?"
-    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
     
     Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
 
@@ -7282,7 +7298,19 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
     ```
 
     Verify installation:
@@ -7589,7 +7617,19 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
     ```
 
     Verify installation:
@@ -7890,7 +7930,19 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
     ```
 
     Verify installation:
