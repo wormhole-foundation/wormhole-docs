@@ -10,21 +10,21 @@ The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-e
 
 The Executor framework separates responsibilities between three independent participants:
 
-| Actor	            | Responsibility                                                      | 
-|-------------------|---------------------------------------------------------------------| 
-| Integrator        | Creates and submits execution requests using valid quotes.          | 
-| Executor Contract | Publishes requests, transfers payment, and emits observable events. | 
-| Relay Provider	| Monitors events, validates quotes, and performs message execution.  | 
+| Actor	            | Responsibility                                                        | 
+|-------------------|-----------------------------------------------------------------------| 
+| Integrator        | Creates and submits execution requests using valid quotes.            | 
+| Executor Contract | Publishes requests, transfers payment, and emits observable events.   | 
+| Relay Provider	| Monitors events, issues signed quotes and performs message execution. | 
 
 This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
 
 ## Relay Provider
 
-A Relay Provider is an off-chain service that performs message execution between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service.
+A Relay Provider is an off-chain service that performs message execution between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
 
 Each provider runs infrastructure that listens for execution requests emitted by the Executor contract on supported chains. When a request matches one of their quotes, the provider retrieves the associated VAA from the Guardians and performs the message execution on the destination chain.  
 
-Each provider must operate at least one Quoter service that issues signed quotes describing how and when an execution will be performed. A quote specifies the source and destination chains, pricing, and an expiry time before which the Executor contract can accept the quote. Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+Each Relay Provider operates a Quoter service, which is responsible for issueing signed quotes defining the execution terms.. A quote specifies the source and destination chains, pricing, and an expiry time before which the Executor contract can accept the quote. Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
 
 Because the network is open, multiple providers may compete to fulfill the same request. Each quote defines the conditions under which a provider is willing to execute, enabling competitive pricing and redundancy across the system. All executions remain trust-minimized: the provider cannot alter or forge the message, since validity is enforced through the Wormhole VAA and Guardian verification process.
 

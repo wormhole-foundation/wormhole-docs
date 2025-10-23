@@ -70,7 +70,9 @@ Wormhole currently supports three types of relayers:
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} is Wormhole’s next-generation cross-chain execution framework, designed to extend relaying functionality beyond EVM chains and add greater flexibility to how deliveries are processed. The Executor system enables anyone to act as a relayer (often referred to as a [relay provider](/docs/products/messaging/concepts/executor-framework/#relay-provider){target=\_blank}) in a permissionless network, introducing a request-and-quote model for delivering messages. The Executor architecture still relies on the core Wormhole guarantees (VAAs for security, Guardian verification), but it changes how the relaying service is accessed and who can fulfill it.
 
-In the Executor model, Wormhole deploys a lightweight [Executor Contract](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} on every supported chain. This contract is stateless and permissionless, meaning it isn’t owned by any relayer, and anyone can interact with it. When an application wants to request a cross-chain message delivery via the Executor, it will call this contract on the source chain, providing the details of the target chain, target address, and a fee quote signed by a chosen executor provider. The Executor contract essentially records an Execution Request (and escrows the payment, including a small fee), which off-chain executor nodes are listening for (via events). An available executor node that corresponds to the provided quote will then take the VAA and execute the message on the destination chain, similar to how the standard relayer would — for example, calling the target contract with the message payload. Because the execution network is open, different providers can offer quotes (pricing) for delivering a message, and developers or users can choose competitively. This fosters a decentralized marketplace of relayers, rather than a single service.
+In the Executor model, Wormhole deploys a lightweight [Executor Contract](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} on every supported chain. This contract is stateless and permissionless, meaning it isn’t owned by any relayer, and anyone can interact with it. When an application wants to request a cross-chain message delivery via the Executor, it first fetches a signed fee quote off-chain from a chosen executor provider. It then calls the Executor contract on the source chain, providing the target chain, target address, and that signed quote.
+
+The Executor contract essentially records an Execution Request (and escrows the payment, including a small fee), which off-chain executor nodes are listening for (via events). An available executor node that corresponds to the provided quote will then take the VAA and execute the message on the destination chain, similar to how the standard relayer would — for example, calling the target contract with the message payload. Because the execution network is open, different providers can offer quotes (pricing) for delivering a message, and developers or users can choose competitively. This fosters a decentralized marketplace of relayers, rather than a single service.
 
 ```mermaid
 sequenceDiagram
@@ -79,7 +81,8 @@ sequenceDiagram
     participant ExecNode as Executor Node (Off-chain)
     participant Dest as Target Contract (Destination Chain)
 
-    App->>ExContract: Submit Execution Request<br/>(target chain, target address, fee quote)
+    App<<->>ExecNode: Fetch signed quote
+    App->>ExContract: Submit Execution Request<br/>(target chain, target address, signed quote)
     ExContract->>ExecNode: Emit event with request + escrowed fee
     ExecNode-->>ExecNode: Listen for events<br/>Match signed quote
     ExecNode->>Dest: Deliver VAA + execute message payload
