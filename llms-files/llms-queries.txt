@@ -9781,6 +9781,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sei | 32 | atlantic-2 |
 | Seievm | 40 |  |
 | Sonic | 52 | 57054 |
+| Stacks | 60 | 2147483648 |
 | Stargaze | 4005 |  |
 | Sui | 21 | 4c78adac |
 | Unichain | 44 | Unichain Sepolia-1301 |
