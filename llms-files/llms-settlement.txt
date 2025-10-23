@@ -5924,7 +5924,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
 1. **Source chain**: A source contract emits a message by interacting with the [Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs.
 2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain.
+3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain. Relayers act as the transport layer of the Wormhole network, responsible for carrying signed messages between chains. In Wormhole’s protocol, this role is fulfilled by the Executor, a shared, permissionless framework for message delivery.   <!--TODO add executor link -->
 4. **Target chain**: On the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended multichain operation.
 
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
