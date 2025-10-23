@@ -37,6 +37,7 @@
         ],
         "exclusions": {
             "skip_basenames": [
+                "index.md",
                 "README.md",
                 ".CONTRIBUTING.md",
                 "pull-request-template.md",
