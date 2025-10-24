@@ -14,7 +14,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
 1. **Source chain**: A source contract emits a message by interacting with the [Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs.
 2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain.
+3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain. Relayers act as the transport layer of the Wormhole network, responsible for carrying signed messages between chains. In Wormhole’s protocol, this role is fulfilled by the Executor, a shared, permissionless framework for message delivery.   <!--TODO add executor link -->
 4. **Target chain**: On the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended multichain operation.
 
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
@@ -36,8 +36,8 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.
 - **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain.
-    - **Wormhole relayers**: A decentralized relayer network that delivers messages that are requested on-chain via the Wormhole relayer contract.
-    - **Custom relayers**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
+    - **Executor**: A decentralized relaying framework operated through Wormhole’s on-chain contracts. Executors deliver messages requested on-chain in a trust-minimized and permissionless manner.
+    - **[Custom relayers](/docs/protocol/infrastructure/relayer/#custom-relayer){target=\_blank}**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
 
 ## Next Steps
 
