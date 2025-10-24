@@ -50,7 +50,7 @@ WormholeTransceiver.sol
 
 - `consistencyLevel` ++"uint8"++: Immutable Wormhole consistency level for message finality.
 - `wormhole` ++"IWormhole"++: Immutable reference to the Wormhole Core bridge contract.
-- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the Wormhole Relayer contract.
+- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the relayer contract. <!-- TODO: update to executor-->
 - `specialRelayer` ++"ISpecialRelayer"++: Immutable reference to a custom relayer contract.
 - `gasLimit` ++"uint256"++: Immutable gas limit for cross-chain message delivery.
 

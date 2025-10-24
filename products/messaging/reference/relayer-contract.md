@@ -5,7 +5,7 @@ categories: Reference
 ---
 
 # Relayer Contract
-
+<!-- TODO: delete page and fix all links related-->
 The [Wormhole Relayer Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayer.sol){target=\_blank} enables cross-chain message delivery with automatic execution on the destination chain. It publishes delivery instructions as Wormhole messages and defines the logic to process them via the `deliver` function. The contract supports optional value forwarding, gas refunds, message overrides, and integration with third-party delivery providers.
 
 ## Structure Overview

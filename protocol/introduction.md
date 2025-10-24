@@ -66,10 +66,6 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}**: Quickly set up a project with the Scaffolding repository.
 - **[Demo Tutorials](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}**: Explore various demos that showcase Wormhole's capabilities across different blockchains.
 
-<!-- TODO: Add this back once we have the demos page under the Tutorials section
-
-More demos are available in the [demos page](/docs/build/start-building/demos/){target=\_blank}. -->
-
 !!! note
     Wormhole Integration Complete?
 

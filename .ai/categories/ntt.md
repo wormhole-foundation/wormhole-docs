@@ -5444,7 +5444,6 @@ For a coding walkthrough on deploying NTT with the CLI, watch the [NTT deploymen
 Before you begin, make sure you have:
 
 - [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
-- [Bun installed](https://bun.sh/){target=\_blank}.
 - A wallet private key with tokens on supported chains.
 - ERC-20 or SPL tokens already deployed on the source and destination chains.
 
@@ -5627,20 +5626,37 @@ To use NTT, you must have a token already deployed on the source and destination
 
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
-1. Run the installation command in your terminal:
+1. Run the installation commands in your terminal:
+
+git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
 
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
+    ```
+
+??? warning "Install permission denied?"
+    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
+
+    ```bash
+    chmod u+x ./install.sh
     ```
 
 2. Verify the NTT CLI is installed:
 
-    ```bash
-    ntt --version
+ntt --version
     ```
 
 ??? warning "Command not found?"
-    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
     
     Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
 
@@ -12192,7 +12208,7 @@ WormholeTransceiver.sol
 
 - `consistencyLevel` ++"uint8"++: Immutable Wormhole consistency level for message finality.
 - `wormhole` ++"IWormhole"++: Immutable reference to the Wormhole Core bridge contract.
-- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the Wormhole Relayer contract.
+- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the relayer contract. <!-- TODO: update to executor-->
 - `specialRelayer` ++"ISpecialRelayer"++: Immutable reference to a custom relayer contract.
 - `gasLimit` ++"uint256"++: Immutable gas limit for cross-chain message delivery.
 
@@ -13464,7 +13480,7 @@ Page Title: Relayer Contract
 - Summary: Reference for the Wormhole Relayer contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 
 # Relayer Contract
-
+<!-- TODO: delete page and fix all links related-->
 The [Wormhole Relayer Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayer.sol){target=\_blank} enables cross-chain message delivery with automatic execution on the destination chain. It publishes delivery instructions as Wormhole messages and defines the logic to process them via the `deliver` function. The contract supports optional value forwarding, gas refunds, message overrides, and integration with third-party delivery providers.
 
 ## Structure Overview

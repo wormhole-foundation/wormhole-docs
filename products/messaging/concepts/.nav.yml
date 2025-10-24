@@ -1,3 +1,5 @@
 title: Concepts
 nav:
 - 'Solana Shims': solana-shim.md
+- 'Executor Overview': executor-overview.md
+- 'Executor Framework': executor-framework.md

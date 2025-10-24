@@ -17799,7 +17799,7 @@ WormholeTransceiver.sol
 
 - `consistencyLevel` ++"uint8"++: Immutable Wormhole consistency level for message finality.
 - `wormhole` ++"IWormhole"++: Immutable reference to the Wormhole Core bridge contract.
-- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the Wormhole Relayer contract.
+- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the relayer contract. <!-- TODO: update to executor-->
 - `specialRelayer` ++"ISpecialRelayer"++: Immutable reference to a custom relayer contract.
 - `gasLimit` ++"uint256"++: Immutable gas limit for cross-chain message delivery.
 
@@ -19127,7 +19127,7 @@ Page Title: Relayer Contract
 - Summary: Reference for the Wormhole Relayer contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 
 # Relayer Contract
-
+<!-- TODO: delete page and fix all links related-->
 The [Wormhole Relayer Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayer.sol){target=\_blank} enables cross-chain message delivery with automatic execution on the destination chain. It publishes delivery instructions as Wormhole messages and defines the logic to process them via the `deliver` function. The contract supports optional value forwarding, gas refunds, message overrides, and integration with third-party delivery providers.
 
 ## Structure Overview

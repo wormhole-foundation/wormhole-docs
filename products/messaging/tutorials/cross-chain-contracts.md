@@ -3,7 +3,7 @@ title: Create Cross-Chain Contracts
 description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
 categories: Basics
 ---
-
+<!-- TODO: adapt this page to the executor -->
 # Create Cross-Chain Messaging Contracts
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
@@ -12,15 +12,15 @@ Wormhole's cross-chain messaging allows smart contracts to interact seamlessly a
 
 Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two testnets, Avalanche Fuji and Celo Alfajores, and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
 
-By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the Wormhole relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
+By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
 This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/docs/protocol/introduction/){target=\_blank} to familiarize yourself with the protocol.
 
 ## Wormhole Overview
 
-We'll interact with two key Wormhole components: the [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
+We'll interact with two key Wormhole components: the [relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
 
-Additionally, we'll rely on the Wormhole relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
+Additionally, we'll rely on the relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -35,11 +35,11 @@ Before starting this tutorial, ensure you have the following:
 
 ## Build Cross-Chain Messaging Contracts
 
-In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the Wormhole relayer to transmit messages across chains.
+In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the relayer to transmit messages across chains.
 
 At a high level, our contracts will:
 
-1. Send a message from Avalanche to Celo using the Wormhole relayer.
+1. Send a message from Avalanche to Celo using the relayer.
 2. Receive and process the message on Celo, logging the content of the message.
 
 Before diving into the deployment steps, let's first break down key parts of the contracts.
@@ -50,8 +50,8 @@ The `MessageSender` contract is responsible for quoting the cost of sending a me
 
 Key functions include:
 
- - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the Wormhole relayer.
- - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the Wormhole relayer.
+ - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the relayer.
+ - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the relayer.
 
 Here's the core of the contract:
 
@@ -88,7 +88,7 @@ Key implementation details include:
 
 #### Message Processing
 
-The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
+The `receiveWormholeMessages` is the core function that processes the received message. It checks that the relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
 
 ```solidity
 --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-2.sol:42:64"
@@ -142,7 +142,7 @@ The repository includes:
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
-    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
+    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
 
  - A dedicated `interfaces` directory inside the `src` folder for TypeScript type definitions:
 

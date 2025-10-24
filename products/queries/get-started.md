@@ -42,7 +42,7 @@ Using the Wormhole Query Proxy, you will write a lightweight script to query a t
 2. Add the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}, [Axios](https://www.npmjs.com/package/axios){target=\_blank}, [Web3](https://www.npmjs.com/package/web3){target=\_blank}, and helper tools. This example uses the Queries SDK version `0.0.14`:
 
     ```bash
-    npm install axios web3 @wormhole-foundation/wormhole-query-sdk
+    npm install axios web3 @wormhole-foundation/wormhole-query-sdk@0.0.14
     npm install -D tsx typescript
     ```
 
