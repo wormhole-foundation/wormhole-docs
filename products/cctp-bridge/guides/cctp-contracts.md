@@ -675,19 +675,19 @@ The `CCTPSender` abstract contract exposes the `sendUSDCWithPayloadToEvm` functi
     Sequence number of the published VAA containing the delivery instructions.
 
 When the `sendUSDCWithPayloadToEvm` function is called, the following series of actions are executed:
-
-1. **USDC transfer initiation**:
+<!-- TODO: update with cctp executor content-->
+1. **USDC transfer initiation**: 
 
     - The Circle Token Messenger contract is approved to spend the specified amount of USDC.
     - The `depositForBurnWithCaller` function of the Token Messenger contract is invoked.
-    - A key is returned, which is to be provided to the Wormhole relayer for message delivery.
+    - A key is returned, which is to be provided to the relayer for message delivery.
 
-2. **Message encoding**: The message `payload` is encoded for transmission via the Wormhole relayer. The encoded value also includes the `amount` so that it can be checked on the target chain.
+2. **Message encoding**: The message `payload` is encoded for transmission via the relayer. The encoded value also includes the `amount` so that it can be checked on the target chain.
 3. **Retrieving delivery provider**: The current default delivery provider's address is retrieved.
-4. **Cost calculation**: The transfer cost is calculated using the Wormhole relayer's `quoteEVMDeliveryPrice` function.
+4. **Cost calculation**: The transfer cost is calculated using the relayer's `quoteEVMDeliveryPrice` function.
 5. **Message dispatch**:
 
-    - The `sendToEvm` function of the Wormhole relayer is called with the encoded payload, the delivery provider's address, and the arguments passed to `sendUSDCWithPayloadToEvm`.
+    - The `sendToEvm` function of the relayer is called with the encoded payload, the delivery provider's address, and the arguments passed to `sendUSDCWithPayloadToEvm`.
     - The function must be called with `msg.value` set to the previously calculated cost (from step 4).
     - This function publishes an instruction for the delivery provider to relay the payload and VAAs specified by the key (from step 1) to the target address on the target chain.
 
