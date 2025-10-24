@@ -10,11 +10,11 @@ The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-e
 
 The Executor framework separates responsibilities between three independent participants:
 
-| Actor	            | Responsibility                                                        | 
-|-------------------|-----------------------------------------------------------------------| 
-| Integrator        | Creates and submits execution requests using valid quotes.            | 
-| Executor Contract | Publishes requests, transfers payment, and emits observable events.   | 
-| Relay Provider	| Monitors events, issues and validates signed quotes and performs message execution. | 
+| Actor	            | Responsibility                                                              | 
+|-------------------|-----------------------------------------------------------------------------| 
+| Integrator        | Creates and submits execution requests using valid quotes.                  | 
+| Executor Contract | Publishes requests, transfers payment, and emits observable events.         | 
+| Relay Provider	| Monitors events, issues and validates signed quotes, and executes messages. | 
 
 This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
 
@@ -38,7 +38,13 @@ Because the network is open, multiple providers may compete to fulfill the same 
 
 Relay Providers may operate multiple wallets, each capable of performing execution or receiving payment. They can choose whether payments are collected per-wallet or directed to a central [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined by the Quoter.
 
-Providers should provide a public API that allows integrators to track request status — such as when a request was created, whether additional gas was added, the transaction that performed execution, and any issued refunds.  
+Providers should provide a public API for integrators to track the status of the request such as: 
+
+- Request creation.
+- Added gas fees.
+- Transaction executed.
+- Any issued refunds. 
+
 To improve transparency, providers may also publish a Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
 
 !!!warning
