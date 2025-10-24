@@ -99,3 +99,4 @@ Congratulations! You've published your first multichain message using Wormhole's
 - **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
+<!-- add get started with executor once we have a get started -->
