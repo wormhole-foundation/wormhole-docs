@@ -192,15 +192,7 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
     Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
 
     [:custom-arrow: Learn About Guardians](/docs/protocol/infrastructure/guardians/)
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Relayer**
-
-    ---
-
-    Explore this guide to using Wormhole-deployed relayers to send and receive messages using VAAs.
-
-    [:custom-arrow: Build with Wormhole Relayer](/docs/products/messaging/guides/wormhole-relayers/)
-
+    
 </div>
 
 
