@@ -20,20 +20,28 @@ This modular structure enables permissionless, verifiable, and cost-efficient me
 
 ## Relay Provider
 
-A Relay Provider is an off-chain service that performs message execution between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
+A Relay Provider is an off-chain service that executes messages between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
 
 Each provider runs infrastructure that listens for execution requests emitted by the Executor contract on supported chains. When a request matches one of their quotes, the provider retrieves the associated VAA from the Guardians and performs the message execution on the destination chain.  
 
-Each Relay Provider operates a Quoter service, which is responsible for issueing signed quotes defining the execution terms.. A quote specifies the source and destination chains, pricing, and an expiry time before which the Executor contract can accept the quote. Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+Each Relay Provider operates a Quoter service that issues signed quotes and defines execution terms. 
 
-Because the network is open, multiple providers may compete to fulfill the same request. Each quote defines the conditions under which a provider is willing to execute, enabling competitive pricing and redundancy across the system. All executions remain trust-minimized: the provider cannot alter or forge the message, since validity is enforced through the Wormhole VAA and Guardian verification process.
+Each quote specifies: 
+
+- The source and destination chains. 
+- Pricing. 
+- An expiry time before which the Executor contract can accept the quote. 
+
+Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+
+Because the network is open, multiple providers may compete to fulfill the same request. Each quote defines the conditions under which a provider is willing to execute, enabling competitive pricing and redundancy across the system. Message validity is enforced through the Wormhole VAA and Guardian verification process, preventing providers from altering or forging the message and ensuring all executions remain trust-minimized.
 
 Relay Providers may operate multiple wallets, each capable of performing execution or receiving payment. They can choose whether payments are collected per-wallet or directed to a central [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined by the Quoter.
 
 Providers should provide a public API that allows integrators to track request status — such as when a request was created, whether additional gas was added, the transaction that performed execution, and any issued refunds.  
-To improve transparency, providers may also publish a *Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
+To improve transparency, providers may also publish a Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
 
-!!!note
+!!!warning
     The framework does not prevent repeated execution attempts. Providers should implement their own safeguards to avoid duplicate deliveries.
 
 ## Executor Contract
@@ -45,7 +53,7 @@ When called, the Executor contract:
 - Accepts execution requests from integrators or clients.
 - Verifies basic parameters (source/destination chain IDs, expiry time).
 - Transfers payment to the designated [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank}.
-- Emits events containing request details for off-chain consumption  
+- Emits events containing request details for off-chain consumption. 
 
 The Executor contract exposes the [`requestExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L22){target=\_blank} function, used by both on-chain and off-chain integrations to create an execution request.
 

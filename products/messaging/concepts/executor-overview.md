@@ -6,7 +6,7 @@ categories: Basics
 
 # Executor
 
-The Executor is a shared execution framework used to deliver Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
+The Executor is a shared execution framework that delivers Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
 
 The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-executor/tree/main){target=\_blank} enables anyone to act as a relayer within a permissionless network that uses a request-and-quote model for delivering messages. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
 
@@ -16,7 +16,7 @@ At its core, the Executor relies on Wormhole’s existing guarantees: messages a
 2. The contract emits an event representing the execution request, which any off-chain provider can detect.  
 3. A matching provider then retrieves the VAA and performs the delivery on the destination chain.
 
-By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework allows developers to integrate Wormhole relaying with broader chain compatibility and without deploying or maintaining their own relayers.
+By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
 
 ## Components 
 
