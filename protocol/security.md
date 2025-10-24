@@ -15,7 +15,7 @@ At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infra
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
-- [Relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} are considered untrusted in the Wormhole ecosystem.
+- The [Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
 
 In summary:
 

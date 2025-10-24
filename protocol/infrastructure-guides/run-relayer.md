@@ -6,7 +6,7 @@ categories: Relayers
 
 # Run a Custom Relayer
 
-Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While Wormhole relayers provide a reliable way to handle these transfers, they might not always meet every application's unique requirements.
+Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While the [Executor](/docs/protocol/infrastructure/relayer/#executor){target=\_blank} provides a reliable way to handle these transfers, they might not always meet every application's unique requirements.
 
 Custom relayers address these limitations by offering tailored solutions that cater to the distinct needs of your application. Developing a custom relayer gives you complete control over message processing, delivery mechanisms, and integration with existing systems. This customization allows for optimized performance and the ability to implement specific features that Wormhole-deployed relayers might not support.
 
