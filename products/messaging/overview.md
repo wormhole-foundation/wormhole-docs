@@ -20,7 +20,7 @@ The messaging flow consists of several core components:
 
 1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
 2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+3. **Relayers (Executor)**: Off-chain or on-chain relayers transport the VAA to the destination chain. In Wormhole’s architecture, this role is fulfilled by the [**Executor**](/docs/products/messaging/concepts/executor-overview/){target=\_blank}, a permissionless, shared framework that standardizes message delivery across all supported chains.
 4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)

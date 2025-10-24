@@ -54,7 +54,7 @@ This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus
 
 ### Modularity
 
-Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([relayers](/docs/protocol/infrastructure/relayer/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
+Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
 
 ### Chain Agnosticism
 
@@ -81,13 +81,13 @@ These principles combine to create a clear pathway towards a fully trustless int
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Relayers**
+-   :octicons-book-16:{ .lg .middle } **Executor**
 
     ---
 
-    Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+    Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
 
-    [:custom-arrow: Learn About Relayers](/docs/protocol/infrastructure/relayer/)
+    [:custom-arrow: Learn About Executor](/docs/products/messaging/concepts/executor-overview/)
 
 -   :octicons-tools-16:{ .lg .middle } **Query Guardian Data**
 

@@ -3,7 +3,7 @@ title: Wormhole-Deployed Relayers
 description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
 categories: Relayers, Basics
 ---
-<!-- TODO: delete page and fix all links related-->
+
 # Wormhole Relayer
 
 The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
