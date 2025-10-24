@@ -21,13 +21,6 @@ export interface SignerStuff<N extends Network, C extends Chain> {
   address: ChainAddress<C>;
 }
 
-// Function to fetch environment variables (like your private key)
-function getEnv(key: string): string {
-  const val = process.env[key];
-  if (!val) throw new Error(`Missing environment variable: ${key}`);
-  return val;
-}
-
 // Signer setup function for different blockchain platforms
 export async function getSigner<N extends Network, C extends Chain>(
   chain: ChainContext<N, C>,
@@ -44,27 +37,23 @@ export async function getSigner<N extends Network, C extends Chain>(
     case 'Solana':
       signer = await (
         await solana()
-      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'SOL_PRIVATE_KEY');
       break;
     case 'Evm':
       const evmSignerOptions = gasLimit ? { gasLimit } : {};
       signer = await (
         await evm()
-      ).getSigner(
-        await chain.getRpc(),
-        getEnv('ETH_PRIVATE_KEY'),
-        evmSignerOptions
-      );
+      ).getSigner(await chain.getRpc(), 'ETH_PRIVATE_KEY', evmSignerOptions);
       break;
     case 'Sui':
       signer = await (
         await sui()
-      ).getSigner(await chain.getRpc(), getEnv('SUI_MNEMONIC'));
+      ).getSigner(await chain.getRpc(), 'SUI_MNEMONIC');
       break;
     case 'Aptos':
       signer = await (
         await aptos()
-      ).getSigner(await chain.getRpc(), getEnv('APTOS_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'APTOS_PRIVATE_KEY');
       break;
     default:
       throw new Error('Unsupported platform: ' + platform);

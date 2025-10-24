@@ -37,14 +37,14 @@ Deploying NTT on EVM chains follows a structured process:
         - `burn(uint256 amount)`
         - `mint(address account, uint256 amount)`
 
-        These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
+        You’ll also need to set mint authority to the relevant `NttManager` contract.
+
+        These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for examples of the mentioned functions, as well as optional errors and events.
 
         ??? interface "`INttToken` Interface"
             ```solidity
             --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
             ```
-
-        You’ll also need to set mint authority to the relevant `NttManager` contract.
 
     ??? interface "Hub-and-Spoke"
 
@@ -55,7 +55,7 @@ Deploying NTT on EVM chains follows a structured process:
 
         This setup maintains a consistent total supply across all chains.
 
-    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank}.
 
 3. **Configure your chains**: Use the NTT CLI to add EVM chains and configure deployment parameters.
 4. **Set Mint Authority**: Set the NTT Manager as a minter for your tokens on the relevant chains.

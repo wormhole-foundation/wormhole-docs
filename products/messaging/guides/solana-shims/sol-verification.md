@@ -24,7 +24,7 @@ For more background, see the [Verification Shim concept section](/docs/products/
 
 To interact with the verification shim, you'll need the following:
 
-- [Rust and Solana CLI installed](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank}.  
+- [Rust and Solana CLI installed](https://solana.com/docs/intro/installation){target=\_blank}.  
 - [Anchor installed](https://www.anchor-lang.com/docs/installation){target=\_blank}.
 - The canonical verification shim program already deployed at [`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}.
 - The shim’s [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_verify_vaa_shim.json){target=\_blank} for wiring accounts.

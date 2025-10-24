@@ -16,12 +16,7 @@ import {
 // Platform-specific modules
 import EvmPlatformLoader from '@wormhole-foundation/sdk/evm';
 import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
-import {
-  ethers,
-  Wallet,
-  JsonRpcProvider,
-  Signer as EthersSigner,
-} from 'ethers';
+import { Wallet, JsonRpcProvider, Signer as EthersSigner } from 'ethers';
 
 /**
  * The required value (SEPOLIA_PRIVATE_KEY) must
@@ -55,7 +50,7 @@ async function main() {
     const wallet = new Wallet(SEPOLIA_PRIVATE_KEY);
     ethersJsSigner = wallet.connect(ethersJsProvider);
     console.log(
-      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`,
+      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`
     );
   } catch (error) {
     console.error('Failed to get Ethers.js signer and provider:', error);
@@ -78,7 +73,7 @@ async function main() {
   try {
     sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
     console.log(
-      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`,
+      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`
     );
   } catch (error) {
     console.error('Failed to get Wormhole SDK Signer:', error);
@@ -102,30 +97,30 @@ async function main() {
     // Generate the unsigned transactions
     const whSignerAddress: NativeAddress<Chain> = toNative(
       sdkSigner.chain(),
-      sdkSigner.address(),
+      sdkSigner.address()
     );
     console.log(
       `Preparing to publish message from ${whSignerAddress.toString()} on ${
         sourceChainContext.chain
-      }...`,
+      }...`
     );
 
     const unsignedTxs: AsyncGenerator<UnsignedTransaction<Network, Chain>> =
       coreProtocolClient.publishMessage(
-        whSignerAddress, 
+        whSignerAddress,
         payload,
         messageNonce,
-        consistencyLevel,
+        consistencyLevel
       );
 
     // Sign and send the transactions
     console.log(
-      'Signing and sending the message publication transaction(s)...',
+      'Signing and sending the message publication transaction(s)...'
     );
     const txIds: TransactionId[] = await signSendWait(
       sourceChainContext,
       unsignedTxs,
-      sdkSigner,
+      sdkSigner
     );
 
     if (!txIds || txIds.length === 0) {
@@ -136,17 +131,17 @@ async function main() {
 
     console.log(`Primary transaction ID for parsing: ${primaryTxid}`);
     console.log(
-      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`,
+      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`
     );
 
     console.log(
-      '\nWaiting a few seconds for transaction to propagate before parsing...',
+      '\nWaiting a few seconds for transaction to propagate before parsing...'
     );
     await new Promise((resolve) => setTimeout(resolve, 8000));
 
     // Retrieve VAA identifiers
     console.log(
-      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`,
+      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`
     );
     const messageIds: WormholeMessageId[] =
       await sourceChainContext.parseTransaction(primaryTxid);
@@ -160,13 +155,13 @@ async function main() {
       console.log('-----------------------------------------');
     } else {
       console.error(
-        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`,
+        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`
       );
     }
   } catch (error) {
     console.error(
       'Error during message publishing or VAA identifier retrieval:',
-      error,
+      error
     );
     if (error instanceof Error && error.stack) {
       console.error('Stack Trace:', error.stack);

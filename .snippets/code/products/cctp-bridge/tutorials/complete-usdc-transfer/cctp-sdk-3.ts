@@ -1,4 +1,4 @@
-import { wormhole } from '@wormhole-foundation/sdk';
+import { wormhole, amount } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { getSigner } from '../helpers/helpers';
@@ -18,14 +18,20 @@ import { getSigner } from '../helpers/helpers';
   // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
   const amt = 100_000_001n;
 
+  // Set the automatic transfer
   const automatic = true;
+
+  // Set the native gas amount
+  const nativeGas = amount.units(amount.parse('0.1', 6));
 
   // Create the Circle transfer object (USDC-only)
   const xfer = await wh.circleTransfer(
     amt,
     source.address,
     destination.address,
-    automatic
+    automatic,
+    undefined,
+    nativeGas
   );
 
   console.log('Circle Transfer object created:', xfer);

@@ -38,7 +38,7 @@ Before you begin, make sure you have the following:
     cd demo-basic-connect
     ```
 
-2. Install the dependencies:
+2. Install the dependencies. This example uses the Connect version `4.x`:
 
     ```bash
     npm install

@@ -25,8 +25,7 @@ import { getSigner, getTokenDecimals } from './helper';
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
   // Set to false to require manual approval steps
-  const automatic = true;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
+  const nativeGas = amount.units(amount.parse('0.0', 6));
 
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
@@ -34,8 +33,7 @@ import { getSigner, getTokenDecimals } from './helper';
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
+    'AutomaticTokenBridge',
     nativeGas
   );
 

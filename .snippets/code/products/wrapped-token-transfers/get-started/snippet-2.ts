@@ -24,19 +24,14 @@ import { getSigner, getTokenDecimals } from './helper';
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
-  // Set to false to require manual approval steps
-  const automatic = false;
-  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
-
   // Construct the transfer object
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     source.address,
     destination.address,
-    automatic,
-    undefined,
-    nativeGas
+    'TokenBridge',
+    undefined
   );
 
   // Initiate the transfer from Solana

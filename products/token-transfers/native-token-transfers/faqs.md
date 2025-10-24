@@ -30,39 +30,6 @@ import '@wormhole-foundation/sdk-evm-ntt';
 
 By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
 
-## How can I transfer ownership of NTT to a multisig on Solana?
-
-Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
-
-1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
-2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
-3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA).
-
-For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
-
-## How can I transfer ownership of NTT to a multisig on Sui?
-
-1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
-    ```bash
-    sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
-    ```
-
-2. Transfer `AdminCap` object over to a multisig:
-    ```bash
-    sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
-    ```
-
-3. Transfer `UpgradeCap` object over to a multisig:
-    ```bash
-    sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
-    ```
-
-4. Check new owner of `AdminCap` object:
-    ```bash
-    sui client object ADMIN_CAP_ID_STEP1 --json \
-        | jq -r '.owner'
-    ```
-
 ## How can I mint tokens after moving the treasury object to the NTT manager on Sui?
 
 To mint tokens after moving the treasury object to the NTT manager on Sui, you need to use the `take_treasury_cap` function from the [NTT contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sui/packages/ntt/sources/state.move#L307C16-L307C33){target=\_blank}. This function allows the admin to temporarily take the treasury cap to mint assets.
