@@ -19,7 +19,8 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
 1. **Source chain**: A source contract emits a message by interacting with the [Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs.
 2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain.
+3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain. Relayers act as the transport layer of the Wormhole network, responsible for carrying signed messages between chains. In Wormhole’s protocol, this role is fulfilled by the [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank}, a shared, permissionless framework for message delivery. The Executor enables anyone to act as a delivery provider through an open request-and-quote model, removing the need for centralized relayer services.
+
 4. **Target chain**: On the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended multichain operation.
 
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
@@ -41,8 +42,8 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.
 - **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain.
-    - **Wormhole relayers**: A decentralized relayer network that delivers messages that are requested on-chain via the Wormhole relayer contract.
-    - **Custom relayers**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
+    - **[Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank}**: A decentralized relaying framework operated through Wormhole’s on-chain contracts. Executors deliver messages requested on-chain in a trust-minimized and permissionless manner.
+    - **[Custom relayers](/docs/protocol/infrastructure/relayer/#custom-relayer){target=\_blank}**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
 
 ## Next Steps
 
@@ -56,13 +57,13 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
--   :octicons-tools-16:{ .lg .middle } **Core Messaging**
+-   :octicons-tools-16:{ .lg .middle } **Executor Framework**
 
     ---
 
-    Follow the guides in this section to work directly with the building blocks of Wormhole messaging, Wormhole-deployed relayers and Core Contracts, to send, receive, validate, and track multichain messages.
+    Learn how to deliver cross-chain messages automatically using Wormhole’s Executor, a shared, permissionless framework that replaces the legacy relayer system.
 
-    [:custom-arrow: Build with Core Messaging](/docs/products/messaging/guides/wormhole-relayers/)
+    [:custom-arrow: Build with the Executor](/docs/products/messaging/concepts/executor-framework/)
 
 </div>
 
@@ -183,7 +184,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
@@ -226,15 +227,15 @@ Wormhole's cross-chain messaging allows smart contracts to interact seamlessly a
 
 Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two testnets, Avalanche Fuji and Celo Alfajores, and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
 
-By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the Wormhole relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
+By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
 This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/docs/protocol/introduction/){target=\_blank} to familiarize yourself with the protocol.
 
 ## Wormhole Overview
 
-We'll interact with two key Wormhole components: the [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
+We'll interact with two key Wormhole components: the [relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
 
-Additionally, we'll rely on the Wormhole relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
+Additionally, we'll rely on the relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -249,11 +250,11 @@ Before starting this tutorial, ensure you have the following:
 
 ## Build Cross-Chain Messaging Contracts
 
-In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the Wormhole relayer to transmit messages across chains.
+In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the relayer to transmit messages across chains.
 
 At a high level, our contracts will:
 
-1. Send a message from Avalanche to Celo using the Wormhole relayer.
+1. Send a message from Avalanche to Celo using the relayer.
 2. Receive and process the message on Celo, logging the content of the message.
 
 Before diving into the deployment steps, let's first break down key parts of the contracts.
@@ -264,8 +265,8 @@ The `MessageSender` contract is responsible for quoting the cost of sending a me
 
 Key functions include:
 
- - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the Wormhole relayer.
- - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the Wormhole relayer.
+ - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the relayer.
+ - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the relayer.
 
 Here's the core of the contract:
 
@@ -383,7 +384,7 @@ Key implementation details include:
 
 #### Message Processing
 
-The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
+The `receiveWormholeMessages` is the core function that processes the received message. It checks that the relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
 
 ```solidity
     function receiveWormholeMessages(
@@ -524,7 +525,7 @@ The repository includes:
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
-    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
+    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
 
  - A dedicated `interfaces` directory inside the `src` folder for TypeScript type definitions:
 
@@ -1638,7 +1639,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         ```
 
-        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core contract.
+        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the relayer, and the Wormhole Core contract.
 
         For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
@@ -1884,7 +1885,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - It defines the wallet related to the target chain.
         - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation.
         - It creates a new contract factory using the ABI, bytecode, and wallet.
-        - It deploys the contract to the selected chain passing in the Wormhole Relayer, `TokenBridge`, and Wormhole addresses.
+        - It deploys the contract to the selected chain passing in the relayer, `TokenBridge`, and Wormhole addresses.
 
     11. Save the deployed contract addresses:
 
@@ -2828,7 +2829,6 @@ This page will guide you through the structural layout of these tools—how they
 
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
-
 - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface).
 - **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
@@ -2845,6 +2845,196 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 ## Next Steps
 
 Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+
+
+---
+
+Page Title: Executor Framework
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/concepts/executor-framework/
+- Summary: Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
+
+# Executor Framework
+
+The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-executor/tree/main){target=\_blank} is a standardized, permissionless system for executing cross-chain messages. It combines a lightweight on-chain contract with off-chain services that quote, monitor, and perform execution. By minimizing on-chain logic and verification, the framework reduces cost and complexity while allowing independent providers to compete and fulfill requests across multiple chains.
+
+The Executor framework separates responsibilities between three independent participants:
+
+| Actor	            | Responsibility                                                              | 
+|-------------------|-----------------------------------------------------------------------------| 
+| Integrator        | Creates and submits execution requests using valid quotes.                  | 
+| Executor Contract | Publishes requests, transfers payment, and emits observable events.         | 
+| Relay Provider	| Monitors events, issues and validates signed quotes, and executes messages. | 
+
+This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
+
+## Relay Provider
+
+A Relay Provider is an off-chain service that executes messages between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
+
+Each provider runs infrastructure that listens for execution requests emitted by the Executor contract on supported chains. When a request matches one of their quotes, the provider retrieves the associated VAA from the Guardians and performs the message execution on the destination chain.  
+
+Each Relay Provider operates a Quoter service that issues signed quotes and defines execution terms. 
+
+Each quote specifies: 
+
+- The source and destination chains. 
+- Pricing. 
+- An expiry time before which the Executor contract can accept the quote. 
+
+Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
+
+Because the network is open, multiple providers may compete to fulfill the same request. Each quote defines the conditions under which a provider is willing to execute, enabling competitive pricing and redundancy across the system. Message validity is enforced through the Wormhole VAA and Guardian verification process, preventing providers from altering or forging the message and ensuring all executions remain trust-minimized.
+
+Relay Providers may operate multiple wallets, each capable of performing execution or receiving payment. They can choose whether payments are collected per-wallet or directed to a central [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined by the Quoter.
+
+Providers should provide a public API for integrators to track the status of the request such as: 
+
+- Request creation.
+- Added gas fees.
+- Transaction executed.
+- Any issued refunds. 
+
+To improve transparency, providers may also publish a Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
+
+!!!warning
+    The framework does not prevent repeated execution attempts. Providers should implement their own safeguards to avoid duplicate deliveries.
+
+## Executor Contract
+
+Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
+
+When called, the Executor contract:
+
+- Accepts execution requests from integrators or clients.
+- Verifies basic parameters (source/destination chain IDs, expiry time).
+- Transfers payment to the designated [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank}.
+- Emits events containing request details for off-chain consumption. 
+
+The Executor contract exposes the [`requestExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L22){target=\_blank} function, used by both on-chain and off-chain integrations to create an execution request.
+
+```solidity
+requestExecution(
+    uint16 dstChain,
+    bytes32 dstAddr,
+    bytes32 refundAddr,
+    SignedQuote signedQuote,
+    bytes request,
+    bytes relayInstructions
+)
+```
+
+When `requestExecution` is called, the contract checks that:
+
+- The quote’s source chain matches the chain of deployment.
+- The destination matches the provided destination chain.
+- The quote has not expired.
+
+If all checks pass, payment is transferred to the [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined in the quote, and a [`RequestForExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L61){target=\_blank} event is emitted.
+
+To remain lightweight and chain-agnostic, the Executor contract performs only minimal validation:
+
+- **No signature verification**: The client is responsible for verifying the quote before submission.
+- **No message inspection**: The contract does not parse or validate the message payload.
+- **No payment enforcement**: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
+
+This minimal design keeps the contract generic, inexpensive, and compatible with multiple message formats and future Wormhole protocols.
+
+
+---
+
+Page Title: Executor Overview
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/concepts/executor-overview/
+- Summary: Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
+
+# Executor
+
+The Executor is a shared execution framework that delivers Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
+
+The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-executor/tree/main){target=\_blank} enables anyone to act as a relayer within a permissionless network that uses a request-and-quote model for delivering messages. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
+
+At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. The difference lies in how delivery requests are initiated and fulfilled.  
+
+1. Applications call a lightweight, stateless Executor contract on the source chain, providing the target chain, target address, and a signed fee quote from a chosen provider.  
+2. The contract emits an event representing the execution request, which any off-chain provider can detect.  
+3. A matching provider then retrieves the VAA and performs the delivery on the destination chain.
+
+By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
+
+## Components 
+
+- **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
+- **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
+- **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
+- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
+- **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
+- **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
+
+For a deeper look at how these components interact, see the [Executor framework](docs/products/messaging/concepts/executor-framework/){target=\_blank}.
+
+## Request Flow
+
+Message execution starts on the source chain, where an integrator creates an execution request. The request includes a signed quote from a Quoter, along with message data and delivery instructions.
+
+1. A client requests a quote from a Quoter, specifying source and destination chains.  
+2. The Quoter returns a signed quote with pricing and parameters.  
+3. The client sends a message through an integrator contract, including the signed quote.  
+4. The integrator publishes the message via the[ Wormhole Core contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}.  
+5. The integrator then calls the Executor contract to register the execution request.
+
+```mermaid
+---
+title: v1 VAA Execution Request
+---
+sequenceDiagram
+		participant C as Client
+		participant Q as Quoter
+		box Source Chain
+		participant I as Integrator Contract
+		participant W as Wormhole Core
+		participant E as Executor Contract
+		end
+    C->>Q: srcChain, dstChain
+    Q-->>C: signedQuote
+    C->>I: sendMessage(signedQuote, relayInstructions)
+    I->>W: publishMessage
+    W-->>I: sequence
+    I->>E: requestExecution
+```
+
+## Result Flow
+
+Once the request is recorded on-chain, off-chain Relay Providers monitor the Executor contract for events that match their signed quotes. When a valid request is detected, the provider retrieves the message from the Guardians and executes it on the destination chain.
+
+1. The Executor contract emits an event with the request and payment details.
+2. A Relay Provider verifies the quote and fetches the associated message (e.g., a VAA).
+3. The provider delivers the message to the destination chain’s integrator contract.
+4. The integrator verifies the message with the Wormhole Core contract and performs the specified logic.
+
+```mermaid
+---
+title: v1 VAA Execution Result
+---
+sequenceDiagram
+		box Source Chain
+		participant EC as Executor Contract
+		end
+		participant E as Relayer (Off-Chain)
+		box Destination Chain
+		participant I as Integrator Contract
+		participant W as Wormhole Core
+		end
+		EC-->>E: event
+    E->>I: executeVaaV1
+    I->>W: parseAndVerifyVM
+```
+
+## Security Considerations
+
+The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs.
 
 
 ---
@@ -3551,7 +3741,7 @@ The level of finality (consistency) a transaction should meet before being signe
 
 ## Delivery Provider
 
-A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
+A Delivery Provider monitors for Executor delivery requests and delivers those requests to the intended target chain as instructed.
 
 ## Emitter
 
@@ -3778,8 +3968,6 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}**: Quickly set up a project with the Scaffolding repository.
 - **[Demo Tutorials](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}**: Explore various demos that showcase Wormhole's capabilities across different blockchains.
 
-
-
 !!! note
     Wormhole Integration Complete?
 
@@ -3816,7 +4004,7 @@ The messaging flow consists of several core components:
 
 1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
 2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+3. **Relayers (Executor)**: Off-chain or on-chain relayers transport the VAA to the destination chain. In Wormhole’s architecture, this role is fulfilled by the [**Executor**](/docs/products/messaging/concepts/executor-overview/){target=\_blank}, a permissionless, shared framework that standardizes message delivery across all supported chains.
 4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
@@ -3856,7 +4044,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 Follow these steps to work with Wormhole Messaging:
 
 - **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- **[Use Wormhole Relayers](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}**: Send and receive messages without off-chain infrastructure.
+- **[Executor Overview](/docs/products/messaging/concepts/executor-overview/){target=\_blank}**: Learn how to use Executors to automate message handling and application logic across chains.
 
 For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
 
@@ -5169,7 +5357,7 @@ At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infra
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
-- [Relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} are considered untrusted in the Wormhole ecosystem.
+- The [Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
 
 In summary:
 

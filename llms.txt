@@ -6,13 +6,15 @@
 This directory lists URLs for raw Markdown pages that complement the rendered pages on the documentation site. Use these Markdown files to retain semantic context when prompting models while avoiding passing HTML elements.
 
 ## Metadata
-- Documentation pages: 121
+- Documentation pages: 123
 - Categories: 18
 
 ## Docs
 This section lists documentation pages by category. Each entry links to a raw markdown version of the page and includes a short description. A page may appear in multiple categories.
 
 Docs: Basics
+- [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
+- [Executor Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md): Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
 - [Solana Shims](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-solana-shim.md): Understand how Wormhole uses shim programs on Solana to optimize message emission and VAA verification without modifying the Core Bridge.
 - [Get Started with Messaging](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-get-started.md): Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
 - [Get Started with Core Contracts](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-core-contracts.md): This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts

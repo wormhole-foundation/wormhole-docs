@@ -143,7 +143,19 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+            https://github.com/wormhole-foundation/native-token-transfers.git
+        cd native-token-transfers
+        ```
+
+        ```bash
+        curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+        ```
+
+        ```bash
+        npm ci
+        cd cli
+        ./install.sh
         ```
 
         Verify installation:
@@ -253,7 +265,7 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 
 - If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter.
 
-By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
+
 
 ## NTT Manager Deployment Parameters
 
