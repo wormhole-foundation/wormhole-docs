@@ -1003,6 +1003,7 @@ categories: Reference
 | Ink | 0x3e44a5F45cbD400acBEF534F51e616043B211Ddd |
 | Linea | 0x23aF2B5296122544A9A7861da43405D5B15a9bD3 |
 | Mezo | 0x0f9b8E144Cc5C5e7C0073829Afd30F26A50c5606 |
+| Monad | 0xC04dE634982cAdF2A677310b73630B7Ac56A3f65 |
 | Moonbeam | 0x85D06449C78064c2E02d787e9DC71716786F8D19 |
 | Optimism | 0x85B704501f6AE718205C0636260768C4e72ac3e7 |
 | Polygon | 0x0B23efA164aB3eD08e9a39AC7aD930Ff4F5A5e81 |
@@ -1148,6 +1149,7 @@ categories: Reference
 | Celo | 0xe478DEe705BEae591395B08934FA19F54df316BE |
 | Fantom | 0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca |
 | Ink | 0x4bFB47F4c8A904d2C24e73601D175FE3a38aAb5B |
+| Monad | 0xf7E051f93948415952a2239582823028DacA948e |
 | Moonbeam | 0xF6b9616C63Fa48D07D82c93CE02B5d9111c51a3d |
 | Optimism | 0x37aC29617AE74c750a1e4d55990296BAF9b8De73 |
 | Polygon | 0x1d98CA4221516B9ac4869F5CeA7E6bb9C41609D6 |
@@ -1191,6 +1193,7 @@ categories: Reference
 | BNB Smart Chain | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Celo | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Ink | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
+| Monad | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Moonbeam | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Optimism | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Polygon | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
@@ -2656,7 +2659,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Avalanche | 200 |  |  | finalized | ~ 2s | Details |
 | Base | 200 | 201 |  | finalized | ~ 18min |  |
 | Berachain | 200 |  |  | finalized | ~ 4s |  |
-| BNB Smart Chain | 200 | 201 |  | finalized | ~ 48s | Details |
+| BNB Smart Chain | 200 | 201 |  | finalized | ~ 12s | Details |
 | Celestia |  |  | 0 |  | ~ 5s |  |
 | Celo | 200 |  |  | finalized | ~ 10s |  |
 | Converge |  |  | 0 |  | ~ 7min |  |
@@ -2731,6 +2734,7 @@ categories: Reference
 | Linea | 0x0C56aebD76E6D9e4a1Ec5e94F4162B4CBbf77b32 |
 | Mantle | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
 | Mezo | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
+| Monad | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
 | Moonbeam | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3 |
 | NEAR | contract.wormhole_crypto.near |
 | Neutron | neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh |
@@ -2824,6 +2828,7 @@ categories: Reference
 | Kaia | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F |
 | Linea | 0x167E0752de62cb76EFc0Fbb165Bd342c6e2Bb251 |
 | Mantle | 0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d |
+| Monad | 0x0B2719cdA2F10595369e6673ceA3Ee2EDFa13BA7 |
 | Moonbeam | 0xb1731c586ca89a23809861c6103f0b96b3f57d92 |
 | NEAR | contract.portalbridge.near |
 | Optimism | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b |
@@ -2990,6 +2995,7 @@ categories: Reference
 | Ink | 0x3e44a5F45cbD400acBEF534F51e616043B211Ddd |
 | Linea | 0x23aF2B5296122544A9A7861da43405D5B15a9bD3 |
 | Mezo | 0x0f9b8E144Cc5C5e7C0073829Afd30F26A50c5606 |
+| Monad | 0xC04dE634982cAdF2A677310b73630B7Ac56A3f65 |
 | Moonbeam | 0x85D06449C78064c2E02d787e9DC71716786F8D19 |
 | Optimism | 0x85B704501f6AE718205C0636260768C4e72ac3e7 |
 | Polygon | 0x0B23efA164aB3eD08e9a39AC7aD930Ff4F5A5e81 |
@@ -3103,6 +3109,7 @@ categories: Reference
 | Ink | 0x3e44a5F45cbD400acBEF534F51e616043B211Ddd |
 | Linea | 0x23aF2B5296122544A9A7861da43405D5B15a9bD3 |
 | Mezo | 0x0f9b8E144Cc5C5e7C0073829Afd30F26A50c5606 |
+| Monad | 0xC04dE634982cAdF2A677310b73630B7Ac56A3f65 |
 | Moonbeam | 0x85D06449C78064c2E02d787e9DC71716786F8D19 |
 | Optimism | 0x85B704501f6AE718205C0636260768C4e72ac3e7 |
 | Polygon | 0x0B23efA164aB3eD08e9a39AC7aD930Ff4F5A5e81 |
@@ -3248,6 +3255,7 @@ categories: Reference
 | Celo | 0xe478DEe705BEae591395B08934FA19F54df316BE |
 | Fantom | 0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca |
 | Ink | 0x4bFB47F4c8A904d2C24e73601D175FE3a38aAb5B |
+| Monad | 0xf7E051f93948415952a2239582823028DacA948e |
 | Moonbeam | 0xF6b9616C63Fa48D07D82c93CE02B5d9111c51a3d |
 | Optimism | 0x37aC29617AE74c750a1e4d55990296BAF9b8De73 |
 | Polygon | 0x1d98CA4221516B9ac4869F5CeA7E6bb9C41609D6 |
@@ -3291,6 +3299,7 @@ categories: Reference
 | BNB Smart Chain | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Celo | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Ink | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
+| Monad | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Moonbeam | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Optimism | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | Polygon | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
@@ -3377,7 +3386,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Linea | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Plume | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -3416,7 +3425,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -3447,6 +3456,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Plume | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
