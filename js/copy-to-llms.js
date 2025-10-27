@@ -316,23 +316,19 @@
     return { container, copyButton, dropdownButton, dropdownMenu };
   }
 
-  // Mount UI next to the first non-hero H1 and wire handlers (skip if already rendered).
+  // Mount UI next to the first H1 (skip if already rendered or on the home page).
   function addSectionCopyButtons() {
+    const slug = getPageSlug();
+    const isHomePage = !slug || slug === 'index';
+    if (isHomePage) {
+      return;
+    }
+
     if (document.querySelector('.copy-to-llm-split-container')) {
       return;
     }
 
-    const headingCandidates = Array.from(
-      document.querySelectorAll('.md-content h1')
-    );
-    if (!headingCandidates.length) {
-      return;
-    }
-
-    const mainTitle = headingCandidates.find(
-      (heading) => !heading.closest('.hero')
-    );
-
+    const mainTitle = document.querySelector('.md-content h1');
     if (mainTitle) {
       const wrapper = document.createElement('div');
       wrapper.className = 'h1-copy-wrapper';
