@@ -316,10 +316,24 @@
     return { container, copyButton, dropdownButton, dropdownMenu };
   }
 
-  // Mount UI next to the first H1 and wire handlers (skip if already rendered).
+  // Mount UI next to the first non-hero H1 and wire handlers (skip if already rendered).
   function addSectionCopyButtons() {
-    const mainTitle = document.querySelector('.md-content h1');
-    if (mainTitle && !document.querySelector('.copy-to-llm-split-container')) {
+    if (document.querySelector('.copy-to-llm-split-container')) {
+      return;
+    }
+
+    const headingCandidates = Array.from(
+      document.querySelectorAll('.md-content h1')
+    );
+    if (!headingCandidates.length) {
+      return;
+    }
+
+    const mainTitle = headingCandidates.find(
+      (heading) => !heading.closest('.hero')
+    );
+
+    if (mainTitle) {
       const wrapper = document.createElement('div');
       wrapper.className = 'h1-copy-wrapper';
       mainTitle.parentNode.insertBefore(wrapper, mainTitle);
