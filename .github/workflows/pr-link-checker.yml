@@ -11,5 +11,6 @@ jobs:
       docs_repo: wormhole-foundation/wormhole-docs
       docs_checkout: wormhole-docs
       url: https://wormhole.com/docs
+      root_dir: /docs
     secrets:
       GH_TOKEN: ${{ secrets.GH_PR_404_CHECKER }}
