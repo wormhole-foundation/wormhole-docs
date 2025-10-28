@@ -5421,7 +5421,196 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
 1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**.
 
+<<<<<<< HEAD:.ai/categories/transfer.md
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-1.webp)
+=======
+    ```bash
+    cast send INSERT_TOKEN_ADDRESS \
+        "mint(address,uint256)" \
+        INSERT_RECIPIENT_ADDRESS \
+        INSERT_AMOUNT_IN_WEI \
+        --private-key INSERT_YOUR_PRIVATE_KEY \
+        --rpc-url INSERT_RPC_URL
+    ```
+
+!!! note
+    This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+
+???- interface "Create and Mint an SPL Token"
+    This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
+
+    ```bash
+    solana-keygen grind --starts-with w:1 --ignore-case
+    ```
+
+2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
+
+    ```bash
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+    ```
+
+3. **Select an RPC URL**: Configure the CLI to use the appropriate network using one of the following commands.
+
+    === "Mainnet"
+        ```bash
+        solana config set -um
+        ```
+
+    === "Testnet (Solana's Devnet)"
+        ```bash
+        solana config set -ud
+        ```
+
+    === "Fogo Testnet"
+        ```bash
+        solana config set --url INSERT_FOGO_TESTNET_RPC_URL
+        ```
+                
+    !!! note
+        Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
+
+4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
+
+    - On Solana Devnet, you can request an airdrop:
+
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
+
+5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
+
+    ```bash
+    cargo install spl-token-cli
+    ```
+
+6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
+
+    ```bash
+    spl-token create-token
+    ```
+
+7. **Create a token account**: Generate an account to hold the token.
+
+    ```bash
+    spl-token create-account INSERT_TOKEN_ADDRESS
+    ```
+
+8. **Mint tokens**: Send 1000 tokens to the created account.
+
+    ```bash
+    spl-token mint INSERT_TOKEN_ADDRESS 1000
+    ```
+
+!!! note
+    NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+
+???- interface "Create and Deploy a Sui Token"
+    This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
+
+1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+    cd example-ntt-token-sui
+    ```
+
+2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
+
+    1. **Create a new testnet environment**: Configure your Sui client for testnet.
+
+        ```bash
+        sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+        ```
+
+    2. **Generate a new address**: Create a new Ed25519 address for your wallet.
+
+        ```bash
+        sui client new-address ed25519
+        ```
+
+    3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
+
+        ```bash
+        sui client switch --address YOUR_ADDRESS_STEP2
+        ```
+
+    4. **Fund your wallet**: Use the faucet to get test tokens.
+
+        ```bash
+        sui client faucet
+        ```
+
+    5. **Verify funding**: Check that your wallet has been funded.
+
+        ```bash
+        sui client balance
+        ```
+
+3. **Build the project**: Compile the Move contract.
+
+    ```bash
+    sui move build
+    ```
+
+4. **Deploy the token contract**: Deploy to testnet.
+
+    ```bash
+    sui client publish --gas-budget 20000000
+    ```
+
+5. **Mint tokens**: Send tokens to your address.
+
+    ```bash
+    sui client call \
+    --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
+    --module MODULE_NAME_STEP1 \
+    --function mint \
+    --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
+    --gas-budget 10000000
+    ```
+
+!!! note
+    This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
+
+## Install NTT CLI
+
+The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
+
+1. Run the installation commands in your terminal:
+
+git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
+    ```
+
+??? warning "Install permission denied?"
+    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
+
+    ```bash
+    chmod u+x ./install.sh
+    ```
+
+2. Verify the NTT CLI is installed:
+
+ntt --version
+    ```
+
+??? warning "Command not found?"
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
+>>>>>>> 6e9828fa (llms generation):llms-files/llms-transfer.txt
     
 2. Select **Launch a Cross-Chain Token**.
 
@@ -19166,9 +19355,2913 @@ Page Title: NTT Supported Networks
 
 Page Title: Portal Bridge FAQs
 
+<<<<<<< HEAD:.ai/categories/transfer.md
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-wrapped-token-transfers-portal-faqs.md
 - Canonical (HTML): https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/portal/faqs/
 - Summary: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
+=======
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on SVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between SVM chains.
+
+## Prerequisites
+
+Before deploying NTT on SVM chains, ensure you have the following:
+
+- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed.
+- The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
+
+    === "v3"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
+
+    === "v2/v1"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
+
+
+Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
+
+## Overview of the Deployment Process
+
+Deploying NTT with the CLI on SVM chains follows a structured process:
+
+1. Choose your token setup:
+
+     - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/products/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
+     - **Create a new SPL token**: If you don't already have an SPL token deployed, you'll need to deploy and configure it on a supported SVM chain before integrating with Wormhole's NTT.
+
+        ???- interface "Create and Mint an SPL Token"
+            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
+
+    ```bash
+    solana-keygen grind --starts-with w:1 --ignore-case
+    ```
+
+2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
+
+    ```bash
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+    ```
+
+3. **Select an RPC URL**: Configure the CLI to use the appropriate network using one of the following commands.
+
+    === "Mainnet"
+        ```bash
+        solana config set -um
+        ```
+
+    === "Testnet (Solana's Devnet)"
+        ```bash
+        solana config set -ud
+        ```
+
+    === "Fogo Testnet"
+        ```bash
+        solana config set --url INSERT_FOGO_TESTNET_RPC_URL
+        ```
+                
+    !!! note
+        Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
+
+4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
+
+    - On Solana Devnet, you can request an airdrop:
+
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
+
+5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
+
+    ```bash
+    cargo install spl-token-cli
+    ```
+
+6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
+
+    ```bash
+    spl-token create-token
+    ```
+
+7. **Create a token account**: Generate an account to hold the token.
+
+    ```bash
+    spl-token create-account INSERT_TOKEN_ADDRESS
+    ```
+
+8. **Mint tokens**: Send 1000 tokens to the created account.
+
+    ```bash
+    spl-token mint INSERT_TOKEN_ADDRESS 1000
+    ```
+
+!!! note
+    NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+
+2. **Choose your deployment model**:
+
+    - **Hub-and-spoke**: Tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required.
+    - **Burn-and-mint**: Tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program.
+
+3. **Deploy and configure NTT**: Use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode.
+
+![SVM NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
+
+Following this process, your token will fully integrate with NTT, enabling seamless transfers between SVM chains and other chains.
+
+## Set Up NTT
+
+To integrate your token with NTT on a SVM chain, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
+
+!!! note
+    If you already have an NTT deployment to another chain (like Ethereum), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Generate an NTT Program Key Pair](#generate-an-ntt-program-key-pair) section.
+
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+???- interface "Install the NTT CLI and Scaffold a New Project"
+
+    1. Install the NTT CLI:
+
+    ```bash
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
+    ```
+
+    Verify installation:
+
+    ```bash
+    ntt --version
+    ```
+
+2. Initialize a new NTT project:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+3. Create the deployment config using the following command. This will generate a `deployment.json` file where your settings are stored:
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+!!! note
+    When deploying NTT to Solana in `Testnet` mode, you must use [**Devnet tokens**](https://faucet.solana.com/){target=\_blank}. Solana's official testnet cluster is not supported for token creation or deployment in NTT.
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+
+```bash
+solana-keygen grind --starts-with ntt:1 --ignore-case
+```
+
+### Set Mint Authority
+
+If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on a SVM chain. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
+
+For hub-and-spoke and a SVM chain as the hubchain skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt), otherwise follow the burn-and-mint instructions below for the SVM chain as a spoke.
+
+Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
+Options to set the mint authority for your SPL token:
+
+**For undeployed programs:**
+
+- **Set to token authority PDA:**
+```bash
+ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig:**
+
+    1. Create valid SPL Multisig:
+
+        ```bash
+        ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+        ```
+
+    2. Set to created SPL Multisig:
+    ```bash
+    ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+```bash
+ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
+```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
+
+## Deploy and Configure NTT
+
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+
+After setting up your deployment, finalize the configuration and deploy the NTT program on the SVM chain by following these steps:
+
+1. **Deploy NTT to the SVM chain**: Run the appropriate command based on your deployment mode.
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain INSERT_SVM_CHAIN --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain INSERT_SVM_CHAIN --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
+
+2. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+3. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while SVM chains use nine decimals.
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+    }
+    ```
+
+4. **Push the final deployment**: Once rate limits are set, push the deployment to the SVM chain using the specified key pair to cover gas fees.
+
+    ```bash
+    ntt push --payer INSERT_YOUR_KEYPAIR_JSON
+    ```
+
+### Recovering Rent for Failed SVM Deployments
+
+Failed SVM deployments don't result in loss of tokens. Instead, the native tokens may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on SVM chains, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+
+    ---
+
+    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+
+    [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/deploy-to-sui.md
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Sui Deployment
+description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for Sui, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Deploy NTT to Sui
+
+[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of Sui tokens using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on Sui, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
+
+## Prerequisites
+
+Before deploying NTT on Sui, ensure you have the following prerequisites:
+
+- [Sui Client CLI installed](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}.
+
+## Overview of the Deployment Process
+
+Deploying NTT on the Sui network follows a structured process:
+
+1. **Choose your token setup**:
+
+     - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
+     - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
+
+        !!! warning "Token Compatibility Requirement"
+            Your Sui token must be created with the legacy `CoinMetadata` type for NTT compatibility, which can be done using the `coin::create_currency` function.
+            Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
+
+        ???- interface "Create and Deploy a Sui Token"
+            This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
+
+1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+    cd example-ntt-token-sui
+    ```
+
+2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
+
+    1. **Create a new testnet environment**: Configure your Sui client for testnet.
+
+        ```bash
+        sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+        ```
+
+    2. **Generate a new address**: Create a new Ed25519 address for your wallet.
+
+        ```bash
+        sui client new-address ed25519
+        ```
+
+    3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
+
+        ```bash
+        sui client switch --address YOUR_ADDRESS_STEP2
+        ```
+
+    4. **Fund your wallet**: Use the faucet to get test tokens.
+
+        ```bash
+        sui client faucet
+        ```
+
+    5. **Verify funding**: Check that your wallet has been funded.
+
+        ```bash
+        sui client balance
+        ```
+
+3. **Build the project**: Compile the Move contract.
+
+    ```bash
+    sui move build
+    ```
+
+4. **Deploy the token contract**: Deploy to testnet.
+
+    ```bash
+    sui client publish --gas-budget 20000000
+    ```
+
+5. **Mint tokens**: Send tokens to your address.
+
+    ```bash
+    sui client call \
+    --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
+    --module MODULE_NAME_STEP1 \
+    --function mint \
+    --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
+    --gas-budget 10000000
+    ```
+
+!!! note
+    This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
+
+2. **Choose your deployment model**:
+
+    - **Hub-and-spoke**: Tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required.
+    - **Burn-and-mint**: Tokens are burned on the source chain and minted on the destination chain. This requires transferring the Sui Treasury cap object to the NTT manager.
+
+3. **Deploy and configure NTT**: Use the NTT CLI to initialize and deploy the NTT program, specifying your Sui token and deployment mode.
+
+
+## Set Up NTT
+
+Before deploying NTT contracts on Sui, you need to scaffold a project and initialize your deployment configuration.
+
+!!! note
+    If you already have an NTT deployment to another chain (like Solana), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Deploy and Configure NTT](#deploy-and-configure-ntt) section.
+
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+    1. Install the NTT CLI:
+
+    ```bash
+    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        https://github.com/wormhole-foundation/native-token-transfers.git
+    cd native-token-transfers
+    ```
+
+    ```bash
+    curl -fsSL https://bun.com/install | bash -s "bun-v1.2.23"  
+    ```
+
+    ```bash
+    npm ci
+    cd cli
+    ./install.sh
+    ```
+
+    Verify installation:
+
+    ```bash
+    ntt --version
+    ```
+
+2. Initialize a new NTT project:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+3. Create the deployment config using the following command. This will generate a `deployment.json` file where your settings are stored:
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+## Deploy and Configure NTT
+
+Once you've set up NTT, proceed with deploying the contracts.
+
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the following commands:
+
+    First, list your available key aliases:
+
+    ```bash
+    sui client addresses
+    ```
+    
+    This command displays all available aliases. Note the alias you want to use for your deployment.
+
+    Then, export the private key using your chosen alias:
+
+    ```bash
+    sui keytool export --key-identity goofy
+    ```
+    **Note**: Replace `goofy` with your actual key alias. This command exports the private key in the format required by the NTT add-chain command.
+
+    ```bash
+    export SUI_PRIVATE_KEY=INSERT_PRIVATE_KEY
+    ```
+
+    After setting up your deployment, finalize the configuration and deploy the NTT program onto the Sui network by following the steps below.
+
+2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
+
+    !!! note
+        The `--token` parameter requires the full Sui coin type in the format `0xADDRESS::module::struct`. 
+        For example, `0x2::sui::SUI` for the native SUI token, or `0x1234567890abcdef::my_module::MyToken` for a custom token.
+
+    !!! warning 
+        In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager, enabling the NTT manager to mint tokens. 
+        **Important**: Once the treasury-cap object is moved to the NTT manager, you will no longer be able to modify the token's metadata (such as name, symbol, or icon).
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain Sui --latest --mode burning --token INSERT_FULL_COIN_TYPE --sui-treasury-cap YOUR_TREASURY_CAP_ID 
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain Sui --latest --mode locking --token INSERT_FULL_COIN_TYPE
+        ```
+
+3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+4. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. 
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Sui
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Sui to Sepolia
+    }
+    ```
+
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
+
+    ```bash
+    ntt push
+    ```
+  
+After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
+
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT to EVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for EVM chains.
+
+    [:custom-arrow: Deploy NTT to EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/evm-launchpad.md
+--- BEGIN CONTENT ---
+---
+title: Deploy Native Token Transfers with Launchpad
+description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+categories: NTT, Transfer
+---
+
+# Deploy NTT with Launchpad
+
+The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
+
+Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
+
+The Launchpad automates deployment, reducing complexity and saving time.
+
+This guide covers:
+
+ - Launching a new cross-chain token.
+ - Expanding an existing token for NTT.
+ - Managing tokens via the dashboard and settings.
+
+## Prerequisites
+
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.).
+ - Minimum ETH (or equivalent) for gas fees per deployment.
+
+## Supported Blockchains
+
+The NTT Launchpad currently supports deployments on the following mainnet chains:
+
+ - Ethereum
+ - Arbitrum One
+ - Base
+ - Berachain
+ - Blast
+ - BNB Smart Chain
+ - Ink
+ - Optimism Mainnet
+ - Polygon
+
+## Choose Your Path
+
+Once ready, choose an option to proceed:
+
+ - **[Launch a Cross-Chain Token](#launch-a-cross-chain-token)**: Deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains.
+ - **[Expand Your Existing Token](#expand-your-existing-token)**: If you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract.
+
+## Launch a Cross-Chain Token
+
+Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-1.webp)
+    
+2. Select **Launch a Cross-Chain Token**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-2.webp)
+
+3. Set the token details:
+    1. Select the **home network** from the dropdown menu.
+    2. Enter the **name** for the token.
+    3. Enter the **symbol** of the token. 
+    4. Provide the **initial supply**.
+    5. To the token details, click **Next**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-3.webp)
+
+4. Select the deployment chains:
+    1. The home network where your token will be deployed will be populated (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    3. To continue, click **Next**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-4.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
+
+8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
+
+## Expand Your Existing Token
+
+Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-1.webp)
+
+2. Select **Expand Your Existing Token**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-7.webp)
+
+3. Enter the token details:
+    1. Choose the home network where your token is already deployed (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    3. To continue, click **Next**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-8.webp)
+
+4. Select the chains to deploy your token to:
+    1. The home network where your token is already deployed will be populated (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    1. Click **Next**.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-9.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet.
+
+    ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
+
+8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details.
+
+## Explore the Launchpad Dashboard
+
+To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view deployment status, monitor supply across chains, and configure transfer settings.
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-10.webp)
+
+The dashboard provides a high-level view of your token across all deployed chains, including:
+
+ - Token addresses for each chain.
+ - Supply distribution visualization.
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings).
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-11.webp)
+
+## Settings
+
+The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
+
+### Chain Management
+
+Use the drop-down menu at the top to select the chain you want to configure. The available options correspond to the chains where your token has already been deployed. Once selected, the page displays token details specific to that chain.
+
+From this section, you can also:
+
+ - **Pause the token**: Temporarily turn off transfers on the selected chain.
+ - **Deploy to a new chain**: Expand your token by deploying it to an additional chain.
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-12.webp)
+
+### Role Management
+
+This section displays key [roles](/docs/products/token-transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
+
+ - **Manager’s Owner**: The owner through the `NTTOwner` proxy.
+ - **Pauser**: The address authorized to pause transfers.
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-13.webp)
+
+### Security Threshold
+
+Determine and update how transceivers interact with the token. [Transceivers](/docs/products/token-transfers/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+
+A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
+
+ - **Registered Transceivers**: Displays the number of registered transceivers and their addresses.
+ - **Transceivers Threshold**: A configurable value that must be less than or equal to the number of transceivers.
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-14.webp)
+
+### Peer Chains Limits
+
+Define the transfer restrictions for each connected network. You can adjust:
+
+ - **Sending Limits**: The maximum amount of tokens that can be sent from the home chain.
+ - **Receiving Limits**: The maximum amount of tokens that can be received for each of the supported peer chains.
+
+Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
+
+![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-15.webp)
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/post-deployment.md
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Post Deployment
+description: Learn post-deployment guidelines for optimizing Wormhole NTT, which include testing, security, frontend integration, ecosystem coordination, and monitoring.
+categories: NTT, Transfer
+---
+
+# NTT Post-Deployment Steps
+
+To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
+
+- Implement a robust testing plan for your multichain token before launching.
+- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/products/token-transfers/native-token-transfers/configuration/access-control/){target=\_blank} for more details on ownership and rate limits.
+- Consider a streamlined, customizable frontend such as [Connect](/docs/products/connect/overview/){target=\_blank} for an optimized user experience.
+- Alternatively, the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} allows for a direct integration into your infrastructure.
+- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately.
+- Monitor and maintain your multichain deployment.
+
+## Manual Relaying for SVM Transfers  
+
+By default, NTT transfers to SVM chains require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
+
+This step ensures that tokens are properly minted or unlocked on the SVM chain and prevents unauthorized claims.
+
+## Post-Deployment Settings
+
+The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
+
+| Setting                 | Effect                                   |
+|-------------------------|------------------------------------------|
+| `pause`                 | Pauses the manager.                      |
+| `unpause`               | Unpauses the manager.                    |
+| `setOwner`              | Changes the manager owner.               |
+| `setPauser`             | Changes the pauser role.                 |
+| `setOutboundLimit`      | Sets outbound transfer limit.            |
+| `setInboundLimit`       | Sets inbound transfer limit (per chain). |
+| `setTransceiverPauser ` | Changes pauser for a transceiver.        |
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+- :octicons-code-16:{ .lg .middle } **Transfer Ownership**
+
+    ---
+
+    Learn how to move ownership of your NTT deployment to a new owner address on EVM, Solana, and Sui with step-by-step instructions.
+
+    [:custom-arrow: Follow the Transfer Ownership guide](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
+
+    ---
+
+    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
+
+    ---
+
+    Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
+
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+
+-   :octicons-eye-16:{ .lg .middle } **Query NTT Token and Transfer Data**
+
+    ---
+
+    Learn how to explore NTT by querying token metadata and transfer activity using the Wormholescan API in a TypeScript project.
+
+    [:custom-arrow: Try the NTT Token and Transfers Guide](/docs/products/messaging/guides/wormholescan-api)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/transfer-ownership.md
+--- BEGIN CONTENT ---
+---
+title: Transfer Ownership
+description: Step-by-step guide to transferring ownership of Native Token Transfers on EVM, Solana, and Sui with CLI instructions.
+categories: NTT, Transfer
+---
+
+# Transfer Ownership
+
+After deploying Native Token Transfers (NTT), you may need to move ownership to a new owner address (e.g., a multisig). This page outlines the process for transferring ownership on EVM, Solana, and Sui.
+
+## EVM
+
+The [NTT CLI](/docs/products/token-transfers/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} supports transferring ownership on EVM chains. To transfer ownership on the EVM chains, you can do the following:
+
+1. Set the private key used to sign the transaction.
+
+    ```bash
+    export ETH_PRIVATE_KEY=INSERT_EVM_PRIVATE_KEY
+    ```
+
+2. Run the `ntt transfer-ownership` command, specifying the chain and destination address.
+
+    ```bash
+    ntt transfer-ownership INSERT_CHAIN --destination INSERT_DESTINATION_ADDRESS
+    ```
+
+    You’ll see a confirmation prompt. Type `y` to proceed.
+
+If successful, you will see the following output:
+
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>export ETH_PRIVATE_KEY=INSERT_EVM_PRIVATE_KEY</span>
+<span data-ty="input"><span class="file-path"></span>ntt transfer-ownership ArbitrumSepolia --destination 0xc96CE2a...</span>
+<span data-ty=""></span>
+<span data-ty="">Transferring ownership on ArbitrumSepolia (Testnet)</span>
+<span data-ty="">Manager address: 0x00a97bE...</span>
+<span data-ty="">New owner: 0xc96CE2a...</span>
+<span data-ty="">Current owner: 0x0088DFA...</span>
+<span data-ty=""> </span>
+<span data-ty="">⚠️ ⚠️ ⚠️ CRITICAL WARNING ⚠️ ⚠️ ⚠️</span>
+<span data-ty="">This ownership transfer is IRREVERSIBLE!</span>
+<span data-ty="">Please TRIPLE-CHECK that the destination address is correct:</span>
+<span data-ty="">0xc96CE2a...</span>
+<span data-ty=""> </span>
+<span data-ty="">Are you absolutely certain you want to transfer ownership to 0xc96CE2a...? [y/N]y</span>
+<span data-ty="">Transaction hash: 0x57da478...</span>
+<span data-ty="">Waiting for 1 confirmation...</span>
+<span data-ty="">Verifying ownership transfer...</span>
+<span data-ty="">✅ Ownership transferred successfully to 0xc96CE2a...</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Solana
+
+Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L58){target=\_blank} to initiate the transfer.
+
+1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
+2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
+3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a [Program Derived Address (PDA)](https://solana.com/docs/core/pda){target=\_blank}.
+
+For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools), which provides scripts and guidance for managing an NTT program using Squads' multisig functionality, including procedures for ownership transfer.
+
+## Sui
+
+The [Sui CLI](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank} supports transferring ownership by moving the NTT Manager’s `AdminCap` and `UpgradeCap` to your multisig. You can transfer ownership as follows:
+
+1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager.
+
+    ```bash
+    sui client object INSERT_SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
+    ```
+
+2. Transfer `AdminCap` object over to a multisig.
+
+    ```bash
+    sui client transfer --to INSERT_MULTISIG_ADDRESS --object-id INSERT_ADMIN_CAP_ID_STEP1
+    ```
+
+3. Transfer `UpgradeCap` object over to a multisig.
+
+    ```bash
+    sui client transfer --to INSERT_MULTISIG_ADDRESS --object-id INSERT_UPGRADE_CAP_ID_STEP1
+    ```
+
+4. Check the new owner of the `AdminCap` object.
+
+    ```bash
+    sui client object INSERT_ADMIN_CAP_ID_STEP1 --json \
+        | jq -r '.owner'
+    ```
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/troubleshoot.md
+--- BEGIN CONTENT ---
+---
+title: Troubleshooting NTT Deployment
+description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
+categories: NTT, Transfer
+---
+
+# Troubleshoot Your NTT Deployment
+
+If you encounter issues during the NTT deployment process, check the following common points:
+
+- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
+    -  [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
+- **Mint authority transfer**:
+    - **For burn or spoke tokens on SVM chains**: Ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section.
+    - **For EVM tokens**: Confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details.
+- **Decimal configuration**: Run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#configure-ntt){target=\_blank} section.
+- **Rate limit configuration**: Increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#configure-ntt){target=\_blank} section.
+- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development**: Run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file.
+
+    ???- interface "Dockerfile"
+
+        ```Dockerfile
+            FROM ubuntu:20.04
+            # Set environment variables to prevent interactive prompts during installation
+            ENV DEBIAN_FRONTEND=noninteractive
+
+            # Update and install necessary dependencies
+            RUN apt-get update && apt-get install -y \
+                curl \
+                wget \
+                git \
+                build-essential \
+                libssl-dev \
+                libudev-dev \
+                pkg-config \
+                python3 \
+                python3-pip \
+                software-properties-common \
+                ca-certificates \
+                unzip \
+                clang \
+                cmake \
+                protobuf-compiler \
+                && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+            # Install Rust
+            RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            ENV PATH="/root/.cargo/bin:$PATH"
+
+            # Install Solana CLI ({{ntt.solana_cli_version}})
+            RUN sh -c "$(curl -sSfL https://release.solana.com/{{ntt.solana_cli_version}}/install)"
+            ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
+
+            # Install Anchor using avm
+            RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force \
+                && avm install 0.29.0 \
+                && avm use 0.29.0
+            ENV PATH="/root/.avm/bin:$PATH"
+
+
+            ENV NVM_DIR=/root/.nvm
+            RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+                && . "$NVM_DIR/nvm.sh" \
+                && nvm install 22 \
+                && nvm use 22 \
+                && nvm alias default 22
+            ENV PATH="$NVM_DIR/versions/node/v22.12.0/bin:$PATH"
+
+            # Install Bun
+            RUN curl -fsSL https://bun.sh/install | bash
+            ENV PATH="/root/.bun/bin:$PATH"
+
+            # Install Foundry
+            RUN curl -L https://foundry.paradigm.xyz | bash
+            ENV PATH="/root/.foundry/bin:${PATH}"
+            RUN /bin/bash -c "source /root/.bashrc && foundryup"
+
+            # Install Wormhole NTT CLI
+            RUN curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+
+            # Add a default working directory
+            WORKDIR /app
+
+            # Expose port for development if needed
+            EXPOSE 8899
+
+            # Entry point for the container
+            CMD ["bash"]
+        ```
+
+    ???- interface "docker-compose.yml"
+        ```yml 
+            services:
+                portal-ntt:
+                    build:
+                        context: .
+                        dockerfile: Dockerfile
+                    platform: linux/amd64
+                    volumes:
+                        - ./src:/app
+                    working_dir: /app
+                    tty: true
+        ```
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow.md
+--- BEGIN CONTENT ---
+---
+title: Flow of Wrapped Token Transfers (WTT)
+description: Learn how the Wormhole Wrapped Token Transfers enable secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
+categories: WTT, Transfer
+---
+
+# Flow of a WTT Transfer
+
+The Wormhole [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+
+This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Transfer Flow
+
+Cross-chain token transfers using WTT follow these steps:
+
+1. **Initiation on the Source Chain**
+
+    The transfer begins when a user calls the WTT contract on the source chain:
+
+    - **Wrapped tokens**: The token is burned.
+    - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
+
+2. **Transfer Message Publication**
+
+    The WTT contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
+
+3. **Message Observation and Signing**
+
+    [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}—a decentralized network of validators—monitor the source chain for these message events. A supermajority (13 out of 19) signs the event to generate a [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}—a cryptographically signed attestation of the transfer.
+
+    The VAA is then published to the Wormhole network.
+
+4. **VAA Submission to the Destination Chain**
+
+    The VAA must be submitted to the WTT contract on the destination chain to complete the transfer. The WTT contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
+
+    - **Automatic**: A relayer service detects the VAA and submits it to the WTT contract.
+    - **Manual**: The user or dApp retrieves the VAA and submits it directly to the WTT contract.
+
+5. **Finalization of the Transfer on the Destination Chain**
+
+    After the VAA is verified on the destination chain, the WTT contract completes the transfer:
+
+    - **Wrapped tokens**: A wrapped representation of the original token is minted.
+    - **Original tokens**: If the token is native to the destination chain, the token is released to the recipient.
+
+Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s WTT, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
+
+```mermaid
+sequenceDiagram
+    participant Alice as Alice
+    participant WTTEth as WTT Ethereum<br>(Source Chain)
+    participant CoreEth as Core Contract Ethereum<br>(Source Chain)
+    participant Guardians
+    participant WTTSol as WTT Solana<br>(Destination Chain)
+    participant CoreSol as Core Contract Solana<br>(Destination Chain)
+
+    Alice->>WTTEth: Initiate ETH transfer<br>(lock ETH)
+    WTTEth->>CoreEth: Publish transfer message
+    CoreEth-->>Guardians: Emit message event
+    Guardians->>Guardians: Sign and publish VAA
+
+    alt Automatic VAA submission
+        Guardians->>WTTSol: Relayer submits VAA
+    else Manual VAA submission
+        Alice->>Guardians: Retrieve VAA
+        Alice->>WTTSol: Submit VAA
+    end
+
+    WTTSol->>CoreSol: Verify VAA
+    CoreSol-->>WTTSol: VAA verified
+    WTTSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
+```
+
+Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s WTT, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
+
+```mermaid
+sequenceDiagram
+    participant User as Alice
+    participant WTTSrc as WTT Solana<br>(Source Chain)
+    participant CoreSrc as Core Contract Solana<br>(Source Chain)
+    participant Guardians
+    participant WTTDst as WTT Ethereum<br>(Destination Chain)
+    participant CoreDst as Core Contract Ethereum<br>(Destination Chain)
+
+    User->>WTTSrc: Initiate transfer <br> (burn wrapped ETH)
+    WTTSrc->>CoreSrc: Publish message
+    CoreSrc-->>Guardians: Emit message event
+    Guardians->>Guardians: Sign and publish VAA
+
+    alt Automatic VAA submission
+        Guardians->>WTTDst: Relayer submits VAA
+    else Manual VAA submission
+        User->>Guardians: Retrieve VAA
+        User->>WTTDst: User submits VAA directly
+    end
+
+    WTTDst->>CoreDst: Verify VAA
+    CoreDst-->>WTTDst: VAA verified
+    WTTDst-->>User: Release native ETH on Ethereum (Complete transfer)
+```
+
+## Automatic vs. Manual Transfers
+
+WTT supports two modes of transfer, depending on whether the VAA submission step is handled automatically or manually:
+
+- **Automatic**: A relayer service listens for new VAAs and automatically submits them to the destination chain.
+- **Manual**: The user (or dApp) must retrieve the VAA and manually submit it to the destination chain.
+
+Here's a quick breakdown of the key differences:
+
+| Feature                   | Automatic Transfer          | Manual Transfer                     |
+|---------------------------|-----------------------------|-------------------------------------|
+| Who submits the VAA?      | Relayer                     | User or dApp                        |
+| User Experience           | Seamless, one-step          | Requires manual intervention        |
+| Best for                  | End-users, simple UIs       | Custom dApps, advanced control      |
+| Dependency                | Requires relayer support    | None                                |
+
+### Completing Manual Transfers
+
+The user who initiated the transfer must complete it within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
+
+If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
+
+## WTT Relayer (TBR)
+
+When completing an automatic transfer using WTT, either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, the WTT Relayer (TBR) manages the interaction with the underlying WTT contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
+
+<!-- TODO: add link to supported chains for TBR, pull this data in from the SDK and add it to WTT reference section. Eventually remove link to connect matrix -->
+
+### Flow of an Automatic Transfer via TBR
+
+The flow of an automatic transfer using the TBR looks like this:
+
+1. **Initiation on the Source Chain**
+
+    The transfer begins when a user initiates a transfer on the source chain, which results in the TBR contract being called.
+
+2. **Prepare and Forward the Transfer**
+
+    The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to WTT.
+
+3. **Core Messaging Layer Processes the Transfer**  
+
+    WTT emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
+
+4. **Off-Chain Relayer Observes the VAA**
+
+    An off-chain relayer verifies the destination chain and token registration and then prepares to complete the transfer.
+
+5. **Relayer Computes Native Drop-Off and Submits the VAA**
+
+    The relayer queries the destination TBR for the native gas amount, includes it in the transaction, and submits the signed VAA.
+
+6. **TBR Validates and Completes the Transfer**
+    
+    The destination TBR validates the VAA by invoking the WTT contract, confirms it's from a registered TBR, verifies the token and native gas request, and then takes custody of the tokens.
+
+7. **Asset Distribution on the Destination Chain**
+
+    The TBR sends the remaining tokens and native gas to the user, pays the off-chain relayer fee, and refunds any excess native tokens.
+
+The following diagram illustrates the key steps in the source chain during a transfer:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant SourceTBR as Source Chain TBR
+    participant SourceWTT as Source Chain WTT
+    participant Messaging as Core Messaging Layer
+
+    User->>SourceTBR: Initiate transfer (token, <br>recipient, fees, native gas)
+    SourceTBR->>SourceWTT: Forward transfer (burn or lock tokens)
+    SourceWTT->>Messaging: Publish transfer message
+```
+
+Once the core messaging layer processes the transfer, the destination chain handles completion as shown below:
+
+```mermaid
+sequenceDiagram
+    participant Messaging as Core Messaging Layer
+    participant Relayer as Off-chain Relayer
+    participant DestTBR as Destination Chain TBR
+    participant DestWTT as Destination Chain <br> WTT
+    participant DestUser as User <br> (Destination Chain)
+
+    Messaging->>Relayer: Emit signed VAA for transfer
+    Relayer->>Relayer: Verifies destination chain and token registration
+    Relayer->>DestTBR: Query native gas amount
+    Relayer->>DestTBR: Submit signed VAA
+    DestTBR->>DestWTT: Validate VAA
+    DestTBR->>DestTBR: Take custody of tokens
+    DestTBR->>DestUser: Send tokens (after fees & native gas)
+    DestTBR->>Relayer: Pay relayer fee & refund excess
+```
+
+## Next Steps
+
+Now that you’ve seen how a transfer works, try both types yourself to experience the full process:
+
+- [Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/faqs.md
+--- BEGIN CONTENT ---
+---
+title: Wrapped Token Transfers (WTT) FAQs
+description: Find answers to common questions about the Wormhole WTT, including managing wrapped assets and understanding gas fees.
+categories: WTT, Transfer
+---
+
+# Wrapped Token Transfers (WTT) FAQs
+
+## Can ownership of wrapped tokens be transferred from the WTT?
+
+No. Ownership of wrapped token contracts cannot be transferred, because [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
+
+ - **On EVM chains**: When you attest a token, WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
+ - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT contract.
+
+The logic behind deploying these token contracts involves submitting an attestation VAA, which allows WTT to verify and deploy the wrapped token contract on the destination chain.
+
+Relevant contracts:
+
+ - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
+ - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/main/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
+ - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
+
+## How do I update the metadata of a wrapped token?
+
+Wrapped tokens are deployed and controlled by the WTT program under Guardian authority. You cannot update their metadata directly. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
+
+## How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
+
+You can refer to the [core-bridge repository](https://github.com/nonergodic/core-bridge){target=\_blank} for guidance on how to calculate the current gas costs associated with verifying VAAs on Ethereum Mainnet. This repository provides up-to-date references and examples to help you gauge costs accurately.
+
+## How can I update my wrapped token image on Solscan?
+
+Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the WTT program, not individual developers or projects.
+
+To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/attest-tokens.md
+--- BEGIN CONTENT ---
+---
+title: Token Attestation
+description: Register a token with the Wrapped Token Transfers (WTT) protocol by creating and submitting a token attestation. Required before first-time transfers.
+categories: WTT, Transfer
+---
+
+# Token Attestation
+
+This guide demonstrates token attestation for registering a token for transfer using the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+
+Completing this guide will help you accomplish the following:
+
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create and submit a token attestation to register a wrapped version of a token on a destination chain.
+- Check for the wrapped version to become available on the destination chain and return the wrapped token address.
+
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank}.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The contract address for the token you wish to register.
+- A wallet setup with the following:
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
+
+## Set Up Your Development Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment for token attestation.
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+
+    ```bash
+    mkdir attest-token
+    cd attest-token
+    npm init -y
+    ```
+
+2. Install dependencies, including the [Wormhole TypeScript SDK]({{repositories.wormhole_sdk.repository_url}}){target=\_blank}. This example uses the SDK version `3.8.8`:
+
+    ```bash
+    npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+    ```
+
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
+
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+4. Create a new file named `helper.ts` to hold signer functions:
+
+    ```bash
+    touch helper.ts
+    ```
+
+5. Open `helper.ts` and add the following code:
+
+    ```typescript title="helper.ts"
+    import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  Wormhole,
+  Network,
+  Signer,
+} from '@wormhole-foundation/sdk';
+import type { SignAndSendSigner } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: SignAndSendSigner<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer<any, any="">;
+  const platform = chain.platform.utils()._platform;
+
+  // Customize the signer by adding or removing platforms as needed. Be sure
+  // to import the necessary packages for the platforms you want to support
+  switch (platform) {
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      break;
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
+      break;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+
+  const typedSigner = signer as SignAndSendSigner<n, c="">;
+
+  return {
+    chain,
+    signer: typedSigner,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+</n,></any,></c></n,></n,></n,></n>
+    ```
+
+    You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
+
+## Check for a Wrapped Version of a Token
+
+If you are working with a newly created token that you know has never been transferred to the destination chain, you can continue to the [Create Attestation on the Source Chain](#create-attestation-on-the-source-chain) section.
+
+Since attestation is a one-time process, it is good practice when working with existing tokens to incorporate a check for wrapped versions into your WTT flow. Follow these steps to check for a wrapped version of a token:
+
+1. Create a new file called `attest.ts` to hold the wrapped version check and attestation logic:
+
+    ```bash
+    touch attest.ts
+    ```
+
+2. Open `attest.ts` and add the following code:
+
+    ```typescript title="attest.ts"
+    wormhole,
+  Wormhole,
+  TokenId,
+  TokenAddress,
+} from '@wormhole-foundation/sdk';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helper';
+
+async function attestToken() {
+  // Initialize wormhole instance, define the network, platforms, and chains
+  const wh = await wormhole('Testnet', [evm, solana]);
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+
+  // Define the token to check for a wrapped version
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Check if the token is registered with the destination chain WTT (Token Bridge) contract
+  // Registered = returns the wrapped token ID
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    // Attestation on the source chain flow code
+    console.log(
+      '⚠️ Token is NOT registered on destination. Running attestation flow...'
+    );
+    }
+
+attestToken().catch((e) =&gt; {
+  console.error('❌ Error in attestToken', e);
+  process.exit(1);
+});
+</typeof>
+    ```
+
+    After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
+
+    - **Defines the token to check**: Use the contract address on the source chain for this value.
+    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L277){target=\_blank}**: Part of the `Wormhole` class, the method does the following:
+        - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
+        - Checks for a corresponding wrapped version of the destination chain's WTT contract.
+        - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
+
+3. Run the script using the following command:
+
+    ```bash
+    npx tsx attest.ts
+    ```
+
+4. If the token has a wrapped version registered with the destination chain WTT contract, you will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+    type: 'Native',
+    address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca
+    }
+    }</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    You can safely use WTT to transfer this token to the destination chain.
+
+    If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following, and you must attest the token before transfer:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Create Attestation on the Source Chain
+
+To create the attestation transaction on the source chain, open `attest.ts` and replace the `// Attestation flow code` comment with the following code:
+
+```typescript title="attest.ts"
+const tb = await sourceChain.getTokenBridge();
+    // Get the signer for the source chain
+    const sourceSigner = await getSigner(sourceChain);
+    // Define the token to attest and a payer address
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+      sourceChain.chain,
+      tokenId.address.toString()
+    );
+    const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+    // Create a new attestation and sign and send the transaction
+    for await (const tx of tb.createAttestation(token, payer)) {
+      const txids = await signSendWait(
+        sourceChain,
+        tb.createAttestation(token),
+        sourceSigner.signer
+      );
+      // Attestation on the destination chain flow code
+      console.log('✅ Attestation transaction sent:', txids);
+```
+
+This code does the following:
+
+- **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
+- Defines the token to attest and the payer.
+- **Calls `createAttestation`**: Defined in the `TokenBridge` interface, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L237){target=\_blank} method does the following:
+    - Accepts a `TokenAddress` representing the token on its native chain.
+    - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
+    - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
+    - Returns an `AsyncGenerator` that yields unsigned transactions, which are then signed and sent to initiate the attestation process on the source chain.
+
+## Submit Attestation on Destination Chain
+
+The attestation flow finishes with the following: 
+
+- Using the transaction ID returned from the `createAttestation` transaction on the source chain to retrieve the associated signed `TokenBridge:AttestMeta` VAA.
+- Submitting the signed VAA to the destination chain to provide Guardian-backed verification of the attestation transaction on the source chain. 
+- The destination chain uses the attested metadata to create the wrapped version of the token and register it with its WTT contract.
+
+Follow these steps to complete your attestation flow logic:
+
+1. Add the following code to `attest.ts`:
+
+    ```typescript title="attest.ts"
+    const messages = await sourceChain.parseTransaction(txids[0].txid);
+      console.log('✅ Attestation messages:', messages);
+      // Set a timeout for fetching the VAA, this can take several minutes
+      // depending on the source chain network and finality
+      const timeout = 25 * 60 * 1000;
+      // Fetch the VAA for the attestation message
+      const vaa = await wh.getVaa(
+        messages[0]!,
+        'TokenBridge:AttestMeta',
+        timeout
+      );
+      if (!vaa) throw new Error('❌ VAA not found before timeout.');
+      // Get the WTT (Token Bridge) contract text for the destination chain
+      // and submit the attestation VAA
+      const destTb = await destinationChain.getTokenBridge();
+      // Get the signer for the destination chain
+      const destinationSigner = await getSigner(destinationChain);
+      const payer = toNative(
+        destinationChain.chain,
+        destinationSigner.signer.address()
+      );
+      const destTxids = await signSendWait(
+        destinationChain,
+        destTb.submitAttestation(vaa, payer),
+        destinationSigner.signer
+      );
+      console.log('✅ Attestation submitted on destination:', destTxids);
+    }
+    // Poll for the wrapped token to appear on the destination chain
+    const maxAttempts = 50; // ~5 minutes with 6s interval
+    const interval = 6000;
+    let attempt = 0;
+    let registered = false;
+
+    while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+      attempt++;
+      try {
+        const wrapped = await wh.getWrappedAsset(
+          destinationChain.chain,
+          tokenId
+        );
+        console.log(
+          `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+          wrapped.address
+        );
+        registered = true;
+      } catch {
+        console.log(
+          `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+        );
+        await new Promise((res) =&gt; setTimeout(res, interval));
+      }
+    }
+    if (!registered) {
+      throw new Error(
+        `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+      );
+    }
+    console.log(
+      `🚀 Token attestation complete! Token registered with ${destinationChain.chain}.`
+    );
+    ```
+
+2. Run the script using the following command:
+
+    ```bash
+    npx tsx attest.ts
+    ```
+
+3. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation
+    flow...</span>
+<span data-ty="">✅ Attestation transaction sent: [ { chain: 'Moonbeam', txid:
+    '0xbaf7429e1099cac6f39ef7e3c30e38776cfb5b6be837dcd8793374c8ee491799' }
+    ]</span>
+<span data-ty="">✅ Attestation messages: [ { chain: 'Moonbeam', emitter: UniversalAddress {
+    address: [Uint8Array] }, sequence: 1507n } ]</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+<span data-ty="">.....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+<span data-ty="">📨 Submitting attestation VAA to Solana...</span>
+<span data-ty="">✅ Attestation submitted on destination: [ { chain: 'Solana', txid:
+    '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
+    } ]</span>
+<span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress { type:
+    'Native', address: PublicKey
+    [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] { _bn: BN:
+    1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca } }</span>
+<span data-ty="">🚀 Token attestation complete!</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    ??? example "View complete script"
+        ```typescript title="attest.ts"
+        import {
+  wormhole,
+  Wormhole,
+  TokenId,
+  TokenAddress,
+} from '@wormhole-foundation/sdk';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helper';
+
+async function attestToken() {
+  // Initialize wormhole instance, define the network, platforms, and chains
+  const wh = await wormhole('Testnet', [evm, solana]);
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+
+  // Define the token to check for a wrapped version
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Check if the token is registered with the destination chain WTT (Token Bridge) contract
+  // Registered = returns the wrapped token ID
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    // Attestation on the source chain flow code
+    console.log(
+      '⚠️ Token is NOT registered on destination. Running attestation flow...'
+    );
+
+    // Retrieve the WTT (Token Bridge) contract text for the source chain
+    const tb = await sourceChain.getTokenBridge();
+    // Get the signer for the source chain
+    const sourceSigner = await getSigner(sourceChain);
+    // Define the token to attest and a payer address
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+      sourceChain.chain,
+      tokenId.address.toString()
+    );
+    const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+    // Create a new attestation and sign and send the transaction
+    for await (const tx of tb.createAttestation(token, payer)) {
+      const txids = await signSendWait(
+        sourceChain,
+        tb.createAttestation(token),
+        sourceSigner.signer
+      );
+      // Attestation on the destination chain flow code
+      console.log('✅ Attestation transaction sent:', txids);
+      
+      // Parse the transaction to get Wormhole message ID
+      const messages = await sourceChain.parseTransaction(txids[0].txid);
+      console.log('✅ Attestation messages:', messages);
+      // Set a timeout for fetching the VAA, this can take several minutes
+      // depending on the source chain network and finality
+      const timeout = 25 * 60 * 1000;
+      // Fetch the VAA for the attestation message
+      const vaa = await wh.getVaa(
+        messages[0]!,
+        'TokenBridge:AttestMeta',
+        timeout
+      );
+      if (!vaa) throw new Error('❌ VAA not found before timeout.');
+      // Get the WTT (Token Bridge) contract text for the destination chain
+      // and submit the attestation VAA
+      const destTb = await destinationChain.getTokenBridge();
+      // Get the signer for the destination chain
+      const destinationSigner = await getSigner(destinationChain);
+      const payer = toNative(
+        destinationChain.chain,
+        destinationSigner.signer.address()
+      );
+      const destTxids = await signSendWait(
+        destinationChain,
+        destTb.submitAttestation(vaa, payer),
+        destinationSigner.signer
+      );
+      console.log('✅ Attestation submitted on destination:', destTxids);
+    }
+    // Poll for the wrapped token to appear on the destination chain
+    const maxAttempts = 50; // ~5 minutes with 6s interval
+    const interval = 6000;
+    let attempt = 0;
+    let registered = false;
+
+    while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+      attempt++;
+      try {
+        const wrapped = await wh.getWrappedAsset(
+          destinationChain.chain,
+          tokenId
+        );
+        console.log(
+          `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+          wrapped.address
+        );
+        registered = true;
+      } catch {
+        console.log(
+          `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+        );
+        await new Promise((res) =&gt; setTimeout(res, interval));
+      }
+    }
+    if (!registered) {
+      throw new Error(
+        `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+      );
+    }
+    console.log(
+      `🚀 Token attestation complete! Token registered with ${destinationChain.chain}.`
+    );
+  }
+}
+
+attestToken().catch((e) =&gt; {
+  console.error('❌ Error in attestToken', e);
+  process.exit(1);
+});
+</typeof>
+        ```
+
+Congratulations! You've successfully created and submitted an attestation to register a token for transfer via WTT.
+
+## Next Steps
+
+- [**Transfer Wrapped Assets**](/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa.md
+--- BEGIN CONTENT ---
+---
+title: Fetch a Signed VAA
+description: Learn how to fetch a signed VAA, a key step in the manual Wrapped Token Transfer (WTT) flow.
+categories: WTT, Transfer
+---
+
+# Fetch a Signed VAA
+
+This guide demonstrates how to fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank}
+- [TypeScript](https://www.typescriptlang.org/download/){target=_blank} (installed globally)
+
+## Set Up Your Developer Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment:
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+
+    ```bash
+    mkdir fetch-vaa
+    cd fetch-vaa
+    npm init -y
+    ```
+
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.8.8`:
+
+    ```bash
+   npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+   ```
+
+## Fetch VAA via TypeScript SDK
+
+Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
+
+1. Create a new file called `fetch-vaa.ts` using the following command:
+
+    ```bash
+    touch fetch-vaa.ts
+    ```
+
+2. Open your `fetch-vaa.ts` file and add the following code:
+
+    ```typescript title="fetch-vaa.ts"
+    import { wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import { serialize } from '@wormhole-foundation/sdk-definitions';
+import { toChainId } from '@wormhole-foundation/sdk-base';
+
+async function main() {
+  // Initialize the Wormhole SDK with the network and platform
+  // to match the source chain for the transaction ID
+  const wh = await wormhole('Testnet', [evm]);
+  // Source chain transaction ID for the VAA you want to fetch
+  const txid =
+    'INSERT_TRANSACTION_ID';
+  // Call getVaa to fetch the VAA associated with the transaction ID
+  // and decode returned data into a human-readable format
+  const vaa = await wh.getVaa(txid, 'Uint8Array', 60000);
+  if (!vaa) {
+    console.error('❌ VAA not found');
+    process.exit(1);
+  }
+  const { emitterChain, emitterAddress, sequence } = vaa;
+  const chainId = toChainId(emitterChain);
+  const emitterHex = emitterAddress.toString();
+
+  const vaaBytes = serialize(vaa);
+  const vaaHex = Buffer.from(vaaBytes).toString('hex');
+
+  console.log('✅ VAA Info');
+  console.log(`Chain: ${chainId}`);
+  console.log(`Emitter: ${emitterHex}`);
+  console.log(`Sequence: ${sequence}`);
+  console.log('---');
+  console.log(`VAA Bytes (hex):\n${vaaHex}`);
+  // Return the VAA object for further processing if needed
+  return vaa;
+}
+
+main().catch(console.error);
+    ```
+
+    This code does the following:
+
+    - Initializes a Wormhole instance with the same `network` and `platform` as the source chain transfer transaction.
+    - Accepts the transaction ID from the source chain transfer transaction.
+    - Prints the associated `chain`, `emitter`, `sequence`, and VAA bytes to the terminal.
+    - Returns the `vaa` object for any further processing.
+
+3. Run the script with the following command:
+
+    ```bash
+    npx tsx fetch-vaa.ts
+    ```
+
+4. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx fetch-vaa.ts</span>
+<span data-ty="">✅ VAA Info</span>
+<span data-ty="">Chain: 16</span>
+<span data-ty="">Emitter: 0x000000000000000000000000bc976d4b9d57e57c3ca52e1fd136c45ff7955a96</span>
+<span data-ty="">Sequence: 1512</span>
+<span data-ty="">---</span>
+<span data-ty="">VAA Bytes (hex):</span>
+<span data-ty="">010000000001004d34d189b894acf4c16b9f456f908ca8b60aa9b2fa77cfa6ebc18f864818c21a7e18b6c4f72415f441be4d2b666c5b897d354cec0e950b935b15806d002d39670168557fb6000000000010000000000000000000000000bc976d4b9d57e57c3ca52e1fd136c45ff7955a9600000000000005e8010100000000000000000000000000000000000000000000000000000000009896800000000000000000000000009b2ff7b2b5a459853224a3317b786d8e85026660001084b1e2f8a26ddff1a55eed46add73a9b556256f2afda1072f6cfdab1dcb2d53000010000000000000000000000000000000000000000000000000000000000000000</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Fetch VAA via Wormholescan
+
+You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI to manually search for a VAA using the source transaction ID, VAA ID, or a wallet address. This type of quick search is helpful during debugging or testing of your integration. Follow these steps to fetch a VAA using Wormholescan:
+
+1. On [Wormholescan](https://wormholescan.io/){target=\_blank}, use the dropdown menu in the top right corner to select either **Mainnet** or **Testnet**.
+
+2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
+
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-1.webp)
+
+3. Inspect the returned search results. Note that the source transaction ID, current status, transaction details, and the VAA ID are included.
+
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-2.webp)
+
+Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. 
+
+<!-- ## Next Steps
+
+- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
+- [**Transfer Assets with TypeScript**](/docs/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
+--- BEGIN CONTENT ---
+---
+title: Transfer Wrapped Assets
+description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
+categories: WTT, Transfer, Typescript SDK
+---
+
+# Transfer Wrapped Assets
+
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#wtt){target=\_blank}.
+
+Completing this guide will help you accomplish the following:
+
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create a token attestation to register a wrapped version of a token on a destination chain.
+- Transfer wrapped assets using WTT's automatic or manual transfers.
+- Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+- Manually redeem a signed VAA to claim tokens on a destination chain.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The Wormhole TypeScript SDK version 3.0 or above.
+- The contract address for the ERC-20 token you wish to transfer.
+- A wallet setup with the following:
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
+    - A balance on your source chain of the ERC-20 token you want to transfer.
+
+## Set Up Your Token Transfer Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment for multichain token transfers.
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+   ```bash
+   mkdir wtt-demo
+   cd wtt-demo
+   npm init -y
+   ```
+
+2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `3.8.8`:
+
+   ```bash
+   npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+   ```
+
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.
+
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+4. Create a new file named `helpers.ts` to hold signer and decimal functions:
+   ```bash
+   touch helpers.ts
+   ```
+
+5. Open `helpers.ts` and add the following code:
+    ```typescript title="helpers.ts"
+    import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  isTokenId,
+  Wormhole,
+  Network,
+  Signer,
+  TokenId,
+} from '@wormhole-foundation/sdk';
+import type { SignAndSendSigner } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">,
+  gasLimit?: bigint
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: SignAndSendSigner<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer<any, any="">;
+  const platform = chain.platform.utils()._platform;
+
+  // Customize the signer by adding or removing platforms as needed
+  // Be sure to import the necessary packages for the platforms you want to support
+  switch (platform) {
+    case 'Evm':
+      const evmSignerOptions = gasLimit ? { gasLimit } : {};
+      (signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!)),
+        evmSignerOptions;
+      break;
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
+      break;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+
+  const typedSigner = signer as SignAndSendSigner<n, c="">;
+
+  return {
+    chain,
+    signer: typedSigner,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+
+/**
+ * Get the number of decimals for the token on the source chain.
+ * This helps convert a user-friendly amount (e.g., '1') into raw units.
+ */
+export async function getTokenDecimals<n extends="" network="">(
+  wh: Wormhole<n>,
+  token: TokenId,
+  chain: ChainContext<n, any="">
+): Promise<number> {
+  return isTokenId(token)
+    ? Number(await wh.getDecimals(token.chain, token.address))
+    : chain.config.nativeTokenDecimals;
+}
+</number></n,></n></n></n,></any,></c></n,></n,></n,></n>
+    ```
+
+    You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
+
+## Verify Token Registration (Attestation)
+
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's WTT contract to create a corresponding wrapped version with the same attributes as the native token.
+
+Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
+
+1. Create a new file named `transfer.ts`:
+   ```bash
+   touch transfer.ts
+   ```
+
+2. Open your `transfer.ts` file and add the following code:
+    ```typescript title="transfer.ts"
+    import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner, getTokenDecimals } from './helpers';
+
+async function transferTokens() {
+  // Initialize wh instance
+  const wh = await wormhole('Testnet', [evm, solana]);
+  // Define sourceChain and destinationChain, get chain contexts
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+  // Load signers for both chains
+  const sourceSigner = await getSigner(sourceChain);
+  const destinationSigner = await getSigner(destinationChain);
+
+  // Define token and amount to transfer
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Replace with amount you want to transfer
+  // This is a human-readable number, e.g., 0.2 for 0.2 tokens
+  const amount = INSERT_AMOUNT;
+  // Convert to raw units based on token decimals
+  const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
+  const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
+
+  // Check if the token is registered with destinationChain WTT (Token Bridge) contract
+  // Registered = returns the wrapped token ID, continues with transfer
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    console.log(
+      '⚠️ Token is NOT registered on destination. Attestation required before transfer can proceed...'
+    );
+  }
+  // Insert Initiate Transfer on Source Chain code
+  // Build the token transfer object
+  const xfer = await wh.tokenTransfer(
+    tokenId,
+    transferAmount,
+    sourceSigner.address,
+    destinationSigner.address,
+    'TokenBridge',
+    undefined // no payload
+  );
+  console.log('🚀 Built transfer object:', xfer.transfer);
+
+  // Initiate, sign, and send the token transfer
+  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+  console.log('🔗 Source chain tx sent:', srcTxs);
+
+  // For manual transfers, wait for VAA
+  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
+  const timeout = 10 * 60 * 1000; // 10 minutes timeout
+  const attIds = await xfer.fetchAttestation(timeout);
+  console.log('✅ Got attestation ID(s):', attIds);
+
+  // Complete the manual transfer on the destination chain
+  console.log('↪️ Redeeming transfer on destination...');
+  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
+  console.log('🎉 Destination tx(s) submitted:', destTxs);
+}
+
+transferTokens().catch((e) =&gt; {
+  console.error('❌ Error in transferTokens', e);
+  process.exit(1);
+});
+    transferTokens().catch((e) =&gt; {
+  console.error('❌ Error in transferTokens', e);
+  process.exit(1);
+});
+    ```
+
+    This code does the following:
+
+    - Initializes a `wormhole` instance and defines the source and destination chains.
+    - Imports the signer and decimal functions from `helpers.ts`.
+    - Identifies the token and amount to transfer.
+    - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain.
+
+3. Run the script using the following command:
+
+    ```bash
+    npx tsx transfer.ts
+    ```
+
+    If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
+
+    ??? example "Need to register a token?"
+        Token attestation is a one-time process to register a token on a destination chain. You should only follow these steps if your token registration check indicates a wrapped version does not exist on the destination chain.
+
+        1. Create a new file called `attestToken.ts`:
+            ```bash
+            touch attestToken.ts
+            ```
+
+        2. Open `attestToken.ts` and add the following code to create the attestation for token registration:
+            ```typescript title="attestToken.ts"
+            import {
+  wormhole,
+  Wormhole,
+  TokenId,
+  TokenAddress,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import { getSigner } from './helpers';
+
+async function attestToken() {
+  // Initialize wh instance
+  const wh = await wormhole('Testnet', [evm, solana]);
+  // Define sourceChain and destinationChain, get chain contexts
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+
+  // Define gas limit for EVM chains (optional)
+  const gasLimit = BigInt(2_500_000);
+
+  // Load signers for both chains
+  const sourceSigner = await getSigner(sourceChain);
+  const destinationSigner = await getSigner(destinationChain, gasLimit);
+
+  // Retrieve the WTT (Token Bridge) context for the source chain
+  // This is where you will send the transaction to attest the token
+  const tb = await sourceChain.getTokenBridge();
+  // Define the token to attest
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Define the token to attest and a payer address
+  const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+    sourceChain.chain,
+    tokenId.address.toString()
+  );
+  const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+  // Call the `createAttestation` method to create a new attestation
+  // and sign and send the transaction
+  for await (const tx of tb.createAttestation(token, payer)) {
+    const txids = await signSendWait(
+      sourceChain,
+      tb.createAttestation(token),
+      sourceSigner.signer
+    );
+    console.log('✅ Attestation transaction sent:', txids);
+    // Parse the transaction to get Wormhole message ID
+    const messages = await sourceChain.parseTransaction(txids[0].txid);
+    console.log('✅ Attestation messages:', messages);
+    // Set a timeout for fetching the VAA, this can take several minutes
+    // depending on the source chain network and finality
+    const timeout = 25 * 60 * 1000;
+    // Fetch the VAA for the attestation message
+    const vaa = await wh.getVaa(
+      messages[0]!,
+      'TokenBridge:AttestMeta',
+      timeout
+    );
+    if (!vaa) throw new Error('❌ VAA not found before timeout.');
+    // Get the WTT (Token Bridge) context for the source chaindestination chain
+    // and submit the attestation VAA
+    const destTb = await destinationChain.getTokenBridge();
+    const payer = toNative(
+      destinationChain.chain,
+      destinationSigner.signer.address()
+    );
+    const destTxids = await signSendWait(
+      destinationChain,
+      destTb.submitAttestation(vaa, payer),
+      destinationSigner.signer
+    );
+    console.log('✅ Attestation submitted on destination:', destTxids);
+  }
+  // Poll for the wrapped token to appear on the destination chain
+  // before proceeding with the transfer
+  const maxAttempts = 50; // ~5 minutes with 6s interval
+  const interval = 6000;
+  let attempt = 0;
+  let registered = false;
+
+  while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+    attempt++;
+    try {
+      const wrapped = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+      console.log(
+        `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+        wrapped.address
+      );
+      registered = true;
+    } catch {
+      console.log(
+        `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+      );
+      await new Promise((res) =&gt; setTimeout(res, interval));
+    }
+  }
+
+  if (!registered) {
+    throw new Error(
+      `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+    );
+  }
+  console.log('🚀 Token attestation complete! Proceed with transfer...');
+}
+
+attestToken().catch((e) =&gt; {
+  console.error('❌ Error in transferTokens', e);
+  process.exit(1);
+});
+</typeof>
+            ```
+
+            This code does the following:
+        
+            - Gets the WTT protocol for the source chain.
+            - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
+            - Calls `createAttestation`, signs, and then sends the transaction.
+            - Waits for the signed VAA confirming the attestation creation.
+            - Sends the VAA to the destination chain to complete registration.
+            - Polls for the wrapped token to be available on the destination chain before continuing the transfer process.
+
+        3. Run the script with the following command:
+            
+            ```bash
+            npx tsx attestToken.ts
+            ```
+
+            When the attestation and registration are complete, you will see terminal output similar to the following:
+
+            <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+<span data-ty="">✅ Attestation transaction sent: [
+  {
+    chain: 'Moonbeam',
+    txid: '0x2b9878e6d8e92d8ecc96d663904312c18a827ccf0b02380074fdbc0fba7e6b68'
+  }
+]</span>
+<span data-ty="">✅ Attestation messages: [
+  {
+    chain: 'Moonbeam',
+    emitter: UniversalAddress { address: [Uint8Array] },
+    sequence: 1505n
+  }
+]
+</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+<span data-ty="">....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+<span data-ty="">✅ Attestation submitted on destination: [
+  {
+    chain: 'Solana',
+    txid: '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
+  }
+]</span>
+<span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Token attestation complete! Proceeding with transfer...</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        You can now go on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain.
+
+## Initiate Transfer on Source Chain
+
+Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
+
+Follow these steps to add the remaining logic to initiate the token transfer on the source chain. Add the below code where the comment says `// Insert Initiate Transfer on Source Chain code` in your `transfer.ts` file:
+
+1. Open your `transfer.ts` file and add the following code:
+
+    === "Manual Transfer"
+
+        ```typescript title="transfer.ts"
+        const xfer = await wh.tokenTransfer(
+    tokenId,
+    transferAmount,
+    sourceSigner.address,
+    destinationSigner.address,
+    'TokenBridge',
+    undefined // no payload
+  );
+  console.log('🚀 Built transfer object:', xfer.transfer);
+
+  // Initiate, sign, and send the token transfer
+  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+  console.log('🔗 Source chain tx sent:', srcTxs);
+
+  // For manual transfers, wait for VAA
+  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
+  const timeout = 10 * 60 * 1000; // 10 minutes timeout
+  const attIds = await xfer.fetchAttestation(timeout);
+  console.log('✅ Got attestation ID(s):', attIds);
+
+  // Complete the manual transfer on the destination chain
+  console.log('↪️ Redeeming transfer on destination...');
+  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
+  console.log('🎉 Destination tx(s) submitted:', destTxs);
+        ```
+                
+    === "Automatic Transfer"
+
+        ```ts title="transfer.ts"
+        const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+  // Get the decimals for the source chain
+  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
+  // Convert to raw units, otherwise set to 0n
+  const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
+
+  // Build the token transfer object
+  const xfer = await wh.tokenTransfer(
+    tokenId,
+    transferAmount,
+    sourceSigner.address,
+    destinationSigner.address,
+    'AutomaticTokenBridge',
+    nativeGas
+  );
+  console.log('🚀 Built transfer object:', xfer.transfer);
+
+  // Initiate, sign, and send the token transfer
+  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+  console.log('🔗 Source chain tx sent:', srcTxs);
+
+  // If automatic, no further action is required. The relayer completes the transfer.
+  console.log('✅ Automatic transfer: relayer is handling redemption.');
+
+  process.exit(0);
+        ```
+
+    This code does the following:
+
+    - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
+    - Sets an optional amount for [native gas drop-off](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
+    - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
+
+2. Run the script with the following command:
+    ```bash
+    npx tsx transfer.ts
+    ```
+
+3. You will see terminal output similar to the following:
+
+    === "Manual Transfer"
+
+        <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Built transfer object: {
+  token: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0x39F2f26f247CcC223393396755bfde5ecaeb0648'
+    }
+  },
+  amount: 200000000000000000n,
+  from: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12'
+    }
+  },
+  to: {
+    chain: 'Solana',
+    address: SolanaAddress {
+      type: 'Native',
+      address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
+    }
+  },
+  protocol: 'TokenBridge',
+  payload: undefined
+}</span>
+<span data-ty="">🔗 Source chain tx sent: [
+  '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
+]</span>
+<span data-ty="">⏳ Waiting for attestation (VAA) for manual transfer...</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/30</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/30</span>
+<span data-ty="">.....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 15/30</span>
+<span data-ty="">✅ Got attestation ID(s): [
+  {
+    chain: 'Moonbeam',
+    emitter: UniversalAddress { address: [Uint8Array] },
+    sequence: 1506n
+  }
+]</span>
+<span data-ty="">↪️ Redeeming transfer on destination...</span>
+<span data-ty="">🎉 Destination tx(s) submitted: [
+  '23NRfFZyKJTDLppJF4GovdegxYAuW2HeXTEFSKKNeA7V82aqTVYTkKeM8sCHCDWe7gWooLAPHARjbAheXoxbbwPk'
+]</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    === "Automatic Transfer"
+
+        <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Built transfer object: {
+  token: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0x39F2f26f247CcC223393396755bfde5ecaeb0648'
+    }
+  },
+  amount: 200000000000000000n,
+  from: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12'
+    }
+  },
+  to: {
+    chain: 'Solana',
+    address: SolanaAddress {
+      type: 'Native',
+      address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
+    }
+  },
+  protocol: 'AutomaticTokenBridge',
+  nativeGas: 10000000000000000n
+}</span>
+<span data-ty="">🔗 Source chain tx sent: [
+  '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
+]</span>
+<span data-ty="">✅ Automatic transfer: relayer is handling redemption.</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+
+## Next Steps
+
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
+- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
+--- BEGIN CONTENT ---
+---
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: WTT, Transfer
+---
+
+# Interact with Wrapped Token Transfer (WTT) Contracts
+
+Wormhole's Wrapped Token Transfers (WTT) enable seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, WTT supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+
+This page outlines the core contract methods needed to integrate WTT functionality into your smart contracts. To understand the theoretical workings of WTT, refer to the [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} page in the Learn section.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Prerequisites
+
+To interact with the Wormhole WTT, you'll need the following:
+
+- [The address of the WTT contract](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank} on the chains you're working with.
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
+
+## How to Interact with WTT Contracts
+
+The primary functions of the WTT contracts revolve around:
+
+- **Attesting a token**: Registering a new token for cross-chain transfers.
+- **Transferring tokens**: Locking and minting tokens across chains.
+- **Transferring tokens with a payload**: Including additional data with transfers.
+
+### Attest a Token
+
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so WTT can recognize it and create a wrapped version if necessary.
+
+The attestation process doesn't require you to manually input token details, such as name, symbol, or decimals. Instead, the WTT contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+
+```solidity
+function attestToken(
+    address tokenAddress,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `tokenAddress` ++"address"++
+        
+    The contract address of the token to be attested.
+
+    ---
+
+    `nonce` ++"uint32"++  
+
+    An arbitrary value provided by the caller to ensure uniqueness.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the attestation transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.attestToken{value: wormholeFee}(
+    address(tokenImpl), // the token contract to attest
+    234                 // nonce for the transfer
+);
+    ```
+
+When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
+
+### Transfer Tokens 
+
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, the VAA is used to mint or release the corresponding amount of wrapped tokens.
+
+Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
+
+```solidity
+function transferTokens(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint256 arbiterFee,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+        
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++
+ 
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient's address on the destination chain.
+
+    ---
+
+    `arbiterFee` ++"uint256"++
+
+    Optional fee to be paid to an arbiter for relaying the transfer.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    A unique identifier for the transaction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokens{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    arbiterFee,      // fee for relayer
+    nonce            // nonce for this transfer
+);
+    ```
+
+Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
+
+```solidity
+function completeTransfer(bytes memory encodedVm) external;
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+    
+    The signed VAA containing the transfer details.
+
+!!!note
+    - WTT normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
+
+### Transfer Tokens with Payload
+
+While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+
+Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
+
+```solidity
+function transferTokensWithPayload(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint32 nonce,
+    bytes memory payload
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+    
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient's address on the destination chain.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    A unique identifier for the transaction.
+
+    ---
+
+    `payload` ++"bytes memory"++
+
+    Arbitrary data payload attached to the transaction.
+
+??? interface "Returns"
+    
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokensWithPayload{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    nonce,           // nonce for this transfer
+    additionalPayload // additional payload data
+);
+    ```
+
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
+
+Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
+
+```solidity
+function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+
+    The signed VAA containing the transfer details.
+
+??? interface "Returns"
+
+    `bytes memory`
+
+    The extracted payload data.
+
+## Source Code References
+
+For a deeper understanding of WTT implementation and to review the actual source code, please refer to the following links:
+
+- [WTT contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [WTT interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+
+## Portal Bridge
+
+A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/portal/faqs.md
+--- BEGIN CONTENT ---
+---
+title: Portal Bridge FAQs
+description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
+categories: WTT, Transfer
+---
+>>>>>>> 6e9828fa (llms generation):llms-files/llms-transfer.txt
 
 # FAQs
 
