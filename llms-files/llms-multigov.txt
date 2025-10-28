@@ -8795,7 +8795,7 @@ categories: Reference
 | Converge Testnet | 0x3d8c26b67BDf630FBB44F09266aFA735F1129197 |
 | Fogo Testnet | nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR |
 | Mezo Testnet | 0x484b5593BbB90383f94FB299470F09427cf6cfE2 |
-| Monad Tesnet | 0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66 |
+| Monad Testnet | 0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66 |
 | Optimism Sepolia | 0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5 |
 | Plume Testnet | 0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD |
 | SeiEVM Testnet | 0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445 |
@@ -10908,7 +10908,7 @@ categories: Reference
 | Converge Testnet | 0x3d8c26b67BDf630FBB44F09266aFA735F1129197 |
 | Fogo Testnet | nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR |
 | Mezo Testnet | 0x484b5593BbB90383f94FB299470F09427cf6cfE2 |
-| Monad Tesnet | 0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66 |
+| Monad Testnet | 0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66 |
 | Optimism Sepolia | 0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5 |
 | Plume Testnet | 0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD |
 | SeiEVM Testnet | 0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445 |
@@ -10994,8 +10994,6 @@ categories: Reference
 | Monad | 0x412f30e9f8B4a1e99eaE90209A6b00f5C3cc8739 |
 | XRPL-EVM | 0x17CFAAf9e8a5ABb1eee758dB9040F945c9EAC907 |
 <!--WTT_EXECUTOR_WITH_REFERRER_ADDRESS-->
-
-##
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md
