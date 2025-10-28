@@ -1,4 +1,4 @@
-name: 'PR Docs Link Check'
+name: PR Docs Link Check
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
 jobs:
   check-docs-links:
     uses: papermoonio/workflows/.github/workflows/core-pr-link-checker.yml@main
+    with:
       mkdocs_repo: papermoonio/wormhole-mkdocs
       docs_repo: wormhole-foundation/wormhole-docs
       docs_checkout: wormhole-docs
