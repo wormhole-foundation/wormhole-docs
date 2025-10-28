@@ -4400,7 +4400,9 @@ graph LR
 
 This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
 
-## Guardian Observation Methods
+## Guardian Observation Methods: Legacy vs. Shims
+
+The following table compares how Guardians observe and verify messages on Solana before and after the introduction of the shims program.
 
 | Observation Methods  | Legacy Model           | Shim Model               |
 |----------------------|------------------------|--------------------------|
