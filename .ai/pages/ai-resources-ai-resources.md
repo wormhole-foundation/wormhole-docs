@@ -1,6 +1,7 @@
 ---
 title: AI Resources
 description: Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
+url: https://wormhole.com/docs/ai-resources/ai-resources/
 ---
 
 # AI Resources
@@ -33,7 +34,3 @@ Each category file includes foundational content from the **Basics** and **Refer
 
 !!! note
     The `llms-full.jsonl` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the smaller `site-index.json` or category bundle files instead.
-
-<!--
-| Solidity SDK   | SDK docs for cross-chain messaging, token transfers, relayer integration, and local testing in Solidity | `llms-solidity-sdk.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-solidity-sdk.txt" } [:octicons-download-16:](/docs/llms-files/llms-solidity-sdk.txt){ download="llms-solidity-sdk.txt" }         |
--->
