@@ -180,7 +180,7 @@ To use NTT, you must have a token already deployed on the source and destination
     4. **Deploy the token contract**: Deploy to testnet.
 
         ```bash
-        sui client publish --gas-budget 10000000
+        sui client publish --gas-budget 20000000
         ```
 
     5. **Mint tokens**: Send tokens to your address.

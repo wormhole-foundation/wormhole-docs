@@ -4645,7 +4645,7 @@
       "headings": 6,
       "estimated_token_count_total": 2259
     },
-    "hash": "sha256:35ee5147fcd7669206c72bf30979b0b67f6a9494ab564c1217e88d39e45a6e0a",
+    "hash": "sha256:107f126c7aa01b47e1cbc3e66af5ba73b7b0db9986789accfdeafd8a4d5c4eb6",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4806,12 +4806,12 @@
       }
     ],
     "stats": {
-      "chars": 10344,
-      "words": 1358,
+      "chars": 10675,
+      "words": 1402,
       "headings": 5,
-      "estimated_token_count_total": 2168
+      "estimated_token_count_total": 2227
     },
-    "hash": "sha256:ec112bde78fc52ff5f5759fa18ca554e684623a708ce9c7a3ba4cd8dd84c591d",
+    "hash": "sha256:f63f05a1b12f6da17ea70dd44d98acdeefd0e445198b06a0e4c5628a7aac19ab",
     "token_estimator": "heuristic-v1"
   },
   {
