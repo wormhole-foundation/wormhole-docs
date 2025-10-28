@@ -25,6 +25,7 @@ jobs:
 
       - name: Update wormhole-docs content in the mkdocs-repository
         run: |
+          cd wormhole-mkdocs
           # update the wormhole-docs submodule
           # running this command on the branch associated with the PR will test the workflow using the latest commits
           git submodule update --remote
