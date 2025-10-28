@@ -48,7 +48,7 @@ This section walks you through setting up a wallet, deploying a Sui Coin contrac
 4. **Deploy the token contract**: Deploy to testnet.
 
     ```bash
-    sui client publish --gas-budget 10000000
+    sui client publish --gas-budget 20000000
     ```
 
 5. **Mint tokens**: Send tokens to your address.
