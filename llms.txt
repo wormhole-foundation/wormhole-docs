@@ -7,7 +7,7 @@ This directory lists URLs for raw Markdown pages that complement the rendered pa
 
 ## Metadata
 - Documentation pages: 125
-- Categories: 18
+- Categories: 19
 
 ## Docs
 This section lists documentation pages by category. Each entry links to a raw markdown version of the page and includes a short description. A page may appear in multiple categories.
@@ -96,6 +96,10 @@ Docs: Settlement
 - [Get Started](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-settlement-get-started.md): Perform a cross-chain token swap using Wormhole Settlement and the Mayan Swift route with the TypeScript SDK on mainnet.
 - [Settlement Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-settlement-overview.md): Discover how Settlement enables fast, intent-based token transfers across chains using a unified system of solver auctions and integrated execution routes.
 - [Settlement Supported Networks](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-settlement-reference-supported-networks.md): Explore all blockchains supported by Wormhole Settlement, including network availability, block explorers, and cross-chain transfer support.
+
+Docs: Executors
+- [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
+- [Executor Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md): Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
 
 Docs: Relayers
 - [Wormhole-Deployed Relayers](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-wormhole-relayers.md): Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.

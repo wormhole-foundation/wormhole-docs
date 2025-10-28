@@ -1154,7 +1154,8 @@
     "title": "Executor Framework",
     "slug": "products-messaging-concepts-executor-framework",
     "categories": [
-      "Basics"
+      "Basics",
+      "Executors"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-framework/",
@@ -1185,7 +1186,8 @@
     "title": "Executor Overview",
     "slug": "products-messaging-concepts-executor-overview",
     "categories": [
-      "Basics"
+      "Basics",
+      "Executors"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-overview/",
