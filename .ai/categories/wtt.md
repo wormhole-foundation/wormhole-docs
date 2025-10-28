@@ -4105,6 +4105,8 @@ Page Title: Executor Addresses
 
 ## CCTP With Executor
 
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--CCTP_EXECUTOR_ADDRESS-->
 === "Mainnet v1"
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
@@ -4149,7 +4151,6 @@ Page Title: Executor Addresses
     <tr><td>Unichain</td><td><code>0xD5D5D640D8b758672Cc7A078734175c4433866d5</code></td></tr>
     <tr><td>World Chain</td><td><code>0x789f2b91f7B35D5B890983328340c4600339B354</code></td></tr></tbody></table>
 
-
 === "Testnet v2"
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>
@@ -4161,6 +4162,8 @@ Page Title: Executor Addresses
     <tr><td>Optimism Sepolia</td><td><code>0xCCA1Cb361E3206faFcDBaCD99e02b32d730cf695</code></td></tr></tbody></table>
 ## NTT With Executor
 
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--NTT_EXECUTOR_ADDRESS-->
 === "Mainnet"
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody>

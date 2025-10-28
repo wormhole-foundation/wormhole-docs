@@ -27,7 +27,7 @@ By decentralizing message execution and supporting both EVM and non-EVM environm
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
-For a deeper look at how these components interact, see the [Executor framework](docs/products/messaging/concepts/executor-framework/){target=\_blank}.
+For a deeper look at how these components interact, see the [Executor documentation](/docs/products/messaging/concepts/executor-framework/){target=\_blank}.
 
 ## Request Flow
 
