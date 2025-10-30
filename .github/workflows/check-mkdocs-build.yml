@@ -1,46 +1,16 @@
-name: CheckMkDocsBuild
+name: PR Docs Build
+
 on:
-  # Trigger the workflow on a new pull request on main
   pull_request:
-    branches: [main, dev]
+
+permissions:
+  contents: read
 
 jobs:
-  build-docs-site:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10.12'
-
-      - name: Allow to move dotfiles
-        run: |
-          # move also dotfile with *
-          shopt -s dotglob
-
-      - name: Clone Wormhole MKDocs
-        run: |
-          # clone mkdocs repo locally
-          git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/papermoonio/wormhole-mkdocs.git
-
-      - name: Update wormhole-docs content in the mkdocs-repository
-        run: |
-          # update the wormhole-docs submodule
-          # running this command on the branch associated with the PR will test the workflow using the latest commits
-          git submodule update --remote
-
-      - name: Install pip requirements
-        run: |
-          cd wormhole-mkdocs
-          # upgrade pip
-          pip3 install --upgrade pip setuptools==65.7.0
-          # install dependencies quietly
-          pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
-
-      - name: Build mkdocs
-        run: |
-          cd wormhole-mkdocs
-          # change destination build folder in mkdocs YAML to local site/
-          sed -i 's/site_dir.*/site_dir: site/' mkdocs.yml
-          # build project
-          python3 -m mkdocs build
+  build-docs:
+    uses: papermoonio/workflows/.github/workflows/core-pr-mkdocs-build.yml@main
+    with:
+      mkdocs_repo: papermoonio/wormhole-mkdocs
+      docs_repo: wormhole-foundation/wormhole-docs
+      docs_checkout: wormhole-docs
+      root_dir: /docs

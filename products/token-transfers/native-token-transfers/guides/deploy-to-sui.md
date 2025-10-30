@@ -26,7 +26,8 @@ Deploying NTT on the Sui network follows a structured process:
      - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
 
         !!! warning "Token Compatibility Requirement"
-            Your Sui token must be created with the legacy `CoinMetadata` type for NTT compatibility. Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
+            Your Sui token must be created with the legacy `CoinMetadata` type for NTT compatibility, which can be done using the `coin::create_currency` function.
+            Once created, the token can be migrated to the `Currency` standard, but the legacy `CoinMetadata` type must exist initially.
 
         ???- interface "Create and Deploy a Sui Token"
             --8<-- 'text/products/native-token-transfers/get-started/deploy-sui.md'
@@ -62,7 +63,17 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
 
 Once you've set up NTT, proceed with deploying the contracts.
 
-1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the `export` commands:
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the following commands:
+
+    First, list your available key aliases:
+
+    ```bash
+    sui client addresses
+    ```
+    
+    This command displays all available aliases. Note the alias you want to use for your deployment.
+
+    Then, export the private key using your chosen alias:
 
     ```bash
     sui keytool export --key-identity goofy

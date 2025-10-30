@@ -1,0 +1,6 @@
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--MAYAN_FORWARDER_WITH_REFERRER_ADDRESS-->
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>Arbitrum</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>Avalanche</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>Base</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>BSC</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>HyperEVM</td><td><code>0x87a26566dBB3bf206634C1792a96Ff4989E3F56E</code></td></tr><tr><td>Linea</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>OP Mainnet</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>Polygon PoS</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr><tr><td>Unichain</td><td><code>0x87a26566dbb3bf206634c1792a96ff4989e3f56e</code></td></tr></tbody></table>
+<!--MAYAN_FORWARDER_WITH_REFERRER_ADDRESS-->
