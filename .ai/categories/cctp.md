@@ -5361,6 +5361,7 @@ To verify the transaction and view its details, paste the transaction hash into 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
  - **[Circle CCTP Documentation](https://developers.circle.com/cctp)**: Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+ - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
 
 
 ---
@@ -6041,6 +6042,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 ## Next Steps
 
 - **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
+- **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
 
 
 ---
