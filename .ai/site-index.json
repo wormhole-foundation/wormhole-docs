@@ -2083,12 +2083,12 @@
       }
     ],
     "stats": {
-      "chars": 18518,
-      "words": 2154,
+      "chars": 18830,
+      "words": 2190,
       "headings": 5,
-      "estimated_token_count_total": 6210
+      "estimated_token_count_total": 6312
     },
-    "hash": "sha256:1e3bb9ee463a6157b5b5b8fe22ef448b76f4c96fcc830cc119c46c42bcefd8e3",
+    "hash": "sha256:d4bcd77d7ea7d027b51d8cb3edca95937c3400ffc34f1e5bc530b25eae5d799e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3212,12 +3212,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13136,
-      "words": 1988,
+      "chars": 13553,
+      "words": 2051,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:1abe31301be20af5917f86cb796e9833a708f22ad58ff1c5c9fd532ac41fc3ca",
+    "hash": "sha256:060573b8a61e754470a3910e90033209227cd6f57464eea4f2dfee15de73898b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3571,12 +3571,12 @@
     "preview": "The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\\_blank}.",
     "outline": [],
     "stats": {
-      "chars": 10222,
-      "words": 1881,
+      "chars": 10368,
+      "words": 1911,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:48562a0d9d0367a9494551e0e842bec73f2c2617687646d60ee26f03751af416",
+    "hash": "sha256:0fbf4ec705754383fac658cbf4b33c68cfe79ffc826ee06e3e008a3230960223",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3591,12 +3591,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6058,
-      "words": 1188,
+      "chars": 6138,
+      "words": 1207,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:be6725b5af8b6a81e35c25bc823d67ffbd6feb3397525487731c587025a8493e",
+    "hash": "sha256:000077431647b416a9e2c4c1888bba3f2cd3985cfe4b5f3fd6081eaf1c47cafd",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3652,12 +3652,12 @@
       }
     ],
     "stats": {
-      "chars": 30590,
-      "words": 3579,
+      "chars": 30762,
+      "words": 3599,
       "headings": 8,
-      "estimated_token_count_total": 10117
+      "estimated_token_count_total": 10177
     },
-    "hash": "sha256:ce6cc9a7fc812c38aefe5ba6934face42aa18474a18813ba3c781441838f9456",
+    "hash": "sha256:aa0489054e435a1b783e06cb9c11299c0285f45b293f0c84ca6e53040e5fde81",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3698,12 +3698,12 @@
       }
     ],
     "stats": {
-      "chars": 18518,
-      "words": 2154,
+      "chars": 18830,
+      "words": 2190,
       "headings": 5,
-      "estimated_token_count_total": 6210
+      "estimated_token_count_total": 6312
     },
-    "hash": "sha256:1e3bb9ee463a6157b5b5b8fe22ef448b76f4c96fcc830cc119c46c42bcefd8e3",
+    "hash": "sha256:d4bcd77d7ea7d027b51d8cb3edca95937c3400ffc34f1e5bc530b25eae5d799e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3850,12 +3850,12 @@
       }
     ],
     "stats": {
-      "chars": 57530,
-      "words": 8996,
+      "chars": 58334,
+      "words": 9122,
       "headings": 7,
-      "estimated_token_count_total": 24421
+      "estimated_token_count_total": 24761
     },
-    "hash": "sha256:2a392ed099c20c67f857885efc42ddba891596e6ef38632a69c583bd70d17f74",
+    "hash": "sha256:de3ae4a8df00d5a9d8ca96e289f0a793c9218cd93082a3e8b5e275bfd34ea1c3",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3906,12 +3906,12 @@
       }
     ],
     "stats": {
-      "chars": 7574,
-      "words": 1336,
+      "chars": 7721,
+      "words": 1363,
       "headings": 7,
-      "estimated_token_count_total": 3343
+      "estimated_token_count_total": 3413
     },
-    "hash": "sha256:ccab246a0adb9e6bb67d4c0d897bae3444864d027c5fdd48406aa52053c10726",
+    "hash": "sha256:593e3b5cac31b21f0d4b97b8ed44acfdfe5a07bf2199c85808a18509d021a500",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7131,12 +7131,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 12813,
-      "words": 2003,
+      "chars": 13200,
+      "words": 2066,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:9a5ce93601bbd3615b81e353ea18acafc3ad413fb4c8b7143cd780ae18f1d266",
+    "hash": "sha256:6e664a684590b0f5dbaf31eda21aecbf1b0dffe72d340bfde9c3482e8134bb24",
     "token_estimator": "heuristic-v1"
   },
   {
