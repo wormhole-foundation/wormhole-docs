@@ -221,8 +221,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --m
 ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
 ```
 
-- **Set to SPL Multisig:**
-If you don’t already have one, first [create an SPL Multisig](#create-an-spl-multisig-optional).
+- **Set to SPL Multisig**: If you don’t already have one, first [create an SPL Multisig](#create-an-spl-multisig-optional).
 ```bash
 ntt set-mint-authority --chain INSERT_SVM_CHAIN --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
 ```
