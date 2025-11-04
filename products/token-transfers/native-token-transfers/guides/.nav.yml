@@ -7,4 +7,3 @@ nav:
 - 'Troubleshoot Your Deployment': troubleshoot.md
 - 'Post Deployment': post-deployment.md
 - 'Transfer Ownership': transfer-ownership.md
-- 'Executor Integration': ntt-executor.md

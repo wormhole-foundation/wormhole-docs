@@ -3,6 +3,7 @@ nav:
 - 'Overview': overview.md
 - 'Get Started': get-started.md
 - guides
+- 'Executor Integration': ntt-executor.md
 - configuration
 - concepts
 - 'FAQs': faqs.md
