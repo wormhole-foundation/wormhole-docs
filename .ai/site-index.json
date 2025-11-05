@@ -3586,9 +3586,44 @@
         "anchor": "build-the-server-logic"
       },
       {
+        "depth": 3,
+        "title": "Encode Witnet Call and Build the Request",
+        "anchor": "encode-witnet-call-and-build-the-request"
+      },
+      {
+        "depth": 3,
+        "title": "Send Request to the Query Proxy",
+        "anchor": "send-request-to-the-query-proxy"
+      },
+      {
+        "depth": 3,
+        "title": "Decode and Verify Response",
+        "anchor": "decode-and-verify-response"
+      },
+      {
+        "depth": 3,
+        "title": "Add Shared Types",
+        "anchor": "add-shared-types"
+      },
+      {
+        "depth": 3,
+        "title": "Add  API Route for Frontend",
+        "anchor": "add-api-route-for-frontend"
+      },
+      {
         "depth": 2,
         "title": "Price Widget",
         "anchor": "price-widget"
+      },
+      {
+        "depth": 3,
+        "title": "Create Widget Component",
+        "anchor": "create-widget-component"
+      },
+      {
+        "depth": 3,
+        "title": "Add the Widget to Home Page",
+        "anchor": "add-the-widget-to-home-page"
       },
       {
         "depth": 2,
@@ -3607,12 +3642,12 @@
       }
     ],
     "stats": {
-      "chars": 21918,
-      "words": 2712,
-      "headings": 7,
-      "estimated_token_count_total": 4610
+      "chars": 20515,
+      "words": 2690,
+      "headings": 14,
+      "estimated_token_count_total": 4569
     },
-    "hash": "sha256:db2954f4ffe8a2ccaa47745fe1539df1b44bbac5bb2e31b1ef4cbc2bd6ac3454",
+    "hash": "sha256:a61ee01698bf986ef7b21237e2fc5513e69f63665edbc0edb87920a0b4e3c2fd",
     "token_estimator": "heuristic-v1"
   },
   {
