@@ -84,42 +84,42 @@ In this section, you will implement the backend that powers the widget. You will
 
 First, encode the function call for Witnet's Price Router using the feed ID and package it into a Wormhole Query request. This query will be anchored to the latest block, ensuring the data you receive is verifiably tied to a recent snapshot of the chain state. This helper will return a serialized request that can be sent to the Wormhole Query Proxy.
 
-    ```ts title="src/lib/queries/buildRequest.ts"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-2.ts"
-    ```
+```ts title="src/lib/queries/buildRequest.ts"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-2.ts"
+```
 
 ### Send Request to the Query Proxy
 
 Next, you will send the serialized query to the Wormhole Query Proxy, which forwards it to the Guardians for verification. The proxy returns a signed response containing the requested data and proof that the Guardians verified it. This step ensures that all the data your app consumes comes from a trusted and authenticated source.
 
-    ```ts title="src/lib/queries/client.ts"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-3.ts"
-    ```
+```ts title="src/lib/queries/client.ts"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-3.ts"
+```
 
 ### Decode and Verify Response
 
 Once you receive the signed response, you will decode it to extract the Witnet price data.
 Here, you will use ethers to parse the ABI-encoded return values and scale the raw integer to a readable decimal value based on the feed's configured number of decimals. This function will output a clean result containing the latest price, timestamp, and transaction reference from the Witnet feed.
 
-    ```ts title="src/lib/queries/decode.ts"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-4.ts"
-    ```
+```ts title="src/lib/queries/decode.ts"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-4.ts"
+```
 
 ### Add Shared Types
 
 Create a `src/lib/types.ts` file to define the structure of your API responses. These types ensure consistency between the backend and the frontend, keeping the data shape predictable and type-safe.  You will import these types in both the API route and the widget to keep your responses aligned across the app.
 
-    ```ts title="src/lib/types.ts"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-5.ts"
-    ```
+```ts title="src/lib/types.ts"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-5.ts"
+```
 
 ### Add  API Route for Frontend
 
 Finally, expose an API endpoint at `/api/queries`. This route ties everything together: it builds the query, sends it, decodes the response, and returns a structured JSON payload containing the current price, timestamp, block number, and a stale flag indicating whether the feed data is still fresh. The frontend widget will call this endpoint every few seconds to display the live, verified price data.
 
-    ```ts title="src/app/api/queries/route.ts"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-6.ts"
-    ```
+```ts title="src/app/api/queries/route.ts"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-6.ts"
+```
 
 ## Price Widget
 
@@ -129,17 +129,17 @@ In this section, you will build a client component that fetches the signed price
 
 Create a client component that calls `/api/queries`, renders the current price, shows the last update time and block number, and displays a freshness badge based on the heartbeat. The component uses a ref to avoid overlapping requests and a timed interval to refresh automatically.
 
-    ```ts title="src/components/PriceWidget.tsx"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-7.ts"
-    ```
+```ts title="src/components/PriceWidget.tsx"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-7.ts"
+```
 
 ### Add the Widget to Home Page
 
 Render the widget on the home page with a simple heading and container so users see the price as soon as they load the app.
 
-    ```ts title="src/app/page.tsx"
-    ---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-8.ts"
-    ```
+```ts title="src/app/page.tsx"
+---8<-- "code/products/queries/tutorials/live-crypto-prices/snippet-8.ts"
+```
 
 ## Run the App
 
