@@ -103,14 +103,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --m
 ```
 
 - **Set to SPL Multisig:**
-
-    1. Create valid SPL Multisig:
-
-        ```bash
-        ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
-        ```
-
-    2. Set to created SPL Multisig:
+    If you don’t already have one, first [create an SPL Multisig](#create-an-spl-multisig-optional). Then set it:
     ```bash
     ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
@@ -121,6 +114,22 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --m
 
 ```bash
 ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig**: If you don’t already have one, first [create an SPL Multisig](#create-an-spl-multisig-optional).
+```bash
+ntt set-mint-authority --chain INSERT_SVM_CHAIN --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+#### Create an SPL Multisig (optional)
+
+If you want the mint authority controlled by a multisig, create it once and reuse it across flows:
+
+```bash
+ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... \
+  --token INSERT_TOKEN_ADDRESS \
+  --manager INSERT_NTT_PROGRAM_ADDRESS \
+  --payer INSERT_KEYPAIR_JSON
 ```
 
 !!! note

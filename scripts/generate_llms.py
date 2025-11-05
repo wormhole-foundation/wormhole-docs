@@ -77,19 +77,22 @@ def main():
         else args.config
     )
 
+    # Use the same Python interpreter for all steps (works with venvs)
+    PY = sys.executable
+
     # 1) AI pages (resolved markdown) — this script has no --config flag
-    ai_pages_cmd = ["python3", str(scripts_dir / "generate_ai_pages.py")]
+    ai_pages_cmd = [PY, str(scripts_dir / "generate_ai_pages.py")]
     # If you want to force local-only snippets by default, uncomment:
     # ai_pages_cmd.append("--no-remote")
     run_step("Generate AI pages", ai_pages_cmd)
 
     # 2) llms.txt (site index of pages) — this script takes positional config (optional)
-    llms_txt_cmd = ["python3", str(scripts_dir / "generate_llms_txt.py"), config_path]
+    llms_txt_cmd = [PY, str(scripts_dir / "generate_llms_txt.py"), config_path]
     run_step("Generate llms.txt", llms_txt_cmd)
 
     # 3) site-index (+sections by default)
     site_index_cmd = [
-        "python3",
+        PY,
         str(scripts_dir / "generate_site_index.py"),
         "--config", config_path,
         "--token-estimator", args.token_estimator,  # default heuristic-v1
@@ -103,7 +106,7 @@ def main():
 
     # 4) category bundles (manifest/jsonl/md/all)
     bundles_cmd = [
-        "python3",
+        PY,
         str(scripts_dir / "generate_category_bundles.py"),
         "--config", config_path,
         "--format", args.bundles_format,
