@@ -5680,7 +5680,7 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 1. Run the installation commands in your terminal:
 
     ```bash
-    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+    git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
         https://github.com/wormhole-foundation/native-token-transfers.git
     cd native-token-transfers
     ```
@@ -6443,7 +6443,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
@@ -11139,7 +11139,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
@@ -11443,7 +11443,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
