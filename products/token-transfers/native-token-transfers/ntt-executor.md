@@ -35,9 +35,9 @@ Use the following resources throughout this guide:
 - [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=_blank} : List of deployed contracts for NTT with Executor.  
 - **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
 
-    | Environment | URL |
-    |--------------|-----|
-    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com) |
+    | Environment | URL                                                                            |
+    |-------------|--------------------------------------------------------------------------------|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
     | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
     !!! note
@@ -47,7 +47,7 @@ Use the following resources throughout this guide:
 
 Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, message value, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer.
 
-Before generating relay instructions, install the SDK definitions package:
+Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
 ```sh
 npm i @wormhole-foundation/sdk-definitions
@@ -239,13 +239,13 @@ If the NTT Manager is configured with a Transceiver that supports Standard Relay
 
 **SVM**
 
-For Solana and other SVM-based chains, two helper programs assist with generating and submitting NTT execution requests:
-<!-- format -->
-- [example-ntt-svm-lut](https://github.com/wormholelabs-xyz/example-ntt-svm-lut){target=\_blank} : Manages Lookup Tables for NTT programs without canonical LUTs.
-- [example-ntt-with-executor-svm](https://github.com/wormholelabs-xyz/example-ntt-with-executor-svm){target=\_blank} : Manages Lookup Tables for NTT programs without canonical LUTs.
+For Solana and other SVM-based chains, two helper programs are available to assist with generating and submitting NTT execution requests:
 
-Together, these helpers allow you to compose and send a full NTT + Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
-<!-- snippet -->
+- [example-ntt-svm-lut](https://github.com/wormholelabs-xyz/example-ntt-svm-lut){target=\_blank}: Manages Lookup Tables for NTT programs without canonical LUTs.
+- [example-ntt-with-executor-svm](https://github.com/wormholelabs-xyz/example-ntt-with-executor-svm){target=\_blank}: Generates and attaches Executor relay instructions on-chain to reduce transaction size.
+
+Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
+
 ```ts
 const ntt = await s.getProtocol("Ntt", {
   ntt: {
@@ -372,7 +372,7 @@ for await (const tx of txs) {
 
 ## Status the transaction
 
-After submitting your transaction, query the relay provider to check its execution status:
+After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
 ```sh
 const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
@@ -387,16 +387,6 @@ You can also link directly to the transaction in the Explorer:
 `https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`
 ```
 
-Explorers:
-
-- [Testnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor-testnet.labsapis.com&env=Testnet){target=\_blank}
-- [Mainnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor.labsapis.com&env=Mainnet){target=\_blank}
-<!-- review -->
-
 ## Conclusion
 
-## References 
-
-
-- [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank}
-
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers.
