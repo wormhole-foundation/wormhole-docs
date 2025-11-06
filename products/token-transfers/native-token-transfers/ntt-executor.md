@@ -3,7 +3,7 @@ title: Integrate Native Token Transfers with Executor
 description: TODO
 categories: NTT, Transfer, Executor
 ---
-<!-- TODO grammarly, code in snippets, links -->
+<!-- waiting to move all the snippets once we decide where the pages go -->
 # Native Token Transfers Executor Integration
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
@@ -17,49 +17,45 @@ The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-
 Before starting, ensure you have:
 
 - [NTT deployed](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank} on both the source and destination chains.
-- The Executor Relay Provider supports your source and destination pair.  <!-- link -->
+- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. You can confirm this using the capabilities endpoint:
+  ```sh
+  GET https://executor-testnet.labsapis.com/v0/capabilities
+  ```
+  The response includes:
+    - Supported source and destination chains.
+    - Available relay types (e.g., `wormhole` or `ERN1`).
+    - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
-## Check Capabilities
+    !!!note
+        The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
-Before generating relay instructions, verify that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain.
+## References
+Use the following resources throughout this guide:
 
-Use the Executor capabilities endpoint:
+- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=_blank} : List of deployed contracts for NTT with Executor.  
+- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
 
-```sh
-GET https://executor-testnet.labsapis.com/v0/capabilities
-```
+    | Environment | URL |
+    |--------------|-----|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com) |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-The response lists:
-
-- Supported source and destination chains.
-- Available relay types (e.g., `wormhole` or `ERN1`).
-- Gas drop-off limits, which define the maximum gas the relay provider can allocate.
-
-The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
-
-Executor Endpoints: <!-- review -->
-
-- Mainnet `https://executor.labsapis.com`       
-- Testnet `https://executor-testnet.labsapis.com` 
-
-These endpoints are used to request signed quotes, check status, and retrieve relay capabilities.
-
-!!! note
-    For development and testing, use the Testnet endpoint. The Mainnet relay provider is reserved for production-ready deployments.
+    !!! note
+        For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
 
 ## Generate relay instructions
 
-[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor RelayInstructions are provided by the Wormhole TypeScript SDK
+Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, message value, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer.
 
-- Install the SDK definitions package:
+Before generating relay instructions, install the SDK definitions package:
 
-    ```sh
-    npm i @wormhole-foundation/sdk-definitions
-    ```
+```sh
+npm i @wormhole-foundation/sdk-definitions
+```
 
-Executor uses RelayInstructions defined by the Wormhole TypeScript SDK.
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `RelayInstructions` are provided by the Wormhole TypeScript SDK.
 
-After having installed the sdk definitions, serialize the layout as follows: <!-- review -->
+Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 ​
 ```ts
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
@@ -73,29 +69,59 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
   });
 ```
 
-**EVM**
-<!-- intro -->
+??? interface "Parameters"
 
-- `gasLimit` defines the redeeming transaction gas limit on the destination chain.
-The actual gas usage depends on token configuration, manager setup, and chain parameters.
-- `msgValue` is not used by NTT’s `receiveMessage` and should always be set to 0.
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    —
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    —
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction, this should typically be set to 0 for NTT transfers.
+
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For NTT transfers, only a single gas instruction is required.
+
+| Instruction             | Description                                                               | Fields                 | 
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      | 
+| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             | 
+
+**EVM**
+
+For EVM-based destination chains:
+
+- `gasLimit` defines the redeeming transaction gas limit on the destination chain. The actual gas usage depends on token configuration, manager setup, and chain parameters.
+- `msgValue` is not used by NTT Transceivers’ `receiveMessage` function and should be set to 0.
 
 **SVM**
 
 For Solana and other SVM chains:
 
 - `gasLimit` represents the total Compute Units required across all transactions, plus a 20% buffer.
-- The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}.
-- `msgValue must` exceed the lamports + priority fees for the transaction.
+- The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}, which simulates the transaction and sets the budget to 120% of the simulated `unitsConsumed`. This allows the relayer to automatically determine the budget required for each transaction in the series needed to perform an NTT redeem.
+- `msgValue` must cover the lamports required for the transaction, including priority fees and rent.
 
 !!!note
-    Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA — increasing rent cost and required `msgValue`.
+    Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA, increasing rent cost and required `msgValue`.
 
     When using a non-zero `GasDropOffInstruction` for a new wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Wormhole's relayer will ignore drop-offs to new accounts if they are below the minimum, as the transaction would fail.
 
 ## Request a SignedQuote
-<!-- review -->
-Next, request a SignedQuote from the Relay Provider. This quote authorizes and prices the relay execution for your transfer.
+
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution.
+
+The following is an example of a quote request from Sepolia to Base Sepolia. See the full list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
 
 ```ts
 const EXECUTOR_URL = "https://executor-testnet.labsapis.com"
@@ -108,6 +134,26 @@ const { signedQuote: quote, estimatedCost: estimate } = (
 ).data;
 ```
 
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    —
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    —
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+Example response:
+
 ```sh
 {
   "signedQuote": "0x455130315241c9276698439fef2780dbab76fec90b633fbd000000000000000000000000f7122c001b3e07d7fafd8be3670545135859954a271227140000000067dd750f00000000000003e80000000000514b7c000011bbaf716200000011bbaf716200f86edc3960908d257472836d5b1c33c457bf17af67a758d9984356e7166bec8162faa0e07f991d061b93e4f033895c71134a30d9ca369c606fcabba0b742d2431c",
@@ -115,18 +161,29 @@ const { signedQuote: quote, estimatedCost: estimate } = (
 }
 ```
 
+??? interface "Returns"
+
+    `signedQuote` ++"string"++
+
+    A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
+
+    —
+
+    `estimatedCost` ++"string"++
+
+    The total estimated gas or lamport cost for the relay.
+
+
 Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
 
 ## Call your sending contract
 
-Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for deployed helper contracts.
+Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the full list of deployed helper contracts.
 
 **EVM**
 
-For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call.
+For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
 
-The interface is defined as follows:
-<!-- snippet -->
 ```sol
 // SPDX-License-Identifier: Apache 2
 pragma solidity ^0.8.19;
@@ -178,13 +235,7 @@ interface INttManagerWithExecutor {
 }
 ```
 
-If your NTT Manager is configured with a Transceiver that supports the Standard Relayer, you must disable automatic relaying—since the Executor will handle this process.
-<!-- review -->
-In your NTT SDK transfer call, do this by setting:
-
-```ts
-automatic: false
-```
+If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. This can be done by setting automatic to false.
 
 **SVM**
 
@@ -346,7 +397,6 @@ Explorers:
 
 ## References 
 
-- [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}
+
 - [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank}
-- [EVM Implementation](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=\_blank}
-- [SVM Implementation](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=\_blank}
+
