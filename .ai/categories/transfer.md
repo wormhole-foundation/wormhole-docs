@@ -8938,7 +8938,7 @@ Page Title: Integrate Native Token Transfers with Executor
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-ntt-executor.md
 - Canonical (HTML): https://wormhole.com/docs/products/token-transfers/native-token-transfers/ntt-executor/
-- Summary: TODO
+- Summary: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 
 # Native Token Transfers Executor Integration
 
@@ -9310,7 +9310,7 @@ for await (const tx of txs) {
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
-```sh
+```ts
 const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
   txHash,
   chainId,
