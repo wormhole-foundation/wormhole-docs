@@ -469,9 +469,6 @@
             trackButtonClick('view_page_markdown');
             const mdUrl = getMarkdownUrl(slug);
             const opened = window.open(mdUrl, '_blank', 'noopener');
-            if (!opened) {
-              showCopyError(item);
-            }
             break;
           }
           case 'download-markdown': {
