@@ -467,47 +467,9 @@
         switch (action) {
           case 'view-markdown': {
             trackButtonClick('view_page_markdown');
-            const { text, status, url } = await fetchMarkdown(slug);
-            if (status === 404) {
-              showToast(NO_MARKDOWN_MESSAGE);
-              break;
-            }
-            if (!text) {
-              showCopyError(item);
-              break;
-            }
-
-            try {
-              const blob = new Blob([text], {
-                type: 'text/plain;charset=utf-8',
-              });
-              const blobUrl = URL.createObjectURL(blob);
-              const newTab = window.open(blobUrl, '_blank', 'noopener');
-              if (!newTab) {
-                showCopyError(item);
-                URL.revokeObjectURL(blobUrl);
-                break;
-              }
-              try {
-                newTab.document.title = slug
-                  ? `Markdown · ${slug}`
-                  : 'Markdown Preview';
-              } catch (error) {
-                console.warn(
-                  'Copy to LLM: unable to set markdown preview title',
-                  url,
-                  error
-                );
-              }
-              const revoke = () => URL.revokeObjectURL(blobUrl);
-              newTab.addEventListener('unload', revoke, { once: true });
-              setTimeout(revoke, 30000);
-            } catch (error) {
-              console.warn(
-                'Copy to LLM: unable to open markdown preview',
-                url,
-                error
-              );
+            const mdUrl = getMarkdownUrl(slug);
+            const opened = window.open(mdUrl, '_blank', 'noopener');
+            if (!opened) {
               showCopyError(item);
             }
             break;
