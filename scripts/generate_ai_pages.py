@@ -408,7 +408,6 @@ def main():
     variables = load_yaml(str(variables_path))
 
     # Config bits
-    fm_flag = config.get("content", {}).get("exclusions", {}).get("frontmatter_flag")
     skip_basenames = set(config.get("content", {}).get("exclusions", {}).get("skip_basenames", []))
     skip_parts = set(config.get("content", {}).get("exclusions", {}).get("skip_paths", []))
     docs_base_url = config.get("project", {}).get("docs_base_url", "").rstrip("/") + "/"
