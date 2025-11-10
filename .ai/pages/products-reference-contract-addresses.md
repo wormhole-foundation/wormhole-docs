@@ -2,6 +2,8 @@
 title: Contract Addresses
 description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, TokenBridge, and more.
 categories: Reference
+word_count: 3599
+estimated_tokens: 10180
 url: https://wormhole.com/docs/products/reference/contract-addresses/
 ---
 

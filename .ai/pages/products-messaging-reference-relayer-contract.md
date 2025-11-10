@@ -2,6 +2,8 @@
 title: Relayer Contract
 description: Reference for the Wormhole Relayer contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 categories: Reference
+word_count: 4452
+estimated_tokens: 9419
 url: https://wormhole.com/docs/products/messaging/reference/relayer-contract/
 ---
 

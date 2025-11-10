@@ -2,6 +2,8 @@
 title: Queries Supported Networks
 description: Reference table of chains supported by Wormhole Queries, including method support, finality, and expected historical data availability.
 categories: Queries
+word_count: 285
+estimated_tokens: 656
 url: https://wormhole.com/docs/products/queries/reference/supported-networks/
 ---
 

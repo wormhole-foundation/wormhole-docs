@@ -2,6 +2,8 @@
 title: Settlement Supported Networks
 description: Explore all blockchains supported by Wormhole Settlement, including network availability, block explorers, and cross-chain transfer support.
 categories: Settlement, Transfer
+word_count: 583
+estimated_tokens: 1597
 url: https://wormhole.com/docs/products/settlement/reference/supported-networks/
 ---
 

@@ -2,6 +2,8 @@
 title: Queries Overview
 description: Learn how Wormhole Queries enable smart contracts to fetch real-time, Guardian-verified data across multiple blockchains.
 categories: Queries
+word_count: 574
+estimated_tokens: 1132
 url: https://wormhole.com/docs/products/queries/overview/
 ---
 

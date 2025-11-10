@@ -2,6 +2,8 @@
 title: Replace Outdated Signatures in VAAs
 description: Learn how to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK to ensure seamless processing.
 categories: Basics, Typescript SDK
+word_count: 4510
+estimated_tokens: 9160
 url: https://wormhole.com/docs/products/messaging/tutorials/replace-signatures/
 ---
 

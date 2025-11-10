@@ -2,6 +2,8 @@
 title: Live Crypto Price Widget
 description: Learn how to fetch real-time crypto prices using Wormhole Queries and display them in a live widget powered by secure and verified Witnet data feeds.
 categories: Queries
+word_count: 2690
+estimated_tokens: 4837
 url: https://wormhole.com/docs/products/queries/tutorials/live-crypto-prices/
 ---
 

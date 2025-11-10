@@ -2,6 +2,8 @@
 title: MultiGov Architecture
 description: Discover MultiGov's hub-and-spoke architecture, enabling secure cross-chain governance with Wormhole’s interoperability and decentralized coordination.
 categories: MultiGov
+word_count: 774
+estimated_tokens: 1206
 url: https://wormhole.com/docs/products/multigov/concepts/architecture/
 ---
 

@@ -2,6 +2,8 @@
 title: Security
 description: Explore Wormhole's security features, including the Guardian network, governance, monitoring, open-source development, and bug bounty programs.
 categories: Basics
+word_count: 1106
+estimated_tokens: 1690
 url: https://wormhole.com/docs/protocol/security/
 ---
 

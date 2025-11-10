@@ -2,6 +2,8 @@
 title: Core Contract (EVM)
 description: Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 categories: Reference
+word_count: 1963
+estimated_tokens: 4016
 url: https://wormhole.com/docs/products/messaging/reference/core-contract-evm/
 ---
 

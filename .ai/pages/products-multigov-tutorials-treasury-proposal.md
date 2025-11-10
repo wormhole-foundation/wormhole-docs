@@ -2,6 +2,8 @@
 title: MultiGov Guides
 description: Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and finally execute the proposal using Wormhole's MultiGov.
 categories: MultiGov
+word_count: 1016
+estimated_tokens: 1614
 url: https://wormhole.com/docs/products/multigov/tutorials/treasury-proposal/
 ---
 

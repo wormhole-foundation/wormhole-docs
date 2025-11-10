@@ -2,6 +2,8 @@
 title: Run a Relayer
 description: Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
 categories: Relayers
+word_count: 1622
+estimated_tokens: 2656
 url: https://wormhole.com/docs/protocol/infrastructure-guides/run-relayer/
 ---
 

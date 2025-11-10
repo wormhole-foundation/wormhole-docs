@@ -2,6 +2,8 @@
 title: MultiGov Deployment to Solana
 description: Learn how to deploy the MultiGov Staking Program on Solana, including setup, funding, deployment, and configuration steps.
 categories: MultiGov
+word_count: 1095
+estimated_tokens: 1775
 url: https://wormhole.com/docs/products/multigov/guides/deploy-to-solana/
 ---
 

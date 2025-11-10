@@ -2,6 +2,8 @@
 title: Queries Supported Methods
 description: Retrieve multichain data via historical timestamp queries, finality confirmation queries, and Solana lookups.
 categories: Queries
+word_count: 623
+estimated_tokens: 951
 url: https://wormhole.com/docs/products/queries/reference/supported-methods/
 ---
 

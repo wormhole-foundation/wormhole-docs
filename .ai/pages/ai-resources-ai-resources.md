@@ -1,6 +1,8 @@
 ---
 title: AI Resources
 description: Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
+word_count: 950
+estimated_tokens: 2619
 url: https://wormhole.com/docs/ai-resources/ai-resources/
 ---
 

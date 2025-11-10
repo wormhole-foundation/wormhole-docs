@@ -2,6 +2,8 @@
 title: Testnet Faucets
 description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
 categories: Reference
+word_count: 1363
+estimated_tokens: 3475
 url: https://wormhole.com/docs/products/reference/testnet-faucets/
 ---
 

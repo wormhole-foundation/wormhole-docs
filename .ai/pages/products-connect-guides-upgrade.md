@@ -2,6 +2,8 @@
 title: Wormhole Connect Migration Guide
 description: Learn how to migrate to Wormhole Connect ^v1.0, with step-by-step guidance on updating your package and configuration.
 categories: Connect, Transfer
+word_count: 2789
+estimated_tokens: 5387
 url: https://wormhole.com/docs/products/connect/guides/upgrade/
 ---
 

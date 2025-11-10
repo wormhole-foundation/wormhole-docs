@@ -2,6 +2,8 @@
 title: Integrate Connect via CDN
 description: Learn how to use Wormhole Connect via CDN in any JavaScript project using just a script tag with no React or backend setup required.
 categories: Connect, Transfer
+word_count: 316
+estimated_tokens: 561
 url: https://wormhole.com/docs/products/connect/guides/hosted-version/
 ---
 

@@ -2,6 +2,8 @@
 title: Connect Supported Networks
 description: Explore all blockchains supported by Wormhole Connect, including network availability, block explorers, and cross-chain transfer support.
 categories: Connect, Transfer
+word_count: 1334
+estimated_tokens: 3639
 url: https://wormhole.com/docs/products/connect/reference/supported-networks/
 ---
 

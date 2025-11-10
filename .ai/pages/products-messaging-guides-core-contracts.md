@@ -2,6 +2,8 @@
 title: Get Started with Core Contracts
 description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
 categories: Basics
+word_count: 1949
+estimated_tokens: 3467
 url: https://wormhole.com/docs/products/messaging/guides/core-contracts/
 ---
 

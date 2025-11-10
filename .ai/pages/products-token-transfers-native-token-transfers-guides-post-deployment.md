@@ -2,6 +2,8 @@
 title: Native Token Transfers Post Deployment
 description: Learn post-deployment guidelines for optimizing Wormhole NTT, which include testing, security, frontend integration, ecosystem coordination, and monitoring.
 categories: NTT, Transfer
+word_count: 497
+estimated_tokens: 862
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/post-deployment/
 ---
 

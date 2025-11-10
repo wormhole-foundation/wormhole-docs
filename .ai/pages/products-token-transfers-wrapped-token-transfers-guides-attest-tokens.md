@@ -2,6 +2,8 @@
 title: Token Attestation
 description: Register a token with the Wrapped Token Transfers (WTT) protocol by creating and submitting a token attestation. Required before first-time transfers.
 categories: WTT, Transfer
+word_count: 2583
+estimated_tokens: 4576
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/
 ---
 

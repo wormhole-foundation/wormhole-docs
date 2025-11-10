@@ -2,6 +2,8 @@
 title: Wormhole Formatted Addresses
 description: Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
 categories: Reference
+word_count: 799
+estimated_tokens: 1437
 url: https://wormhole.com/docs/products/reference/wormhole-formatted-addresses/
 ---
 

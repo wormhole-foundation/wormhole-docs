@@ -2,6 +2,8 @@
 title: Native Token Transfers Manager Contract (EVM)
 description: The NTT Manager Solidity contract enables cross-chain token transfers, peer registration, rate limiting, and message attestation within the NTT protocol.
 categories: NTT, Transfer
+word_count: 6463
+estimated_tokens: 14362
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/evm/
 ---
 

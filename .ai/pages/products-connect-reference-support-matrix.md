@@ -2,6 +2,8 @@
 title: Features
 description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for WTT, CCTP, ETH Bridge, and more.
 categories: Connect, Transfer
+word_count: 509
+estimated_tokens: 1081
 url: https://wormhole.com/docs/products/connect/reference/support-matrix/
 ---
 

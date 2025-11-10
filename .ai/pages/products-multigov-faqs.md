@@ -2,6 +2,8 @@
 title: MultiGov FAQs
 description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
 categories: MultiGov
+word_count: 952
+estimated_tokens: 1269
 url: https://wormhole.com/docs/products/multigov/faqs/
 ---
 

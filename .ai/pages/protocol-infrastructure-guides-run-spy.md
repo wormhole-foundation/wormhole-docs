@@ -1,6 +1,8 @@
 ---
 title: Run a Spy
 description: Learn how to run a Spy locally to listen for and forward messages (Verifiable Action Approvals, or VAAs) published on the Wormhole network.
+word_count: 366
+estimated_tokens: 646
 url: https://wormhole.com/docs/protocol/infrastructure-guides/run-spy/
 ---
 

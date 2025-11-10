@@ -2,6 +2,8 @@
 title: Wormhole CLI
 description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
 categories: Solidity-SDK, Typescript-SDK
+word_count: 1567
+estimated_tokens: 3405
 url: https://wormhole.com/docs/tools/cli/get-started/
 ---
 

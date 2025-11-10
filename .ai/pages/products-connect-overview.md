@@ -2,6 +2,8 @@
 title: Wormhole Connect
 description: With Wormhole Connect, you can seamlessly bridge digital assets and data across a wide range of supported blockchain networks.
 categories: Connect, Transfer
+word_count: 516
+estimated_tokens: 877
 url: https://wormhole.com/docs/products/connect/overview/
 ---
 

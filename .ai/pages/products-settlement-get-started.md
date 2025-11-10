@@ -2,6 +2,8 @@
 title: Get Started
 description: Perform a cross-chain token swap using Wormhole Settlement and the Mayan Swift route with the TypeScript SDK on mainnet.
 categories: Settlement, Transfer
+word_count: 1347
+estimated_tokens: 2353
 url: https://wormhole.com/docs/products/settlement/get-started/
 ---
 

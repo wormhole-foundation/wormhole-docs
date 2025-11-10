@@ -2,6 +2,8 @@
 title: Native Token Transfers Access Control
 description: Learn about the owner and pauser access roles for the NTT manager contract, which can be used to pause and un-pause token transfers.
 categories: NTT, Transfer
+word_count: 285
+estimated_tokens: 435
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/configuration/access-control/
 ---
 

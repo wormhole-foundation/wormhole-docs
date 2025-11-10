@@ -2,6 +2,8 @@
 title: Native Token Transfers Sui Deployment
 description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for Sui, including setup, token compatibility, mint/burn modes, and CLI usage.
 categories: NTT, Transfer
+word_count: 1402
+estimated_tokens: 2335
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/
 ---
 

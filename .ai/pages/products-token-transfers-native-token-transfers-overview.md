@@ -2,6 +2,8 @@
 title: Native Token Transfers Overview
 description: With Native Token Transfers, you can directly transfer a blockchain's native assets across various connected networks.
 categories: NTT, Transfer
+word_count: 706
+estimated_tokens: 1210
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/overview/
 ---
 

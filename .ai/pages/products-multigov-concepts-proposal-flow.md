@@ -2,6 +2,8 @@
 title: Flow of a MultiGov Proposal
 description: Learn about the complete lifecycle of MultiGov proposals, from creation to execution across multiple chains, including the roles of key actors and modules.
 categories: MultiGov
+word_count: 1175
+estimated_tokens: 1972
 url: https://wormhole.com/docs/products/multigov/concepts/proposal-flow/
 ---
 

@@ -2,6 +2,8 @@
 title: Local Dev Environment
 description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
 categories: Solidity-SDK, Typescript-SDK
+word_count: 659
+estimated_tokens: 994
 url: https://wormhole.com/docs/tools/dev-env/
 ---
 

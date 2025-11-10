@@ -2,6 +2,8 @@
 title: Native Token Transfers Transceiver Program (Solana)
 description: The NTT Transceiver program handles message transmission and verification across chains as part of the Native Token Transfers protocol on Solana.
 categories: NTT, Transfer
+word_count: 1128
+estimated_tokens: 2608
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/solana/
 ---
 

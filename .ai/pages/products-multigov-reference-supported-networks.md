@@ -2,6 +2,8 @@
 title: Multigov Supported Networks
 description: Explore all blockchains supported by Wormhole Multigov, including network availability, block explorers, and cross-chain transfer support.
 categories: MultiGov
+word_count: 2051
+estimated_tokens: 5580
 url: https://wormhole.com/docs/products/multigov/reference/supported-networks/
 ---
 

@@ -2,6 +2,8 @@
 title: Connect FAQs
 description: Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options.
 categories: Connect, Transfer, CCTP
+word_count: 946
+estimated_tokens: 1606
 url: https://wormhole.com/docs/products/connect/faqs/
 ---
 

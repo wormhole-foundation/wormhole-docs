@@ -2,6 +2,8 @@
 title: Transfer Wrapped Assets
 description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
 categories: WTT, Transfer, Typescript SDK
+word_count: 2994
+estimated_tokens: 5402
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets/
 ---
 

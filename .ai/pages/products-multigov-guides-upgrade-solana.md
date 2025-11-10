@@ -2,6 +2,8 @@
 title: Upgrading MultiGov on Solana
 description: Learn the process and key considerations for upgrading MultiGov on Solana, ensuring system integrity and careful planning across cross-chain components.
 categories: MultiGov
+word_count: 365
+estimated_tokens: 572
 url: https://wormhole.com/docs/products/multigov/guides/upgrade-solana/
 ---
 

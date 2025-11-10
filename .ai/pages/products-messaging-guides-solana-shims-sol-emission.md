@@ -2,6 +2,8 @@
 title: Solana Message Emission via Shim
 description: Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim instead of post_message.
 categories: Basics
+word_count: 1220
+estimated_tokens: 2148
 url: https://wormhole.com/docs/products/messaging/guides/solana-shims/sol-emission/
 ---
 

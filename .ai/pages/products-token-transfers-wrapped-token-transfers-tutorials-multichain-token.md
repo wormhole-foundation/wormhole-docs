@@ -2,6 +2,8 @@
 title: Create Multichain Tokens
 description: Learn how to create a multichain token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
 categories: WTT, Transfers
+word_count: 915
+estimated_tokens: 1341
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/
 ---
 

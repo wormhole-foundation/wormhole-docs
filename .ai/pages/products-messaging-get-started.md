@@ -2,6 +2,8 @@
 title: Get Started with Messaging
 description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
 categories: Basics, Typescript SDK
+word_count: 1262
+estimated_tokens: 2514
 url: https://wormhole.com/docs/products/messaging/get-started/
 ---
 
