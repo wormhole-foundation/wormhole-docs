@@ -1,5 +1,7 @@
 Begin New Bundle: Connect
 Includes shared base categories: Basics, Reference
+word_count: 80013
+estimated_tokens: 165380
 
 
 ---

@@ -1,5 +1,7 @@
 Begin New Bundle: Executors
 Includes shared base categories: Basics, Reference
+word_count: 68175
+estimated_tokens: 142288
 
 
 ---

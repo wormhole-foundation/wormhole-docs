@@ -1,5 +1,7 @@
 Begin New Bundle: NTT
 Includes shared base categories: Basics, Reference
+word_count: 103917
+estimated_tokens: 212486
 
 
 ---

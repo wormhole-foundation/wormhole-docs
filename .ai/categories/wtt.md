@@ -1,5 +1,7 @@
 Begin New Bundle: WTT
 Includes shared base categories: Basics, Reference
+word_count: 88567
+estimated_tokens: 180089
 
 
 ---

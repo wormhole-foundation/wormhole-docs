@@ -1,5 +1,7 @@
 Begin New Bundle: MultiGov
 Includes shared base categories: Basics, Reference
+word_count: 77462
+estimated_tokens: 159341
 
 
 ---

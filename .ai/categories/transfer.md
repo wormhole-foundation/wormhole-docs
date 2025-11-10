@@ -1,5 +1,7 @@
 Begin New Bundle: Transfer
 Includes shared base categories: Basics, Reference
+word_count: 148325
+estimated_tokens: 294836
 
 
 ---
