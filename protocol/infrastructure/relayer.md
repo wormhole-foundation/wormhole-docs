@@ -125,7 +125,7 @@ To simplify development, Wormhole provides the [Relayer Engine](https://github.c
 <div class="grid cards" markdown>
 
 -   :octicons-book-16:{ .lg .middle } **Spy**
-<!--link to exec vs SR instead of spy -->
+<!--link to exec vs SR instead of spy g-->
     ---
 
     Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions. 
