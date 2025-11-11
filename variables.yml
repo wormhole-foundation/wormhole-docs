@@ -15,3 +15,6 @@ repositories:
   connect:
     repository_url: https://github.com/wormhole-foundation/wormhole-connect
     version: 4.0.0
+  settlement:
+    repository_url: https://github.com/mayan-finance/wormhole-sdk-route
+    version: 1.26.0
