@@ -129,7 +129,7 @@
       "headings": 1,
       "estimated_token_count_total": 2537
     },
-    "hash": "sha256:3902977d78be9d56c9f611035ad1a82c8e5d7d9a25b636a83c3b07c69ff51931",
+    "hash": "sha256:8b8ef2193873a8e4af6975ecff16f7a4fde6de4dc8c698247d12de26db9f5a8f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1155,7 +1155,7 @@
     "slug": "products-messaging-concepts-executor-framework",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-framework/",
@@ -1187,7 +1187,7 @@
     "slug": "products-messaging-concepts-executor-overview",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-overview/",
