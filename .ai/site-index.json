@@ -186,12 +186,12 @@
       }
     ],
     "stats": {
-      "chars": 7602,
-      "words": 985,
+      "chars": 7648,
+      "words": 992,
       "headings": 4,
-      "estimated_token_count_total": 1602
+      "estimated_token_count_total": 1666
     },
-    "hash": "sha256:306917f54b6f5fd9dbf5948d8847c85b84229cff307d8db9905abab83e44b660",
+    "hash": "sha256:bb11cbc1ffad731e91c796778375d007a9e226c75fbcb19ed05315bd446f4f83",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -258,12 +258,12 @@
       }
     ],
     "stats": {
-      "chars": 102463,
-      "words": 9765,
+      "chars": 102544,
+      "words": 9788,
       "headings": 10,
-      "estimated_token_count_total": 16704
+      "estimated_token_count_total": 16750
     },
-    "hash": "sha256:3849d9c9de5700234ecfe4adbe8e312716a74e78c929449c39b965e8bf6f5be2",
+    "hash": "sha256:68d3e0729c7ac17e0447f2a219cd7494054f7d09d131e52cff7b917c18c9f027",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -328,15 +328,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-cctp-bridge-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/cctp-bridge/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-",
     "outline": [],
     "stats": {
-      "chars": 7624,
-      "words": 1203,
+      "chars": 3185,
+      "words": 367,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:31e85c9a28849baf1df4f923ad3fc99fb5439bfc08baccdbf58a52f84129738d",
+    "hash": "sha256:ea9da43fdf92119a8ae08bf36e8753ec801b0ec95c66c88a0ad3a029426386e7",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -418,12 +418,12 @@
       }
     ],
     "stats": {
-      "chars": 23312,
-      "words": 3066,
+      "chars": 23398,
+      "words": 3076,
       "headings": 13,
-      "estimated_token_count_total": 4638
+      "estimated_token_count_total": 4728
     },
-    "hash": "sha256:c492e5969934593cecb5c26ff761b88589c93e98c0b5559f222bb818188a7439",
+    "hash": "sha256:7ae98cf8b1e953c3f9475bde88c02e379e59a794f18c76d534785976b954cb0b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -576,12 +576,12 @@
       }
     ],
     "stats": {
-      "chars": 29329,
-      "words": 2546,
+      "chars": 29494,
+      "words": 2564,
       "headings": 16,
-      "estimated_token_count_total": 5931
+      "estimated_token_count_total": 5992
     },
-    "hash": "sha256:2587fba80d54a5e48f8f92f8b8d2fb3aa1a4ca8f63b690414c89b0fc8084bad4",
+    "hash": "sha256:17eb9077f13e8319ff832ddf34255e7e0dc4c54b7250ea4815c5bdd8a6b32e81",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -653,12 +653,12 @@
       }
     ],
     "stats": {
-      "chars": 18023,
-      "words": 2103,
+      "chars": 18185,
+      "words": 2112,
       "headings": 11,
-      "estimated_token_count_total": 4282
+      "estimated_token_count_total": 4327
     },
-    "hash": "sha256:2719f9abd09e4369c62dfd125d093700f6c540c697a08d23ee4b262ada342dfe",
+    "hash": "sha256:3d52eaa51d2140a6cc017a7182232ac8f2a51bb73334b9b9bcdcc564c9e04f30",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -690,12 +690,12 @@
       }
     ],
     "stats": {
-      "chars": 4190,
-      "words": 368,
+      "chars": 4228,
+      "words": 370,
       "headings": 3,
-      "estimated_token_count_total": 993
+      "estimated_token_count_total": 1005
     },
-    "hash": "sha256:dde997dae0ec193708c12bd6254dd094461ef044bc9bea216e8d9a89141f5347",
+    "hash": "sha256:2afea89b3dd44da24606160c780533536176106d4eae11424410245a09fd6499",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -763,12 +763,12 @@
       }
     ],
     "stats": {
-      "chars": 7373,
-      "words": 946,
+      "chars": 7435,
+      "words": 959,
       "headings": 10,
-      "estimated_token_count_total": 1603
+      "estimated_token_count_total": 1635
     },
-    "hash": "sha256:946a1a116bc6a4bb1098da0b8ab79c302030155595a35d15068c578b1ce47505",
+    "hash": "sha256:5a309d0f970d33afaf922bdeff3e333c5e30f51030fa2b9f529c57cdd1956792",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -815,12 +815,12 @@
       }
     ],
     "stats": {
-      "chars": 4088,
-      "words": 572,
+      "chars": 4108,
+      "words": 573,
       "headings": 6,
-      "estimated_token_count_total": 934
+      "estimated_token_count_total": 941
     },
-    "hash": "sha256:a596975db7187acdc01784b1379b4ac1cf9fb7c1289a28c8d179053fdb98d333",
+    "hash": "sha256:779684e4808580856e09a3ffdc356b25a8d53d9913791bddcc992d6a704fd22a",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1061,15 +1061,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/connect/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer",
     "outline": [],
     "stats": {
-      "chars": 8444,
-      "words": 1334,
+      "chars": 3465,
+      "words": 393,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:142df2c035be360c25cfa6e4f8318277b2f277241fe0b0c08e5e3c4be7b93384",
+    "hash": "sha256:d5c68773d364be874c689901206746cf6e9aad629cbaabaca5c52407d3246230",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1141,12 +1141,12 @@
       }
     ],
     "stats": {
-      "chars": 8741,
-      "words": 1254,
+      "chars": 8781,
+      "words": 1256,
       "headings": 11,
-      "estimated_token_count_total": 1850
+      "estimated_token_count_total": 1864
     },
-    "hash": "sha256:366dd274da84e343128dbccd7fbdac4a36b9220da4c1a93d8372b7855ca835be",
+    "hash": "sha256:838aef2c53815243e7b5c3ff055289c050284d2536e4a85b98e374d6ac44e891",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1318,12 +1318,12 @@
       }
     ],
     "stats": {
-      "chars": 11799,
-      "words": 1266,
+      "chars": 11926,
+      "words": 1283,
       "headings": 4,
-      "estimated_token_count_total": 2468
+      "estimated_token_count_total": 2569
     },
-    "hash": "sha256:1f483318c63ae21471a650ef770ea8ef386fac350d88be8047490df3405901e5",
+    "hash": "sha256:7568f6b8e887126508a586b97b05d36b57bd79ab68d1f3763b6bb2ec57c70794",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1364,12 +1364,12 @@
       }
     ],
     "stats": {
-      "chars": 16768,
-      "words": 1949,
+      "chars": 16817,
+      "words": 1957,
       "headings": 5,
-      "estimated_token_count_total": 3312
+      "estimated_token_count_total": 3330
     },
-    "hash": "sha256:79220f37430a724dfd669f51c78826fdb6c0a4d71f1f60df5470eedb7c48ef8c",
+    "hash": "sha256:435dcb87f7e40718637d2ba384f10629eb0e88b75a9a13b9b3edbcfd30185401",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1415,12 +1415,12 @@
       }
     ],
     "stats": {
-      "chars": 9951,
-      "words": 1220,
+      "chars": 10081,
+      "words": 1257,
       "headings": 6,
-      "estimated_token_count_total": 1883
+      "estimated_token_count_total": 1959
     },
-    "hash": "sha256:5be94037094d40687cb8809a6e92fa69d8393ff89cf6db3398dd85bfd1e6539f",
+    "hash": "sha256:cd0eb8a36f6dc793c40d452f7de008a81239d53eea71e961e296c88c3889d30f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1466,12 +1466,12 @@
       }
     ],
     "stats": {
-      "chars": 5741,
-      "words": 709,
+      "chars": 5804,
+      "words": 725,
       "headings": 6,
-      "estimated_token_count_total": 989
+      "estimated_token_count_total": 1025
     },
-    "hash": "sha256:d478aec3a8b64bcc58e93a434f9007047d209505ff07245ec1c824cb987a1649",
+    "hash": "sha256:6bd8b73371121fbc3863243d5b6262a90497bed090c3484f7478bd927ad0cd23",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1604,12 +1604,12 @@
       }
     ],
     "stats": {
-      "chars": 20087,
-      "words": 2258,
+      "chars": 20214,
+      "words": 2277,
       "headings": 9,
-      "estimated_token_count_total": 4442
+      "estimated_token_count_total": 4612
     },
-    "hash": "sha256:39f0f33f96458a222e6f48111cc65bc25a9f6b2557f9cecdd6926c107fd98418",
+    "hash": "sha256:ffb048a3bbbaa3b54e8e8914868b828dd799ee33c3302dceb338b4ccebd027c2",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2083,12 +2083,12 @@
       }
     ],
     "stats": {
-      "chars": 18915,
-      "words": 2200,
+      "chars": 11545,
+      "words": 496,
       "headings": 5,
-      "estimated_token_count_total": 6342
+      "estimated_token_count_total": 1143
     },
-    "hash": "sha256:917a6e57eee790bc0f0654cf4abde660174fb843eb52a4313c881da37d79a966",
+    "hash": "sha256:69ba6cfaad826021ea522fee13d50684765324b14c1fecf958a226171da85d78",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2520,12 +2520,12 @@
       }
     ],
     "stats": {
-      "chars": 36316,
-      "words": 4028,
+      "chars": 36408,
+      "words": 4049,
       "headings": 14,
-      "estimated_token_count_total": 6833
+      "estimated_token_count_total": 6938
     },
-    "hash": "sha256:55f0893b3b7917d612d5b6c06ad9fd8e62c58f5f8138b3c5ec42f08a335f46b2",
+    "hash": "sha256:ed095b8cfd7029ca8bfb63970cee428fb8b1682c8e163b01cd2d9d3825ff12a5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2606,12 +2606,12 @@
       }
     ],
     "stats": {
-      "chars": 66658,
-      "words": 7063,
+      "chars": 66808,
+      "words": 7089,
       "headings": 13,
-      "estimated_token_count_total": 12302
+      "estimated_token_count_total": 12522
     },
-    "hash": "sha256:3977971c7e6e78b7d2b7fae3f01f720401912be13fcff05dd49e307abe06886a",
+    "hash": "sha256:2dd35762e20eb52fb852ebf02678a6d72eefe69b0f6c31d45414d18c9c823cb1",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2688,12 +2688,12 @@
       }
     ],
     "stats": {
-      "chars": 41982,
-      "words": 4514,
+      "chars": 42015,
+      "words": 4560,
       "headings": 12,
-      "estimated_token_count_total": 8841
+      "estimated_token_count_total": 9044
     },
-    "hash": "sha256:f08e2117d44ec615e1108715e23da92c354a2a4f231904ecb45a351e25d0eadf",
+    "hash": "sha256:fd37e0f847e4298b126fe2575ff6991622ed39b4ebf02d48073b8651988c6e47",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3209,15 +3209,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-multigov-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/multigov/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:mat",
     "outline": [],
     "stats": {
-      "chars": 13553,
-      "words": 2051,
+      "chars": 5959,
+      "words": 610,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:060573b8a61e754470a3910e90033209227cd6f57464eea4f2dfee15de73898b",
+    "hash": "sha256:0ca627290549fbd608a338eb9013d9d1892354c87c7e9e780cec5ce506609f54",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3382,12 +3382,12 @@
       }
     ],
     "stats": {
-      "chars": 6495,
-      "words": 842,
+      "chars": 6501,
+      "words": 843,
       "headings": 4,
-      "estimated_token_count_total": 1417
+      "estimated_token_count_total": 1449
     },
-    "hash": "sha256:4fb6443dbc77b098744577d4f09a414fa2903ac0eee03eb419cca1fabcd6c889",
+    "hash": "sha256:7b05187969b90d4e4d4ef92d30f0d263f1a044fe2aec5f7f5bdb2ba4957e1e52",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3433,12 +3433,12 @@
       }
     ],
     "stats": {
-      "chars": 15176,
-      "words": 1691,
+      "chars": 15194,
+      "words": 1697,
       "headings": 6,
-      "estimated_token_count_total": 3148
+      "estimated_token_count_total": 3160
     },
-    "hash": "sha256:287932d8ec9b30c5a6deea4c6c3cb38d356b71229e91cdc6c64f11993f540afc",
+    "hash": "sha256:1570ce5312689ad7c6ee237f6e5aac61287e3e97cc1be722f13887f2cd78d099",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3642,12 +3642,12 @@
       }
     ],
     "stats": {
-      "chars": 20515,
-      "words": 2690,
+      "chars": 20502,
+      "words": 2709,
       "headings": 14,
-      "estimated_token_count_total": 4569
+      "estimated_token_count_total": 4633
     },
-    "hash": "sha256:a61ee01698bf986ef7b21237e2fc5513e69f63665edbc0edb87920a0b4e3c2fd",
+    "hash": "sha256:f2b1672dad51276729666a1dbab7357d086fba07c866df823eac43dda24ba8eb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3662,12 +3662,12 @@
     "preview": "The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\\_blank}.",
     "outline": [],
     "stats": {
-      "chars": 10368,
-      "words": 1911,
+      "chars": 4670,
+      "words": 599,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:0fbf4ec705754383fac658cbf4b33c68cfe79ffc826ee06e3e008a3230960223",
+    "hash": "sha256:0682c8685309eb496ad219cc6d4b085ca45eb9c89df85966b99f09091613eef9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3682,12 +3682,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6194,
-      "words": 1218,
+      "chars": 2611,
+      "words": 284,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:c676ccf9757e8e456cdfe8d59ecc03d1dbb7352e92befb27f44161fda2fd2f22",
+    "hash": "sha256:af11114d617d24c65fc59822d0799ecf2dd2c4e7d6624ceb20e4dca5e6025f64",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3743,12 +3743,12 @@
       }
     ],
     "stats": {
-      "chars": 30854,
-      "words": 3609,
+      "chars": 19820,
+      "words": 1073,
       "headings": 8,
-      "estimated_token_count_total": 10207
+      "estimated_token_count_total": 2448
     },
-    "hash": "sha256:a434951889df7493d3f534daca5432f1db50e8b04ecd45e7d4389cfa4fb9f0b1",
+    "hash": "sha256:456aa3c335542f0d7c966fc6cce7b0353191757641af71211731015ce4990497",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3789,12 +3789,12 @@
       }
     ],
     "stats": {
-      "chars": 18915,
-      "words": 2200,
+      "chars": 11545,
+      "words": 496,
       "headings": 5,
-      "estimated_token_count_total": 6342
+      "estimated_token_count_total": 1143
     },
-    "hash": "sha256:917a6e57eee790bc0f0654cf4abde660174fb843eb52a4313c881da37d79a966",
+    "hash": "sha256:69ba6cfaad826021ea522fee13d50684765324b14c1fecf958a226171da85d78",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3941,12 +3941,12 @@
       }
     ],
     "stats": {
-      "chars": 58334,
-      "words": 9122,
+      "chars": 24769,
+      "words": 2757,
       "headings": 7,
-      "estimated_token_count_total": 24761
+      "estimated_token_count_total": 6301
     },
-    "hash": "sha256:de3ae4a8df00d5a9d8ca96e289f0a793c9218cd93082a3e8b5e275bfd34ea1c3",
+    "hash": "sha256:a7eeeeca5031c03903967fb5c43a04b8228e755677d274965c1ec354666eeb0e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3997,12 +3997,12 @@
       }
     ],
     "stats": {
-      "chars": 7723,
-      "words": 1363,
+      "chars": 2565,
+      "words": 341,
       "headings": 7,
-      "estimated_token_count_total": 3413
+      "estimated_token_count_total": 535
     },
-    "hash": "sha256:1279d6ecca4940bbf5712fcdeda2effc52594879728ab2136a971ea035134e56",
+    "hash": "sha256:122a7fed8370d0803b8fd945ac91140841fa3d40712a13130fb518826a6e157c",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4073,12 +4073,12 @@
       }
     ],
     "stats": {
-      "chars": 7138,
-      "words": 799,
+      "chars": 7150,
+      "words": 803,
       "headings": 11,
-      "estimated_token_count_total": 1314
+      "estimated_token_count_total": 1322
     },
-    "hash": "sha256:c81943fa9f6d22b77dc7db59a92aff1a0decb44835f5ef2cf6757a8aa1455be9",
+    "hash": "sha256:519aec8b432301d5eb28f681eb03789191455f81fc5a3e349b834717c1931a86",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4209,12 +4209,12 @@
       }
     ],
     "stats": {
-      "chars": 10516,
-      "words": 1347,
+      "chars": 10584,
+      "words": 1354,
       "headings": 5,
-      "estimated_token_count_total": 2104
+      "estimated_token_count_total": 2201
     },
-    "hash": "sha256:9885623ee7edbedf56f0753c0628ffebb2d151d6da228525abcf9240a62e589e",
+    "hash": "sha256:2bd4147fae7d31b38bb075af5819a473e3cc1b32130cc73db96b3a2f6a482023",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4279,15 +4279,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-settlement-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/settlement/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block",
     "outline": [],
     "stats": {
-      "chars": 3627,
-      "words": 583,
+      "chars": 1451,
+      "words": 172,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:dd42877611c0f7dcb332278775638db27e02157a198fdfc031e5827f3dab321a",
+    "hash": "sha256:04774b929e9b91a3ea76607c3c46726797e7dfc815704eb7b9a7eca29a80ec70",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4731,12 +4731,12 @@
       }
     ],
     "stats": {
-      "chars": 10008,
-      "words": 1274,
+      "chars": 10011,
+      "words": 1275,
       "headings": 6,
-      "estimated_token_count_total": 2304
+      "estimated_token_count_total": 2306
     },
-    "hash": "sha256:529b88f5da890eca84518bd357e1a5f58d312049a8f2209cf5d2494e0891573e",
+    "hash": "sha256:379102113c87a608b0ac6a0f81763a681ada8eae85c0a9a10c9be6c1f8e26044",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4788,12 +4788,12 @@
       }
     ],
     "stats": {
-      "chars": 15434,
-      "words": 1860,
+      "chars": 15440,
+      "words": 1862,
       "headings": 7,
-      "estimated_token_count_total": 3171
+      "estimated_token_count_total": 3175
     },
-    "hash": "sha256:fdc3cbd16601c106ad1129bedd4bd5571e354365874f5c97b79563b982849e39",
+    "hash": "sha256:cc3c0bfe7f545641d91fc0197b78495dc33415e3768675f9d0d84a9e11a52249",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4850,12 +4850,12 @@
       }
     ],
     "stats": {
-      "chars": 14158,
-      "words": 1871,
+      "chars": 14161,
+      "words": 1872,
       "headings": 8,
-      "estimated_token_count_total": 3101
+      "estimated_token_count_total": 3103
     },
-    "hash": "sha256:b3f9e9c6a213b3257916ea30b856412956fa85d6c5006f8b481527a792d08e93",
+    "hash": "sha256:8bf72ee4e429e58dd7709cf3768e419519789b6e72c1ae9b0da2cc133892c240",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -5043,12 +5043,12 @@
       }
     ],
     "stats": {
-      "chars": 4583,
+      "chars": 4576,
       "words": 628,
       "headings": 3,
-      "estimated_token_count_total": 1097
+      "estimated_token_count_total": 1148
     },
-    "hash": "sha256:3c9f60e14c75064c990e5b41dad0fff814cec982489e84a96bb28bbdd0ec5ba5",
+    "hash": "sha256:f5085180f15ccc076403a22e089434f3933116b29a109b287bbb9503f13d2b3a",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6190,15 +6190,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-docu",
     "outline": [],
     "stats": {
-      "chars": 11668,
-      "words": 1852,
+      "chars": 4886,
+      "words": 558,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:f130850c4e82ce280edcc3ec5ed678ac34fcc663b5dd62df4433e615a27fe710",
+    "hash": "sha256:16a9417136c68856b0a06c22b169bbeea51bb830ff22cf8c86d9dcc24aa98e5e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6913,12 +6913,12 @@
       }
     ],
     "stats": {
-      "chars": 12085,
-      "words": 1442,
+      "chars": 12173,
+      "words": 1453,
       "headings": 5,
-      "estimated_token_count_total": 2656
+      "estimated_token_count_total": 2770
     },
-    "hash": "sha256:15c109468bd73d2f6c55df1bfc6391b73a5e8ed3a8bbe8b660f732d7d406ebe8",
+    "hash": "sha256:54a9128ffe8a1a17f9c04165a6c9a6d6dac6b8d47f16791d27871e1f42de2757",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6965,12 +6965,12 @@
       }
     ],
     "stats": {
-      "chars": 22590,
-      "words": 2583,
+      "chars": 22737,
+      "words": 2603,
       "headings": 6,
-      "estimated_token_count_total": 4311
+      "estimated_token_count_total": 4456
     },
-    "hash": "sha256:84232b297de4f2cdbf2587aab48b26752a7582020619843c2337f368cfcb065e",
+    "hash": "sha256:0b159a1e2f41bee1cc9f09549f100de2fcda32281c1dcc03a3d0ab106c2ad8f0",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7007,12 +7007,12 @@
       }
     ],
     "stats": {
-      "chars": 6090,
+      "chars": 6096,
       "words": 769,
       "headings": 4,
-      "estimated_token_count_total": 1240
+      "estimated_token_count_total": 1264
     },
-    "hash": "sha256:21d6ea1c12b800ed3b22a9f512e5e994ac4f7e14c82cc478542234e306e82d18",
+    "hash": "sha256:9b77e129979892cc2c8916384385e7343421ebfbd56ae805a0bd49f43a1f513b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7055,12 +7055,12 @@
       }
     ],
     "stats": {
-      "chars": 27654,
-      "words": 2994,
+      "chars": 27818,
+      "words": 3014,
       "headings": 5,
-      "estimated_token_count_total": 5141
+      "estimated_token_count_total": 5357
     },
-    "hash": "sha256:90c3d62cac46298ad6d28a73b558c9a33babc779df208f148a65cc6d701d6310",
+    "hash": "sha256:589703b7e6b7903bd11784b523f808a4df2b7c39f33cd58f7689f1e9ae0f5aab",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7214,15 +7214,15 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-wrapped-token-transfers-reference-supported-networks.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/reference/supported-networks/",
-    "preview": "<div class=\"full-width\" markdown>",
+    "preview": "<div class=\"full-width\" markdown=\"\"> | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer | | Algorand | AVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:mat",
     "outline": [],
     "stats": {
-      "chars": 13200,
-      "words": 2066,
+      "chars": 5605,
+      "words": 624,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:6e664a684590b0f5dbaf31eda21aecbf1b0dffe72d340bfde9c3482e8134bb24",
+    "hash": "sha256:5bb101381bd12c04fd0444a16979a6b89c6b680057271d4dba20e10310731903",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7361,12 +7361,12 @@
       }
     ],
     "stats": {
-      "chars": 31053,
-      "words": 3852,
+      "chars": 31264,
+      "words": 3885,
       "headings": 12,
-      "estimated_token_count_total": 6229
+      "estimated_token_count_total": 6419
     },
-    "hash": "sha256:cf8ecc035e7147cfb888c0bf688d675fee83b10751a9dd967dc3e38d11e38659",
+    "hash": "sha256:ad76a9f35b6536488d1de98b667ef49829c85cfcfb679cc8ec771c04311f2cb8",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7606,12 +7606,12 @@
       }
     ],
     "stats": {
-      "chars": 12590,
-      "words": 1622,
+      "chars": 12660,
+      "words": 1632,
       "headings": 9,
-      "estimated_token_count_total": 2381
+      "estimated_token_count_total": 2407
     },
-    "hash": "sha256:f5d262d69a10ac0e76490a34ffa3c301bd7ceb6a970992230c7a755817b3e5e3",
+    "hash": "sha256:1757145ab0239e525eaeb300bf1fb56fc8ddac3300ee15ccf5f0b9c471a86474",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7993,12 +7993,12 @@
       }
     ],
     "stats": {
-      "chars": 19253,
-      "words": 2094,
+      "chars": 19263,
+      "words": 2098,
       "headings": 8,
-      "estimated_token_count_total": 3637
+      "estimated_token_count_total": 3665
     },
-    "hash": "sha256:391b3a7ada48d04d3a236ee78abe39f4b365541fa402d71055f060e1a6fcf920",
+    "hash": "sha256:d3389ac8e43ef86bdd39b1c54bc30d67181691c512504f72021dc3c1b6e77c21",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8069,12 +8069,12 @@
       }
     ],
     "stats": {
-      "chars": 13555,
-      "words": 1551,
+      "chars": 13558,
+      "words": 1552,
       "headings": 11,
-      "estimated_token_count_total": 2328
+      "estimated_token_count_total": 2330
     },
-    "hash": "sha256:9c2acc5543f90ad4526cf19dcf516408cf6604d56b4b36ba94d9acbfff178a80",
+    "hash": "sha256:11abc0ea959d8609aa14ff228b7b9e4adde8a117d3d58a682437da5f14c3e47a",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8106,12 +8106,12 @@
       }
     ],
     "stats": {
-      "chars": 21530,
-      "words": 1567,
+      "chars": 21892,
+      "words": 1612,
       "headings": 3,
-      "estimated_token_count_total": 3371
+      "estimated_token_count_total": 3527
     },
-    "hash": "sha256:a950c0a0de39351f01b07cb8ff700e835dd3926da64967dc716e9d17cefbc27d",
+    "hash": "sha256:8b087e674a1eaaa1cdbe099d1be60065a87b8a06c0ada0c8ab32314a16f6d3df",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8266,12 +8266,12 @@
       }
     ],
     "stats": {
-      "chars": 9514,
-      "words": 1168,
+      "chars": 9487,
+      "words": 1170,
       "headings": 6,
-      "estimated_token_count_total": 2079
+      "estimated_token_count_total": 2104
     },
-    "hash": "sha256:0123e49618ed50c2e40d49a9db9dc5dd7fa86924f5e95615b1a632cd19173769",
+    "hash": "sha256:ef940e56f52d541dac55ef0c4afb8410af62e509ecb9d728bf9894bceb73c401",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8332,12 +8332,12 @@
       }
     ],
     "stats": {
-      "chars": 16172,
-      "words": 1933,
+      "chars": 16267,
+      "words": 1953,
       "headings": 9,
-      "estimated_token_count_total": 3037
+      "estimated_token_count_total": 3106
     },
-    "hash": "sha256:b1a92a46a91a75248f98232017ad12e75f9d7669c618d029fd741f8d1d471e12",
+    "hash": "sha256:ba7681606383eb5bf9ac3196dd9053062b04b9808a0e68afc9928457f42a6f64",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8493,12 +8493,12 @@
       }
     ],
     "stats": {
-      "chars": 32018,
-      "words": 4140,
+      "chars": 32189,
+      "words": 4164,
       "headings": 28,
-      "estimated_token_count_total": 6692
+      "estimated_token_count_total": 6792
     },
-    "hash": "sha256:bc4698c7accd19fa7b7bbb0c03ef8506995df158fd37c43634c084199a80f369",
+    "hash": "sha256:74cc7d7aa9e0fb8c10f50b63372b50c8584607428d3ef73b4f814af83db5bab7",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -8630,12 +8630,12 @@
       }
     ],
     "stats": {
-      "chars": 45341,
-      "words": 5556,
+      "chars": 45612,
+      "words": 5600,
       "headings": 14,
-      "estimated_token_count_total": 9765
+      "estimated_token_count_total": 9952
     },
-    "hash": "sha256:698ff96f8d3e64511848ea988608130e94d8da35280f388b75def08a6e193d5e",
+    "hash": "sha256:7d65a82cf205ce52a75b55c7e13aef8e14eb233425cfedc649c114102dbc3d8a",
     "token_estimator": "heuristic-v1"
   }
 ]

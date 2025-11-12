@@ -196,7 +196,7 @@ Before you begin, make sure you have the following:
           console.log('Wormhole SDK Initialized!');
         }
 
-        main().catch((e) => {
+        main().catch((e) =&gt; {
           console.error('Error initializing Wormhole SDK', e);
           process.exit(1);
         });
@@ -233,7 +233,7 @@ Before you begin, make sure you have the following:
       console.log(`RPC for Sepolia: ${sepoliaChain.config.rpc}`);
     }
 
-    main().catch((e) => {
+    main().catch((e) =&gt; {
       console.error(
         'Error initializing Wormhole SDK or fetching chain information:',
         e
@@ -251,18 +251,16 @@ Before you begin, make sure you have the following:
 
     You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-        <span data-ty="input"
-          ><span class="file-path"></span>npx tsx src/main.ts</span
-        >
-        <span data-ty>Initializing Wormhole SDK...</span>
-        <span data-ty>Wormhole SDK Initialized!</span>
-        <span data-ty>Chain ID for Solana Testnet: 1</span>
-        <span data-ty>RPC for Solana Testnet: https://api.devnet.solana.com</span>
-        <span data-ty>Chain ID for Sepolia: 10002</span>
-        <span data-ty>RPC for Sepolia: https://ethereum-sepolia.publicnode.com</span>
-        <span data-ty="input"><span class="file-path"></span></span>
-      </div>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx src/main.ts</span>
+    <span data-ty="">Initializing Wormhole SDK...</span>
+    <span data-ty="">Wormhole SDK Initialized!</span>
+    <span data-ty="">Chain ID for Solana Testnet: 1</span>
+    <span data-ty="">RPC for Solana Testnet: https://api.devnet.solana.com</span>
+    <span data-ty="">Chain ID for Sepolia: 10002</span>
+    <span data-ty="">RPC for Sepolia: https://ethereum-sepolia.publicnode.com</span>
+    <span data-ty="input"><span class="file-path"></span></span>
+    </div>
 Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance. Consider the following options to build on what you've accomplished.
 
 ## Next Steps

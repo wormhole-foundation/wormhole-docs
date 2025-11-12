@@ -93,7 +93,7 @@ Example conversions for EVM and Solana:
     ```typescript
     import { toNative } from '@wormhole-foundation/sdk-core';
 
-    const ethAddress: NativeAddress<'Evm'> = toNative(
+    const ethAddress: NativeAddress&lt;'Evm'&gt; = toNative(
       'Ethereum',
       '0x0C99567DC6f8f1864cafb580797b4B56944EEd28'
     );
@@ -107,7 +107,7 @@ Example conversions for EVM and Solana:
     ```typescript
     import { toNative } from '@wormhole-foundation/sdk-core';
 
-    const solAddress: NativeAddress<'Solana'> = toNative(
+    const solAddress: NativeAddress&lt;'Solana'&gt; = toNative(
       'Solana',
       '6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J'
     );

@@ -193,7 +193,7 @@ To send a message, regardless of the environment or chain, the Core Contract is 
         let fee = ctx.accounts.wormhole_bridge.fee();
         // ... Check fee and send parameters
 
-        let config = &ctx.accounts.config;
+        let config = &amp;ctx.accounts.config
         let payload: Vec<u8> = HelloWorldMessage::Hello { message }.try_to_vec()?;
 
         // Invoke `wormhole::post_message`.
@@ -203,14 +203,14 @@ To send a message, regardless of the environment or chain, the Core Contract is 
                 wormhole::PostMessage {
                     // ... Set fields
                 },
-                &[
+                &amp;[
                     // ... Set seeds
                 ],
             ),
             config.batch_id,
             payload,
             config.finality.into(),
-        )?;
+        )?;</u8>
         ```
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
@@ -317,8 +317,8 @@ The way a message is received and handled depends on the environment.
     ??? interface "Example"
 
         ```rust
-        pub fn receive_message(ctx: Context<ReceiveMessage>, vaa_hash: [u8; 32]) -> Result<()> {
-            let posted_message = &ctx.accounts.posted;
+        pub fn receive_message(ctx: Context<receivemessage>, vaa_hash: [u8; 32]) -&gt; Result&lt;()&gt; {
+            let posted_message = &amp;ctx.accounts.posted
 
             if let HelloWorldMessage::Hello { message } = posted_message.data() {
                 // Check message
@@ -328,7 +328,7 @@ The way a message is received and handled depends on the environment.
                 Err(HelloWorldError::InvalidMessage.into())
             }
         }
-
+        </receivemessage>
         ```
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.

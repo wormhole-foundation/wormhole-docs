@@ -84,20 +84,20 @@ In this section, you'll set up your project for transferring USDC across chains 
         import evm from '@wormhole-foundation/sdk/evm';
         import solana from '@wormhole-foundation/sdk/solana';
 
-        export interface SignerStuff<N extends Network, C extends Chain> {
-          chain: ChainContext<N, C>;
-          signer: Signer<N, C>;
-          address: ChainAddress<C>;
+        export interface SignerStuff<n c="" chain="" extends="" network,=""> {
+          chain: ChainContext<n, c="">;
+          signer: Signer<n, c="">;
+          address: ChainAddress<c>;
         }
 
         // Signer setup function for different blockchain platforms
-        export async function getSigner<N extends Network, C extends Chain>(
-          chain: ChainContext<N, C>
-        ): Promise<{
-          chain: ChainContext<N, C>;
-          signer: Signer<N, C>;
-          address: ChainAddress<C>;
-        }> {
+        export async function getSigner<n c="" chain="" extends="" network,="">(
+          chain: ChainContext<n, c="">
+        ): Promise&lt;{
+          chain: ChainContext<n, c="">;
+          signer: Signer<n, c="">;
+          address: ChainAddress<c>;
+        }&gt; {
           let signer: Signer;
           const platform = chain.platform.utils()._platform;
 
@@ -118,11 +118,11 @@ In this section, you'll set up your project for transferring USDC across chains 
 
           return {
             chain,
-            signer: signer as Signer<N, C>,
+            signer: signer as Signer<n, c="">,
             address: Wormhole.chainAddress(chain.chain, signer.address()),
           };
         }
-
+        </n,></c></n,></n,></n,></n></c></n,></n,></n>
         ```
 
         - **`getSigner`**: Based on the chain you're working with (EVM, Solana, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the provided private key.

@@ -56,16 +56,16 @@ You’ll wire three accounts for verification:
 
 ```rs
 #[derive(Accounts)]
-pub struct ConsumeVaa<'info> {
+pub struct ConsumeVaa&lt;'info&gt; {
     /// CHECK: Guardian set used for signature verification by shim.
     /// Derivation is checked by the shim.
-    guardian_set: UncheckedAccount<'info>,
+    guardian_set: UncheckedAccount&lt;'info&gt;,
 
     /// CHECK: Stored guardian signatures to be verified by shim.
     /// Ownership ownership and discriminator is checked by the shim.
-    guardian_signatures: UncheckedAccount<'info>,
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
 
-    wormhole_verify_vaa_shim: Program<'info, WormholeVerifyVaaShim>,
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
 }
 ```
 
@@ -77,12 +77,12 @@ The `consume_vaa` function computes the digest, calls the shim’s `verify_hash`
 
 ```rs
 pub fn consume_vaa(
-    ctx: Context<ConsumeVaa>,
+    ctx: Context<consumevaa>,
     guardian_set_bump: u8,
     vaa_body: Vec<u8>,
-) -> Result<()> {
+) -&gt; Result&lt;()&gt; {
     // Compute the message hash.
-    let message_hash = &solana_program::keccak::hashv(&[&vaa_body]).to_bytes();
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
     let digest = keccak::hash(message_hash.as_slice()).to_bytes();
     // Verify the hash against the signatures.
     wormhole_verify_vaa_shim::cpi::verify_hash(
@@ -98,7 +98,7 @@ pub fn consume_vaa(
     )?;
     // Decode vaa_body, perform security checks, and do your thing.
     Ok(())
-}
+}</u8></consumevaa>
 ```
 
 ## Limitations and Security Considerations

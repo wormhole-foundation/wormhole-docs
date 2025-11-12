@@ -73,7 +73,7 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
     };
 
     export default function Home() {
-      return <WormholeConnect config={config} theme={theme} />;
+      return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
     }
 
     ```
@@ -102,7 +102,7 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
         mode: 'light',
         primary: '#78c4b6',
       };
-      return <WormholeConnect config={config} theme={theme} />;
+      return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
     }
 
     ```

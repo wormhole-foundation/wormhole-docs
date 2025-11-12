@@ -124,7 +124,7 @@ These security measures ensure messages come from the correct source and are pro
         IWormhole public immutable wormhole;
 
         address registrationOwner;
-        mapping(uint16 => bytes32) registeredSenders;
+        mapping(uint16 =&gt; bytes32) registeredSenders;
 
         constructor(address _wormholeRelayer, address _wormhole) {
             wormholeRelayer = IWormholeRelayer(_wormholeRelayer);

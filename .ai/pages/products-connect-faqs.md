@@ -54,7 +54,7 @@ import WormholeConnect, {
 
 const config: config.WormholeConnectConfig = {
   // ...
-  isRouteSupportedHandler: async ({ route }) => {
+  isRouteSupportedHandler: async ({ route }) =&gt; {
     if (route === 'AutomaticTokenBridge') {
       return false;
     }
@@ -75,12 +75,12 @@ const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
 
 const config: config.WormholeConnectConfig = {
   // ...
-  isRouteSupportedHandler: async ({ route, fromToken }) => {
+  isRouteSupportedHandler: async ({ route, fromToken }) =&gt; {
     const tokenAddress =
       fromToken.tokenId !== 'native' ? fromToken.tokenId.address : 'native';
 
     if (
-      BLOCKED_ADDRESSES.has(tokenAddress) &&
+      BLOCKED_ADDRESSES.has(tokenAddress) &amp;&amp;
       route === 'AutomaticTokenBridge'
     ) {
       return false;
@@ -88,7 +88,7 @@ const config: config.WormholeConnectConfig = {
     return true; // keep other routes visible
   },
 };
-
+</string>
 ```
 
 **Example: Disable `AutomaticTokenBridge` from a specific chain**
@@ -98,13 +98,13 @@ import WormholeConnect, {
   type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const BLOCKED_SOURCE_CHAINS = new Set<Chain>(['INSERT_CHAIN_NAME']);
+const BLOCKED_SOURCE_CHAINS = new Set<chain>(['INSERT_CHAIN_NAME']);
 
 const config: config.WormholeConnectConfig = {
   // ...
-  isRouteSupportedHandler: async ({ route, fromChain }) => {
+  isRouteSupportedHandler: async ({ route, fromChain }) =&gt; {
     if (
-      BLOCKED_SOURCE_CHAINS.has(fromChain) &&
+      BLOCKED_SOURCE_CHAINS.has(fromChain) &amp;&amp;
       route === 'AutomaticTokenBridge'
     ) {
       return false;
@@ -112,7 +112,7 @@ const config: config.WormholeConnectConfig = {
     return true; // keep other routes visible
   },
 };
-
+</chain>
 ```
 
 ## How can I hide specific tokens from the picker?
@@ -130,17 +130,17 @@ const BLOCKED_ADDRESSES = new Set<string>(['INSERT_TOKEN_ADDRESS']);
 
 const config: config.WormholeConnectConfig = {
   // ...
-  isTokenSupportedHandler: (token) => {
+  isTokenSupportedHandler: (token) =&gt; {
     // Address string provided by Connect
     const addr = token.addressString;
 
-    if (addr && BLOCKED_ADDRESSES.has(addr)) {
+    if (addr &amp;&amp; BLOCKED_ADDRESSES.has(addr)) {
       return false;
     }
     return true; // show all others
   },
 };
-
+</string>
 ```
 
 ## Which functions or events does Connect rely on for NTT integration? 

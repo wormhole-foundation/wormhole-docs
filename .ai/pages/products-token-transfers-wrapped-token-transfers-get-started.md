@@ -87,13 +87,13 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
      * be loaded securely beforehand, for example via a keystore, secrets
      * manager, or environment variables (not recommended).
      */
-    export async function getSigner<N extends Network, C extends Chain>(
-      chain: ChainContext<N, C>
-    ): Promise<{
-      chain: ChainContext<N, C>;
-      signer: Signer<N, C>;
-      address: ChainAddress<C>;
-    }> {
+    export async function getSigner<n c="" chain="" extends="" network,="">(
+      chain: ChainContext<n, c="">
+    ): Promise&lt;{
+      chain: ChainContext<n, c="">;
+      signer: Signer<n, c="">;
+      address: ChainAddress<c>;
+    }&gt; {
       let signer: Signer;
       const platform = chain.platform.utils()._platform;
 
@@ -119,7 +119,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
 
       return {
         chain,
-        signer: signer as Signer<N, C>,
+        signer: signer as Signer<n, c="">,
         address: Wormhole.chainAddress(chain.chain, signer.address()),
       };
     }
@@ -128,16 +128,16 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
      * Get the number of decimals for the token on the source chain.
      * This helps convert a user-friendly amount (e.g., '1') into raw units.
      */
-    export async function getTokenDecimals<N extends Network>(
-      wh: Wormhole<N>,
+    export async function getTokenDecimals<n extends="" network="">(
+      wh: Wormhole<n>,
       token: TokenId,
-      chain: ChainContext<N, any>
+      chain: ChainContext<n, any="">
     ): Promise<number> {
       return isTokenId(token)
         ? Number(await wh.getDecimals(token.chain, token.address))
         : chain.config.nativeTokenDecimals;
     }
-
+    </number></n,></n></n></n,></c></n,></n,></n,></n>
     ```
 
 2. In `transfer.ts`, choose your transfer mode by selecting the [route](/docs/products/connect/concepts/routes/#wtt-routes){target=\_blank} you pass to the `tokenTransfer()` object: 
@@ -264,19 +264,19 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
 
     If successful, the expected output should be similar to this:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-    	<span data-ty>Starting Transfer</span>
-    	<span data-ty>Started Transfer:  ['36UwBBh6HH6wt3VBbNNawMd1ijCk28YgFePrBWfE3vGQFHtbMjY5626nqHubmyQWGNh2ZrN1vHKRrSQDNC3gkZgB']</span>
-    	<span data-ty> </span>
-        <span data-ty>Getting Attestation</span>
-    	<span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/900</span>
-        <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/900</span>
-        <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 2/900 </span>
-        <span data-ty> </span>
-        <span data-ty>Completing Transfer</span>
-        <span data-ty>Completed Transfer:  [ '53Nt4mp2KRTk2HFyvUcmP9b6cRXjVAN3wCksoBey9WmT' ]</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+    <span data-ty="">Starting Transfer</span>
+    <span data-ty="">Started Transfer:  ['36UwBBh6HH6wt3VBbNNawMd1ijCk28YgFePrBWfE3vGQFHtbMjY5626nqHubmyQWGNh2ZrN1vHKRrSQDNC3gkZgB']</span>
+    <span data-ty=""> </span>
+    <span data-ty="">Getting Attestation</span>
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/900</span>
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/900</span>
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 2/900 </span>
+    <span data-ty=""> </span>
+    <span data-ty="">Completing Transfer</span>
+    <span data-ty="">Completed Transfer:  [ '53Nt4mp2KRTk2HFyvUcmP9b6cRXjVAN3wCksoBey9WmT' ]</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 To verify the transaction and view its details, copy the transaction hash from the output and paste it into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 

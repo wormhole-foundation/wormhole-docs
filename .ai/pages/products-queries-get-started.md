@@ -78,7 +78,7 @@ Using the Wormhole Query Proxy, you will write a lightweight script to query a t
     const apiKey = process.env.API_KEY;
     if (!apiKey) throw new Error('API_KEY is not set in your environment');
 
-    (async () => {
+    (async () =&gt; {
       // Fetch the latest block number (required to anchor the query)
       const latestBlock = (
         await axios.post(rpc, {
@@ -127,18 +127,18 @@ Using the Wormhole Query Proxy, you will write a lightweight script to query a t
 
 The expected output should be similar to this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>API_KEY=123_456_789 npx tsx query.ts</span>
-	<span data-ty>Parsed chain response:</span>
-	<span data-ty>EthCallQueryResponse {</span>
-	<span data-ty>blockNumber: 8193548n,</span>
-	<span data-ty>blockHash: '0xef97290e043a530dd2cdf2d4c513397495029cdf2ef3e916746c837dadda51a8',</span>
-    <span data-ty>blockTime: 1745595132000000n,</span>
-    <span data-ty>results: [ '0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000']</span>
-    <span data-ty>} </span>
-    <span data-ty>  </span>
-    <span data-ty>Token name: USDC</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>API_KEY=123_456_789 npx tsx query.ts</span>
+<span data-ty="">Parsed chain response:</span>
+<span data-ty="">EthCallQueryResponse {</span>
+<span data-ty="">blockNumber: 8193548n,</span>
+<span data-ty="">blockHash: '0xef97290e043a530dd2cdf2d4c513397495029cdf2ef3e916746c837dadda51a8',</span>
+<span data-ty="">blockTime: 1745595132000000n,</span>
+<span data-ty="">results: [ '0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000']</span>
+<span data-ty="">} </span>
+<span data-ty=""> </span>
+<span data-ty="">Token name: USDC</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ## Next Steps

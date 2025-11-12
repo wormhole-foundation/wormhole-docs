@@ -128,7 +128,7 @@ To use NTT, you must have a token already deployed on the source and destination
         ```
 
     !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+        NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 ???- interface "Create and Deploy a Sui Token"
     This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
 

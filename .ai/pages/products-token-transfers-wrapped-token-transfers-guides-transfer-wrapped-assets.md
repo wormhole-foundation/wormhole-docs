@@ -83,15 +83,15 @@ Follow these steps to initialize your project, install dependencies, and prepare
      * be loaded securely beforehand, for example via a keystore, secrets
      * manager, or environment variables (not recommended).
      */
-    export async function getSigner<N extends Network, C extends Chain>(
-      chain: ChainContext<N, C>,
+    export async function getSigner<n c="" chain="" extends="" network,="">(
+      chain: ChainContext<n, c="">,
       gasLimit?: bigint
-    ): Promise<{
-      chain: ChainContext<N, C>;
-      signer: SignAndSendSigner<N, C>;
-      address: ChainAddress<C>;
-    }> {
-      let signer: Signer<any, any>;
+    ): Promise&lt;{
+      chain: ChainContext<n, c="">;
+      signer: SignAndSendSigner<n, c="">;
+      address: ChainAddress<c>;
+    }&gt; {
+      let signer: Signer<any, any="">;
       const platform = chain.platform.utils()._platform;
 
       // Customize the signer by adding or removing platforms as needed
@@ -118,7 +118,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
           throw new Error(`Unsupported platform: ${platform}`);
       }
 
-      const typedSigner = signer as SignAndSendSigner<N, C>;
+      const typedSigner = signer as SignAndSendSigner<n, c="">;
 
       return {
         chain,
@@ -131,16 +131,16 @@ Follow these steps to initialize your project, install dependencies, and prepare
      * Get the number of decimals for the token on the source chain.
      * This helps convert a user-friendly amount (e.g., '1') into raw units.
      */
-    export async function getTokenDecimals<N extends Network>(
-      wh: Wormhole<N>,
+    export async function getTokenDecimals<n extends="" network="">(
+      wh: Wormhole<n>,
       token: TokenId,
-      chain: ChainContext<N, any>
+      chain: ChainContext<n, any="">
     ): Promise<number> {
       return isTokenId(token)
         ? Number(await wh.getDecimals(token.chain, token.address))
         : chain.config.nativeTokenDecimals;
     }
-
+    </number></n,></n></n></n,></any,></c></n,></n,></n,></n>
     ```
 
     You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
@@ -203,7 +203,7 @@ Registration via attestation is only required the first time a given token is se
       // Insert Initiate Transfer on Source Chain code
     }
 
-    transferTokens().catch((e) => {
+    transferTokens().catch((e) =&gt; {
       console.error('❌ Error in transferTokens', e);
       process.exit(1);
     });
@@ -224,10 +224,10 @@ Registration via attestation is only required the first time a given token is se
 
     If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
 
-    <div id="termynal" data-termynal>
-      <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-      <span data-ty>⚠️ Token is NOT registered on destination. Running attestation flow...</span>
-      <span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+    <span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
     If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
 
@@ -275,7 +275,7 @@ Registration via attestation is only required the first time a given token is se
                 'INSERT_TOKEN_CONTRACT_ADDRESS'
               );
               // Define the token to attest and a payer address
-              const token: TokenAddress<typeof sourceChain.chain> = toNative(
+              const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
                 sourceChain.chain,
                 tokenId.address.toString()
               );
@@ -323,7 +323,7 @@ Registration via attestation is only required the first time a given token is se
               let attempt = 0;
               let registered = false;
 
-              while (attempt < maxAttempts && !registered) {
+              while (attempt &lt; maxAttempts &amp;&amp; !registered) {
                 attempt++;
                 try {
                   const wrapped = await wh.getWrappedAsset(destinationChain.chain, tokenId);
@@ -336,7 +336,7 @@ Registration via attestation is only required the first time a given token is se
                   console.log(
                     `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
                   );
-                  await new Promise((res) => setTimeout(res, interval));
+                  await new Promise((res) =&gt; setTimeout(res, interval));
                 }
               }
 
@@ -367,16 +367,16 @@ Registration via attestation is only required the first time a given token is se
 
             When the attestation and registration are complete, you will see terminal output similar to the following:
 
-            <div id="termynal" data-termynal>
-              <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-              <span data-ty>⚠️ Token is NOT registered on destination. Running attestation flow...</span>
-              <span data-ty>✅ Attestation transaction sent: [
+            <div data-termynal="" id="termynal">
+            <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+            <span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+            <span data-ty="">✅ Attestation transaction sent: [
               {
                 chain: 'Moonbeam',
                 txid: '0x2b9878e6d8e92d8ecc96d663904312c18a827ccf0b02380074fdbc0fba7e6b68'
               }
             ]</span>
-              <span data-ty>✅ Attestation messages: [
+            <span data-ty="">✅ Attestation messages: [
               {
                 chain: 'Moonbeam',
                 emitter: UniversalAddress { address: [Uint8Array] },
@@ -384,24 +384,24 @@ Registration via attestation is only required the first time a given token is se
               }
             ]
             </span>
-              <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
-              <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
-              <span data-ty>....</span>
-              <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
-              <span data-ty>✅ Attestation submitted on destination: [
+            <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+            <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+            <span data-ty="">....</span>
+            <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+            <span data-ty="">✅ Attestation submitted on destination: [
               {
                 chain: 'Solana',
                 txid: '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
               }
             ]</span>
-              <span data-ty>✅ Wrapped token is now available on Solana: SolanaAddress {
+            <span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress {
               type: 'Native',
               address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
-                _bn: <BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca>
+                _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
               }
-            }</span>
-              <span data-ty>🚀 Token attestation complete! Proceeding with transfer...</span>
-              <span data-ty="input"><span class="file-path"></span></span>
+            }</bn:></span>
+            <span data-ty="">🚀 Token attestation complete! Proceeding with transfer...</span>
+            <span data-ty="input"><span class="file-path"></span></span>
             </div>
         You can now go on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain.
 
@@ -490,15 +490,15 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 
     === "Manual Transfer"
 
-        <div id="termynal" data-termynal>
-          <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-          <span data-ty>✅ Token already registered on destination: SolanaAddress {
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+        <span data-ty="">✅ Token already registered on destination: SolanaAddress {
           type: 'Native',
           address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
-            _bn: <BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca>
+            _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
           }
-        }</span>
-          <span data-ty>🚀 Built transfer object: {
+        }</bn:></span>
+        <span data-ty="">🚀 Built transfer object: {
           token: {
             chain: 'Moonbeam',
             address: EvmAddress {
@@ -524,38 +524,38 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
           protocol: 'TokenBridge',
           payload: undefined
         }</span>
-          <span data-ty>🔗 Source chain tx sent: [
+        <span data-ty="">🔗 Source chain tx sent: [
           '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
         ]</span>
-          <span data-ty>⏳ Waiting for attestation (VAA) for manual transfer...</span>
-          <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/30</span>
-          <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/30</span>
-          <span data-ty>.....</span>
-          <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 15/30</span>
-          <span data-ty>✅ Got attestation ID(s): [
+        <span data-ty="">⏳ Waiting for attestation (VAA) for manual transfer...</span>
+        <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/30</span>
+        <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/30</span>
+        <span data-ty="">.....</span>
+        <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 15/30</span>
+        <span data-ty="">✅ Got attestation ID(s): [
           {
             chain: 'Moonbeam',
             emitter: UniversalAddress { address: [Uint8Array] },
             sequence: 1506n
           }
         ]</span>
-          <span data-ty>↪️ Redeeming transfer on destination...</span>
-          <span data-ty>🎉 Destination tx(s) submitted: [
+        <span data-ty="">↪️ Redeeming transfer on destination...</span>
+        <span data-ty="">🎉 Destination tx(s) submitted: [
           '23NRfFZyKJTDLppJF4GovdegxYAuW2HeXTEFSKKNeA7V82aqTVYTkKeM8sCHCDWe7gWooLAPHARjbAheXoxbbwPk'
         ]</span>
-          <span data-ty="input"><span class="file-path"></span></span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
     === "Automatic Transfer"
 
-        <div id="termynal" data-termynal>
-          <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-          <span data-ty>✅ Token already registered on destination: SolanaAddress {
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+        <span data-ty="">✅ Token already registered on destination: SolanaAddress {
           type: 'Native',
           address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
-            _bn: <BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca>
+            _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
           }
-        }</span>
-          <span data-ty>🚀 Built transfer object: {
+        }</bn:></span>
+        <span data-ty="">🚀 Built transfer object: {
           token: {
             chain: 'Moonbeam',
             address: EvmAddress {
@@ -581,11 +581,11 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
           protocol: 'AutomaticTokenBridge',
           nativeGas: 10000000000000000n
         }</span>
-          <span data-ty>🔗 Source chain tx sent: [
+        <span data-ty="">🔗 Source chain tx sent: [
           '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
         ]</span>
-          <span data-ty>✅ Automatic transfer: relayer is handling redemption.</span>
-          <span data-ty="input"><span class="file-path"></span></span>
+        <span data-ty="">✅ Automatic transfer: relayer is handling redemption.</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 

@@ -65,7 +65,7 @@ Here's the core of the contract:
         uint256 cost = quoteCrossChainCost(targetChain);
 
         require(
-            msg.value >= cost,
+            msg.value &gt;= cost,
             "Insufficient funds for cross-chain delivery"
         );
 
@@ -115,7 +115,7 @@ You can find the full code for the `MessageSender.sol` below.
             uint256 cost = quoteCrossChainCost(targetChain);
 
             require(
-                msg.value >= cost,
+                msg.value &gt;= cost,
                 "Insufficient funds for cross-chain delivery"
             );
 
@@ -146,7 +146,7 @@ Key implementation details include:
  - **`isRegisteredSender`**: Restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication.
 
 ```solidity
-    mapping(uint16 => bytes32) public registeredSenders;
+    mapping(uint16 =&gt; bytes32) public registeredSenders;
 
     modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
         require(
@@ -214,7 +214,7 @@ You can find the full code for the `MessageReceiver.sol` below.
         address public registrationOwner;
 
         // Mapping to store registered senders for each chain
-        mapping(uint16 => bytes32) public registeredSenders;
+        mapping(uint16 =&gt; bytes32) public registeredSenders;
 
         event MessageReceived(string message);
         event SourceChainLogged(uint16 sourceChain);
@@ -342,13 +342,13 @@ The repository includes:
 
 The expected output should be similar to this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>forge build</span>
-	<span data-ty> > [⠒] Compiling...</span>
-	<span data-ty> > [⠰] Compiling 30 files with 0.8.23</span>
-	<span data-ty> [⠔] Solc 0.8.23 finished in 2.29s</span>
-	<span data-ty>Compiler run successful!</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>forge build</span>
+<span data-ty=""> &gt; [⠒] Compiling...</span>
+<span data-ty=""> &gt; [⠰] Compiling 30 files with 0.8.23</span>
+<span data-ty=""> [⠔] Solc 0.8.23 finished in 2.29s</span>
+<span data-ty="">Compiler run successful!</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ### Deployment Process
@@ -395,7 +395,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
           );
 
           // Get the Avalanche Fuji configuration
-          const avalancheChain = chains.chains.find((chain) =>
+          const avalancheChain = chains.chains.find((chain) =&gt;
             chain.description.includes('Avalanche testnet')
           );
         ```
@@ -412,7 +412,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
           );
 
           // Get the Celo Testnet configuration
-          const celoChain = chains.chains.find((chain) =>
+          const celoChain = chains.chains.find((chain) =&gt;
             chain.description.includes('Celo Testnet')
           );
         ```
@@ -505,7 +505,7 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
 
       // Get the Avalanche Fuji configuration
-      const avalancheChain = chains.chains.find((chain) =>
+      const avalancheChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Avalanche testnet')
       );
       if (!avalancheChain) {
@@ -559,11 +559,11 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ??? code "deployReceiver.ts"
@@ -591,7 +591,7 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
 
       // Get the Celo Testnet configuration
-      const celoChain = chains.chains.find((chain) =>
+      const celoChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Celo Testnet')
       );
       if (!celoChain) {
@@ -666,11 +666,11 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ### Deploy the Sender Contract
@@ -685,14 +685,12 @@ The sender contract will handle quoting and sending messages cross-chain.
 
 2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}.
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"
-		><span class="file-path"></span>npm run deploy:sender</span
-	>
-	<span data-ty> > wormhole-cross-chain@1.0.0 deploy:sender</span>
-	<span data-ty> > node script/deploySender.ts</span>
-	<span data-ty> MessageSender deployed to: 0xf5c474f335fFf617fA6FD04DCBb17E20ee0cEfb1</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run deploy:sender</span>
+<span data-ty=""> &gt; wormhole-cross-chain@1.0.0 deploy:sender</span>
+<span data-ty=""> &gt; node script/deploySender.ts</span>
+<span data-ty=""> MessageSender deployed to: 0xf5c474f335fFf617fA6FD04DCBb17E20ee0cEfb1</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ### Deploy the Receiver Contract
@@ -807,30 +805,20 @@ If everything is set up correctly, the message will be sent from the Avalanche F
 
 The console should output something similar to this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"
-		><span class="file-path"></span>npm run send:message</span
-	>
-	<span data-ty> > wormhole-cross-chain@1.0.0 send:message</span>
-	<span data-ty> > node script/sendMessage.ts</span>
-	<span data-ty
-		>Sender Contract Address: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span
-	>
-	<span data-ty
-		>Receiver Contract Address: 0x692550997C252cC5044742D1A2BD91E4f4b46D39</span
-	>
-	<span data-ty>...</span>
-	<span data-ty>Transaction sent, waiting for confirmation...</span>
-	<span data-ty>...</span>
-	<span data-ty
-		>Message sent! Transaction hash:
-		0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6</span
-	>
-	<span data-ty
-		>You may see the transaction status on the Wormhole Explorer:
-		https://wormholescan.io/#/tx/0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6?network=TESTNET</span
-	>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run send:message</span>
+<span data-ty=""> &gt; wormhole-cross-chain@1.0.0 send:message</span>
+<span data-ty=""> &gt; node script/sendMessage.ts</span>
+<span data-ty="">Sender Contract Address: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
+<span data-ty="">Receiver Contract Address: 0x692550997C252cC5044742D1A2BD91E4f4b46D39</span>
+<span data-ty="">...</span>
+<span data-ty="">Transaction sent, waiting for confirmation...</span>
+<span data-ty="">...</span>
+<span data-ty="">Message sent! Transaction hash:
+		0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6</span>
+<span data-ty="">You may see the transaction status on the Wormhole Explorer:
+		https://wormholescan.io/#/tx/0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6?network=TESTNET</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 You can find the full code for the `sendMessage.ts` below.
@@ -873,7 +861,7 @@ You can find the full code for the `sendMessage.ts` below.
       console.log('...');
 
       // Get the Avalanche Fuji configuration
-      const avalancheChain = chains.chains.find((chain) =>
+      const avalancheChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Avalanche testnet')
       );
 
@@ -934,11 +922,11 @@ You can find the full code for the `sendMessage.ts` below.
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ## Conclusion

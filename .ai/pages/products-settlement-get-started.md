@@ -99,14 +99,14 @@ Then, you'll create a script that initiates a transfer on Ethereum, uses the May
      */
 
     // Define transfer interface.
-    export interface SignerContext<N extends Network, C extends Chain> {
-      signer: Signer<N, C>;
-      address: ChainAddress<C>;
+    export interface SignerContext<n c="" chain="" extends="" network,=""> {
+      signer: Signer<n, c="">;
+      address: ChainAddress<c>;
     }
 
-    export async function getSigner<N extends Network, C extends Chain>(
-      chain: ChainContext<N, C>
-    ): Promise<SignerContext<N, C>> {
+    export async function getSigner<n c="" chain="" extends="" network,="">(
+      chain: ChainContext<n, c="">
+    ): Promise<signercontext<n, c="">&gt; {
       let signer: Signer;
       const platform = chain.platform.utils()._platform;
       switch (platform) {
@@ -127,11 +127,11 @@ Then, you'll create a script that initiates a transfer on Ethereum, uses the May
       }
 
       return {
-        signer: signer as Signer<N, C>,
+        signer: signer as Signer<n, c="">,
         address: Wormhole.chainAddress(chain.chain, signer.address()),
       };
     }
-
+    </n,></signercontext<n,></n,></n></c></n,></n>
     ```
 
 2. In `swap.ts`, add the following script, which will handle all of the logic required to perform the token swap: 
@@ -230,19 +230,18 @@ Then, you'll create a script that initiates a transfer on Ethereum, uses the May
 
     If successful, you’ll see terminal output like this:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx src/swap.ts</span>
-    	<span data-ty>Validated: { valid: true, ... }</span>
-        <span data-ty>Quote: { success: true, ... }</span>
-        <span data-ty>Initiated transfer with receipt: ...</span>
-        <span data-ty>Checking transfer state...</span>
-        <span data-ty>Current Transfer State: SourceInitiated</span>
-        <span data-ty>Current Transfer State: SourceInitiated</span>
-        <span data-ty>Current Transfer State: SourceInitiated</span>
-        <span data-ty>Current Transfer State: DestinationFinalized</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx src/swap.ts</span>
+    <span data-ty="">Validated: { valid: true, ... }</span>
+    <span data-ty="">Quote: { success: true, ... }</span>
+    <span data-ty="">Initiated transfer with receipt: ...</span>
+    <span data-ty="">Checking transfer state...</span>
+    <span data-ty="">Current Transfer State: SourceInitiated</span>
+    <span data-ty="">Current Transfer State: SourceInitiated</span>
+    <span data-ty="">Current Transfer State: SourceInitiated</span>
+    <span data-ty="">Current Transfer State: DestinationFinalized</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
-
 
 Congratulations! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement.
 

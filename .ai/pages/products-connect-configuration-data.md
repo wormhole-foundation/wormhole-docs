@@ -29,7 +29,7 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
       }
     }
 
-    <WormholeConnect config={config} />
+    <wormholeconnect config="{config}"></wormholeconnect>
 
     ```
 
@@ -78,7 +78,7 @@ Connect lets you customize the available chains to match your project's needs. Y
     };
 
     function App() {
-      return <WormholeConnect config={config} />;
+      return <wormholeconnect config="{config}"></wormholeconnect>;
     }
 
     ```
@@ -99,7 +99,7 @@ Connect lets you customize the available chains to match your project's needs. Y
     };
 
     function App() {
-      return <WormholeConnect config={config} />;
+      return <wormholeconnect config="{config}"></wormholeconnect>;
     }
 
     ```
@@ -149,7 +149,7 @@ const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
-<WormholeConnect config={config} />;
+<wormholeconnect config="{config}"></wormholeconnect>;
 
 ```
 
@@ -171,7 +171,7 @@ const config: config.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
-<WormholeConnect config={config} />;
+<wormholeconnect config="{config}"></wormholeconnect>;
 
 ```
 
@@ -334,7 +334,7 @@ const config: config.WormholeConnectConfig = {
 };
 
 function App() {
-  return <WormholeConnect config={config} />;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 
 ```
@@ -358,7 +358,7 @@ const config: config.WormholeConnectConfig = {
 };
 
 function App() {
-  return <WormholeConnect config={config} />;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 
 ```
@@ -379,7 +379,7 @@ const config: config.WormholeConnectConfig = {
 };
 
 function App() {
-  return <WormholeConnect config={config} />;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 
 ```
@@ -421,7 +421,7 @@ const config: config.WormholeConnectConfig = {
 };
 
 function App() {
-  return <WormholeConnect config={config} />;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 
 ```

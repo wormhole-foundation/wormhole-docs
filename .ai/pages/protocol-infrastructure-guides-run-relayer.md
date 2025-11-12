@@ -70,7 +70,7 @@ import { CHAIN_ID_SOLANA } from '@certusone/wormhole-sdk';
 
 (async function main() {
   // Initialize relayer engine app and pass relevant config options
-  const app = new StandardRelayerApp<StandardRelayerContext>(
+  const app = new StandardRelayerApp<standardrelayercontext>(
     Environment.TESTNET,
     // Other app specific config options can be set here for things
     // like retries, logger, or redis connection settings
@@ -85,7 +85,7 @@ import { CHAIN_ID_SOLANA } from '@certusone/wormhole-sdk';
     // Emitter address on Solana
     'DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe',
     // Callback function to invoke on new message
-    async (ctx, next) => {
+    async (ctx, next) =&gt; {
       const vaa = ctx.vaa;
       const hash = ctx.sourceTxHash;
       console.log(
@@ -99,17 +99,17 @@ import { CHAIN_ID_SOLANA } from '@certusone/wormhole-sdk';
   // Start app. Blocks until unrecoverable error or process is stopped
   await app.listen();
 })();
-
+</standardrelayercontext>
 ```
 
 The first meaningful line instantiates the `StandardRelayerApp`, a subclass of the `RelayerApp` with standard defaults.
 
 ```typescript
-export class StandardRelayerApp<
+export class StandardRelayerApp&lt;
   ContextT extends StandardRelayerContext = StandardRelayerContext,
-> extends RelayerApp<ContextT> {
+&gt; extends RelayerApp<contextt> {
   // ...
-  constructor(env: Environment, opts: StandardRelayerAppOpts) {
+  constructor(env: Environment, opts: StandardRelayerAppOpts) {</contextt>
 ```
 
 The only field you pass in the `StandardRelayerAppOpts` is the name to help identify log messages and reserve a namespace in Redis.
@@ -123,7 +123,7 @@ The only field you pass in the `StandardRelayerAppOpts` is the name to help iden
     concurrency?: number;     // How many concurrent requests to make for workflows
     spyEndpoint?: string;     // The hostname and port of our Spy
     logger?: Logger;          // A custom Logger
-    privateKeys?: Partial<{ [k in ChainId]: any[]; }>; // A set of keys that can be used to sign and send transactions
+    privateKeys?: Partial&lt;{ [k in ChainId]: any[]; }&gt;; // A set of keys that can be used to sign and send transactions
     tokensByChain?: TokensByChain;    // The token list we care about
     workflows?: { retries: number; }; // How many times to retry a given workflow
     providers?: ProvidersOpts;        // Configuration for the default providers
@@ -228,7 +228,7 @@ async function getVAA(
   emitter: string,
   sequence: string,
   chainId: number
-): Promise<Uint8Array> {
+): Promise<uint8array> {
   // Wait for the VAA to be ready and fetch it from the guardian network
   const { vaaBytes } = await getSignedVAAWithRetry(
     RPC_HOSTS,
@@ -240,7 +240,7 @@ async function getVAA(
 }
 
 const vaaBytes = await getVAA('INSERT_EMITTER_ADDRESS', 1, CHAIN_ID_ETH);
-
+</uint8array>
 ```
 
 Once you have the VAA, the delivery method is chain-dependent.
@@ -265,8 +265,8 @@ Once you have the VAA, the delivery method is chain-dependent.
     // Invoke the receiveMessage on the ETH contract and wait for confirmation
     const receipt = await ethHelloWorld
       .receiveMessage(vaaBytes)
-      .then((tx: ethers.ContractTransaction) => tx.wait())
-      .catch((msg: any) => {
+      .then((tx: ethers.ContractTransaction) =&gt; tx.wait())
+      .catch((msg: any) =&gt; {
         console.error(msg);
         return null;
       });

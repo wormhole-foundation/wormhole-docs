@@ -132,7 +132,7 @@ const callData: EthCallData = {
   data: '0x18160ddd', // web3.eth.abi.encodeFunctionSignature("totalSupply()")
 };
 
-(async () => {
+(async () =&gt; {
   const latestBlock: string = (
     await axios.post(rpc, {
       method: 'eth_getBlockByNumber',
@@ -207,8 +207,8 @@ The standardized means of making a `QueryRequest` with an API key is as follows:
 ```jsx
 const serialized = request.serialize();
 const proxyResponse =
-  (await axios.post) <
-  QueryProxyQueryResponse >
+  (await axios.post) &lt;
+  QueryProxyQueryResponse &gt;
   (QUERY_URL,
   {
     bytes: Buffer.from(serialized).toString("hex"),
@@ -280,7 +280,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
 
         address private immutable owner;
         uint16 private immutable myChainID;
-        mapping(uint16 => ChainEntry) private counters;
+        mapping(uint16 =&gt; ChainEntry) private counters;
         uint16[] private foreignChainIDs;
 
         bytes4 public GetMyCounter = bytes4(hex"916d5743");
@@ -316,7 +316,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
             ret[0] = counters[myChainID];
             uint256 length = foreignChainIDs.length;
 
-            for (uint256 i = 0; i < length;) {
+            for (uint256 i = 0; i &lt; length;) {
                 ret[i + 1] = counters[foreignChainIDs[i]];
                 unchecked {
                     ++i;
@@ -334,7 +334,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
                 revert UnexpectedResultLength();
             }
 
-            for (uint256 i = 0; i < numResponses;) {
+            for (uint256 i = 0; i &lt; numResponses;) {
                 // Create a storage pointer for frequently read and updated data stored on the blockchain
                 ChainEntry storage chainEntry = counters[r.responses[i].chainId];
                 if (chainEntry.chainID != foreignChainIDs[i]) {

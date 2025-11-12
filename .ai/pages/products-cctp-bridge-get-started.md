@@ -77,13 +77,13 @@ Start by defining utility functions for signer and token setup:
      * be loaded securely beforehand, for example via a keystore, secrets
      * manager, or environment variables (not recommended).
      */
-    export async function getSigner<N extends Network, C extends Chain>(
-      chain: ChainContext<N, C>
-    ): Promise<{
-      chain: ChainContext<N, C>;
-      signer: Signer<N, C>;
-      address: ChainAddress<C>;
-    }> {
+    export async function getSigner<n c="" chain="" extends="" network,="">(
+      chain: ChainContext<n, c="">
+    ): Promise&lt;{
+      chain: ChainContext<n, c="">;
+      signer: Signer<n, c="">;
+      address: ChainAddress<c>;
+    }&gt; {
       let signer: Signer;
       const platform = chain.platform.utils()._platform;
 
@@ -109,11 +109,11 @@ Start by defining utility functions for signer and token setup:
 
       return {
         chain,
-        signer: signer as Signer<N, C>,
+        signer: signer as Signer<n, c="">,
         address: Wormhole.chainAddress(chain.chain, signer.address()),
       };
     }
-
+    </n,></c></n,></n,></n,></n>
     ```
 
 2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
@@ -174,14 +174,12 @@ Start by defining utility functions for signer and token setup:
 
     You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
-    	<span data-ty>Starting Transfer</span>
-    	<span data-ty
-    		>Started Transfer:
-            [ '0xa3a545e65865c95f814132ac689c2ff5a20bfa3ca3d68bab48230708de342841']</span
-    	>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+    <span data-ty="">Starting Transfer</span>
+    <span data-ty="">Started Transfer:
+            [ '0xa3a545e65865c95f814132ac689c2ff5a20bfa3ca3d68bab48230708de342841']</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 
 To verify the transaction and view its details, paste the transaction hash into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.

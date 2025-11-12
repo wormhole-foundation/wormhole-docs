@@ -96,21 +96,21 @@ In this section, we’ll guide you through initializing the project, installing 
         import { config } from 'dotenv';
         config();
 
-        export interface SignerStuff<N extends Network, C extends Chain> {
-          chain: ChainContext<N, C>;
-          signer: Signer<N, C>;
-          address: ChainAddress<C>;
+        export interface SignerStuff<n c="" chain="" extends="" network,=""> {
+          chain: ChainContext<n, c="">;
+          signer: Signer<n, c="">;
+          address: ChainAddress<c>;
         }
 
         // Signer setup function for different blockchain platforms
-        export async function getSigner<N extends Network, C extends Chain>(
-          chain: ChainContext<N, C>,
+        export async function getSigner<n c="" chain="" extends="" network,="">(
+          chain: ChainContext<n, c="">,
           gasLimit?: bigint
-        ): Promise<{
-          chain: ChainContext<N, C>;
-          signer: Signer<N, C>;
-          address: ChainAddress<C>;
-        }> {
+        ): Promise&lt;{
+          chain: ChainContext<n, c="">;
+          signer: Signer<n, c="">;
+          address: ChainAddress<c>;
+        }&gt; {
           let signer: Signer;
           const platform = chain.platform.utils()._platform;
 
@@ -142,23 +142,23 @@ In this section, we’ll guide you through initializing the project, installing 
 
           return {
             chain,
-            signer: signer as Signer<N, C>,
+            signer: signer as Signer<n, c="">,
             address: Wormhole.chainAddress(chain.chain, signer.address()),
           };
         }
 
-        export async function getTokenDecimals<
+        export async function getTokenDecimals&lt;
           N extends 'Mainnet' | 'Testnet' | 'Devnet'
-        >(
-          wh: Wormhole<N>,
+        &gt;(
+          wh: Wormhole<n>,
           token: TokenId,
-          sendChain: ChainContext<N, any>
+          sendChain: ChainContext<n, any="">
         ): Promise<number> {
           return isTokenId(token)
             ? Number(await wh.getDecimals(token.chain, token.address))
             : sendChain.config.nativeTokenDecimals;
         }
-
+        </number></n,></n></n,></c></n,></n,></n,></n></c></n,></n,></n>
         ```
 
         - **`getSigner`**: Based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file.
@@ -294,12 +294,12 @@ In this section, you'll create a script that automates this process by checking 
             console.error('Wrapped asset not found yet. Retrying...');
           }
           console.log('Waiting before checking again...');
-          await new Promise((r) => setTimeout(r, 2000));
+          await new Promise((r) =&gt; setTimeout(r, 2000));
         } while (true);
       }
 
       console.log('Wrapped Asset: ', await waitForIt());
-    })().catch((e) => console.error(e));
+    })().catch((e) =&gt; console.error(e));
     ```
 
     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
@@ -388,12 +388,12 @@ In this section, you'll create a script that automates this process by checking 
             console.error('Wrapped asset not found yet. Retrying...');
           }
           console.log('Waiting before checking again...');
-          await new Promise((r) => setTimeout(r, 2000));
+          await new Promise((r) =&gt; setTimeout(r, 2000));
         } while (true);
       }
 
       console.log('Wrapped Asset: ', await waitForIt());
-    })().catch((e) => console.error(e));
+    })().catch((e) =&gt; console.error(e));
 
     ```
 
@@ -516,20 +516,20 @@ This section defines the `tokenTransfer` function, which manages the core steps 
 The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
 
 ```typescript
-async function tokenTransfer<N extends Network>(
-  wh: Wormhole<N>,
+async function tokenTransfer<n extends="" network="">(
+  wh: Wormhole<n>,
   route: {
     token: TokenId;
     amount: bigint;
-    source: SignerStuff<N, Chain>;
-    destination: SignerStuff<N, Chain>;
+    source: SignerStuff<n, chain="">;
+    destination: SignerStuff<n, chain="">;
     route: string;
     payload?: Uint8Array;
   }
 ) {
   // Token Transfer Logic
 }
-
+</n,></n,></n></n>
 ```
 
 #### Steps to Transfer Tokens
@@ -559,7 +559,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
         xfer.transfer
       );
 
-      if (xfer.transfer.route === 'AutomaticTokenBridge' && quote.destinationToken.amount < 0)
+      if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
         throw 'The amount requested is too low to cover the fee and any native gas requested.';
     ```
 
@@ -646,13 +646,13 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
       process.exit(0);
     })();
 
-    async function tokenTransfer<N extends Network>(
-      wh: Wormhole<N>,
+    async function tokenTransfer<n extends="" network="">(
+      wh: Wormhole<n>,
       route: {
         token: TokenId;
         amount: bigint;
-        source: SignerStuff<N, Chain>;
-        destination: SignerStuff<N, Chain>;
+        source: SignerStuff<n, chain="">;
+        destination: SignerStuff<n, chain="">;
         route: string;
         payload?: Uint8Array;
       }
@@ -675,7 +675,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
         xfer.transfer
       );
 
-      if (xfer.transfer.route === 'AutomaticTokenBridge' && quote.destinationToken.amount < 0)
+      if (xfer.transfer.route === 'AutomaticTokenBridge' &amp;&amp; quote.destinationToken.amount &lt; 0)
         throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
       // Submit the transactions to the source chain, passing a signer to sign any txns
@@ -693,7 +693,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
       const destTxids = await xfer.completeTransfer(route.destination.signer);
       console.log(`Completed Transfer: `, destTxids);
     }
-
+    </n,></n,></n></n>
     ```
 
 ### Run the Native Token Transfer

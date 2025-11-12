@@ -111,7 +111,7 @@ Deploying NTT with the CLI on SVM chains follows a structured process:
                 ```
 
             !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
+                NTT versions `&gt;=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 2. **Choose your deployment model**:
 
     - **Hub-and-spoke**: Tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required.

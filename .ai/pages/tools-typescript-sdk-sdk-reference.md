@@ -82,8 +82,8 @@ These modules expose key functions and types from the native ecosystem, reducing
 const srcChain = wh.getChain(senderAddress.chain);
 const dstChain = wh.getChain(receiverAddress.chain);
 
-const tb = await srcChain.getTokenBridge(); // => TokenBridge<'Evm'>
-srcChain.getRpcClient(); // => RpcClient<'Evm'>
+const tb = await srcChain.getTokenBridge(); // =&gt; TokenBridge&lt;'Evm'&gt;
+srcChain.getRpcClient(); // =&gt; RpcClient&lt;'Evm'&gt;
 ```
 
 ### Addresses
@@ -92,7 +92,7 @@ The SDK uses the `UniversalAddress` class to implement the `Address` interface, 
 
 ```ts
 // It's possible to convert a string address to its Native address
-const ethAddr: NativeAddress<'Evm'> = toNative('Ethereum', '0xbeef...');
+const ethAddr: NativeAddress&lt;'Evm'&gt; = toNative('Ethereum', '0xbeef...');
 
 // A common type in the SDK is the `ChainAddress` which provides
 // the additional context of the `Chain` this address is relevant for
@@ -106,7 +106,7 @@ const receiverAddress: ChainAddress = Wormhole.chainAddress(
 );
 
 // Convert the ChainAddress back to its canonical string address format
-const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
+const strAddress = Wormhole.canonicalAddress(senderAddress); // =&gt; '0xbeef...'
 
 // Or if the ethAddr above is for an emitter and you need the UniversalAddress
 const emitterAddr = ethAddr.toUniversalAddress().toString();
@@ -122,7 +122,7 @@ const sourceToken: TokenId = Wormhole.tokenId('Ethereum', '0xbeef...');
 // Get the TokenId for native ETH
 const gasToken: TokenId = Wormhole.tokenId('Ethereum', 'native');
 // Convert a TokenId back to a string
-const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
+const strAddress = Wormhole.canonicalAddress(senderAddress); // =&gt; '0xbeef...'
 ```
 
 ### Signers
@@ -142,7 +142,7 @@ export interface SignOnlySigner {
   // an array of signed and serialized transactions.
   // The transactions may be inspected or altered before
   // signing.
-  sign(tx: UnsignedTransaction[]): Promise<SignedTx[]>;
+  sign(tx: UnsignedTransaction[]): Promise<signedtx[]>;
 }
 
 export interface SignAndSendSigner {
@@ -151,8 +151,8 @@ export interface SignAndSendSigner {
   // Accept an array of unsigned transactions and return
   // an array of transaction ids in the same order as the
   // unsignedTransactions array.
-  signAndSend(tx: UnsignedTransaction[]): Promise<TxHash[]>;
-}
+  signAndSend(tx: UnsignedTransaction[]): Promise<txhash[]>;
+}</txhash[]></signedtx[]>
 ```
 
 #### Set Up a Signer with Ethers.js
@@ -352,7 +352,7 @@ For automatic transfers, the process ends after initiation. Manual transfers req
   );
   console.log(quote);
 
-  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // 1) Submit the transactions to the source chain, passing a signer to sign any txns
@@ -480,13 +480,13 @@ For automatic transfers, the process ends after initiation. Manual transfers req
       console.log(receipt);
     })();
 
-    async function tokenTransfer<N extends Network>(
-      wh: Wormhole<N>,
+    async function tokenTransfer<n extends="" network="">(
+      wh: Wormhole<n>,
       route: {
         token: TokenId;
         amount: bigint;
-        source: SignerStuff<N, Chain>;
-        destination: SignerStuff<N, Chain>;
+        source: SignerStuff<n, chain="">;
+        destination: SignerStuff<n, chain="">;
         delivery?: {
           automatic: boolean;
           nativeGas?: bigint;
@@ -494,7 +494,7 @@ For automatic transfers, the process ends after initiation. Manual transfers req
         payload?: Uint8Array;
       },
       roundTrip?: boolean
-    ): Promise<TokenTransfer<N>> {
+    ): Promise<tokentransfer<n>&gt; {
       // Create a TokenTransfer object to track the state of the transfer over time
       const xfer = await wh.tokenTransfer(
         route.token,
@@ -514,7 +514,7 @@ For automatic transfers, the process ends after initiation. Manual transfers req
       );
       console.log(quote);
 
-      if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+      if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
         throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
       // 1) Submit the transactions to the source chain, passing a signer to sign any txns
@@ -547,7 +547,7 @@ For automatic transfers, the process ends after initiation. Manual transfers req
         destination: route.source,
       });
     }
-
+    </tokentransfer<n></n,></n,></n></n>
     ```
 
 Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
@@ -666,10 +666,10 @@ When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual
 
     })();
 
-    async function cctpTransfer<N extends Network>(
-      wh: Wormhole<N>,
-      src: SignerStuff<N, any>,
-      dst: SignerStuff<N, any>,
+    async function cctpTransfer<n extends="" network="">(
+      wh: Wormhole<n>,
+      src: SignerStuff<n, any="">,
+      dst: SignerStuff<n, any="">,
       req: {
         amount: bigint;
         automatic: boolean;
@@ -723,7 +723,7 @@ When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual
     }
 
     export async function completeTransfer(
-      wh: Wormhole<Network>,
+      wh: Wormhole<network>,
       txid: TransactionId,
       signer: Signer
     ): Promise<void> {
@@ -736,7 +736,7 @@ When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual
       const dstTxIds = await xfer.completeTransfer(signer);
       console.log('Completed transfer: ', dstTxIds);
     }
-
+    </void></network></n,></n,></n></n>
     ```
 
 ### Recovering Transfers
@@ -812,10 +812,10 @@ It may be necessary to recover an abandoned transfer before it is completed. To 
 
     })();
 
-    async function cctpTransfer<N extends Network>(
-      wh: Wormhole<N>,
-      src: SignerStuff<N, any>,
-      dst: SignerStuff<N, any>,
+    async function cctpTransfer<n extends="" network="">(
+      wh: Wormhole<n>,
+      src: SignerStuff<n, any="">,
+      dst: SignerStuff<n, any="">,
       req: {
         amount: bigint;
         automatic: boolean;
@@ -869,7 +869,7 @@ It may be necessary to recover an abandoned transfer before it is completed. To 
     }
 
     export async function completeTransfer(
-      wh: Wormhole<Network>,
+      wh: Wormhole<network>,
       txid: TransactionId,
       signer: Signer
     ): Promise<void> {
@@ -882,7 +882,7 @@ It may be necessary to recover an abandoned transfer before it is completed. To 
       const dstTxIds = await xfer.completeTransfer(signer);
       console.log('Completed transfer: ', dstTxIds);
     }
-
+    </void></network></n,></n,></n></n>
     ```
 
 ## Routes
@@ -911,7 +911,7 @@ Once created, the resolver can be used to provide a list of input and possible o
   const srcTokens = await resolver.supportedSourceTokens(sendChain);
   console.log(
     'Allowed source tokens: ',
-    srcTokens.map((t) => canonicalAddress(t))
+    srcTokens.map((t) =&gt; canonicalAddress(t))
   );
 
   const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
@@ -924,7 +924,7 @@ Once created, the resolver can be used to provide a list of input and possible o
   );
   console.log(
     'For the given source token and routes configured, the following tokens may be receivable: ',
-    destTokens.map((t) => canonicalAddress(t))
+    destTokens.map((t) =&gt; canonicalAddress(t))
   );
   // Grab the first one for the example
   const destinationToken = destTokens[0]!;
@@ -1028,7 +1028,7 @@ Finally, assuming the quote looks good, the route can initiate the request with 
       const srcTokens = await resolver.supportedSourceTokens(sendChain);
       console.log(
         'Allowed source tokens: ',
-        srcTokens.map((t) => canonicalAddress(t))
+        srcTokens.map((t) =&gt; canonicalAddress(t))
       );
 
       const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
@@ -1041,7 +1041,7 @@ Finally, assuming the quote looks good, the route can initiate the request with 
       );
       console.log(
         'For the given source token and routes configured, the following tokens may be receivable: ',
-        destTokens.map((t) => canonicalAddress(t))
+        destTokens.map((t) =&gt; canonicalAddress(t))
       );
       // Grab the first one for the example
       const destinationToken = destTokens[0]!;
@@ -1118,16 +1118,16 @@ Routes can be imported from any npm package that exports them and configured wit
 ```ts
 import { Network, routes } from '@wormhole-foundation/sdk-connect';
 
-export class CustomRoute<N extends Network>
-  extends routes.Route<N>
-  implements routes.StaticRouteMethods<typeof CustomRoute>
+export class CustomRoute<n extends="" network="">
+  extends routes.Route<n>
+  implements routes.StaticRouteMethods<typeof customroute="">
 {
   static meta = {
     name: 'CustomRoute',
   };
   // implementation...
 }
-
+</typeof></n></n>
 ```
 
 A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute`](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank} route implementation.

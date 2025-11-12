@@ -79,10 +79,10 @@ For example, consider a custom conversion for a chain ID:
 
 ```typescript
 const chainCustomConversion = {
-  to: (chainId: number) => toChain(chainId),
-  from: (chain: Chain) => chainToChainId(chain),
-} satisfies CustomConversion<number, Chain>;
-
+  to: (chainId: number) =&gt; toChain(chainId),
+  from: (chain: Chain) =&gt; chainToChainId(chain),
+} satisfies CustomConversion<number, chain="">;
+</number,>
 ```
 
 This setup allows Wormhole to convert between human-readable formats and binary-encoded data used in payloads.
@@ -266,20 +266,20 @@ const chainItemBase = { binary: 'uint', size: 2 } as const;
 The dynamic chain ID layout, [`chainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L13-L40){target=\_blank}, extends `chainItemBase` by adding flexible custom conversion logic. It enables runtime validation of chain IDs, supports optional null values, and restricts chain IDs to a predefined set when needed.
 
 ```typescript
-export const chainItem = <
+export const chainItem = &lt;
   const C extends readonly Chain[] = typeof chains,
   const N extends boolean = false,
->(opts?: {
+&gt;(opts?: {
   allowedChains?: C;
   allowNull?: N;
-}) =>
+}) =&gt;
   ({
     ...chainItemBase, // Builds on the base structure
     custom: {
-      to: (val: number): AllowNull<C[number], N> => { ... },
-      from: (val: AllowNull<C[number], N>): number => { ... },
+      to: (val: number): AllowNull<c[number], n=""> =&gt; { ... },
+      from: (val: AllowNull<c[number], n="">): number =&gt; { ... },
     },
-  });
+  });</c[number],></c[number],>
 ```
 
 This layout is versatile. It allows the serialization of human-readable chain names (e.g., `Ethereum`) to numeric IDs (e.g., `1`) and vice versa. This is particularly useful when working with dynamic configurations or protocols supporting multiple chains.
@@ -289,14 +289,14 @@ This layout is versatile. It allows the serialization of human-readable chain na
 The fixed chain ID layout, [`fixedChainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L42-L49){target=\_blank}, is more rigid. It also extends `chainItemBase`, but the custom field is hardcoded for a single chain. This eliminates runtime validation and enforces strict adherence to a specific chain.
 
 ```typescript
-export const fixedChainItem = <const C extends Chain>(chain: C) => ({
+export const fixedChainItem = <const c="" chain="" extends="">(chain: C) =&gt; ({
   ...chainItemBase, // Builds on the base structure
   custom: {
     to: chain,
     from: chainToChainId(chain),
   },
 });
-
+</const>
 ```
 
 This layout allows developers to efficiently serialize and deserialize messages involving a single, fixed chain ID.
@@ -314,11 +314,11 @@ export const universalAddressItem = {
   binary: 'bytes',
   size: 32,
   custom: {
-    to: (val: Uint8Array): UniversalAddress => new UniversalAddress(val),
-    from: (val: UniversalAddress): Uint8Array => val.toUint8Array(),
-  } satisfies CustomConversion<Uint8Array, UniversalAddress>,
+    to: (val: Uint8Array): UniversalAddress =&gt; new UniversalAddress(val),
+    from: (val: UniversalAddress): Uint8Array =&gt; val.toUint8Array(),
+  } satisfies CustomConversion<uint8array, universaladdress="">,
 } as const satisfies LayoutItem;
-
+</uint8array,>
 ```
 
 This layout ensures consistent address handling by defining the following:
@@ -354,12 +354,12 @@ export const signatureItem = {
   binary: 'bytes',
   layout: signatureLayout,
   custom: {
-    to: (val: LayoutToType<typeof signatureLayout>) =>
+    to: (val: LayoutToType<typeof signaturelayout="">) =&gt;
       new Signature(val.r, val.s, val.v),
-    from: (val: Signature) => ({ r: val.r, s: val.s, v: val.v }),
-  } satisfies CustomConversion<LayoutToType<typeof signatureLayout>, Signature>,
+    from: (val: Signature) =&gt; ({ r: val.r, s: val.s, v: val.v }),
+  } satisfies CustomConversion<layouttotype<typeof signaturelayout="">, Signature&gt;,
 } as const satisfies BytesLayoutItem;
-
+</layouttotype<typeof></typeof>
 ```
 
 The `custom` field ensures seamless integration of raw binary data with the `Signature` class, encapsulating signature-specific logic.
@@ -546,8 +546,8 @@ const serializedVAA = serialize(vaaData);
       payloadLiteralToPayloadItemLayout(vaa.payloadLiteral), // Payload layout
     ] as const;
 
-    return serializeLayout(layout, vaa as LayoutToType<typeof layout>);
-
+    return serializeLayout(layout, vaa as LayoutToType<typeof layout="">);
+    </typeof>
     ```
 
 #### Deserializing VAA Data

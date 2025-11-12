@@ -58,17 +58,17 @@ To simplify this process, we've included a tool for verifying if a token has an 
 
     5. The expected output when the token has an attestation:
         
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npm run verify</span>
-        	<span data-ty> > cross-chain-token-transfer@1.0.0 verify</span>
-        	<span data-ty> > npx ts-node script/check-attestation.ts</span>
-          <span data-ty> </span>
-        	<span data-ty> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
-        	<span data-ty> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
-          <span data-ty> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
-          <span data-ty> Enter the SOURCE chain ID: 6</span>
-          <span data-ty> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npm run verify</span>
+        <span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 verify</span>
+        <span data-ty=""> &gt; npx ts-node script/check-attestation.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty=""> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
+        <span data-ty=""> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
+        <span data-ty=""> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
+        <span data-ty=""> Enter the SOURCE chain ID: 6</span>
+        <span data-ty=""> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
     Using this tool ensures that you only attempt to transfer tokens with verified attestations, avoiding any potential issues during the cross-chain transfer process.
 
@@ -519,13 +519,13 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     The expected output should be similar to this:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>forge build</span>
-    	<span data-ty> > [⠒] Compiling...</span>
-    	<span data-ty> > [⠰] Compiling 30 files with 0.8.23</span>
-    	<span data-ty> [⠔] Solc 0.8.23 finished in 2.29s</span>
-    	<span data-ty>Compiler run successful!</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>forge build</span>
+    <span data-ty=""> &gt; [⠒] Compiling...</span>
+    <span data-ty=""> &gt; [⠰] Compiling 30 files with 0.8.23</span>
+    <span data-ty=""> [⠔] Solc 0.8.23 finished in 2.29s</span>
+    <span data-ty="">Compiler run successful!</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 4. **Write the deployment script**: You’ll need a script to automate the deployment of your contracts. Let’s create the deployment script.
 
@@ -586,7 +586,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           role: 'source' | 'target'
         ): ChainConfig {
           console.log(`\nSelect the ${role.toUpperCase()} chain:`);
-          chains.forEach((chain, index) => {
+          chains.forEach((chain, index) =&gt; {
             console.log(`${index + 1}: ${chain.description}`);
           });
 
@@ -823,7 +823,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           }
         }
 
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -877,7 +877,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           role: 'source' | 'target'
         ): ChainConfig {
           console.log(`\nSelect the ${role.toUpperCase()} chain:`);
-          chains.forEach((chain, index) => {
+          chains.forEach((chain, index) =&gt; {
             console.log(`${index + 1}: ${chain.description}`);
           });
 
@@ -1038,7 +1038,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           }
         }
 
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -1076,28 +1076,28 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npx ts-node deploy.ts</span>
-	<span data-ty> > cross-chain-token-transfer@1.0.0 deploy</span>
-	<span data-ty> > npx ts-node script/deploy.ts</span>
-	<span data-ty> Select the SOURCE chain:</span>
-	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the SOURCE chain: 1</span>
-  <span data-ty> </span>
-  <span data-ty> Select the TARGET chain:</span>
-  <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the TARGET chain: 2</span>
-  <span data-ty> CrossChainSender Avalanche testnet fuji: 0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3</span>
-  <span data-ty> CrossChainReceiver Celo Testnet: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
-  <span data-ty> </span>
-  <span data-ty> Registering CrossChainSender (0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3) as a valid sender in CrossChainReceiver (0xD720BFF42a0960cfF1118454A907a44dB358f2b1)...</span>
-  <span data-ty> </span>
-  <span data-ty> CrossChainSender registered as a valid sender on Celo Testnet</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx ts-node deploy.ts</span>
+<span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 deploy</span>
+<span data-ty=""> &gt; npx ts-node script/deploy.ts</span>
+<span data-ty=""> Select the SOURCE chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the SOURCE chain: 1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the TARGET chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the TARGET chain: 2</span>
+<span data-ty=""> CrossChainSender Avalanche testnet fuji: 0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3</span>
+<span data-ty=""> CrossChainReceiver Celo Testnet: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Registering CrossChainSender (0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3) as a valid sender in CrossChainReceiver (0xD720BFF42a0960cfF1118454A907a44dB358f2b1)...</span>
+<span data-ty=""> </span>
+<span data-ty=""> CrossChainSender registered as a valid sender on Celo Testnet</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 ## Transfer Tokens Across Chains
 
@@ -1188,7 +1188,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           networkName: string;
         } {
           const sourceOptions = Object.entries(deployedContracts).filter(
-            ([, contracts]) => contracts.CrossChainSender
+            ([, contracts]) =&gt; contracts.CrossChainSender
           );
 
           if (sourceOptions.length === 0) {
@@ -1197,7 +1197,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           }
 
           console.log('\nSelect the source chain:');
-          sourceOptions.forEach(([chainId, contracts], index) => {
+          sourceOptions.forEach(([chainId, contracts], index) =&gt; {
             console.log(`${index + 1}: ${contracts.networkName}`);
           });
 
@@ -1214,7 +1214,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           networkName: string;
         } {
           const targetOptions = Object.entries(deployedContracts).filter(
-            ([, contracts]) => contracts.CrossChainReceiver
+            ([, contracts]) =&gt; contracts.CrossChainReceiver
           );
 
           if (targetOptions.length === 0) {
@@ -1225,7 +1225,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           }
 
           console.log('\nSelect the target chain:');
-          targetOptions.forEach(([chainId, contracts], index) => {
+          targetOptions.forEach(([chainId, contracts], index) =&gt; {
             console.log(`${index + 1}: ${contracts.networkName}`);
           });
 
@@ -1250,12 +1250,12 @@ In this step, you'll write a script to transfer tokens across chains using the `
           // Select the source chain (only show chains with CrossChainSender deployed)
           const { chainId: sourceChainId, networkName: sourceNetworkName } =
             selectSourceChain(deployedContracts);
-          const sourceChain = chains.find((chain) => chain.chainId === sourceChainId)!;
+          const sourceChain = chains.find((chain) =&gt; chain.chainId === sourceChainId)!;
 
           // Select the target chain (only show chains with CrossChainReceiver deployed)
           const { chainId: targetChainId, networkName: targetNetworkName } =
             selectTargetChain(deployedContracts);
-          const targetChain = chains.find((chain) => chain.chainId === targetChainId)!;
+          const targetChain = chains.find((chain) =&gt; chain.chainId === targetChainId)!;
 
           // Set up providers and wallets
           const sourceProvider = new ethers.JsonRpcProvider(sourceChain.rpc);
@@ -1355,7 +1355,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     4. **Finalize the script**: Call the `main` function and handle any errors that may occur during the token transfer process.
 
         ```typescript
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -1419,7 +1419,7 @@ You can find the full code for the `transfer.ts` file below:
       networkName: string;
     } {
       const sourceOptions = Object.entries(deployedContracts).filter(
-        ([, contracts]) => contracts.CrossChainSender
+        ([, contracts]) =&gt; contracts.CrossChainSender
       );
 
       if (sourceOptions.length === 0) {
@@ -1428,7 +1428,7 @@ You can find the full code for the `transfer.ts` file below:
       }
 
       console.log('\nSelect the source chain:');
-      sourceOptions.forEach(([chainId, contracts], index) => {
+      sourceOptions.forEach(([chainId, contracts], index) =&gt; {
         console.log(`${index + 1}: ${contracts.networkName}`);
       });
 
@@ -1445,7 +1445,7 @@ You can find the full code for the `transfer.ts` file below:
       networkName: string;
     } {
       const targetOptions = Object.entries(deployedContracts).filter(
-        ([, contracts]) => contracts.CrossChainReceiver
+        ([, contracts]) =&gt; contracts.CrossChainReceiver
       );
 
       if (targetOptions.length === 0) {
@@ -1456,7 +1456,7 @@ You can find the full code for the `transfer.ts` file below:
       }
 
       console.log('\nSelect the target chain:');
-      targetOptions.forEach(([chainId, contracts], index) => {
+      targetOptions.forEach(([chainId, contracts], index) =&gt; {
         console.log(`${index + 1}: ${contracts.networkName}`);
       });
 
@@ -1475,12 +1475,12 @@ You can find the full code for the `transfer.ts` file below:
       // Select the source chain (only show chains with CrossChainSender deployed)
       const { chainId: sourceChainId, networkName: sourceNetworkName } =
         selectSourceChain(deployedContracts);
-      const sourceChain = chains.find((chain) => chain.chainId === sourceChainId)!;
+      const sourceChain = chains.find((chain) =&gt; chain.chainId === sourceChainId)!;
 
       // Select the target chain (only show chains with CrossChainReceiver deployed)
       const { chainId: targetChainId, networkName: targetNetworkName } =
         selectTargetChain(deployedContracts);
-      const targetChain = chains.find((chain) => chain.chainId === targetChainId)!;
+      const targetChain = chains.find((chain) =&gt; chain.chainId === targetChainId)!;
 
       // Set up providers and wallets
       const sourceProvider = new ethers.JsonRpcProvider(sourceChain.rpc);
@@ -1570,7 +1570,7 @@ You can find the full code for the `transfer.ts` file below:
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
@@ -1597,30 +1597,30 @@ You can verify the transaction on the [Wormhole Explorer](https://wormholescan.i
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npx ts-node transfer.ts</span>
-	<span data-ty> > cross-chain-token-transfer@1.0.0 transfer</span>
-	<span data-ty> > npx ts-node script/transfer.ts</span>
-  <span data-ty> </span>
-	<span data-ty> Select the source chain:</span>
-	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the SOURCE chain: 1</span>
-  <span data-ty> </span>
-  <span data-ty> Select the target chain:</span>
-  <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the TARGET chain: 2</span>
-  <span data-ty> </span>
-  <span data-ty> Initiating transfer from Avalanche testnet fuji to Celo Testnet</span>
-  <span data-ty> Enter the token contract address: 0x5425890298aed601595a70ab815c96711a31bc65</span>
-  <span data-ty> Enter the recipient address on the target chain: INSERT_YOUR_WALLET_ADDRESS</span>
-  <span data-ty> Enter the amount of tokens to transfer: 2</span>
-  <span data-ty> Approved tokens for cross-chain transfer.</span>
-  <span data-ty> Transfer initiated from Avalanche testnet fuji to Celo Testnet. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx ts-node transfer.ts</span>
+<span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 transfer</span>
+<span data-ty=""> &gt; npx ts-node script/transfer.ts</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the source chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the SOURCE chain: 1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the target chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the TARGET chain: 2</span>
+<span data-ty=""> </span>
+<span data-ty=""> Initiating transfer from Avalanche testnet fuji to Celo Testnet</span>
+<span data-ty=""> Enter the token contract address: 0x5425890298aed601595a70ab815c96711a31bc65</span>
+<span data-ty=""> Enter the recipient address on the target chain: INSERT_YOUR_WALLET_ADDRESS</span>
+<span data-ty=""> Enter the amount of tokens to transfer: 2</span>
+<span data-ty=""> Approved tokens for cross-chain transfer.</span>
+<span data-ty=""> Transfer initiated from Avalanche testnet fuji to Celo Testnet. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 !!! note
     In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.

@@ -33,17 +33,13 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
       }
     }
       
-    <WormholeConnect config={config} />
+    <wormholeconnect config="{config}"></wormholeconnect>
     ```
 
 === "HTML Tags"
 
     ```html
-    <div
-      id="wormhole-connect"
-      data-config='{"tokens":["ETH","WETH","WBTC","USDCeth"]}'
-      data-theme='{"background":{"default": "#81c784"}}'
-    />
+    <div data-config='{"tokens":["ETH","WETH","WBTC","USDCeth"]}' data-theme='{"background":{"default": "#81c784"}}' id="wormhole-connect"></div>
 
     ```
 
@@ -98,7 +94,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
     export function buildConfig(
       customConfig?: WormholeConnectConfig
-    ): InternalConfig<NetworkV2> {
+    ): InternalConfig<networkv2> {
       const network = (
         customConfig?.network ||
         customConfig?.env || // TODO remove; deprecated
@@ -177,13 +173,13 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
         // White lists
         chains: networkData.chains,
-        chainsArr: Object.values(networkData.chains).filter((chain) => {
+        chainsArr: Object.values(networkData.chains).filter((chain) =&gt; {
           return customConfig?.networks
             ? customConfig.networks!.includes(chain.key)
             : true;
         }),
         tokens,
-        tokensArr: Object.values(tokens).filter((token) => {
+        tokensArr: Object.values(tokens).filter((token) =&gt; {
           return customConfig?.tokens
             ? customConfig.tokens!.includes(token.key)
             : true;
@@ -197,7 +193,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
         gasEstimates: networkData.gasEstimates,
         // TODO: routes that aren't supported yet are disabled
-        routes: (customConfig?.routes ?? Object.values(Route)).filter((r) =>
+        routes: (customConfig?.routes ?? Object.values(Route)).filter((r) =&gt;
           [
             Route.Bridge,
             Route.Relay,
@@ -280,14 +276,14 @@ Below are some examples of different ways you can configure Connect. See `Wormho
       return getWormholeContext(network, sdkConfig, rpcs);
     }
 
-    export async function getWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
+    export async function getWormholeContextV2(): Promise<wormholev2<networkv2>&gt; {
       if (config.v2Wormhole) return config.v2Wormhole;
       config.v2Wormhole = await newWormholeContextV2();
       return config.v2Wormhole;
     }
 
-    export async function newWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
-      const v2Config: WormholeConfigOverridesV2<NetworkV2> = { chains: {} };
+    export async function newWormholeContextV2(): Promise<wormholev2<networkv2>&gt; {
+      const v2Config: WormholeConfigOverridesV2<networkv2> = { chains: {} };
 
       for (const key in config.chains) {
         const chainV1 = key as ChainName;
@@ -305,7 +301,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
         for (const token of config.tokensArr) {
           const nativeChainV2 = config.sdkConverter.toChainV2(token.nativeChain);
 
-          const tokenV2: Partial<TokenV2> = {
+          const tokenV2: Partial<tokenv2> = {
             key: token.key,
             chain: chainV2,
             symbol: token.symbol,
@@ -353,7 +349,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
     // setConfig can be called afterwards to override the default config with integrator-provided config
     export function setConfig(customConfig?: WormholeConnectConfig) {
-      const newConfig: InternalConfig<NetworkV2> = buildConfig(customConfig);
+      const newConfig: InternalConfig<networkv2> = buildConfig(customConfig);
 
       // We overwrite keys in the existing object so the references to the config
       // imported elsewhere point to the new values
@@ -365,7 +361,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
     // TODO: add config validation step to buildConfig
     //validateConfigs();
-
+    </networkv2></tokenv2></networkv2></wormholev2<networkv2></wormholev2<networkv2></networkv2>
     ```
 
 ### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
@@ -390,7 +386,7 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
     };
 
     function App() {
-      return <WormholeConnect config={config} />;
+      return <wormholeconnect config="{config}"></wormholeconnect>;
     }
 
     ```
@@ -413,7 +409,7 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
     };
 
     function App() {
-      return <WormholeConnect config={config} />;
+      return <wormholeconnect config="{config}"></wormholeconnect>;
     }
 
     ```
@@ -484,7 +480,7 @@ const customTheme: WormholeConnectTheme = {
 };
 
 export default function App() {
-  return <WormholeConnect theme={customTheme} />;
+  return <wormholeconnect theme="{customTheme}"></wormholeconnect>;
 }
 
 ```

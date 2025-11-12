@@ -185,7 +185,7 @@ export async function postQuery({
     {
       timeout: timeoutMs,
       headers: { 'X-API-Key': apiKey, 'Content-Type': 'application/json' },
-      validateStatus: (s) => s === 200,
+      validateStatus: (s) =&gt; s === 200,
     }
   );
   return res.data; // throws on non-200
@@ -245,8 +245,8 @@ export function decodeWitnetLatestPrice(
 // Convert a bigint price into a human-readable decimal string
 function scaleBigintToDecimalString(value: bigint, decimals: number): string {
   const zero = BigInt(0);
-  const neg = value < zero ? '-' : '';
-  const v = value < zero ? -value : value;
+  const neg = value &lt; zero ? '-' : '';
+  const v = value &lt; zero ? -value : value;
   const s = v.toString().padStart(decimals + 1, '0');
   const i = s.slice(0, -decimals);
   const f = s.slice(-decimals).replace(/0+$/, '');
@@ -332,7 +332,7 @@ export async function GET() {
 
     // Mark data as stale if older than the feed’s heartbeat interval
     const heartbeat = Number(process.env.FEED_HEARTBEAT_SEC || 0);
-    const stale = heartbeat > 0 && Date.now() / 1000 - timestampSec > heartbeat;
+    const stale = heartbeat &gt; 0 &amp;&amp; Date.now() / 1000 - timestampSec &gt; heartbeat;
 
     // Return a normalized JSON payload for the frontend
     const body: QueryApiSuccess = {
@@ -399,19 +399,19 @@ function formatTime(ts: number | string) {
   }
   if (!Number.isFinite(n)) return '—';
   // If it looks like seconds, convert to ms
-  const ms = n < 1_000_000_000_000 ? n * 1000 : n;
+  const ms = n &lt; 1_000_000_000_000 ? n * 1000 : n;
   const d = new Date(ms);
   return Number.isNaN(d.getTime()) ? '—' : d.toLocaleString();
 }
 
 export default function PriceWidget() {
   // UI state: fetched data, loading state, and any errors
-  const [data, setData] = useState<ApiOk | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<apiok null="" |="">(null);
+  const [error, setError] = useState<string null="" |="">(null);
   const [loading, setLoading] = useState(false);
 
   // Keep track of polling and prevent overlapping requests
-  const timer = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<nodejs.timeout null="" |="">(null);
   const inFlight = useRef(false);
 
   // Fetch price data from the API route
@@ -435,60 +435,53 @@ export default function PriceWidget() {
   }
 
   // Fetch immediately and refresh every 30 seconds
-  useEffect(() => {
+  useEffect(() =&gt; {
     fetchPrice();
     timer.current = setInterval(fetchPrice, 30_000);
-    return () => {
+    return () =&gt; {
       if (timer.current) clearInterval(timer.current);
     };
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-gray-200 p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">ETH/USD Live Price</h2>
+    <div classname="mx-auto w-full max-w-md rounded-2xl border border-gray-200 p-6 shadow-sm">
+<div classname="mb-4 flex items-center justify-between">
+<h2 classname="text-lg font-semibold">ETH/USD Live Price</h2>
         {data?.stale ? (
-          <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
+          <span classname="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
             Stale
           </span>
         ) : (
-          <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
+          <span classname="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
             Fresh
           </span>
         )}
       </div>
-
-      <div className="space-y-2">
-        <div className="text-3xl font-bold tabular-nums">
-          {loading && !data ? 'Loading…' : data ? data.price : '—'}
+<div classname="space-y-2">
+<div classname="text-3xl font-bold tabular-nums">
+          {loading &amp;&amp; !data ? 'Loading…' : data ? data.price : '—'}
         </div>
-
-        <div className="text-sm text-gray-600">
+<div classname="text-sm text-gray-600">
           {data ? (
-            <>
+            &lt;&gt;
               Updated at {formatTime(data.updatedAt)}, block {data.blockNumber}
-            </>
+            
           ) : error ? (
-            <span className="text-red-600">{error}</span>
+            <span classname="text-red-600">{error}</span>
           ) : (
             'Fetching latest price'
           )}
         </div>
-      </div>
-
-      <div className="mt-4">
-        <button
-          onClick={fetchPrice}
-          className="w-full rounded-xl bg-gray-900 px-4 py-2 text-white hover:opacity-90"
-          disabled={loading}
-        >
+</div>
+<div classname="mt-4">
+<button classname="w-full rounded-xl bg-gray-900 px-4 py-2 text-white hover:opacity-90" disabled="{loading}" onclick="{fetchPrice}">
           {loading ? 'Refreshing…' : 'Refresh now'}
         </button>
-      </div>
-    </div>
+</div>
+</div>
   );
 }
-
+</nodejs.timeout></string></apiok>
 ```
 
 ### Add the Widget to Home Page
@@ -500,12 +493,12 @@ import PriceWidget from '@/components/PriceWidget';
 
 export default function Page() {
   return (
-    <main className="mx-auto flex max-w-2xl flex-col items-center p-6">
-      <h1 className="mb-6 text-center text-2xl font-bold">
+    <main classname="mx-auto flex max-w-2xl flex-col items-center p-6">
+<h1 classname="mb-6 text-center text-2xl font-bold">
         Live Crypto Price Widget
       </h1>
-      <PriceWidget />
-    </main>
+<pricewidget></pricewidget>
+</main>
   );
 }
 

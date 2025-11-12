@@ -83,7 +83,7 @@ function App() {
     primary: '#78c4b6',
   };
 
-  return <WormholeConnect config={config} theme={theme} />;
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
 }
 
 export default App;

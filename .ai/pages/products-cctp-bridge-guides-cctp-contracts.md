@@ -140,7 +140,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
             bytes32 mintRecipient
         ) internal returns (uint64 nonce, uint256 amountReceived) {
             // sanity check user input
-            require(amount > 0, "amount must be > 0");
+            require(amount &gt; 0, "amount must be &gt; 0");
             require(mintRecipient != bytes32(0), "invalid mint recipient");
             require(isAcceptedToken(token), "token not accepted");
             require(
@@ -310,7 +310,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
             IWormhole.VM memory vm
         ) internal view returns (bool) {
             // verify that the sender of the wormhole message is a trusted
-            return (getRegisteredEmitter(vm.emitterChainId) == vm.emitterAddress &&
+            return (getRegisteredEmitter(vm.emitterChainId) == vm.emitterAddress &amp;&amp;
                 vm.emitterAddress != bytes32(0));
         }
 
@@ -326,8 +326,8 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
             uint64 circleNonce = circleMessage.toUint64(12);
 
             // confirm that both the Wormhole message and Circle message share the same transfer info
-            return (sourceDomain == circleSourceDomain &&
-                targetDomain == circleTargetDomain &&
+            return (sourceDomain == circleSourceDomain &amp;&amp;
+                targetDomain == circleTargetDomain &amp;&amp;
                 nonce == circleNonce);
         }
 
@@ -653,7 +653,7 @@ Additionally, the contract provides methods for updating or replacing previously
         ITokenMinter public localMinter;
 
         // Valid TokenMessengers on remote domains
-        mapping(uint32 => bytes32) public remoteTokenMessengers;
+        mapping(uint32 =&gt; bytes32) public remoteTokenMessengers;
 
         // ============ Modifiers ============
         /**
@@ -974,7 +974,7 @@ Additionally, the contract provides methods for updating or replacing previously
             address _burnToken,
             bytes32 _destinationCaller
         ) internal returns (uint64 nonce) {
-            require(_amount > 0, "Amount must be nonzero");
+            require(_amount &gt; 0, "Amount must be nonzero");
             require(_mintRecipient != bytes32(0), "Mint recipient must be nonzero");
 
             bytes32 _destinationTokenMessenger = _getRemoteTokenMessenger(
@@ -1122,7 +1122,7 @@ Additionally, the contract provides methods for updating or replacing previously
             returns (bool)
         {
             return
-                _tokenMessenger != bytes32(0) &&
+                _tokenMessenger != bytes32(0) &amp;&amp;
                 remoteTokenMessengers[_domain] == _tokenMessenger;
         }
 
@@ -1132,7 +1132,7 @@ Additionally, the contract provides methods for updating or replacing previously
          */
         function _isLocalMessageTransmitter() internal view returns (bool) {
             return
-                address(localMessageTransmitter) != address(0) &&
+                address(localMessageTransmitter) != address(0) &amp;&amp;
                 msg.sender == address(localMessageTransmitter);
         }
     }
@@ -1555,8 +1555,8 @@ Additional features include replacing previously sent messages, setting maximum 
         // Next available nonce from this source domain
         uint64 public nextAvailableNonce;
 
-        // Maps a bytes32 hash of (sourceDomain, nonce) -> uint256 (0 if unused, 1 if used)
-        mapping(bytes32 => uint256) public usedNonces;
+        // Maps a bytes32 hash of (sourceDomain, nonce) -&gt; uint256 (0 if unused, 1 if used)
+        mapping(bytes32 =&gt; uint256) public usedNonces;
 
         // ============ Constructor ============
         constructor(
@@ -1817,7 +1817,7 @@ Additional features include replacing previously sent messages, setting maximum 
         ) internal {
             // Validate message body length
             require(
-                _messageBody.length <= maxMessageBodySize,
+                _messageBody.length &lt;= maxMessageBodySize,
                 "Message body exceeds max size"
             );
 
@@ -2160,7 +2160,7 @@ To enhance control and flexibility, the contract includes mechanisms to pause op
          * @notice Burn tokens owned by this TokenMinter.
          * @param burnToken burnable token address.
          * @param burnAmount amount of tokens to burn. Must be
-         * > 0, and <= maximum burn amount per message.
+         * &gt; 0, and &lt;= maximum burn amount per message.
          */
         function burn(address burnToken, uint256 burnAmount)
             external
@@ -2250,7 +2250,7 @@ To enhance control and flexibility, the contract includes mechanisms to pause op
          */
         function _isLocalTokenMessenger() internal view returns (bool) {
             return
-                address(localTokenMessenger) != address(0) &&
+                address(localTokenMessenger) != address(0) &amp;&amp;
                 msg.sender == address(localTokenMessenger);
         }
     }
@@ -2301,7 +2301,7 @@ To streamline this process, you can use the [Wormhole Solidity SDK](https://gith
 
         using CCTPMessageLib for *;
 
-        mapping(uint16 => uint32) public chainIdToCCTPDomain;
+        mapping(uint16 =&gt; uint32) public chainIdToCCTPDomain;
 
         /**
          * Sets the CCTP Domain corresponding to chain 'chain' to be 'cctpDomain'
@@ -2552,7 +2552,7 @@ Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeM
             // in which case the following code would have to be modified to support
             // redeeming these multiple transfers and checking that their 'amount's are accurate
             require(
-                additionalMessages.length <= 1,
+                additionalMessages.length &lt;= 1,
                 "CCTP: At most one Message is supported"
             );
 

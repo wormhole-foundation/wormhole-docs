@@ -70,15 +70,15 @@ For example, here's the `TokenBridge` protocol registration:
 ```typescript
 declare module '../../registry.js' {
   export namespace WormholeRegistry {
-    interface ProtocolToInterfaceMapping<N, C> {
-      TokenBridge: TokenBridge<N, C>;
+    interface ProtocolToInterfaceMapping<n, c=""> {
+      TokenBridge: TokenBridge<n, c="">;
     }
     interface ProtocolToPlatformMapping {
-      TokenBridge: EmptyPlatformMap<'TokenBridge'>;
+      TokenBridge: EmptyPlatformMap&lt;'TokenBridge'&gt;;
     }
   }
 }
-
+</n,></n,>
 ```
 
 This code snippet:
@@ -126,11 +126,11 @@ Payload registration involves:
 1. **Define payload layouts**: Create layouts to structure your payloads. For instance, a protocol might use a `TransferWithPayload` layout.
 
     ```typescript
-    export const transferWithPayloadLayout = <
+    export const transferWithPayloadLayout = &lt;
       const P extends CustomizableBytes = undefined
-    >(
+    &gt;(
       customPayload?: P
-    ) =>
+    ) =&gt;
       [
         payloadIdItem(3),
         ...transferCommonLayout,
@@ -159,7 +159,7 @@ These steps link payload literals and their layouts, enabling seamless runtime h
 At the core of the payload registration process is the `payloadFactory`, a registry that manages the mapping between payload literals and layouts:
 
 ```typescript
-export const payloadFactory = new Map<LayoutLiteral, Layout>();
+export const payloadFactory = new Map<layoutliteral, layout="">();
 
 export function registerPayloadType(
   protocol: ProtocolName,
@@ -172,7 +172,7 @@ export function registerPayloadType(
   }
   payloadFactory.set(payloadLiteral, layout);
 }
-
+</layoutliteral,>
 ```
 
  - The `payloadFactory` ensures each payload literal maps to its layout uniquely.
@@ -200,26 +200,26 @@ This system ensures:
 Below is an example of how the Wormhole SDK builds a discriminator to distinguish between payload layouts:
 
 ```typescript
-export function layoutDiscriminator<B extends boolean = false>(
+export function layoutDiscriminator<b boolean="false" extends="">(
   layouts: readonly Layout[],
   allowAmbiguous?: B
-): Discriminator<B> {
+): Discriminator<b> {
   // Internal logic to determine distinguishable layouts
   const [distinguishable, discriminator] = internalBuildDiscriminator(layouts);
-  if (!distinguishable && !allowAmbiguous) {
+  if (!distinguishable &amp;&amp; !allowAmbiguous) {
     throw new Error('Cannot uniquely distinguish the given layouts');
   }
 
   return (
     !allowAmbiguous
-      ? (encoded: BytesType) => {
+      ? (encoded: BytesType) =&gt; {
           const layout = discriminator(encoded);
           return layout.length === 0 ? null : layout[0];
         }
       : discriminator
-  ) as Discriminator<B>;
+  ) as Discriminator<b>;
 }
-
+</b></b></b>
 ```
 
  - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload.
@@ -244,11 +244,11 @@ Payloads are registered to the `TokenBridge` protocol via the `PayloadLiteralToL
 Additionally, the protocol uses reusable layouts like [`transferCommonLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L29C7-L47){target=\_blank} and extends them in more specialized layouts such as [`transferWithPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L49-L57){target=\_blank}:
 
 ```typescript
-export const transferWithPayloadLayout = <
+export const transferWithPayloadLayout = &lt;
   const P extends CustomizableBytes = undefined
->(
+&gt;(
   customPayload?: P
-) =>
+) =&gt;
   [
     payloadIdItem(3),
     ...transferCommonLayout,
@@ -271,7 +271,7 @@ To manage multiple payloads, the `TokenBridge` protocol utilizes a discriminator
 ```typescript
 const tokenBridgePayloads = ['Transfer', 'TransferWithPayload'] as const;
 
-export const getTransferDiscriminator = lazyInstantiate(() =>
+export const getTransferDiscriminator = lazyInstantiate(() =&gt;
   payloadDiscriminator([_protocol, tokenBridgePayloads])
 );
 
@@ -288,10 +288,10 @@ Here’s how the `TokenBridge` protocol connects its payloads to the Wormhole SD
 declare module '../../registry.js' {
   export namespace WormholeRegistry {
     interface PayloadLiteralToLayoutMapping
-      extends RegisterPayloadTypes<
+      extends RegisterPayloadTypes&lt;
         'TokenBridge',
         typeof tokenBridgeNamedPayloads
-      > {}
+      &gt; {}
   }
 }
 

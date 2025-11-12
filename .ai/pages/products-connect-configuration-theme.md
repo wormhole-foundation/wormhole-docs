@@ -29,7 +29,7 @@ You can customize Connect's color scheme by providing a `theme` prop.
     };
 
     function App() {
-      return <WormholeConnect config={config} theme={theme} />;
+      return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
     }
 
     ```
@@ -105,7 +105,7 @@ const config: config.WormholeConnectConfig = {
 };
 
 function App() {
-  return <WormholeConnect config={config} />;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 
 ```

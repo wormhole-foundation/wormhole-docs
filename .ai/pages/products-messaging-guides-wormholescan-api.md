@@ -132,9 +132,9 @@ export class WormholeScanAPI {
       : 'https://api.wormholescan.io/api/v1';
   }
 
-  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+  async get<t>(endpoint: string, params?: Record<string, any="">): Promise<t> {
     try {
-      const response: AxiosResponse<T> = await axios.get(
+      const response: AxiosResponse<t> = await axios.get(
         `${this.baseURL}${endpoint}`,
         {
           params,
@@ -176,7 +176,7 @@ export class WormholeScanAPI {
 
 export const wormholeScanAPI = new WormholeScanAPI();
 export const wormholeScanTestnetAPI = new WormholeScanAPI(true);
-
+</t></t></string,></t>
 ```
 
 ### Add Utility Functions
@@ -213,7 +213,7 @@ export function getRandomPlatform(
     const chainId = toChainId(capitalizedPlatform);
     return { platform, address, chainId };
   } catch (error) {
-    const platformMapping: Record<string, string> = {
+    const platformMapping: Record<string, string=""> = {
       'arbitrum-one': 'Arbitrum',
       'binance-smart-chain': 'Bsc',
       'polygon-pos': 'Polygon',
@@ -249,7 +249,7 @@ export function getOperationStatus(operation: Operation): string {
     return 'Unknown';
   }
 }
-
+</string,>
 ```
 
 ### Define Types for NTT Tokens and Transfers
@@ -275,7 +275,7 @@ export interface NTTToken {
     small: string;
     large: string;
   };
-  platforms: Record<string, string>;
+  platforms: Record<string, string="">;
 }
 
 export interface NTTTokenDetail {
@@ -286,22 +286,22 @@ export interface NTTTokenDetail {
     lastIndexed: number;
     manager: {
       address: string;
-      limits: Array<{
+      limits: Array&lt;{
         amount: string;
         baseAmount: string;
         blockchain: string;
         type: string;
         wormholeChainId: number;
-      }>;
+      }&gt;;
       owner: {
         address: string | null;
         nttOwner: string | null;
       };
-      transceivers: Array<{
+      transceivers: Array&lt;{
         address: string;
         index: number;
         type: string;
-      }>;
+      }&gt;;
       version: string;
     };
     mode: string;
@@ -401,7 +401,7 @@ export interface Operation {
 export interface OperationsResponse {
   operations: Operation[];
 }
-
+</string,>
 ```
 
 ## Fetch and Inspect NTT Tokens
@@ -437,7 +437,7 @@ async function fetchNTTTokens() {
 
     // Get detailed information for tokens
     const tokensWithPlatforms = tokens.filter(
-      (token) => Object.keys(token.platforms).length > 0
+      (token) =&gt; Object.keys(token.platforms).length &gt; 0
     );
     const tokensToProcess = tokensWithPlatforms.slice(0, TOKENS_TO_PROCESS);
 
@@ -504,27 +504,27 @@ npx tsx src/scripts/fetch-ntt-tokens.ts
 
 If successful, the output will be:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npm run ntt-tokens</span>
-	<span data-ty> </span>
-	<span data-ty>> demo-wormholescan-api@1.0.0 ntt-tokens</span>
-	<span data-ty>> npx tsx src/scripts/fetch-ntt-tokens.ts</span>
-	<span data-ty> </span>
-	<span data-ty>🔍 Fetching NTT tokens from WormholeScan API...</span>
-	<span data-ty> </span>
-	<span data-ty>🔍 Fetching detailed NTT information for first 5 tokens... </span>
-	<span data-ty> </span>
-	<span data-ty>📋 LINGO (lingo) </span>
-	<span data-ty>Selected Platform: solana (Chain ID: 1) </span>
-	<span data-ty>Token Name: Lingo </span>
-    <span data-ty>Token Symbol: Lingo </span>
-    <span data-ty>Mode: burning </span>
-    <span data-ty>Manager Address: nTTQspEC1JoEUJVFTcgZSatgcv4PNT8UYtCtyaUSKcX </span>
-    <span data-ty>Version: 3.0.0 </span>
-    <span data-ty>Transceiver Address: CnDQ53A3j2EcniJAm7UtuYKmQtovFAmumcuzC648moSE </span>
-    <span data-ty>================================================== </span>
-    <span data-ty>... </span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run ntt-tokens</span>
+<span data-ty=""> </span>
+<span data-ty="">&gt; demo-wormholescan-api@1.0.0 ntt-tokens</span>
+<span data-ty="">&gt; npx tsx src/scripts/fetch-ntt-tokens.ts</span>
+<span data-ty=""> </span>
+<span data-ty="">🔍 Fetching NTT tokens from WormholeScan API...</span>
+<span data-ty=""> </span>
+<span data-ty="">🔍 Fetching detailed NTT information for first 5 tokens... </span>
+<span data-ty=""> </span>
+<span data-ty="">📋 LINGO (lingo) </span>
+<span data-ty="">Selected Platform: solana (Chain ID: 1) </span>
+<span data-ty="">Token Name: Lingo </span>
+<span data-ty="">Token Symbol: Lingo </span>
+<span data-ty="">Mode: burning </span>
+<span data-ty="">Manager Address: nTTQspEC1JoEUJVFTcgZSatgcv4PNT8UYtCtyaUSKcX </span>
+<span data-ty="">Version: 3.0.0 </span>
+<span data-ty="">Transceiver Address: CnDQ53A3j2EcniJAm7UtuYKmQtovFAmumcuzC648moSE </span>
+<span data-ty="">================================================== </span>
+<span data-ty="">... </span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ## Fetch Transfer Operations
@@ -559,7 +559,7 @@ async function fetchTokenTransfers() {
 
   try {
     const response = (await wormholeScanTestnetAPI.get(
-      `/operations?address=${EMITTER_ADDRESS}&pageSize=${PAGE_SIZE}`
+      `/operations?address=${EMITTER_ADDRESS}&amp;pageSize=${PAGE_SIZE}`
     )) as OperationsResponse;
 
     console.log(
@@ -589,7 +589,7 @@ async function fetchTokenTransfers() {
         );
       }
 
-      if (operation.vaa && !operation.targetChain) {
+      if (operation.vaa &amp;&amp; !operation.targetChain) {
         console.log(`⏳ VAA emitted, awaiting completion`);
       }
 
@@ -613,25 +613,25 @@ npx tsx src/scripts/fetch-operations.ts
 
 If successful, the output will look like this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npm run operations</span>
-	<span data-ty> </span>
-	<span data-ty>> demo-wormholescan-api@1.0.0 operations</span>
-	<span data-ty>> npx tsx src/scripts/fetch-operations.ts</span>
-	<span data-ty> </span>
-	<span data-ty>🔍 Fetching token transfer operations from WormholeScan API...</span>
-	<span data-ty> </span>
-	<span data-ty>✅ Found 5 operations for emitter 0xdF77F921a560F6882e4EC4bbDc2fF37a7A26D4Db</span>
-	<span data-ty> </span>
-	<span data-ty>📋 Status: Completed</span>
-	<span data-ty>🔗 Transfer: Chain 1 → Chain 10002</span>
-	<span data-ty>📍 From: wA8eCo4AR7pAgFsAPpU64wYouBY6CUVPLGuMMBu2eaB</span>
-    <span data-ty>📍 To: 0xdF77F921a560F6882e4EC4bbDc2fF37a7A26D4Db</span>
-    <span data-ty>🟢 Source: 5axKXqHHq8C4vWqKnrZ3vnmDRTu4D9XPMaJBDrMrxuEawhRS7xnwcAJ5UZ1k9eYgakzz4LXopJdJjyCEZDbH9CEH (confirmed)</span>
-    <span data-ty>🟢 Target: 0x619da24b77289c20fbbd2564833b49522f2624db5e92194ddea65f18ebb116fc (completed)</span>
-    <span data-ty> </span>
-    <span data-ty>... </span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run operations</span>
+<span data-ty=""> </span>
+<span data-ty="">&gt; demo-wormholescan-api@1.0.0 operations</span>
+<span data-ty="">&gt; npx tsx src/scripts/fetch-operations.ts</span>
+<span data-ty=""> </span>
+<span data-ty="">🔍 Fetching token transfer operations from WormholeScan API...</span>
+<span data-ty=""> </span>
+<span data-ty="">✅ Found 5 operations for emitter 0xdF77F921a560F6882e4EC4bbDc2fF37a7A26D4Db</span>
+<span data-ty=""> </span>
+<span data-ty="">📋 Status: Completed</span>
+<span data-ty="">🔗 Transfer: Chain 1 → Chain 10002</span>
+<span data-ty="">📍 From: wA8eCo4AR7pAgFsAPpU64wYouBY6CUVPLGuMMBu2eaB</span>
+<span data-ty="">📍 To: 0xdF77F921a560F6882e4EC4bbDc2fF37a7A26D4Db</span>
+<span data-ty="">🟢 Source: 5axKXqHHq8C4vWqKnrZ3vnmDRTu4D9XPMaJBDrMrxuEawhRS7xnwcAJ5UZ1k9eYgakzz4LXopJdJjyCEZDbH9CEH (confirmed)</span>
+<span data-ty="">🟢 Target: 0x619da24b77289c20fbbd2564833b49522f2624db5e92194ddea65f18ebb116fc (completed)</span>
+<span data-ty=""> </span>
+<span data-ty="">... </span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ## Resources

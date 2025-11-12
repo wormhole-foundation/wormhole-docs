@@ -82,14 +82,14 @@ Follow these steps to initialize your project, install dependencies, and prepare
      * be loaded securely beforehand, for example via a keystore, secrets
      * manager, or environment variables (not recommended).
      */
-    export async function getSigner<N extends Network, C extends Chain>(
-      chain: ChainContext<N, C>
-    ): Promise<{
-      chain: ChainContext<N, C>;
-      signer: SignAndSendSigner<N, C>;
-      address: ChainAddress<C>;
-    }> {
-      let signer: Signer<any, any>;
+    export async function getSigner<n c="" chain="" extends="" network,="">(
+      chain: ChainContext<n, c="">
+    ): Promise&lt;{
+      chain: ChainContext<n, c="">;
+      signer: SignAndSendSigner<n, c="">;
+      address: ChainAddress<c>;
+    }&gt; {
+      let signer: Signer<any, any="">;
       const platform = chain.platform.utils()._platform;
 
       // Customize the signer by adding or removing platforms as needed. Be sure
@@ -114,7 +114,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
           throw new Error(`Unsupported platform: ${platform}`);
       }
 
-      const typedSigner = signer as SignAndSendSigner<N, C>;
+      const typedSigner = signer as SignAndSendSigner<n, c="">;
 
       return {
         chain,
@@ -122,7 +122,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
         address: Wormhole.chainAddress(chain.chain, signer.address()),
       };
     }
-
+    </n,></any,></c></n,></n,></n,></n>
     ```
 
     You can view the list of [supported platform constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3.11.0/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
@@ -182,11 +182,11 @@ Since attestation is a one-time process, it is good practice when working with e
       }
     }
 
-    attestToken().catch((e) => {
+    attestToken().catch((e) =&gt; {
       console.error('❌ Error in attestToken', e);
       process.exit(1);
     });
-
+    </typeof>
     ```
 
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
@@ -205,24 +205,24 @@ Since attestation is a one-time process, it is good practice when working with e
 
 4. If the token has a wrapped version registered with the destination chain WTT contract, you will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-      <span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
-      <span data-ty>✅ Token already registered on destination: SolanaAddress {
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+    <span data-ty="">✅ Token already registered on destination: SolanaAddress {
         type: 'Native',
         address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
         _bn: BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca
         }
         }</span>
-      <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
     You can safely use WTT to transfer this token to the destination chain.
 
     If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following, and you must attest the token before transfer:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
-    	<span data-ty>⚠️ Token is NOT registered on destination. Running attestation flow...</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+    <span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 ## Create Attestation on the Source Chain
 
@@ -234,7 +234,7 @@ To create the attestation transaction on the source chain, open `attest.ts` and 
     // Get the signer for the source chain
     const sourceSigner = await getSigner(sourceChain);
     // Define the token to attest and a payer address
-    const token: TokenAddress<typeof sourceChain.chain> = toNative(
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
       sourceChain.chain,
       tokenId.address.toString()
     );
@@ -309,7 +309,7 @@ Follow these steps to complete your attestation flow logic:
         let attempt = 0;
         let registered = false;
 
-        while (attempt < maxAttempts && !registered) {
+        while (attempt &lt; maxAttempts &amp;&amp; !registered) {
           attempt++;
           try {
             const wrapped = await wh.getWrappedAsset(
@@ -325,7 +325,7 @@ Follow these steps to complete your attestation flow logic:
             console.log(
               `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
             );
-            await new Promise((res) => setTimeout(res, interval));
+            await new Promise((res) =&gt; setTimeout(res, interval));
           }
         }
         if (!registered) {
@@ -346,29 +346,29 @@ Follow these steps to complete your attestation flow logic:
 
 3. You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-      <span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
-      <span data-ty>⚠️ Token is NOT registered on destination. Running attestation
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+    <span data-ty="">⚠️ Token is NOT registered on destination. Running attestation
         flow...</span>
-      <span data-ty>✅ Attestation transaction sent: [ { chain: 'Moonbeam', txid:
+    <span data-ty="">✅ Attestation transaction sent: [ { chain: 'Moonbeam', txid:
         '0xbaf7429e1099cac6f39ef7e3c30e38776cfb5b6be837dcd8793374c8ee491799' }
         ]</span>
-      <span data-ty>✅ Attestation messages: [ { chain: 'Moonbeam', emitter: UniversalAddress {
+    <span data-ty="">✅ Attestation messages: [ { chain: 'Moonbeam', emitter: UniversalAddress {
         address: [Uint8Array] }, sequence: 1507n } ]</span>
-      <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
-      <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
-      <span data-ty>.....</span>
-      <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
-      <span data-ty>📨 Submitting attestation VAA to Solana...</span>
-      <span data-ty>✅ Attestation submitted on destination: [ { chain: 'Solana', txid:
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+    <span data-ty="">.....</span>
+    <span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+    <span data-ty="">📨 Submitting attestation VAA to Solana...</span>
+    <span data-ty="">✅ Attestation submitted on destination: [ { chain: 'Solana', txid:
         '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
         } ]</span>
-      <span data-ty>✅ Wrapped token is now available on Solana: SolanaAddress { type:
+    <span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress { type:
         'Native', address: PublicKey
         [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] { _bn: BN:
         1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca } }</span>
-      <span data-ty>🚀 Token attestation complete!</span>
-      <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty="">🚀 Token attestation complete!</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
     ??? example "View complete script"
         ```typescript title="attest.ts"
@@ -415,7 +415,7 @@ Follow these steps to complete your attestation flow logic:
             // Get the signer for the source chain
             const sourceSigner = await getSigner(sourceChain);
             // Define the token to attest and a payer address
-            const token: TokenAddress<typeof sourceChain.chain> = toNative(
+            const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
               sourceChain.chain,
               tokenId.address.toString()
             );
@@ -465,7 +465,7 @@ Follow these steps to complete your attestation flow logic:
             let attempt = 0;
             let registered = false;
 
-            while (attempt < maxAttempts && !registered) {
+            while (attempt &lt; maxAttempts &amp;&amp; !registered) {
               attempt++;
               try {
                 const wrapped = await wh.getWrappedAsset(
@@ -481,7 +481,7 @@ Follow these steps to complete your attestation flow logic:
                 console.log(
                   `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
                 );
-                await new Promise((res) => setTimeout(res, interval));
+                await new Promise((res) =&gt; setTimeout(res, interval));
               }
             }
             if (!registered) {
@@ -495,11 +495,11 @@ Follow these steps to complete your attestation flow logic:
           }
         }
 
-        attestToken().catch((e) => {
+        attestToken().catch((e) =&gt; {
           console.error('❌ Error in attestToken', e);
           process.exit(1);
         });
-
+        </typeof>
         ```
 
 Congratulations! You've successfully created and submitted an attestation to register a token for transfer via WTT.

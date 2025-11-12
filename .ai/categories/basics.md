@@ -279,7 +279,7 @@ Here's the core of the contract:
         uint256 cost = quoteCrossChainCost(targetChain);
 
         require(
-            msg.value >= cost,
+            msg.value &gt;= cost,
             "Insufficient funds for cross-chain delivery"
         );
 
@@ -329,7 +329,7 @@ You can find the full code for the `MessageSender.sol` below.
             uint256 cost = quoteCrossChainCost(targetChain);
 
             require(
-                msg.value >= cost,
+                msg.value &gt;= cost,
                 "Insufficient funds for cross-chain delivery"
             );
 
@@ -360,7 +360,7 @@ Key implementation details include:
  - **`isRegisteredSender`**: Restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication.
 
 ```solidity
-    mapping(uint16 => bytes32) public registeredSenders;
+    mapping(uint16 =&gt; bytes32) public registeredSenders;
 
     modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
         require(
@@ -428,7 +428,7 @@ You can find the full code for the `MessageReceiver.sol` below.
         address public registrationOwner;
 
         // Mapping to store registered senders for each chain
-        mapping(uint16 => bytes32) public registeredSenders;
+        mapping(uint16 =&gt; bytes32) public registeredSenders;
 
         event MessageReceived(string message);
         event SourceChainLogged(uint16 sourceChain);
@@ -556,13 +556,13 @@ The repository includes:
 
 The expected output should be similar to this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>forge build</span>
-	<span data-ty> > [⠒] Compiling...</span>
-	<span data-ty> > [⠰] Compiling 30 files with 0.8.23</span>
-	<span data-ty> [⠔] Solc 0.8.23 finished in 2.29s</span>
-	<span data-ty>Compiler run successful!</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>forge build</span>
+<span data-ty=""> &gt; [⠒] Compiling...</span>
+<span data-ty=""> &gt; [⠰] Compiling 30 files with 0.8.23</span>
+<span data-ty=""> [⠔] Solc 0.8.23 finished in 2.29s</span>
+<span data-ty="">Compiler run successful!</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ### Deployment Process
@@ -609,7 +609,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
           );
 
           // Get the Avalanche Fuji configuration
-          const avalancheChain = chains.chains.find((chain) =>
+          const avalancheChain = chains.chains.find((chain) =&gt;
             chain.description.includes('Avalanche testnet')
           );
         ```
@@ -626,7 +626,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
           );
 
           // Get the Celo Testnet configuration
-          const celoChain = chains.chains.find((chain) =>
+          const celoChain = chains.chains.find((chain) =&gt;
             chain.description.includes('Celo Testnet')
           );
         ```
@@ -719,7 +719,7 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
 
       // Get the Avalanche Fuji configuration
-      const avalancheChain = chains.chains.find((chain) =>
+      const avalancheChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Avalanche testnet')
       );
       if (!avalancheChain) {
@@ -773,11 +773,11 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ??? code "deployReceiver.ts"
@@ -805,7 +805,7 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
 
       // Get the Celo Testnet configuration
-      const celoChain = chains.chains.find((chain) =>
+      const celoChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Celo Testnet')
       );
       if (!celoChain) {
@@ -880,11 +880,11 @@ You can find the full code for the `deploySender.ts` and `deployReceiver.ts` bel
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ### Deploy the Sender Contract
@@ -899,14 +899,12 @@ The sender contract will handle quoting and sending messages cross-chain.
 
 2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}.
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"
-		><span class="file-path"></span>npm run deploy:sender</span
-	>
-	<span data-ty> > wormhole-cross-chain@1.0.0 deploy:sender</span>
-	<span data-ty> > node script/deploySender.ts</span>
-	<span data-ty> MessageSender deployed to: 0xf5c474f335fFf617fA6FD04DCBb17E20ee0cEfb1</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run deploy:sender</span>
+<span data-ty=""> &gt; wormhole-cross-chain@1.0.0 deploy:sender</span>
+<span data-ty=""> &gt; node script/deploySender.ts</span>
+<span data-ty=""> MessageSender deployed to: 0xf5c474f335fFf617fA6FD04DCBb17E20ee0cEfb1</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 ### Deploy the Receiver Contract
@@ -1021,30 +1019,20 @@ If everything is set up correctly, the message will be sent from the Avalanche F
 
 The console should output something similar to this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"
-		><span class="file-path"></span>npm run send:message</span
-	>
-	<span data-ty> > wormhole-cross-chain@1.0.0 send:message</span>
-	<span data-ty> > node script/sendMessage.ts</span>
-	<span data-ty
-		>Sender Contract Address: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span
-	>
-	<span data-ty
-		>Receiver Contract Address: 0x692550997C252cC5044742D1A2BD91E4f4b46D39</span
-	>
-	<span data-ty>...</span>
-	<span data-ty>Transaction sent, waiting for confirmation...</span>
-	<span data-ty>...</span>
-	<span data-ty
-		>Message sent! Transaction hash:
-		0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6</span
-	>
-	<span data-ty
-		>You may see the transaction status on the Wormhole Explorer:
-		https://wormholescan.io/#/tx/0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6?network=TESTNET</span
-	>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run send:message</span>
+<span data-ty=""> &gt; wormhole-cross-chain@1.0.0 send:message</span>
+<span data-ty=""> &gt; node script/sendMessage.ts</span>
+<span data-ty="">Sender Contract Address: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
+<span data-ty="">Receiver Contract Address: 0x692550997C252cC5044742D1A2BD91E4f4b46D39</span>
+<span data-ty="">...</span>
+<span data-ty="">Transaction sent, waiting for confirmation...</span>
+<span data-ty="">...</span>
+<span data-ty="">Message sent! Transaction hash:
+		0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6</span>
+<span data-ty="">You may see the transaction status on the Wormhole Explorer:
+		https://wormholescan.io/#/tx/0x9d359a66ba42baced80062229c0b02b4f523fe304aff3473dcf53117aee13fb6?network=TESTNET</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 
 You can find the full code for the `sendMessage.ts` below.
@@ -1087,7 +1075,7 @@ You can find the full code for the `sendMessage.ts` below.
       console.log('...');
 
       // Get the Avalanche Fuji configuration
-      const avalancheChain = chains.chains.find((chain) =>
+      const avalancheChain = chains.chains.find((chain) =&gt;
         chain.description.includes('Avalanche testnet')
       );
 
@@ -1148,11 +1136,11 @@ You can find the full code for the `sendMessage.ts` below.
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
-
+    </void>
     ```
 
 ## Conclusion
@@ -1227,17 +1215,17 @@ To simplify this process, we've included a tool for verifying if a token has an 
 
     5. The expected output when the token has an attestation:
         
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npm run verify</span>
-        	<span data-ty> > cross-chain-token-transfer@1.0.0 verify</span>
-        	<span data-ty> > npx ts-node script/check-attestation.ts</span>
-          <span data-ty> </span>
-        	<span data-ty> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
-        	<span data-ty> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
-          <span data-ty> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
-          <span data-ty> Enter the SOURCE chain ID: 6</span>
-          <span data-ty> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npm run verify</span>
+        <span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 verify</span>
+        <span data-ty=""> &gt; npx ts-node script/check-attestation.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty=""> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
+        <span data-ty=""> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
+        <span data-ty=""> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
+        <span data-ty=""> Enter the SOURCE chain ID: 6</span>
+        <span data-ty=""> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
     Using this tool ensures that you only attempt to transfer tokens with verified attestations, avoiding any potential issues during the cross-chain transfer process.
 
@@ -1688,13 +1676,13 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     The expected output should be similar to this:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>forge build</span>
-    	<span data-ty> > [⠒] Compiling...</span>
-    	<span data-ty> > [⠰] Compiling 30 files with 0.8.23</span>
-    	<span data-ty> [⠔] Solc 0.8.23 finished in 2.29s</span>
-    	<span data-ty>Compiler run successful!</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>forge build</span>
+    <span data-ty=""> &gt; [⠒] Compiling...</span>
+    <span data-ty=""> &gt; [⠰] Compiling 30 files with 0.8.23</span>
+    <span data-ty=""> [⠔] Solc 0.8.23 finished in 2.29s</span>
+    <span data-ty="">Compiler run successful!</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 4. **Write the deployment script**: You’ll need a script to automate the deployment of your contracts. Let’s create the deployment script.
 
@@ -1755,7 +1743,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           role: 'source' | 'target'
         ): ChainConfig {
           console.log(`\nSelect the ${role.toUpperCase()} chain:`);
-          chains.forEach((chain, index) => {
+          chains.forEach((chain, index) =&gt; {
             console.log(`${index + 1}: ${chain.description}`);
           });
 
@@ -1992,7 +1980,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           }
         }
 
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -2046,7 +2034,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           role: 'source' | 'target'
         ): ChainConfig {
           console.log(`\nSelect the ${role.toUpperCase()} chain:`);
-          chains.forEach((chain, index) => {
+          chains.forEach((chain, index) =&gt; {
             console.log(`${index + 1}: ${chain.description}`);
           });
 
@@ -2207,7 +2195,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
           }
         }
 
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -2245,28 +2233,28 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npx ts-node deploy.ts</span>
-	<span data-ty> > cross-chain-token-transfer@1.0.0 deploy</span>
-	<span data-ty> > npx ts-node script/deploy.ts</span>
-	<span data-ty> Select the SOURCE chain:</span>
-	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the SOURCE chain: 1</span>
-  <span data-ty> </span>
-  <span data-ty> Select the TARGET chain:</span>
-  <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the TARGET chain: 2</span>
-  <span data-ty> CrossChainSender Avalanche testnet fuji: 0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3</span>
-  <span data-ty> CrossChainReceiver Celo Testnet: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
-  <span data-ty> </span>
-  <span data-ty> Registering CrossChainSender (0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3) as a valid sender in CrossChainReceiver (0xD720BFF42a0960cfF1118454A907a44dB358f2b1)...</span>
-  <span data-ty> </span>
-  <span data-ty> CrossChainSender registered as a valid sender on Celo Testnet</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx ts-node deploy.ts</span>
+<span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 deploy</span>
+<span data-ty=""> &gt; npx ts-node script/deploy.ts</span>
+<span data-ty=""> Select the SOURCE chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the SOURCE chain: 1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the TARGET chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the TARGET chain: 2</span>
+<span data-ty=""> CrossChainSender Avalanche testnet fuji: 0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3</span>
+<span data-ty=""> CrossChainReceiver Celo Testnet: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Registering CrossChainSender (0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3) as a valid sender in CrossChainReceiver (0xD720BFF42a0960cfF1118454A907a44dB358f2b1)...</span>
+<span data-ty=""> </span>
+<span data-ty=""> CrossChainSender registered as a valid sender on Celo Testnet</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 ## Transfer Tokens Across Chains
 
@@ -2357,7 +2345,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           networkName: string;
         } {
           const sourceOptions = Object.entries(deployedContracts).filter(
-            ([, contracts]) => contracts.CrossChainSender
+            ([, contracts]) =&gt; contracts.CrossChainSender
           );
 
           if (sourceOptions.length === 0) {
@@ -2366,7 +2354,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           }
 
           console.log('\nSelect the source chain:');
-          sourceOptions.forEach(([chainId, contracts], index) => {
+          sourceOptions.forEach(([chainId, contracts], index) =&gt; {
             console.log(`${index + 1}: ${contracts.networkName}`);
           });
 
@@ -2383,7 +2371,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           networkName: string;
         } {
           const targetOptions = Object.entries(deployedContracts).filter(
-            ([, contracts]) => contracts.CrossChainReceiver
+            ([, contracts]) =&gt; contracts.CrossChainReceiver
           );
 
           if (targetOptions.length === 0) {
@@ -2394,7 +2382,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
           }
 
           console.log('\nSelect the target chain:');
-          targetOptions.forEach(([chainId, contracts], index) => {
+          targetOptions.forEach(([chainId, contracts], index) =&gt; {
             console.log(`${index + 1}: ${contracts.networkName}`);
           });
 
@@ -2419,12 +2407,12 @@ In this step, you'll write a script to transfer tokens across chains using the `
           // Select the source chain (only show chains with CrossChainSender deployed)
           const { chainId: sourceChainId, networkName: sourceNetworkName } =
             selectSourceChain(deployedContracts);
-          const sourceChain = chains.find((chain) => chain.chainId === sourceChainId)!;
+          const sourceChain = chains.find((chain) =&gt; chain.chainId === sourceChainId)!;
 
           // Select the target chain (only show chains with CrossChainReceiver deployed)
           const { chainId: targetChainId, networkName: targetNetworkName } =
             selectTargetChain(deployedContracts);
-          const targetChain = chains.find((chain) => chain.chainId === targetChainId)!;
+          const targetChain = chains.find((chain) =&gt; chain.chainId === targetChainId)!;
 
           // Set up providers and wallets
           const sourceProvider = new ethers.JsonRpcProvider(sourceChain.rpc);
@@ -2524,7 +2512,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     4. **Finalize the script**: Call the `main` function and handle any errors that may occur during the token transfer process.
 
         ```typescript
-        main().catch((error) => {
+        main().catch((error) =&gt; {
           console.error(error);
           process.exit(1);
         });
@@ -2588,7 +2576,7 @@ You can find the full code for the `transfer.ts` file below:
       networkName: string;
     } {
       const sourceOptions = Object.entries(deployedContracts).filter(
-        ([, contracts]) => contracts.CrossChainSender
+        ([, contracts]) =&gt; contracts.CrossChainSender
       );
 
       if (sourceOptions.length === 0) {
@@ -2597,7 +2585,7 @@ You can find the full code for the `transfer.ts` file below:
       }
 
       console.log('\nSelect the source chain:');
-      sourceOptions.forEach(([chainId, contracts], index) => {
+      sourceOptions.forEach(([chainId, contracts], index) =&gt; {
         console.log(`${index + 1}: ${contracts.networkName}`);
       });
 
@@ -2614,7 +2602,7 @@ You can find the full code for the `transfer.ts` file below:
       networkName: string;
     } {
       const targetOptions = Object.entries(deployedContracts).filter(
-        ([, contracts]) => contracts.CrossChainReceiver
+        ([, contracts]) =&gt; contracts.CrossChainReceiver
       );
 
       if (targetOptions.length === 0) {
@@ -2625,7 +2613,7 @@ You can find the full code for the `transfer.ts` file below:
       }
 
       console.log('\nSelect the target chain:');
-      targetOptions.forEach(([chainId, contracts], index) => {
+      targetOptions.forEach(([chainId, contracts], index) =&gt; {
         console.log(`${index + 1}: ${contracts.networkName}`);
       });
 
@@ -2644,12 +2632,12 @@ You can find the full code for the `transfer.ts` file below:
       // Select the source chain (only show chains with CrossChainSender deployed)
       const { chainId: sourceChainId, networkName: sourceNetworkName } =
         selectSourceChain(deployedContracts);
-      const sourceChain = chains.find((chain) => chain.chainId === sourceChainId)!;
+      const sourceChain = chains.find((chain) =&gt; chain.chainId === sourceChainId)!;
 
       // Select the target chain (only show chains with CrossChainReceiver deployed)
       const { chainId: targetChainId, networkName: targetNetworkName } =
         selectTargetChain(deployedContracts);
-      const targetChain = chains.find((chain) => chain.chainId === targetChainId)!;
+      const targetChain = chains.find((chain) =&gt; chain.chainId === targetChainId)!;
 
       // Set up providers and wallets
       const sourceProvider = new ethers.JsonRpcProvider(sourceChain.rpc);
@@ -2739,7 +2727,7 @@ You can find the full code for the `transfer.ts` file below:
       );
     }
 
-    main().catch((error) => {
+    main().catch((error) =&gt; {
       console.error(error);
       process.exit(1);
     });
@@ -2766,30 +2754,30 @@ You can verify the transaction on the [Wormhole Explorer](https://wormholescan.i
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>npx ts-node transfer.ts</span>
-	<span data-ty> > cross-chain-token-transfer@1.0.0 transfer</span>
-	<span data-ty> > npx ts-node script/transfer.ts</span>
-  <span data-ty> </span>
-	<span data-ty> Select the source chain:</span>
-	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the SOURCE chain: 1</span>
-  <span data-ty> </span>
-  <span data-ty> Select the target chain:</span>
-  <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
-  <span data-ty> </span>
-  <span data-ty> Enter the number for the TARGET chain: 2</span>
-  <span data-ty> </span>
-  <span data-ty> Initiating transfer from Avalanche testnet fuji to Celo Testnet</span>
-  <span data-ty> Enter the token contract address: 0x5425890298aed601595a70ab815c96711a31bc65</span>
-  <span data-ty> Enter the recipient address on the target chain: INSERT_YOUR_WALLET_ADDRESS</span>
-  <span data-ty> Enter the amount of tokens to transfer: 2</span>
-  <span data-ty> Approved tokens for cross-chain transfer.</span>
-  <span data-ty> Transfer initiated from Avalanche testnet fuji to Celo Testnet. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
-	<span data-ty="input"><span class="file-path"></span></span>
+<div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx ts-node transfer.ts</span>
+<span data-ty=""> &gt; cross-chain-token-transfer@1.0.0 transfer</span>
+<span data-ty=""> &gt; npx ts-node script/transfer.ts</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the source chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the SOURCE chain: 1</span>
+<span data-ty=""> </span>
+<span data-ty=""> Select the target chain:</span>
+<span data-ty=""> 1: Avalanche testnet fuji</span>
+<span data-ty=""> 2: Celo Testnet</span>
+<span data-ty=""> </span>
+<span data-ty=""> Enter the number for the TARGET chain: 2</span>
+<span data-ty=""> </span>
+<span data-ty=""> Initiating transfer from Avalanche testnet fuji to Celo Testnet</span>
+<span data-ty=""> Enter the token contract address: 0x5425890298aed601595a70ab815c96711a31bc65</span>
+<span data-ty=""> Enter the recipient address on the target chain: INSERT_YOUR_WALLET_ADDRESS</span>
+<span data-ty=""> Enter the amount of tokens to transfer: 2</span>
+<span data-ty=""> Approved tokens for cross-chain transfer.</span>
+<span data-ty=""> Transfer initiated from Avalanche testnet fuji to Celo Testnet. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
+<span data-ty="input"><span class="file-path"></span></span>
 </div>
 !!! note
     In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
@@ -3233,7 +3221,7 @@ To send a message, regardless of the environment or chain, the Core Contract is 
         let fee = ctx.accounts.wormhole_bridge.fee();
         // ... Check fee and send parameters
 
-        let config = &ctx.accounts.config;
+        let config = &amp;ctx.accounts.config
         let payload: Vec<u8> = HelloWorldMessage::Hello { message }.try_to_vec()?;
 
         // Invoke `wormhole::post_message`.
@@ -3243,14 +3231,14 @@ To send a message, regardless of the environment or chain, the Core Contract is 
                 wormhole::PostMessage {
                     // ... Set fields
                 },
-                &[
+                &amp;[
                     // ... Set seeds
                 ],
             ),
             config.batch_id,
             payload,
             config.finality.into(),
-        )?;
+        )?;</u8>
         ```
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
@@ -3357,8 +3345,8 @@ The way a message is received and handled depends on the environment.
     ??? interface "Example"
 
         ```rust
-        pub fn receive_message(ctx: Context<ReceiveMessage>, vaa_hash: [u8; 32]) -> Result<()> {
-            let posted_message = &ctx.accounts.posted;
+        pub fn receive_message(ctx: Context<receivemessage>, vaa_hash: [u8; 32]) -&gt; Result&lt;()&gt; {
+            let posted_message = &amp;ctx.accounts.posted
 
             if let HelloWorldMessage::Hello { message } = posted_message.data() {
                 // Check message
@@ -3368,7 +3356,7 @@ The way a message is received and handled depends on the environment.
                 Err(HelloWorldError::InvalidMessage.into())
             }
         }
-
+        </receivemessage>
         ```
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
@@ -3557,17 +3545,17 @@ Before you begin, ensure you have the following:
 
       // Define the source chain context
       const sourceChainName: Chain = 'Sepolia';
-      const sourceChainContext = wh.getChain(sourceChainName) as ChainContext<
+      const sourceChainContext = wh.getChain(sourceChainName) as ChainContext&lt;
         'Testnet',
         'Sepolia',
         'Evm'
-      >;
+      &gt;;
       console.log(`Source chain context obtained for: ${sourceChainContext.chain}`);
 
       // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js
       // signer using the Wormhole SDK's signing and transaction handling
       // capabilities
-      let sdkSigner: WormholeSdkSigner<Network, Chain>;
+      let sdkSigner: WormholeSdkSigner<network, chain="">;
       try {
         sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
         console.log(
@@ -3589,11 +3577,11 @@ Before you begin, ensure you have the following:
 
       try {
         // Get the core protocol client
-        const coreProtocolClient: WormholeCore<Network> =
+        const coreProtocolClient: WormholeCore<network> =
           await sourceChainContext.getWormholeCore();
 
         // Generate the unsigned transactions
-        const whSignerAddress: NativeAddress<Chain> = toNative(
+        const whSignerAddress: NativeAddress<chain> = toNative(
           sdkSigner.chain(),
           sdkSigner.address()
         );
@@ -3603,7 +3591,7 @@ Before you begin, ensure you have the following:
           }...`
         );
 
-        const unsignedTxs: AsyncGenerator<UnsignedTransaction<Network, Chain>> =
+        const unsignedTxs: AsyncGenerator<unsignedtransaction<network, chain="">&gt; =
           coreProtocolClient.publishMessage(
             whSignerAddress,
             payload,
@@ -3635,7 +3623,7 @@ Before you begin, ensure you have the following:
         console.log(
           '\nWaiting a few seconds for transaction to propagate before parsing...'
         );
-        await new Promise((resolve) => setTimeout(resolve, 8000));
+        await new Promise((resolve) =&gt; setTimeout(resolve, 8000));
 
         // Retrieve VAA identifiers
         console.log(
@@ -3644,7 +3632,7 @@ Before you begin, ensure you have the following:
         const messageIds: WormholeMessageId[] =
           await sourceChainContext.parseTransaction(primaryTxid);
 
-        if (messageIds && messageIds.length > 0) {
+        if (messageIds &amp;&amp; messageIds.length &gt; 0) {
           const wormholeMessageId = messageIds[0];
           console.log('--- VAA Identifiers (WormholeMessageId) ---');
           console.log('  Emitter Chain:', wormholeMessageId.chain);
@@ -3661,20 +3649,20 @@ Before you begin, ensure you have the following:
           'Error during message publishing or VAA identifier retrieval:',
           error
         );
-        if (error instanceof Error && error.stack) {
+        if (error instanceof Error &amp;&amp; error.stack) {
           console.error('Stack Trace:', error.stack);
         }
       }
     }
 
-    main().catch((e) => {
+    main().catch((e) =&gt; {
       console.error('Critical error in main function (outer catch):', e);
-      if (e instanceof Error && e.stack) {
+      if (e instanceof Error &amp;&amp; e.stack) {
         console.error('Stack Trace:', e.stack);
       }
       process.exit(1);
     });
-
+    </unsignedtransaction<network,></chain></network></network,>
     ```
 
     This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
@@ -3687,26 +3675,26 @@ Before you begin, ensure you have the following:
 
     You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-      <span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
-      <span data-ty>Wormhole SDK Initialized.</span>
-      <span data-ty>Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-      <span data-ty>Source chain context obtained for: Sepolia</span>
-      <span data-ty>Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-      <span data-ty>Message to send: "HelloWormholeSDK-1748362375390"</span>
-      <span data-ty>Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
-      <span data-ty>Signing and sending the message publication transaction(s)...</span>
-      <span data-ty>Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-      <span data-ty>View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-      <span data-ty>Waiting a few seconds for transaction to propagate before parsing...</span>
-      <span data-ty>Attempting to parse VAA identifiers from transaction:
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
+    <span data-ty="">Wormhole SDK Initialized.</span>
+    <span data-ty="">Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+    <span data-ty="">Source chain context obtained for: Sepolia</span>
+    <span data-ty="">Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+    <span data-ty="">Message to send: "HelloWormholeSDK-1748362375390"</span>
+    <span data-ty="">Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
+    <span data-ty="">Signing and sending the message publication transaction(s)...</span>
+    <span data-ty="">Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+    <span data-ty="">View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+    <span data-ty="">Waiting a few seconds for transaction to propagate before parsing...</span>
+    <span data-ty="">Attempting to parse VAA identifiers from transaction:
         0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508...</span>
-      <span data-ty>--- VAA Identifiers (WormholeMessageId) ---</span>
-      <span data-ty> Emitter Chain: Sepolia</span>
-      <span data-ty> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
-      <span data-ty> Sequence: 1</span>
-      <span data-ty>-----------------------------------------</span>
-      <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty="">--- VAA Identifiers (WormholeMessageId) ---</span>
+    <span data-ty=""> Emitter Chain: Sepolia</span>
+    <span data-ty=""> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
+    <span data-ty=""> Sequence: 1</span>
+    <span data-ty="">-----------------------------------------</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages.
 
@@ -4437,7 +4425,7 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
 
       for (const log of result.logs) {
         if (
-          log.address === ETH_CORE &&
+          log.address === ETH_CORE &amp;&amp;
           log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC
         ) {
           const emitter = log.topics[1].substring(2);
@@ -4470,13 +4458,13 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
         import { fetchVaaId } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchVaaId = async () => {
+        const testFetchVaaId = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
-            if (vaaIds.length > 0) {
+            if (vaaIds.length &gt; 0) {
               console.log(`Transaction: ${tx}`);
-              vaaIds.forEach((vaaId) => console.log(`VAA ID: ${vaaId}`));
+              vaaIds.forEach((vaaId) =&gt; console.log(`VAA ID: ${vaaId}`));
             } else {
               console.log(`No VAA ID found for transaction: ${tx}`);
             }
@@ -4495,16 +4483,12 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no VAA ID is found, the script will log an error message.
@@ -4518,7 +4502,7 @@ Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate 
 ```typescript title="src/helpers/vaaHelper.ts"
 export async function fetchVaa(
   vaaIds: string[]
-): Promise<{ id: string; vaaBytes: string }[]> {
+): Promise&lt;{ id: string; vaaBytes: string }[]&gt; {
   const results: { id: string; vaaBytes: string }[] = [];
 
   for (const id of vaaIds) {
@@ -4549,7 +4533,7 @@ export async function fetchVaa(
         import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchVaa = async () => {
+        const testFetchVaa = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -4563,7 +4547,7 @@ export async function fetchVaa(
 
               console.log(
                 `Transaction: ${tx}\nVAA ID: ${vaaId}\nVAA Bytes: ${
-                  vaaBytes.length > 0 ? vaaBytes[0].vaaBytes : 'Not found'
+                  vaaBytes.length &gt; 0 ? vaaBytes[0].vaaBytes : 'Not found'
                 }`
               );
             }
@@ -4582,16 +4566,12 @@ export async function fetchVaa(
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no VAA is found, the script will log an error message.
@@ -4671,7 +4651,7 @@ export async function checkVaaValidity(vaaBytes: string) {
         } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testCheckVaaValidity = async () => {
+        const testCheckVaaValidity = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -4709,23 +4689,21 @@ export async function checkVaaValidity(vaaBytes: string) {
 
         If the VAA is valid, the output will be:  
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>✅ VAA Valid: true</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">✅ VAA Valid: true</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If invalid, the output will include the reason:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">❌ VAA Valid: false, Reason: VM signature invalid</span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
 ### Fetch Observations (VAA Signatures)
@@ -4743,7 +4721,7 @@ export async function fetchObservations(vaaId: string) {
       `https://api.wormholescan.io/api/v1/observations/${vaaId}`
     );
 
-    return response.data.map((obs: any) => ({
+    return response.data.map((obs: any) =&gt; ({
       guardianAddr: obs.guardianAddr.toLowerCase(),
       signature: obs.signature,
     }));
@@ -4769,7 +4747,7 @@ export async function fetchObservations(vaaId: string) {
         import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchObservations = async () => {
+        const testFetchObservations = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -4806,22 +4784,18 @@ export async function fetchObservations(vaaId: string) {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>Fetching observations</span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Fetching observations</span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
         		'ZGFlMDYyOGNjZjFjMmE0ZTk5YzE2OThhZjAzMDM4NzZlYTM1OWMxMzczNDA3YzdlMDMxZTkyNzk0ODkwYjRiYjRiOWFmNzM3NjRiMzIyOTE0ZTQwYzNlMjllMWEzNmM2NTc3ZDc5ZTdhNTM2MzA5YjA4YjExZjE3YzE3MDViNWIwMQ=='
         		}, { guardianAddr: '0x74a3bf913953d695260d88bc1aa25a4eee363ef0', signature:
         		'MzAyOTU4OGU4MWU0ODc0OTAwNDU3N2EzMGZlM2UxMDJjOWYwMjM0NWVhY2VmZWQ0ZGJlNTFkNmI3YzRhZmQ5ZTNiODFjNTg3MDNmYzUzNmJiYWFiZjNlODc1YTY3OTQwMGE4MmE3ZjZhNGYzOGY3YmRmNDNhM2VhNGQyNWNlNGMwMA=='
-        		},</span
-        	>
-        	<span data-ty>...]</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        		},</span>
+        <span data-ty="">...]</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no observations are found, the script will log an error message.
@@ -4839,7 +4813,7 @@ export async function fetchGuardianSet() {
     console.log('Fetching current guardian set');
 
     const response = await axios.get(`${WORMHOLESCAN_API}/guardianset/current`);
-    const guardians = response.data.guardianSet.addresses.map((addr: string) =>
+    const guardians = response.data.guardianSet.addresses.map((addr: string) =&gt;
       addr.toLowerCase()
     );
     const guardianSet = response.data.guardianSet.index;
@@ -4866,7 +4840,7 @@ export async function fetchGuardianSet() {
         ```typescript title="test/fetchGuardianSet.run.ts"
         import { fetchGuardianSet } from '../src/helpers/vaaHelper';
 
-        const testFetchGuardianSet = async () => {
+        const testFetchGuardianSet = async () =&gt; {
           const [guardians, guardianSetIndex] = await fetchGuardianSet();
 
           console.log('Current Guardian Set Index:', guardianSetIndex);
@@ -4885,19 +4859,19 @@ export async function fetchGuardianSet() {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>Fetching current guardian set</span>
-        	<span data-ty>Current Guardian Set Index: 4</span>
-            <span data-ty>Guardian Addresses: [
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Fetching current guardian set</span>
+        <span data-ty="">Current Guardian Set Index: 4</span>
+        <span data-ty="">Guardian Addresses: [
                 '0x5893b5a76c3f739645648885bdccc06cd70a3cd3',
                 '0xff6cb952589bde862c25ef4392132fb9d4a42157',
                 '0x114de8460193bdf3a2fcf81f86a09765f4762fd1',
                 '0x107a0086b32d7a0977926a205131d8731d39cbeb',
             </span>
-            <span data-ty>...]</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <span data-ty="">...]</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
         If an error occurs while fetching the Guardian set, a `500` status error will be logged.
 
@@ -4909,7 +4883,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript title="src/helpers/vaaHelper.ts"
     export async function replaceSignatures(
-      vaa: string | Uint8Array<ArrayBufferLike>,
+      vaa: string | Uint8Array<arraybufferlike>,
       observations: { guardianAddr: string; signature: string }[],
       currentGuardians: string[],
       guardianSetIndex: number
@@ -4941,7 +4915,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 3. **Filter valid signatures**: Remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA.
 
     ```typescript
-        const validSigs = observations.filter((sig) =>
+        const validSigs = observations.filter((sig) =&gt;
           currentGuardians.includes(sig.guardianAddr)
         );
 
@@ -4953,7 +4927,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript
         const formattedSigs = validSigs
-          .map((sig) => {
+          .map((sig) =&gt; {
             try {
               const sigBuffer = Buffer.from(sig.signature, 'base64');
               // If it's 130 bytes, it's hex-encoded and needs conversion
@@ -4965,7 +4939,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
               const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
               const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
               const vRaw = sigBuffer1[64];
-              const v = vRaw < 27 ? vRaw : vRaw - 27;
+              const v = vRaw &lt; 27 ? vRaw : vRaw - 27;
 
               return {
                 guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
@@ -4980,7 +4954,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
             }
           })
           .filter(
-            (sig): sig is { guardianIndex: number; signature: Signature } =>
+            (sig): sig is { guardianIndex: number; signature: Signature } =&gt;
               sig !== null
           ); // Remove null values
     ```
@@ -4988,7 +4962,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 5. **Deserialize the VAA**: Convert the raw VAA data into a structured format for further processing.
 
     ```typescript
-        let parsedVaa: VAA<'Uint8Array'>;
+        let parsedVaa: VAA&lt;'Uint8Array'&gt;;
         try {
           parsedVaa = deserialize('Uint8Array', vaa);
         } catch (error) {
@@ -5001,17 +4975,17 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     ```typescript
         const outdatedGuardianIndexes = parsedVaa.signatures
           .filter(
-            (vaaSig) =>
+            (vaaSig) =&gt;
               !formattedSigs.some(
-                (sig) => sig.guardianIndex === vaaSig.guardianIndex
+                (sig) =&gt; sig.guardianIndex === vaaSig.guardianIndex
               )
           )
-          .map((sig) => sig.guardianIndex);
+          .map((sig) =&gt; sig.guardianIndex);
 
         console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
 
         let updatedSignatures = parsedVaa.signatures.filter(
-          (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+          (sig) =&gt; !outdatedGuardianIndexes.includes(sig.guardianIndex)
         );
     ```
 
@@ -5019,12 +4993,12 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript
         const validReplacements = formattedSigs.filter(
-          (sig) =>
-            !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+          (sig) =&gt;
+            !updatedSignatures.some((s) =&gt; s.guardianIndex === sig.guardianIndex)
         );
 
         // Check if we have enough valid signatures to replace outdated ones**
-        if (outdatedGuardianIndexes.length > validReplacements.length) {
+        if (outdatedGuardianIndexes.length &gt; validReplacements.length) {
           console.warn(
             `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
           );
@@ -5036,13 +5010,13 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           ...validReplacements.slice(0, outdatedGuardianIndexes.length),
         ];
 
-        updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+        updatedSignatures.sort((a, b) =&gt; a.guardianIndex - b.guardianIndex);
     ```
 
 8. **Serialize the updated VAA**: Reconstruct the VAA with the updated signatures and convert it into a format suitable for submission.
 
     ```typescript
-        const updatedVaa: VAA<'Uint8Array'> = {
+        const updatedVaa: VAA&lt;'Uint8Array'&gt; = {
           ...parsedVaa,
           guardianSet: guardianSetIndex,
           signatures: updatedSignatures,
@@ -5092,7 +5066,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 ???- code "Complete Function"
     ```typescript
     export async function replaceSignatures(
-      vaa: string | Uint8Array<ArrayBufferLike>,
+      vaa: string | Uint8Array<arraybufferlike>,
       observations: { guardianAddr: string; signature: string }[],
       currentGuardians: string[],
       guardianSetIndex: number
@@ -5105,7 +5079,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           throw new Error('Guardian set is empty.');
         if (observations.length === 0) throw new Error('No observations provided.');
 
-        const validSigs = observations.filter((sig) =>
+        const validSigs = observations.filter((sig) =&gt;
           currentGuardians.includes(sig.guardianAddr)
         );
 
@@ -5113,7 +5087,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           throw new Error('No valid signatures found. Cannot proceed.');
 
         const formattedSigs = validSigs
-          .map((sig) => {
+          .map((sig) =&gt; {
             try {
               const sigBuffer = Buffer.from(sig.signature, 'base64');
               // If it's 130 bytes, it's hex-encoded and needs conversion
@@ -5125,7 +5099,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
               const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
               const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
               const vRaw = sigBuffer1[64];
-              const v = vRaw < 27 ? vRaw : vRaw - 27;
+              const v = vRaw &lt; 27 ? vRaw : vRaw - 27;
 
               return {
                 guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
@@ -5140,11 +5114,11 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
             }
           })
           .filter(
-            (sig): sig is { guardianIndex: number; signature: Signature } =>
+            (sig): sig is { guardianIndex: number; signature: Signature } =&gt;
               sig !== null
           ); // Remove null values
 
-        let parsedVaa: VAA<'Uint8Array'>;
+        let parsedVaa: VAA&lt;'Uint8Array'&gt;;
         try {
           parsedVaa = deserialize('Uint8Array', vaa);
         } catch (error) {
@@ -5153,26 +5127,26 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
         const outdatedGuardianIndexes = parsedVaa.signatures
           .filter(
-            (vaaSig) =>
+            (vaaSig) =&gt;
               !formattedSigs.some(
-                (sig) => sig.guardianIndex === vaaSig.guardianIndex
+                (sig) =&gt; sig.guardianIndex === vaaSig.guardianIndex
               )
           )
-          .map((sig) => sig.guardianIndex);
+          .map((sig) =&gt; sig.guardianIndex);
 
         console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
 
         let updatedSignatures = parsedVaa.signatures.filter(
-          (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+          (sig) =&gt; !outdatedGuardianIndexes.includes(sig.guardianIndex)
         );
 
         const validReplacements = formattedSigs.filter(
-          (sig) =>
-            !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+          (sig) =&gt;
+            !updatedSignatures.some((s) =&gt; s.guardianIndex === sig.guardianIndex)
         );
 
         // Check if we have enough valid signatures to replace outdated ones**
-        if (outdatedGuardianIndexes.length > validReplacements.length) {
+        if (outdatedGuardianIndexes.length &gt; validReplacements.length) {
           console.warn(
             `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
           );
@@ -5184,9 +5158,9 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           ...validReplacements.slice(0, outdatedGuardianIndexes.length),
         ];
 
-        updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+        updatedSignatures.sort((a, b) =&gt; a.guardianIndex - b.guardianIndex);
 
-        const updatedVaa: VAA<'Uint8Array'> = {
+        const updatedVaa: VAA&lt;'Uint8Array'&gt; = {
           ...parsedVaa,
           guardianSet: guardianSetIndex,
           signatures: updatedSignatures,
@@ -5309,18 +5283,18 @@ Now that we have all the necessary helper functions, we will create a script to 
     npx tsx src/scripts/replaceSignatures.ts
     ```
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
-    	<span data-ty> </span>
-    	<span data-ty>Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
-        <span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
-        <span data-ty>Fetching observations</span>
-        <span data-ty>Fetching current guardian set</span>
-        <span data-ty>Replacing Signatures...</span>
-        <span data-ty>Outdated Guardian Indexes: [ 0 ]</span>
-        <span data-ty>Sending updated VAA to RPC...</span>
-        <span data-ty>Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
+    <span data-ty=""> </span>
+    <span data-ty="">Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+    <span data-ty="">❌ VAA Valid: false, Reason: VM signature invalid</span>
+    <span data-ty="">Fetching observations</span>
+    <span data-ty="">Fetching current guardian set</span>
+    <span data-ty="">Replacing Signatures...</span>
+    <span data-ty="">Outdated Guardian Indexes: [ 0 ]</span>
+    <span data-ty="">Sending updated VAA to RPC...</span>
+    <span data-ty="">Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 
@@ -5517,55 +5491,55 @@ The struct below defines the accounts required by your instruction and wires the
 
 ```rs
 #[derive(Accounts)]
-pub struct PostMessage<'info> {
+pub struct PostMessage&lt;'info&gt; {
     #[account(mut)]
-    payer: Signer<'info>,
+    payer: Signer&lt;'info&gt;,
 
-    wormhole_post_message_shim: Program<'info, WormholePostMessageShim>,
+    wormhole_post_message_shim: Program&lt;'info, WormholePostMessageShim&gt;,
 
     #[account(mut, address = CORE_BRIDGE_CONFIG)]
     /// CHECK: Wormhole bridge config. [`wormhole::post_message`] requires this account be mutable.
     /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
-    pub bridge: UncheckedAccount<'info>,
+    pub bridge: UncheckedAccount&lt;'info&gt;,
 
-    #[account(mut, seeds = [&emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
+    #[account(mut, seeds = [&amp;emitter.key.to_bytes()], bump, seeds::program = wormhole_post_message_shim::ID)]
     /// CHECK: Wormhole Message. [`wormhole::post_message`] requires this account be signer and mutable.
     /// Seeds constraint added for IDL generation / convenience, it will be enforced by the shim.
-    pub message: UncheckedAccount<'info>,
+    pub message: UncheckedAccount&lt;'info&gt;,
 
     #[account(seeds = [b"emitter"], bump)]
     /// CHECK: Our emitter
     /// Seeds constraint added for IDL generation / convenience, it will be enforced to match the signer used in the CPI call.
-    pub emitter: UncheckedAccount<'info>,
+    pub emitter: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut)]
     /// CHECK: Emitter's sequence account. [`wormhole::post_message`] requires this account be mutable.
     /// Explicitly do not re-derive this account. The core bridge verifies the derivation anyway and
     /// as of Anchor 0.30.1, auto-derivation for other programs' accounts via IDL doesn't work.
-    pub sequence: UncheckedAccount<'info>,
+    pub sequence: UncheckedAccount&lt;'info&gt;,
 
     #[account(mut, address = CORE_BRIDGE_FEE_COLLECTOR)]
     /// CHECK: Wormhole fee collector. [`wormhole::post_message`] requires this account be mutable.
     /// Address constraint added for IDL generation / convenience, it will be enforced by the core bridge.
-    pub fee_collector: UncheckedAccount<'info>,
+    pub fee_collector: UncheckedAccount&lt;'info&gt;,
 
     /// Clock sysvar.
     /// Type added for IDL generation / convenience, it will be enforced by the core bridge.
-    pub clock: Sysvar<'info, Clock>,
+    pub clock: Sysvar&lt;'info, Clock&gt;,
 
     /// System program.
     /// Type for IDL generation / convenience, it will be enforced by the core bridge.
-    pub system_program: Program<'info, System>,
+    pub system_program: Program&lt;'info, System&gt;,
 
     #[account(address = CORE_BRIDGE_PROGRAM_ID)]
     /// CHECK: Wormhole program.
     /// Address constraint added for IDL generation / convenience, it will be enforced by the shim.
-    pub wormhole_program: UncheckedAccount<'info>,
+    pub wormhole_program: UncheckedAccount&lt;'info&gt;,
 
     /// CHECK: Shim event authority
     /// TODO: An address constraint could be included if this address was published to wormhole_solana_consts
     /// Address will be enforced by the shim.
-    pub wormhole_post_message_shim_ea: UncheckedAccount<'info>,
+    pub wormhole_post_message_shim_ea: UncheckedAccount&lt;'info&gt;,
 }
 ```
 
@@ -5576,20 +5550,20 @@ This instruction reuses a single per-emitter message PDA (no per-message rent). 
 The `post_message` function builds a `CpiContext` and invokes the shim’s `post_message` instruction, forwarding the nonce, finality, and your payload. The Core Bridge enforces fee requirements and assigns the sequence, while the shim emits the payload as an event in the same transaction.
 
 ```rs
-pub fn post_message(ctx: Context<PostMessage>) -> Result<()> {
+pub fn post_message(ctx: Context<postmessage>) -&gt; Result&lt;()&gt; {
     // wormhole::post_message may require that a fee be sent to the fee_collector account of the core bridge.
     // The following code could be used to handle this via CPI call.
     // However, this example handles this complexity on the client side using a `preInstruction`
     //
     // let fee = ctx.accounts.wormhole_bridge.fee();
-    // if fee > 0 {
+    // if fee &gt; 0 {
     //     solana_program::program::invoke(
-    //         &solana_program::system_instruction::transfer(
-    //             &ctx.accounts.payer.key(),
-    //             &ctx.accounts.fee_collector.key(),
+    //         &amp;solana_program::system_instruction::transfer(
+    //             &amp;ctx.accounts.payer.key(),
+    //             &amp;ctx.accounts.fee_collector.key(),
     //             fee,
     //         ),
-    //         &ctx.accounts.to_account_infos(),
+    //         &amp;ctx.accounts.to_account_infos(),
     //     )?;
     // }
 
@@ -5609,7 +5583,7 @@ pub fn post_message(ctx: Context<PostMessage>) -> Result<()> {
                 program: ctx.accounts.wormhole_post_message_shim.to_account_info(),
                 event_authority: ctx.accounts.wormhole_post_message_shim_ea.to_account_info(),
             },
-            &[&[b"emitter", &[ctx.bumps.emitter]]],
+            &amp;[&amp;[b"emitter", &amp;[ctx.bumps.emitter]]],
         ),
         0,
         Finality::Finalized,
@@ -5617,7 +5591,7 @@ pub fn post_message(ctx: Context<PostMessage>) -> Result<()> {
     )?;
 
     Ok(())
-}
+}</postmessage>
 ```
 
 ## Limitations and Considerations 
@@ -5825,16 +5799,16 @@ You’ll wire three accounts for verification:
 
 ```rs
 #[derive(Accounts)]
-pub struct ConsumeVaa<'info> {
+pub struct ConsumeVaa&lt;'info&gt; {
     /// CHECK: Guardian set used for signature verification by shim.
     /// Derivation is checked by the shim.
-    guardian_set: UncheckedAccount<'info>,
+    guardian_set: UncheckedAccount&lt;'info&gt;,
 
     /// CHECK: Stored guardian signatures to be verified by shim.
     /// Ownership ownership and discriminator is checked by the shim.
-    guardian_signatures: UncheckedAccount<'info>,
+    guardian_signatures: UncheckedAccount&lt;'info&gt;,
 
-    wormhole_verify_vaa_shim: Program<'info, WormholeVerifyVaaShim>,
+    wormhole_verify_vaa_shim: Program&lt;'info, WormholeVerifyVaaShim&gt;,
 }
 ```
 
@@ -5846,12 +5820,12 @@ The `consume_vaa` function computes the digest, calls the shim’s `verify_hash`
 
 ```rs
 pub fn consume_vaa(
-    ctx: Context<ConsumeVaa>,
+    ctx: Context<consumevaa>,
     guardian_set_bump: u8,
     vaa_body: Vec<u8>,
-) -> Result<()> {
+) -&gt; Result&lt;()&gt; {
     // Compute the message hash.
-    let message_hash = &solana_program::keccak::hashv(&[&vaa_body]).to_bytes();
+    let message_hash = &amp;solana_program::keccak::hashv(&amp;[&amp;vaa_body]).to_bytes();
     let digest = keccak::hash(message_hash.as_slice()).to_bytes();
     // Verify the hash against the signatures.
     wormhole_verify_vaa_shim::cpi::verify_hash(
@@ -5867,7 +5841,7 @@ pub fn consume_vaa(
     )?;
     // Decode vaa_body, perform security checks, and do your thing.
     Ok(())
-}
+}</u8></consumevaa>
 ```
 
 ## Limitations and Security Considerations

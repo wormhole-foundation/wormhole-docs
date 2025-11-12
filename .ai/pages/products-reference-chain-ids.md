@@ -21,8 +21,111 @@ The following table documents the chain IDs used by Wormhole and places them alo
 
 === "Mainnet"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum</td><td><code>2</code></td><td><code>1</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Mainnet Beta</code> - <code>5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>mainnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>1</code></td></tr><tr><td>Arbitrum</td><td><code>23</code></td><td><code>Arbitrum One</code> - <code>42161</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>C-Chain</code> - <code>43114</code></td></tr><tr><td>Base</td><td><code>30</code></td><td><code>Base</code> - <code>8453</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>56</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>celestia</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>42220</code></td></tr><tr><td>Converge</td><td><code>53</code></td><td></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>cosmoshub-4</code></td></tr><tr><td>CreditCoin</td><td><code>59</code></td><td></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td><code>dymension_1100-1</code></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9001-2</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>250</code></td></tr><tr><td>Fogo</td><td><code>51</code></td><td></td></tr><tr><td>HyperCore</td><td><code>65000</code></td><td><code>20000</code></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>47</code></td><td></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-1</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>8217</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>kaiyo-1</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59144</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>5000</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td></td></tr><tr><td>Moca</td><td><code>63</code></td><td><code>2288</code></td></tr><tr><td>Monad</td><td><code>48</code></td><td></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>1284</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>mainnet</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>neutron-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>noble-1</code></td></tr><tr><td>Optimism</td><td><code>24</code></td><td><code>10</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmosis-1</code></td></tr><tr><td>Plasma</td><td><code>58</code></td><td></td></tr><tr><td>Plume</td><td><code>55</code></td><td><code>98866</code></td></tr><tr><td>Polygon</td><td><code>5</code></td><td><code>137</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td><code>pio-mainnet-1</code></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>534352</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>pacific-1</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>Sonic</td><td><code>52</code></td><td><code>146</code></td></tr><tr><td>Stacks</td><td><code>60</code></td><td><code>1</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td><code>stargaze-1</code></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>35834a8a</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code></code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>480</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>196</code></td></tr><tr><td>XRPL-EVM</td><td><code>57</code></td><td><code>1440000</code></td></tr></tbody></table>
+    | Ethereum | 2 | 1 |
+| Solana | 1 | Mainnet Beta-5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d |
+| Algorand | 8 | mainnet-v1.0 |
+| Aptos | 22 | 1 |
+| Arbitrum | 23 | Arbitrum One-42161 |
+| Avalanche | 6 | C-Chain-43114 |
+| Base | 30 | Base-8453 |
+| Berachain | 39 |  |
+| BNB Smart Chain | 4 | 56 |
+| Celestia | 4004 | celestia |
+| Celo | 14 | 42220 |
+| Converge | 53 |  |
+| Cosmos Hub | 4000 | cosmoshub-4 |
+| CreditCoin | 59 |  |
+| Dymension | 4007 | dymension_1100-1 |
+| Evmos | 4001 | evmos_9001-2 |
+| Fantom | 10 | 250 |
+| Fogo | 51 |  |
+| HyperCore | 65000 | 20000 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
+| Injective | 19 | injective-1 |
+| Ink | 46 |  |
+| Kaia | 13 | 8217 |
+| Kujira | 4002 | kaiyo-1 |
+| Linea | 38 | 59144 |
+| Mantle | 35 | 5000 |
+| Mezo | 50 |  |
+| Moca | 63 | 2288 |
+| Monad | 48 |  |
+| Moonbeam | 16 | 1284 |
+| NEAR | 15 | mainnet |
+| Neutron | 4003 | neutron-1 |
+| Noble | 4009 | noble-1 |
+| Optimism | 24 | 10 |
+| Osmosis | 20 | osmosis-1 |
+| Plasma | 58 |  |
+| Plume | 55 | 98866 |
+| Polygon | 5 | 137 |
+| Provenance | 4008 | pio-mainnet-1 |
+| Pythnet | 26 |  |
+| Scroll | 34 | 534352 |
+| SEDA | 4006 |  |
+| Sei | 32 | pacific-1 |
+| Seievm | 40 |  |
+| Sonic | 52 | 146 |
+| Stacks | 60 | 1 |
+| Stargaze | 4005 | stargaze-1 |
+| Sui | 21 | 35834a8a |
+| Unichain | 44 |  |
+| World Chain | 45 | 480 |
+| X Layer | 37 | 196 |
+| XRPL-EVM | 57 | 1440000 |
 
 === "Testnet"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>10006</code></td><td><code>Holesky</code> - <code>17000</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>10002</code></td><td><code>Sepolia</code> - <code>11155111</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Devnet</code> - <code>EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>testnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>2</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>10003</code></td><td><code>Sepolia</code> - <code>421614</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>Fuji</code> - <code>43113</code></td></tr><tr><td>Base Sepolia</td><td><code>10004</code></td><td><code>Base Sepolia</code> - <code>84532</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td><code>80084</code></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>97</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>mocha-4</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>Alfajores</code> - <code>44787</code></td></tr><tr><td>Converge</td><td><code>53</code></td><td><code>52085145</code></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>theta-testnet-001</code></td></tr><tr><td>CreditCoin</td><td><code>59</code></td><td></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9000-4</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>4002</code></td></tr><tr><td>Fogo</td><td><code>51</code></td><td><code>9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9</code></td></tr><tr><td>HyperCore</td><td><code>65000</code></td><td><code>20000</code></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>47</code></td><td><code>998</code></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-888</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td><code>763373</code></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>Kairos</code> - <code>1001</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>harpoon-4</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59141</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>Sepolia</code> - <code>5003</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td><code>31611</code></td></tr><tr><td>Moca</td><td><code>63</code></td><td><code>222888</code></td></tr><tr><td>Monad</td><td><code>48</code></td><td><code>10143</code></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>Moonbase-Alphanet</code> - <code>1287</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>testnet</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>pion-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>grand-1</code></td></tr><tr><td>Optimism Sepolia</td><td><code>10005</code></td><td><code>Optimism Sepolia</code> - <code>11155420</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmo-test-5</code></td></tr><tr><td>Plasma</td><td><code>58</code></td><td></td></tr><tr><td>Plume</td><td><code>55</code></td><td><code>98867</code></td></tr><tr><td>Polygon Amoy</td><td><code>10007</code></td><td><code>Amoy</code> - <code>80002</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>Sepolia</code> - <code>534351</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td><code>seda-1-testnet</code></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>atlantic-2</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>Sonic</td><td><code>52</code></td><td><code>57054</code></td></tr><tr><td>Stacks</td><td><code>60</code></td><td><code>2147483648</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>4c78adac</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code>Unichain Sepolia</code> - <code>1301</code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>4801</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>195</code></td></tr><tr><td>XRPL-EVM</td><td><code>57</code></td><td><code>1449000</code></td></tr></tbody></table>
+    | Ethereum Holesky | 10006 | Holesky-17000 |
+| Ethereum Sepolia | 10002 | Sepolia-11155111 |
+| Solana | 1 | Devnet-EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG |
+| Algorand | 8 | testnet-v1.0 |
+| Aptos | 22 | 2 |
+| Arbitrum Sepolia | 10003 | Sepolia-421614 |
+| Avalanche | 6 | Fuji-43113 |
+| Base Sepolia | 10004 | Base Sepolia-84532 |
+| Berachain | 39 | 80084 |
+| BNB Smart Chain | 4 | 97 |
+| Celestia | 4004 | mocha-4 |
+| Celo | 14 | Alfajores-44787 |
+| Converge | 53 | 52085145 |
+| Cosmos Hub | 4000 | theta-testnet-001 |
+| CreditCoin | 59 |  |
+| Dymension | 4007 |  |
+| Evmos | 4001 | evmos_9000-4 |
+| Fantom | 10 | 4002 |
+| Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
+| HyperCore | 65000 | 20000 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
+| Injective | 19 | injective-888 |
+| Ink | 46 | 763373 |
+| Kaia | 13 | Kairos-1001 |
+| Kujira | 4002 | harpoon-4 |
+| Linea | 38 | 59141 |
+| Mantle | 35 | Sepolia-5003 |
+| Mezo | 50 | 31611 |
+| Moca | 63 | 222888 |
+| Monad | 48 | 10143 |
+| Moonbeam | 16 | Moonbase-Alphanet-1287 |
+| NEAR | 15 | testnet |
+| Neutron | 4003 | pion-1 |
+| Noble | 4009 | grand-1 |
+| Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
+| Osmosis | 20 | osmo-test-5 |
+| Plasma | 58 |  |
+| Plume | 55 | 98867 |
+| Polygon Amoy | 10007 | Amoy-80002 |
+| Provenance | 4008 |  |
+| Pythnet | 26 |  |
+| Scroll | 34 | Sepolia-534351 |
+| SEDA | 4006 | seda-1-testnet |
+| Sei | 32 | atlantic-2 |
+| Seievm | 40 |  |
+| Sonic | 52 | 57054 |
+| Stacks | 60 | 2147483648 |
+| Stargaze | 4005 |  |
+| Sui | 21 | 4c78adac |
+| Unichain | 44 | Unichain Sepolia-1301 |
+| World Chain | 45 | 4801 |
+| X Layer | 37 | 195 |
+| XRPL-EVM | 57 | 1449000 |

@@ -76,7 +76,7 @@ Deploying NTT on EVM chains follows a structured process:
         ??? interface "`INttToken` Interface"
             ```solidity
             // SPDX-License-Identifier: Apache 2
-            pragma solidity >=0.8.8 <0.9.0;
+            pragma solidity &gt;=0.8.8 &lt;0.9.0;
 
             interface INttToken {
                 /// @notice Error when the caller is not the minter.

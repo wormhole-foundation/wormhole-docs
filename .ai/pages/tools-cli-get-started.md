@@ -83,7 +83,7 @@ Options:
 
     Options:
       --help     Show help                                                 [boolean]
-      --version  Show version number                                       [boolean]
+      --version  Show version number                                       [boolean]</package-dir></package-dir></origin-address></chain></seed></account></message></package-dir></seed></package-dir>
     ```
 
 ??? interface "Edit VAA"
@@ -135,7 +135,7 @@ Options:
     Options:
       --help     Show help                                                 [boolean]
       --version  Show version number                                       [boolean]
-      --rpc      RPC endpoint                                               [string]
+      --rpc      RPC endpoint                                               [string]</secret>
     ```
 
 ??? interface "Generate"
@@ -181,7 +181,7 @@ Options:
 
     Options:
       --help     Show help                                                 [boolean]
-      --version  Show version number                                       [boolean]
+      --version  Show version number                                       [boolean]</target-chain></origin-address></origin-chain></chain></network></module></chain></network></address></chain></address></chain></module></chain></network></chain>
     ```
 
 ??? interface "NEAR"
@@ -203,7 +203,7 @@ Options:
           --target    Near account to upgrade                               [string]
           --mnemonic  Near private keys                                     [string]
           --key       Near private key                                      [string]
-      -r, --rpc       Override default rpc endpoint url                     [string]
+      -r, --rpc       Override default rpc endpoint url                     [string]</file></file>
     ```
 
 ??? interface "Parse"
@@ -409,7 +409,7 @@ Options:
 
     Options:
       --help     Show help                                                 [boolean]
-      --version  Show version number                                       [boolean]
+      --version  Show version number                                       [boolean]</transaction-digest></state-object-id></owner></package-dir>
     ```
 
 ??? interface "Transfer"

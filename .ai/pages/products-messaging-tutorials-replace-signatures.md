@@ -233,7 +233,7 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
 
       for (const log of result.logs) {
         if (
-          log.address === ETH_CORE &&
+          log.address === ETH_CORE &amp;&amp;
           log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC
         ) {
           const emitter = log.topics[1].substring(2);
@@ -266,13 +266,13 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
         import { fetchVaaId } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchVaaId = async () => {
+        const testFetchVaaId = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
-            if (vaaIds.length > 0) {
+            if (vaaIds.length &gt; 0) {
               console.log(`Transaction: ${tx}`);
-              vaaIds.forEach((vaaId) => console.log(`VAA ID: ${vaaId}`));
+              vaaIds.forEach((vaaId) =&gt; console.log(`VAA ID: ${vaaId}`));
             } else {
               console.log(`No VAA ID found for transaction: ${tx}`);
             }
@@ -291,16 +291,12 @@ export async function fetchVaaId(txHashes: string[]): Promise<string[]> {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no VAA ID is found, the script will log an error message.
@@ -314,7 +310,7 @@ Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate 
 ```typescript title="src/helpers/vaaHelper.ts"
 export async function fetchVaa(
   vaaIds: string[]
-): Promise<{ id: string; vaaBytes: string }[]> {
+): Promise&lt;{ id: string; vaaBytes: string }[]&gt; {
   const results: { id: string; vaaBytes: string }[] = [];
 
   for (const id of vaaIds) {
@@ -345,7 +341,7 @@ export async function fetchVaa(
         import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchVaa = async () => {
+        const testFetchVaa = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -359,7 +355,7 @@ export async function fetchVaa(
 
               console.log(
                 `Transaction: ${tx}\nVAA ID: ${vaaId}\nVAA Bytes: ${
-                  vaaBytes.length > 0 ? vaaBytes[0].vaaBytes : 'Not found'
+                  vaaBytes.length &gt; 0 ? vaaBytes[0].vaaBytes : 'Not found'
                 }`
               );
             }
@@ -378,16 +374,12 @@ export async function fetchVaa(
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no VAA is found, the script will log an error message.
@@ -467,7 +459,7 @@ export async function checkVaaValidity(vaaBytes: string) {
         } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testCheckVaaValidity = async () => {
+        const testCheckVaaValidity = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -505,23 +497,21 @@ export async function checkVaaValidity(vaaBytes: string) {
 
         If the VAA is valid, the output will be:  
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>✅ VAA Valid: true</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">✅ VAA Valid: true</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If invalid, the output will include the reason:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">❌ VAA Valid: false, Reason: VM signature invalid</span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
 ### Fetch Observations (VAA Signatures)
@@ -539,7 +529,7 @@ export async function fetchObservations(vaaId: string) {
       `https://api.wormholescan.io/api/v1/observations/${vaaId}`
     );
 
-    return response.data.map((obs: any) => ({
+    return response.data.map((obs: any) =&gt; ({
       guardianAddr: obs.guardianAddr.toLowerCase(),
       signature: obs.signature,
     }));
@@ -565,7 +555,7 @@ export async function fetchObservations(vaaId: string) {
         import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
         import { TXS } from '../src/config/constants';
 
-        const testFetchObservations = async () => {
+        const testFetchObservations = async () =&gt; {
           for (const tx of TXS) {
             const vaaIds = await fetchVaaId([tx]);
 
@@ -602,22 +592,18 @@ export async function fetchObservations(vaaId: string) {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>Fetching observations</span>
-        	<span data-ty
-        		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
-        	>
-        	<span data-ty
-        		>Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Fetching observations</span>
+        <span data-ty="">Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+        <span data-ty="">Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
         		'ZGFlMDYyOGNjZjFjMmE0ZTk5YzE2OThhZjAzMDM4NzZlYTM1OWMxMzczNDA3YzdlMDMxZTkyNzk0ODkwYjRiYjRiOWFmNzM3NjRiMzIyOTE0ZTQwYzNlMjllMWEzNmM2NTc3ZDc5ZTdhNTM2MzA5YjA4YjExZjE3YzE3MDViNWIwMQ=='
         		}, { guardianAddr: '0x74a3bf913953d695260d88bc1aa25a4eee363ef0', signature:
         		'MzAyOTU4OGU4MWU0ODc0OTAwNDU3N2EzMGZlM2UxMDJjOWYwMjM0NWVhY2VmZWQ0ZGJlNTFkNmI3YzRhZmQ5ZTNiODFjNTg3MDNmYzUzNmJiYWFiZjNlODc1YTY3OTQwMGE4MmE3ZjZhNGYzOGY3YmRmNDNhM2VhNGQyNWNlNGMwMA=='
-        		},</span
-        	>
-        	<span data-ty>...]</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        		},</span>
+        <span data-ty="">...]</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
 
         If no observations are found, the script will log an error message.
@@ -635,7 +621,7 @@ export async function fetchGuardianSet() {
     console.log('Fetching current guardian set');
 
     const response = await axios.get(`${WORMHOLESCAN_API}/guardianset/current`);
-    const guardians = response.data.guardianSet.addresses.map((addr: string) =>
+    const guardians = response.data.guardianSet.addresses.map((addr: string) =&gt;
       addr.toLowerCase()
     );
     const guardianSet = response.data.guardianSet.index;
@@ -662,7 +648,7 @@ export async function fetchGuardianSet() {
         ```typescript title="test/fetchGuardianSet.run.ts"
         import { fetchGuardianSet } from '../src/helpers/vaaHelper';
 
-        const testFetchGuardianSet = async () => {
+        const testFetchGuardianSet = async () =&gt; {
           const [guardians, guardianSetIndex] = await fetchGuardianSet();
 
           console.log('Current Guardian Set Index:', guardianSetIndex);
@@ -681,19 +667,19 @@ export async function fetchGuardianSet() {
 
         If successful, the output will be:
 
-        <div id="termynal" data-termynal>
-        	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
-        	<span data-ty> </span>
-        	<span data-ty>Fetching current guardian set</span>
-        	<span data-ty>Current Guardian Set Index: 4</span>
-            <span data-ty>Guardian Addresses: [
+        <div data-termynal="" id="termynal">
+        <span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
+        <span data-ty=""> </span>
+        <span data-ty="">Fetching current guardian set</span>
+        <span data-ty="">Current Guardian Set Index: 4</span>
+        <span data-ty="">Guardian Addresses: [
                 '0x5893b5a76c3f739645648885bdccc06cd70a3cd3',
                 '0xff6cb952589bde862c25ef4392132fb9d4a42157',
                 '0x114de8460193bdf3a2fcf81f86a09765f4762fd1',
                 '0x107a0086b32d7a0977926a205131d8731d39cbeb',
             </span>
-            <span data-ty>...]</span>
-        	<span data-ty="input"><span class="file-path"></span></span>
+        <span data-ty="">...]</span>
+        <span data-ty="input"><span class="file-path"></span></span>
         </div>
         If an error occurs while fetching the Guardian set, a `500` status error will be logged.
 
@@ -705,7 +691,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript title="src/helpers/vaaHelper.ts"
     export async function replaceSignatures(
-      vaa: string | Uint8Array<ArrayBufferLike>,
+      vaa: string | Uint8Array<arraybufferlike>,
       observations: { guardianAddr: string; signature: string }[],
       currentGuardians: string[],
       guardianSetIndex: number
@@ -737,7 +723,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 3. **Filter valid signatures**: Remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA.
 
     ```typescript
-        const validSigs = observations.filter((sig) =>
+        const validSigs = observations.filter((sig) =&gt;
           currentGuardians.includes(sig.guardianAddr)
         );
 
@@ -749,7 +735,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript
         const formattedSigs = validSigs
-          .map((sig) => {
+          .map((sig) =&gt; {
             try {
               const sigBuffer = Buffer.from(sig.signature, 'base64');
               // If it's 130 bytes, it's hex-encoded and needs conversion
@@ -761,7 +747,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
               const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
               const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
               const vRaw = sigBuffer1[64];
-              const v = vRaw < 27 ? vRaw : vRaw - 27;
+              const v = vRaw &lt; 27 ? vRaw : vRaw - 27;
 
               return {
                 guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
@@ -776,7 +762,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
             }
           })
           .filter(
-            (sig): sig is { guardianIndex: number; signature: Signature } =>
+            (sig): sig is { guardianIndex: number; signature: Signature } =&gt;
               sig !== null
           ); // Remove null values
     ```
@@ -784,7 +770,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 5. **Deserialize the VAA**: Convert the raw VAA data into a structured format for further processing.
 
     ```typescript
-        let parsedVaa: VAA<'Uint8Array'>;
+        let parsedVaa: VAA&lt;'Uint8Array'&gt;;
         try {
           parsedVaa = deserialize('Uint8Array', vaa);
         } catch (error) {
@@ -797,17 +783,17 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     ```typescript
         const outdatedGuardianIndexes = parsedVaa.signatures
           .filter(
-            (vaaSig) =>
+            (vaaSig) =&gt;
               !formattedSigs.some(
-                (sig) => sig.guardianIndex === vaaSig.guardianIndex
+                (sig) =&gt; sig.guardianIndex === vaaSig.guardianIndex
               )
           )
-          .map((sig) => sig.guardianIndex);
+          .map((sig) =&gt; sig.guardianIndex);
 
         console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
 
         let updatedSignatures = parsedVaa.signatures.filter(
-          (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+          (sig) =&gt; !outdatedGuardianIndexes.includes(sig.guardianIndex)
         );
     ```
 
@@ -815,12 +801,12 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
     ```typescript
         const validReplacements = formattedSigs.filter(
-          (sig) =>
-            !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+          (sig) =&gt;
+            !updatedSignatures.some((s) =&gt; s.guardianIndex === sig.guardianIndex)
         );
 
         // Check if we have enough valid signatures to replace outdated ones**
-        if (outdatedGuardianIndexes.length > validReplacements.length) {
+        if (outdatedGuardianIndexes.length &gt; validReplacements.length) {
           console.warn(
             `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
           );
@@ -832,13 +818,13 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           ...validReplacements.slice(0, outdatedGuardianIndexes.length),
         ];
 
-        updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+        updatedSignatures.sort((a, b) =&gt; a.guardianIndex - b.guardianIndex);
     ```
 
 8. **Serialize the updated VAA**: Reconstruct the VAA with the updated signatures and convert it into a format suitable for submission.
 
     ```typescript
-        const updatedVaa: VAA<'Uint8Array'> = {
+        const updatedVaa: VAA&lt;'Uint8Array'&gt; = {
           ...parsedVaa,
           guardianSet: guardianSetIndex,
           signatures: updatedSignatures,
@@ -888,7 +874,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 ???- code "Complete Function"
     ```typescript
     export async function replaceSignatures(
-      vaa: string | Uint8Array<ArrayBufferLike>,
+      vaa: string | Uint8Array<arraybufferlike>,
       observations: { guardianAddr: string; signature: string }[],
       currentGuardians: string[],
       guardianSetIndex: number
@@ -901,7 +887,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           throw new Error('Guardian set is empty.');
         if (observations.length === 0) throw new Error('No observations provided.');
 
-        const validSigs = observations.filter((sig) =>
+        const validSigs = observations.filter((sig) =&gt;
           currentGuardians.includes(sig.guardianAddr)
         );
 
@@ -909,7 +895,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           throw new Error('No valid signatures found. Cannot proceed.');
 
         const formattedSigs = validSigs
-          .map((sig) => {
+          .map((sig) =&gt; {
             try {
               const sigBuffer = Buffer.from(sig.signature, 'base64');
               // If it's 130 bytes, it's hex-encoded and needs conversion
@@ -921,7 +907,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
               const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
               const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
               const vRaw = sigBuffer1[64];
-              const v = vRaw < 27 ? vRaw : vRaw - 27;
+              const v = vRaw &lt; 27 ? vRaw : vRaw - 27;
 
               return {
                 guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
@@ -936,11 +922,11 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
             }
           })
           .filter(
-            (sig): sig is { guardianIndex: number; signature: Signature } =>
+            (sig): sig is { guardianIndex: number; signature: Signature } =&gt;
               sig !== null
           ); // Remove null values
 
-        let parsedVaa: VAA<'Uint8Array'>;
+        let parsedVaa: VAA&lt;'Uint8Array'&gt;;
         try {
           parsedVaa = deserialize('Uint8Array', vaa);
         } catch (error) {
@@ -949,26 +935,26 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
         const outdatedGuardianIndexes = parsedVaa.signatures
           .filter(
-            (vaaSig) =>
+            (vaaSig) =&gt;
               !formattedSigs.some(
-                (sig) => sig.guardianIndex === vaaSig.guardianIndex
+                (sig) =&gt; sig.guardianIndex === vaaSig.guardianIndex
               )
           )
-          .map((sig) => sig.guardianIndex);
+          .map((sig) =&gt; sig.guardianIndex);
 
         console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
 
         let updatedSignatures = parsedVaa.signatures.filter(
-          (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+          (sig) =&gt; !outdatedGuardianIndexes.includes(sig.guardianIndex)
         );
 
         const validReplacements = formattedSigs.filter(
-          (sig) =>
-            !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+          (sig) =&gt;
+            !updatedSignatures.some((s) =&gt; s.guardianIndex === sig.guardianIndex)
         );
 
         // Check if we have enough valid signatures to replace outdated ones**
-        if (outdatedGuardianIndexes.length > validReplacements.length) {
+        if (outdatedGuardianIndexes.length &gt; validReplacements.length) {
           console.warn(
             `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
           );
@@ -980,9 +966,9 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
           ...validReplacements.slice(0, outdatedGuardianIndexes.length),
         ];
 
-        updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+        updatedSignatures.sort((a, b) =&gt; a.guardianIndex - b.guardianIndex);
 
-        const updatedVaa: VAA<'Uint8Array'> = {
+        const updatedVaa: VAA&lt;'Uint8Array'&gt; = {
           ...parsedVaa,
           guardianSet: guardianSetIndex,
           signatures: updatedSignatures,
@@ -1105,18 +1091,18 @@ Now that we have all the necessary helper functions, we will create a script to 
     npx tsx src/scripts/replaceSignatures.ts
     ```
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
-    	<span data-ty> </span>
-    	<span data-ty>Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
-        <span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
-        <span data-ty>Fetching observations</span>
-        <span data-ty>Fetching current guardian set</span>
-        <span data-ty>Replacing Signatures...</span>
-        <span data-ty>Outdated Guardian Indexes: [ 0 ]</span>
-        <span data-ty>Sending updated VAA to RPC...</span>
-        <span data-ty>Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
-    	<span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
+    <span data-ty=""> </span>
+    <span data-ty="">Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+    <span data-ty="">❌ VAA Valid: false, Reason: VM signature invalid</span>
+    <span data-ty="">Fetching observations</span>
+    <span data-ty="">Fetching current guardian set</span>
+    <span data-ty="">Replacing Signatures...</span>
+    <span data-ty="">Outdated Guardian Indexes: [ 0 ]</span>
+    <span data-ty="">Sending updated VAA to RPC...</span>
+    <span data-ty="">Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 

@@ -16,6 +16,7 @@ import argparse
 import textwrap
 import requests
 from pathlib import Path
+from transform_tables import transform_html_tables_to_markdown
 
 # -------------- CLI flags (module-level toggles) --------------
 ALLOW_REMOTE = True
@@ -148,6 +149,7 @@ def fetch_local_snippet(snippet_ref, snippet_directory, _variables):
 
     with open(absolute_snippet_path, "r", encoding="utf-8") as snippet_file:
         snippet_content = snippet_file.read()
+        snippet_content = transform_html_tables_to_markdown(snippet_content)
 
     lines = snippet_content.split("\n")
     if line_start is not None or line_end is not None:

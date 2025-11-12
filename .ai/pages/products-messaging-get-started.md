@@ -137,17 +137,17 @@ Before you begin, ensure you have the following:
 
       // Define the source chain context
       const sourceChainName: Chain = 'Sepolia';
-      const sourceChainContext = wh.getChain(sourceChainName) as ChainContext<
+      const sourceChainContext = wh.getChain(sourceChainName) as ChainContext&lt;
         'Testnet',
         'Sepolia',
         'Evm'
-      >;
+      &gt;;
       console.log(`Source chain context obtained for: ${sourceChainContext.chain}`);
 
       // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js
       // signer using the Wormhole SDK's signing and transaction handling
       // capabilities
-      let sdkSigner: WormholeSdkSigner<Network, Chain>;
+      let sdkSigner: WormholeSdkSigner<network, chain="">;
       try {
         sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
         console.log(
@@ -169,11 +169,11 @@ Before you begin, ensure you have the following:
 
       try {
         // Get the core protocol client
-        const coreProtocolClient: WormholeCore<Network> =
+        const coreProtocolClient: WormholeCore<network> =
           await sourceChainContext.getWormholeCore();
 
         // Generate the unsigned transactions
-        const whSignerAddress: NativeAddress<Chain> = toNative(
+        const whSignerAddress: NativeAddress<chain> = toNative(
           sdkSigner.chain(),
           sdkSigner.address()
         );
@@ -183,7 +183,7 @@ Before you begin, ensure you have the following:
           }...`
         );
 
-        const unsignedTxs: AsyncGenerator<UnsignedTransaction<Network, Chain>> =
+        const unsignedTxs: AsyncGenerator<unsignedtransaction<network, chain="">&gt; =
           coreProtocolClient.publishMessage(
             whSignerAddress,
             payload,
@@ -215,7 +215,7 @@ Before you begin, ensure you have the following:
         console.log(
           '\nWaiting a few seconds for transaction to propagate before parsing...'
         );
-        await new Promise((resolve) => setTimeout(resolve, 8000));
+        await new Promise((resolve) =&gt; setTimeout(resolve, 8000));
 
         // Retrieve VAA identifiers
         console.log(
@@ -224,7 +224,7 @@ Before you begin, ensure you have the following:
         const messageIds: WormholeMessageId[] =
           await sourceChainContext.parseTransaction(primaryTxid);
 
-        if (messageIds && messageIds.length > 0) {
+        if (messageIds &amp;&amp; messageIds.length &gt; 0) {
           const wormholeMessageId = messageIds[0];
           console.log('--- VAA Identifiers (WormholeMessageId) ---');
           console.log('  Emitter Chain:', wormholeMessageId.chain);
@@ -241,20 +241,20 @@ Before you begin, ensure you have the following:
           'Error during message publishing or VAA identifier retrieval:',
           error
         );
-        if (error instanceof Error && error.stack) {
+        if (error instanceof Error &amp;&amp; error.stack) {
           console.error('Stack Trace:', error.stack);
         }
       }
     }
 
-    main().catch((e) => {
+    main().catch((e) =&gt; {
       console.error('Critical error in main function (outer catch):', e);
-      if (e instanceof Error && e.stack) {
+      if (e instanceof Error &amp;&amp; e.stack) {
         console.error('Stack Trace:', e.stack);
       }
       process.exit(1);
     });
-
+    </unsignedtransaction<network,></chain></network></network,>
     ```
 
     This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
@@ -267,26 +267,26 @@ Before you begin, ensure you have the following:
 
     You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-      <span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
-      <span data-ty>Wormhole SDK Initialized.</span>
-      <span data-ty>Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-      <span data-ty>Source chain context obtained for: Sepolia</span>
-      <span data-ty>Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-      <span data-ty>Message to send: "HelloWormholeSDK-1748362375390"</span>
-      <span data-ty>Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
-      <span data-ty>Signing and sending the message publication transaction(s)...</span>
-      <span data-ty>Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-      <span data-ty>View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-      <span data-ty>Waiting a few seconds for transaction to propagate before parsing...</span>
-      <span data-ty>Attempting to parse VAA identifiers from transaction:
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
+    <span data-ty="">Wormhole SDK Initialized.</span>
+    <span data-ty="">Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+    <span data-ty="">Source chain context obtained for: Sepolia</span>
+    <span data-ty="">Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+    <span data-ty="">Message to send: "HelloWormholeSDK-1748362375390"</span>
+    <span data-ty="">Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
+    <span data-ty="">Signing and sending the message publication transaction(s)...</span>
+    <span data-ty="">Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+    <span data-ty="">View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+    <span data-ty="">Waiting a few seconds for transaction to propagate before parsing...</span>
+    <span data-ty="">Attempting to parse VAA identifiers from transaction:
         0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508...</span>
-      <span data-ty>--- VAA Identifiers (WormholeMessageId) ---</span>
-      <span data-ty> Emitter Chain: Sepolia</span>
-      <span data-ty> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
-      <span data-ty> Sequence: 1</span>
-      <span data-ty>-----------------------------------------</span>
-      <span data-ty="input"><span class="file-path"></span></span>
+    <span data-ty="">--- VAA Identifiers (WormholeMessageId) ---</span>
+    <span data-ty=""> Emitter Chain: Sepolia</span>
+    <span data-ty=""> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
+    <span data-ty=""> Sequence: 1</span>
+    <span data-ty="">-----------------------------------------</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages.
 

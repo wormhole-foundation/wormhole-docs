@@ -267,14 +267,14 @@ Follow these steps to create and deploy your sender and receiver Solidity contra
         const sourceRpcOrProvider = await sendChain.getRpc();
         let sourceProvider: ethers.JsonRpcProvider;
         if (
-          sourceRpcOrProvider &&
+          sourceRpcOrProvider &amp;&amp;
           typeof (sourceRpcOrProvider as any).getBlockNumber === 'function'
         ) {
           sourceProvider = sourceRpcOrProvider as ethers.JsonRpcProvider;
         } else if (typeof sourceRpcOrProvider === 'string') {
           sourceProvider = new ethers.JsonRpcProvider(sourceRpcOrProvider);
         } else if (
-          Array.isArray(sourceRpcOrProvider) &&
+          Array.isArray(sourceRpcOrProvider) &amp;&amp;
           typeof sourceRpcOrProvider[0] === 'string'
         ) {
           sourceProvider = new ethers.JsonRpcProvider(sourceRpcOrProvider[0]);
@@ -377,15 +377,15 @@ Follow these steps to create and deploy your sender and receiver Solidity contra
 
 4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-contract-addresses#testnet){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
 
-    <div id="termynal" data-termynal>
-    	<span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
-    	<span data-ty>Initializing Wormhole SDK...</span>
-        <span data-ty>Enter the (ERC20) token contract address on Avalanche: 0x5425890298aed601595a70ab815c96711a31bc65</span>
-        <span data-ty>Enter the recipient address on Celo: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-        <span data-ty>Initiating cross-chain transfer to 0xff97a7141833fbe829249d4e8952A8e73a4a2fbd on Celo...</span>
-        <span data-ty>Transfer transaction sent: 0x2d819aadf88309eb19f59a510aba1f2892b54487f9e287feadd150181a28f771</span>
-        <span data-ty=>✅ Transfer initiated successfully!</span>
-        <span data-ty="input"><span class="file-path"></span></span>
+    <div data-termynal="" id="termynal">
+    <span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
+    <span data-ty="">Initializing Wormhole SDK...</span>
+    <span data-ty="">Enter the (ERC20) token contract address on Avalanche: 0x5425890298aed601595a70ab815c96711a31bc65</span>
+    <span data-ty="">Enter the recipient address on Celo: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+    <span data-ty="">Initiating cross-chain transfer to 0xff97a7141833fbe829249d4e8952A8e73a4a2fbd on Celo...</span>
+    <span data-ty="">Transfer transaction sent: 0x2d819aadf88309eb19f59a510aba1f2892b54487f9e287feadd150181a28f771</span>
+    <span data-ty="">✅ Transfer initiated successfully!</span>
+    <span data-ty="input"><span class="file-path"></span></span>
     </div>
 Congratulations! You've successfully created and deployed Wormhole Solidity SDK-based smart contracts and used them to send testnet USDC across blockchains. Consider the following options to build upon what you've accomplished.
 
