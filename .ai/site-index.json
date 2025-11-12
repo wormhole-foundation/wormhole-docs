@@ -4996,11 +4996,6 @@
     "outline": [
       {
         "depth": 2,
-        "title": "Manual Relaying for SVM Transfers",
-        "anchor": "manual-relaying-for-svm-transfers"
-      },
-      {
-        "depth": 2,
         "title": "Post-Deployment Settings",
         "anchor": "post-deployment-settings"
       },
@@ -5011,12 +5006,12 @@
       }
     ],
     "stats": {
-      "chars": 3934,
-      "words": 497,
-      "headings": 3,
-      "estimated_token_count_total": 619
+      "chars": 3589,
+      "words": 444,
+      "headings": 2,
+      "estimated_token_count_total": 557
     },
-    "hash": "sha256:dc058bbcf15d473b6ff29d5b2168f8b661faff1d93bd6e545bd28659b206e55e",
+    "hash": "sha256:ab492854a418d22f18635249077fda858b0677ba4c4eeca7fd827bdc2233717d",
     "token_estimator": "heuristic-v1"
   },
   {
