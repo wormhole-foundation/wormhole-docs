@@ -1,6 +1,4 @@
 Begin New Bundle: Basics
-word_count: 37217
-estimated_tokens: 63083
 
 
 ---

@@ -2,8 +2,6 @@
 title: Wormhole Settlement FAQs
 description: Frequently asked questions about Wormhole Settlement, including smart contract usage, auction fallback, and message execution.
 categories: Settlement, Transfer
-word_count: 112
-estimated_tokens: 135
 url: https://wormhole.com/docs/products/settlement/faqs/
 ---
 

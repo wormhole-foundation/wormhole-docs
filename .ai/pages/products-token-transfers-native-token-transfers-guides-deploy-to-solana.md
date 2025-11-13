@@ -2,8 +2,6 @@
 title: Native Token Transfers SVM Deployment
 description: Deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
 categories: NTT, Transfer
-word_count: 1871
-estimated_tokens: 3240
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/
 ---
 

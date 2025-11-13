@@ -2,8 +2,6 @@
 title: Native Token Transfers Security
 description: Explore the security measures of Native Token Transfers, including the Global Accountant and governance strategies for seamless token safety.
 categories: NTT, Transfer
-word_count: 285
-estimated_tokens: 336
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/concepts/security/
 ---
 

@@ -1,7 +1,5 @@
 Begin New Bundle: Queries
 Includes shared base categories: Basics, Reference
-word_count: 75554
-estimated_tokens: 155756
 
 
 ---

@@ -2,8 +2,6 @@
 title: MultiGov Overview
 description: Enable multichain governance with MultiGov. Create, vote, and execute DAO proposals securely across Wormhole supported networks.
 categories: Multigov
-word_count: 480
-estimated_tokens: 845
 url: https://wormhole.com/docs/products/multigov/overview/
 ---
 

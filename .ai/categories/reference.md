@@ -1,6 +1,4 @@
 Begin New Bundle: Reference
-word_count: 30958
-estimated_tokens: 79205
 
 
 ---

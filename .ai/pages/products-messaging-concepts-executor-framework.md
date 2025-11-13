@@ -2,8 +2,6 @@
 title: Executor Framework
 description: Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
 categories: Basics, Executors
-word_count: 796
-estimated_tokens: 1233
 url: https://wormhole.com/docs/products/messaging/concepts/executor-framework/
 ---
 

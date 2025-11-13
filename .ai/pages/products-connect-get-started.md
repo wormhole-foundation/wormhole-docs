@@ -2,8 +2,6 @@
 title: Get Started with Connect
 description: Follow this guide to configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.
 categories: Connect, Transfer
-word_count: 572
-estimated_tokens: 1015
 url: https://wormhole.com/docs/products/connect/get-started/
 ---
 

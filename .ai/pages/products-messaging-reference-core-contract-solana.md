@@ -2,8 +2,6 @@
 title: Core Contract (Solana)
 description: Reference for the Wormhole Core program on Solana. Covers architecture, PDA accounts, and instructions for posting, verifying, and processing VAAs.
 categories: Reference
-word_count: 2162
-estimated_tokens: 4527
 url: https://wormhole.com/docs/products/messaging/reference/core-contract-solana/
 ---
 

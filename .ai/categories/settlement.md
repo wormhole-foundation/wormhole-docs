@@ -1,7 +1,5 @@
 Begin New Bundle: Settlement
 Includes shared base categories: Basics, Reference
-word_count: 72324
-estimated_tokens: 149472
 
 
 ---

@@ -2,8 +2,6 @@
 title: Wrapped Token Transfers (WTT) FAQs
 description: Find answers to common questions about the Wormhole WTT, including managing wrapped assets and understanding gas fees.
 categories: WTT, Transfer
-word_count: 392
-estimated_tokens: 609
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/faqs/
 ---
 

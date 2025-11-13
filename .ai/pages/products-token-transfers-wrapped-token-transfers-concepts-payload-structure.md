@@ -2,8 +2,6 @@
 title: Wrapped Token Transfers (WTT) Payload Structure
 description: Discover the structure and purpose of each WTT payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
 categories: WTT, Transfers
-word_count: 974
-estimated_tokens: 1812
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/concepts/payload-structure/
 ---
 

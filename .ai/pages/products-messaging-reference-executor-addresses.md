@@ -2,8 +2,6 @@
 title: Executor Addresses
 description: Reference list of deployed Executor contract addresses across integrations, including CCTP, NTT, WTT, and referrer variants.
 categories: Reference
-word_count: 2190
-estimated_tokens: 6315
 url: https://wormhole.com/docs/products/messaging/reference/executor-addresses/
 ---
 

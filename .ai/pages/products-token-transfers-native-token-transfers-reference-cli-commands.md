@@ -2,8 +2,6 @@
 title: NTT CLI Commands
 description: A comprehensive guide to the Native Token Transfers (NTT) CLI, detailing commands for managing token transfers across chains within the Wormhole ecosystem.
 categories: NTT, Transfer
-word_count: 554
-estimated_tokens: 1627
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/cli-commands/
 ---
 

@@ -2,8 +2,6 @@
 title: Deploy MultiGov on EVM Chains
 description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 categories: MultiGov
-word_count: 596
-estimated_tokens: 1025
 url: https://wormhole.com/docs/products/multigov/guides/deploy-to-evm/
 ---
 

@@ -2,8 +2,6 @@
 title: VAAs
 description: Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and role in cross-chain communication.
 categories: Basics
-word_count: 2052
-estimated_tokens: 3163
 url: https://wormhole.com/docs/protocol/infrastructure/vaas/
 ---
 

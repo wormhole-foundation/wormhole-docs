@@ -2,8 +2,6 @@
 title: Messaging Overview
 description: With Wormhole Messaging, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
 categories: Basics
-word_count: 630
-estimated_tokens: 1279
 url: https://wormhole.com/docs/products/messaging/overview/
 ---
 

@@ -2,8 +2,6 @@
 title: Interacting with CCTP Contracts
 description: Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter.
 categories: Transfer, CCTP
-word_count: 9765
-estimated_tokens: 16877
 url: https://wormhole.com/docs/products/cctp-bridge/guides/cctp-contracts/
 ---
 

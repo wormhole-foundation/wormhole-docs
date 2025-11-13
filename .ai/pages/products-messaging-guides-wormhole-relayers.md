@@ -2,8 +2,6 @@
 title: Wormhole-Deployed Relayers
 description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
 categories: Relayers, Basics
-word_count: 1586
-estimated_tokens: 2260
 url: https://wormhole.com/docs/products/messaging/guides/wormhole-relayers/
 ---
 

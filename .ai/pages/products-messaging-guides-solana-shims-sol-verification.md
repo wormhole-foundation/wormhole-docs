@@ -2,8 +2,6 @@
 title: Solana VAA Verification via Shim
 description: Efficiently verify Wormhole VAAs on Solana using the Verification Shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
 categories: Basics
-word_count: 709
-estimated_tokens: 1195
 url: https://wormhole.com/docs/products/messaging/guides/solana-shims/sol-verification/
 ---
 

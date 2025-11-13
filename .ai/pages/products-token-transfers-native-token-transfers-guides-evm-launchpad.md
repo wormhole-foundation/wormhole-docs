@@ -2,8 +2,6 @@
 title: Deploy Native Token Transfers with Launchpad
 description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
 categories: NTT, Transfer
-word_count: 1327
-estimated_tokens: 2211
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/evm-launchpad/
 ---
 

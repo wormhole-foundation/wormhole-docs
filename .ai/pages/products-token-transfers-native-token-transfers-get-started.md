@@ -2,8 +2,6 @@
 title: Get Started with NTT
 description: NTT enables cross-chain token movement without wrapping. Install the CLI, deploy test tokens, and scaffold a project to integrate NTT into your app.
 categories: NTT, Transfer
-word_count: 1274
-estimated_tokens: 2309
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/get-started/
 ---
 

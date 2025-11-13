@@ -2,8 +2,6 @@
 title: Fetch a Signed VAA
 description: Learn how to fetch a signed VAA, a key step in the manual Wrapped Token Transfer (WTT) flow.
 categories: WTT, Transfer
-word_count: 769
-estimated_tokens: 1368
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa/
 ---
 

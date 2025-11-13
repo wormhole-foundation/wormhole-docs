@@ -2,8 +2,6 @@
 title: Ecosystem
 description: Explore Wormhole's modular ecosystem of cross-chain tools for messaging, bridging, governance, and developer integration.
 categories: Basics
-word_count: 521
-estimated_tokens: 808
 url: https://wormhole.com/docs/protocol/ecosystem/
 ---
 

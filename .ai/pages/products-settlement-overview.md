@@ -2,8 +2,6 @@
 title: Settlement Overview
 description: Discover how Settlement enables fast, intent-based token transfers across chains using a unified system of solver auctions and integrated execution routes.
 categories: Settlement, Transfer
-word_count: 1079
-estimated_tokens: 1782
 url: https://wormhole.com/docs/products/settlement/overview/
 ---
 

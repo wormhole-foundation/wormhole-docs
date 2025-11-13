@@ -2,8 +2,6 @@
 title: Supported Networks
 description: Learn about the networks each Wormhole product supports, and explore links to documentation, official websites, and block explorers.
 categories: Reference
-word_count: 9122
-estimated_tokens: 24801
 url: https://wormhole.com/docs/products/reference/supported-networks/
 ---
 

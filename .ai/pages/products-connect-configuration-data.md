@@ -2,8 +2,6 @@
 title: Connect Data Configuration
 description: Configure Wormhole Connect v1 (latest) with custom chains, tokens, routes, and more for enhanced blockchain interoperability.
 categories: Connect, Transfer
-word_count: 2103
-estimated_tokens: 4282
 url: https://wormhole.com/docs/products/connect/configuration/data/
 ---
 

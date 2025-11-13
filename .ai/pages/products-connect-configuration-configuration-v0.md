@@ -1,8 +1,6 @@
 ---
 title: Configure Your Connect Widget v0
 description: Configure Wormhole Connect v0 for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for optimized blockchain interactions.
-word_count: 2546
-estimated_tokens: 6119
 url: https://wormhole.com/docs/products/connect/configuration/configuration-v0/
 ---
 

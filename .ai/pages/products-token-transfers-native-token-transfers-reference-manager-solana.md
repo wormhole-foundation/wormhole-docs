@@ -2,8 +2,6 @@
 title: Native Token Transfers Manager Program (Solana)
 description: The NTT Manager Solana program enables cross-chain token transfers, peer registration, rate limiting, and message attestation within the NTT protocol.
 categories: NTT, Transfer
-word_count: 3495
-estimated_tokens: 8076
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/solana/
 ---
 

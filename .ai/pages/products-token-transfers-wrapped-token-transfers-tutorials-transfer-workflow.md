@@ -2,8 +2,6 @@
 title: Transfer Tokens via Wrapped Token Transfers (WTT) Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
 categories: WTT, Transfers
-word_count: 3852
-estimated_tokens: 6720
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/
 ---
 

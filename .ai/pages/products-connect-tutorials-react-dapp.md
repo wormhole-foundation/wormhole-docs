@@ -2,8 +2,6 @@
 title: Integrate Connect into a React DApp Tutorial
 description: Learn how to use Wormhole Connect to transfers tokens cross-chain seamlessly between Sui and Avalanche Fuji with this step-by-step guide.
 categories: Connect, Transfer
-word_count: 1254
-estimated_tokens: 2051
 url: https://wormhole.com/docs/products/connect/tutorials/react-dapp/
 ---
 

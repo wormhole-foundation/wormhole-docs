@@ -2,8 +2,6 @@
 title: Native Token Transfers Transceivers Contracts (EVM)
 description: The NTT Transceiver Solidity contracts handle message transmission and verification across chains as part of the Native Token Transfers protocol.
 categories: NTT, Transfer
-word_count: 3705
-estimated_tokens: 8192
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/evm/
 ---
 

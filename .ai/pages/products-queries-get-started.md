@@ -2,8 +2,6 @@
 title: Get Started with Queries
 description: Follow this guide to run your first multichain, verifiable query with the Wormhole Queries SDK and Proxy, using eth_call to fetch token metadata.
 categories: Queries
-word_count: 842
-estimated_tokens: 1534
 url: https://wormhole.com/docs/products/queries/get-started/
 ---
 

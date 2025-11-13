@@ -1,7 +1,5 @@
 Begin New Bundle: Typescript SDK
 Includes shared base categories: Basics, Reference
-word_count: 84781
-estimated_tokens: 171755
 
 
 ---

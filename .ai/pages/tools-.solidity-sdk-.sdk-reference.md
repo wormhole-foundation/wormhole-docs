@@ -2,8 +2,6 @@
 title: Solidity SDK
 description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
 categories: Solidity SDK
-word_count: 1551
-estimated_tokens: 2503
 url: https://wormhole.com/docs/tools/.solidity-sdk/.sdk-reference/
 ---
 

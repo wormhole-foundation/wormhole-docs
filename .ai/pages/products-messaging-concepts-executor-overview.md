@@ -2,8 +2,6 @@
 title: Executor Overview
 description: Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
 categories: Basics, Executors
-word_count: 710
-estimated_tokens: 983
 url: https://wormhole.com/docs/products/messaging/concepts/executor-overview/
 ---
 

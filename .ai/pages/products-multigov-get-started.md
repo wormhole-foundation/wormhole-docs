@@ -2,8 +2,6 @@
 title: Get Started with Multigov
 description: Follow this guide to set up your environment and request access to deploy MultiGov contracts for multichain DAO governance using Wormhole messaging.
 categories: MultiGov
-word_count: 360
-estimated_tokens: 573
 url: https://wormhole.com/docs/products/multigov/get-started/
 ---
 

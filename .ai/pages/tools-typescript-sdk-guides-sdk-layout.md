@@ -2,8 +2,6 @@
 title: Data Layouts
 description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
 categories: Typescript SDK
-word_count: 4140
-estimated_tokens: 6865
 url: https://wormhole.com/docs/tools/typescript-sdk/guides/sdk-layout/
 ---
 

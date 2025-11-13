@@ -2,8 +2,6 @@
 title: Portal Bridge FAQs
 description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
 categories: WTT, Transfer
-word_count: 392
-estimated_tokens: 770
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/portal/faqs/
 ---
 

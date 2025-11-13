@@ -2,8 +2,6 @@
 title: Core Contracts
 description: Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
 categories: Basics
-word_count: 930
-estimated_tokens: 1244
 url: https://wormhole.com/docs/protocol/infrastructure/core-contracts/
 ---
 

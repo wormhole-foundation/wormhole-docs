@@ -2,8 +2,6 @@
 title: Wrapped Token Transfers (WTT) Overview
 description: With Wormhole WTT, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
 categories: WTT, Transfer
-word_count: 614
-estimated_tokens: 1067
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/overview/
 ---
 

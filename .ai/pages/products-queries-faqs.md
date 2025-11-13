@@ -2,8 +2,6 @@
 title: Queries FAQs
 description: Wormhole Queries FAQ covering available libraries, query examples, response formats, and details about running query proxy servers.
 categories: Queries
-word_count: 674
-estimated_tokens: 1100
 url: https://wormhole.com/docs/products/queries/faqs/
 ---
 

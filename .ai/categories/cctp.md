@@ -1,7 +1,5 @@
 Begin New Bundle: CCTP
 Includes shared base categories: Basics, Reference
-word_count: 85100
-estimated_tokens: 172412
 
 
 ---

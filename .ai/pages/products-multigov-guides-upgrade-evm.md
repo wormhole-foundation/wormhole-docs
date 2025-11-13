@@ -2,8 +2,6 @@
 title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
 categories: MultiGov
-word_count: 423
-estimated_tokens: 622
 url: https://wormhole.com/docs/products/multigov/guides/upgrade-evm/
 ---
 

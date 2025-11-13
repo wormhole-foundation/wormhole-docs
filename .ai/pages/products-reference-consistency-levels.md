@@ -2,8 +2,6 @@
 title: Wormhole Finality | Consistency Levels
 description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
 categories: Reference
-word_count: 1207
-estimated_tokens: 3424
 url: https://wormhole.com/docs/products/reference/consistency-levels/
 ---
 

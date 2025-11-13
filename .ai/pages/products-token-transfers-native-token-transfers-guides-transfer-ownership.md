@@ -2,8 +2,6 @@
 title: Transfer Ownership
 description: Step-by-step guide to transferring ownership of Native Token Transfers on EVM, Solana, and Sui with CLI instructions.
 categories: NTT, Transfer
-word_count: 628
-estimated_tokens: 1146
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/
 ---
 

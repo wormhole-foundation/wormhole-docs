@@ -2,8 +2,6 @@
 title: Troubleshooting NTT Deployment
 description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
 categories: NTT, Transfer
-word_count: 604
-estimated_tokens: 1160
 url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/troubleshoot/
 ---
 

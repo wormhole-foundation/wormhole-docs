@@ -1,7 +1,5 @@
 Begin New Bundle: Solidity SDK
 Includes shared base categories: Basics, Reference
-word_count: 71820
-estimated_tokens: 148537
 
 
 ---

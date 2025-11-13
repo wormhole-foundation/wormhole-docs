@@ -2,8 +2,6 @@
 title: Wrapped Token Transfers (WTT) Supported Networks
 description: Explore all blockchains supported by Wormhole WTT, including network availability, block explorers, and cross-chain transfer support.
 categories: WTT, Transfer
-word_count: 2066
-estimated_tokens: 5623
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/reference/supported-networks/
 ---
 
