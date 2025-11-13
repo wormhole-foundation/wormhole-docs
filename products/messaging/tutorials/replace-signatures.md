@@ -59,10 +59,10 @@ In this section, you will create the directory, initialize a Node.js project, in
     --8<-- "code/products/messaging/tutorials/replace-signatures/replace-sigs-1.json"
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `{{repositories.wormhole_sdk.version}}`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@{{repositories.wormhole_sdk.version}} axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  

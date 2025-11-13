@@ -5236,10 +5236,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -10828,12 +10828,6 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately.
 - Monitor and maintain your multichain deployment.
 
-## Manual Relaying for SVM Transfers  
-
-By default, NTT transfers to SVM chains require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
-
-This step ensures that tokens are properly minted or unlocked on the SVM chain and prevents unauthorized claims.
-
 ## Post-Deployment Settings
 
 The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
@@ -15088,10 +15082,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@3.11.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  

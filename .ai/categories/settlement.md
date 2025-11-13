@@ -4381,12 +4381,12 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `3.8.8`:
+2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk-connect@3.8.8 \
-        @wormhole-foundation/sdk-evm@3.8.8 \
-        @wormhole-foundation/sdk-solana@3.8.8 \
+    npm install @wormhole-foundation/sdk-connect@3.11.0 \
+        @wormhole-foundation/sdk-evm@3.11.0 \
+        @wormhole-foundation/sdk-solana@3.11.0 \
         @mayanfinance/wormhole-sdk-route@1.26.0 \
         dotenv
     npm install -D typescript tsx
@@ -5042,10 +5042,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -7127,10 +7127,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@3.11.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  

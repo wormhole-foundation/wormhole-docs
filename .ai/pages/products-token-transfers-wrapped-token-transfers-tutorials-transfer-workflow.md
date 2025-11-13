@@ -56,10 +56,10 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the required dependencies. This tutorial uses the SDK version `3.8.8`:
+2. **Install dependencies**: Install the required dependencies. This tutorial uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8 tsx
+    npm install @wormhole-foundation/sdk@3.11.0 tsx
     ```
 
 3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY`, `EVM_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
