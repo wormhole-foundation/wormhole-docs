@@ -336,10 +336,10 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `3.8.8`.
+2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
@@ -5203,10 +5203,10 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the SDK version `3.8.8`:
+2. Install the required dependencies. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8
+    npm install @wormhole-foundation/sdk@3.11.0
     npm install -D tsx typescript
     ```
 
@@ -5807,10 +5807,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -10519,10 +10519,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@3.11.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  

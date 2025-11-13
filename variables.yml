@@ -12,3 +12,9 @@ repositories:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
     evm_version: v1.2.0+evm
     sol_version: v3.0.0+solana
+  connect:
+    repository_url: https://github.com/wormhole-foundation/wormhole-connect
+    version: 4.0.0
+  settlement:
+    repository_url: https://github.com/mayan-finance/wormhole-sdk-route
+    version: 1.26.0

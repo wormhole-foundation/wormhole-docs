@@ -44,10 +44,10 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
 
 ### Install Connect
 
-Next, install the Connect package as a dependency by running the following command inside your project directory. This tutorial uses the Connect version `4.0.0`:
+Next, install the Connect package as a dependency by running the following command inside your project directory. This tutorial uses the Connect version `{{repositories.connect.version}}`:
 
 ```bash
-npm install @wormhole-foundation/wormhole-connect@4.0.0
+npm install @wormhole-foundation/wormhole-connect@{{repositories.connect.version}}
 ```
 
 ### Integrate Connect into the Application
