@@ -3,7 +3,7 @@ title: Integrate Native Token Transfers with Executor
 description: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 categories: NTT, Transfer, Executor
 ---
-<!-- waiting to move all the snippets once we decide where the pages go -->
+<!-- move snippets -->
 # Native Token Transfers Executor Integration
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
