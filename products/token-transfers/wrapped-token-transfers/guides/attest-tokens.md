@@ -42,10 +42,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK]({{repositories.wormhole_sdk.repository_url}}){target=\_blank}. This example uses the SDK version `3.8.8`:
+2. Install dependencies, including the [Wormhole TypeScript SDK]({{repositories.wormhole_sdk.repository_url}}){target=\_blank}. This example uses the SDK version `{{repositories.wormhole_sdk.version}}`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+    npm install @wormhole-foundation/sdk@{{repositories.wormhole_sdk.version}} -D tsx typescript
     ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.

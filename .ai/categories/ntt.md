@@ -267,6 +267,7 @@ Page Title: Contract Addresses
     <tr><td>Arbitrum</td><td><code>0x36CF4c88FA548c6Ad9fcDc696e1c27Bb3306163F</code></td></tr>
     <tr><td>Avalanche</td><td><code>0x169D91C797edF56100F1B765268145660503a423</code></td></tr>
     <tr><td>Base</td><td><code>0x838a95B6a3E06B6f11C437e22f3C7561a6ec40F1</code></td></tr>
+    <tr><td>Fogo</td><td><code>ngonf6qosXXrmsXwfFjQhXJGtasAqCE3FFyCb2rJ1kC</code></td></tr>
     <tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
     <tr><td>Optimism</td><td><code>0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8</code></td></tr>
     <tr><td>Unichain</td><td><code>0x574b7864119c9223a9870ea614dc91a8ee09e512</code></td></tr>
@@ -4208,7 +4209,7 @@ Page Title: Executor Addresses
 
 === "Testnet v2"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
 
 
 ## NTT With Executor
@@ -4289,7 +4290,7 @@ Page Title: Executor Addresses
 
 === "Testnet v2"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
 
 
 ## NTT With Executor
@@ -5235,10 +5236,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -5680,7 +5681,7 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 1. Run the installation commands in your terminal:
 
     ```bash
-    git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+    git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
         https://github.com/wormhole-foundation/native-token-transfers.git
     cd native-token-transfers
     ```
@@ -5947,6 +5948,402 @@ These principles combine to create a clear pathway towards a fully trustless int
     [:custom-arrow: Build with Queries](/docs/products/queries/overview/)
 
 </div>
+
+
+---
+
+Page Title: Integrate Native Token Transfers with Executor
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/guides/executor/ntt-executor/
+- Summary: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
+
+# Native Token Transfers Executor Integration
+
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
+
+This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and Solana (SVM) chains.
+
+The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk){target=_blank} now includes a built-in route for NTT with Executor, with implementations for both [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=_blank} and [Solana (SVM)](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=_blank}, making it straightforward to integrate into existing workflows.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- [NTT deployed](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank} on both the source and destination chains.
+- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. You can confirm this using the capabilities endpoint:
+  ```sh
+  GET https://executor-testnet.labsapis.com/v0/capabilities
+  ```
+  The response includes:
+    - Supported source and destination chains.
+    - Available relay types (e.g., `wormhole` or `ERN1`).
+    - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
+    !!!note
+        The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+
+## References
+Use the following resources throughout this guide:
+
+- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=_blank} : List of deployed contracts for NTT with Executor.  
+- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
+
+    | Environment | URL                                                                            |
+    |-------------|--------------------------------------------------------------------------------|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
+
+    !!! note
+        For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
+
+## Generate relay instructions
+
+Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, message value, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer.
+
+Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+
+```sh
+npm i @wormhole-foundation/sdk-definitions
+```
+
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `RelayInstructions` are provided by the Wormhole TypeScript SDK.
+
+Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+​
+```ts
+const relayInstructions = serializeLayout(relayInstructionsLayout, {
+    requests: [{
+    request: {
+	      type: "GasInstruction",
+	      gasLimit: 500000n,
+	      msgValue: 0n,
+	    },
+	  }],
+  });
+```
+
+??? interface "Parameters"
+
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    —
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    —
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction, this should typically be set to 0 for NTT transfers.
+
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For NTT transfers, only a single gas instruction is required.
+
+| Instruction             | Description                                                               | Fields                 | 
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      | 
+| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             | 
+
+**EVM**
+
+For EVM-based destination chains:
+
+- `gasLimit` defines the redeeming transaction gas limit on the destination chain. The actual gas usage depends on token configuration, manager setup, and chain parameters.
+- `msgValue` is not used by NTT Transceivers’ `receiveMessage` function and should be set to 0.
+
+**SVM**
+
+For Solana and other SVM chains:
+
+- `gasLimit` represents the total Compute Units required across all transactions, plus a 20% buffer.
+- The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}, which simulates the transaction and sets the budget to 120% of the simulated `unitsConsumed`. This allows the relayer to automatically determine the budget required for each transaction in the series needed to perform an NTT redeem.
+- `msgValue` must cover the lamports required for the transaction, including priority fees and rent.
+
+!!!note
+    Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA, increasing rent cost and required `msgValue`.
+
+    When using a non-zero `GasDropOffInstruction` for a new wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Wormhole's relayer will ignore drop-offs to new accounts if they are below the minimum, as the transaction would fail.
+
+## Request a SignedQuote
+
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution.
+
+The following is an example of a quote request from Sepolia to Base Sepolia. See the full list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
+
+```ts
+const EXECUTOR_URL = "https://executor-testnet.labsapis.com"
+const { signedQuote: quote, estimatedCost: estimate } = (
+  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
+    srcChain: 10002,
+    dstChain: 10004,
+    relayInstructions,
+  })
+).data;
+```
+
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    —
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    —
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+Example response:
+
+```sh
+{
+  "signedQuote": "0x455130315241c9276698439fef2780dbab76fec90b633fbd000000000000000000000000f7122c001b3e07d7fafd8be3670545135859954a271227140000000067dd750f00000000000003e80000000000514b7c000011bbaf716200000011bbaf716200f86edc3960908d257472836d5b1c33c457bf17af67a758d9984356e7166bec8162faa0e07f991d061b93e4f033895c71134a30d9ca369c606fcabba0b742d2431c",
+  "estimatedCost": "1431935000000"
+}
+```
+
+??? interface "Returns"
+
+    `signedQuote` ++"string"++
+
+    A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
+
+    —
+
+    `estimatedCost` ++"string"++
+
+    The total estimated gas or lamport cost for the relay.
+
+
+Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
+
+## Call your sending contract
+
+Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the full list of deployed helper contracts.
+
+**EVM**
+
+For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
+
+```sol
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+struct ExecutorArgs {
+    // The msg value to be passed into the Executor.
+    uint256 value;
+    // The refund address used by the Executor.
+    address refundAddress;
+    // The signed quote to be passed into the Executor.
+    bytes signedQuote;
+    // The relay instructions to be passed into the Executor.
+    bytes instructions;
+}
+
+struct FeeArgs {
+    // The fee in tenths of basis points.
+    uint16 dbps;
+    // To whom the fee should be paid (the "referrer").
+    address payee;
+}
+
+interface INttManagerWithExecutor {
+    /// @notice Error when the refund to the sender fails.
+    error RefundFailed(uint256 refundAmount);
+
+    /// @notice Transfer tokens using the Executor for relaying.
+    /// @param nttManager The NTT manager used for the transfer.
+    /// @param amount The amount to transfer.
+    /// @param recipientChain The Wormhole chain ID for the destination.
+    /// @param recipientAddress The recipient address.
+    /// @param refundAddress The address to which unused gas is refunded.
+    /// @param shouldQueue Whether the transfer should be queued if the outbound limit is hit.
+    /// @param encodedInstructions Additional instructions for the destination chain.
+    /// @param executorArgs The arguments to be passed into the Executor.
+    /// @param feeArgs The arguments used to compute and pay the referrer fee.
+    /// @return msgId The resulting message ID of the transfer.
+    function transfer(
+        address nttManager,
+        uint256 amount,
+        uint16 recipientChain,
+        bytes32 recipientAddress,
+        bytes32 refundAddress,
+        bool shouldQueue,
+        bytes memory encodedInstructions,
+        ExecutorArgs calldata executorArgs,
+        FeeArgs calldata feeArgs
+    ) external payable returns (uint64 msgId);
+}
+```
+
+If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. This can be done by setting automatic to false.
+
+**SVM**
+
+For Solana and other SVM-based chains, two helper programs are available to assist with generating and submitting NTT execution requests:
+
+- [example-ntt-svm-lut](https://github.com/wormholelabs-xyz/example-ntt-svm-lut){target=\_blank}: Manages Lookup Tables for NTT programs without canonical LUTs.
+- [example-ntt-with-executor-svm](https://github.com/wormholelabs-xyz/example-ntt-with-executor-svm){target=\_blank}: Generates and attaches Executor relay instructions on-chain to reduce transaction size.
+
+Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
+
+```ts
+const ntt = await s.getProtocol("Ntt", {
+  ntt: {
+    chain: "Solana",
+    manager: ...,
+    token: ...,
+    transceiver: { wormhole: ... },
+  },
+});
+
+// Generate transfer transactions
+const txs = ntt.transfer(
+  new SolanaAddress(payer.publicKey),
+  1n,
+  {
+    chain: "Sepolia",
+    address: new UniversalAddress(recipientWallet, "hex"),
+  },
+  { queue: false, automatic: false }
+);
+
+for await (const tx of txs) {
+  if (tx.description === "Ntt.Transfer") {
+    const outboxKeypair = tx.transaction.signers[0];
+    const luts: AddressLookupTableAccount[] = [];
+
+    try {
+      // @ts-ignore
+      luts.push(await ntt.getAddressLookupTable());
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    // Decompile the transaction message
+    const message = TransactionMessage.decompile(
+      tx.transaction.transaction.message,
+      { addressLookupTableAccounts: luts }
+    );
+
+    // Append Executor relay instruction
+    const exampleNttWithExecutorProgram = new Program<ExampleNttWithExecutor>(
+      ExampleNttWithExecutorIdl as ExampleNttWithExecutor,
+      provider
+    );
+    message.instructions.push(
+      await exampleNttWithExecutorProgram.methods
+        .relayNttMesage({
+          execAmount: new BN(estimate.toString()),
+          recipientChain: chainToChainId("Sepolia"),
+          signedQuoteBytes,
+          relayInstructions: Buffer.from(relayInstructions.substring(2), "hex"),
+        })
+        .accounts({
+          payee: new web3.PublicKey(signedQuoteBytes.subarray(24, 56)),
+          nttProgramId,
+          nttPeer: web3.PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("peer"),
+              encoding.bignum.toBytes(chainToChainId("Sepolia")),
+            ],
+            nttProgramId
+          )[0],
+          nttMessage: outboxKeypair.publicKey,
+        })
+        .instruction()
+    );
+
+    // If no canonical LUT exists, check helper program and initialize if needed
+    if (luts.length === 0) {
+      console.log("No manager lookup table found, checking helper program...");
+      const exampleNttSvmLutProgram = new Program<ExampleNttSvmLut>(
+        ExampleNttSvmLutIdl as ExampleNttSvmLut,
+        provider
+      );
+
+      const lutPointerAddress = web3.PublicKey.findProgramAddressSync(
+        [Buffer.from("lut"), nttProgramId.toBuffer()],
+        exampleNttSvmLutProgram.programId
+      )[0];
+
+      let lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+        lutPointerAddress
+      );
+
+      if (!lutPointer) {
+        console.log("No helper LUT found, initializing...");
+        const recentSlot =
+          (await exampleNttSvmLutProgram.provider.connection.getSlot()) - 1;
+        const tx = await exampleNttSvmLutProgram.methods
+          .initializeLut(new BN(recentSlot))
+          .accounts({
+            nttProgramId,
+          })
+          .rpc();
+
+        console.log(`Initialized lookup table: ${tx}`);
+
+        // Wait for LUT warm-up
+        while (!lutPointer) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+            lutPointerAddress
+          );
+        }
+      }
+
+      const response = await connection.getAddressLookupTable(
+        lutPointer.address
+      );
+      if (!response.value) throw new Error("Unable to fetch lookup table");
+      luts.push(response.value);
+    }
+
+    // Recompile and broadcast
+    tx.transaction.transaction.message = message.compileToV0Message(luts);
+    const hash = await provider.sendAndConfirm(
+      tx.transaction.transaction,
+      tx.transaction.signers,
+      { commitment: "confirmed" }
+    );
+  }
+}
+```
+
+## Status the transaction
+
+After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
+
+```ts
+const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
+  txHash,
+  chainId,
+})
+```
+
+You can also link directly to the transaction in the Explorer:
+
+```ts
+`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`
+```
+
+## Conclusion
+
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers.
 
 
 ---
@@ -6839,7 +7236,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
@@ -11223,12 +11620,6 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately.
 - Monitor and maintain your multichain deployment.
 
-## Manual Relaying for SVM Transfers  
-
-By default, NTT transfers to SVM chains require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
-
-This step ensures that tokens are properly minted or unlocked on the SVM chain and prevents unauthorized claims.
-
 ## Post-Deployment Settings
 
 The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
@@ -11535,7 +11926,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
@@ -11839,7 +12230,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
     1. Install the NTT CLI:
 
         ```bash
-        git clone --branch 'v1.5.0+cli' --single-branch --depth 1 \
+        git clone --branch 'v1.6.0+cli' --single-branch --depth 1 \
             https://github.com/wormhole-foundation/native-token-transfers.git
         cd native-token-transfers
         ```
@@ -15483,10 +15874,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@3.11.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -17291,7 +17682,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 ### EVM
 
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Ethereum Holesky</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-holesky" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Ethereum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Arbitrum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.arbitrum.io/for-devs/dev-tools-and-resources/chain-info#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>AVAX</td><td><a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target="_blank">Official Avalanche Faucet</a></td></tr><tr><td>Base Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">List of Faucets</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>BERA</td><td><a href="https://bartio.faucet.berachain.com/" target="_blank">Official Berachain Faucet</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>BNB</td><td><a href="https://testnet.binance.org/faucet-smart/" target="_blank">Official BNB Faucet</a></td></tr><tr><td>Celo</td><td>EVM</td><td>CELO</td><td><a href="https://faucet.celo.org/alfajores" target="_blank">Official Celo Faucet</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>FTM</td><td><a href="https://faucet.fantom.network/" target="_blank">Official Fantom Faucet</a></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td>EVM</td><td>mock USDC</td><td><a href="https://app.hyperliquid-testnet.xyz/drip" target="_blank">Official Hyperliquid Faucet</a></td></tr><tr><td>Ink</td><td>EVM</td><td>ETH</td><td><a href="https://inkonchain.com/faucet" target="_blank">Official Ink Faucet</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>KAIA</td><td><a href="https://www.kaia.io/faucet" target="_blank">Official Kaia Faucet</a></td></tr><tr><td>Linea</td><td>EVM</td><td>ETH</td><td><a href="https://docs.linea.build/get-started/how-to/get-testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>MNT</td><td><a href="https://faucet.sepolia.mantle.xyz/" target="_blank">Official Mantle Faucet</a></td></tr><tr><td>Moca</td><td>EVM</td><td>MOCA</td><td><a href="https://devnet-scan.mocachain.org/faucet" target="_blank">Official Moca Faucet</a></td></tr><tr><td>Monad</td><td>EVM</td><td>MON</td><td><a href="https://testnet.monad.xyz/" target="_blank">Official Monad Faucet</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>DEV</td><td><a href="https://faucet.moonbeam.network/" target="_blank">Official Moonbeam Faucet</a></td></tr><tr><td>Optimism Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr><tr><td>Plasma</td><td>EVM</td><td>XPL</td><td><a href="https://www.gas.zip/faucet/plasma" target="_blank">Plasma Faucet</a></td></tr><tr><td>Plume</td><td>EVM</td><td>PLUME</td><td><a href="https://faucet.plume.org/" target="_blank">Official Plume Faucet</a></td></tr><tr><td>Polygon Amoy</td><td>EVM</td><td>POL</td><td><a href="https://faucet.polygon.technology/" target="_blank">Official Polygon Faucet</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>SCR</td><td><a href="https://docs.scroll.io/en/developers/faq/#testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>SEI</td><td><a href="https://atlantic-2.app.sei.io/faucet" target="_blank">Sei Atlantic-2 Faucet</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>ETH</td><td><a href="https://faucet.quicknode.com/unichain/sepolia" target="_blank">QuickNode Faucet</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/world-chain-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>OKB</td><td><a href="https://web3.okx.com/xlayer/faucet" target="_blank">X Layer Official Faucet</a></td></tr><tr><td>XRPL-EVM</td><td>EVM</td><td>XRP</td><td><a href="https://faucet.xrplevm.org/" target="_blank">XRPL Official Faucet</a></td></tr></tbody></table>
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Ethereum Holesky</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-holesky" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Ethereum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Arbitrum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.arbitrum.io/for-devs/dev-tools-and-resources/chain-info#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>AVAX</td><td><a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target="_blank">Official Avalanche Faucet</a></td></tr><tr><td>Base Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">List of Faucets</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>BERA</td><td><a href="https://bartio.faucet.berachain.com/" target="_blank">Official Berachain Faucet</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>BNB</td><td><a href="https://testnet.binance.org/faucet-smart/" target="_blank">Official BNB Faucet</a></td></tr><tr><td>Celo</td><td>EVM</td><td>CELO</td><td><a href="https://faucet.celo.org/alfajores" target="_blank">Official Celo Faucet</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>FTM</td><td><a href="https://faucet.fantom.network/" target="_blank">Official Fantom Faucet</a></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td>EVM</td><td>mock USDC</td><td><a href="https://app.hyperliquid-testnet.xyz/drip" target="_blank">Official Hyperliquid Faucet</a></td></tr><tr><td>Ink</td><td>EVM</td><td>ETH</td><td><a href="https://inkonchain.com/faucet" target="_blank">Official Ink Faucet</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>KAIA</td><td><a href="https://www.kaia.io/faucet" target="_blank">Official Kaia Faucet</a></td></tr><tr><td>Linea</td><td>EVM</td><td>ETH</td><td><a href="https://docs.linea.build/get-started/how-to/get-testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>MNT</td><td><a href="https://faucet.sepolia.mantle.xyz/" target="_blank">Official Mantle Faucet</a></td></tr><tr><td>Moca</td><td>EVM</td><td>MOCA</td><td><a href="https://devnet-scan.mocachain.org/faucet" target="_blank">Official Moca Faucet</a></td></tr><tr><td>Monad</td><td>EVM</td><td>MON</td><td><a href="https://testnet.monad.xyz/" target="_blank">Official Monad Faucet</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>DEV</td><td><a href="https://faucet.moonbeam.network/" target="_blank">Official Moonbeam Faucet</a></td></tr><tr><td>Optimism Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr><tr><td>Plasma</td><td>EVM</td><td>XPL</td><td><a href="https://www.gas.zip/faucet/plasma" target="_blank">Plasma Faucet</a></td></tr><tr><td>Plume</td><td>EVM</td><td>PLUME</td><td><a href="https://faucet.plume.org/" target="_blank">Official Plume Faucet</a></td></tr><tr><td>Polygon Amoy</td><td>EVM</td><td>POL</td><td><a href="https://faucet.polygon.technology/" target="_blank">Official Polygon Faucet</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>SCR</td><td><a href="https://docs.scroll.io/en/developers/faq/#testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>SEI</td><td><a href="https://atlantic-2.app.sei.io/faucet" target="_blank">Sei Atlantic-2 Faucet</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>ETH</td><td><a href="https://faucet.quicknode.com/unichain/sepolia" target="_blank">QuickNode Faucet</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>ETH</td><td><a href="https://ethglobal.com/faucet/world-chain-sepolia-4801" target="_blank">Alchemy Faucet</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>OKB</td><td><a href="https://web3.okx.com/xlayer/faucet" target="_blank">X Layer Official Faucet</a></td></tr><tr><td>XRPL-EVM</td><td>EVM</td><td>XRP</td><td><a href="https://faucet.xrplevm.org/" target="_blank">XRPL Official Faucet</a></td></tr></tbody></table>
 
 ### SVM
 
@@ -17812,7 +18203,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 
 
 
-<table data-full-width="true" markdown><thead><th>Chain</th><th>Instant</th><th>Safe</th><th>Finalized</th><th>Otherwise</th><th>Time to Finalize</th><th>Details</th></thead><tbody><tr><td>Ethereum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 19min</td><td><a href="https://www.alchemy.com/overviews/ethereum-commitment-levels" target="_blank">Details</a></td></tr><tr><td>Solana</td><td></td><td>0</td><td>1</td><td></td><td>~ 14s</td><td><a href="https://docs.anza.xyz/consensus/commitments/" target="_blank">Details</a></td></tr><tr><td>Algorand</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality" target="_blank">Details</a></td></tr><tr><td>Aptos</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://aptos.dev/network/blockchain/validator-nodes#overview" target="_blank">Details</a></td></tr><tr><td>Arbitrum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td><a href="https://docs.arbitrum.io/how-arbitrum-works/transaction-lifecycle" target="_blank">Details</a></td></tr><tr><td>Avalanche</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 2s</td><td><a href="https://build.avax.network/docs/dapps/advanced-tutorials/exchange-integration#determining-finality" target="_blank">Details</a></td></tr><tr><td>Base</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Berachain</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 4s</td><td></td></tr><tr><td>BNB Smart Chain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 12s</td><td><a href="https://docs.bnbchain.org/bnb-smart-chain/introduction/?h=finality" target="_blank">Details</a></td></tr><tr><td>Celestia</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Celo</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 10s</td><td></td></tr><tr><td>Converge</td><td></td><td></td><td>0</td><td></td><td>~ 7min</td><td></td></tr><tr><td>Cosmos Hub</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>CreditCoin</td><td></td><td></td><td>0</td><td></td><td>~ 60s</td><td></td></tr><tr><td>Dymension</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Evmos</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Fantom</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 5s</td><td></td></tr><tr><td>Fogo</td><td></td><td></td><td>0</td><td></td><td>~ 14s</td><td></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Injective</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Ink</td><td></td><td></td><td>0</td><td></td><td>~ 9min</td><td></td></tr><tr><td>Kaia</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 1s</td><td></td></tr><tr><td>Kujira</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Mantle</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Mezo</td><td></td><td></td><td>0</td><td></td><td>~ 8s</td><td></td></tr><tr><td>Moca</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Monad</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Moonbeam</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api/#finality-rpc-endpoints" target="_blank">Details</a></td></tr><tr><td>NEAR</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td><a href="https://nomicon.io/ChainSpec/Consensus" target="_blank">Details</a></td></tr><tr><td>Neutron</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Optimism</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Osmosis</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Plasma</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Plume</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>Polygon</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 6s</td><td><a href="https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/" target="_blank">Details</a></td></tr><tr><td>Scroll</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 50min</td><td></td></tr><tr><td>Sei</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Seievm</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Sonic</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Stacks</td><td></td><td></td><td>0</td><td></td><td>~ 61min</td><td></td></tr><tr><td>Stargaze</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Sui</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td><a href="https://docs.sui.io/concepts/sui-architecture/consensus" target="_blank">Details</a></td></tr><tr><td>Unichain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>World Chain</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>X Layer</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>XRPL-EVM</td><td></td><td></td><td>0</td><td></td><td>~ 10s</td><td></td></tr></tbody></table>
+<table data-full-width="true" markdown><thead><th>Chain</th><th>Instant</th><th>Safe</th><th>Finalized</th><th>Otherwise</th><th>Time to Finalize</th><th>Details</th></thead><tbody><tr><td>Ethereum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 19min</td><td><a href="https://www.alchemy.com/overviews/ethereum-commitment-levels" target="_blank">Details</a></td></tr><tr><td>Solana</td><td></td><td>0</td><td>1</td><td></td><td>~ 14s</td><td><a href="https://docs.anza.xyz/consensus/commitments/" target="_blank">Details</a></td></tr><tr><td>Algorand</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality" target="_blank">Details</a></td></tr><tr><td>Aptos</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://aptos.dev/network/blockchain/validator-nodes#overview" target="_blank">Details</a></td></tr><tr><td>Arbitrum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td><a href="https://docs.arbitrum.io/learn-more/faq#how-many-blocks-are-needed-for-a-transaction-to-be-confirmedfinalized-in-arbitrum" target="_blank">Details</a></td></tr><tr><td>Avalanche</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 2s</td><td><a href="https://build.avax.network/docs/dapps/advanced-tutorials/exchange-integration#determining-finality" target="_blank">Details</a></td></tr><tr><td>Base</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Berachain</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 4s</td><td></td></tr><tr><td>BNB Smart Chain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 12s</td><td><a href="https://docs.bnbchain.org/bnb-smart-chain/introduction/?h=finality" target="_blank">Details</a></td></tr><tr><td>Celestia</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Celo</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 10s</td><td></td></tr><tr><td>Converge</td><td></td><td></td><td>0</td><td></td><td>~ 7min</td><td></td></tr><tr><td>Cosmos Hub</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>CreditCoin</td><td></td><td></td><td>0</td><td></td><td>~ 60s</td><td></td></tr><tr><td>Dymension</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Evmos</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Fantom</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 5s</td><td></td></tr><tr><td>Fogo</td><td></td><td></td><td>0</td><td></td><td>~ 14s</td><td></td></tr><tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Injective</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Ink</td><td></td><td></td><td>0</td><td></td><td>~ 9min</td><td></td></tr><tr><td>Kaia</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 1s</td><td></td></tr><tr><td>Kujira</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Mantle</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Mezo</td><td></td><td></td><td>0</td><td></td><td>~ 8s</td><td></td></tr><tr><td>Moca</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Monad</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Moonbeam</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api/#finality-rpc-endpoints" target="_blank">Details</a></td></tr><tr><td>NEAR</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td><a href="https://nomicon.io/ChainSpec/Consensus" target="_blank">Details</a></td></tr><tr><td>Neutron</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Optimism</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Osmosis</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Plasma</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Plume</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>Polygon</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 6s</td><td><a href="https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/" target="_blank">Details</a></td></tr><tr><td>Scroll</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 50min</td><td></td></tr><tr><td>Sei</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Seievm</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Sonic</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Stacks</td><td></td><td></td><td>0</td><td></td><td>~ 61min</td><td></td></tr><tr><td>Stargaze</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Sui</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td><a href="https://docs.sui.io/concepts/sui-architecture/consensus" target="_blank">Details</a></td></tr><tr><td>Unichain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>World Chain</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>X Layer</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>XRPL-EVM</td><td></td><td></td><td>0</td><td></td><td>~ 10s</td><td></td></tr></tbody></table>
 
 
 ---
