@@ -6,32 +6,50 @@ categories: CCTP, Transfer, Executor
 <!-- move snippets, link to this page -->
 # CCTP Executor Integration
 
-This document focuses on front-end integration with CCTP + Executor. For on-chain v1 VAA integration, check out [Executor Integration Notes (Public)](https://www.notion.so/Executor-Integration-Notes-Public-1bd3029e88cb804e8281ec19e3264c3b?pvs=21).
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and optional follow-up execution on the destination chain.
 
+This guide focuses on front-end integration between CCTP and Executor: generating relay instructions, requesting a signed execution quote, wiring that quote into the sending transaction, and tracking relay status. It covers EVM, SVM, and Sui, and highlights the differences between CCTPv1 (`ERC1`) and CCTPv2 (`ERC2`) flows.
 
 ## Prerequisites
 
-Always check the [capabilities endpoint](https://executor-testnet.labsapis.com/v0/capabilities) to ensure that the source and destination chains are supported, CCTP v1 (`ERC1`) or CCTP v2 (`ERC2`) relays are supported on the **destination** chain, based on your needs, and note the gas drop-off limit. The relayer will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the limit.
+Before integrating CCTP with Executor, ensure you have:
+
+- Verified that both the source and destination chains are supported and that the required CCTP relay type — CCTP v1 (`ERC1`) or CCTP v2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
+    ```sh
+    GET https://executor-testnet.labsapis.com/v0/capabilities
+    ```
+    The response includes:
+      - Supported source and destination chains.
+      - Enabled CCTP relay types (ERC1 or ERC2) for the destination chain.
+      - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
+    !!!note
+          The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
 
-- Mainnet - [https://executor.labsapis.com](https://executor.labsapis.com/)
-- Testnet - [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com/)
+Use the following resources throughout this guide:
 
-[[Public] Executor Addresses       ](https://www.notion.so/Public-Executor-Addresses-1f93029e88cb80df940eeb8867a01081?pvs=21) 
+- [**CCTP with Executor Addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
+- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
 
-There’s a work-in-progress explorer here:
+    | Environment | URL                                                                            |
+    |-------------|--------------------------------------------------------------------------------|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-- [Testnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor-testnet.labsapis.com&env=Testnet)
-- [Mainnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor.labsapis.com&env=Mainnet)
+    !!! note
+        For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
 
 ## Generate your relay instructions
 
-[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts) for the Executor RelayInstructions are provided by the Wormhole TypeScript SDK
+Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
-```bash
+```sh
 npm i @wormhole-foundation/sdk-definitions
 ```
+
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts) for the Executor RelayInstructions are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 
 ```tsx
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
@@ -548,3 +566,10 @@ You can also link to the explorer with
 
 
 
+<!-- other
+There’s a work-in-progress explorer here:
+
+- [Testnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor-testnet.labsapis.com&env=Testnet)
+- [Mainnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor.labsapis.com&env=Mainnet)
+
+-->
