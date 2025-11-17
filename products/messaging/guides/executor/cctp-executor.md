@@ -3,7 +3,7 @@ title: Integrate CCTP with Executor
 description: Learn how to integrate Circle CCTP with the Executor framework for permissionless, quote-based USDC relaying and cross-chain execution.
 categories: CCTP, Transfer, Executor
 ---
-<!-- move snippets, link to this page -->
+
 # CCTP Executor Integration
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and optional follow-up execution on the destination chain.
@@ -63,46 +63,98 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
   });
 ```
 
+??? interface "Parameters"
+
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    —
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    —
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction, this should typically be set to 0 for NTT transfers.
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
+
+| Instruction             | Description                                                               | Fields                 |
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      |
+| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             |
+
 **EVM**
 
-For EVM destination chains, the `gasLimit` is the gas limit that will be set on the redeeming transaction. The gas used may vary based on whether including a gas drop-off instruction or not (in addition to the normal differences between various EVM chains).
+For EVM destinations:
 
-`msgValue` is not used by CCTP’s `receiveMessage` function and should be set to 0.
+- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included(in addition to the normal differences between various EVM chains).
+- `msgValue` is not used by CCTP’s `receiveMessage` entrypoints and should be set to zero for standard CCTP flows.
 
 **SVM**
 
-For SVM destination chains, such as Solana, the `gasLimit` is the number of Compute Units that will be set on the transaction. This will impact the total cost based on the [Priority Fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees) included in the quote and must cover the actual Compute Units used by the transaction.
+For Solana and other SVM chains:
 
-`msgValue` must exceed the lamports required for the transaction *in addition to* the Priority Fee (e.g. fee and rent). See 
+- `gasLimit` represents the number of compute units to allocate to the transaction.
+- The total relay cost is determined by:
+  - The CUs consumed by the transaction.
+  - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider.
+- `msgValue` must cover all lamports required for:
+  - Transaction fees
+  - Priority fees
+  - Any rent required for new accounts
 
+CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the associated token account (ATA) for the recipient does not exist, it can be created by the relayer, but this increases rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
 
-Transfers to SVM are designated to a token account which *must exist* before the redeeming the transfer. In order to support transfers to a wallet for which a USDC token account does not exist, we can dynamically create the associated token account for a wallet *if* the relay instructions include a `GasDropOffInstruction` for that wallet (even if the drop-off amount is set to zero). This provides the relayer the necessary information to re-derive and create the associated token account. So, we recommend following this pattern.
+1. Target the associated token account for the recipient.
+2. Before sending, check whether the ATA exists.
+3. If it does not exist, include a zero-value `GasDropOffInstruction` for the wallet owner (not the ATA). This gives the relayer enough information to re-derive and create the ATA.
 
-1. Always send to the associated token account.
-2. Before sending, check if the associated token account exists. If it does not, add a zero value `GasDropOffInstruction` to the wallet so the relayer can create it automatically.
-
-If using a non-zero `GasDropOffInstruction` to a ***new*** wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Our relayer will ignore drop-offs to new accounts if they are less than the minimum as otherwise the transaction would fail.
+!!!note
+    If a non-zero `GasDropOffInstruction` is used for a new wallet, the drop-off amount must be greater than `getMinimumBalanceForRentExemption` for the token account. Drop-offs below this threshold for new accounts are ignored to avoid guaranteed transaction failure.
 
 **Sui**
 
-For Sui destination chains, the `gasLimit` represents the [gas budget](https://sdk.mystenlabs.com/typescript/transaction-building/gas#budget) to be set on the transaction. Similar to transactions submitted directly to Sui, this may require setting a budget that is higher than the actual cost. This approach of directly setting the gas budget was taken due to the [complex and non-linear cost of gas on Sui](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices).
+For Sui:
+
+- `gasLimit` represents the [gas budget](https://sdk.mystenlabs.com/typescript/transaction-building/gas#budget){target=\_blank} for the transaction.
+- As with native Sui transactions, the budget often needs to exceed the actual cost to account for variable execution and storage usage.
+- A direct gas budget is used instead of a simulated CU-style model due to the [non-linear gas cost structure](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices){target=\_blank} on Sui.
 
 ## Request a SignedQuote
 
-Request a SignedQuote from our Relay Provider. For example, this requests a quote from Sepolia to Base Sepolia.
+Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The below example requests a quote from Sepolia to Base Sepolia:
 
-```tsx
-const EXECUTOR_URL = "https://executor-testnet.labsapis.com"
-const { signedQuote: quote, estimatedCost: estimate } = (
-  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
-    srcChain: 10002,
-    dstChain: 10004,
-    relayInstructions,
-  })
-).data;
+```ts
+--8<-- 'code/products/messaging/guides/executor/signedQuote.ts'
 ```
 
-Example Result:
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    —
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    —
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+
+Example response:
 
 ```bash
 {
@@ -111,367 +163,76 @@ Example Result:
 }
 ```
 
-Signed Quotes have an expiry time and should be generated with each request and submitted promptly on-chain. The Executor contract will revert if the expiry time has passed. 
+Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
 
+## Call your sending contract
 
-# Call your sending contract
-
-Use the provided estimate, signed quote, and relay instructions to invoke your sending side contract. See [[Public] Executor Addresses       ](https://www.notion.so/Public-Executor-Addresses-1f93029e88cb80df940eeb8867a01081?pvs=21) for a full list of helpers contracts.
+With relay instructions and a signed quote, the sending transaction can initiate both the CCTP burn and the Executor request, which instructs the relay provider to redeem and optionally execute on the destination chain.
 
 **EVM**
 
-`CCTPv1WithExecutor` and `CCTPv2WithExecutor` contracts have been developed which call `depositForBurn` followed by `requestExecution`. Attached below are the interface files.
+For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entrypoint. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier.
 
-[ICCTPv1WithExecutor.sol](attachment:981c4962-a1ca-409d-a0e6-f9f9bb78f5cd:ICCTPv1WithExecutor.sol)
+Two variants are available:
 
-[ICCTPv2WithExecutor.sol](attachment:5a1975a4-bc3b-4855-8416-99c30c35c408:ICCTPv2WithExecutor.sol)
+- `CCTPv1WithExecutor`: Integrates CCTP v1 (`ERC1`) with Executor.
+- `CCTPv2WithExecutor`: Integrates CCTP v2 (`ERC2`) with Executor.
 
-**SVM**
+Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
-### CCTP v1
+```sol
+--8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:1:18'
+```
 
-An `example_cctp_with_executor` program has been developed which requests a relay for the last nonce the CCTP Message Transmitter published by reading the message transmitter state account.
+For CCTP v1, the helper interface is:
 
-- `example_cctp_with_executor.json`
-    
+??? interface "ICCTPv1WithExecutor"
+
+    ```sol
+    --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:20'
+    ```
+
+For CCTP v2, the helper interface is:
+
+??? interface "ICCTPv2WithExecutor"
+
+    ```sol
+    --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv2WithExecutor.sol:20'
+    ```
+
+In both cases, you pass:
+
+- `executorArgs.signedQuote`: The `signedQuote` returned by the Executor `/v0/quote` endpoint.
+- `executorArgs.instructions`: The serialized relay instructions from the previous step.
+- `executorArgs.refundAddress`: The address that should receive any unused funds refunded by the Executor.
+- `feeArgs`: Optional referrer fee configuration, if your integration charges a fee on transfers.
+
+**SVM with CCTP v1**
+
+For CCTP v1, an `example_cctp_with_executor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
+
+??? interface "example_cctp_with_executor.json"
+
     ```json
-    {
-      "address": "CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs",
-      "metadata": {
-        "name": "example_cctp_with_executor",
-        "version": "0.1.0",
-        "spec": "0.1.0",
-        "description": "Created with Anchor"
-      },
-      "instructions": [
-        {
-          "name": "relay_last_message",
-          "discriminator": [
-            68,
-            157,
-            251,
-            90,
-            201,
-            66,
-            40,
-            60
-          ],
-          "accounts": [
-            {
-              "name": "payer",
-              "docs": [
-                "Payer will pay the Executor"
-              ],
-              "writable": true,
-              "signer": true
-            },
-            {
-              "name": "payee",
-              "writable": true
-            },
-            {
-              "name": "message_transmitter"
-            },
-            {
-              "name": "executor_program",
-              "address": "Ax7mtQPbNPQmghd7C3BHrMdwwmkAXBDq7kNGfXNcc7dg"
-            },
-            {
-              "name": "system_program",
-              "address": "11111111111111111111111111111111"
-            }
-          ],
-          "args": [
-            {
-              "name": "args",
-              "type": {
-                "defined": {
-                  "name": "RelayLastMessageArgs"
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "accounts": [
-        {
-          "name": "MessageTransmitter",
-          "discriminator": [
-            71,
-            40,
-            180,
-            142,
-            19,
-            203,
-            35,
-            252
-          ]
-        }
-      ],
-      "types": [
-        {
-          "name": "MessageTransmitter",
-          "docs": [
-            "Main state of the MessageTransmitter program"
-          ],
-          "type": {
-            "kind": "struct",
-            "fields": [
-              {
-                "name": "owner",
-                "type": "pubkey"
-              },
-              {
-                "name": "pending_owner",
-                "type": "pubkey"
-              },
-              {
-                "name": "attester_manager",
-                "type": "pubkey"
-              },
-              {
-                "name": "pauser",
-                "type": "pubkey"
-              },
-              {
-                "name": "paused",
-                "type": "bool"
-              },
-              {
-                "name": "local_domain",
-                "type": "u32"
-              },
-              {
-                "name": "version",
-                "type": "u32"
-              },
-              {
-                "name": "signature_threshold",
-                "type": "u32"
-              },
-              {
-                "name": "enabled_attesters",
-                "type": {
-                  "vec": "pubkey"
-                }
-              },
-              {
-                "name": "max_message_body_size",
-                "type": "u64"
-              },
-              {
-                "name": "next_available_nonce",
-                "type": "u64"
-              }
-            ]
-          }
-        },
-        {
-          "name": "RelayLastMessageArgs",
-          "type": {
-            "kind": "struct",
-            "fields": [
-              {
-                "name": "recipient_chain",
-                "type": "u16"
-              },
-              {
-                "name": "exec_amount",
-                "type": "u64"
-              },
-              {
-                "name": "signed_quote_bytes",
-                "type": "bytes"
-              },
-              {
-                "name": "relay_instructions",
-                "type": "bytes"
-              }
-            ]
-          }
-        }
-      ]
-    }
+    --8<-- 'code/products/messaging/guides/executor/cctp/example_cctp_with_executor.json'
     ```
-    
-- `example_cctp_with_executor.ts`
-    
-    ```tsx
-    /**
-     * Program IDL in camelCase format in order to be used in JS/TS.
-     *
-     * Note that this is only a type helper and is not the actual IDL. The original
-     * IDL can be found at `target/idl/example_cctp_with_executor.json`.
-     */
-    export type ExampleCctpWithExecutor = {
-      "address": "CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs",
-      "metadata": {
-        "name": "exampleCctpWithExecutor",
-        "version": "0.1.0",
-        "spec": "0.1.0",
-        "description": "Created with Anchor"
-      },
-      "instructions": [
-        {
-          "name": "relayLastMessage",
-          "discriminator": [
-            68,
-            157,
-            251,
-            90,
-            201,
-            66,
-            40,
-            60
-          ],
-          "accounts": [
-            {
-              "name": "payer",
-              "docs": [
-                "Payer will pay the Executor"
-              ],
-              "writable": true,
-              "signer": true
-            },
-            {
-              "name": "payee",
-              "writable": true
-            },
-            {
-              "name": "messageTransmitter"
-            },
-            {
-              "name": "executorProgram",
-              "address": "Ax7mtQPbNPQmghd7C3BHrMdwwmkAXBDq7kNGfXNcc7dg"
-            },
-            {
-              "name": "systemProgram",
-              "address": "11111111111111111111111111111111"
-            }
-          ],
-          "args": [
-            {
-              "name": "args",
-              "type": {
-                "defined": {
-                  "name": "relayLastMessageArgs"
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "accounts": [
-        {
-          "name": "messageTransmitter",
-          "discriminator": [
-            71,
-            40,
-            180,
-            142,
-            19,
-            203,
-            35,
-            252
-          ]
-        }
-      ],
-      "types": [
-        {
-          "name": "messageTransmitter",
-          "docs": [
-            "Main state of the MessageTransmitter program"
-          ],
-          "type": {
-            "kind": "struct",
-            "fields": [
-              {
-                "name": "owner",
-                "type": "pubkey"
-              },
-              {
-                "name": "pendingOwner",
-                "type": "pubkey"
-              },
-              {
-                "name": "attesterManager",
-                "type": "pubkey"
-              },
-              {
-                "name": "pauser",
-                "type": "pubkey"
-              },
-              {
-                "name": "paused",
-                "type": "bool"
-              },
-              {
-                "name": "localDomain",
-                "type": "u32"
-              },
-              {
-                "name": "version",
-                "type": "u32"
-              },
-              {
-                "name": "signatureThreshold",
-                "type": "u32"
-              },
-              {
-                "name": "enabledAttesters",
-                "type": {
-                  "vec": "pubkey"
-                }
-              },
-              {
-                "name": "maxMessageBodySize",
-                "type": "u64"
-              },
-              {
-                "name": "nextAvailableNonce",
-                "type": "u64"
-              }
-            ]
-          }
-        },
-        {
-          "name": "relayLastMessageArgs",
-          "type": {
-            "kind": "struct",
-            "fields": [
-              {
-                "name": "recipientChain",
-                "type": "u16"
-              },
-              {
-                "name": "execAmount",
-                "type": "u64"
-              },
-              {
-                "name": "signedQuoteBytes",
-                "type": "bytes"
-              },
-              {
-                "name": "relayInstructions",
-                "type": "bytes"
-              }
-            ]
-          }
-        }
-      ]
-    };
-    
-    ```
-    
 
-Simply add the `relayLastMessage` instruction as a `postInstruction` on your `depositForBurn` transaction.
+??? interface "example_cctp_with_executor.ts"
+
+    ```tsx
+    --8<-- 'code/products/messaging/guides/executor/cctp/example_cctp_with_executor.ts'
+    ```
+    
+To integrate this with your existing CCTP `depositForBurn` transaction, add `relayLastMessage` as a `postInstruction`:
 
 ```tsx
 const shimProgram = new Program<ExampleCctpWithExecutor>(
   ExampleCctpWithExecutorIdl,
   provider
 );
-...
+
+// ... your CCTP depositForBurn builder ...
+
 .postInstructions([
   await shimProgram.methods
     .relayLastMessage({
@@ -491,85 +252,104 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 ...
 ```
 
-### CCTP v2
+??? interface "Parameters"
 
-Using CCTP v2 with Executor on SVM does not inherently require a specialized on-chain smart contract and may be integrated entirely client-side. Simply call `depositForBurn` or `depositForBurnWithHook` followed by `requestForExecution` with `requestBytes: Buffer.from("4552433201", "hex")`. The same can be done on-chain. The IDL for `TokenMessengerMinterV2` and `Executor` can be pulled from on-chain with the following command.
+    `execAmount` ++"u64"++  
+
+    The execution budget passed to the Executor. This should be set to the `estimatedCost` returned by the `/v0/quote` endpoint.
+
+    —
+
+    `recipientChain` ++"uint16"++  
+
+    The Wormhole chain ID of the destination chain where the USDC redemption should occur.
+
+    —
+
+    `signedQuoteBytes` ++"bytes"++  
+
+    The signed quote returned from the Executor `/v0/quote` endpoint. Must be passed as raw bytes (without the `0x` prefix).
+
+    —
+
+    `relayInstructions` ++"bytes"++  
+
+    The serialized relay instructions generated earlier, typically created by converting the hex string into a byte buffer.
+
+    —
+
+    `messageTransmitter` ++"pubkey"++  
+
+    The CCTP `MessageTransmitter` program account on Solana.
+
+    —
+
+    `payee` ++"pubkey"++  
+
+    The address extracted from the signed quote that receives refunds or drop-offs.
+
+
+This combines the CCTP burn and the Executor request atomically in a single Solana transaction.
+
+**SVM with CCTP v2**
+
+CCTP v2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
+
+1. Call `depositForBurn` or `depositForBurnWithHook`.
+2. Followed by the `requestForExecution` call.
+
+For CCTP v2, the Executor request uses a fixed request prefix:
+
+```ts
+const requestBytes = Buffer.from("4552433201", "hex"); 
+```
+
+You pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
+
+If needed, you can fetch the on-chain IDLs for both programs:
 
 ```bash
 anchor idl --provider.cluster m fetch CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPbeC
 anchor idl --provider.cluster m fetch execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV
 ```
 
+This allows CCTP v2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
+
 **Sui**
 
-An `executor_requests` helper module has been deployed to Sui so that, using the power and flexibility of [Programmable Transaction Blocks](https://docs.sui.io/guides/developer/sui-101/building-ptb), no integration-specific module is needed. Simply add the following to your existing `deposit_for_burn` transaction. 
+On Sui, an `executor_requests` helper module is deployed so that, using [Programmable Transaction Blocks (PTB)](https://docs.sui.io/guides/developer/sui-101/building-ptb){target=\_blank}, no integration-specific Move module is required. You can extend an existing `deposit_for_burn` PTB by deriving the CCTP message fields and then issuing an Executor request.
+
+The following example shows how to:
+
+1. Call `deposit_for_burn` and capture the returned CCTP message.
+2. Read the `source_domain` and `nonce` from the message.
+3. Build CCTP v1 request bytes via `executor_requests::make_cctp_v1_request`.
+4. Split off a coin to pay the Executor using the `estimatedCost` from the quote.
+5. Call `executor::request_execution` with the quote, request bytes, and relay instructions.
 
 ```tsx
-// grab the message NestedResult
-const [_, message] = tx.moveCall({
-    target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
-...
-const [source_domain] = tx.moveCall({
-  target: `${messageTransmitterId}::message::source_domain`,
-  arguments: [message],
-});
-
-const [nonce] = tx.moveCall({
-  target: `${messageTransmitterId}::message::nonce`,
-  arguments: [message],
-});
-
-const [requestBytes] = tx.moveCall({
-  target: `${executorRequestsId}::executor_requests::make_cctp_v1_request`,
-  arguments: [source_domain, nonce],
-});
-
-const [executorCoin] = tx.splitCoins(tx.gas, [tx.pure.u64(BigInt(estimate))]);
-
-tx.moveCall({
-  target: `${executorId}::executor::request_execution`,
-  arguments: [
-    executorCoin,
-    tx.object(SUI_CLOCK_OBJECT_ID),
-    tx.pure.u16(dstChain),
-    tx.pure.address("0x0"),
-    tx.pure.address(signer.getPublicKey().toSuiAddress()),
-    tx.pure.vector("u8", Buffer.from(quote.substring(2), "hex")),
-    requestBytes,
-    tx.pure.vector("u8", Buffer.from(relayInstructions.substring(2), "hex")),
-  ],
-});
+--8<-- 'code/products/messaging/guides/executor/cctp/sui_contract_call.ts'
 ```
 
-# Status the transaction
+## Status the transaction
 
-Our Relay Provider currently relies on you to status transaction after submitting.
+After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
-```bash
+```ts
 const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
   txHash,
   chainId,
-})
+});
 ```
 
-You can also link to the explorer with
+You can also link directly to the transaction in the Explorer:
 
-```tsx
-`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${
-	chainId
-}tx/${
-  txHash
-}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`
+```ts
+`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`;
 ```
 
 ## Conclusion
 
+Integrating CCTP with Executor enables permissionless, quote-based relaying and execution for USDC across EVM, SVM, and Sui. CCTP continues to provide the canonical burn-and-mint flow for USDC, while Executor coordinates cross-chain execution through a network of relay providers rather than a single dedicated relayer.
 
-
-<!-- other
-There’s a work-in-progress explorer here:
-
-- [Testnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor-testnet.labsapis.com&env=Testnet)
-- [Mainnet](https://wormholelabs-xyz.github.io/executor-explorer/#/?endpoint=https%3A%2F%2Fexecutor.labsapis.com&env=Mainnet)
-
--->
+Applications can build end-to-end CCTP transfers where the redeem and any follow-up logic are handled automatically on the destination chain. This pattern lets you keep CCTP as the source of truth for USDC movement, while using Executor to flexibly manage gas, drop-offs, and execution behavior across multiple environments.

@@ -1,0 +1,157 @@
+{
+  "address": "CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs",
+  "metadata": {
+    "name": "example_cctp_with_executor",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "relay_last_message",
+      "discriminator": [
+        68,
+        157,
+        251,
+        90,
+        201,
+        66,
+        40,
+        60
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Payer will pay the Executor"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payee",
+          "writable": true
+        },
+        {
+          "name": "message_transmitter"
+        },
+        {
+          "name": "executor_program",
+          "address": "Ax7mtQPbNPQmghd7C3BHrMdwwmkAXBDq7kNGfXNcc7dg"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "RelayLastMessageArgs"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "MessageTransmitter",
+      "discriminator": [
+        71,
+        40,
+        180,
+        142,
+        19,
+        203,
+        35,
+        252
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "MessageTransmitter",
+      "docs": [
+        "Main state of the MessageTransmitter program"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending_owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "attester_manager",
+            "type": "pubkey"
+          },
+          {
+            "name": "pauser",
+            "type": "pubkey"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "local_domain",
+            "type": "u32"
+          },
+          {
+            "name": "version",
+            "type": "u32"
+          },
+          {
+            "name": "signature_threshold",
+            "type": "u32"
+          },
+          {
+            "name": "enabled_attesters",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "max_message_body_size",
+            "type": "u64"
+          },
+          {
+            "name": "next_available_nonce",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RelayLastMessageArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "recipient_chain",
+            "type": "u16"
+          },
+          {
+            "name": "exec_amount",
+            "type": "u64"
+          },
+          {
+            "name": "signed_quote_bytes",
+            "type": "bytes"
+          },
+          {
+            "name": "relay_instructions",
+            "type": "bytes"
+          }
+        ]
+      }
+    }
+  ]
+}
