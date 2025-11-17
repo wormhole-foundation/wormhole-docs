@@ -1,3 +1,4 @@
 title: Executor
 nav:
 - 'NTT Executor Integration': ntt-executor.md
+- 'CCTP Executor Integration': cctp-executor.md
