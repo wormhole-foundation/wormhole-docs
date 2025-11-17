@@ -8,9 +8,9 @@ categories: NTT, Transfer, Executor
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
 
-This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and Solana (SVM) chains.
+This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and SVM chains.
 
-The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk){target=_blank} now includes a built-in route for NTT with Executor, with implementations for both [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=_blank} and [Solana (SVM)](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=_blank}, making it straightforward to integrate into existing workflows.
+The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk){target=\_blank} now includes a built-in route for NTT with Executor, with implementations for both [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=\_blank} and [Solana (SVM)](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=\_blank}, making it straightforward to integrate into existing workflows.
 
 ## Prerequisites
 
@@ -32,8 +32,8 @@ Before starting, ensure you have:
 ## References
 Use the following resources throughout this guide:
 
-- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=_blank} : List of deployed contracts for NTT with Executor.  
-- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
+- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.  
+- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     |-------------|--------------------------------------------------------------------------------|
@@ -45,7 +45,7 @@ Use the following resources throughout this guide:
 
 ## Generate relay instructions
 
-Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, message value, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer.
+Relay instructions define how the Executor should perform the relay on the destination chain, including parameters such as gas limits, message value, and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer.
 
 Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
@@ -108,7 +108,7 @@ For EVM-based destination chains:
 
 For Solana and other SVM chains:
 
-- `gasLimit` represents the total Compute Units required across all transactions, plus a 20% buffer.
+- `gasLimit` represents the total compute units required across all transactions, plus a 20% buffer.
 - The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}, which simulates the transaction and sets the budget to 120% of the simulated `unitsConsumed`. This allows the relayer to automatically determine the budget required for each transaction in the series needed to perform an NTT redeem.
 - `msgValue` must cover the lamports required for the transaction, including priority fees and rent.
 
