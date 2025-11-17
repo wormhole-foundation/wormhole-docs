@@ -6237,7 +6237,7 @@ Page Title: Integrate CCTP with Executor
 
 # CCTP Executor Integration
 
-The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and optional follow-up execution on the destination chain.
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.
 
 This guide focuses on front-end integration between CCTP and Executor: generating relay instructions, requesting a signed execution quote, wiring that quote into the sending transaction, and tracking relay status. It covers EVM, SVM, and Sui, and highlights the differences between CCTPv1 (`ERC1`) and CCTPv2 (`ERC2`) flows.
 
@@ -6262,7 +6262,7 @@ Before integrating CCTP with Executor, ensure you have:
 Use the following resources throughout this guide:
 
 - [**CCTP with Executor Addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
-- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
+- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     |-------------|--------------------------------------------------------------------------------|
@@ -6274,7 +6274,7 @@ Use the following resources throughout this guide:
 
 ## Generate your relay instructions
 
-Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
 ```sh
 npm i @wormhole-foundation/sdk-definitions
@@ -6310,7 +6310,7 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     `msgValue` ++"uint"++
 
-    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction, this should typically be set to 0 for NTT transfers.
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction; this should typically be set to 0 for NTT transfers.
 
 Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
 
@@ -6325,7 +6325,7 @@ Relay instructions can include multiple requests (e.g., for gas, value transfer,
 
 For EVM destinations:
 
-- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included(in addition to the normal differences between various EVM chains).
+- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included(in addition to the normal differences across various EVM chains).
 - `msgValue` is not used by CCTP’s `receiveMessage` entrypoints and should be set to zero for standard CCTP flows.
 
 **SVM**
@@ -6341,7 +6341,7 @@ For Solana and other SVM chains:
   - Priority fees
   - Any rent required for new accounts
 
-CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the associated token account (ATA) for the recipient does not exist, it can be created by the relayer, but this increases rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
+CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the recipient's associated token account (ATA) does not exist, the relayer can create it, but this increases the rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
 
 1. Target the associated token account for the recipient.
 2. Before sending, check whether the ATA exists.
@@ -6360,7 +6360,7 @@ For Sui:
 
 ## Request a SignedQuote
 
-Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The below example requests a quote from Sepolia to Base Sepolia:
+Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The example below requests a quote from Sepolia to Base Sepolia:
 
 ```ts
 const EXECUTOR_URL = 'https://executor-testnet.labsapis.com';
@@ -6410,7 +6410,7 @@ With relay instructions and a signed quote, the sending transaction can initiate
 
 **EVM**
 
-For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entrypoint. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier.
+For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier.
 
 Two variants are available:
 
@@ -6996,7 +6996,7 @@ You can also link directly to the transaction in the Explorer:
 
 Integrating CCTP with Executor enables permissionless, quote-based relaying and execution for USDC across EVM, SVM, and Sui. CCTP continues to provide the canonical burn-and-mint flow for USDC, while Executor coordinates cross-chain execution through a network of relay providers rather than a single dedicated relayer.
 
-Applications can build end-to-end CCTP transfers where the redeem and any follow-up logic are handled automatically on the destination chain. This pattern lets you keep CCTP as the source of truth for USDC movement, while using Executor to flexibly manage gas, drop-offs, and execution behavior across multiple environments.
+Applications can build end-to-end CCTP transfers, with redeem and any follow-up logic handled automatically on the destination chain. This pattern lets you keep CCTP as the source of truth for USDC movement, while using Executor to flexibly manage gas, drop-offs, and execution behavior across multiple environments.
 
 
 ---
