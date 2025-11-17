@@ -1373,6 +1373,64 @@
     "token_estimator": "heuristic-v1"
   },
   {
+    "id": "products-messaging-guides-executor-cctp-executor",
+    "title": "Integrate CCTP with Executor",
+    "slug": "products-messaging-guides-executor-cctp-executor",
+    "categories": [
+      "CCTP",
+      "Transfer",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/cctp-executor/",
+    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and optional follow-up execution on the destination chain",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Prerequisites",
+        "anchor": "prerequisites"
+      },
+      {
+        "depth": 2,
+        "title": "References",
+        "anchor": "references"
+      },
+      {
+        "depth": 2,
+        "title": "Generate your relay instructions",
+        "anchor": "generate-your-relay-instructions"
+      },
+      {
+        "depth": 2,
+        "title": "Request a SignedQuote",
+        "anchor": "request-a-signedquote"
+      },
+      {
+        "depth": 2,
+        "title": "Call your sending contract",
+        "anchor": "call-your-sending-contract"
+      },
+      {
+        "depth": 2,
+        "title": "Status the transaction",
+        "anchor": "status-the-transaction"
+      },
+      {
+        "depth": 2,
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "stats": {
+      "chars": 27284,
+      "words": 2730,
+      "headings": 7,
+      "estimated_token_count_total": 5231
+    },
+    "hash": "sha256:18471118464e6a3e695aa105a0dc3ad9ddf22c374fff94a4965415c51eb5a9c3",
+    "token_estimator": "heuristic-v1"
+  },
+  {
     "id": "products-messaging-guides-executor-ntt-executor",
     "title": "Integrate Native Token Transfers with Executor",
     "slug": "products-messaging-guides-executor-ntt-executor",
