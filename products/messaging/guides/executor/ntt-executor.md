@@ -33,17 +33,17 @@ Before starting, ensure you have:
 
 Use the following resources throughout this guide:
 
-- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
-- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
+- [**NTT With Executor addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     | ----------- | ------------------------------------------------------------------------------ |
     | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
     | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
+For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
 
-## Generate relay instructions
+## Generate Relay Instructions
 
 Relay instructions define how the Executor should perform the relay on the destination chain, including parameters such as gas limits, message value, and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
@@ -73,13 +73,13 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Defines the instruction to allocate gas for the relay.
 
-    —
+    ---
 
     `gasLimit` ++"uint"++
 
     Specifies the maximum gas available for executing the redeem transaction on the destination chain.
 
-    —
+    ---
 
     `msgValue` ++"uint"++
 
@@ -110,7 +110,7 @@ For Solana and other SVM chains:
 - `msgValue` must cover the lamports required for the transaction, including priority fees and rent. Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA, increasing rent cost and required `msgValue`.
 - When using a non-zero `GasDropOffInstruction` for a new wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Wormhole's relayer will ignore drop-offs to new accounts if they are below the minimum, as the transaction would fail.
 
-## Request a SignedQuote
+## Request a Signed Quote
 
 Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the full list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
 
@@ -124,13 +124,13 @@ Once your relay instructions are generated, request a `SignedQuote` from the Exe
 
     Specify the Wormhole chain IDs for the source networks.
 
-    —
+    ---
 
     `dstChain` ++"uint16"++
 
     Specify the Wormhole chain IDs for the destination networks.
 
-    —
+    ---
 
     `relayInstructions` ++"Uint8Array"++
 
@@ -151,7 +151,7 @@ Example response:
 
     A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
 
-    —
+    ---
 
     `estimatedCost` ++"string"++
 
@@ -159,7 +159,7 @@ Example response:
 
 Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
 
-## Call your sending contract
+## Call Sending Contract
 
 Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the full list of deployed helper contracts.
 
@@ -183,10 +183,10 @@ For Solana and other SVM-based chains, two helper programs are available to assi
 Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
 
 ```ts
---8<-- 'code/products/messaging/guides/executor/ntt/ntt-transfer-example.ts'
+--8<-- 'code/products/messaging/guides/executor/ntt/NTTExampleTransfer.ts'
 ```
 
-## Status the transaction
+## Check the Transaction Status
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 

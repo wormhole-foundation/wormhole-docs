@@ -1455,23 +1455,23 @@
       },
       {
         "depth": 2,
-        "title": "Generate relay instructions",
+        "title": "Generate Relay Instructions",
         "anchor": "generate-relay-instructions"
       },
       {
         "depth": 2,
-        "title": "Request a SignedQuote",
-        "anchor": "request-a-signedquote"
+        "title": "Request a Signed Quote",
+        "anchor": "request-a-signed-quote"
       },
       {
         "depth": 2,
-        "title": "Call your sending contract",
-        "anchor": "call-your-sending-contract"
+        "title": "Call Sending Contract",
+        "anchor": "call-sending-contract"
       },
       {
         "depth": 2,
-        "title": "Status the transaction",
-        "anchor": "status-the-transaction"
+        "title": "Check the Transaction Status",
+        "anchor": "check-the-transaction-status"
       },
       {
         "depth": 2,
@@ -1480,12 +1480,12 @@
       }
     ],
     "stats": {
-      "chars": 17844,
-      "words": 2067,
+      "chars": 17848,
+      "words": 2068,
       "headings": 7,
-      "estimated_token_count_total": 3507
+      "estimated_token_count_total": 3510
     },
-    "hash": "sha256:d9878816cf2f6b279918d97a037e7a1f7262f70a3edfec97dae979a52a5a1eb6",
+    "hash": "sha256:c4b6fe92a9715f429268700c046048b36df9981c2c857d5068b29bff19798234",
     "token_estimator": "heuristic-v1"
   },
   {
