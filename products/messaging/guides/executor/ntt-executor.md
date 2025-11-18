@@ -73,13 +73,13 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Defines the instruction to allocate gas for the relay.
 
-    —
+    ---
 
     `gasLimit` ++"uint"++
 
     Specifies the maximum gas available for executing the redeem transaction on the destination chain.
 
-    —
+    ---
 
     `msgValue` ++"uint"++
 
@@ -124,13 +124,13 @@ Once your relay instructions are generated, request a `SignedQuote` from the Exe
 
     Specify the Wormhole chain IDs for the source networks.
 
-    —
+    ---
 
     `dstChain` ++"uint16"++
 
     Specify the Wormhole chain IDs for the destination networks.
 
-    —
+    ---
 
     `relayInstructions` ++"Uint8Array"++
 
@@ -151,7 +151,7 @@ Example response:
 
     A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
 
-    —
+    ---
 
     `estimatedCost` ++"string"++
 
