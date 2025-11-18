@@ -17,16 +17,21 @@ The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-
 Before starting, ensure you have:
 
 - [NTT deployed](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank} on both the source and destination chains.
-- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. You can confirm this using the capabilities endpoint:
-  ```sh
-  GET https://executor-testnet.labsapis.com/v0/capabilities
-  ```
-  The response includes:
-    - Supported source and destination chains.
-    - Available relay types (e.g., `wormhole` or `ERN1`).
-    - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. 
 
-!!!note
+??? info "How to verify chain and relay type support"
+
+    You can confirm chain and relay type support using the capabilities endpoint:
+
+    ```sh
+    GET https://executor-testnet.labsapis.com/v0/capabilities
+    ```
+    The response includes:
+
+      - Supported source and destination chains
+      - Available relay types (e.g., `wormhole` or `ERN1`).
+      - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
