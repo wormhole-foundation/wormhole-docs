@@ -15,7 +15,7 @@ This guide covers the core flow for integrating CCTP with Executor, including re
 Before integrating CCTP with Executor, ensure that:
 
 - Both the source and destination chains are supported.
-- The required CCTP relay type — CCTPv1 (`ERC1`) or CCTPv2 (`ERC2`) — is enabled for the destination chain.
+- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain.
 
 ??? info "How to verify chain and relay type support"
 
@@ -97,14 +97,14 @@ Relay instructions can include multiple requests (e.g., for gas, value transfer,
 | `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      |
 | `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             |
 
-**EVM**
+### EVM
 
 For EVM destinations:
 
 - `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included (in addition to the normal differences across various EVM chains).
 - `msgValue` is not used by CCTP’s `receiveMessage` entrypoints and should be set to zero for standard CCTP flows.
 
-**SVM**
+### SVM
 
 For Solana and other SVM chains:
 
@@ -126,7 +126,7 @@ CCTP transfers to Solana are redeemed into a USDC token account that must exist 
 !!!note
     If a non-zero `GasDropOffInstruction` is used for a new wallet, the drop-off amount must be greater than `getMinimumBalanceForRentExemption` for the token account. Drop-offs below this threshold for new accounts are ignored to avoid guaranteed transaction failure.
 
-**Sui**
+### Sui
 
 For Sui:
 
@@ -176,7 +176,7 @@ Signed Quotes have an expiry time and must be generated for each request. The Ex
 
 With relay instructions and a signed quote, the sending transaction can initiate both the CCTP burn and the Executor request, which instructs the relay provider to redeem and optionally execute on the destination chain.
 
-**EVM**
+### EVM
 
 For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
 
@@ -207,7 +207,7 @@ In both cases, you pass:
 - `executorArgs.refundAddress`: The address that should receive any unused funds refunded by the Executor.
 - `feeArgs`: Optional referrer fee configuration, if your integration charges a fee on transfers.
 
-**SVM with CCTPv1**
+### SVM with CCTPv1
 
 For CCTPv1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
 
@@ -291,7 +291,7 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 
 This combines the CCTP burn and the Executor request atomically in a single Solana transaction.
 
-**SVM with CCTPv2**
+### SVM with CCTPv2
 
 CCTPv2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
 
@@ -308,7 +308,7 @@ anchor idl --provider.cluster m fetch execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRci
 
 This allows CCTPv2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
 
-**Sui**
+### Sui
 
 On Sui, an `executor_requests` helper module is deployed so that, using [Programmable Transaction Blocks (PTB)](https://docs.sui.io/guides/developer/sui-101/building-ptb){target=\_blank}, no integration-specific Move module is required. You can extend an existing `deposit_for_burn` PTB by deriving the CCTP message fields and then issuing an Executor request.
 
