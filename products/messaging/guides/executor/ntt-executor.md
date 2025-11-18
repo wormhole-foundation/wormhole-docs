@@ -183,7 +183,7 @@ For Solana and other SVM-based chains, two helper programs are available to assi
 Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
 
 ```ts
---8<-- 'code/products/messaging/guides/executor/ntt/ntt-transfer-example.ts'
+--8<-- 'code/products/messaging/guides/executor/ntt/NTTExampleTransfer.ts'
 ```
 
 ## Status the transaction
