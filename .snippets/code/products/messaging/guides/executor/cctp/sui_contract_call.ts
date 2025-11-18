@@ -1,7 +1,7 @@
 // grab the message NestedResult
 const [_, message] = tx.moveCall({
-    target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
-      // ... existing CCTP args ...
+  target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
+  // ... existing CCTP args ...
 });
 
 const [source_domain] = tx.moveCall({
@@ -27,10 +27,10 @@ tx.moveCall({
     executorCoin,
     tx.object(SUI_CLOCK_OBJECT_ID),
     tx.pure.u16(dstChain),
-    tx.pure.address("0x0"),
+    tx.pure.address('0x0'),
     tx.pure.address(signer.getPublicKey().toSuiAddress()),
-    tx.pure.vector("u8", Buffer.from(quote.substring(2), "hex")),
+    tx.pure.vector('u8', Buffer.from(quote.substring(2), 'hex')),
     requestBytes,
-    tx.pure.vector("u8", Buffer.from(relayInstructions.substring(2), "hex")),
+    tx.pure.vector('u8', Buffer.from(relayInstructions.substring(2), 'hex')),
   ],
 });

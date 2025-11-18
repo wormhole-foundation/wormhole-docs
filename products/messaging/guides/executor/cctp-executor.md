@@ -209,18 +209,18 @@ In both cases, you pass:
 
 **SVM with CCTP v1**
 
-For CCTP v1, an `example_cctp_with_executor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
+For CCTP v1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
 
-??? interface "example_cctp_with_executor.json"
+??? interface "ExampleCCTPExecutor.json"
 
     ```json
-    --8<-- 'code/products/messaging/guides/executor/cctp/example_cctp_with_executor.json'
+    --8<-- 'code/products/messaging/guides/executor/cctp/ExampleCCTPExecutor.json'
     ```
 
-??? interface "example_cctp_with_executor.ts"
+??? interface "ExampleCCTPExecutor.ts"
 
     ```tsx
-    --8<-- 'code/products/messaging/guides/executor/cctp/example_cctp_with_executor.ts'
+    --8<-- 'code/products/messaging/guides/executor/cctp/ExampleCCTPExecutor.ts'
     ```
     
 To integrate this with your existing CCTP `depositForBurn` transaction, add `relayLastMessage` as a `postInstruction`:
