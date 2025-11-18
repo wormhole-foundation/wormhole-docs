@@ -99,14 +99,14 @@ Relay instructions can include multiple requests (e.g., for gas, value transfer,
 | `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      |
 | `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             |
 
-**EVM**
+### EVM
 
 For EVM-based destination chains:
 
 - `gasLimit` defines the redeeming transaction gas limit on the destination chain. The actual gas usage depends on token configuration, manager setup, and chain parameters.
 - `msgValue` is not used by NTT Transceivers’ `receiveMessage` function and should be set to 0.
 
-**SVM**
+### SVM
 
 For Solana and other SVM chains:
 
@@ -168,7 +168,7 @@ Signed Quotes have an expiry time and must be generated for each request. The Ex
 
 Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the full list of deployed helper contracts.
 
-**EVM**
+### EVM
 
 For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
 
@@ -178,7 +178,7 @@ For EVM-based transfers, an `NttManagerWithExecutor` contract combines the stand
 
 If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. This can be done by setting automatic to false.
 
-**SVM**
+### SVM
 
 For Solana and other SVM-based chains, two helper programs are available to assist with generating and submitting NTT execution requests:
 
