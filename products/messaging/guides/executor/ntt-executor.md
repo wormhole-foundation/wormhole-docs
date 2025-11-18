@@ -33,8 +33,8 @@ Before starting, ensure you have:
 
 Use the following resources throughout this guide:
 
-- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
-- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
+- [**NTT With Executor addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     | ----------- | ------------------------------------------------------------------------------ |
