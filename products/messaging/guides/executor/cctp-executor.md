@@ -12,19 +12,18 @@ This guide focuses on front-end integration between CCTP and Executor: generatin
 
 ## Prerequisites
 
-Before integrating CCTP with Executor, ensure you have:
+Before integrating CCTP with Executor, ensure you have verified that both the source and destination chains are supported and that the required CCTP relay type — CCTPv1 (`ERC1`) or CCTPv2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
 
-- Verified that both the source and destination chains are supported and that the required CCTP relay type — CCTP v1 (`ERC1`) or CCTP v2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
-    ```sh
-    GET https://executor-testnet.labsapis.com/v0/capabilities
-    ```
-    The response includes:
-      - Supported source and destination chains.
-      - Enabled CCTP relay types (ERC1 or ERC2) for the destination chain.
-      - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+```sh
+GET https://executor-testnet.labsapis.com/v0/capabilities
+```
+The response includes:
 
-    !!!note
-          The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+  - Supported source and destination chains
+  - Enabled CCTP relay types (`ERC1` or `ERC2`) for the destination chain
+  - Gas drop-off limits, which define the maximum gas the relay provider can allocate
+
+The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
 
@@ -175,8 +174,8 @@ For EVM chains, helper contracts wrap the CCTP calls and the Executor request in
 
 Two variants are available:
 
-- `CCTPv1WithExecutor`: Integrates CCTP v1 (`ERC1`) with Executor.
-- `CCTPv2WithExecutor`: Integrates CCTP v2 (`ERC2`) with Executor.
+- `CCTPv1WithExecutor`: Integrates CCTPv1 (`ERC1`) with Executor.
+- `CCTPv2WithExecutor`: Integrates CCTPv2 (`ERC2`) with Executor.
 
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
@@ -184,7 +183,7 @@ Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:1:18'
 ```
 
-For CCTP v1, the helper interface is:
+For CCTPv1, the helper interface is:
 
 ??? interface "ICCTPv1WithExecutor"
 
@@ -192,7 +191,7 @@ For CCTP v1, the helper interface is:
     --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:20'
     ```
 
-For CCTP v2, the helper interface is:
+For CCTPv2, the helper interface is:
 
 ??? interface "ICCTPv2WithExecutor"
 
@@ -207,9 +206,9 @@ In both cases, you pass:
 - `executorArgs.refundAddress`: The address that should receive any unused funds refunded by the Executor.
 - `feeArgs`: Optional referrer fee configuration, if your integration charges a fee on transfers.
 
-**SVM with CCTP v1**
+**SVM with CCTPv1**
 
-For CCTP v1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
+For CCTPv1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
 
 ??? interface "ExampleCCTPExecutor.json"
 
@@ -291,14 +290,14 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 
 This combines the CCTP burn and the Executor request atomically in a single Solana transaction.
 
-**SVM with CCTP v2**
+**SVM with CCTPv2**
 
-CCTP v2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
+CCTPv2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
 
 1. Call `depositForBurn` or `depositForBurnWithHook`.
 2. Followed by the `requestForExecution` call.
 
-For CCTP v2, the Executor request uses a fixed request prefix:
+For CCTPv2, the Executor request uses a fixed request prefix:
 
 ```ts
 const requestBytes = Buffer.from("4552433201", "hex"); 
@@ -313,7 +312,7 @@ anchor idl --provider.cluster m fetch CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPb
 anchor idl --provider.cluster m fetch execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV
 ```
 
-This allows CCTP v2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
+This allows CCTPv2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
 
 **Sui**
 
@@ -323,7 +322,7 @@ The following example shows how to:
 
 1. Call `deposit_for_burn` and capture the returned CCTP message.
 2. Read the `source_domain` and `nonce` from the message.
-3. Build CCTP v1 request bytes via `executor_requests::make_cctp_v1_request`.
+3. Build CCTPv1 request bytes via `executor_requests::make_cctp_v1_request`.
 4. Split off a coin to pay the Executor using the `estimatedCost` from the quote.
 5. Call `executor::request_execution` with the quote, request bytes, and relay instructions.
 
