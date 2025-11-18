@@ -6805,7 +6805,7 @@ Page Title: Native Token Transfers Manager Contract (EVM)
 
 # NTT Manager Contract Reference (EVM)
 
-The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+The [NttManager]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
 ## Structure Overview
 
@@ -12265,11 +12265,11 @@ Page Title: Native Token Transfers Transceivers Contracts (EVM)
 
 # Transceivers Contracts Reference (EVM)
 
-The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.
+The NTT [Transceiver]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.
 
 ## Structure Overview
 
-The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
+The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
 
 ```text
 WormholeTransceiver.sol
