@@ -37,10 +37,9 @@ Use the following resources throughout this guide:
     | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
     | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-    !!! note
-        For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
+    For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
 
-## Generate your Relay Instructions
+## Generate Relay Instructions
 
 Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
@@ -48,18 +47,20 @@ Relay instructions define how the Executor should perform the relay on the desti
 npm i @wormhole-foundation/sdk-definitions
 ```
 
-[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts) for the Executor RelayInstructions are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `relayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 
 ```tsx
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
-    requests: [{
-    request: {
+  requests: [
+    {
+      request: {
 	      type: "GasInstruction",
 	      gasLimit: 250000n,
 	      msgValue: 0n,
 	    },
-	  }],
-  });
+	  }
+  ],
+});
 ```
 
 ??? interface "Parameters"
@@ -102,12 +103,12 @@ For Solana and other SVM chains:
 
 - `gasLimit` represents the number of compute units to allocate to the transaction.
 - The total relay cost is determined by:
-  - The CUs consumed by the transaction.
-  - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider.
+    - The CUs consumed by the transaction
+    - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider
 - `msgValue` must cover all lamports required for:
-  - Transaction fees
-  - Priority fees
-  - Any rent required for new accounts
+    - Transaction fees
+    - Priority fees
+    - Any rent required for new accounts
 
 CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the recipient's associated token account (ATA) does not exist, the relayer can create it, but this increases the rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
 
@@ -126,7 +127,7 @@ For Sui:
 - As with native Sui transactions, the budget often needs to exceed the actual cost to account for variable execution and storage usage.
 - A direct gas budget is used instead of a simulated CU-style model due to the [non-linear gas cost structure](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices){target=\_blank} on Sui.
 
-## Request a SignedQuote
+## Request a Signed Quote
 
 Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The example below requests a quote from Sepolia to Base Sepolia:
 
