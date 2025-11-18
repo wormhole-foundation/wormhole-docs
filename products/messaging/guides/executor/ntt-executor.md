@@ -186,7 +186,7 @@ Together, these helpers allow you to compose and send a full NTT with Executor t
 --8<-- 'code/products/messaging/guides/executor/ntt/NTTExampleTransfer.ts'
 ```
 
-## Status the Transaction
+## Check the Transaction Status
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
