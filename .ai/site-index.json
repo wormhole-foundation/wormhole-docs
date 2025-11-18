@@ -1397,23 +1397,23 @@
       },
       {
         "depth": 2,
-        "title": "Generate your relay instructions",
-        "anchor": "generate-your-relay-instructions"
+        "title": "Generate Relay Instructions",
+        "anchor": "generate-relay-instructions"
       },
       {
         "depth": 2,
-        "title": "Request a SignedQuote",
-        "anchor": "request-a-signedquote"
+        "title": "Request a Signed Quote",
+        "anchor": "request-a-signed-quote"
       },
       {
         "depth": 2,
-        "title": "Call your sending contract",
-        "anchor": "call-your-sending-contract"
+        "title": "Call Sending Contract",
+        "anchor": "call-sending-contract"
       },
       {
         "depth": 2,
-        "title": "Status the transaction",
-        "anchor": "status-the-transaction"
+        "title": "Check the Transaction Status",
+        "anchor": "check-the-transaction-status"
       },
       {
         "depth": 2,
@@ -1422,12 +1422,12 @@
       }
     ],
     "stats": {
-      "chars": 27246,
-      "words": 2723,
+      "chars": 27016,
+      "words": 2695,
       "headings": 7,
-      "estimated_token_count_total": 5224
+      "estimated_token_count_total": 5183
     },
-    "hash": "sha256:67c6113ae5e079afe7a7932347ea4539ac197f8f535843e84db90dda3de3975d",
+    "hash": "sha256:cd68e8b9e48c8e9b5a4bd12908306bcf5c7fc65a793277df19463b90f31eefdd",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2179,12 +2179,12 @@
       },
       {
         "depth": 2,
-        "title": "CCTP With Executor",
+        "title": "CCTP with Executor",
         "anchor": "cctp-with-executor"
       },
       {
         "depth": 2,
-        "title": "NTT With Executor",
+        "title": "NTT with Executor",
         "anchor": "ntt-with-executor"
       },
       {
@@ -2194,7 +2194,7 @@
       },
       {
         "depth": 2,
-        "title": "WTT Executor With Referrer",
+        "title": "WTT Executor with Referrer",
         "anchor": "wtt-executor-with-referrer"
       }
     ],
@@ -2204,7 +2204,7 @@
       "headings": 5,
       "estimated_token_count_total": 6342
     },
-    "hash": "sha256:917a6e57eee790bc0f0654cf4abde660174fb843eb52a4313c881da37d79a966",
+    "hash": "sha256:239cada8d8a66e7fce329864e303c16d04d0a63119033e73e5ae09df71d78c7c",
     "token_estimator": "heuristic-v1"
   },
   {

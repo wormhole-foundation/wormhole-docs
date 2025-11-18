@@ -5615,7 +5615,7 @@ Page Title: Executor Addresses
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0xD0fb39f5a3361F21457653cB70F9D0C9bD86B66B</code></td></tr><tr><td>Solana</td><td><code>execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV</code></td></tr><tr><td>Aptos</td><td><code>0x139717c339f08af674be77143507a905aa28cbc67a0e53e7095c07b630d73815</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xBF161de6B819c8af8f2230Bcd99a9B3592f6F87b</code></td></tr><tr><td>Avalanche</td><td><code>0x4661F0E629E4ba8D04Ee90080Aee079740B00381</code></td></tr><tr><td>Base Sepolia</td><td><code>0x51B47D493CBA7aB97e3F8F163D6Ce07592CE4482</code></td></tr><tr><td>Converge</td><td><code>0xAab9935349B9c08e0e970720F6D640d5B91C293E</code></td></tr><tr><td>Fogo</td><td><code>execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV</code></td></tr><tr><td>Mezo</td><td><code>0x0f9b8E144Cc5C5e7C0073829Afd30F26A50c5606</code></td></tr><tr><td>Monad</td><td><code>0xC04dE634982cAdF2A677310b73630B7Ac56A3f65</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x5856651eB82aeb6979B4954317194d48e1891b3c</code></td></tr><tr><td>Plume</td><td><code>0x8fc2FbA8F962fbE89a9B02f03557a011c335A455</code></td></tr><tr><td>Seievm</td><td><code>0x25f1c923Fb7A5aEFA5F0A2b419fC70f2368e66e5</code></td></tr><tr><td>Sui</td><td><code>0x4000cfe2955d8355b3d3cf186f854fea9f787a457257056926fde1ec977670eb</code></td></tr><tr><td>XRPL-EVM</td><td><code>0x4d9525D94D275dEB495b7C8840b154Ae04cfaC2A</code></td></tr></tbody></table>
 
-## CCTP With Executor
+## CCTP with Executor
 
 
 
@@ -5636,7 +5636,7 @@ Page Title: Executor Addresses
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
 
 
-## NTT With Executor
+## NTT with Executor
 
 
 
@@ -5661,7 +5661,7 @@ Page Title: Executor Addresses
 
     <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0xb0b2119067cF04fa959f654250BD49fE1BD6F53c</code></td></tr><tr><td>Solana</td><td><code>tbr7Qje6qBzPwfM52csL5KFi8ps5c5vDyiVVBLYVdRf</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xaE8dc4a7438801Ec4edC0B035EcCCcF3807F4CC1</code></td></tr><tr><td>Avalanche</td><td><code>0x10Ce9a35883C44640e8B12fea4Cc1e77F77D8c52</code></td></tr><tr><td>Base Sepolia</td><td><code>0x523d25D33B975ad72283f73B1103354352dBCBb8</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x9563a59c15842a6f322b10f69d1dd88b41f2e97b</code></td></tr><tr><td>Celo</td><td><code>0x9563a59c15842a6f322b10f69d1dd88b41f2e97b</code></td></tr><tr><td>Fantom</td><td><code>0x9563a59c15842a6f322b10f69d1dd88b41f2e97b</code></td></tr><tr><td>Fogo</td><td><code>tbr7Qje6qBzPwfM52csL5KFi8ps5c5vDyiVVBLYVdRf</code></td></tr><tr><td>Mezo</td><td><code>0x2002a44b1106DF83671Fb419A2079a75e2a34808</code></td></tr><tr><td>Monad</td><td><code>0x5Ba2c39cF0624BB5fBe94E919519aEA0DdD68454</code></td></tr><tr><td>Moonbeam</td><td><code>0x9563a59c15842a6f322b10f69d1dd88b41f2e97b</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xaE8dc4a7438801Ec4edC0B035EcCCcF3807F4CC1</code></td></tr><tr><td>Sui</td><td><code>0xb30040e5120f8cb853b691cb6d45981ae884b1d68521a9dc7c3ae881c0031923</code></td></tr><tr><td>XRPL-EVM</td><td><code>0xb00224c60fe6ab134c8544dc29350286545f8dcc</code></td></tr></tbody></table>
 
-## WTT Executor With Referrer
+## WTT Executor with Referrer
 
 
 
@@ -8684,36 +8684,34 @@ This guide focuses on front-end integration between CCTP and Executor: generatin
 
 ## Prerequisites
 
-Before integrating CCTP with Executor, ensure you have:
+Before integrating CCTP with Executor, ensure you have verified that both the source and destination chains are supported and that the required CCTP relay type — CCTPv1 (`ERC1`) or CCTPv2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
 
-- Verified that both the source and destination chains are supported and that the required CCTP relay type — CCTP v1 (`ERC1`) or CCTP v2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
-    ```sh
-    GET https://executor-testnet.labsapis.com/v0/capabilities
-    ```
-    The response includes:
-      - Supported source and destination chains.
-      - Enabled CCTP relay types (ERC1 or ERC2) for the destination chain.
-      - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+```sh
+GET https://executor-testnet.labsapis.com/v0/capabilities
+```
+The response includes:
 
-    !!!note
-          The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+  - Supported source and destination chains
+  - Enabled CCTP relay types (`ERC1` or `ERC2`) for the destination chain
+  - Gas drop-off limits, which define the maximum gas the relay provider can allocate
+
+The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
 
 Use the following resources throughout this guide:
 
-- [**CCTP with Executor Addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
-- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
+- [**CCTP with Executor addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     |-------------|--------------------------------------------------------------------------------|
     | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
     | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-    !!! note
-        For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
+    For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
 
-## Generate your relay instructions
+## Generate Relay Instructions
 
 Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
@@ -8721,18 +8719,20 @@ Relay instructions define how the Executor should perform the relay on the desti
 npm i @wormhole-foundation/sdk-definitions
 ```
 
-[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts) for the Executor RelayInstructions are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `relayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 
 ```tsx
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
-    requests: [{
-    request: {
+  requests: [
+    {
+      request: {
 	      type: "GasInstruction",
 	      gasLimit: 250000n,
 	      msgValue: 0n,
 	    },
-	  }],
-  });
+	  }
+  ],
+});
 ```
 
 ??? interface "Parameters"
@@ -8741,13 +8741,13 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Defines the instruction to allocate gas for the relay.
 
-    —
+    ---
 
     `gasLimit` ++"uint"++
 
     Specifies the maximum gas available for executing the redeem transaction on the destination chain.
 
-    —
+    ---
 
     `msgValue` ++"uint"++
 
@@ -8775,12 +8775,12 @@ For Solana and other SVM chains:
 
 - `gasLimit` represents the number of compute units to allocate to the transaction.
 - The total relay cost is determined by:
-  - The CUs consumed by the transaction.
-  - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider.
+    - The CUs consumed by the transaction
+    - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider
 - `msgValue` must cover all lamports required for:
-  - Transaction fees
-  - Priority fees
-  - Any rent required for new accounts
+    - Transaction fees
+    - Priority fees
+    - Any rent required for new accounts
 
 CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the recipient's associated token account (ATA) does not exist, the relayer can create it, but this increases the rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
 
@@ -8799,7 +8799,7 @@ For Sui:
 - As with native Sui transactions, the budget often needs to exceed the actual cost to account for variable execution and storage usage.
 - A direct gas budget is used instead of a simulated CU-style model due to the [non-linear gas cost structure](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices){target=\_blank} on Sui.
 
-## Request a SignedQuote
+## Request a Signed Quote
 
 Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The example below requests a quote from Sepolia to Base Sepolia:
 
@@ -8821,13 +8821,13 @@ const { signedQuote: quote, estimatedCost: estimate } = (
 
     Specify the Wormhole chain IDs for the source networks.
 
-    —
+    ---
 
     `dstChain` ++"uint16"++
 
     Specify the Wormhole chain IDs for the destination networks.
 
-    —
+    ---
 
     `relayInstructions` ++"Uint8Array"++
 
@@ -8845,18 +8845,13 @@ Example response:
 
 Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
 
-## Call your sending contract
+## Call Sending Contract
 
 With relay instructions and a signed quote, the sending transaction can initiate both the CCTP burn and the Executor request, which instructs the relay provider to redeem and optionally execute on the destination chain.
 
 **EVM**
 
-For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier.
-
-Two variants are available:
-
-- `CCTPv1WithExecutor`: Integrates CCTP v1 (`ERC1`) with Executor.
-- `CCTPv2WithExecutor`: Integrates CCTP v2 (`ERC2`) with Executor.
+For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
 
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
@@ -8881,7 +8876,7 @@ struct FeeArgs {
 }
 ```
 
-For CCTP v1, the helper interface is:
+The helper interfaces are as follows:
 
 ??? interface "ICCTPv1WithExecutor"
 
@@ -8908,8 +8903,6 @@ For CCTP v1, the helper interface is:
         ) external payable returns (uint64 nonce);
     }
     ```
-
-For CCTP v2, the helper interface is:
 
 ??? interface "ICCTPv2WithExecutor"
 
@@ -8960,11 +8953,11 @@ In both cases, you pass:
 - `executorArgs.refundAddress`: The address that should receive any unused funds refunded by the Executor.
 - `feeArgs`: Optional referrer fee configuration, if your integration charges a fee on transfers.
 
-**SVM with CCTP v1**
+**SVM with CCTPv1**
 
-For CCTP v1, an `example_cctp_with_executor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
+For CCTPv1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
 
-??? interface "example_cctp_with_executor.json"
+??? interface "ExampleCCTPExecutor.json"
 
     ```json
     {
@@ -9126,7 +9119,7 @@ For CCTP v1, an `example_cctp_with_executor` program is available to help compos
     }
     ```
 
-??? interface "example_cctp_with_executor.ts"
+??? interface "ExampleCCTPExecutor.ts"
 
     ```tsx
     /**
@@ -9308,31 +9301,31 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 
     The execution budget passed to the Executor. This should be set to the `estimatedCost` returned by the `/v0/quote` endpoint.
 
-    —
+    ---
 
     `recipientChain` ++"uint16"++  
 
     The Wormhole chain ID of the destination chain where the USDC redemption should occur.
 
-    —
+    ---
 
     `signedQuoteBytes` ++"bytes"++  
 
     The signed quote returned from the Executor `/v0/quote` endpoint. Must be passed as raw bytes (without the `0x` prefix).
 
-    —
+    ---
 
     `relayInstructions` ++"bytes"++  
 
     The serialized relay instructions generated earlier, typically created by converting the hex string into a byte buffer.
 
-    —
+    ---
 
     `messageTransmitter` ++"pubkey"++  
 
     The CCTP `MessageTransmitter` program account on Solana.
 
-    —
+    ---
 
     `payee` ++"pubkey"++  
 
@@ -9341,20 +9334,13 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 
 This combines the CCTP burn and the Executor request atomically in a single Solana transaction.
 
-**SVM with CCTP v2**
+**SVM with CCTPv2**
 
-CCTP v2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
+CCTPv2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
 
 1. Call `depositForBurn` or `depositForBurnWithHook`.
-2. Followed by the `requestForExecution` call.
-
-For CCTP v2, the Executor request uses a fixed request prefix:
-
-```ts
-const requestBytes = Buffer.from("4552433201", "hex"); 
-```
-
-You pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
+2. Follow by calling `requestForExecution` with `requestBytes: Buffer.from("4552433201", "hex")`
+3. Pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
 
 If needed, you can fetch the on-chain IDLs for both programs:
 
@@ -9363,7 +9349,7 @@ anchor idl --provider.cluster m fetch CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPb
 anchor idl --provider.cluster m fetch execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV
 ```
 
-This allows CCTP v2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
+This allows CCTPv2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
 
 **Sui**
 
@@ -9373,15 +9359,15 @@ The following example shows how to:
 
 1. Call `deposit_for_burn` and capture the returned CCTP message.
 2. Read the `source_domain` and `nonce` from the message.
-3. Build CCTP v1 request bytes via `executor_requests::make_cctp_v1_request`.
+3. Build CCTPv1 request bytes via `executor_requests::make_cctp_v1_request`.
 4. Split off a coin to pay the Executor using the `estimatedCost` from the quote.
 5. Call `executor::request_execution` with the quote, request bytes, and relay instructions.
 
 ```tsx
 // grab the message NestedResult
 const [_, message] = tx.moveCall({
-    target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
-      // ... existing CCTP args ...
+  target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
+  // ... existing CCTP args ...
 });
 
 const [source_domain] = tx.moveCall({
@@ -9407,16 +9393,17 @@ tx.moveCall({
     executorCoin,
     tx.object(SUI_CLOCK_OBJECT_ID),
     tx.pure.u16(dstChain),
-    tx.pure.address("0x0"),
+    tx.pure.address('0x0'),
     tx.pure.address(signer.getPublicKey().toSuiAddress()),
-    tx.pure.vector("u8", Buffer.from(quote.substring(2), "hex")),
+    tx.pure.vector('u8', Buffer.from(quote.substring(2), 'hex')),
     requestBytes,
-    tx.pure.vector("u8", Buffer.from(relayInstructions.substring(2), "hex")),
+    tx.pure.vector('u8', Buffer.from(relayInstructions.substring(2), 'hex')),
   ],
 });
+
 ```
 
-## Status the transaction
+## Check the Transaction Status
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
@@ -9427,7 +9414,7 @@ const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
 });
 ```
 
-You can also link directly to the transaction in the Explorer:
+You can also link directly to the transaction in the explorer:
 
 ```ts
 `https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`;
