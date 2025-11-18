@@ -29,8 +29,8 @@ The relay provider will only respect the first `GasDropOffInstruction` and will 
 
 Use the following resources throughout this guide:
 
-- [**CCTP with Executor Addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
-- **Executor Endpoints**: Used for quote requests, transaction status checks, and capability queries.
+- [**CCTP with Executor addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
     |-------------|--------------------------------------------------------------------------------|
