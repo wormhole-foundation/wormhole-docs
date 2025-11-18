@@ -171,12 +171,7 @@ With relay instructions and a signed quote, the sending transaction can initiate
 
 **EVM**
 
-For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier.
-
-Two variants are available:
-
-- `CCTPv1WithExecutor`: Integrates CCTPv1 (`ERC1`) with Executor.
-- `CCTPv2WithExecutor`: Integrates CCTPv2 (`ERC2`) with Executor.
+For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
 
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
@@ -184,15 +179,13 @@ Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:1:18'
 ```
 
-For CCTPv1, the helper interface is:
+The helper interfaces are as follows:
 
 ??? interface "ICCTPv1WithExecutor"
 
     ```sol
     --8<-- 'code/products/messaging/guides/executor/cctp/ICCTPv1WithExecutor.sol:20'
     ```
-
-For CCTPv2, the helper interface is:
 
 ??? interface "ICCTPv2WithExecutor"
 
@@ -296,15 +289,8 @@ This combines the CCTP burn and the Executor request atomically in a single Sola
 CCTPv2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
 
 1. Call `depositForBurn` or `depositForBurnWithHook`.
-2. Followed by the `requestForExecution` call.
-
-For CCTPv2, the Executor request uses a fixed request prefix:
-
-```ts
-const requestBytes = Buffer.from("4552433201", "hex"); 
-```
-
-You pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
+2. Follow by calling `requestForExecution` with `requestBytes: Buffer.from("4552433201", "hex")`
+3. Pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
 
 If needed, you can fetch the on-chain IDLs for both programs:
 
@@ -331,7 +317,7 @@ The following example shows how to:
 --8<-- 'code/products/messaging/guides/executor/cctp/sui_contract_call.ts'
 ```
 
-## Status the Transaction
+## Check the Transaction Status
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
@@ -342,7 +328,7 @@ const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
 });
 ```
 
-You can also link directly to the transaction in the Explorer:
+You can also link directly to the transaction in the explorer:
 
 ```ts
 `https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`;
