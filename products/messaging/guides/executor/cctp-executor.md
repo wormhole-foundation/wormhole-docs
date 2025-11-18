@@ -69,13 +69,13 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Defines the instruction to allocate gas for the relay.
 
-    —
+    ---
 
     `gasLimit` ++"uint"++
 
     Specifies the maximum gas available for executing the redeem transaction on the destination chain.
 
-    —
+    ---
 
     `msgValue` ++"uint"++
 
@@ -141,13 +141,13 @@ Once you have your relay instructions ready, request a `SignedQuote` from the Ex
 
     Specify the Wormhole chain IDs for the source networks.
 
-    —
+    ---
 
     `dstChain` ++"uint16"++
 
     Specify the Wormhole chain IDs for the destination networks.
 
-    —
+    ---
 
     `relayInstructions` ++"Uint8Array"++
 
@@ -165,7 +165,7 @@ Example response:
 
 Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
 
-## Call your sending contract
+## Call Sending Contract
 
 With relay instructions and a signed quote, the sending transaction can initiate both the CCTP burn and the Executor request, which instructs the relay provider to redeem and optionally execute on the destination chain.
 
@@ -258,31 +258,31 @@ const shimProgram = new Program<ExampleCctpWithExecutor>(
 
     The execution budget passed to the Executor. This should be set to the `estimatedCost` returned by the `/v0/quote` endpoint.
 
-    —
+    ---
 
     `recipientChain` ++"uint16"++  
 
     The Wormhole chain ID of the destination chain where the USDC redemption should occur.
 
-    —
+    ---
 
     `signedQuoteBytes` ++"bytes"++  
 
     The signed quote returned from the Executor `/v0/quote` endpoint. Must be passed as raw bytes (without the `0x` prefix).
 
-    —
+    ---
 
     `relayInstructions` ++"bytes"++  
 
     The serialized relay instructions generated earlier, typically created by converting the hex string into a byte buffer.
 
-    —
+    ---
 
     `messageTransmitter` ++"pubkey"++  
 
     The CCTP `MessageTransmitter` program account on Solana.
 
-    —
+    ---
 
     `payee` ++"pubkey"++  
 
@@ -331,7 +331,7 @@ The following example shows how to:
 --8<-- 'code/products/messaging/guides/executor/cctp/sui_contract_call.ts'
 ```
 
-## Status the transaction
+## Status the Transaction
 
 After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
 
