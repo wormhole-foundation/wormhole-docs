@@ -8,22 +8,29 @@ categories: CCTP, Transfer, Executor
 
 The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.
 
-This guide focuses on front-end integration between CCTP and Executor: generating relay instructions, requesting a signed execution quote, wiring that quote into the sending transaction, and tracking relay status. It covers EVM, SVM, and Sui, and highlights the differences between CCTPv1 (`ERC1`) and CCTPv2 (`ERC2`) flows.
+This guide covers the core flow for integrating CCTP with Executor, including relay instruction generation, quote requests, contract wiring, and transaction status checks, applicable across all supported execution environments. 
 
 ## Prerequisites
 
-Before integrating CCTP with Executor, ensure you have verified that both the source and destination chains are supported and that the required CCTP relay type — CCTPv1 (`ERC1`) or CCTPv2 (`ERC2`) — is enabled on the destination chain. You can confirm this using the capabilities endpoint:
+Before integrating CCTP with Executor, ensure that:
 
-```sh
-GET https://executor-testnet.labsapis.com/v0/capabilities
-```
-The response includes:
+- Both the source and destination chains are supported.
+- The required CCTP relay type — CCTPv1 (`ERC1`) or CCTPv2 (`ERC2`) — is enabled for the destination chain.
 
-  - Supported source and destination chains
-  - Enabled CCTP relay types (`ERC1` or `ERC2`) for the destination chain
-  - Gas drop-off limits, which define the maximum gas the relay provider can allocate
+??? info "How to verify chain and relay type support"
 
-The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+    You can confirm chain and relay type support using the capabilities endpoint:
+
+    ```sh
+    GET https://executor-testnet.labsapis.com/v0/capabilities
+    ```
+    The response includes:
+
+      - Supported source and destination chains
+      - Enabled CCTP relay types (`ERC1` or `ERC2`) for the destination chain
+      - Gas drop-off limits, which define the maximum gas the relay provider can allocate
+
+    The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
 
@@ -94,7 +101,7 @@ Relay instructions can include multiple requests (e.g., for gas, value transfer,
 
 For EVM destinations:
 
-- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included(in addition to the normal differences across various EVM chains).
+- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included (in addition to the normal differences across various EVM chains).
 - `msgValue` is not used by CCTP’s `receiveMessage` entrypoints and should be set to zero for standard CCTP flows.
 
 **SVM**
