@@ -1401,6 +1401,21 @@
         "anchor": "generate-relay-instructions"
       },
       {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui"
+      },
+      {
         "depth": 2,
         "title": "Request a Signed Quote",
         "anchor": "request-a-signed-quote"
@@ -1409,6 +1424,26 @@
         "depth": 2,
         "title": "Call Sending Contract",
         "anchor": "call-sending-contract"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm-2"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv1",
+        "anchor": "svm-with-cctpv1"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv2",
+        "anchor": "svm-with-cctpv2"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui-2"
       },
       {
         "depth": 2,
@@ -1422,12 +1457,12 @@
       }
     ],
     "stats": {
-      "chars": 27016,
-      "words": 2695,
-      "headings": 7,
-      "estimated_token_count_total": 5183
+      "chars": 27012,
+      "words": 2685,
+      "headings": 14,
+      "estimated_token_count_total": 5189
     },
-    "hash": "sha256:cd68e8b9e48c8e9b5a4bd12908306bcf5c7fc65a793277df19463b90f31eefdd",
+    "hash": "sha256:4f5fdcf2e0f798adb253df2b168b57dbdc66d0c35c038f521c9ffbcbc7a49bcf",
     "token_estimator": "heuristic-v1"
   },
   {
