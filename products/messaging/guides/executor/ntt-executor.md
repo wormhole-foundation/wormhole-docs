@@ -41,9 +41,9 @@ Use the following resources throughout this guide:
     | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
     | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
 
-For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
+For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
 
-## Generate relay instructions
+## Generate Relay Instructions
 
 Relay instructions define how the Executor should perform the relay on the destination chain, including parameters such as gas limits, message value, and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
