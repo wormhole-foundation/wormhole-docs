@@ -6,7 +6,7 @@
 This directory lists URLs for raw Markdown pages that complement the rendered pages on the documentation site. Use these Markdown files to retain semantic context when prompting models while avoiding passing HTML elements.
 
 ## Metadata
-- Documentation pages: 126
+- Documentation pages: 123
 - Categories: 19
 
 ## Docs
@@ -236,10 +236,7 @@ Docs: Typescript-SDK
 - [Toolkit FAQs](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/tools-faqs.md): FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
 
 Docs: Uncategorized
-- [.venv-lib-python3.12-site-packages-mkdocs_macros-macros_info](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-mkdocs_macros-macros_info.md): No description available.
-- [.venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors.md): No description available.
 - [AI Resources](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/ai-resources-ai-resources.md): Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
-- [Home](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/index.md): Explore Wormhole's comprehensive guides, tutorials, and resources to build secure multichain applications and enable seamless cross-chain communication.
 - [Configure Your Connect Widget v0](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-configuration-configuration-v0.md): Configure Wormhole Connect v0 for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for optimized blockchain interactions.
 - [Query NTT Data and Transfers with Wormholescan](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-wormholescan-api.md): Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT tokens and transfer data step by step using reusable TypeScript helpers.
 - [Run a Spy](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-run-spy.md): Learn how to run a Spy locally to listen for and forward messages (Verifiable Action Approvals, or VAAs) published on the Wormhole network.

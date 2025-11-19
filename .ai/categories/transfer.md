@@ -336,10 +336,10 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `3.8.8`.
+2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
@@ -1691,7 +1691,7 @@ Page Title: Contract Addresses
     <tr><td>Arbitrum</td><td><code>0x36CF4c88FA548c6Ad9fcDc696e1c27Bb3306163F</code></td></tr>
     <tr><td>Avalanche</td><td><code>0x169D91C797edF56100F1B765268145660503a423</code></td></tr>
     <tr><td>Base</td><td><code>0x838a95B6a3E06B6f11C437e22f3C7561a6ec40F1</code></td></tr>
-    <tr><td>Fogo</td><td><code>ngonf6qosXXrmsXwfFjQhXJGtasAqCE3FFyCb2rJ1kC</code></td></tr>
+    <tr><td>Fogo</td><td><code>ngoLQ35zgtP3SxWrjAJ8Mz2H8BPFVeZoxyBPotPYwnB</code></td></tr>
     <tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
     <tr><td>Optimism</td><td><code>0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8</code></td></tr>
     <tr><td>Unichain</td><td><code>0x574b7864119c9223a9870ea614dc91a8ee09e512</code></td></tr>
@@ -6066,10 +6066,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.8.8`:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-   npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+   npm install @wormhole-foundation/sdk@3.11.0 -D tsx typescript
    ```
 
 ## Fetch VAA via TypeScript SDK
@@ -6697,12 +6697,12 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `3.8.8`:
+2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk-connect@3.8.8 \
-        @wormhole-foundation/sdk-evm@3.8.8 \
-        @wormhole-foundation/sdk-solana@3.8.8 \
+    npm install @wormhole-foundation/sdk-connect@3.11.0 \
+        @wormhole-foundation/sdk-evm@3.11.0 \
+        @wormhole-foundation/sdk-solana@3.11.0 \
         @mayanfinance/wormhole-sdk-route@1.26.0 \
         dotenv
     npm install -D typescript tsx
@@ -6951,10 +6951,10 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the SDK version `3.8.8`:
+2. Install the required dependencies. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8
+    npm install @wormhole-foundation/sdk@3.11.0
     npm install -D tsx typescript
     ```
 
@@ -7669,10 +7669,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.x`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@3.11.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -16438,12 +16438,6 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately.
 - Monitor and maintain your multichain deployment.
 
-## Manual Relaying for SVM Transfers  
-
-By default, NTT transfers to SVM chains require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
-
-This step ensures that tokens are properly minted or unlocked on the SVM chain and prevents unauthorized claims.
-
 ## Post-Deployment Settings
 
 The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
@@ -20754,10 +20748,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.x`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `3.11.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@3.11.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -22918,10 +22912,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.8.8`:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `3.11.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+    npm install @wormhole-foundation/sdk@3.11.0 -D tsx typescript
     ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
@@ -23592,10 +23586,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm init -y
    ```
 
-2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `3.8.8`:
+2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `3.11.0`:
 
    ```bash
-   npm install @wormhole-foundation/sdk@3.8.8 -D tsx typescript
+   npm install @wormhole-foundation/sdk@3.11.0 -D tsx typescript
    ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.
