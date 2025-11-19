@@ -6013,6 +6013,13 @@ npm i @wormhole-foundation/sdk-definitions
 [Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `RelayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 
 ```ts
+import {
+  encoding,
+  serializeLayout,
+  UniversalAddress,
+} from "@wormhole-foundation/sdk-connect";
+import { relayInstructionsLayout } from "@wormhole-foundation/sdk-definitions";
+
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
   requests: [
     {
@@ -6044,14 +6051,14 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction. This parameter is typically set to 0 for NTT transfers.
 
-Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For NTT transfers, only a single gas instruction is required.
+Relay instructions are encoded using the `relayInstructionsLayout`, which always expects an array of instruction objects. Each array element is a `RelayInstruction` whose `request.type` determines the specific variant:
 
 | Instruction             | Description                                                               | Fields                 |
 | ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
 | `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
 | `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
-| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      |
-| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             |
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
 
 ### EVM
 
