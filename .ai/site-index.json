@@ -1,112 +1,5 @@
 [
   {
-    "id": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "title": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "slug": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-mkdocs_macros-macros_info.md",
-    "html_url": "https://wormhole.com/docs/.venv/lib/python3.12/site-packages/mkdocs_macros/macros_info/",
-    "preview": "{# Template for the macro_info() command (C) Laurent Franceschetti 2019 #}",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Macros Plugin Environment",
-        "anchor": "macros-plugin-environment"
-      },
-      {
-        "depth": 3,
-        "title": "General List",
-        "anchor": "general-list"
-      },
-      {
-        "depth": 3,
-        "title": "Config Information",
-        "anchor": "config-information"
-      },
-      {
-        "depth": 3,
-        "title": "Macros",
-        "anchor": "macros"
-      },
-      {
-        "depth": 3,
-        "title": "Git Information",
-        "anchor": "git-information"
-      },
-      {
-        "depth": 3,
-        "title": "Page Attributes",
-        "anchor": "page-attributes"
-      },
-      {
-        "depth": 3,
-        "title": "Plugin Filters",
-        "anchor": "plugin-filters"
-      },
-      {
-        "depth": 3,
-        "title": "Builtin Jinja2 Filters",
-        "anchor": "builtin-jinja2-filters"
-      }
-    ],
-    "stats": {
-      "chars": 1603,
-      "words": 211,
-      "headings": 8,
-      "estimated_token_count_total": 413
-    },
-    "hash": "sha256:7cb9bc976138f64786ab20297541bf16c79bd882042bc7f14b84cbac2b043730",
-    "token_estimator": "heuristic-v1"
-  },
-  {
-    "id": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "title": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "slug": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors.md",
-    "html_url": "https://wormhole.com/docs/.venv/lib/python3.12/site-packages/nltk-3.9.1.dist-info/AUTHORS/",
-    "preview": "No description available.",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Original Authors",
-        "anchor": "original-authors"
-      },
-      {
-        "depth": 2,
-        "title": "Contributors",
-        "anchor": "contributors"
-      },
-      {
-        "depth": 2,
-        "title": "Others whose work we've taken and included in NLTK, but who didn't directly contribute it:",
-        "anchor": "others-whose-work-weve-taken-and-included-in-nltk-but-who-didnt-directly-contribute-it"
-      },
-      {
-        "depth": 3,
-        "title": "Contributors to the Porter Stemmer",
-        "anchor": "contributors-to-the-porter-stemmer"
-      },
-      {
-        "depth": 3,
-        "title": "Authors of snowball arabic stemmer algorithm",
-        "anchor": "authors-of-snowball-arabic-stemmer-algorithm"
-      }
-    ],
-    "stats": {
-      "chars": 7603,
-      "words": 969,
-      "headings": 5,
-      "estimated_token_count_total": 1813
-    },
-    "hash": "sha256:f13041f9a2b9951a58ba2a092e7327152b42867d1849e8bb8d36b663d72f7824",
-    "token_estimator": "heuristic-v1"
-  },
-  {
     "id": "ai-resources-ai-resources",
     "title": "AI Resources",
     "slug": "ai-resources-ai-resources",
@@ -129,27 +22,7 @@
       "headings": 1,
       "estimated_token_count_total": 2537
     },
-    "hash": "sha256:3902977d78be9d56c9f611035ad1a82c8e5d7d9a25b636a83c3b07c69ff51931",
-    "token_estimator": "heuristic-v1"
-  },
-  {
-    "id": "index",
-    "title": "Home",
-    "slug": "index",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/index.md",
-    "html_url": "https://wormhole.com/docs/index/",
-    "preview": "Explore Wormhole's comprehensive guides, tutorials, and resources to build secure multichain applications and enable seamless cross-chain communication.",
-    "outline": [],
-    "stats": {
-      "chars": 0,
-      "words": 0,
-      "headings": 0,
-      "estimated_token_count_total": 0
-    },
-    "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hash": "sha256:8b8ef2193873a8e4af6975ecff16f7a4fde6de4dc8c698247d12de26db9f5a8f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -331,12 +204,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 7624,
+      "chars": 7616,
       "words": 1203,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:31e85c9a28849baf1df4f923ad3fc99fb5439bfc08baccdbf58a52f84129738d",
+    "hash": "sha256:d22668a859682714f148d4ff1afa8c01a5cc132470d7667adaed49db86afaf01",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1064,12 +937,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 8444,
-      "words": 1334,
+      "chars": 8446,
+      "words": 1336,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:142df2c035be360c25cfa6e4f8318277b2f277241fe0b0c08e5e3c4be7b93384",
+    "hash": "sha256:5f8b7e67725cc69695ddbfe6f40fc78c90694f05adbf409a73361aeca9730fe6",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1155,7 +1028,7 @@
     "slug": "products-messaging-concepts-executor-framework",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-framework/",
@@ -1187,7 +1060,7 @@
     "slug": "products-messaging-concepts-executor-overview",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-overview/",
@@ -3384,11 +3257,11 @@
     "outline": [],
     "stats": {
       "chars": 13553,
-      "words": 2051,
+      "words": 2053,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:060573b8a61e754470a3910e90033209227cd6f57464eea4f2dfee15de73898b",
+    "hash": "sha256:65b204a77b6f820b8a79b0b82e087d6153059339d755a22432dd45e8b7c197e9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3645,12 +3518,12 @@
       }
     ],
     "stats": {
-      "chars": 4231,
-      "words": 574,
+      "chars": 4251,
+      "words": 576,
       "headings": 4,
-      "estimated_token_count_total": 1087
+      "estimated_token_count_total": 1089
     },
-    "hash": "sha256:76487b025c72522e34cc67e58087d342daec91d2823bb1fc18c08a202fa5c0e9",
+    "hash": "sha256:c9ccf87da9ab14ee995233db6ca148f908decb7aa4325b5e1205fe5f3e4a99bb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3919,7 +3792,7 @@
       "headings": 8,
       "estimated_token_count_total": 10207
     },
-    "hash": "sha256:a434951889df7493d3f534daca5432f1db50e8b04ecd45e7d4389cfa4fb9f0b1",
+    "hash": "sha256:731ef530ac6dc85ef8737c66519fffa7c43de8b121b1a8d09c3e46d20b008740",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4112,12 +3985,12 @@
       }
     ],
     "stats": {
-      "chars": 58334,
-      "words": 9122,
+      "chars": 58325,
+      "words": 9130,
       "headings": 7,
-      "estimated_token_count_total": 24761
+      "estimated_token_count_total": 24777
     },
-    "hash": "sha256:de3ae4a8df00d5a9d8ca96e289f0a793c9218cd93082a3e8b5e275bfd34ea1c3",
+    "hash": "sha256:21d6653008fb617740900c79293c307e115a245cd994cd807698030a67e28dfe",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4168,12 +4041,12 @@
       }
     ],
     "stats": {
-      "chars": 7723,
-      "words": 1363,
+      "chars": 7753,
+      "words": 1367,
       "headings": 7,
-      "estimated_token_count_total": 3413
+      "estimated_token_count_total": 3421
     },
-    "hash": "sha256:1279d6ecca4940bbf5712fcdeda2effc52594879728ab2136a971ea035134e56",
+    "hash": "sha256:0ff6feea862e019718cd6c7c2fb360205f46bf5ffdf158d4fb4a5247c31f0a75",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6423,11 +6296,11 @@
     "outline": [],
     "stats": {
       "chars": 11668,
-      "words": 1852,
+      "words": 1854,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:f130850c4e82ce280edcc3ec5ed678ac34fcc663b5dd62df4433e615a27fe710",
+    "hash": "sha256:6edbdb8d24b100a1da2330abaec7981ef4fe257d9df6a6fec5427b1c862fcf01",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7446,12 +7319,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13200,
-      "words": 2066,
+      "chars": 13197,
+      "words": 2068,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:6e664a684590b0f5dbaf31eda21aecbf1b0dffe72d340bfde9c3482e8134bb24",
+    "hash": "sha256:61cd6f5c66f30ac0d897feb5b2ae0f7db71ccd6f8f971f9fa86f2d9197889349",
     "token_estimator": "heuristic-v1"
   },
   {
