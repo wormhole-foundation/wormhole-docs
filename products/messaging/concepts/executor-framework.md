@@ -1,7 +1,7 @@
 ---
 title: Executor Framework
 description: Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
-categories: Basics, Executors
+categories: Basics, Executor
 ---
 
 # Executor Framework

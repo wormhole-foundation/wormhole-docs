@@ -15,7 +15,7 @@ Queries provide on-demand access to Guardian-attested on-chain data. They allow 
 - **Guardian attested**: All data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation.
 - **Cross-chain ready**: Request data on one chain, use it on another.
 - **Smart contract integration**: Results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts.
-- **Chain agnostic**: Works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}.
+- **Chain agnostic**: Works across supported EVM chains, Solana, Sui, and [other supported networks](/docs/products/queries/reference/supported-networks/){target=\_blank}.
 
 ## How It Works
 

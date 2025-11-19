@@ -40,6 +40,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 ### Sui Move VM
 
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>SUI</td><td><a href="https://docs.sui.io/build/faucet" target="_blank">List of Faucets</a></td></tr></tbody></table>
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>SUI</td><td><a href="https://docs.sui.io/guides/developer/getting-started/get-coins" target="_blank">List of Faucets</a></td></tr></tbody></table>
 
 </div>
