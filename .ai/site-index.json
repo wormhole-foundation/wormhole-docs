@@ -1401,6 +1401,16 @@
         "anchor": "generate-relay-instructions"
       },
       {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm"
+      },
+      {
         "depth": 2,
         "title": "Request a Signed Quote",
         "anchor": "request-a-signed-quote"
@@ -1409,6 +1419,16 @@
         "depth": 2,
         "title": "Call Sending Contract",
         "anchor": "call-sending-contract"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm-2"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm-2"
       },
       {
         "depth": 2,
@@ -1422,12 +1442,12 @@
       }
     ],
     "stats": {
-      "chars": 17848,
-      "words": 2068,
-      "headings": 7,
-      "estimated_token_count_total": 3510
+      "chars": 17956,
+      "words": 2080,
+      "headings": 11,
+      "estimated_token_count_total": 3522
     },
-    "hash": "sha256:c4b6fe92a9715f429268700c046048b36df9981c2c857d5068b29bff19798234",
+    "hash": "sha256:6cd530337d366f7fd8e5a9101ffbfe8cb4fccd198169673792ad28273af03a2c",
     "token_estimator": "heuristic-v1"
   },
   {
