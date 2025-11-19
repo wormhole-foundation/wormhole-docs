@@ -49,7 +49,7 @@ Use the following resources throughout this guide:
 
 ## Generate Relay Instructions
 
-Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and optional native token drop-offs. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
 
 ```sh
 npm i @wormhole-foundation/sdk-definitions
@@ -58,6 +58,13 @@ npm i @wormhole-foundation/sdk-definitions
 [Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `relayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
 
 ```tsx
+import {
+  encoding,
+  serializeLayout,
+  UniversalAddress,
+} from "@wormhole-foundation/sdk-connect";
+import { relayInstructionsLayout } from "@wormhole-foundation/sdk-definitions";
+
 const relayInstructions = serializeLayout(relayInstructionsLayout, {
   requests: [
     {
@@ -89,14 +96,14 @@ const relayInstructions = serializeLayout(relayInstructionsLayout, {
 
     Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction; this should typically be set to 0 for NTT transfers.
 
-Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
+Relay instructions are encoded using the `relayInstructionsLayout`, which always expects an array of instruction objects. Each array element is a `RelayInstruction` whose `request.type` determines the specific variant:
 
 | Instruction             | Description                                                               | Fields                 |
 | ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
 | `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
 | `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
-| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      |
-| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             |
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
 
 ### EVM
 
@@ -188,6 +195,9 @@ With relay instructions and a signed quote, the sending transaction can initiate
 ### EVM
 
 For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
+
+!!! note "Settlement support"
+    `CCTPv2WithExecutor` also supports [Settlement](/docs/products/settlement/overview/){target=\_blank}. The helper forwards both `maxFee` and `minFinalityThreshold` directly to Circle’s [`depositForBurn`](https://developers.circle.com/cctp/evm-smart-contracts#depositforburn){target=\_blank} entrypoint. Circle interprets these two fields to determine whether a transfer should follow normal finalization or Settlement-mode fast finality, based on the fee paid and the finality threshold selected.
 
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
