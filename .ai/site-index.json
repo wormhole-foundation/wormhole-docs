@@ -1246,6 +1246,99 @@
     "token_estimator": "heuristic-v1"
   },
   {
+    "id": "products-messaging-guides-executor-cctp-executor",
+    "title": "Integrate CCTP with Executor",
+    "slug": "products-messaging-guides-executor-cctp-executor",
+    "categories": [
+      "CCTP",
+      "Transfer",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/cctp-executor/",
+    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destinati",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Prerequisites",
+        "anchor": "prerequisites"
+      },
+      {
+        "depth": 2,
+        "title": "References",
+        "anchor": "references"
+      },
+      {
+        "depth": 2,
+        "title": "Generate Relay Instructions",
+        "anchor": "generate-relay-instructions"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui"
+      },
+      {
+        "depth": 2,
+        "title": "Request a Signed Quote",
+        "anchor": "request-a-signed-quote"
+      },
+      {
+        "depth": 2,
+        "title": "Call Sending Contract",
+        "anchor": "call-sending-contract"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm-2"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv1",
+        "anchor": "svm-with-cctpv1"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv2",
+        "anchor": "svm-with-cctpv2"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui-2"
+      },
+      {
+        "depth": 2,
+        "title": "Check the Transaction Status",
+        "anchor": "check-the-transaction-status"
+      },
+      {
+        "depth": 2,
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "stats": {
+      "chars": 27692,
+      "words": 2773,
+      "headings": 14,
+      "estimated_token_count_total": 5336
+    },
+    "hash": "sha256:b31d25cc51bd1ad73a7f18d143eab7ef35705e9fb0738a45fc2790452d456eea",
+    "token_estimator": "heuristic-v1"
+  },
+  {
     "id": "products-messaging-guides-executor-ntt-executor",
     "title": "Integrate Native Token Transfers with Executor",
     "slug": "products-messaging-guides-executor-ntt-executor",
@@ -2014,12 +2107,12 @@
       },
       {
         "depth": 2,
-        "title": "CCTP With Executor",
+        "title": "CCTP with Executor",
         "anchor": "cctp-with-executor"
       },
       {
         "depth": 2,
-        "title": "NTT With Executor",
+        "title": "NTT with Executor",
         "anchor": "ntt-with-executor"
       },
       {
@@ -2029,7 +2122,7 @@
       },
       {
         "depth": 2,
-        "title": "WTT Executor With Referrer",
+        "title": "WTT Executor with Referrer",
         "anchor": "wtt-executor-with-referrer"
       }
     ],
@@ -2039,7 +2132,7 @@
       "headings": 5,
       "estimated_token_count_total": 6342
     },
-    "hash": "sha256:917a6e57eee790bc0f0654cf4abde660174fb843eb52a4313c881da37d79a966",
+    "hash": "sha256:239cada8d8a66e7fce329864e303c16d04d0a63119033e73e5ae09df71d78c7c",
     "token_estimator": "heuristic-v1"
   },
   {

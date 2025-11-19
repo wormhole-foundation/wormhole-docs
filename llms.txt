@@ -6,8 +6,8 @@
 This directory lists URLs for raw Markdown pages that complement the rendered pages on the documentation site. Use these Markdown files to retain semantic context when prompting models while avoiding passing HTML elements.
 
 ## Metadata
-- Documentation pages: 125
-- Categories: 20
+- Documentation pages: 126
+- Categories: 19
 
 ## Docs
 This section lists documentation pages by category. Each entry links to a raw markdown version of the page and includes a short description. A page may appear in multiple categories.
@@ -102,6 +102,9 @@ Docs: Settlement
 Docs: Executor
 - [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
 - [Executor Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md): Learn about the Executor framework - a shared, permissionless system for executing cross-chain messages using standardized contracts and quotes.
+- [Integrate CCTP with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md): Learn how to integrate Circle CCTP with the Executor framework for permissionless, quote-based USDC relaying and cross-chain execution.
+- [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
+- [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 
 Docs: Relayers
 - [Wormhole-Deployed Relayers](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-wormhole-relayers.md): Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
@@ -145,6 +148,7 @@ Docs: Transfer
 - [Features](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-reference-support-matrix.md): Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for WTT, CCTP, ETH Bridge, and more.
 - [Connect Supported Networks](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-reference-supported-networks.md): Explore all blockchains supported by Wormhole Connect, including network availability, block explorers, and cross-chain transfer support.
 - [Integrate Connect into a React DApp Tutorial](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-tutorials-react-dapp.md): Learn how to use Wormhole Connect to transfers tokens cross-chain seamlessly between Sui and Avalanche Fuji with this step-by-step guide.
+- [Integrate CCTP with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md): Learn how to integrate Circle CCTP with the Executor framework for permissionless, quote-based USDC relaying and cross-chain execution.
 - [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 - [Compare Wormhole's Cross-Chain Solutions](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-overview.md): Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 - [Settlement Protocol Architecture](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-settlement-concepts-architecture.md): Explore Wormhole Settlement's native swap protocols—Mayan Swift and MCTP—for scalable, efficient cross-chain asset transfers.
@@ -206,6 +210,7 @@ Docs: CCTP
 - [CCTP Supported Networks](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-cctp-bridge-reference-supported-networks.md): Explore all blockchains supported by Wormhole CCTP, including network availability, block explorers, and cross-chain transfer support.
 - [Complete USDC Transfer Flow](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-cctp-bridge-tutorials-complete-usdc-transfer.md): Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
 - [Connect FAQs](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-connect-faqs.md): Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options.
+- [Integrate CCTP with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md): Learn how to integrate Circle CCTP with the Executor framework for permissionless, quote-based USDC relaying and cross-chain execution.
 
 Docs: Reference
 - [Core Contract (EVM)](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-reference-core-contract-evm.md): Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
@@ -219,10 +224,6 @@ Docs: Reference
 - [Supported Networks](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-reference-supported-networks.md): Learn about the networks each Wormhole product supports, and explore links to documentation, official websites, and block explorers.
 - [Testnet Faucets](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-reference-testnet-faucets.md): This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
 - [Wormhole Formatted Addresses](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-reference-wormhole-formatted-addresses.md): Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
-
-Docs: Executor
-- [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
-- [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 
 Docs: Multigov
 - [MultiGov Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-multigov-overview.md): Enable multichain governance with MultiGov. Create, vote, and execute DAO proposals securely across Wormhole supported networks.
