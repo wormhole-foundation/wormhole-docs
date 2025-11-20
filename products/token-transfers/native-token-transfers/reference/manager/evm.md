@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # NTT Manager Contract Reference (EVM)
 
-The [NttManager]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+The [NttManager]({{repositories.native_token_transfers_evm.repository_url}}/blob/{{repositories.native_token_transfers_evm.version}}/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
 ## Structure Overview
 

@@ -1,4 +1,4 @@
-Begin New Bundle: Queries
+Begin New Bundle: Executor
 Includes shared base categories: Basics, Reference
 
 
@@ -5017,159 +5017,6 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ---
 
-Page Title: Get Started with Queries
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-get-started.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/get-started/
-- Summary: Follow this guide to run your first multichain, verifiable query with the Wormhole Queries SDK and Proxy, using eth_call to fetch token metadata.
-
-# Get Started with Queries
-
-[Queries](/docs/products/queries/overview) lets you fetch on-chain data from supported blockchains using `eth_call`-style requests without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
-
-This guide walks you through requesting an API key, constructing your first query using the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}, and decoding the result.
-
-## Prerequisites
-
-Before you begin, make sure you have the following:
-
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
- - A basic understanding of JavaScript or TypeScript.
- - An RPC endpoint for a supported chain (e.g., Ethereum Sepolia).
- - A Wormhole Queries API key.
-
-## Request an API Key
-
-Wormhole Queries is in closed beta, but you can start building today.
-
-To interact with the system, you will use the Query Proxy. This hosted service receives your query, routes it to the appropriate chain, and returns a signed, verifiable response from the Guardian network. The Query Proxy allows you to fetch on-chain data without infrastructure overhead.
-
-To request access, join the beta by filling out the [access form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}. Once approved, you will receive an API key via email.
-
-## Construct a Query and Decode the Response
-
-Using the Wormhole Query Proxy, you will write a lightweight script to query a token contract's `name()` on Ethereum Sepolia. The response is signed by the Guardian network and locally decoded for use in your application.
-
-1. Create a new directory for your script and initialize a Node.js project:
-
-    ```bash
-    mkdir queries
-    cd queries
-    npm init -y
-    ```
-
-2. Add the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}, [Axios](https://www.npmjs.com/package/axios){target=\_blank}, [Web3](https://www.npmjs.com/package/web3){target=\_blank}, and helper tools. This example uses the Queries SDK version `0.0.14`:
-
-    ```bash
-    npm install axios web3 @wormhole-foundation/wormhole-query-sdk@0.0.14
-    npm install -D tsx typescript
-    ```
-
-3. Add a new `query.ts` script where you will write and run your query logic:
-
-    ```bash
-    touch query.ts
-    ```
-
-4. Paste the following script into `query.ts` to build and submit a query to the token contract's `name()` function on Ethereum Sepolia, then decode the Guardian-signed response:
-
-    ```typescript
-    // Import the SDK types and helpers for making the query
-    import {
-      EthCallQueryRequest,
-      EthCallQueryResponse,
-      PerChainQueryRequest,
-      QueryRequest,
-      QueryResponse,
-    } from '@wormhole-foundation/wormhole-query-sdk';
-    import axios from 'axios';
-    import * as eth from 'web3';
-
-    // Define the endpoint and query parameters
-    const query_url = 'https://testnet.query.wormhole.com/v1/query';
-    const rpc = 'https://ethereum-sepolia.rpc.subquery.network/public';
-    const chain_id = 10002; // Sepolia (Wormhole chain ID)
-    const token = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC contract
-    const data = '0x06fdde03'; // function selector for `name()`
-
-    // Load your API key from environment variables
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) throw new Error('API_KEY is not set in your environment');
-
-    (async () => {
-      // Fetch the latest block number (required to anchor the query)
-      const latestBlock = (
-        await axios.post(rpc, {
-          method: 'eth_getBlockByNumber',
-          params: ['latest', false],
-          id: 1,
-          jsonrpc: '2.0',
-        })
-      ).data?.result?.number;
-
-      // Build the query targeting the token contract's name() function
-      const request = new QueryRequest(1, [
-        new PerChainQueryRequest(
-          chain_id,
-          new EthCallQueryRequest(latestBlock, [{ to: token, data: data }])
-        ),
-      ]);
-      const serialized = request.serialize();
-
-      // Send the query to the Wormhole Query Proxy
-      const response = await axios.post(
-        query_url,
-        { bytes: Buffer.from(serialized).toString('hex') },
-        { headers: { 'X-API-Key': apiKey } }
-      );
-
-      // Decode the response returned by the Guardian network
-      const queryResponse = QueryResponse.from(response.data.bytes);
-      const chainResponse = queryResponse.responses[0]
-        .response as EthCallQueryResponse;
-      const name = eth.eth.abi.decodeParameter('string', chainResponse.results[0]);
-
-      // Output the results
-      console.log('\n\nParsed chain response:');
-      console.log(chainResponse);
-      console.log('\nToken name:', name);
-    })();
-
-    ```
-
-5. Use your API key to execute the script:
-
-    ```bash
-    API_KEY=INSERT_QUERIES_API_KEY npx tsx query.ts
-    ```
-
-The expected output should be similar to this:
-
-<div id="termynal" data-termynal>
-	<span data-ty="input"><span class="file-path"></span>API_KEY=123_456_789 npx tsx query.ts</span>
-	<span data-ty>Parsed chain response:</span>
-	<span data-ty>EthCallQueryResponse {</span>
-	<span data-ty>blockNumber: 8193548n,</span>
-	<span data-ty>blockHash: '0xef97290e043a530dd2cdf2d4c513397495029cdf2ef3e916746c837dadda51a8',</span>
-    <span data-ty>blockTime: 1745595132000000n,</span>
-    <span data-ty>results: [ '0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000']</span>
-    <span data-ty>} </span>
-    <span data-ty>  </span>
-    <span data-ty>Token name: USDC</span>
-	<span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-## Next Steps
-
-Now that you've successfully run your first verifiable query, you are ready to go deeper. Check out the following guides to build on what you've learned:
-
-- **[Query Solana](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank}**: Try fetching Solana stake pools to see how cross-chain queries apply beyond EVM.
-- **[Use Queries](/docs/products/queries/guides/use-queries){target=\_blank}**: Take a deeper look at the complete Queries lifecycle.
-- **Browse the [Supported Networks](/docs/products/queries/reference/supported-networks){target=\_blank}**: See where Queries are supported.
-
-
----
-
 Page Title: Glossary
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-reference-glossary.md
@@ -5351,6 +5198,1579 @@ These principles combine to create a clear pathway towards a fully trustless int
 
 ---
 
+Page Title: Integrate CCTP with Executor
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/guides/executor/cctp-executor/
+- Summary: Learn how to integrate Circle CCTP with the Executor framework for permissionless, quote-based USDC relaying and cross-chain execution.
+
+# CCTP Executor Integration
+
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.
+
+This guide covers the core flow for integrating CCTP with Executor, including relay instruction generation, quote requests, contract wiring, and transaction status checks, applicable across all supported execution environments. 
+
+## Prerequisites
+
+Before integrating CCTP with Executor, ensure that:
+
+- Both the source and destination chains are supported.
+- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain.
+
+??? info "How to verify chain and relay type support"
+
+    You can confirm chain and relay type support using the capabilities endpoint:
+
+    ```sh
+    GET https://executor-testnet.labsapis.com/v0/capabilities
+    ```
+    The response includes:
+
+      - Supported source and destination chains
+      - Enabled CCTP relay types (`ERC1` or `ERC2`) for the destination chain
+      - Gas drop-off limits, which define the maximum gas the relay provider can allocate
+
+    The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+
+## References
+
+Use the following resources throughout this guide:
+
+- [**CCTP with Executor addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
+
+    | Environment | URL                                                                            |
+    |-------------|--------------------------------------------------------------------------------|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
+
+    For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
+
+## Generate Relay Instructions
+
+Relay instructions define how the Executor should perform the relay on the destination chain, including gas limits and optional native token drop-offs. They are serialized into a compact byte format and passed to the Executor contract when submitting a transfer. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+
+```sh
+npm i @wormhole-foundation/sdk-definitions
+```
+
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `relayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+
+```tsx
+import {
+  encoding,
+  serializeLayout,
+  UniversalAddress,
+} from "@wormhole-foundation/sdk-connect";
+import { relayInstructionsLayout } from "@wormhole-foundation/sdk-definitions";
+
+const relayInstructions = serializeLayout(relayInstructionsLayout, {
+  requests: [
+    {
+      request: {
+	      type: "GasInstruction",
+	      gasLimit: 250000n,
+	      msgValue: 0n,
+	    },
+	  }
+  ],
+});
+```
+
+??? interface "Parameters"
+
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    ---
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    ---
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction; this should typically be set to 0 for NTT transfers.
+
+Relay instructions are encoded using the `relayInstructionsLayout`, which always expects an array of instruction objects. Each array element is a `RelayInstruction` whose `request.type` determines the specific variant:
+
+| Instruction             | Description                                                               | Fields                 |
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
+
+### EVM
+
+For EVM destinations:
+
+- `gasLimit` is the gas limit set on the redeeming transaction. Actual gas consumption depends on whether a gas drop-off instruction is included (in addition to the normal differences across various EVM chains).
+- `msgValue` is not used by CCTP’s `receiveMessage` entrypoints and should be set to zero for standard CCTP flows.
+
+### SVM
+
+For Solana and other SVM chains:
+
+- `gasLimit` represents the number of compute units to allocate to the transaction.
+- The total relay cost is determined by:
+    - The CUs consumed by the transaction
+    - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider
+- `msgValue` must cover all lamports required for:
+    - Transaction fees
+    - Priority fees
+    - Any rent required for new accounts
+
+CCTP transfers to Solana are redeemed into a USDC token account that must exist before redemption. If the recipient's associated token account (ATA) does not exist, the relayer can create it, but this increases the rent and `msgValue` requirements. To allow the relayer to create the ATA automatically:
+
+1. Target the associated token account for the recipient.
+2. Before sending, check whether the ATA exists.
+3. If it does not exist, include a zero-value `GasDropOffInstruction` for the wallet owner (not the ATA). This gives the relayer enough information to re-derive and create the ATA.
+
+!!!note
+    If a non-zero `GasDropOffInstruction` is used for a new wallet, the drop-off amount must be greater than `getMinimumBalanceForRentExemption` for the token account. Drop-offs below this threshold for new accounts are ignored to avoid guaranteed transaction failure.
+
+### Sui
+
+For Sui:
+
+- `gasLimit` represents the [gas budget](https://sdk.mystenlabs.com/typescript/transaction-building/gas#budget){target=\_blank} for the transaction.
+- As with native Sui transactions, the budget often needs to exceed the actual cost to account for variable execution and storage usage.
+- A direct gas budget is used instead of a simulated CU-style model due to the [non-linear gas cost structure](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices){target=\_blank} on Sui.
+
+## Request a Signed Quote
+
+Once you have your relay instructions ready, request a `SignedQuote` from the Executor Relay Provider. The quote authorizes a provider to perform the relay and includes an estimated cost. The example below requests a quote from Sepolia to Base Sepolia:
+
+```ts
+const EXECUTOR_URL = 'https://executor-testnet.labsapis.com';
+const { signedQuote: quote, estimatedCost: estimate } = (
+  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
+    srcChain: 10002,
+    dstChain: 10004,
+    relayInstructions,
+  })
+).data;
+
+```
+
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    ---
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    ---
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+
+Example response:
+
+```bash
+{
+  "signedQuote": "0x455130315241c9276698439fef2780dbab76fec90b633fbd000000000000000000000000f7122c001b3e07d7fafd8be3670545135859954a271227140000000067dd750f00000000000003e80000000000514b7c000011bbaf716200000011bbaf716200f86edc3960908d257472836d5b1c33c457bf17af67a758d9984356e7166bec8162faa0e07f991d061b93e4f033895c71134a30d9ca369c606fcabba0b742d2431c",
+  "estimatedCost": "1431935000000"
+}
+```
+
+Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
+
+## Call Sending Contract
+
+With relay instructions and a signed quote, the sending transaction can initiate both the CCTP burn and the Executor request, which instructs the relay provider to redeem and optionally execute on the destination chain.
+
+### EVM
+
+For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
+
+!!! note "Settlement support"
+    `CCTPv2WithExecutor` also supports [Settlement](/docs/products/settlement/overview/){target=\_blank}. The helper forwards both `maxFee` and `minFinalityThreshold` directly to Circle’s [`depositForBurn`](https://developers.circle.com/cctp/evm-smart-contracts#depositforburn){target=\_blank} entrypoint. Circle interprets these two fields to determine whether a transfer should follow normal finalization or Settlement-mode fast finality, based on the fee paid and the finality threshold selected.
+
+Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
+
+```sol
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+struct ExecutorArgs {
+    // The refund address used by the Executor.
+    address refundAddress;
+    // The signed quote to be passed into the Executor.
+    bytes signedQuote;
+    // The relay instructions to be passed into the Executor.
+    bytes instructions;
+}
+
+struct FeeArgs {
+    // The fee in tenths of basis points.
+    uint16 dbps;
+    // To whom the fee should be paid (the "referrer").
+    address payee;
+}
+```
+
+The helper interfaces are as follows:
+
+??? interface "ICCTPv1WithExecutor"
+
+    ```sol
+    interface ICCTPv1WithExecutor {
+        /// @notice Deposits and burns tokens from sender to be minted on destination domain using the Executor for relaying.
+        /// @param amount amount of tokens to burn
+        /// @param destinationChain destination chain ID
+        /// @param destinationDomain destination domain (ETH = 0, AVAX = 1)
+        /// @param mintRecipient address of mint recipient on destination domain
+        /// @param burnToken address of contract to burn deposited tokens, on local domain
+        /// @param executorArgs The arguments to be passed into the Executor.
+        /// @param feeArgs The arguments used to compute and pay the referrer fee.
+        /// @return nonce Circle nonce reserved by message
+        ///
+        function depositForBurn(
+            uint256 amount,
+            uint16 destinationChain,
+            uint32 destinationDomain,
+            bytes32 mintRecipient,
+            address burnToken,
+            ExecutorArgs calldata executorArgs,
+            FeeArgs calldata feeArgs
+        ) external payable returns (uint64 nonce);
+    }
+    ```
+
+??? interface "ICCTPv2WithExecutor"
+
+    ```sol
+    interface ICCTPv2WithExecutor {
+        /**
+         * @notice Deposits and burns tokens from sender to be minted on destination domain.
+         * Emits a `DepositForBurn` event.
+         * @dev reverts if:
+         * - given burnToken is not supported
+         * - given destinationDomain has no TokenMessenger registered
+         * - transferFrom() reverts. For example, if sender's burnToken balance or approved allowance
+         * to this contract is less than `amount`.
+         * - burn() reverts. For example, if `amount` is 0.
+         * - maxFee is greater than or equal to `amount`.
+         * - MessageTransmitterV2#sendMessage reverts.
+         * @param amount amount of tokens to burn
+         * @param destinationChain destination chain ID
+         * @param destinationDomain destination domain to receive message on
+         * @param mintRecipient address of mint recipient on destination domain
+         * @param burnToken token to burn `amount` of, on local domain
+         * @param destinationCaller authorized caller on the destination domain, as bytes32. If equal to bytes32(0),
+         * any address can broadcast the message.
+         * @param maxFee maximum fee to pay on the destination domain, specified in units of burnToken
+         * @param minFinalityThreshold the minimum finality at which a burn message will be attested to.
+         * @param executorArgs The arguments to be passed into the Executor.
+         * @param feeArgs The arguments used to compute and pay the referrer fee.
+         */
+        function depositForBurn(
+            uint256 amount,
+            uint16 destinationChain,
+            uint32 destinationDomain,
+            bytes32 mintRecipient,
+            address burnToken,
+            bytes32 destinationCaller,
+            uint256 maxFee,
+            uint32 minFinalityThreshold,
+            ExecutorArgs calldata executorArgs,
+            FeeArgs calldata feeArgs
+        ) external payable;
+    }
+    ```
+
+In both cases, you pass:
+
+- `executorArgs.signedQuote`: The `signedQuote` returned by the Executor `/v0/quote` endpoint.
+- `executorArgs.instructions`: The serialized relay instructions from the previous step.
+- `executorArgs.refundAddress`: The address that should receive any unused funds refunded by the Executor.
+- `feeArgs`: Optional referrer fee configuration, if your integration charges a fee on transfers.
+
+### SVM with CCTPv1
+
+For CCTPv1, an `ExampleCCTPExecutor` program is available to help compose a full CCTP Executor request directly on-chain. The program reads the latest nonce published by the CCTP `MessageTransmitter` and issues a relay request using that value.
+
+??? interface "ExampleCCTPExecutor.json"
+
+    ```json
+    {
+      "address": "CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs",
+      "metadata": {
+        "name": "example_cctp_with_executor",
+        "version": "0.1.0",
+        "spec": "0.1.0",
+        "description": "Created with Anchor"
+      },
+      "instructions": [
+        {
+          "name": "relay_last_message",
+          "discriminator": [
+            68,
+            157,
+            251,
+            90,
+            201,
+            66,
+            40,
+            60
+          ],
+          "accounts": [
+            {
+              "name": "payer",
+              "docs": [
+                "Payer will pay the Executor"
+              ],
+              "writable": true,
+              "signer": true
+            },
+            {
+              "name": "payee",
+              "writable": true
+            },
+            {
+              "name": "message_transmitter"
+            },
+            {
+              "name": "executor_program",
+              "address": "Ax7mtQPbNPQmghd7C3BHrMdwwmkAXBDq7kNGfXNcc7dg"
+            },
+            {
+              "name": "system_program",
+              "address": "11111111111111111111111111111111"
+            }
+          ],
+          "args": [
+            {
+              "name": "args",
+              "type": {
+                "defined": {
+                  "name": "RelayLastMessageArgs"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "accounts": [
+        {
+          "name": "MessageTransmitter",
+          "discriminator": [
+            71,
+            40,
+            180,
+            142,
+            19,
+            203,
+            35,
+            252
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "MessageTransmitter",
+          "docs": [
+            "Main state of the MessageTransmitter program"
+          ],
+          "type": {
+            "kind": "struct",
+            "fields": [
+              {
+                "name": "owner",
+                "type": "pubkey"
+              },
+              {
+                "name": "pending_owner",
+                "type": "pubkey"
+              },
+              {
+                "name": "attester_manager",
+                "type": "pubkey"
+              },
+              {
+                "name": "pauser",
+                "type": "pubkey"
+              },
+              {
+                "name": "paused",
+                "type": "bool"
+              },
+              {
+                "name": "local_domain",
+                "type": "u32"
+              },
+              {
+                "name": "version",
+                "type": "u32"
+              },
+              {
+                "name": "signature_threshold",
+                "type": "u32"
+              },
+              {
+                "name": "enabled_attesters",
+                "type": {
+                  "vec": "pubkey"
+                }
+              },
+              {
+                "name": "max_message_body_size",
+                "type": "u64"
+              },
+              {
+                "name": "next_available_nonce",
+                "type": "u64"
+              }
+            ]
+          }
+        },
+        {
+          "name": "RelayLastMessageArgs",
+          "type": {
+            "kind": "struct",
+            "fields": [
+              {
+                "name": "recipient_chain",
+                "type": "u16"
+              },
+              {
+                "name": "exec_amount",
+                "type": "u64"
+              },
+              {
+                "name": "signed_quote_bytes",
+                "type": "bytes"
+              },
+              {
+                "name": "relay_instructions",
+                "type": "bytes"
+              }
+            ]
+          }
+        }
+      ]
+    }
+    ```
+
+??? interface "ExampleCCTPExecutor.ts"
+
+    ```tsx
+    /**
+     * Program IDL in camelCase format in order to be used in JS/TS.
+     *
+     * Note that this is only a type helper and is not the actual IDL. The original
+     * IDL can be found at `target/idl/example_cctp_with_executor.json`.
+     */
+    export type ExampleCctpWithExecutor = {
+      address: 'CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs';
+      metadata: {
+        name: 'exampleCctpWithExecutor';
+        version: '0.1.0';
+        spec: '0.1.0';
+        description: 'Created with Anchor';
+      };
+      instructions: [
+        {
+          name: 'relayLastMessage';
+          discriminator: [68, 157, 251, 90, 201, 66, 40, 60];
+          accounts: [
+            {
+              name: 'payer';
+              docs: ['Payer will pay the Executor'];
+              writable: true;
+              signer: true;
+            },
+            {
+              name: 'payee';
+              writable: true;
+            },
+            {
+              name: 'messageTransmitter';
+            },
+            {
+              name: 'executorProgram';
+              address: 'Ax7mtQPbNPQmghd7C3BHrMdwwmkAXBDq7kNGfXNcc7dg';
+            },
+            {
+              name: 'systemProgram';
+              address: '11111111111111111111111111111111';
+            }
+          ];
+          args: [
+            {
+              name: 'args';
+              type: {
+                defined: {
+                  name: 'relayLastMessageArgs';
+                };
+              };
+            }
+          ];
+        }
+      ];
+      accounts: [
+        {
+          name: 'messageTransmitter';
+          discriminator: [71, 40, 180, 142, 19, 203, 35, 252];
+        }
+      ];
+      types: [
+        {
+          name: 'messageTransmitter';
+          docs: ['Main state of the MessageTransmitter program'];
+          type: {
+            kind: 'struct';
+            fields: [
+              {
+                name: 'owner';
+                type: 'pubkey';
+              },
+              {
+                name: 'pendingOwner';
+                type: 'pubkey';
+              },
+              {
+                name: 'attesterManager';
+                type: 'pubkey';
+              },
+              {
+                name: 'pauser';
+                type: 'pubkey';
+              },
+              {
+                name: 'paused';
+                type: 'bool';
+              },
+              {
+                name: 'localDomain';
+                type: 'u32';
+              },
+              {
+                name: 'version';
+                type: 'u32';
+              },
+              {
+                name: 'signatureThreshold';
+                type: 'u32';
+              },
+              {
+                name: 'enabledAttesters';
+                type: {
+                  vec: 'pubkey';
+                };
+              },
+              {
+                name: 'maxMessageBodySize';
+                type: 'u64';
+              },
+              {
+                name: 'nextAvailableNonce';
+                type: 'u64';
+              }
+            ];
+          };
+        },
+        {
+          name: 'relayLastMessageArgs';
+          type: {
+            kind: 'struct';
+            fields: [
+              {
+                name: 'recipientChain';
+                type: 'u16';
+              },
+              {
+                name: 'execAmount';
+                type: 'u64';
+              },
+              {
+                name: 'signedQuoteBytes';
+                type: 'bytes';
+              },
+              {
+                name: 'relayInstructions';
+                type: 'bytes';
+              }
+            ];
+          };
+        }
+      ];
+    };
+
+    ```
+    
+To integrate this with your existing CCTP `depositForBurn` transaction, add `relayLastMessage` as a `postInstruction`:
+
+```tsx
+const shimProgram = new Program<ExampleCctpWithExecutor>(
+  ExampleCctpWithExecutorIdl,
+  provider
+);
+
+// ... your CCTP depositForBurn builder ...
+
+.postInstructions([
+  await shimProgram.methods
+    .relayLastMessage({
+      execAmount: new BN(estimate),
+      recipientChain: dstChain,
+      signedQuoteBytes,
+      relayInstructions: Buffer.from(relayInstructions.substring(2), "hex"),
+    })
+    .accounts({
+      messageTransmitter: new web3.PublicKey(
+        "BWrwSWjbikT3H7qHAkUEbLmwDQoB4ZDJ4wcSEhSPTZCu"
+      ),
+      payee: new web3.PublicKey(signedQuoteBytes.subarray(24, 56)),
+    })
+    .instruction(),
+])
+...
+```
+
+??? interface "Parameters"
+
+    `execAmount` ++"u64"++  
+
+    The execution budget passed to the Executor. This should be set to the `estimatedCost` returned by the `/v0/quote` endpoint.
+
+    ---
+
+    `recipientChain` ++"uint16"++  
+
+    The Wormhole chain ID of the destination chain where the USDC redemption should occur.
+
+    ---
+
+    `signedQuoteBytes` ++"bytes"++  
+
+    The signed quote returned from the Executor `/v0/quote` endpoint. Must be passed as raw bytes (without the `0x` prefix).
+
+    ---
+
+    `relayInstructions` ++"bytes"++  
+
+    The serialized relay instructions generated earlier, typically created by converting the hex string into a byte buffer.
+
+    ---
+
+    `messageTransmitter` ++"pubkey"++  
+
+    The CCTP `MessageTransmitter` program account on Solana.
+
+    ---
+
+    `payee` ++"pubkey"++  
+
+    The address extracted from the signed quote that receives refunds or drop-offs.
+
+
+This combines the CCTP burn and the Executor request atomically in a single Solana transaction.
+
+### SVM with CCTPv2
+
+CCTPv2 on Solana does not require a dedicated helper program. The integration can be implemented entirely client-side:
+
+1. Call `depositForBurn` or `depositForBurnWithHook`.
+2. Follow by calling `requestForExecution` with `requestBytes: Buffer.from("4552433201", "hex")`
+3. Pass `requestBytes`, the `signedQuote` from the quote endpoint, the serialized `relayInstructions`, and the estimated cost (as lamports) as `execAmount`.
+
+If needed, you can fetch the on-chain IDLs for both programs:
+
+```bash
+anchor idl --provider.cluster m fetch CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPbeC
+anchor idl --provider.cluster m fetch execXUrAsMnqMmTHj5m7N1YQgsDz3cwGLYCYyuDRciV
+```
+
+This allows CCTPv2 with Executor to be composed entirely in your client transaction builder without additional on-chain infrastructure.
+
+### Sui
+
+On Sui, an `executor_requests` helper module is deployed so that, using [Programmable Transaction Blocks (PTB)](https://docs.sui.io/guides/developer/sui-101/building-ptb){target=\_blank}, no integration-specific Move module is required. You can extend an existing `deposit_for_burn` PTB by deriving the CCTP message fields and then issuing an Executor request.
+
+The following example shows how to:
+
+1. Call `deposit_for_burn` and capture the returned CCTP message.
+2. Read the `source_domain` and `nonce` from the message.
+3. Build CCTPv1 request bytes via `executor_requests::make_cctp_v1_request`.
+4. Split off a coin to pay the Executor using the `estimatedCost` from the quote.
+5. Call `executor::request_execution` with the quote, request bytes, and relay instructions.
+
+```tsx
+// grab the message NestedResult
+const [_, message] = tx.moveCall({
+  target: `${tokenMessengerId}::deposit_for_burn::deposit_for_burn`,
+  // ... existing CCTP args ...
+});
+
+const [source_domain] = tx.moveCall({
+  target: `${messageTransmitterId}::message::source_domain`,
+  arguments: [message],
+});
+
+const [nonce] = tx.moveCall({
+  target: `${messageTransmitterId}::message::nonce`,
+  arguments: [message],
+});
+
+const [requestBytes] = tx.moveCall({
+  target: `${executorRequestsId}::executor_requests::make_cctp_v1_request`,
+  arguments: [source_domain, nonce],
+});
+
+const [executorCoin] = tx.splitCoins(tx.gas, [tx.pure.u64(BigInt(estimate))]);
+
+tx.moveCall({
+  target: `${executorId}::executor::request_execution`,
+  arguments: [
+    executorCoin,
+    tx.object(SUI_CLOCK_OBJECT_ID),
+    tx.pure.u16(dstChain),
+    tx.pure.address('0x0'),
+    tx.pure.address(signer.getPublicKey().toSuiAddress()),
+    tx.pure.vector('u8', Buffer.from(quote.substring(2), 'hex')),
+    requestBytes,
+    tx.pure.vector('u8', Buffer.from(relayInstructions.substring(2), 'hex')),
+  ],
+});
+
+```
+
+## Check the Transaction Status
+
+After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
+
+```ts
+const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
+  txHash,
+  chainId,
+});
+```
+
+You can also link directly to the transaction in the explorer:
+
+```ts
+`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`;
+```
+
+## Conclusion
+
+Integrating CCTP with Executor enables permissionless, quote-based relaying and execution for USDC across EVM, SVM, and Sui. CCTP continues to provide the canonical burn-and-mint flow for USDC, while Executor coordinates cross-chain execution through a network of relay providers rather than a single dedicated relayer.
+
+Applications can build end-to-end CCTP transfers, with redeem and any follow-up logic handled automatically on the destination chain. This pattern lets you keep CCTP as the source of truth for USDC movement, while using Executor to flexibly manage gas, drop-offs, and execution behavior across multiple environments.
+
+
+---
+
+Page Title: Integrate Native Token Transfers with Executor
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/guides/executor/ntt-executor/
+- Summary: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
+
+# Native Token Transfers Executor Integration
+
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
+
+This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and SVM chains.
+
+The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk){target=\_blank} now includes a built-in route for NTT with Executor, with implementations for both [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=\_blank} and [Solana (SVM)](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=\_blank}, making it straightforward to integrate into existing workflows.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- [NTT deployed](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank} on both the source and destination chains.
+- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. 
+
+??? info "How to verify chain and relay type support"
+
+    You can confirm chain and relay type support using the capabilities endpoint:
+
+    ```sh
+    GET https://executor-testnet.labsapis.com/v0/capabilities
+    ```
+    The response includes:
+
+      - Supported source and destination chains
+      - Available relay types (e.g., `wormhole` or `ERN1`).
+      - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
+    The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+
+## References
+
+Use the following resources throughout this guide:
+
+- [**NTT With Executor addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
+- **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
+
+    | Environment | URL                                                                            |
+    | ----------- | ------------------------------------------------------------------------------ |
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
+
+For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
+
+## Generate Relay Instructions
+
+Relay instructions define how the Executor should perform the relay on the destination chain, including parameters such as gas limits, message value, and additional execution options. They are serialized into a compact byte format and passed to the Executor contract when a transfer is submitted. Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+
+```sh
+npm i @wormhole-foundation/sdk-definitions
+```
+
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `RelayInstructions` are provided by the Wormhole TypeScript SDK. Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+
+```ts
+import {
+  encoding,
+  serializeLayout,
+  UniversalAddress,
+} from "@wormhole-foundation/sdk-connect";
+import { relayInstructionsLayout } from "@wormhole-foundation/sdk-definitions";
+
+const relayInstructions = serializeLayout(relayInstructionsLayout, {
+  requests: [
+    {
+      request: {
+        type: "GasInstruction",
+        gasLimit: 500000n,
+        msgValue: 0n,
+      },
+    },
+  ],
+});
+```
+
+??? interface "Parameters"
+
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    ---
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    ---
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction. This parameter is typically set to 0 for NTT transfers.
+
+Relay instructions are encoded using the `relayInstructionsLayout`, which always expects an array of instruction objects. Each array element is a `RelayInstruction` whose `request.type` determines the specific variant:
+
+| Instruction             | Description                                                               | Fields                 |
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
+
+### EVM
+
+For EVM-based destination chains:
+
+- `gasLimit` defines the redeeming transaction gas limit on the destination chain. Actual gas usage depends on the token configuration, manager setup, and chain parameters.
+- `msgValue` is not used by NTT Transceivers’ `receiveMessage` function and should be set to 0.
+
+### SVM
+
+For Solana and other SVM chains:
+
+- `gasLimit` represents the total compute units required across all transactions, plus a 20% buffer.
+- The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}, which simulates the transaction and sets the budget to 120% of the simulated `unitsConsumed`. This logic allows the relayer to automatically determine the budget required for each transaction in the series needed to perform an NTT redeem.
+- `msgValue` must cover the lamports required for the transaction, including priority fees and rent. Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA, increasing rent cost and required `msgValue`.
+- When using a non-zero `GasDropOffInstruction` for a new wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Wormhole's relayer will ignore drop-offs to new accounts if they are below the minimum, as the transaction would fail.
+
+## Request a Signed Quote
+
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
+
+```ts
+const EXECUTOR_URL = 'https://executor-testnet.labsapis.com';
+const { signedQuote: quote, estimatedCost: estimate } = (
+  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
+    srcChain: 10002,
+    dstChain: 10004,
+    relayInstructions,
+  })
+).data;
+
+```
+
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    ---
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    ---
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+Example response:
+
+```sh
+{
+  "signedQuote": "0x455130315241c9276698439fef2780dbab76fec90b633fbd000000000000000000000000f7122c001b3e07d7fafd8be3670545135859954a271227140000000067dd750f00000000000003e80000000000514b7c000011bbaf716200000011bbaf716200f86edc3960908d257472836d5b1c33c457bf17af67a758d9984356e7166bec8162faa0e07f991d061b93e4f033895c71134a30d9ca369c606fcabba0b742d2431c",
+  "estimatedCost": "1431935000000"
+}
+```
+
+??? interface "Returns"
+
+    `signedQuote` ++"string"++
+
+    A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
+
+    ---
+
+    `estimatedCost` ++"string"++
+
+    The total estimated gas or lamport cost for the relay.
+
+Signed quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
+
+## Call Sending Contract
+
+Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the complete list of deployed helper contracts.
+
+### EVM
+
+For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
+
+```ts
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+struct ExecutorArgs {
+    // The msg value to be passed into the Executor.
+    uint256 value;
+    // The refund address used by the Executor.
+    address refundAddress;
+    // The signed quote to be passed into the Executor.
+    bytes signedQuote;
+    // The relay instructions to be passed into the Executor.
+    bytes instructions;
+}
+
+struct FeeArgs {
+    // The fee in tenths of basis points.
+    uint16 dbps;
+    // To whom the fee should be paid (the "referrer").
+    address payee;
+}
+
+interface INttManagerWithExecutor {
+    /// @notice Error when the refund to the sender fails.
+    error RefundFailed(uint256 refundAmount);
+
+    /// @notice Transfer tokens using the Executor for relaying.
+    /// @param nttManager The NTT manager used for the transfer.
+    /// @param amount The amount to transfer.
+    /// @param recipientChain The Wormhole chain ID for the destination.
+    /// @param recipientAddress The recipient address.
+    /// @param refundAddress The address to which unused gas is refunded.
+    /// @param shouldQueue Whether the transfer should be queued if the outbound limit is hit.
+    /// @param encodedInstructions Additional instructions for the destination chain.
+    /// @param executorArgs The arguments to be passed into the Executor.
+    /// @param feeArgs The arguments used to compute and pay the referrer fee.
+    /// @return msgId The resulting message ID of the transfer.
+    function transfer(
+        address nttManager,
+        uint256 amount,
+        uint16 recipientChain,
+        bytes32 recipientAddress,
+        bytes32 refundAddress,
+        bool shouldQueue,
+        bytes memory encodedInstructions,
+        ExecutorArgs calldata executorArgs,
+        FeeArgs calldata feeArgs
+    ) external payable returns (uint64 msgId);
+}
+```
+
+If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. You can turn off relaying by setting `automatic` to `false`.
+
+### SVM
+
+For Solana and other SVM-based chains, two helper programs are available to assist with generating and submitting NTT execution requests:
+
+- [example-ntt-svm-lut](https://github.com/wormholelabs-xyz/example-ntt-svm-lut){target=\_blank}: Manages Lookup Tables for NTT programs without canonical LUTs.
+- [example-ntt-with-executor-svm](https://github.com/wormholelabs-xyz/example-ntt-with-executor-svm){target=\_blank}: Generates and attaches Executor relay instructions on-chain to reduce transaction size.
+
+Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
+
+```ts
+const ntt = await s.getProtocol("Ntt", {
+  ntt: {
+    chain: "Solana",
+    manager: ...,
+    token: ...,
+    transceiver: { wormhole: ... },
+  },
+});
+...
+// as of this writing, there's only one tx on Solana
+const txs = ntt.transfer(
+  new SolanaAddress(payer.publicKey),
+  1n,
+  {
+    chain: "Sepolia",
+    address: new UniversalAddress(
+      recipientWallet,
+      "hex"
+    ),
+  },
+  { queue: false, automatic: false }
+);
+for await (const tx of txs) {
+	// https://github.com/wormhole-foundation/native-token-transfers/blob/b4aa0e34755f735fca40e4566e07c17ac6b2b812/solana/ts/sdk/ntt.ts#L970C8-L970C20
+	if (tx.description === "Ntt.Transfer") {
+		// Not sure if the first signer will always be the outbox
+	  const outboxKeypair = tx.transaction.signers[0];
+	  // Get the lookup tables configured on the NTT manager
+	  const luts: AddressLookupTableAccount[] = [];
+	  try {
+	    // @ts-ignore
+	    luts.push(await ntt.getAddressLookupTable());
+	  } catch (e) {
+	    console.log(e.message);
+	  }
+	  // Decompile the message
+	  const message = TransactionMessage.decompile(
+	    tx.transaction.transaction.message,
+	    { addressLookupTableAccounts: luts }
+	  );
+	  // Add the execution request to the message
+	  const exampleNttWithExecutorProgram = new Program<ExampleNttWithExecutor>(
+      ExampleNttWithExecutorIdl as ExampleNttWithExecutor,
+      provider
+    );
+    message.instructions.push(
+      await exampleNttWithExecutorProgram.methods
+        .relayNttMesage({
+          execAmount: new BN(estimate.toString()),
+          recipientChain: chainToChainId("Sepolia"),
+          signedQuoteBytes,
+          relayInstructions: Buffer.from(relayInstructions.substring(2), "hex"),
+        })
+        .accounts({
+          payee: new web3.PublicKey(signedQuoteBytes.subarray(24, 56)),
+          nttProgramId,
+          nttPeer: web3.PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("peer"),
+              encoding.bignum.toBytes(chainToChainId("Sepolia")),
+            ],
+            nttProgramId
+          )[0],
+          nttMessage: outboxKeypair.publicKey,
+        })
+        .instruction()
+    );
+    // If the canonical NTT manager lookup table did not exist
+    if (luts.length === 0) {
+      // This should probably check the program version and only do this for versions without the canonical lookup table
+      // Otherwise, it should call `initializeLut` on the manager(?)
+      // I'm not sure if that is already checked somewhere in the SDK
+      console.log("no manager lookup table found, checking helper program");
+      const exampleNttSvmLutProgram = new Program<ExampleNttSvmLut>(
+        ExampleNttSvmLutIdl as ExampleNttSvmLut,
+        provider
+      );
+      const lutPointerAddress = web3.PublicKey.findProgramAddressSync(
+        [Buffer.from("lut"), nttProgramId.toBuffer()],
+        exampleNttSvmLutProgram.programId
+      )[0];
+      let lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+        lutPointerAddress
+      );
+      if (!lutPointer) {
+        console.log("no helper program lookup table found, initializing...");
+        const recentSlot =
+          (await exampleNttSvmLutProgram.provider.connection.getSlot()) - 1;
+        const tx = await exampleNttSvmLutProgram.methods
+          .initializeLut(new BN(recentSlot))
+          .accounts({
+            nttProgramId,
+          })
+          .rpc();
+        console.log(`initialized lookup table: ${tx}`);
+        while (!lutPointer) {
+          // wait for lut to warm up
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+            lutPointerAddress
+          );
+        }
+      }
+      const response = await connection.getAddressLookupTable(
+        lutPointer.address
+      );
+      if (!response.value) {
+        throw new Error("unable to fetch lookup table");
+      }
+      luts.push(response.value);
+    }
+    // Recompile the message with the lookup table (whether manager or helper)
+    tx.transaction.transaction.message = message.compileToV0Message(luts);
+    // Broadcast
+    const hash = await provider.sendAndConfirm(
+      tx.transaction.transaction,
+      tx.transaction.signers,
+      { commitment: "confirmed" }
+    );
+  }
+}
+```
+
+## Check the Transaction Status
+
+After submitting your transaction, you can query the relay provider to check its execution status and confirm whether the transfer has been processed and finalized by the Executor.
+
+```ts
+const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
+  txHash,
+  chainId,
+});
+```
+
+You can also link directly to the transaction in the Explorer:
+
+```ts
+`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(
+  EXECUTOR_URL
+)}`;
+```
+
+## Conclusion
+
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers. For a working reference implementation, see the [NTT with Executor TypeScript demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk/tree/main){target=\_blank}.
+
+
+---
+
+Page Title: Integrate Native Token Transfers with Executor
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-ntt-executor.md
+- Canonical (HTML): https://wormhole.com/docs/products/token-transfers/native-token-transfers/ntt-executor/
+- Summary: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
+
+# Native Token Transfers Executor Integration
+
+The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
+
+This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and Solana (SVM) chains.
+
+The Wormhole [NTT TypeScript SDK](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk){target=_blank} now includes a built-in route for NTT with Executor, with implementations for both [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/2aaa82baeb2c0fa513f41f0561cd5613d265ddea/evm/ts/src/nttWithExecutor.ts#L63){target=_blank} and [Solana (SVM)](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/nttWithExecutor.ts){target=_blank}, making it straightforward to integrate into existing workflows.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- [NTT deployed](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank} on both the source and destination chains.
+- Verified that both source and destination chains are supported and that NTT with Executor (`ERN1`) is enabled on the destination chain. You can confirm this using the capabilities endpoint:
+  ```sh
+  GET https://executor-testnet.labsapis.com/v0/capabilities
+  ```
+  The response includes:
+    - Supported source and destination chains.
+    - Available relay types (e.g., `wormhole` or `ERN1`).
+    - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
+    !!!note
+        The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
+
+## References
+Use the following resources throughout this guide:
+
+- [**NTT With Executor Addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=_blank} : List of deployed contracts for NTT with Executor.  
+- **Executor Endpoints** : Used for quote requests, transaction status checks, and capability queries.
+
+    | Environment | URL                                                                            |
+    |-------------|--------------------------------------------------------------------------------|
+    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
+    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
+
+    !!! note
+        For development and testing, use the **Testnet** endpoint. The **Mainnet** relay provider is reserved for production-ready deployments.
+
+## Generate relay instructions
+
+Relay instructions define how the Executor should perform the relay on the destination chain - including parameters such as gas limits, message value, or additional execution options. They are serialized into a compact byte format that can be passed to the Executor contract when submitting a transfer.
+
+Before generating relay instructions, install the SDK [Definitions](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/definitions/src/nttWithExecutor.ts){target=\_blank} package:
+
+```sh
+npm i @wormhole-foundation/sdk-definitions
+```
+
+[Layouts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/b9035ad835d70bb19df366662682d3510461d72b/core/definitions/src/protocols/executor/relayInstruction.ts){target=\_blank} for the Executor `RelayInstructions` are provided by the Wormhole TypeScript SDK.
+
+Once installed, use the `serializeLayout` helper to construct and encode your relay instructions:
+​
+```ts
+const relayInstructions = serializeLayout(relayInstructionsLayout, {
+    requests: [{
+    request: {
+	      type: "GasInstruction",
+	      gasLimit: 500000n,
+	      msgValue: 0n,
+	    },
+	  }],
+  });
+```
+
+??? interface "Parameters"
+
+    `type` ++"GasInstruction"++
+
+    Defines the instruction to allocate gas for the relay.
+
+    —
+
+    `gasLimit` ++"uint"++
+
+    Specifies the maximum gas available for executing the redeem transaction on the destination chain.
+
+    —
+
+    `msgValue` ++"uint"++
+
+    Represents the amount of native token (e.g., ETH, SOL) to forward with the transaction, this should typically be set to 0 for NTT transfers.
+
+
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For NTT transfers, only a single gas instruction is required.
+
+| Instruction             | Description                                                               | Fields                 | 
+| ----------------------- | ------------------------------------------------------------------------- | ---------------------- |
+| `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
+| `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
+| `RelayInstruction`      | Switch-type layout that encapsulates either a gas or drop-off instruction | `type`, `request`      | 
+| `RelayInstructions`     | Array of one or more `RelayInstruction` objects                           | `requests`             | 
+
+**EVM**
+
+For EVM-based destination chains:
+
+- `gasLimit` defines the redeeming transaction gas limit on the destination chain. The actual gas usage depends on token configuration, manager setup, and chain parameters.
+- `msgValue` is not used by NTT Transceivers’ `receiveMessage` function and should be set to 0.
+
+**SVM**
+
+For Solana and other SVM chains:
+
+- `gasLimit` represents the total Compute Units required across all transactions, plus a 20% buffer.
+- The relayer estimates required compute units using logic similar to [`determineComputeBudget`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/2cf3749f01c09e97693fc8872180db442c09c778/platforms/solana/src/signer.ts#L357){target=\_blank}, which simulates the transaction and sets the budget to 120% of the simulated `unitsConsumed`. This allows the relayer to automatically determine the budget required for each transaction in the series needed to perform an NTT redeem.
+- `msgValue` must cover the lamports required for the transaction, including priority fees and rent.
+
+!!!note
+    Transfers to Solana are redeemed to an [associated token account (ATA)](https://www.solana-program.com/docs/associated-token-account){target=\_blank}, which must exist before redemption. If missing, the relayer will automatically create the ATA, increasing rent cost and required `msgValue`.
+
+    When using a non-zero `GasDropOffInstruction` for a new wallet, the drop-off amount must be greater than the `getMinimumBalanceForRentExemption` lamports. Wormhole's relayer will ignore drop-offs to new accounts if they are below the minimum, as the transaction would fail.
+
+## Request a SignedQuote
+
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution.
+
+The following is an example of a quote request from Sepolia to Base Sepolia. See the full list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
+
+```ts
+const EXECUTOR_URL = "https://executor-testnet.labsapis.com"
+const { signedQuote: quote, estimatedCost: estimate } = (
+  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
+    srcChain: 10002,
+    dstChain: 10004,
+    relayInstructions,
+  })
+).data;
+```
+
+??? interface "Parameters"
+
+    `srcChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the source networks.
+
+    —
+
+    `dstChain` ++"uint16"++
+
+    Specify the Wormhole chain IDs for the destination networks.
+
+    —
+
+    `relayInstructions` ++"Uint8Array"++
+
+    Encodes the execution parameters you generated in the previous step.
+
+Example response:
+
+```sh
+{
+  "signedQuote": "0x455130315241c9276698439fef2780dbab76fec90b633fbd000000000000000000000000f7122c001b3e07d7fafd8be3670545135859954a271227140000000067dd750f00000000000003e80000000000514b7c000011bbaf716200000011bbaf716200f86edc3960908d257472836d5b1c33c457bf17af67a758d9984356e7166bec8162faa0e07f991d061b93e4f033895c71134a30d9ca369c606fcabba0b742d2431c",
+  "estimatedCost": "1431935000000"
+}
+```
+
+??? interface "Returns"
+
+    `signedQuote` ++"string"++
+
+    A signed authorization used in the on-chain call to the Executor. Includes quote data and a 65-byte ECDSA signature.
+
+    —
+
+    `estimatedCost` ++"string"++
+
+    The total estimated gas or lamport cost for the relay.
+
+
+Signed Quotes have an expiry time and must be generated for each request. The Executor contract will revert if the quote expires before on-chain submission.
+
+## Call your sending contract
+
+Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the full list of deployed helper contracts.
+
+**EVM**
+
+For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
+
+```sol
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+struct ExecutorArgs {
+    // The msg value to be passed into the Executor.
+    uint256 value;
+    // The refund address used by the Executor.
+    address refundAddress;
+    // The signed quote to be passed into the Executor.
+    bytes signedQuote;
+    // The relay instructions to be passed into the Executor.
+    bytes instructions;
+}
+
+struct FeeArgs {
+    // The fee in tenths of basis points.
+    uint16 dbps;
+    // To whom the fee should be paid (the "referrer").
+    address payee;
+}
+
+interface INttManagerWithExecutor {
+    /// @notice Error when the refund to the sender fails.
+    error RefundFailed(uint256 refundAmount);
+
+    /// @notice Transfer tokens using the Executor for relaying.
+    /// @param nttManager The NTT manager used for the transfer.
+    /// @param amount The amount to transfer.
+    /// @param recipientChain The Wormhole chain ID for the destination.
+    /// @param recipientAddress The recipient address.
+    /// @param refundAddress The address to which unused gas is refunded.
+    /// @param shouldQueue Whether the transfer should be queued if the outbound limit is hit.
+    /// @param encodedInstructions Additional instructions for the destination chain.
+    /// @param executorArgs The arguments to be passed into the Executor.
+    /// @param feeArgs The arguments used to compute and pay the referrer fee.
+    /// @return msgId The resulting message ID of the transfer.
+    function transfer(
+        address nttManager,
+        uint256 amount,
+        uint16 recipientChain,
+        bytes32 recipientAddress,
+        bytes32 refundAddress,
+        bool shouldQueue,
+        bytes memory encodedInstructions,
+        ExecutorArgs calldata executorArgs,
+        FeeArgs calldata feeArgs
+    ) external payable returns (uint64 msgId);
+}
+```
+
+If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. This can be done by setting automatic to false.
+
+**SVM**
+
+For Solana and other SVM-based chains, two helper programs are available to assist with generating and submitting NTT execution requests:
+
+- [example-ntt-svm-lut](https://github.com/wormholelabs-xyz/example-ntt-svm-lut){target=\_blank}: Manages Lookup Tables for NTT programs without canonical LUTs.
+- [example-ntt-with-executor-svm](https://github.com/wormholelabs-xyz/example-ntt-with-executor-svm){target=\_blank}: Generates and attaches Executor relay instructions on-chain to reduce transaction size.
+
+Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
+
+```ts
+const ntt = await s.getProtocol("Ntt", {
+  ntt: {
+    chain: "Solana",
+    manager: ...,
+    token: ...,
+    transceiver: { wormhole: ... },
+  },
+});
+
+// Generate transfer transactions
+const txs = ntt.transfer(
+  new SolanaAddress(payer.publicKey),
+  1n,
+  {
+    chain: "Sepolia",
+    address: new UniversalAddress(recipientWallet, "hex"),
+  },
+  { queue: false, automatic: false }
+);
+
+for await (const tx of txs) {
+  if (tx.description === "Ntt.Transfer") {
+    const outboxKeypair = tx.transaction.signers[0];
+    const luts: AddressLookupTableAccount[] = [];
+
+    try {
+      // @ts-ignore
+      luts.push(await ntt.getAddressLookupTable());
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    // Decompile the transaction message
+    const message = TransactionMessage.decompile(
+      tx.transaction.transaction.message,
+      { addressLookupTableAccounts: luts }
+    );
+
+    // Append Executor relay instruction
+    const exampleNttWithExecutorProgram = new Program<ExampleNttWithExecutor>(
+      ExampleNttWithExecutorIdl as ExampleNttWithExecutor,
+      provider
+    );
+    message.instructions.push(
+      await exampleNttWithExecutorProgram.methods
+        .relayNttMesage({
+          execAmount: new BN(estimate.toString()),
+          recipientChain: chainToChainId("Sepolia"),
+          signedQuoteBytes,
+          relayInstructions: Buffer.from(relayInstructions.substring(2), "hex"),
+        })
+        .accounts({
+          payee: new web3.PublicKey(signedQuoteBytes.subarray(24, 56)),
+          nttProgramId,
+          nttPeer: web3.PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("peer"),
+              encoding.bignum.toBytes(chainToChainId("Sepolia")),
+            ],
+            nttProgramId
+          )[0],
+          nttMessage: outboxKeypair.publicKey,
+        })
+        .instruction()
+    );
+
+    // If no canonical LUT exists, check helper program and initialize if needed
+    if (luts.length === 0) {
+      console.log("No manager lookup table found, checking helper program...");
+      const exampleNttSvmLutProgram = new Program<ExampleNttSvmLut>(
+        ExampleNttSvmLutIdl as ExampleNttSvmLut,
+        provider
+      );
+
+      const lutPointerAddress = web3.PublicKey.findProgramAddressSync(
+        [Buffer.from("lut"), nttProgramId.toBuffer()],
+        exampleNttSvmLutProgram.programId
+      )[0];
+
+      let lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+        lutPointerAddress
+      );
+
+      if (!lutPointer) {
+        console.log("No helper LUT found, initializing...");
+        const recentSlot =
+          (await exampleNttSvmLutProgram.provider.connection.getSlot()) - 1;
+        const tx = await exampleNttSvmLutProgram.methods
+          .initializeLut(new BN(recentSlot))
+          .accounts({
+            nttProgramId,
+          })
+          .rpc();
+
+        console.log(`Initialized lookup table: ${tx}`);
+
+        // Wait for LUT warm-up
+        while (!lutPointer) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+            lutPointerAddress
+          );
+        }
+      }
+
+      const response = await connection.getAddressLookupTable(
+        lutPointer.address
+      );
+      if (!response.value) throw new Error("Unable to fetch lookup table");
+      luts.push(response.value);
+    }
+
+    // Recompile and broadcast
+    tx.transaction.transaction.message = message.compileToV0Message(luts);
+    const hash = await provider.sendAndConfirm(
+      tx.transaction.transaction,
+      tx.transaction.signers,
+      { commitment: "confirmed" }
+    );
+  }
+}
+```
+
+## Status the transaction
+
+After submitting your transaction, you can query the relay provider to check its execution status. This allows you to confirm whether the transfer has been processed and finalized by the Executor.
+
+```ts
+const res = await axios.post(`${EXECUTOR_URL}/v0/status/tx`, {
+  txHash,
+  chainId,
+})
+```
+
+You can also link directly to the transaction in the Explorer:
+
+```ts
+`https://wormholelabs-xyz.github.io/executor-explorer/#/chain/${chainId}tx/${txHash}?endpoint=${encodeURIComponent(EXECUTOR_URL)}`
+```
+
+## Conclusion
+
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers.
+
+
+---
+
 Page Title: Introduction to Wormhole
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-introduction.md
@@ -5433,552 +6853,6 @@ Wormhole supports a growing number of blockchains. Check out the [Supported Netw
 
 ---
 
-Page Title: Live Crypto Price Widget
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-tutorials-live-crypto-prices.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/tutorials/live-crypto-prices/
-- Summary: Learn how to fetch real-time crypto prices using Wormhole Queries and display them in a live widget powered by secure and verified Witnet data feeds.
-
-# Live Crypto Price Widget
-
-:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}
-
-In this tutorial, you'll build a widget that displays live crypto prices using [Wormhole Queries](/docs/products/queries/overview/){target=\_blank} and [Witnet](https://witnet.io/){target=\_blank} data feeds. You'll learn how to request signed price data from the network, verify the response, and show it in a responsive frontend built with [Next.js](https://nextjs.org/){target=\_blank} and [TypeScript](https://www.typescriptlang.org/){target=\_blank}.
-
-Queries enable fetching verified off-chain data directly on-chain or in web applications without requiring your own oracle infrastructure. Each response is cryptographically signed by the [Wormhole Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring authenticity and preventing tampering. By combining Queries with Witnet's decentralized price feeds, you can access real-time, trustworthy market data through a single API call, without managing relayers or custom backends.
-
-## Prerequisites
-
-Before starting, make sure you have the following set up:
-
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your system
- - A [Wormhole Queries API key](/docs/products/queries/get-started/#request-an-api-key){target=\_blank}
- - Access to an EVM-compatible [testnet RPC](https://chainlist.org/?testnets=true){target=\_blank}, such as Arbitrum Sepolia
- - A [Witnet data feed identifier](https://docs.witnet.io/smart-contracts/witnet-data-feeds/addresses){target=\_blank} (this tutorial uses the ETH/USD feed as an example)
-
-    You can use a different Witnet feed or testnet if you prefer. Make sure to update the environment variables later in this tutorial with the correct values for your setup.
-
-## Project Setup
-
-In this section, you will create a new Next.js project, install the required dependencies, and configure the environment variables needed to fetch data from Wormhole Queries.
-
-1. **Create a new Next.js app**: Enable TypeScript, Tailwind CSS, and the `src/` directory when prompted. You can configure the remaining options as you like. Create your app using the following command: 
-
-    ```bash
-    npx create-next-app@latest live-crypto-prices
-    cd live-crypto-prices
-    ```
-
-2. **Install dependencies**: Add the required packages.
-
-    ```bash
-    npm install @wormhole-foundation/wormhole-query-sdk axios ethers
-    ```
-
-    - [`@wormhole-foundation/wormhole-query-sdk`](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}: Build, send, and decode Wormhole Queries.
-    - [`axios`](https://www.npmjs.com/package/axios){target=\_blank}: Make JSON-RPC and Query Proxy requests.
-    - [`ethers`](https://www.npmjs.com/package/ethers){target=\_blank}: Handle ABI encoding and decoding for Witnet calls.
-
-3. **Add environment variables**: Create a file named `.env.local` in the project root.
-
-    ```env
-    # Wormhole Query Proxy
-    QUERY_URL=https://testnet.query.wormhole.com/v1/query
-    QUERIES_API_KEY=INSERT_API_KEY
-
-    # Chain and RPC
-    WORMHOLE_CHAIN_ID=10003
-    RPC_URL=https://arbitrum-sepolia.drpc.org
-
-    # Witnet Price Router on Arbitrum Sepolia
-    CALL_TO=0x1111AbA2164AcdC6D291b08DfB374280035E1111
-
-    # ETH/USD feed on Witnet, six decimals
-    FEED_ID4=0x3d15f701
-    FEED_DECIMALS=6
-    FEED_HEARTBEAT_SEC=86400
-    ```
-
-    !!! warning
-        Make sure to add the `.env.local` file to your `.gitignore` to exclude it from version control. Never commit API keys to your repository.
-
-    You can use a different Witnet feed or network by updating `CALL_TO`, `FEED_ID4`, `FEED_DECIMALS`, and `WORMHOLE_CHAIN_ID`. These values allow the app to fetch a live ETH/USD price with proper scaling, timestamps, and a signed response.
-    
-
-4. **Add a configuration file**: Create `src/lib/config.ts` to access environment variables throughout the app.
-
-    ```ts title="src/lib/config.ts"
-    export const QUERY_URL = process.env.QUERY_URL!;
-    export const QUERIES_API_KEY = process.env.QUERIES_API_KEY!;
-    export const RPC_URL = process.env.RPC_URL!;
-
-    export const DEFAULTS = {
-      chainId: Number(process.env.WORMHOLE_CHAIN_ID || 0),
-      to: process.env.CALL_TO || '',
-      feedId4: process.env.FEED_ID4 || '',
-      feedDecimals: Number(process.env.FEED_DECIMALS || 0),
-      feedHeartbeatSec: Number(process.env.FEED_HEARTBEAT_SEC || 0),
-    };
-
-    ```
-
-## Build the Server Logic
-
-In this section, you will implement the backend that powers the widget. You will encode the Witnet call, create and send a Wormhole Query, decode the signed response, and expose an API route for the frontend.
-
-### Encode Witnet Call and Build the Request
-
-First, encode the function call for Witnet's Price Router using the feed ID and package it into a Wormhole Query request. This query will be anchored to the latest block, ensuring the data you receive is verifiably tied to a recent snapshot of the chain state. This helper will return a serialized request that can be sent to the Wormhole Query Proxy.
-
-```ts title="src/lib/queries/buildRequest.ts"
-import axios from 'axios';
-import {
-  EthCallQueryRequest,
-  PerChainQueryRequest,
-  QueryRequest,
-} from '@wormhole-foundation/wormhole-query-sdk';
-import { Interface } from 'ethers';
-
-// ABI interface for Witnet's Price Router
-const WITNET_IFACE = new Interface([
-  // Function signature for reading the latest price feed
-  'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
-]);
-
-// Encode calldata for Witnet Router: latestPrice(bytes4)
-export function encodeWitnetLatestPrice(id4: string): string {
-  // Validate feed ID format (must be a 4-byte hex)
-  if (!/^0x[0-9a-fA-F]{8}$/.test(id4)) {
-    throw new Error(`Invalid FEED_ID4: ${id4}`);
-  }
-  // Return ABI-encoded call data for latestPrice(bytes4)
-  return WITNET_IFACE.encodeFunctionData('latestPrice', [id4 as `0x${string}`]);
-}
-
-export async function buildEthCallRequest(params: {
-  rpcUrl: string;
-  chainId: number; // Wormhole chain id
-  to: string;
-  data: string; // 0x-prefixed calldata
-}) {
-  const { rpcUrl, chainId, to, data } = params;
-
-  // Get the latest block number via JSON-RPC
-  // Short timeout prevents long hangs in the dev environment
-  const latestBlock: string = (
-    await axios.post(
-      rpcUrl,
-      {
-        method: 'eth_getBlockByNumber',
-        params: ['latest', false],
-        id: 1,
-        jsonrpc: '2.0',
-      },
-      { timeout: 5_000, headers: { 'Content-Type': 'application/json' } }
-    )
-  ).data?.result?.number;
-
-  if (!latestBlock) throw new Error('Failed to fetch latest block');
-
-  // Build a Wormhole Query that wraps an EthCall to the Witnet contract
-  const request = new QueryRequest(1, [
-    new PerChainQueryRequest(
-      chainId,
-      new EthCallQueryRequest(latestBlock, [{ to, data }])
-    ),
-  ]);
-
-  // Serialize to bytes for sending to the Wormhole Query Proxy
-  return request.serialize(); // Uint8Array
-}
-
-```
-
-### Send Request to the Query Proxy
-
-Next, you will send the serialized query to the Wormhole Query Proxy, which forwards it to the Guardians for verification. The proxy returns a signed response containing the requested data and proof that the Guardians verified it. This step ensures that all the data your app consumes comes from a trusted and authenticated source.
-
-```ts title="src/lib/queries/client.ts"
-import axios from 'axios';
-
-export async function postQuery({
-  queryUrl,
-  apiKey,
-  bytes,
-  timeoutMs = 25_000,
-}: {
-  queryUrl: string;
-  apiKey: string;
-  bytes: Uint8Array;
-  timeoutMs?: number;
-}) {
-  // Convert the query bytes to hex and POST to the proxy
-  const res = await axios.post(
-    queryUrl,
-    { bytes: Buffer.from(bytes).toString('hex') },
-    {
-      timeout: timeoutMs,
-      headers: { 'X-API-Key': apiKey, 'Content-Type': 'application/json' },
-      validateStatus: (s) => s === 200,
-    }
-  );
-  return res.data; // throws on non-200
-}
-
-```
-
-### Decode and Verify Response
-
-Once you receive the signed response, you will decode it to extract the Witnet price data.
-Here, you will use ethers to parse the ABI-encoded return values and scale the raw integer to a readable decimal value based on the feed's configured number of decimals. This function will output a clean result containing the latest price, timestamp, and transaction reference from the Witnet feed.
-
-```ts title="src/lib/queries/decode.ts"
-import {
-  EthCallQueryResponse,
-  QueryResponse,
-} from '@wormhole-foundation/wormhole-query-sdk';
-import { Interface, Result } from 'ethers';
-
-// ABI interface for decoding Witnet's latestPrice response
-const WITNET_IFACE = new Interface([
-  'function latestPrice(bytes4 id) view returns (int256 value, uint256 timestamp, bytes32 drTxHash, uint8 status)',
-]);
-
-// Parse the first EthCall result from the proxy's response
-export function parseFirstEthCallResult(proxyResponse: { bytes: string }): {
-  chainResp: EthCallQueryResponse;
-  raw: string;
-} {
-  // Decode the top-level QueryResponse from Wormhole Guardians
-  const qr = QueryResponse.from(proxyResponse.bytes);
-
-  // Extract the first chain response and its raw call result
-  const chainResp = qr.responses[0].response as EthCallQueryResponse;
-  const raw = chainResp.results[0];
-  return { chainResp, raw };
-}
-
-// Decode Witnet's latestPrice return tuple into readable fields
-export function decodeWitnetLatestPrice(
-  raw: string,
-  decimals: number
-): { price: string; timestampSec: number; drTxHash: string } {
-  // Decode ABI-encoded result from the router call
-  const r: Result = WITNET_IFACE.decodeFunctionResult('latestPrice', raw);
-  const value = BigInt(r[0].toString());
-  const timestampSec = Number(r[1].toString());
-  const drTxHash = r[2] as string;
-
-  return {
-    price: scaleBigintToDecimalString(value, decimals),
-    timestampSec,
-    drTxHash,
-  };
-}
-
-// Convert a bigint price into a human-readable decimal string
-function scaleBigintToDecimalString(value: bigint, decimals: number): string {
-  const zero = BigInt(0);
-  const neg = value < zero ? '-' : '';
-  const v = value < zero ? -value : value;
-  const s = v.toString().padStart(decimals + 1, '0');
-  const i = s.slice(0, -decimals);
-  const f = s.slice(-decimals).replace(/0+$/, '');
-  return neg + (f ? `${i}.${f}` : i);
-}
-
-```
-
-### Add Shared Types
-
-Create a `src/lib/types.ts` file to define the structure of your API responses. These types ensure consistency between the backend and the frontend, keeping the data shape predictable and type-safe.  You will import these types in both the API route and the widget to keep your responses aligned across the app.
-
-```ts title="src/lib/types.ts"
-export interface QueryApiSuccess {
-  ok: true;
-  blockNumber: string;
-  blockTimeMicros: string;
-  price: string;
-  decimals: number;
-  updatedAt: string;
-  stale?: boolean;
-}
-
-export interface QueryApiError {
-  ok: false;
-  error: string;
-}
-export type QueryApiResponse = QueryApiSuccess | QueryApiError;
-
-```
-
-### Add  API Route for Frontend
-
-Finally, expose an API endpoint at `/api/queries`. This route ties everything together: it builds the query, sends it, decodes the response, and returns a structured JSON payload containing the current price, timestamp, block number, and a stale flag indicating whether the feed data is still fresh. The frontend widget will call this endpoint every few seconds to display the live, verified price data.
-
-```ts title="src/app/api/queries/route.ts"
-import { NextResponse } from 'next/server';
-import {
-  buildEthCallRequest,
-  encodeWitnetLatestPrice,
-} from '@/lib/queries/buildRequest';
-import { postQuery } from '@/lib/queries/client';
-import { QUERY_URL, QUERIES_API_KEY, RPC_URL, DEFAULTS } from '@/lib/config';
-import {
-  parseFirstEthCallResult,
-  decodeWitnetLatestPrice,
-} from '@/lib/queries/decode';
-import type { QueryApiSuccess, QueryApiError } from '@/lib/types';
-
-export async function GET() {
-  const t0 = Date.now();
-  try {
-    // Encode the call for Witnet’s latestPrice(bytes4)
-    const data = encodeWitnetLatestPrice(DEFAULTS.feedId4);
-
-    // Build a Wormhole Query request anchored to the latest block
-    const bytes = await buildEthCallRequest({
-      rpcUrl: RPC_URL,
-      chainId: DEFAULTS.chainId,
-      to: DEFAULTS.to,
-      data,
-    });
-    const t1 = Date.now();
-
-    // Send the query to the Wormhole Query Proxy and await the signed response
-    const proxyResponse = await postQuery({
-      queryUrl: QUERY_URL,
-      apiKey: QUERIES_API_KEY,
-      bytes,
-      timeoutMs: 25_000,
-    });
-    const t2 = Date.now();
-
-    // Decode the signed Guardian response and extract Witnet data
-    const { chainResp, raw } = parseFirstEthCallResult(proxyResponse);
-    const { price, timestampSec } = decodeWitnetLatestPrice(
-      raw,
-      DEFAULTS.feedDecimals
-    );
-
-    // Log the latency of each leg for debugging
-    console.log(`RPC ${t1 - t0}ms → Proxy ${t2 - t1}ms`);
-
-    // Mark data as stale if older than the feed’s heartbeat interval
-    const heartbeat = Number(process.env.FEED_HEARTBEAT_SEC || 0);
-    const stale = heartbeat > 0 && Date.now() / 1000 - timestampSec > heartbeat;
-
-    // Return a normalized JSON payload for the frontend
-    const body: QueryApiSuccess = {
-      ok: true,
-      blockNumber: chainResp.blockNumber.toString(),
-      blockTimeMicros: chainResp.blockTime.toString(),
-      price,
-      decimals: DEFAULTS.feedDecimals,
-      updatedAt: new Date(timestampSec * 1000).toISOString(),
-      stale,
-    };
-    return NextResponse.json(body);
-  } catch (e: unknown) {
-    // Catch and return a structured error
-    const message = e instanceof Error ? e.message : String(e);
-    console.error('Error in /api/queries:', message);
-    const body: QueryApiError = { ok: false, error: message };
-    return NextResponse.json(body, { status: 500 });
-  }
-}
-
-```
-
-## Price Widget
-
-In this section, you will build a client component that fetches the signed price from your API, renders it with a freshness badge, and refreshes on an interval without overlapping requests.
-
-### Create Widget Component
-
-Create a client component that calls `/api/queries`, renders the current price, shows the last update time and block number, and displays a freshness badge based on the heartbeat. The component uses a ref to avoid overlapping requests and a timed interval to refresh automatically.
-
-```ts title="src/components/PriceWidget.tsx"
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
-
-// Expected API success shape from /api/queries
-type ApiOk = {
-  ok: true;
-  price: string;
-  updatedAt: number | string;
-  blockNumber: string;
-  blockTimeMicros: number;
-  decimals: number;
-  stale: boolean;
-};
-
-// API error shape
-type ApiErr = { ok: false; error: string };
-
-// Format timestamps for display
-function formatTime(ts: number | string) {
-  let n: number;
-  if (typeof ts === 'string') {
-    const numeric = Number(ts);
-    if (Number.isFinite(numeric)) {
-      n = numeric;
-    } else {
-      const parsed = new Date(ts);
-      return Number.isNaN(parsed.getTime()) ? '—' : parsed.toLocaleString();
-    }
-  } else {
-    n = ts;
-  }
-  if (!Number.isFinite(n)) return '—';
-  // If it looks like seconds, convert to ms
-  const ms = n < 1_000_000_000_000 ? n * 1000 : n;
-  const d = new Date(ms);
-  return Number.isNaN(d.getTime()) ? '—' : d.toLocaleString();
-}
-
-export default function PriceWidget() {
-  // UI state: fetched data, loading state, and any errors
-  const [data, setData] = useState<ApiOk | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  // Keep track of polling and prevent overlapping requests
-  const timer = useRef<NodeJS.Timeout | null>(null);
-  const inFlight = useRef(false);
-
-  // Fetch price data from the API route
-  async function fetchPrice() {
-    if (inFlight.current) return; // avoid concurrent requests
-    inFlight.current = true;
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch('/api/queries', { cache: 'no-store' });
-      const json: ApiOk | ApiErr = await res.json();
-      if (!json.ok) throw new Error(json.error);
-      setData(json);
-    } catch (e: any) {
-      setError(e?.message || 'Failed to fetch price');
-    } finally {
-      setLoading(false);
-      inFlight.current = false;
-    }
-  }
-
-  // Fetch immediately and refresh every 30 seconds
-  useEffect(() => {
-    fetchPrice();
-    timer.current = setInterval(fetchPrice, 30_000);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, []);
-
-  return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-gray-200 p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">ETH/USD Live Price</h2>
-        {data?.stale ? (
-          <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
-            Stale
-          </span>
-        ) : (
-          <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
-            Fresh
-          </span>
-        )}
-      </div>
-
-      <div className="space-y-2">
-        <div className="text-3xl font-bold tabular-nums">
-          {loading && !data ? 'Loading…' : data ? data.price : '—'}
-        </div>
-
-        <div className="text-sm text-gray-600">
-          {data ? (
-            <>
-              Updated at {formatTime(data.updatedAt)}, block {data.blockNumber}
-            </>
-          ) : error ? (
-            <span className="text-red-600">{error}</span>
-          ) : (
-            'Fetching latest price'
-          )}
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <button
-          onClick={fetchPrice}
-          className="w-full rounded-xl bg-gray-900 px-4 py-2 text-white hover:opacity-90"
-          disabled={loading}
-        >
-          {loading ? 'Refreshing…' : 'Refresh now'}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-```
-
-### Add the Widget to Home Page
-
-Render the widget on the home page with a simple heading and container so users see the price as soon as they load the app.
-
-```ts title="src/app/page.tsx"
-import PriceWidget from '@/components/PriceWidget';
-
-export default function Page() {
-  return (
-    <main className="mx-auto flex max-w-2xl flex-col items-center p-6">
-      <h1 className="mb-6 text-center text-2xl font-bold">
-        Live Crypto Price Widget
-      </h1>
-      <PriceWidget />
-    </main>
-  );
-}
-
-```
-
-## Run the App
-
-Start the development server and confirm that the live widget displays data correctly:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see your app running. You should see the widget display the current ETH/USD price, the last update time, the block number, and a freshness badge indicating whether the data is still within its heartbeat window.
-
-The price may update only intermittently. Witnet feeds refresh only when a particular time or price deviation threshold is reached to prevent unnecessary network updates.
-
-Your app should look like this:
-
-![Frontend of Queries Live Prices Widget](/docs/images/products/queries/tutorials/live-crypto-prices/live-crypto-prices-1.webp){.half}
-
-???- tip "Troubleshooting"
-    If you encounter a “Request failed with status code 403” error, it likely means your Queries API key is missing or incorrect. Check the `QUERIES_API_KEY` value in your `.env.local` file and restart the development server after updating it.
-
-## Resources
-
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the Wormhole's Queries [Tutorial GitHub repository](https://github.com/wormhole-foundation/e2e-tutorial-live-crypto-prices){target=\_blank}.
-
-## Conclusion
-
-You've successfully built a live crypto price widget that fetches verified data from Wormhole Queries and Witnet. Your app encodes a feed request, sends it through the Guardian network for verification, and displays the latest signed price in a simple, responsive widget.
-
-The Queries flow can be extended to fetch other on-chain data or integrate multiple feeds for dashboards and analytics tools.
-
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
-
-
----
-
 Page Title: Messaging Overview
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-overview.md
@@ -6048,235 +6922,6 @@ For lower-cost, efficient integration with Core Bridge on Solana, consider using
 - [**Solana Shims**](/docs/products/messaging/concepts/solana-shim/){target=\_blank} : Learn about the purpose and benefits of using shims on Solana.
 - [**Emission Shim**](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}: Emit messages without creating permanent accounts, reducing rent costs.
 - [**Verification Shim**](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}: Efficiently verify Wormhole VAAs without leaving rent-exempt accounts.
-
-
----
-
-Page Title: Queries FAQs
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-faqs.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/faqs/
-- Summary: Wormhole Queries FAQ covering available libraries, query examples, response formats, and details about running query proxy servers.
-
-# Queries FAQs
-
-## What is Queries?
-
-Queries is Wormhole's on-demand, Guardian-attested data service. It lets you fetch real-time, verifiable on-chain data via a simple REST endpoint and use the signed result on-chain without sending a transaction or paying gas. You can request data on one chain and use the verified result on another. For a quick video summary, watch the [Queries speed round](https://www.youtube.com/watch?v=q-s8j7GAlfQ){target=\_blank}.
-
-## What libraries are available to handle queries?
-
- - The [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.
-
-- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case.
-
-- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests.
-
-- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses.
-
-!!! note
-    A Rust SDK for Solana is being actively investigated by the Wormhole contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repository as a proof of concept.
-
-## Are there any query examples?
-
-Certainly. You can find a complete guide on the [Use Queries page](/docs/products/queries/guides/use-queries/){target=\_blank}. Additionally, you can find full code examples in the following repositories:
-
-- [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
-- [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
-- [Solana Program Derived Address (PDA) / Token Account Balance Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
-- [Solana Queries Verification Example](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
-
-## What is the format of the response signature?
-
-The Guardian node calculates an ECDSA signature using [`Sign` function of the crypto package](https://pkg.go.dev/github.com/ethereum/go-ethereum@v1.10.21/crypto#Sign){target=\_blank} where the digest hash is:
-
-```keccak256("query_response_0000000000000000000|"+keccak256(responseBytes))``` 
-
-See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0009_guardian_signer.md){target=\_blank} white paper for more background. Once this signature is created, the Guardian's index in the Guardian set is appended to the end.
-
-!!! note
-    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
-
-## Can anyone run a query proxy server?
-
-Permissions for Query Proxy are managed by the Guardians. The Guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
-
-It is also important to note that the proxies don't impact the verifiability of the request or result, i.e., their role in the process is trustless.
-
-## What Does Queries Offer over an RPC Service
-
-Wormhole Queries provides on-demand, attested, on-chain, verifiable RPC results. Each Guardian independently executes the specified query and returns the result and their signature. The proxy handles aggregating the results and signatures, giving you a single result (all within one REST call) with a quorum of signatures suitable for on-chain submission, parsing, and verification using one of our examples or SDKs.
-
-
----
-
-Page Title: Queries Overview
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-overview.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/overview/
-- Summary: Learn how Wormhole Queries enable smart contracts to fetch real-time, Guardian-verified data across multiple blockchains.
-
-# Queries Overview 
-
-Queries provide on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data from across the multichain ecosystem, such as prices, rates, and liquidity.
-
-## Key Features
-
-- **On-demand data access**: Fetch price feeds, interest rates, and other data in real-time.
-- **Guardian attested**: All data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation.
-- **Cross-chain ready**: Request data on one chain, use it on another.
-- **Smart contract integration**: Results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts.
-- **Chain agnostic**: Works across supported EVM chains, Solana, Sui, and [other supported networks](/docs/products/queries/reference/supported-networks/){target=\_blank}.
-
-## How It Works
-
-A query request follows a simple but robust lifecycle. The off-chain service responsible for handling requests is called the CCQ Server (Cross-Chain Query Server), also referred to as the Query Server throughout this documentation.
-
-1. An off-chain app sends a query to the CCQ Server via HTTPS.
-2. The CCQ Server checks the request and shares it with [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}.
-3. [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} independently fetch the data, verify it, and sign the result.
-4. Once enough Guardians (2/3 quorum) return matching results, the CCQ Server aggregates and sends the final response.
-5. The off-chain app submits this result to a smart contract, which verifies the Guardian signatures and uses the data.
-
-The CCQ Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. Up to 255 queries can be batched together to optimize performance, supporting efficient multichain workflows.
-
-![The architecture flow of a query](/docs/images/products/queries/overview/overview-1.webp)
-
-## Use Cases
-
-Queries enable a wide range of cross-chain applications. Below are common use cases and the Wormhole stack components you can use to build them.
-
-- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
-
-    - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch rates and prices in real-time.
-    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Sync actions between chains.
-    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
-
-- **Cross-Chain Swaps and Liquidity Aggregation (e.g., [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank})**
-
-    - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch live prices for optimal trade execution.
-    - **[Connect](/docs/products/connect/overview/){target=\_blank}**: Handle user-friendly asset transfers.
-    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Moves native tokens.
-
-- **Real-Time Price Feeds and Trading Strategies (e.g., [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank})**
-
-    - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch price feeds.
-    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Trigger trades.
-
-- **Multichain Prediction Markets**
-
-    - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch market data and odds.
-    - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Automates token execution.
-
-- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
-
-    - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Source data from chains.
-    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Ensures tamper-proof data relay across networks.
-
-## Next Steps
-
-Follow these steps to get started with Queries:
-
-[timeline(wormhole-docs/.snippets/text/products/queries/queries-timeline.json)]
-
-
----
-
-Page Title: Queries Supported Methods
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-reference-supported-methods.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/reference/supported-methods/
-- Summary: Retrieve multichain data via historical timestamp queries, finality confirmation queries, and Solana lookups.
-
-# Supported Methods
-
-Wormhole Queries provides on-demand access to [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}-attested on-chain data through a simple REST endpoint. It offers a faster, gasless alternative to traditional transaction-based data retrieval, removing the need for gas fees and transaction finality delays. Requests are handled off-chain and processed by the Guardians, delivering verified data efficiently and cost-effectively.
-
-This page describes Wormhole Queries, their functionality, and available methods, aiming to assist new developers in utilizing the service.
-
-## Supported Query Types
-
-Wormhole currently supports five distinct query types, each designed for specific data retrieval tasks across various chains.
-
-!!! note 
-    For a more comprehensive technical description and further specifics on each query type, please consult the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md).
-
-
-### eth_call
-
-The [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
-
-- **Batching**: Group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification.
-- **Capacity**: Batch up to 255 individual in a single `eth_call` query.
-- **Result data**: Provides the specified block's number, hash, timestamp, and the output from the contract call.
-
-### eth_call_by_timestamp
-
-The [`eth_call_by_timestamp`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#timestamp-and-block-id-hints-in-eth_call_by_timestamp){target=\_blank} query is similar to a standard `eth_call` but targets a specific timestamp instead of a block ID. This is useful for retrieving on-chain data based on a precise point in time, especially for correlating information across different chains.
-
-The query returns your target timestamp and the latest block details at or before your specified `target_time` immediately preceding the subsequent block. 
-
-### eth_call_with_finality
-
-The [`eth_call_with_finality`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#desired-finality-in-eth_call_with_finality){target=\_blank} query type functions like a standard `eth_call`, but with an added critical assurance: it will only return the query results once the specified block has reached a designated level of finality on its chain.
-
-You can specify one of two finality levels for your query:
-
-- **Finalized**: Indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain.
-- **Safe**: Refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it.
-
-!!! note
-    If the target blockchain does not natively support or recognize the safe finality tag, requesting safe finality will be treated as a request for finalized finality instead.
-
-### sol_account
-
-The [`sol_account`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana-queries){target=\_blank} query reads on-chain data for one or more specified accounts on the Solana blockchain. This functionality is similar to using Solana's native [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} RPC method, enabling you to retrieve information for multiple accounts simultaneously
-
-### sol_pda
-
-The [`sol_pda`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana_queries){target=\_blank} query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/basics/pda){target=\_blank}. It streamlines the standard process of deriving a PDA and fetching its account data.
-
-This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://www.solana-program.com/docs/associated-token-account){target=\_blank}.
-
-
----
-
-Page Title: Queries Supported Networks
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-reference-supported-networks.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/reference/supported-networks/
-- Summary: Reference table of chains supported by Wormhole Queries, including method support, finality, and expected historical data availability.
-
-# Supported Networks
-
-This page provides a quick reference for chains supported by Wormhole Queries, including each chain's Wormhole chain ID and the level of support for key methods: [`eth_call`](/docs/products/queries/reference/supported-methods/#eth_call){target=\_blank}, [`eth_call_by_timestamp`](/docs/products/queries/reference/supported-methods/#eth_call_by_timestamp){target=\_blank}, and [`eth_call_with_finality`](/docs/products/queries/reference/supported-methods/#eth_call_with_finality){target=\_blank}.
-
-The **Expected History** column shows how much recent state data is typically available for querying, though this can vary depending on the chain and the configuration of each Guardian node.
-
-The support shown in the table reflects what has been confirmed through testing. However, query success ultimately depends on whether the underlying call can be executed on each Guardian’s RPC node.
-
-For example, many chains use a fork of [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which by default retains 128 blocks of state in memory (unless archive mode is enabled). On Ethereum mainnet, this covers around 25 minutes of history—but on faster chains like Optimism, it may span only about three minutes. While Guardian nodes are expected to have access to recent state, there are currently no guarantees on how far back historical data is available.
-
-## Mainnet
-
-|     Chain     | Wormhole Chain ID | eth_call | eth_call_by_timestamp | eth_call_with_finality | Expected History |
-|:-------------:|:-----------------:|:--------:|:---------------------:|:----------------------:|:----------------:|
-|   Ethereum    |         2         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|      BSC      |         4         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|    Polygon    |         5         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|   Avalanche   |         6         |    ✅     |           ✅           |           ✅            |    32 blocks     |
-| Oasis Emerald |         7         |    ✅     |           ✅           |           ✅            |     archive      |
-|    Fantom     |        10         |    ✅     |           ✅           |           ✅            |    16 blocks     |
-|    Karura     |        11         |    ✅     |           ✅           |           ✅            |     archive      |
-|     Acala     |        12         |    ✅     |           ✅           |           ✅            |     archive      |
-|     Kaia      |        13         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|     Celo      |        14         |    ✅     |           ℹ️           |           ✅            |    128 blocks    |
-|   Moonbeam    |        16         |    ✅     |           ℹ️           |           ✅            |    256 blocks    |
-| Arbitrum One  |        23         |    ✅     |           ✅           |           ✅            |   ~6742 blocks   |
-|   Optimism    |        24         |    ✅     |           ✅           |           ❌            |    128 blocks    |
-|     Base      |        30         |    ✅     |           ✅           |           ✅            |     archive      |
-
-ℹ️`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
 
 ---
@@ -9624,410 +10269,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 <table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>SUI</td><td><a href="https://docs.sui.io/guides/developer/getting-started/get-coins" target="_blank">List of Faucets</a></td></tr></tbody></table>
 
 </div>
-
-
----
-
-Page Title: Use Queries
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-queries-guides-use-queries.md
-- Canonical (HTML): https://wormhole.com/docs/products/queries/guides/use-queries/
-- Summary: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
-
-# Use Queries
-
-You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/){target=\_blank} to view an interactive example of an application interacting with the [Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.
-
-This guide covers using a simple `eth_call` request to get the total supply of WETH on Ethereum.
-
-## Construct a Query {: #construct-a-query}
-
-You can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to construct a query. You will also need an RPC endpoint from the provider of your choice. This example uses [Axios](https://www.npmjs.com/package/axios){target=\_blank} for RPC requests. Ensure that you also have [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed. 
-
-```jsx
-npm i @wormhole-foundation/wormhole-query-sdk axios
-```
-
-In order to make an `EthCallQueryRequest`, you need a specific block number or hash as well as the call data to request.
-
-You can request the latest block from a public node using `eth_getBlockByNumber`.
-
-```jsx
-const rpc = 'https://ethereum.publicnode.com';
-  const latestBlock: string = (
-    await axios.post(rpc, {
-      method: 'eth_getBlockByNumber',
-      params: ['latest', false],
-      id: 1,
-      jsonrpc: '2.0',
-    })
-  ).data?.result?.number;
-```
-
-Then construct the call data.
-
-```jsx
-const callData: EthCallData = {
-  to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-  data: '0x18160ddd', // web3.eth.abi.encodeFunctionSignature("totalSupply()")
-};
-```
-
-Finally, put it all together in a `QueryRequest`.
-
-```jsx
-  // Form the query request
-  const request = new QueryRequest(
-    0, // Nonce
-    [
-      new PerChainQueryRequest(
-        2, // Ethereum Wormhole Chain ID
-        new EthCallQueryRequest(latestBlock, [callData])
-      ),
-    ]
-  );
-```
-
-This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
-
-```jsx
-  console.log(JSON.stringify(request, undefined, 2));
-  // {
-  //   "nonce": 0,
-  //   "requests": [
-  //     {
-  //       "chainId": 2,
-  //       "query": {
-  //         "callData": [
-  //           {
-  //             "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-  //             "data": "0x18160ddd"
-  //           }
-  //         ],
-  //         "blockTag": "0x11e9068"
-  //       }
-  //     }
-  //   ],
-  //   "version": 1
-  // }
-```
-
-## Mock a Query
-
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
-
-```jsx
-  const mock = new QueryProxyMock({ 2: rpc });
-  const mockData = await mock.mock(request);
-  console.log(mockData);
-  // {
-  //   signatures: ['...'],
-  //   bytes: '...'
-  // }
-```
-
-This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
-
-```jsx
-  const mockQueryResponse = QueryResponse.from(mockData.bytes);
-  const mockQueryResult = (
-    mockQueryResponse.responses[0].response as EthCallQueryResponse
-  ).results[0];
-  console.log(
-    `Mock Query Result: ${mockQueryResult} (${BigInt(mockQueryResult)})`
-  );
-  // Mock Query Result:
-  // 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee
-  // (3172556167631284394053614)
-```
-
-Testing this all together might look like the following:
-
-```jsx
-import {
-  EthCallData,
-  EthCallQueryRequest,
-  EthCallQueryResponse,
-  PerChainQueryRequest,
-  QueryProxyMock,
-  QueryRequest,
-  QueryResponse,
-} from '@wormhole-foundation/wormhole-query-sdk';
-import axios from 'axios';
-
-const rpc = 'https://ethereum.publicnode.com';
-const callData: EthCallData = {
-  to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-  data: '0x18160ddd', // web3.eth.abi.encodeFunctionSignature("totalSupply()")
-};
-
-(async () => {
-  const latestBlock: string = (
-    await axios.post(rpc, {
-      method: 'eth_getBlockByNumber',
-      params: ['latest', false],
-      id: 1,
-      jsonrpc: '2.0',
-    })
-  ).data?.result?.number;
-  if (!latestBlock) {
-    console.error(`❌ Invalid block returned`);
-    return;
-  }
-  console.log('Latest Block:     ', latestBlock, `(${BigInt(latestBlock)})`);
-  const targetResponse = await axios.post(rpc, {
-    method: 'eth_call',
-    params: [callData, latestBlock],
-    id: 1,
-    jsonrpc: '2.0',
-  });
-  // console.log(finalizedResponse.data);
-  if (targetResponse.data.error) {
-    console.error(`❌ ${targetResponse.data.error.message}`);
-  }
-  const targetResult = targetResponse.data?.result;
-  console.log('Target Result:    ', targetResult, `(${BigInt(targetResult)})`);
-  // Form the query request
-  const request = new QueryRequest(
-    0, // Nonce
-    [
-      new PerChainQueryRequest(
-        2, // Ethereum Wormhole Chain ID
-        new EthCallQueryRequest(latestBlock, [callData])
-      ),
-    ]
-  );
-  console.log(JSON.stringify(request, undefined, 2));
-  const mock = new QueryProxyMock({ 2: rpc });
-  const mockData = await mock.mock(request);
-  console.log(mockData);
-  const mockQueryResponse = QueryResponse.from(mockData.bytes);
-  const mockQueryResult = (
-    mockQueryResponse.responses[0].response as EthCallQueryResponse
-  ).results[0];
-  console.log(
-    `Mock Query Result: ${mockQueryResult} (${BigInt(mockQueryResult)})`
-  );
-})();
-```
-
-### Fork Testing
-
-It is common to test against a local fork of Mainnet with something like
-
-```jsx
-anvil --fork-url https://ethereum.publicnode.com
-```
-
-In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
-
-Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
-
-```jsx
-npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
-```
-
-If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://getfoundry.sh/anvil/overview#anvil){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://getfoundry.sh/anvil/reference#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
-
-## Make a Query Request
-
-The standardized means of making a `QueryRequest` with an API key is as follows:
-
-```jsx
-const serialized = request.serialize();
-const proxyResponse =
-  (await axios.post) <
-  QueryProxyQueryResponse >
-  (QUERY_URL,
-  {
-    bytes: Buffer.from(serialized).toString("hex"),
-  },
-  { headers: { "X-API-Key": YOUR_API_KEY } });
-
-```
-
-Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
-
-A Testnet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
-
-A Mainnet Query Proxy is available at `https://query.wormhole.com/v1/query`
-
-## Verify a Query Response On-Chain
-
-A [`QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
-
-```bash
-forge install wormhole-foundation/wormhole-solidity-sdk
-```
-
-Broadly, using a query response on-chain comes down to three main steps:
-
-   1. Parse and verify the query response.
-   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current Guardian set stored in the Core bridge contract.
-   3. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following:
-    - Is the request against the expected chain?
-    - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing.
-    - Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks.
-    - Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases.
-    - Is the result of the expected length for the expected result type?
-   4. Run `abi.decode` on the result.
-
-See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
-
-??? code "View the complete `QueryDemo`"
-    ```solidity
-    // contracts/query/QueryDemo.sol
-    // SPDX-License-Identifier: Apache 2
-
-    pragma solidity ^0.8.0;
-
-    import "wormhole-solidity-sdk/libraries/BytesParsing.sol";
-    import "wormhole-solidity-sdk/interfaces/IWormhole.sol";
-    import "wormhole-solidity-sdk/QueryResponse.sol";
-
-    error InvalidOwner();
-    // @dev for the onlyOwner modifier
-    error InvalidCaller();
-    error InvalidCalldata();
-    error InvalidForeignChainID();
-    error ObsoleteUpdate();
-    error StaleUpdate();
-    error UnexpectedResultLength();
-    error UnexpectedResultMismatch();
-
-    /// @dev QueryDemo is an example of using the QueryResponse library to parse and verify Cross Chain Query (CCQ) responses.
-    contract QueryDemo is QueryResponse {
-        using BytesParsing for bytes;
-
-        struct ChainEntry {
-            uint16 chainID;
-            address contractAddress;
-            uint256 counter;
-            uint256 blockNum;
-            uint256 blockTime;
-        }
-
-        address private immutable owner;
-        uint16 private immutable myChainID;
-        mapping(uint16 => ChainEntry) private counters;
-        uint16[] private foreignChainIDs;
-
-        bytes4 public GetMyCounter = bytes4(hex"916d5743");
-
-        constructor(address _owner, address _wormhole, uint16 _myChainID) QueryResponse(_wormhole) {
-            if (_owner == address(0)) {
-                revert InvalidOwner();
-            }
-            owner = _owner;
-
-            myChainID = _myChainID;
-            counters[_myChainID] = ChainEntry(_myChainID, address(this), 0, 0, 0);
-        }
-
-        // updateRegistration should be used to add the other chains and to set / update contract addresses.
-        function updateRegistration(uint16 _chainID, address _contractAddress) public onlyOwner {
-            if (counters[_chainID].chainID == 0) {
-                foreignChainIDs.push(_chainID);
-                counters[_chainID].chainID = _chainID;
-            }
-
-            counters[_chainID].contractAddress = _contractAddress;
-        }
-
-        // getMyCounter (call signature 916d5743) returns the counter value for this chain. It is meant to be used in a cross chain query.
-        function getMyCounter() public view returns (uint256) {
-            return counters[myChainID].counter;
-        }
-
-        // getState() returns this chain's view of all the counters. It is meant to be used in the front end.
-        function getState() public view returns (ChainEntry[] memory) {
-            ChainEntry[] memory ret = new ChainEntry[](foreignChainIDs.length + 1);
-            ret[0] = counters[myChainID];
-            uint256 length = foreignChainIDs.length;
-
-            for (uint256 i = 0; i < length;) {
-                ret[i + 1] = counters[foreignChainIDs[i]];
-                unchecked {
-                    ++i;
-                }
-            }
-
-            return ret;
-        }
-
-        // @notice Takes the cross chain query response for the other counters, stores the results for the other chains, and updates the counter for this chain.
-        function updateCounters(bytes memory response, IWormhole.Signature[] memory signatures) public {
-            ParsedQueryResponse memory r = parseAndVerifyQueryResponse(response, signatures);
-            uint256 numResponses = r.responses.length;
-            if (numResponses != foreignChainIDs.length) {
-                revert UnexpectedResultLength();
-            }
-
-            for (uint256 i = 0; i < numResponses;) {
-                // Create a storage pointer for frequently read and updated data stored on the blockchain
-                ChainEntry storage chainEntry = counters[r.responses[i].chainId];
-                if (chainEntry.chainID != foreignChainIDs[i]) {
-                    revert InvalidForeignChainID();
-                }
-
-                EthCallQueryResponse memory eqr = parseEthCallQueryResponse(r.responses[i]);
-
-                // Validate that update is not obsolete
-                validateBlockNum(eqr.blockNum, chainEntry.blockNum);
-
-                // Validate that update is not stale
-                validateBlockTime(eqr.blockTime, block.timestamp - 300);
-
-                if (eqr.result.length != 1) {
-                    revert UnexpectedResultMismatch();
-                }
-
-                // Validate addresses and function signatures
-                address[] memory validAddresses = new address[](1);
-                bytes4[] memory validFunctionSignatures = new bytes4[](1);
-                validAddresses[0] = chainEntry.contractAddress;
-                validFunctionSignatures[0] = GetMyCounter;
-
-                validateMultipleEthCallData(eqr.result, validAddresses, validFunctionSignatures);
-
-                require(eqr.result[0].result.length == 32, "result is not a uint256");
-
-                chainEntry.blockNum = eqr.blockNum;
-                chainEntry.blockTime = eqr.blockTime / 1_000_000;
-                chainEntry.counter = abi.decode(eqr.result[0].result, (uint256));
-
-                unchecked {
-                    ++i;
-                }
-            }
-
-            counters[myChainID].blockNum = block.number;
-            counters[myChainID].blockTime = block.timestamp;
-            counters[myChainID].counter += 1;
-        }
-
-        modifier onlyOwner() {
-            if (owner != msg.sender) {
-                revert InvalidOwner();
-            }
-            _;
-        }
-    }
-    ```
-
-## Submit a Query Response On-Chain
-
-The `QueryProxyQueryResponse` result requires a slight tweak when submitting to the contract to match the format of `function parseAndVerifyQueryResponse(bytes memory response, IWormhole.Signature[] memory signatures)`. A helper function, `signaturesToEvmStruct`, is provided in the SDK for this.
-
-This example submits the transaction to the demo contract:
-
-```jsx
-const tx = await contract.updateCounters(
-  `0x${response.data.bytes}`,
-  signaturesToEvmStruct(response.data.signatures)
-);
-
-```
 
 
 ---

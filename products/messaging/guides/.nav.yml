@@ -1,6 +1,7 @@
 title: Guides
 nav:
-- 'Interact with Wormhole Relayers': wormhole-relayers.md
+- executor
+- solana-shims
+- 'Interact with Legacy Wormhole Relayers': wormhole-relayers.md
 - 'Interact with Core Contracts': core-contracts.md
 - 'Query NTT Data and Transfers': wormholescan-api.md
-- solana-shims

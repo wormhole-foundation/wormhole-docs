@@ -10,11 +10,11 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/executor.md'
 
-## CCTP With Executor
+## CCTP with Executor
 
 --8<-- 'text/products/reference/contract-addresses/cctp-executor.md'
 
-## NTT With Executor
+## NTT with Executor
 
 --8<-- 'text/products/reference/contract-addresses/ntt-executor.md'
 
@@ -22,6 +22,6 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/wtt-executor.md'
 
-## WTT Executor With Referrer
+## WTT Executor with Referrer
 
 --8<-- 'text/products/reference/contract-addresses/wtt-executor-with-referrer.md'
