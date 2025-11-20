@@ -44,12 +44,12 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `3.11.0`:
+2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `4.0.2`:
 
     ```bash
-    npm install @wormhole-foundation/sdk-connect@3.11.0 \
-        @wormhole-foundation/sdk-evm@3.11.0 \
-        @wormhole-foundation/sdk-solana@3.11.0 \
+    npm install @wormhole-foundation/sdk-connect@4.0.2 \
+        @wormhole-foundation/sdk-evm@4.0.2 \
+        @wormhole-foundation/sdk-solana@4.0.2 \
         @mayanfinance/wormhole-sdk-route@1.26.0 \
         dotenv
     npm install -D typescript tsx
