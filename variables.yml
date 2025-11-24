@@ -4,11 +4,19 @@ ntt:
 repositories:
   wormhole_sdk:
     repository_url: https://github.com/wormhole-foundation/wormhole-sdk-ts
-    version: 3.10.0
+    version: 3.11.0
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
     version: 2.46.0
-  native_token_transfers:
+  native_token_transfers_evm:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
-    evm_version: v1.2.0+evm
-    sol_version: v3.0.0+solana
+    version: v1.2.0+evm
+  native_token_transfers_sol:
+    repository_url: https://github.com/wormhole-foundation/native-token-transfers
+    version: v3.0.0+solana
+  connect:
+    repository_url: https://github.com/wormhole-foundation/wormhole-connect
+    version: 4.0.0
+  settlement:
+    repository_url: https://github.com/mayan-finance/wormhole-sdk-route
+    version: 1.26.0
