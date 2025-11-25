@@ -59,10 +59,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `3.11.0`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.0.2`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.11.0
+    npm install @wormhole-foundation/sdk@4.0.2
     ```
 
 5. Create a new file named `main.ts`:

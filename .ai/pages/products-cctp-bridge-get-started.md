@@ -32,10 +32,10 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the SDK version `3.11.0`:
+2. Install the required dependencies. This example uses the SDK version `4.0.2`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.11.0
+    npm install @wormhole-foundation/sdk@4.0.2
     npm install -D tsx typescript
     ```
 
