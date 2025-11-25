@@ -8716,7 +8716,7 @@ Use the following resources throughout this guide:
 
     | Environment | URL                                                                            |
     |-------------|--------------------------------------------------------------------------------|
-    | **Mainnet** | `https://executor.labsapis.com`                 |
+    | **Mainnet** | `https://executor.labsapis.com` |
     | **Testnet** | `https://executor-testnet.labsapis.com` |
 
     For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
@@ -9759,7 +9759,7 @@ Use the following resources throughout this guide:
 
     | Environment | URL                                                                            |
     | ----------- | ------------------------------------------------------------------------------ |
-    | **Mainnet** | `https://executor.labsapis.com`                |
+    | **Mainnet** | `https://executor.labsapis.com` |
     | **Testnet** | `https://executor-testnet.labsapis.com` |
 
 For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
