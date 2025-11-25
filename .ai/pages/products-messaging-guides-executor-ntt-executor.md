@@ -44,8 +44,8 @@ Use the following resources throughout this guide:
 
     | Environment | URL                                                                            |
     | ----------- | ------------------------------------------------------------------------------ |
-    | **Mainnet** | [https://executor.labsapis.com](https://executor.labsapis.com)                 |
-    | **Testnet** | [https://executor-testnet.labsapis.com](https://executor-testnet.labsapis.com) |
+    | **Mainnet** | `https://executor.labsapis.com`                |
+    | **Testnet** | `https://executor-testnet.labsapis.com` |
 
 For development and testing, use the testnet endpoint. The mainnet relay provider is reserved for production-ready deployments.
 
