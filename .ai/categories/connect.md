@@ -5241,7 +5241,7 @@ Before you begin, make sure you have the following:
     cd demo-basic-connect
     ```
 
-2. Install the dependencies. This example uses the Connect version `4.0.0`:
+2. Install the dependencies. This example uses the Connect version `5.0.0`:
 
     ```bash
     npm install
@@ -6223,10 +6223,10 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
 
 ### Install Connect
 
-Next, install the Connect package as a dependency by running the following command inside your project directory. This tutorial uses the Connect version `4.0.0`:
+Next, install the Connect package as a dependency by running the following command inside your project directory. This tutorial uses the Connect version `5.0.0`:
 
 ```bash
-npm install @wormhole-foundation/wormhole-connect@4.0.0
+npm install @wormhole-foundation/wormhole-connect@5.0.0
 ```
 
 ### Integrate Connect into the Application
@@ -11278,7 +11278,7 @@ function sendPayloadToEvm(
 ```
 
 !!! tip
-    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.46.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.48.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
 
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 

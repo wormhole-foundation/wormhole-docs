@@ -693,7 +693,7 @@
       "headings": 6,
       "estimated_token_count_total": 934
     },
-    "hash": "sha256:a596975db7187acdc01784b1379b4ac1cf9fb7c1289a28c8d179053fdb98d333",
+    "hash": "sha256:6e12611deffe29ee205019615a395848b0eadb5cc9b26972134e311198c8faa9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1019,7 +1019,7 @@
       "headings": 11,
       "estimated_token_count_total": 1850
     },
-    "hash": "sha256:366dd274da84e343128dbccd7fbdac4a36b9220da4c1a93d8372b7855ca835be",
+    "hash": "sha256:3e7a0bf1bf17e094f24a6859cb7846966e89ee9d6e794fa9a68baed3309de298",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1587,7 +1587,7 @@
       "headings": 10,
       "estimated_token_count_total": 2109
     },
-    "hash": "sha256:a38e65fde4e4d5671e2e9ab051187d5751365a792e2e12b391d60182fbaa0877",
+    "hash": "sha256:e42c773b501aa7a6c67210d97b466309c1db31c61c2ab4c9a6af757f4e5f9fe5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -5230,7 +5230,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-manager-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/evm/",
-    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
+    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/1.6.0+cli/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
     "outline": [
       {
         "depth": 2,
@@ -5829,12 +5829,12 @@
       }
     ],
     "stats": {
-      "chars": 58463,
+      "chars": 58462,
       "words": 6463,
       "headings": 119,
       "estimated_token_count_total": 14272
     },
-    "hash": "sha256:cad3755050c436c82c9fe676650eafcdfff28a1f3b109062fbe232350505d598",
+    "hash": "sha256:cc7396af68ee8aa0fe078d8ca86eb760cb8f523cafbd86098db3af17761701fb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6255,7 +6255,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-transceivers-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/evm/",
-    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
+    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/1.6.0+cli/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
     "outline": [
       {
         "depth": 2,
@@ -6609,12 +6609,12 @@
       }
     ],
     "stats": {
-      "chars": 34982,
+      "chars": 34979,
       "words": 3705,
       "headings": 70,
       "estimated_token_count_total": 8097
     },
-    "hash": "sha256:754e73e3aafe93bd7fa78110d36687ddf7d88e1c66a2fa6fe24deab19872be03",
+    "hash": "sha256:2451cbe3a49655061e59ccf0d172dcbc7a0427665e6a1a65f2e62928db8f2858",
     "token_estimator": "heuristic-v1"
   },
   {
