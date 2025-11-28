@@ -5230,7 +5230,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-manager-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/evm/",
-    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/1.6.0+cli/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
+    "preview": "The [NttManager]({{https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
     "outline": [
       {
         "depth": 2,
@@ -5829,12 +5829,12 @@
       }
     ],
     "stats": {
-      "chars": 58462,
-      "words": 6463,
+      "chars": 58459,
+      "words": 6460,
       "headings": 119,
       "estimated_token_count_total": 14272
     },
-    "hash": "sha256:cc7396af68ee8aa0fe078d8ca86eb760cb8f523cafbd86098db3af17761701fb",
+    "hash": "sha256:e70093b4547792b1e5e2f5903666af4744790128f9a0be2a8f9d1f8ad44673d9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6255,7 +6255,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-transceivers-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/evm/",
-    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/1.6.0+cli/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
+    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
     "outline": [
       {
         "depth": 2,
@@ -6609,12 +6609,12 @@
       }
     ],
     "stats": {
-      "chars": 34979,
-      "words": 3705,
+      "chars": 34964,
+      "words": 3696,
       "headings": 70,
-      "estimated_token_count_total": 8097
+      "estimated_token_count_total": 8085
     },
-    "hash": "sha256:2451cbe3a49655061e59ccf0d172dcbc7a0427665e6a1a65f2e62928db8f2858",
+    "hash": "sha256:4af18583b857644ad8ac745ea9af8f3ecb20eb5510df6f6780235eadc3326c58",
     "token_estimator": "heuristic-v1"
   },
   {
