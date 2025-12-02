@@ -97,7 +97,7 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 2. **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
 3. **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
 4. **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
-5. **Fees and refunds**: Refunds, retries, and SLAs are provider-policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
+5. **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
 
 ## Conclusion
 
