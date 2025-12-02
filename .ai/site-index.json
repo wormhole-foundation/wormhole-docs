@@ -1339,6 +1339,58 @@
     "token_estimator": "heuristic-v1"
   },
   {
+    "id": "products-messaging-guides-executor-executor-vs-sr",
+    "title": "Executor vs Standard Relayer",
+    "slug": "products-messaging-guides-executor-executor-vs-sr",
+    "categories": [
+      "Relayers",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-executor-vs-sr.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/executor-vs-sr/",
+    "preview": "This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow.",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Quoting, Payment, and Refunds",
+        "anchor": "quoting-payment-and-refunds"
+      },
+      {
+        "depth": 2,
+        "title": "VAA Verification",
+        "anchor": "vaa-verification"
+      },
+      {
+        "depth": 2,
+        "title": "Replay Protection and Finality",
+        "anchor": "replay-protection-and-finality"
+      },
+      {
+        "depth": 2,
+        "title": "Delivery Behavior",
+        "anchor": "delivery-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Migration Notes",
+        "anchor": "migration-notes"
+      },
+      {
+        "depth": 2,
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "stats": {
+      "chars": 8014,
+      "words": 1047,
+      "headings": 6,
+      "estimated_token_count_total": 1409
+    },
+    "hash": "sha256:6cf542be8ec2be7329601e2d8fe9f238e712f84f3940c43032437f8430d9a4b4",
+    "token_estimator": "heuristic-v1"
+  },
+  {
     "id": "products-messaging-guides-executor-ntt-executor",
     "title": "Integrate Native Token Transfers with Executor",
     "slug": "products-messaging-guides-executor-ntt-executor",
