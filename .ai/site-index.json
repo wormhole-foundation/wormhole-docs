@@ -693,7 +693,7 @@
       "headings": 6,
       "estimated_token_count_total": 934
     },
-    "hash": "sha256:a596975db7187acdc01784b1379b4ac1cf9fb7c1289a28c8d179053fdb98d333",
+    "hash": "sha256:6e12611deffe29ee205019615a395848b0eadb5cc9b26972134e311198c8faa9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1019,7 +1019,7 @@
       "headings": 11,
       "estimated_token_count_total": 1850
     },
-    "hash": "sha256:366dd274da84e343128dbccd7fbdac4a36b9220da4c1a93d8372b7855ca835be",
+    "hash": "sha256:3e7a0bf1bf17e094f24a6859cb7846966e89ee9d6e794fa9a68baed3309de298",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1330,12 +1330,12 @@
       }
     ],
     "stats": {
-      "chars": 27692,
-      "words": 2773,
+      "chars": 27636,
+      "words": 2768,
       "headings": 14,
-      "estimated_token_count_total": 5336
+      "estimated_token_count_total": 5334
     },
-    "hash": "sha256:b31d25cc51bd1ad73a7f18d143eab7ef35705e9fb0738a45fc2790452d456eea",
+    "hash": "sha256:c8052b63a91cacb525b5d891d923e6bbf80ac5fb8a24fb86ff3760ed437b517b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1408,12 +1408,12 @@
       }
     ],
     "stats": {
-      "chars": 18116,
-      "words": 2101,
+      "chars": 18060,
+      "words": 2096,
       "headings": 11,
-      "estimated_token_count_total": 3553
+      "estimated_token_count_total": 3551
     },
-    "hash": "sha256:a9cd7d8a02c5a532a2f0a4976479cfa5bf08ffd5c4f7102d4f2ab8cf19c4edb9",
+    "hash": "sha256:8ecc41f1b60027804423ebbd137b7186a86a14ef56fbdcc48f51451ecf7bf661",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1587,7 +1587,7 @@
       "headings": 10,
       "estimated_token_count_total": 2109
     },
-    "hash": "sha256:a38e65fde4e4d5671e2e9ab051187d5751365a792e2e12b391d60182fbaa0877",
+    "hash": "sha256:e42c773b501aa7a6c67210d97b466309c1db31c61c2ab4c9a6af757f4e5f9fe5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2127,12 +2127,12 @@
       }
     ],
     "stats": {
-      "chars": 19086,
-      "words": 2220,
+      "chars": 19156,
+      "words": 2226,
       "headings": 5,
-      "estimated_token_count_total": 6402
+      "estimated_token_count_total": 6416
     },
-    "hash": "sha256:0008b5c41dccbf521cc7958ba986516361f89d4d03f354e61c6d5f2fd2200315",
+    "hash": "sha256:8797d5ba66cab0510e15f84169bea60bdf72353ae9b51b3f98d5f0b5c5272a0f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3833,12 +3833,12 @@
       }
     ],
     "stats": {
-      "chars": 19086,
-      "words": 2220,
+      "chars": 19156,
+      "words": 2226,
       "headings": 5,
-      "estimated_token_count_total": 6402
+      "estimated_token_count_total": 6416
     },
-    "hash": "sha256:c8b13d867e4b664f329e52beb9a7fea6a48a5547564143875246b18f666a189d",
+    "hash": "sha256:b42af151ca453f8b0ff1f4fd0d21b515985b9d056a3582c9b78a94edddf13c84",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -5117,64 +5117,6 @@
     "token_estimator": "heuristic-v1"
   },
   {
-    "id": "products-token-transfers-native-token-transfers-ntt-executor",
-    "title": "Integrate Native Token Transfers with Executor",
-    "slug": "products-token-transfers-native-token-transfers-ntt-executor",
-    "categories": [
-      "NTT",
-      "Transfer",
-      "Executor"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-ntt-executor.md",
-    "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/ntt-executor/",
-    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Prerequisites",
-        "anchor": "prerequisites"
-      },
-      {
-        "depth": 2,
-        "title": "References",
-        "anchor": "references"
-      },
-      {
-        "depth": 2,
-        "title": "Generate relay instructions",
-        "anchor": "generate-relay-instructions"
-      },
-      {
-        "depth": 2,
-        "title": "Request a SignedQuote",
-        "anchor": "request-a-signedquote"
-      },
-      {
-        "depth": 2,
-        "title": "Call your sending contract",
-        "anchor": "call-your-sending-contract"
-      },
-      {
-        "depth": 2,
-        "title": "Status the transaction",
-        "anchor": "status-the-transaction"
-      },
-      {
-        "depth": 2,
-        "title": "Conclusion",
-        "anchor": "conclusion"
-      }
-    ],
-    "stats": {
-      "chars": 17111,
-      "words": 1951,
-      "headings": 7,
-      "estimated_token_count_total": 3330
-    },
-    "hash": "sha256:8ec7af7165b01c8fa60fd972424cfd7ebfb2d1e14f3487028f396ec064adf160",
-    "token_estimator": "heuristic-v1"
-  },
-  {
     "id": "products-token-transfers-native-token-transfers-overview",
     "title": "Native Token Transfers Overview",
     "slug": "products-token-transfers-native-token-transfers-overview",
@@ -5288,7 +5230,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-manager-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/evm/",
-    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
+    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
     "outline": [
       {
         "depth": 2,
@@ -5887,12 +5829,12 @@
       }
     ],
     "stats": {
-      "chars": 58463,
-      "words": 6463,
+      "chars": 58457,
+      "words": 6460,
       "headings": 119,
       "estimated_token_count_total": 14272
     },
-    "hash": "sha256:cad3755050c436c82c9fe676650eafcdfff28a1f3b109062fbe232350505d598",
+    "hash": "sha256:55c2e90f79fbbd5dbd53b91c21a66b54f34e33c9ab5a577270c26325c30e03a9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6313,7 +6255,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-transceivers-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/evm/",
-    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
+    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
     "outline": [
       {
         "depth": 2,
@@ -6667,12 +6609,12 @@
       }
     ],
     "stats": {
-      "chars": 34982,
-      "words": 3705,
+      "chars": 34964,
+      "words": 3696,
       "headings": 70,
-      "estimated_token_count_total": 8097
+      "estimated_token_count_total": 8085
     },
-    "hash": "sha256:754e73e3aafe93bd7fa78110d36687ddf7d88e1c66a2fa6fe24deab19872be03",
+    "hash": "sha256:4af18583b857644ad8ac745ea9af8f3ecb20eb5510df6f6780235eadc3326c58",
     "token_estimator": "heuristic-v1"
   },
   {

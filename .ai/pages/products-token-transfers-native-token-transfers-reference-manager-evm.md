@@ -7,7 +7,7 @@ url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/r
 
 # NTT Manager Contract Reference (EVM)
 
-The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
 ## Structure Overview
 

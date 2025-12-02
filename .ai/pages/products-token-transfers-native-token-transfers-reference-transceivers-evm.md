@@ -7,11 +7,11 @@ url: https://wormhole.com/docs/products/token-transfers/native-token-transfers/r
 
 # Transceivers Contracts Reference (EVM)
 
-The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.
+The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.
 
 ## Structure Overview
 
-The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
+The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
 
 ```text
 WormholeTransceiver.sol
