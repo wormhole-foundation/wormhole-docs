@@ -1385,9 +1385,9 @@
       "chars": 8014,
       "words": 1047,
       "headings": 6,
-      "estimated_token_count_total": 1409
+      "estimated_token_count_total": 1408
     },
-    "hash": "sha256:6cf542be8ec2be7329601e2d8fe9f238e712f84f3940c43032437f8430d9a4b4",
+    "hash": "sha256:45bb34b4697076cdefad6b5524a863e69dbddd540d919d09aec7137de291c57d",
     "token_estimator": "heuristic-v1"
   },
   {
