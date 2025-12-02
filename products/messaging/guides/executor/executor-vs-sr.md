@@ -91,9 +91,9 @@ See the [Executor overview](/docs/products/messaging/concepts/executor-overview/
 
 ## Migration Notes
 
-Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery is requested, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
+Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery requests are issued, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
 
-1. **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote off-chain from your chosen provider.
+1. **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote from your chosen provider off-chain.
 2. **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
 3. **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
 4. **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
