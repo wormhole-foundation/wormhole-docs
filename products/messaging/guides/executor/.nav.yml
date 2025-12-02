@@ -1,5 +1,5 @@
 title: Executor
 nav:
-- 'Executor vs Standard Relayer': executor-vs-sr.md
 - 'NTT Executor Integration': ntt-executor.md
 - 'CCTP Executor Integration': cctp-executor.md
+- 'Executor vs Standard Relayer': executor-vs-sr.md
