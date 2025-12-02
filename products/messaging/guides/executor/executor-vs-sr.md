@@ -1,6 +1,6 @@
 ---
 title: Executor vs Standard Relayer
-description: TODO
+description: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
 categories: Relayers, Executor
 ---
 
@@ -98,3 +98,10 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 3. **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
 4. **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
 5. **Fees and refunds**: Refunds, retries, and SLAs are provider-policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
+
+## Conclusion
+
+Executor and the Standard Relayer differ in where quoting occurs, how delivery is triggered, and what each system enforces on-chain.  
+Teams migrating from the Standard Relayer should review their send and receive paths, update replay-protection logic, and rely on provider APIs for quoting and delivery behavior.
+
+For deeper implementation details, refer to the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank}, the [contract reference](/docs/products/messaging/reference/executor-addresses/){target=\_blank} pages, and the [Hello Executor example](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}.
