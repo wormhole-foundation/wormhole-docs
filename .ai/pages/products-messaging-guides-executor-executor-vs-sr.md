@@ -1,11 +1,11 @@
 ---
-title: Executor vs Standard Relayer
+title: Standard Relayer to Executor Migration
 description: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
 categories: Relayers, Executor
 url: https://wormhole.com/docs/products/messaging/guides/executor/executor-vs-sr/
 ---
 
-# Executor vs Standard Relayer
+# Standard Relayer to Executor Migration
 
 This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
 

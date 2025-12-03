@@ -4017,7 +4017,7 @@ Page Title: Executor Addresses
 
 === "Testnet v1"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x0F78904c750801391EbBf308181e9d6fc892B0f3</code></td></tr><tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr><tr><td>Aptos Testnet</td><td><code>0x14a12d1fd6ef371b70c2113155534ec152ec7f779e281b54866c796c9a4a58d3?</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xc9c0A1030331D5dA0599D243eFd4682D906066D9</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x2cfEC91B50f657Cc86Ec693542527ac3e03bF742</code></td></tr><tr><td>Base Sepolia</td><td><code>0x4983C6bD3bB7DA9EECe71cfa7AE4C67CAbf362F0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x1F2e73E9AF5eecEdAF03b4F295f83BD587290867</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2aE8EBeC0387759161B8D7680F0EF9bD0B962FbF</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x0F78904c750801391EbBf308181e9d6fc892B0f3</code></td></tr><tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr><tr><td>Aptos Testnet</td><td><code>0x14a12d1fd6ef371b70c2113155534ec152ec7f779e281b54866c796c9a4a58d3?</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xc9c0A1030331D5dA0599D243eFd4682D906066D9</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x2cfEC91B50f657Cc86Ec693542527ac3e03bF742</code></td></tr><tr><td>Base Sepolia</td><td><code>0x4983C6bD3bB7DA9EECe71cfa7AE4C67CAbf362F0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x1F2e73E9AF5eecEdAF03b4F295f83BD587290867</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2aE8EBeC0387759161B8D7680F0EF9bD0B962FbF</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0x63C79b78750649330920a769c8dB1817f7785F81</code></td></tr></tbody></table>
 
 === "Mainnet v2"
 
@@ -4025,7 +4025,7 @@ Page Title: Executor Addresses
 
 === "Testnet v2"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0xC35a5C2BEcE937143dD11FbB4962Adb1d393fF9B</code></td></tr></tbody></table>
 
 
 ## NTT with Executor
@@ -4038,7 +4038,7 @@ Page Title: Executor Addresses
 
 === "Testnet"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x54DD7080aE169DD923fE56d0C4f814a0a17B8f41</code></td></tr><tr><td>Solana Devnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xd048170F1ECB8D47E499D3459aC379DA023E2C1B</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x4e9Af03fbf1aa2b79A2D4babD3e22e09f18Bb8EE</code></td></tr><tr><td>Base Sepolia</td><td><code>0x5845E08d890E21687F7Ebf7CbAbD360cD91c6245</code></td></tr><tr><td>BSC Testnet</td><td><code>0x39B57Dd9908F8be02CfeE283b67eA1303Bc29fe1</code></td></tr><tr><td>Celo</td><td><code>0x3d69869fcB9e1CD1F4020b637fb8256030BAc8fC</code></td></tr><tr><td>Converge Testnet</td><td><code>0x3d8c26b67BDf630FBB44F09266aFA735F1129197</code></td></tr><tr><td>Fogo Testnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Ink</td><td><code>0xF420BFFf922D11c2bBF587C9dF71b83651fAf8Bc</code></td></tr><tr><td>Mezo Testnet</td><td><code>0x484b5593BbB90383f94FB299470F09427cf6cfE2</code></td></tr><tr><td>Moca</td><td><code>0x47f26bF9253Eb398fBAf825D7565FE975D839a71</code></td></tr><tr><td>Monad Testnet</td><td><code>0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5</code></td></tr><tr><td>Plume Testnet</td><td><code>0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2982B9566E912458fE711FB1Fd78158264596937</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445</code></td></tr><tr><td>XRPL EVM Testnet</td><td><code>0xcDD9d7C759b29680f7a516d0058de8293b2AC7b1</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x54DD7080aE169DD923fE56d0C4f814a0a17B8f41</code></td></tr><tr><td>Solana Devnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xd048170F1ECB8D47E499D3459aC379DA023E2C1B</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x4e9Af03fbf1aa2b79A2D4babD3e22e09f18Bb8EE</code></td></tr><tr><td>Base Sepolia</td><td><code>0x5845E08d890E21687F7Ebf7CbAbD360cD91c6245</code></td></tr><tr><td>BSC Testnet</td><td><code>0x39B57Dd9908F8be02CfeE283b67eA1303Bc29fe1</code></td></tr><tr><td>Celo</td><td><code>0x3d69869fcB9e1CD1F4020b637fb8256030BAc8fC</code></td></tr><tr><td>Converge Testnet</td><td><code>0x3d8c26b67BDf630FBB44F09266aFA735F1129197</code></td></tr><tr><td>Fogo Testnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Ink</td><td><code>0xF420BFFf922D11c2bBF587C9dF71b83651fAf8Bc</code></td></tr><tr><td>Mezo Testnet</td><td><code>0x484b5593BbB90383f94FB299470F09427cf6cfE2</code></td></tr><tr><td>Moca</td><td><code>0x47f26bF9253Eb398fBAf825D7565FE975D839a71</code></td></tr><tr><td>Monad Testnet</td><td><code>0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5</code></td></tr><tr><td>Plume Testnet</td><td><code>0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2982B9566E912458fE711FB1Fd78158264596937</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0x607723D6353Dae3ef62B7B277Cfabd0F4bc6CB4C</code></td></tr><tr><td>XRPL EVM Testnet</td><td><code>0xcDD9d7C759b29680f7a516d0058de8293b2AC7b1</code></td></tr></tbody></table>
 
 
 ## WTT Executor
@@ -4098,7 +4098,7 @@ Page Title: Executor Addresses
 
 === "Testnet v1"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x0F78904c750801391EbBf308181e9d6fc892B0f3</code></td></tr><tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr><tr><td>Aptos Testnet</td><td><code>0x14a12d1fd6ef371b70c2113155534ec152ec7f779e281b54866c796c9a4a58d3?</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xc9c0A1030331D5dA0599D243eFd4682D906066D9</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x2cfEC91B50f657Cc86Ec693542527ac3e03bF742</code></td></tr><tr><td>Base Sepolia</td><td><code>0x4983C6bD3bB7DA9EECe71cfa7AE4C67CAbf362F0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x1F2e73E9AF5eecEdAF03b4F295f83BD587290867</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2aE8EBeC0387759161B8D7680F0EF9bD0B962FbF</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x0F78904c750801391EbBf308181e9d6fc892B0f3</code></td></tr><tr><td>Solana Devnet</td><td><code>CXGRA5SCc8jxDbaQPZrmmZNu2JV34DP7gFW4m31uC1zs</code></td></tr><tr><td>Aptos Testnet</td><td><code>0x14a12d1fd6ef371b70c2113155534ec152ec7f779e281b54866c796c9a4a58d3?</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xc9c0A1030331D5dA0599D243eFd4682D906066D9</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x2cfEC91B50f657Cc86Ec693542527ac3e03bF742</code></td></tr><tr><td>Base Sepolia</td><td><code>0x4983C6bD3bB7DA9EECe71cfa7AE4C67CAbf362F0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x1F2e73E9AF5eecEdAF03b4F295f83BD587290867</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2aE8EBeC0387759161B8D7680F0EF9bD0B962FbF</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0x63C79b78750649330920a769c8dB1817f7785F81</code></td></tr></tbody></table>
 
 === "Mainnet v2"
 
@@ -4106,7 +4106,7 @@ Page Title: Executor Addresses
 
 === "Testnet v2"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x6BC3a8275e3DC861977e9244990283cDecA5Fa2F</code></td></tr><tr><td>Solana Devnet</td><td><code>Supported</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x239D8D2Ea8d12fcd428696442411719B65908962</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x949d1c6Da779C599E70C78AE075A7Ad17C53A5bF</code></td></tr><tr><td>Base Sepolia</td><td><code>0xa2B4F26b85206EA838B6A1fcD41590D6061f7D53</code></td></tr><tr><td>Ink</td><td><code>0xD7E9D4609652297B4aa56F23d57Fd83954Ea8040</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xb2ab6055E2Dee08534fc17871a11a585070D5012</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x58c07cb3A04c972a11e1E5fd7073369401305a31</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0xDC735908C3eCF29f40D8CA5f6407F2d94d316a9F</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0xC35a5C2BEcE937143dD11FbB4962Adb1d393fF9B</code></td></tr></tbody></table>
 
 
 ## NTT With Executor
@@ -4119,7 +4119,7 @@ Page Title: Executor Addresses
 
 === "Testnet"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x54DD7080aE169DD923fE56d0C4f814a0a17B8f41</code></td></tr><tr><td>Solana Devnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xd048170F1ECB8D47E499D3459aC379DA023E2C1B</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x4e9Af03fbf1aa2b79A2D4babD3e22e09f18Bb8EE</code></td></tr><tr><td>Base Sepolia</td><td><code>0x5845E08d890E21687F7Ebf7CbAbD360cD91c6245</code></td></tr><tr><td>BSC Testnet</td><td><code>0x39B57Dd9908F8be02CfeE283b67eA1303Bc29fe1</code></td></tr><tr><td>Celo</td><td><code>0x3d69869fcB9e1CD1F4020b637fb8256030BAc8fC</code></td></tr><tr><td>Converge Testnet</td><td><code>0x3d8c26b67BDf630FBB44F09266aFA735F1129197</code></td></tr><tr><td>Fogo Testnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Ink</td><td><code>0xF420BFFf922D11c2bBF587C9dF71b83651fAf8Bc</code></td></tr><tr><td>Mezo Testnet</td><td><code>0x484b5593BbB90383f94FB299470F09427cf6cfE2</code></td></tr><tr><td>Moca</td><td><code>0x47f26bF9253Eb398fBAf825D7565FE975D839a71</code></td></tr><tr><td>Monad Testnet</td><td><code>0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5</code></td></tr><tr><td>Plume Testnet</td><td><code>0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2982B9566E912458fE711FB1Fd78158264596937</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445</code></td></tr><tr><td>XRPL EVM Testnet</td><td><code>0xcDD9d7C759b29680f7a516d0058de8293b2AC7b1</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x54DD7080aE169DD923fE56d0C4f814a0a17B8f41</code></td></tr><tr><td>Solana Devnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xd048170F1ECB8D47E499D3459aC379DA023E2C1B</code></td></tr><tr><td>Avalanche Fuji</td><td><code>0x4e9Af03fbf1aa2b79A2D4babD3e22e09f18Bb8EE</code></td></tr><tr><td>Base Sepolia</td><td><code>0x5845E08d890E21687F7Ebf7CbAbD360cD91c6245</code></td></tr><tr><td>BSC Testnet</td><td><code>0x39B57Dd9908F8be02CfeE283b67eA1303Bc29fe1</code></td></tr><tr><td>Celo</td><td><code>0x3d69869fcB9e1CD1F4020b637fb8256030BAc8fC</code></td></tr><tr><td>Converge Testnet</td><td><code>0x3d8c26b67BDf630FBB44F09266aFA735F1129197</code></td></tr><tr><td>Fogo Testnet</td><td><code>nex1gkSWtRBheEJuQZMqHhbMG5A45qPU76KqnCZNVHR</code></td></tr><tr><td>Ink</td><td><code>0xF420BFFf922D11c2bBF587C9dF71b83651fAf8Bc</code></td></tr><tr><td>Mezo Testnet</td><td><code>0x484b5593BbB90383f94FB299470F09427cf6cfE2</code></td></tr><tr><td>Moca</td><td><code>0x47f26bF9253Eb398fBAf825D7565FE975D839a71</code></td></tr><tr><td>Monad Testnet</td><td><code>0x93FE94Ad887a1B04DBFf1f736bfcD1698D4cfF66</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0xaDB1C56D363FF5A75260c3bd27dd7C1fC8421EF5</code></td></tr><tr><td>Plume Testnet</td><td><code>0x6Eb53371f646788De6B4D0225a4Ed1d9267188AD</code></td></tr><tr><td>Polygon Sepolia (Amoy)</td><td><code>0x2982B9566E912458fE711FB1Fd78158264596937</code></td></tr><tr><td>SeiEVM Testnet</td><td><code>0x3F2D6441C7a59Dfe80f8e14142F9E28F6D440445</code></td></tr><tr><td>Unichain Sepolia</td><td><code>0x607723D6353Dae3ef62B7B277Cfabd0F4bc6CB4C</code></td></tr><tr><td>XRPL EVM Testnet</td><td><code>0xcDD9d7C759b29680f7a516d0058de8293b2AC7b1</code></td></tr></tbody></table>
 
 
 ## WTT Executor
@@ -4335,116 +4335,6 @@ sequenceDiagram
 ## Security Considerations
 
 The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs.
-
-
----
-
-Page Title: Executor vs Standard Relayer
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-executor-vs-sr.md
-- Canonical (HTML): https://wormhole.com/docs/products/messaging/guides/executor/executor-vs-sr/
-- Summary: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
-
-# Executor vs Standard Relayer
-
-This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
-
-The table below summarizes the core differences at a high level before diving into each area in detail.
-
-| Category          | Standard Relayer             | Executor                        |
-| ----------------- | ---------------------------- | ------------------------------- |
-| Quoting           | On-chain price query         | Off-chain signed quote          |
-| Payment           | Paid on `sendPayloadToEvm`   | Paid on [`requestExecution`](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} |
-| VAA Verification  | Relayer handles verification | Your contract verifies using the Core Contract |
-| Replay Protection | Built-in                     | You choose sequence / hash      |
-| Delivery Behavior | Opinionated delivery engine  | Stateless request registry      |
-| Refunds           | On-chain via relayer logic   | Off-chain via provider policy   |
-
-## Quoting, Payment, and Refunds 
-
-Both models rely on a quote to determine execution cost, but they differ in how the quote is obtained and how payment and refunds are handled.
-
-**Standard Relayer**
-
-- **Quoting**: On-chain via `IDeliveryProvider.quoteEVMDeliveryPrice(targetChain, receiverValue, gasLimit)`, which returns `(nativePriceQuote, refundPerGasUnused)`.
-- **Payment**: Supplied to `sendPayloadToEvm` alongside `nativePriceQuote`.
-- **Refunds**: Managed on-chain by the relayer contract through its refund/value-forwarding logic and surfaced via events and explicit error types.
-
-**Executor**
-
-- **Quoting**: Off-chain via a signed quote returned by a [Quoter](/docs/products/messaging/concepts/executor-framework/#relay-provider){target=\_blank} operated by a Relay Provider. The quote encodes the relay instructions and delivery terms.
-- **Request**: The application calls `Executor.requestExecution(...)` (or the SDK helper `_publishAndRelay`), passing the signed quote and relay instructions.
-- **Payment**: The payment is transferred to the provider’s designated `payee` when the request is registered. The Executor contract is stateless and performs minimal checks (chain match, expiry).
-- **Refunds**: Determined entirely by the provider’s off-chain policy. The Executor contract does not handle refund mechanics, gas accounting, or delivery logic.
-
-## VAA Verification
-
-The two systems differ in where VAA verification occurs and how the message reaches your application.
-
-**Standard Relayer**  
-
-The Relayer contract (together with the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}) fetches and verifies the VAA before delivery. Your contract implements `receiveWormholeMessages` and typically only validates the expected sender, source chain, and its own application-level invariants.
-
-**Executor**  
-
-Your contract verifies the VAA directly. Using the SDK base, it calls Core’s `parseAndVerifyVM`, applies replay protection, and then dispatches to `_executeVaa` with the payload and VAA metadata. Verification becomes explicit in your contract’s execution flow, while the on-chain Executor contract remains minimal.
-
-## Replay Protection and Finality
-
-Replay protection works very differently between the two models, especially depending on the VAA’s consistency level.
-
-**Standard Relayer**
-
-The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection — the relayer ensures each request is executed exactly once.
-
-**Executor**
-
-Executor integrations must implement their own replay-protection scheme. Two options are available:
-
-- **Sequence-based**: Recommended for finalized VAAs. It tracks `(emitterChain, emitterAddress, sequence)` and is the lowest-cost approach, but cannot safely handle non-finalized (e.g., instant) consistency levels.
-- **Hash-based**: Works for all consistency levels, including instant. It uses the VAA hash to guarantee unique identification and prevent replays.
-
-The [Hello Executor demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank} includes examples of both approaches and explains how they map to consistency levels (e.g., `200` for finalized, `1` for instant). Use `SequenceReplayProtectionLib` for finalized messages or `HashReplayProtectionLib` for non-finalized flows.
-
-## Delivery Behavior
-
-The two models differ in how delivery is handled, what is enforced on-chain, and what guarantees are provided by the infrastructure versus the provider.
-
-**Standard Relayer**
-
-The Standard Relayer provides a managed delivery flow with on-chain pricing, refund logic, and detailed error handling. It offers:
-
-- Delivery to the target contract with gas limit, receiver value, refund mechanics, and delivery status events.
-- A dedicated `DeliveryProvider` contract for on-chain pricing and supported chains.
-- A broad error surface for misquotes, overrides, and budget violations.
-
-**Executor**
-
-The Executor contract is intentionally minimal. It registers execution requests and forwards payment to the provider, leaving all delivery semantics to the off-chain provider. It offers:
-
-- A stateless executor contract that accepts requests, transfers payment to the provider’s designated payee, and emits request events.
-- Minimal validation (chain match, expiry), with no price enforcement on-chain, no gas accounting, and no message inspection.
-- An open provider marketplace, where any provider can fulfill the request by submitting the VAA.
-
-See the [Executor overview](/docs/products/messaging/concepts/executor-overview/){target=\_blank} and framework pages for a detailed breakdown of actors, flows, and contract behavior.
-
-## Migration Notes
-
-Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery requests are issued, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
-
-- **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote from your chosen provider off-chain.
-- **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
-- **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
-- **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
-- **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
-
-## Next Steps
-
-The resources below provide deeper technical detail and example implementations. 
-
-- [**Executor framework**](/docs/products/messaging/concepts/executor-framework/){target=\_blank}: Overview of the Executor model, components, and request flow.
-- [**Executor addresses**](/docs/products/messaging/reference/executor-addresses/){target=\_blank}: Chain-specific deployed addresses.
-- [**Hello Executor example**](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}: Minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
 
 
 ---
@@ -4889,10 +4779,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.0.2`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.1.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.0.2
+    npm install @wormhole-foundation/sdk@4.1.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -6974,10 +6864,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.0.2`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.1.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.0.2 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.1.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -9014,6 +8904,116 @@ A Spy can access the following categories of messages shared over the gossip pro
 
 ---
 
+Page Title: Standard Relayer to Executor Migration
+
+- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-executor-vs-sr.md
+- Canonical (HTML): https://wormhole.com/docs/products/messaging/guides/executor/executor-vs-sr/
+- Summary: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
+
+# Standard Relayer to Executor Migration
+
+This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
+
+The table below summarizes the core differences at a high level before diving into each area in detail.
+
+| Category          | Standard Relayer             | Executor                        |
+| ----------------- | ---------------------------- | ------------------------------- |
+| Quoting           | On-chain price query         | Off-chain signed quote          |
+| Payment           | Paid on `sendPayloadToEvm`   | Paid on [`requestExecution`](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} |
+| VAA Verification  | Relayer handles verification | Your contract verifies using the Core Contract |
+| Replay Protection | Built-in                     | You choose sequence / hash      |
+| Delivery Behavior | Opinionated delivery engine  | Stateless request registry      |
+| Refunds           | On-chain via relayer logic   | Off-chain via provider policy   |
+
+## Quoting, Payment, and Refunds 
+
+Both models rely on a quote to determine execution cost, but they differ in how the quote is obtained and how payment and refunds are handled.
+
+**Standard Relayer**
+
+- **Quoting**: On-chain via `IDeliveryProvider.quoteEVMDeliveryPrice(targetChain, receiverValue, gasLimit)`, which returns `(nativePriceQuote, refundPerGasUnused)`.
+- **Payment**: Supplied to `sendPayloadToEvm` alongside `nativePriceQuote`.
+- **Refunds**: Managed on-chain by the relayer contract through its refund/value-forwarding logic and surfaced via events and explicit error types.
+
+**Executor**
+
+- **Quoting**: Off-chain via a signed quote returned by a [Quoter](/docs/products/messaging/concepts/executor-framework/#relay-provider){target=\_blank} operated by a Relay Provider. The quote encodes the relay instructions and delivery terms.
+- **Request**: The application calls `Executor.requestExecution(...)` (or the SDK helper `_publishAndRelay`), passing the signed quote and relay instructions.
+- **Payment**: The payment is transferred to the provider’s designated `payee` when the request is registered. The Executor contract is stateless and performs minimal checks (chain match, expiry).
+- **Refunds**: Determined entirely by the provider’s off-chain policy. The Executor contract does not handle refund mechanics, gas accounting, or delivery logic.
+
+## VAA Verification
+
+The two systems differ in where VAA verification occurs and how the message reaches your application.
+
+**Standard Relayer**  
+
+The Relayer contract (together with the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}) fetches and verifies the VAA before delivery. Your contract implements `receiveWormholeMessages` and typically only validates the expected sender, source chain, and its own application-level invariants.
+
+**Executor**  
+
+Your contract verifies the VAA directly. Using the SDK base, it calls Core’s `parseAndVerifyVM`, applies replay protection, and then dispatches to `_executeVaa` with the payload and VAA metadata. Verification becomes explicit in your contract’s execution flow, while the on-chain Executor contract remains minimal.
+
+## Replay Protection and Finality
+
+Replay protection works very differently between the two models, especially depending on the VAA’s consistency level.
+
+**Standard Relayer**
+
+The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection — the relayer ensures each request is executed exactly once.
+
+**Executor**
+
+Executor integrations must implement their own replay-protection scheme. Two options are available:
+
+- **Sequence-based**: Recommended for finalized VAAs. It tracks `(emitterChain, emitterAddress, sequence)` and is the lowest-cost approach, but cannot safely handle non-finalized (e.g., instant) consistency levels.
+- **Hash-based**: Works for all consistency levels, including instant. It uses the VAA hash to guarantee unique identification and prevent replays.
+
+The [Hello Executor demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank} includes examples of both approaches and explains how they map to consistency levels (e.g., `200` for finalized, `1` for instant). Use `SequenceReplayProtectionLib` for finalized messages or `HashReplayProtectionLib` for non-finalized flows.
+
+## Delivery Behavior
+
+The two models differ in how delivery is handled, what is enforced on-chain, and what guarantees are provided by the infrastructure versus the provider.
+
+**Standard Relayer**
+
+The Standard Relayer provides a managed delivery flow with on-chain pricing, refund logic, and detailed error handling. It offers:
+
+- Delivery to the target contract with gas limit, receiver value, refund mechanics, and delivery status events.
+- A dedicated `DeliveryProvider` contract for on-chain pricing and supported chains.
+- A broad error surface for misquotes, overrides, and budget violations.
+
+**Executor**
+
+The Executor contract is intentionally minimal. It registers execution requests and forwards payment to the provider, leaving all delivery semantics to the off-chain provider. It offers:
+
+- A stateless executor contract that accepts requests, transfers payment to the provider’s designated payee, and emits request events.
+- Minimal validation (chain match, expiry), with no price enforcement on-chain, no gas accounting, and no message inspection.
+- An open provider marketplace, where any provider can fulfill the request by submitting the VAA.
+
+See the [Executor overview](/docs/products/messaging/concepts/executor-overview/){target=\_blank} and framework pages for a detailed breakdown of actors, flows, and contract behavior.
+
+## Migration Notes
+
+Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery requests are issued, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
+
+- **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote from your chosen provider off-chain.
+- **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
+- **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
+- **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
+- **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
+
+## Next Steps
+
+The resources below provide deeper technical detail and example implementations. 
+
+- [**Executor framework**](/docs/products/messaging/concepts/executor-framework/){target=\_blank}: Overview of the Executor model, components, and request flow.
+- [**Executor addresses**](/docs/products/messaging/reference/executor-addresses/){target=\_blank}: Chain-specific deployed addresses.
+- [**Hello Executor example**](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}: Minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
+
+
+---
+
 Page Title: Supported Networks
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-reference-supported-networks.md
@@ -9601,7 +9601,7 @@ function sendPayloadToEvm(
 ```
 
 !!! tip
-    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.48.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.50.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
 
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 

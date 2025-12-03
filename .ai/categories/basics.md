@@ -3479,10 +3479,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.0.2`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.1.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.0.2
+    npm install @wormhole-foundation/sdk@4.1.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -4274,10 +4274,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.0.2`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.1.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.0.2 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.1.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -6273,7 +6273,7 @@ function sendPayloadToEvm(
 ```
 
 !!! tip
-    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.48.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v2.50.0/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
 
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 
