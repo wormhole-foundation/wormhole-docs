@@ -1256,7 +1256,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md",
     "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/cctp-executor/",
-    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/token-transfers/cctp/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destinati",
+    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.",
     "outline": [
       {
         "depth": 2,
@@ -1330,12 +1330,12 @@
       }
     ],
     "stats": {
-      "chars": 27636,
-      "words": 2768,
+      "chars": 27627,
+      "words": 2767,
       "headings": 14,
       "estimated_token_count_total": 5334
     },
-    "hash": "sha256:c8052b63a91cacb525b5d891d923e6bbf80ac5fb8a24fb86ff3760ed437b517b",
+    "hash": "sha256:68f4febc1490cb6ecfe65f8194a1132b2d7b3634e5d3dab0c722c0ca6b900adb",
     "token_estimator": "heuristic-v1"
   },
   {
