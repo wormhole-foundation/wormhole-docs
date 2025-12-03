@@ -14,9 +14,9 @@ The table below summarizes the core differences at a high level before diving in
 | Category          | Standard Relayer             | Executor                        |
 | ----------------- | ---------------------------- | ------------------------------- |
 | Quoting           | On-chain price query         | Off-chain signed quote          |
-| Payment           | Paid on `sendPayloadToEvm`   | Paid on `requestExecution`      |
-| VAA Verification  | Relayer handles verification | Your contract verifies via Core |
-| Replay Protection | Built-in                     | You choose Sequence / Hash      |
+| Payment           | Paid on `sendPayloadToEvm`   | Paid on [`requestExecution`](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} |
+| VAA Verification  | Relayer handles verification | Your contract verifies using the Core Contract |
+| Replay Protection | Built-in                     | You choose sequence / hash      |
 | Delivery Behavior | Opinionated delivery engine  | Stateless request registry      |
 | Refunds           | On-chain via relayer logic   | Off-chain via provider policy   |
 
@@ -43,11 +43,11 @@ The two systems differ in where VAA verification occurs and how the message reac
 
 **Standard Relayer**  
 
-The Relayer contract (together with Core) fetches and verifies the VAA before delivery. Applications implement `receiveWormholeMessages` and typically only validate the expected sender, source chain, and their own application-level invariants.
+The Relayer contract (together with the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}) fetches and verifies the VAA before delivery. Your contract implements `receiveWormholeMessages` and typically only validates the expected sender, source chain, and its own application-level invariants.
 
 **Executor**  
 
-Your contract verifies the VAA directly. Using the SDK base, it calls Core’s `parseAndVerifyVM`, applies replay protection, and then dispatches to `_executeVaa` with the payload and VAA metadata. Verification becomes explicit in the application’s execution stack, while the on-chain Executor contract remains minimal.
+Your contract verifies the VAA directly. Using the SDK base, it calls Core’s `parseAndVerifyVM`, applies replay protection, and then dispatches to `_executeVaa` with the payload and VAA metadata. Verification becomes explicit in your contract’s execution flow, while the on-chain Executor contract remains minimal.
 
 ## Replay Protection and Finality
 
@@ -61,8 +61,8 @@ The Standard Relayer enforces an “execute only once” guarantee at the delive
 
 Executor integrations must implement their own replay-protection scheme. Two options are available:
 
-- **Sequence-based**: Recommended for finalized VAAs. Tracks `(emitterChain, emitterAddress, sequence)` and is the lowest-cost approach.
-- **Hash-based**: Works for all consistency levels, including instant. Tracks the VAA hash to prevent replays.
+- **Sequence-based**: Recommended for finalized VAAs. It tracks `(emitterChain, emitterAddress, sequence)` and is the lowest-cost approach, but cannot safely handle non-finalized (e.g., instant) consistency levels.
+- **Hash-based**: Works for all consistency levels, including instant. It uses the VAA hash to guarantee unique identification and prevent replays.
 
 The [Hello Executor demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank} includes examples of both approaches and explains how they map to consistency levels (e.g., `200` for finalized, `1` for instant). Use `SequenceReplayProtectionLib` for finalized messages or `HashReplayProtectionLib` for non-finalized flows.
 
@@ -78,8 +78,6 @@ The Standard Relayer provides a managed delivery flow with on-chain pricing, ref
 - A dedicated `DeliveryProvider` contract for on-chain pricing and supported chains.
 - A broad error surface for misquotes, overrides, and budget violations.
 
-See the [Relayer reference](/docs/products/messaging/reference/relayer-contract/){target=\_blank} for contract structure, events, and error definitions.
-
 **Executor**
 
 The Executor contract is intentionally minimal. It registers execution requests and forwards payment to the provider, leaving all delivery semantics to the off-chain provider. It offers:
@@ -94,15 +92,16 @@ See the [Executor overview](/docs/products/messaging/concepts/executor-overview/
 
 Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery requests are issued, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
 
-1. **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote from your chosen provider off-chain.
-2. **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
-3. **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
-4. **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
-5. **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
+- **Sending**: Replace `quoteEVMDeliveryPrice` + `sendPayloadToEvm` with two calls: `Core.publishMessage` and `Executor.requestExecution` (or the SDK helper `_publishAndRelay`). Fetch a signed quote from your chosen provider off-chain.
+- **Receiving**: Replace `IWormholeReceiver.receiveWormholeMessages` with the Executor base pattern: implement `_executeVaa`, `_replayProtect`, and `_getPeer` when using the SDK, or `executeVAA` if implementing the flow manually.
+- **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
+- **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
+- **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
 
-## Conclusion
+## Next Steps
 
-Executor and the Standard Relayer differ in where quoting occurs, how delivery is triggered, and what each system enforces on-chain.  
-Teams migrating from the Standard Relayer should review their send and receive paths, update replay-protection logic, and rely on provider APIs for quoting and delivery behavior.
+The resources below provide deeper technical detail and example implementations. 
 
-For deeper implementation details, refer to the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank}, the [contract reference](/docs/products/messaging/reference/executor-addresses/){target=\_blank} pages, and the [Hello Executor example](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}.
+- [**Executor framework**](/docs/products/messaging/concepts/executor-framework/){target=\_blank}: Overview of the Executor model, components, and request flow.
+- [**Executor addresses**](/docs/products/messaging/reference/executor-addresses/){target=\_blank}: Chain-specific deployed addresses.
+- [**Hello Executor example**](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}: Minimal end-to-end Executor demo showing quoting, request calls, and replay protection.

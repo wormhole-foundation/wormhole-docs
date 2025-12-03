@@ -1377,17 +1377,17 @@
       },
       {
         "depth": 2,
-        "title": "Conclusion",
-        "anchor": "conclusion"
+        "title": "Next Steps",
+        "anchor": "next-steps"
       }
     ],
     "stats": {
-      "chars": 8014,
-      "words": 1047,
+      "chars": 8052,
+      "words": 1040,
       "headings": 6,
-      "estimated_token_count_total": 1408
+      "estimated_token_count_total": 1409
     },
-    "hash": "sha256:45bb34b4697076cdefad6b5524a863e69dbddd540d919d09aec7137de291c57d",
+    "hash": "sha256:a703ecd28c33b1bdbd94984e953d86f10af4cf70783036969ee814beff09cdaa",
     "token_estimator": "heuristic-v1"
   },
   {
