@@ -64,7 +64,7 @@
       "headings": 4,
       "estimated_token_count_total": 1602
     },
-    "hash": "sha256:2583c507b45301e41242413eca9661fa3a11276438e0598782d7b30b0ca5760f",
+    "hash": "sha256:c53fa20a4fab2ac9980067737f7929bf6b4ca3d629782fc3b5c7d5e45ba7d062",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -296,7 +296,7 @@
       "headings": 13,
       "estimated_token_count_total": 4638
     },
-    "hash": "sha256:d28a66ccb955d99515fb549fc73651dc803a8fda284f81d758372560bd0d150a",
+    "hash": "sha256:6989ccf4fa90849a92610436b2e07cf0098937f9d18657ab89297a45fd78f996",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1196,7 +1196,7 @@
       "headings": 4,
       "estimated_token_count_total": 2468
     },
-    "hash": "sha256:90119ff69bd1a235a1648e4496cd5e2d74b2b7bbd708d9f693b194dd42bffc08",
+    "hash": "sha256:597c714091919b268b536db9ad44d9af8a07d1f2400e3b85aa45bcfa932e08b5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2179,12 +2179,12 @@
       }
     ],
     "stats": {
-      "chars": 20728,
-      "words": 2407,
+      "chars": 20817,
+      "words": 2417,
       "headings": 5,
-      "estimated_token_count_total": 6937
+      "estimated_token_count_total": 6967
     },
-    "hash": "sha256:79480928833b114f882389386253f5436cb3e6737d532d1565cfdd72313d5272",
+    "hash": "sha256:0b6b3522f815bd6a1cd898308610d709094aa89ef5aeae2ae055e8ba98374682",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2789,7 +2789,7 @@
       "headings": 12,
       "estimated_token_count_total": 8841
     },
-    "hash": "sha256:48f6ebf38d3645184f8044823e03d2051fd81e25a2e36fc1b34386130cee628c",
+    "hash": "sha256:506d671e4fa2a36296320dfc6324baae1da17799409143bd4666ffec7b848bf1",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3308,12 +3308,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13566,
-      "words": 2054,
+      "chars": 13969,
+      "words": 2115,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:6c8e105fafec5245773cf27b1853f9a5f03ee40e05f710067f5f182025f84b32",
+    "hash": "sha256:80b323b8824749539fe80dade0e645d730ce0dc47f8a75addd7ea370dfcd9b33",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3758,12 +3758,12 @@
     "preview": "The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\\_blank}.",
     "outline": [],
     "stats": {
-      "chars": 10368,
-      "words": 1911,
+      "chars": 10518,
+      "words": 1941,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:0fbf4ec705754383fac658cbf4b33c68cfe79ffc826ee06e3e008a3230960223",
+    "hash": "sha256:f6ea48b72b1070da3824e79c6a156c88289afba94d635b18783d0a74822d9119",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3778,12 +3778,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6185,
-      "words": 1217,
+      "chars": 6272,
+      "words": 1236,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:5bb6aaaed0d6690f252e0031e776d97f10ae1cec384af5374ce9b8640f750522",
+    "hash": "sha256:efe7d38b3039db476d514ce1b3860f4a1389cfd0d49d3a4871c14c1bfdab231c",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3839,12 +3839,12 @@
       }
     ],
     "stats": {
-      "chars": 31402,
-      "words": 3672,
+      "chars": 31758,
+      "words": 3712,
       "headings": 8,
-      "estimated_token_count_total": 10390
+      "estimated_token_count_total": 10510
     },
-    "hash": "sha256:bdc42505844e371b94606eb4e66ae824d387073530285b65edd01cea0037728a",
+    "hash": "sha256:41ccaa283b34f1d420f5f8cc43768692ae80b0c27f28a1145a897923dd58dc53",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3885,12 +3885,12 @@
       }
     ],
     "stats": {
-      "chars": 20728,
-      "words": 2407,
+      "chars": 20817,
+      "words": 2417,
       "headings": 5,
-      "estimated_token_count_total": 6937
+      "estimated_token_count_total": 6967
     },
-    "hash": "sha256:b9123340fcf798d1e8dc63a131583a764d7db360373598cea9859757d323dfbb",
+    "hash": "sha256:cf898c4f5619bb8720fe620c882c2b9afdb6558e178d0adaaa958b6732ba7aec",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4037,12 +4037,12 @@
       }
     ],
     "stats": {
-      "chars": 58790,
-      "words": 9199,
+      "chars": 59581,
+      "words": 9321,
       "headings": 7,
-      "estimated_token_count_total": 24959
+      "estimated_token_count_total": 25295
     },
-    "hash": "sha256:2f93abcdb1c2b49076e3a8cbd73a5a4c1df3768d57f1ea0943c645acdf1e307c",
+    "hash": "sha256:4a5cc705d03da9e8dd35caccb0dc73208de0055637bd29690e72c9dbc91ad0fb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4093,12 +4093,12 @@
       }
     ],
     "stats": {
-      "chars": 7751,
-      "words": 1367,
+      "chars": 7891,
+      "words": 1392,
       "headings": 7,
-      "estimated_token_count_total": 3421
+      "estimated_token_count_total": 3488
     },
-    "hash": "sha256:f50c8743c75d1d6d08dd0db30ad7b3b45bf9692ae8f32c4ab06e989d2d95da55",
+    "hash": "sha256:a164f02e70d00ecc69060cd7b298c7a259eb9d2be375011c26c4f2a6604420f7",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4310,7 +4310,7 @@
       "headings": 5,
       "estimated_token_count_total": 2104
     },
-    "hash": "sha256:11c6baa160cc1dab2d0bdaa611cdf11545355311dbe704f80c1b8d563b1ecdf6",
+    "hash": "sha256:ca720e7511b42d4a5a5681d45333c21112127489da28274e57462b71a7096a87",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7014,7 +7014,7 @@
       "headings": 5,
       "estimated_token_count_total": 2656
     },
-    "hash": "sha256:1f83c537771719c4d886205751116bd3cab2b14d0977a618358c7cc1b39a19ae",
+    "hash": "sha256:fcb5c76ccc69f651a31711716ee951d4e17424ac232808a4937b1191bad19263",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7066,7 +7066,7 @@
       "headings": 6,
       "estimated_token_count_total": 4311
     },
-    "hash": "sha256:232ced4e95ffc8947458f5d0127120459fcc7befa4bef998dcd2627d7fc96b00",
+    "hash": "sha256:99a6b65f531a1221201fbd18219968f06a2618b5d28b65accffc739e817eb745",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7108,7 +7108,7 @@
       "headings": 4,
       "estimated_token_count_total": 1240
     },
-    "hash": "sha256:161eb04e070f17185cf3243c6df4c44d5546162bd9fe7d78b372282ea030fbb9",
+    "hash": "sha256:4a293a4d12041050f1a88d4df7c8b3412f5742928496240f64fad3cb54bbd4aa",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7156,7 +7156,7 @@
       "headings": 5,
       "estimated_token_count_total": 5141
     },
-    "hash": "sha256:9650b07a70a3451c3dc68c2044a3ef791938256d485e73fa90c4a1643101b09e",
+    "hash": "sha256:5329479d8c3e965b75b10c67c6fa2ed71d3df92abdf3f50e212b8e9cfc4c30f4",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7313,12 +7313,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13210,
-      "words": 2069,
+      "chars": 13598,
+      "words": 2130,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:fea27d1523c2b9d3f5423e9a6bfa8a77e09a60715641ab18df7342eb6eca8757",
+    "hash": "sha256:5395a70ae7dbd84c8e24ea0f34f078c94ec452464945a4432e5cfffdf8a59fad",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7462,7 +7462,7 @@
       "headings": 12,
       "estimated_token_count_total": 6229
     },
-    "hash": "sha256:02ee3809c0f99b15afc11636d4c20c0fd8678577cde09aef60c6b9f011329895",
+    "hash": "sha256:4347d22ae536ce737a400bc996bf1eb245f18e62ddb69768858dfa49e87b240f",
     "token_estimator": "heuristic-v1"
   },
   {

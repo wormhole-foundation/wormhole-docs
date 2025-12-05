@@ -70,10 +70,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.1.0`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.4.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.1.0 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.4.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
