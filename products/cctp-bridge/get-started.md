@@ -19,7 +19,7 @@ Before you begin, make sure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
  - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}.
 
-This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [AVAX](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}, as well as a Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any [supported EVM chains](/docs/products/reference/supported-networks/#cctp){target=\_blank} that support CCTP.
+This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [SOL](https://faucet.solana.com/){target=\_blank}, as well as a Base Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/base-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any [supported EVM chains](/docs/products/reference/supported-networks/#cctp){target=\_blank} that support CCTP.
 
 ## Configure Your Token Transfer Environment
 
@@ -31,10 +31,11 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the SDK version `{{repositories.wormhole_sdk.version}}`:
+2. Install the required dependencies. This example uses the SDK version `3.12.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@{{repositories.wormhole_sdk.version}}
+    npm install @wormhole-foundation/sdk@3.12.0
+    npm install @wormhole-labs/cctp-executor-route
     npm install -D tsx typescript
     ```
 
@@ -51,7 +52,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Sepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Solana Devnet, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on BaseSepolia.
 
 Start by defining utility functions for signer and token setup:
 
@@ -61,11 +62,19 @@ Start by defining utility functions for signer and token setup:
     --8<-- "code/products/cctp-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP. Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK provides executors for each version. See the [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank} to determine which version applies to your case:
 
-    ```ts title="transfer.ts"
-    --8<-- "code/products/cctp-bridge/get-started/snippet-2.ts"
-    ```
+    === "CCTP v1"
+
+        ```ts title="transfer.ts"
+        --8<-- "code/products/cctp-bridge/get-started/snippet-2.ts"
+        ```
+
+    === "CCTP v2"
+
+        ```ts title="transfer.ts"
+        --8<-- "code/products/cctp-bridge/get-started/snippet-3.ts"
+        ```
 
 3. Run the script to execute the transfer:
 
@@ -75,7 +84,7 @@ Start by defining utility functions for signer and token setup:
 
     You will see terminal output similar to the following:
 
-    --8<-- "code/products/cctp-bridge/get-started/snippet-3.html"
+    --8<-- "code/products/cctp-bridge/get-started/snippet-4.html"
 
 To verify the transaction and view its details, paste the transaction hash into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
