@@ -53,7 +53,7 @@ This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/)
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Solana Devnet, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on BaseSepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Solana Devnet, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Base Sepolia.
 
 Start by defining utility functions for signer and token setup:
 
