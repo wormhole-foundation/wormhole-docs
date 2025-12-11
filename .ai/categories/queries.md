@@ -4779,10 +4779,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.4.0`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.5.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.4.0
+    npm install @wormhole-foundation/sdk@4.5.0
     ```
 
 5. Create a new file named `main.ts`:
@@ -7792,10 +7792,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.4.0`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.5.0`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.4.0 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.5.0 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
