@@ -54,6 +54,9 @@ def check_releases(releases_source_file):
             continue
 
         latest_version = get_latest_release(repo_url)
+        if not latest_version:
+            print(f"Skipping repository with no releases: {name} ({repo_url})")
+            continue
 
         normalized_current = normalize_version(current_version)
         normalized_latest = normalize_version(latest_version)

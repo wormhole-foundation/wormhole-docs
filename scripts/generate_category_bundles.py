@@ -147,7 +147,7 @@ def load_all_pages(ai_dir: Path) -> List[AiPage]:
 
 
 # ----------------------------
-# Token estimation
+# Token estimation, word count
 # ----------------------------
 
 def _heuristic_token_count(s: str) -> int:
@@ -177,6 +177,10 @@ def estimate_tokens(text: str, estimator: str = "heuristic-v1") -> int:
         return _cl100k_token_count(text)
     # Unknown/custom estimator name → compute via heuristic but keep the label in outputs.
     return _heuristic_token_count(text)
+
+
+def word_count(text: str) -> int:
+    return len(re.findall(r"\b\w+\b", text, flags=re.UNICODE))
 
 
 # ----------------------------
@@ -260,6 +264,7 @@ def build_category_bundles(config_path: str, fmt: str, dry_run: bool, limit: int
 
     # Precompute token counts once per page
     page_tokens: Dict[str, int] = {p.slug: estimate_tokens(p.body, token_estimator) for p in pages}
+    page_words: Dict[str, int] = {p.slug: word_count(p.body) for p in pages}
 
     out_root = (repo_root / config.get("outputs", {}).get("public_root", "/.ai/").strip("/") / "categories").resolve()
 

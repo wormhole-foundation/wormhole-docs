@@ -1,112 +1,5 @@
 [
   {
-    "id": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "title": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "slug": ".venv-lib-python3.12-site-packages-mkdocs_macros-macros_info",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-mkdocs_macros-macros_info.md",
-    "html_url": "https://wormhole.com/docs/.venv/lib/python3.12/site-packages/mkdocs_macros/macros_info/",
-    "preview": "{# Template for the macro_info() command (C) Laurent Franceschetti 2019 #}",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Macros Plugin Environment",
-        "anchor": "macros-plugin-environment"
-      },
-      {
-        "depth": 3,
-        "title": "General List",
-        "anchor": "general-list"
-      },
-      {
-        "depth": 3,
-        "title": "Config Information",
-        "anchor": "config-information"
-      },
-      {
-        "depth": 3,
-        "title": "Macros",
-        "anchor": "macros"
-      },
-      {
-        "depth": 3,
-        "title": "Git Information",
-        "anchor": "git-information"
-      },
-      {
-        "depth": 3,
-        "title": "Page Attributes",
-        "anchor": "page-attributes"
-      },
-      {
-        "depth": 3,
-        "title": "Plugin Filters",
-        "anchor": "plugin-filters"
-      },
-      {
-        "depth": 3,
-        "title": "Builtin Jinja2 Filters",
-        "anchor": "builtin-jinja2-filters"
-      }
-    ],
-    "stats": {
-      "chars": 1603,
-      "words": 211,
-      "headings": 8,
-      "estimated_token_count_total": 413
-    },
-    "hash": "sha256:7cb9bc976138f64786ab20297541bf16c79bd882042bc7f14b84cbac2b043730",
-    "token_estimator": "heuristic-v1"
-  },
-  {
-    "id": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "title": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "slug": ".venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/.venv-lib-python3.12-site-packages-nltk-3.9.1.dist-info-authors.md",
-    "html_url": "https://wormhole.com/docs/.venv/lib/python3.12/site-packages/nltk-3.9.1.dist-info/AUTHORS/",
-    "preview": "No description available.",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Original Authors",
-        "anchor": "original-authors"
-      },
-      {
-        "depth": 2,
-        "title": "Contributors",
-        "anchor": "contributors"
-      },
-      {
-        "depth": 2,
-        "title": "Others whose work we've taken and included in NLTK, but who didn't directly contribute it:",
-        "anchor": "others-whose-work-weve-taken-and-included-in-nltk-but-who-didnt-directly-contribute-it"
-      },
-      {
-        "depth": 3,
-        "title": "Contributors to the Porter Stemmer",
-        "anchor": "contributors-to-the-porter-stemmer"
-      },
-      {
-        "depth": 3,
-        "title": "Authors of snowball arabic stemmer algorithm",
-        "anchor": "authors-of-snowball-arabic-stemmer-algorithm"
-      }
-    ],
-    "stats": {
-      "chars": 7603,
-      "words": 969,
-      "headings": 5,
-      "estimated_token_count_total": 1813
-    },
-    "hash": "sha256:f13041f9a2b9951a58ba2a092e7327152b42867d1849e8bb8d36b663d72f7824",
-    "token_estimator": "heuristic-v1"
-  },
-  {
     "id": "ai-resources-ai-resources",
     "title": "AI Resources",
     "slug": "ai-resources-ai-resources",
@@ -129,27 +22,7 @@
       "headings": 1,
       "estimated_token_count_total": 2537
     },
-    "hash": "sha256:3902977d78be9d56c9f611035ad1a82c8e5d7d9a25b636a83c3b07c69ff51931",
-    "token_estimator": "heuristic-v1"
-  },
-  {
-    "id": "index",
-    "title": "Home",
-    "slug": "index",
-    "categories": [
-      "Uncategorized"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/index.md",
-    "html_url": "https://wormhole.com/docs/index/",
-    "preview": "Explore Wormhole's comprehensive guides, tutorials, and resources to build secure multichain applications and enable seamless cross-chain communication.",
-    "outline": [],
-    "stats": {
-      "chars": 0,
-      "words": 0,
-      "headings": 0,
-      "estimated_token_count_total": 0
-    },
-    "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hash": "sha256:8b8ef2193873a8e4af6975ecff16f7a4fde6de4dc8c698247d12de26db9f5a8f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -191,7 +64,7 @@
       "headings": 4,
       "estimated_token_count_total": 1602
     },
-    "hash": "sha256:1cd724352374ecf7d3b3e6d195efef04362eec4e0bfb6fa8f4a4f8cdbdbd1d3a",
+    "hash": "sha256:2583c507b45301e41242413eca9661fa3a11276438e0598782d7b30b0ca5760f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -331,12 +204,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 7624,
-      "words": 1203,
+      "chars": 7629,
+      "words": 1204,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:31e85c9a28849baf1df4f923ad3fc99fb5439bfc08baccdbf58a52f84129738d",
+    "hash": "sha256:bf8a53bc47b244ac03db0aca99195c29d77afbe17a6c9df9044e68c3e1385061",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -423,7 +296,7 @@
       "headings": 13,
       "estimated_token_count_total": 4638
     },
-    "hash": "sha256:0ba797e458bcfc765bc64ed5e60ab3632c1c959c67eb1a63ea9873af04925d33",
+    "hash": "sha256:d28a66ccb955d99515fb549fc73651dc803a8fda284f81d758372560bd0d150a",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -820,7 +693,7 @@
       "headings": 6,
       "estimated_token_count_total": 934
     },
-    "hash": "sha256:a596975db7187acdc01784b1379b4ac1cf9fb7c1289a28c8d179053fdb98d333",
+    "hash": "sha256:6e12611deffe29ee205019615a395848b0eadb5cc9b26972134e311198c8faa9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1064,12 +937,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 8444,
-      "words": 1334,
+      "chars": 8459,
+      "words": 1337,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:142df2c035be360c25cfa6e4f8318277b2f277241fe0b0c08e5e3c4be7b93384",
+    "hash": "sha256:dc0e8fdfd7f22b11047e6abecec4429d3992c646abada7d7b1e5a33ebc03b74f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1146,7 +1019,7 @@
       "headings": 11,
       "estimated_token_count_total": 1850
     },
-    "hash": "sha256:366dd274da84e343128dbccd7fbdac4a36b9220da4c1a93d8372b7855ca835be",
+    "hash": "sha256:3e7a0bf1bf17e094f24a6859cb7846966e89ee9d6e794fa9a68baed3309de298",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1155,7 +1028,7 @@
     "slug": "products-messaging-concepts-executor-framework",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-framework.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-framework/",
@@ -1187,7 +1060,7 @@
     "slug": "products-messaging-concepts-executor-overview",
     "categories": [
       "Basics",
-      "Executors"
+      "Executor"
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-concepts-executor-overview.md",
     "html_url": "https://wormhole.com/docs/products/messaging/concepts/executor-overview/",
@@ -1318,12 +1191,12 @@
       }
     ],
     "stats": {
-      "chars": 11789,
-      "words": 1262,
+      "chars": 11797,
+      "words": 1266,
       "headings": 4,
-      "estimated_token_count_total": 2460
+      "estimated_token_count_total": 2468
     },
-    "hash": "sha256:a00b321666010ba0af2814e6d4e5613eaaabda58470faac5da7524452c1f7e80",
+    "hash": "sha256:90119ff69bd1a235a1648e4496cd5e2d74b2b7bbd708d9f693b194dd42bffc08",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1370,6 +1243,229 @@
       "estimated_token_count_total": 3312
     },
     "hash": "sha256:79220f37430a724dfd669f51c78826fdb6c0a4d71f1f60df5470eedb7c48ef8c",
+    "token_estimator": "heuristic-v1"
+  },
+  {
+    "id": "products-messaging-guides-executor-cctp-executor",
+    "title": "Integrate CCTP with Executor",
+    "slug": "products-messaging-guides-executor-cctp-executor",
+    "categories": [
+      "CCTP",
+      "Transfer",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-cctp-executor.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/cctp-executor/",
+    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Prerequisites",
+        "anchor": "prerequisites"
+      },
+      {
+        "depth": 2,
+        "title": "References",
+        "anchor": "references"
+      },
+      {
+        "depth": 2,
+        "title": "Generate Relay Instructions",
+        "anchor": "generate-relay-instructions"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui"
+      },
+      {
+        "depth": 2,
+        "title": "Request a Signed Quote",
+        "anchor": "request-a-signed-quote"
+      },
+      {
+        "depth": 2,
+        "title": "Call Sending Contract",
+        "anchor": "call-sending-contract"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm-2"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv1",
+        "anchor": "svm-with-cctpv1"
+      },
+      {
+        "depth": 3,
+        "title": "SVM with CCTPv2",
+        "anchor": "svm-with-cctpv2"
+      },
+      {
+        "depth": 3,
+        "title": "Sui",
+        "anchor": "sui-2"
+      },
+      {
+        "depth": 2,
+        "title": "Check the Transaction Status",
+        "anchor": "check-the-transaction-status"
+      },
+      {
+        "depth": 2,
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "stats": {
+      "chars": 27627,
+      "words": 2767,
+      "headings": 14,
+      "estimated_token_count_total": 5334
+    },
+    "hash": "sha256:68f4febc1490cb6ecfe65f8194a1132b2d7b3634e5d3dab0c722c0ca6b900adb",
+    "token_estimator": "heuristic-v1"
+  },
+  {
+    "id": "products-messaging-guides-executor-executor-vs-sr",
+    "title": "Standard Relayer to Executor Migration",
+    "slug": "products-messaging-guides-executor-executor-vs-sr",
+    "categories": [
+      "Relayers",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-executor-vs-sr.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/executor-vs-sr/",
+    "preview": "This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow.",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Quoting, Payment, and Refunds",
+        "anchor": "quoting-payment-and-refunds"
+      },
+      {
+        "depth": 2,
+        "title": "VAA Verification",
+        "anchor": "vaa-verification"
+      },
+      {
+        "depth": 2,
+        "title": "Replay Protection and Finality",
+        "anchor": "replay-protection-and-finality"
+      },
+      {
+        "depth": 2,
+        "title": "Delivery Behavior",
+        "anchor": "delivery-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Migration Notes",
+        "anchor": "migration-notes"
+      },
+      {
+        "depth": 2,
+        "title": "Next Steps",
+        "anchor": "next-steps"
+      }
+    ],
+    "stats": {
+      "chars": 8062,
+      "words": 1041,
+      "headings": 6,
+      "estimated_token_count_total": 1409
+    },
+    "hash": "sha256:cfd82029d0516cf34f87ccbcadc787370a02505192f713563eefe0ec9c77bdb1",
+    "token_estimator": "heuristic-v1"
+  },
+  {
+    "id": "products-messaging-guides-executor-ntt-executor",
+    "title": "Integrate Native Token Transfers with Executor",
+    "slug": "products-messaging-guides-executor-ntt-executor",
+    "categories": [
+      "NTT",
+      "Transfer",
+      "Executor"
+    ],
+    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-executor-ntt-executor.md",
+    "html_url": "https://wormhole.com/docs/products/messaging/guides/executor/ntt-executor/",
+    "preview": "The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.",
+    "outline": [
+      {
+        "depth": 2,
+        "title": "Prerequisites",
+        "anchor": "prerequisites"
+      },
+      {
+        "depth": 2,
+        "title": "References",
+        "anchor": "references"
+      },
+      {
+        "depth": 2,
+        "title": "Generate Relay Instructions",
+        "anchor": "generate-relay-instructions"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm"
+      },
+      {
+        "depth": 2,
+        "title": "Request a Signed Quote",
+        "anchor": "request-a-signed-quote"
+      },
+      {
+        "depth": 2,
+        "title": "Call Sending Contract",
+        "anchor": "call-sending-contract"
+      },
+      {
+        "depth": 3,
+        "title": "EVM",
+        "anchor": "evm-2"
+      },
+      {
+        "depth": 3,
+        "title": "SVM",
+        "anchor": "svm-2"
+      },
+      {
+        "depth": 2,
+        "title": "Check the Transaction Status",
+        "anchor": "check-the-transaction-status"
+      },
+      {
+        "depth": 2,
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "stats": {
+      "chars": 18060,
+      "words": 2096,
+      "headings": 11,
+      "estimated_token_count_total": 3551
+    },
+    "hash": "sha256:8ecc41f1b60027804423ebbd137b7186a86a14ef56fbdcc48f51451ecf7bf661",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1543,7 +1639,7 @@
       "headings": 10,
       "estimated_token_count_total": 2109
     },
-    "hash": "sha256:a38e65fde4e4d5671e2e9ab051187d5751365a792e2e12b391d60182fbaa0877",
+    "hash": "sha256:e1b62e6929b43eeffa191e172d6ebe9958e361e93322c03585df581865b2bf73",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2063,12 +2159,12 @@
       },
       {
         "depth": 2,
-        "title": "CCTP With Executor",
+        "title": "CCTP with Executor",
         "anchor": "cctp-with-executor"
       },
       {
         "depth": 2,
-        "title": "NTT With Executor",
+        "title": "NTT with Executor",
         "anchor": "ntt-with-executor"
       },
       {
@@ -2078,17 +2174,17 @@
       },
       {
         "depth": 2,
-        "title": "WTT Executor With Referrer",
+        "title": "WTT Executor with Referrer",
         "anchor": "wtt-executor-with-referrer"
       }
     ],
     "stats": {
-      "chars": 18830,
-      "words": 2190,
+      "chars": 20728,
+      "words": 2407,
       "headings": 5,
-      "estimated_token_count_total": 6312
+      "estimated_token_count_total": 6937
     },
-    "hash": "sha256:d4bcd77d7ea7d027b51d8cb3edca95937c3400ffc34f1e5bc530b25eae5d799e",
+    "hash": "sha256:79480928833b114f882389386253f5436cb3e6737d532d1565cfdd72313d5272",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2688,12 +2784,12 @@
       }
     ],
     "stats": {
-      "chars": 41972,
-      "words": 4510,
+      "chars": 41980,
+      "words": 4514,
       "headings": 12,
-      "estimated_token_count_total": 8833
+      "estimated_token_count_total": 8841
     },
-    "hash": "sha256:a8d7430266551de420d8b7fb95bf4eae2b48f5059e8e3545e05ae61962e674a5",
+    "hash": "sha256:48f6ebf38d3645184f8044823e03d2051fd81e25a2e36fc1b34386130cee628c",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3212,12 +3308,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13553,
-      "words": 2051,
+      "chars": 13566,
+      "words": 2054,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:060573b8a61e754470a3910e90033209227cd6f57464eea4f2dfee15de73898b",
+    "hash": "sha256:6c8e105fafec5245773cf27b1853f9a5f03ee40e05f710067f5f182025f84b32",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3474,12 +3570,12 @@
       }
     ],
     "stats": {
-      "chars": 4231,
-      "words": 574,
+      "chars": 4251,
+      "words": 576,
       "headings": 4,
-      "estimated_token_count_total": 1087
+      "estimated_token_count_total": 1089
     },
-    "hash": "sha256:76487b025c72522e34cc67e58087d342daec91d2823bb1fc18c08a202fa5c0e9",
+    "hash": "sha256:c9ccf87da9ab14ee995233db6ca148f908decb7aa4325b5e1205fe5f3e4a99bb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3682,12 +3778,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6138,
-      "words": 1207,
+      "chars": 6185,
+      "words": 1217,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:000077431647b416a9e2c4c1888bba3f2cd3985cfe4b5f3fd6081eaf1c47cafd",
+    "hash": "sha256:5bb6aaaed0d6690f252e0031e776d97f10ae1cec384af5374ce9b8640f750522",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3743,12 +3839,12 @@
       }
     ],
     "stats": {
-      "chars": 30762,
-      "words": 3599,
+      "chars": 31402,
+      "words": 3672,
       "headings": 8,
-      "estimated_token_count_total": 10177
+      "estimated_token_count_total": 10390
     },
-    "hash": "sha256:aa0489054e435a1b783e06cb9c11299c0285f45b293f0c84ca6e53040e5fde81",
+    "hash": "sha256:bdc42505844e371b94606eb4e66ae824d387073530285b65edd01cea0037728a",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3789,12 +3885,12 @@
       }
     ],
     "stats": {
-      "chars": 18830,
-      "words": 2190,
+      "chars": 20728,
+      "words": 2407,
       "headings": 5,
-      "estimated_token_count_total": 6312
+      "estimated_token_count_total": 6937
     },
-    "hash": "sha256:d4bcd77d7ea7d027b51d8cb3edca95937c3400ffc34f1e5bc530b25eae5d799e",
+    "hash": "sha256:b9123340fcf798d1e8dc63a131583a764d7db360373598cea9859757d323dfbb",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3941,12 +4037,12 @@
       }
     ],
     "stats": {
-      "chars": 58334,
-      "words": 9122,
+      "chars": 58790,
+      "words": 9199,
       "headings": 7,
-      "estimated_token_count_total": 24761
+      "estimated_token_count_total": 24959
     },
-    "hash": "sha256:de3ae4a8df00d5a9d8ca96e289f0a793c9218cd93082a3e8b5e275bfd34ea1c3",
+    "hash": "sha256:2f93abcdb1c2b49076e3a8cbd73a5a4c1df3768d57f1ea0943c645acdf1e307c",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3997,12 +4093,12 @@
       }
     ],
     "stats": {
-      "chars": 7721,
-      "words": 1363,
+      "chars": 7751,
+      "words": 1367,
       "headings": 7,
-      "estimated_token_count_total": 3413
+      "estimated_token_count_total": 3421
     },
-    "hash": "sha256:593e3b5cac31b21f0d4b97b8ed44acfdfe5a07bf2199c85808a18509d021a500",
+    "hash": "sha256:f50c8743c75d1d6d08dd0db30ad7b3b45bf9692ae8f32c4ab06e989d2d95da55",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4214,7 +4310,7 @@
       "headings": 5,
       "estimated_token_count_total": 2104
     },
-    "hash": "sha256:8800b957db525b5cf54332a16af457649f0102d9f53375a31e30f70acdbfe091",
+    "hash": "sha256:11c6baa160cc1dab2d0bdaa611cdf11545355311dbe704f80c1b8d563b1ecdf6",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4282,12 +4378,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 3627,
-      "words": 583,
+      "chars": 3640,
+      "words": 584,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:dd42877611c0f7dcb332278775638db27e02157a198fdfc031e5827f3dab321a",
+    "hash": "sha256:7aef8b12b1eeedcae839879a9576f18b85249dd1611a8b5b65746f9e31ecb84b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4736,7 +4832,7 @@
       "headings": 6,
       "estimated_token_count_total": 2304
     },
-    "hash": "sha256:43bdaa77c783d3ca0ed3a0fccf9b9fcc7d536cd7bd14e254dfcdb0350248c382",
+    "hash": "sha256:529b88f5da890eca84518bd357e1a5f58d312049a8f2209cf5d2494e0891573e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4793,7 +4889,7 @@
       "headings": 7,
       "estimated_token_count_total": 3171
     },
-    "hash": "sha256:c5f1d1d3e131bb8374c10d166191a7a1bb6a0f7b0778d81f43b8041016cc4ccc",
+    "hash": "sha256:fdc3cbd16601c106ad1129bedd4bd5571e354365874f5c97b79563b982849e39",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4855,7 +4951,7 @@
       "headings": 8,
       "estimated_token_count_total": 3101
     },
-    "hash": "sha256:081866780cf0e522e1dd83133611b4ecf4f053b322824da14633a417786ef7e2",
+    "hash": "sha256:b3f9e9c6a213b3257916ea30b856412956fa85d6c5006f8b481527a792d08e93",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4902,7 +4998,7 @@
       "headings": 5,
       "estimated_token_count_total": 2227
     },
-    "hash": "sha256:f63f05a1b12f6da17ea70dd44d98acdeefd0e445198b06a0e4c5628a7aac19ab",
+    "hash": "sha256:6fd98380263b782750f861149d1c41df32caf0c5b60e9f887f4cba135c4b2f73",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4996,11 +5092,6 @@
     "outline": [
       {
         "depth": 2,
-        "title": "Manual Relaying for SVM Transfers",
-        "anchor": "manual-relaying-for-svm-transfers"
-      },
-      {
-        "depth": 2,
         "title": "Post-Deployment Settings",
         "anchor": "post-deployment-settings"
       },
@@ -5011,12 +5102,12 @@
       }
     ],
     "stats": {
-      "chars": 3934,
-      "words": 497,
-      "headings": 3,
-      "estimated_token_count_total": 619
+      "chars": 3589,
+      "words": 444,
+      "headings": 2,
+      "estimated_token_count_total": 557
     },
-    "hash": "sha256:dc058bbcf15d473b6ff29d5b2168f8b661faff1d93bd6e545bd28659b206e55e",
+    "hash": "sha256:ab492854a418d22f18635249077fda858b0677ba4c4eeca7fd827bdc2233717d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -5191,7 +5282,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-manager-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/manager/evm/",
-    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
+    "preview": "The [NttManager](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.",
     "outline": [
       {
         "depth": 2,
@@ -5790,12 +5881,12 @@
       }
     ],
     "stats": {
-      "chars": 58463,
-      "words": 6463,
+      "chars": 58457,
+      "words": 6460,
       "headings": 119,
       "estimated_token_count_total": 14272
     },
-    "hash": "sha256:cad3755050c436c82c9fe676650eafcdfff28a1f3b109062fbe232350505d598",
+    "hash": "sha256:55c2e90f79fbbd5dbd53b91c21a66b54f34e33c9ab5a577270c26325c30e03a9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6198,12 +6289,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 11668,
-      "words": 1852,
+      "chars": 12068,
+      "words": 1918,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:f130850c4e82ce280edcc3ec5ed678ac34fcc663b5dd62df4433e615a27fe710",
+    "hash": "sha256:f4eb0364750663aa50112710e482e8352af8bc2417bc57d3c136ac962a65eae0",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6216,7 +6307,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-token-transfers-native-token-transfers-reference-transceivers-evm.md",
     "html_url": "https://wormhole.com/docs/products/token-transfers/native-token-transfers/reference/transceivers/evm/",
-    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/v1.2.0+evm/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
+    "preview": "The NTT [Transceiver](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.",
     "outline": [
       {
         "depth": 2,
@@ -6570,12 +6661,12 @@
       }
     ],
     "stats": {
-      "chars": 34982,
-      "words": 3705,
+      "chars": 34964,
+      "words": 3696,
       "headings": 70,
-      "estimated_token_count_total": 8097
+      "estimated_token_count_total": 8085
     },
-    "hash": "sha256:754e73e3aafe93bd7fa78110d36687ddf7d88e1c66a2fa6fe24deab19872be03",
+    "hash": "sha256:4af18583b857644ad8ac745ea9af8f3ecb20eb5510df6f6780235eadc3326c58",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6923,7 +7014,7 @@
       "headings": 5,
       "estimated_token_count_total": 2656
     },
-    "hash": "sha256:e9e7b6fb727f6fa7b940822c7a5176f932c14997e0e5d5bf0766bf70b3df0dcb",
+    "hash": "sha256:1f83c537771719c4d886205751116bd3cab2b14d0977a618358c7cc1b39a19ae",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6970,12 +7061,12 @@
       }
     ],
     "stats": {
-      "chars": 22588,
+      "chars": 22584,
       "words": 2583,
       "headings": 6,
       "estimated_token_count_total": 4311
     },
-    "hash": "sha256:c9efd00e5b1e579232080dab3af1cb55ce8687d26bdcbf83ebaa35e57214154c",
+    "hash": "sha256:232ced4e95ffc8947458f5d0127120459fcc7befa4bef998dcd2627d7fc96b00",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7017,7 +7108,7 @@
       "headings": 4,
       "estimated_token_count_total": 1240
     },
-    "hash": "sha256:ecda6b91c5322acbc8ebb6bfd40881cf50713a6100f07738d2a0580a7879e080",
+    "hash": "sha256:161eb04e070f17185cf3243c6df4c44d5546162bd9fe7d78b372282ea030fbb9",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7065,7 +7156,7 @@
       "headings": 5,
       "estimated_token_count_total": 5141
     },
-    "hash": "sha256:09d11b1a201928058d5175214d82b7b3c98c5a09b35d4b95d89f9f33f4f1b881",
+    "hash": "sha256:9650b07a70a3451c3dc68c2044a3ef791938256d485e73fa90c4a1643101b09e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7222,12 +7313,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 13200,
-      "words": 2066,
+      "chars": 13210,
+      "words": 2069,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:6e664a684590b0f5dbaf31eda21aecbf1b0dffe72d340bfde9c3482e8134bb24",
+    "hash": "sha256:fea27d1523c2b9d3f5423e9a6bfa8a77e09a60715641ab18df7342eb6eca8757",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7371,7 +7462,7 @@
       "headings": 12,
       "estimated_token_count_total": 6229
     },
-    "hash": "sha256:0b8fa80ecc200fa677e245ea30a1aea6ddb9619920907b3549cf81b40829c900",
+    "hash": "sha256:02ee3809c0f99b15afc11636d4c20c0fd8678577cde09aef60c6b9f011329895",
     "token_estimator": "heuristic-v1"
   },
   {
