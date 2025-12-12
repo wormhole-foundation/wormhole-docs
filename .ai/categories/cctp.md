@@ -5206,21 +5206,36 @@ This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/)
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the SDK version `3.12.0`:
+2. Pin the SDK to specific dependency versions to ensure compatibility with the [CCTP executor routes](https://www.npmjs.com/package/@wormhole-labs/cctp-executor-route){target=\_blank}:
 
     ```bash
-    npm install @wormhole-foundation/sdk@3.12.0
-    npm install @wormhole-labs/cctp-executor-route
+    npm pkg set overrides.@wormhole-foundation/sdk-aptos=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-base=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-connect=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-definitions=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-evm=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-solana=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-solana-cctp=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-sui=4.0.2
+    npm pkg set overrides.@wormhole-foundation/sdk-sui-cctp=4.0.2
+    npm pkg set overrides.axios=1.11.0
+    npm pkg set overrides.ethers=6.15.0
+    ```
+
+3. Install the required dependencies. This example uses the SDK version `4.4.0`:
+
+    ```bash
+    npm install @wormhole-foundation/sdk@4.4.0 @wormhole-labs/cctp-executor-route
     npm install -D tsx typescript
     ```
 
-3. Create a `transfer.ts` file to handle the multichain transfer logic and a `helper.ts` file to manage wallet signers:
+4. Create a `transfer.ts` file to handle the multichain transfer logic and a `helper.ts` file to manage wallet signers:
 
     ```bash
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
+5. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
