@@ -64,7 +64,7 @@
       "headings": 4,
       "estimated_token_count_total": 1602
     },
-    "hash": "sha256:ed1ce142d3a7378db297e96824c39950f29342c22ca0e34c99e67994b10cf930",
+    "hash": "sha256:81222ff6eba771a0d7273914056a3b6dcc269387f920379a89c764d28d96f605",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -296,7 +296,7 @@
       "headings": 13,
       "estimated_token_count_total": 4638
     },
-    "hash": "sha256:2c78c31ece2e20f40473254528b52dedb5fbe4f653ec1a9dece22483b6236170",
+    "hash": "sha256:de079cb18e8c07015222de7a65dc9893196c2a19a7e4a1deae7e95e47fac7783",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1196,7 +1196,7 @@
       "headings": 4,
       "estimated_token_count_total": 2468
     },
-    "hash": "sha256:f82d2f1a661eb072c890b96a7f835c682ee77d0446efdafd59039b86f3d79339",
+    "hash": "sha256:0b9355d83bfe5dc97d88d67814f106db59b780f307154e8945a21d32de844d07",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2179,12 +2179,12 @@
       }
     ],
     "stats": {
-      "chars": 20817,
-      "words": 2417,
+      "chars": 21084,
+      "words": 2447,
       "headings": 5,
-      "estimated_token_count_total": 6967
+      "estimated_token_count_total": 7057
     },
-    "hash": "sha256:0b6b3522f815bd6a1cd898308610d709094aa89ef5aeae2ae055e8ba98374682",
+    "hash": "sha256:027aa0e5cb566f73e72892086674611c9126d6b1e9bb83b1dd658d2ad9b356fc",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2789,7 +2789,7 @@
       "headings": 12,
       "estimated_token_count_total": 8841
     },
-    "hash": "sha256:d1cca6bd19e6f5ca30411ffefcfb890a05f11152a41764215cffa8bf0ca93f37",
+    "hash": "sha256:69e3bf6ac8967330bafcedd7215d9543c45b600fd850883ec46303b3346a4df5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3839,12 +3839,12 @@
       }
     ],
     "stats": {
-      "chars": 31758,
-      "words": 3712,
+      "chars": 31847,
+      "words": 3722,
       "headings": 8,
-      "estimated_token_count_total": 10510
+      "estimated_token_count_total": 10540
     },
-    "hash": "sha256:41ccaa283b34f1d420f5f8cc43768692ae80b0c27f28a1145a897923dd58dc53",
+    "hash": "sha256:42ec4a2cd6306047ab9ddd7b24af00adc68bb326dffbda27a1d1e63cca8970df",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3885,12 +3885,12 @@
       }
     ],
     "stats": {
-      "chars": 20817,
-      "words": 2417,
+      "chars": 21084,
+      "words": 2447,
       "headings": 5,
-      "estimated_token_count_total": 6967
+      "estimated_token_count_total": 7057
     },
-    "hash": "sha256:cf898c4f5619bb8720fe620c882c2b9afdb6558e178d0adaaa958b6732ba7aec",
+    "hash": "sha256:1e543db1022b4fd8d391abccbe39f2afbee9c2b831b1a81b8aceaac962b2edef",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4310,7 +4310,7 @@
       "headings": 5,
       "estimated_token_count_total": 2104
     },
-    "hash": "sha256:d3acb8e6e2841abc3feb65c580e64099f1df9582558e0b6b837761f294eb4c52",
+    "hash": "sha256:ea911f619f097133024abb9e2ec1a4f47af9b2eabe7b77ae942f8dc8d02ae70e",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7014,7 +7014,7 @@
       "headings": 5,
       "estimated_token_count_total": 2656
     },
-    "hash": "sha256:1e8982bbbfb1755b0d60900a0b07eb583b4e80a113e902ba764ea305bee5d515",
+    "hash": "sha256:94865a739596c2e9f697fced91c62953172773ae61cc3b1869bcc4fd27279076",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7066,7 +7066,7 @@
       "headings": 6,
       "estimated_token_count_total": 4311
     },
-    "hash": "sha256:aeded8d9febacfdc40df7a0ccedce7883e3a5361adaa25adff38b1a7aa16b255",
+    "hash": "sha256:abdf00c2faa865a3d0075b2f268e2658f71ed5503b51f2d24cbdd0df3ec4978d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7108,7 +7108,7 @@
       "headings": 4,
       "estimated_token_count_total": 1240
     },
-    "hash": "sha256:28c6fd80c19ca4b6045680c982b6da2c981d7c18b713cae7d1bfe8110fd7a9ea",
+    "hash": "sha256:1aaabb544e983c29f5a10f2d2cc5d5c1768075bdb062f963275f538c64a72645",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7156,7 +7156,7 @@
       "headings": 5,
       "estimated_token_count_total": 5141
     },
-    "hash": "sha256:e2b226bf10de3e8a0c954ce05cf0e4ea5e85658def0d5d0e1e54f0a56dcb66fa",
+    "hash": "sha256:84775f2f3d46fe741c7276b9b50a18a6b9ca7dce5d59d2dbba1f361484103138",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7462,7 +7462,7 @@
       "headings": 12,
       "estimated_token_count_total": 6229
     },
-    "hash": "sha256:457455f168615f391b030997c50ee72139849530865a4ae59ab9c2ad8b1defe3",
+    "hash": "sha256:9858f934c6167933bab61b5724c94dae94551da4bcd2e1d0e56da16ffb8dcfd9",
     "token_estimator": "heuristic-v1"
   },
   {
