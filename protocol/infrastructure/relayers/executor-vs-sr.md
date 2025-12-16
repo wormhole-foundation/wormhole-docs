@@ -6,7 +6,7 @@ categories: Relayers, Executor
 
 # Standard Relayer to Executor Migration
 
-This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
+This page explains the practical differences between the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
 
 The table below summarizes the core differences at a high level before diving into each area in detail.
 

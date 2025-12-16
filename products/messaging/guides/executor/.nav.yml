@@ -1,5 +1,0 @@
-title: Executor
-nav:
-- 'NTT Executor Integration': ntt-executor.md
-- 'CCTP Executor Integration': cctp-executor.md
-- 'Standard Relayer to Executor Migration': executor-vs-sr.md

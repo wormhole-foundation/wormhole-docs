@@ -187,9 +187,6 @@ With relay instructions and a signed quote, the sending transaction can initiate
 
 For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
 
-!!! note "Settlement support"
-    `CCTPv2WithExecutor` also supports [Settlement](/docs/products/settlement/overview/){target=\_blank}. The helper forwards both `maxFee` and `minFinalityThreshold` directly to Circle’s [`depositForBurn`](https://developers.circle.com/cctp/evm-smart-contracts#depositforburn){target=\_blank} entrypoint. Circle interprets these two fields to determine whether a transfer should follow normal finalization or Settlement-mode fast finality, based on the fee paid and the finality threshold selected.
-
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
 ```sol
