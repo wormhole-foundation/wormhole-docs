@@ -19,7 +19,7 @@ To deploy MultiGov on Solana, ensure you have the following installed:
  - [Node.js](https://nodejs.org/){target=\_blank} **`v20.10.0`**
  - [Solana CLI](https://docs.anza.xyz/cli/install/){target=\_blank} **`v1.18.20`**
  - [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.30.1`**
- - [Rust](https://www.rust-lang.org/tools/install){target=\_blank} **`v1.80.1`**
+ - [Rust](https://rust-lang.org/tools/install/){target=\_blank} **`v1.80.1`**
  - [Docker](https://www.docker.com/get-started/){target=\_blank}
 
 Then, clone the repository:  
