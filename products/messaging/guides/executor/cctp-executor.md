@@ -118,7 +118,7 @@ For Solana and other SVM chains:
 - `gasLimit` represents the number of compute units to allocate to the transaction.
 - The total relay cost is determined by:
     - The CUs consumed by the transaction
-    - The [priority fee](https://solana.com/developers/guides/advanced/how-to-use-priority-fees){target=\_blank} used by the relay provider
+    - The [prioritization fee](https://solana.com/docs/core/fees#prioritization-fee){target=\_blank} used by the relay provider
 - `msgValue` must cover all lamports required for:
     - Transaction fees
     - Priority fees

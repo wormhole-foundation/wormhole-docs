@@ -149,7 +149,7 @@ Start the development server and confirm that the live widget displays data corr
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your app running. You should see the widget display the current ETH/USD price, the last update time, the block number, and a freshness badge indicating whether the data is still within its heartbeat window.
+Open `http://localhost:3000/` to see your app running. You should see the widget display the current ETH/USD price, the last update time, the block number, and a freshness badge indicating whether the data is still within its heartbeat window.
 
 The price may update only intermittently. Witnet feeds refresh only when a particular time or price deviation threshold is reached to prevent unnecessary network updates.
 
