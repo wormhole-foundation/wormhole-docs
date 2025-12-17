@@ -1,68 +1,30 @@
 ---
 title: Executor Framework
 description: Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
-categories: Basics, Executor
+categories: Basics, Executor, Relayers
 ---
-<!-- 
-Goal: Explain more in depth how the executor works - concept page
-→ overview 
-→ components
-→ executor contract and relay providers
-→ gas dropoff
-→ flows from the overview page 
-→ current framework page minus contract references
--->
 
-<!-- simplify how the executor works with relay providers focus   
-
-- enables anyone to act as a relayer (often referred to as a [relay provider](/docs/products/messaging/concepts/executor-framework/#relay-provider){target=\_blank}) in a permissionless network, 
-- architecture still relies on the core Wormhole guarantees (VAAs for security, Guardian verification), but it changes how the relaying service is accessed and who can fulfill it.
-- deploys a lightweight [Executor Contract](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} on every supported chain.
-- Relayers do not own the executor contract, which is available for anyone to interact with, making it stateless and permissionless. 
-
-- When an application requests cross-chain message delivery via the Executor, it first fetches a signed fee quote off-chain from a chosen executor provider. It then calls the Executor contract on the source chain, providing the target chain, target address, and that signed quote.
-
-The Executor contract essentially records an Execution Request, escrows the payment (including a small fee), and emits an event that off-chain executor nodes are listening for. An available executor node corresponding to the provided quote will then take the VAA and execute the message on the destination chain. Execution works similarly to how a standard relayer would — for example, by calling the target contract with the message payload. Because the execution network is open, different providers can offer pricing quotes for message delivery, and developers or users can choose competitively. This fosters a decentralized marketplace of relayers, rather than a single service.
-
-For developers, integrating the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} can be as straightforward as using the standard relayer, with the added benefit of supporting non-EVM chains and custom pricing logic. It’s described as _a permissionless, extensible, and low-overhead cross-chain execution framework_. The extensibility means the system is built to accommodate various message types and future features, and permissionless means integrators are not tied to a single provider – it is possible to run an executor node if desired, or rely on community-run services. The Executor is part of Wormhole’s effort to make relaying truly multichain. For example, delivering messages to Solana or other ecosystems where an EVM-style relayer contract is insufficient will be possible through this framework.
-
-The Messaging Executor is a recent addition, and its availability might initially be limited to specific chains as it rolls out. It works alongside the Wormhole core messaging contract, complementing the existing relayer system. As the Executor network grows, developers get the advantage of broader chain support without having to custom-build their relayers for those environments. The Executor remains fully trust-minimized — execution providers cannot compromise message security, and their signed quotes simply ensure fair compensation for delivery.
-
-For more technical details, see the [open-source example Executor implementation](https://github.com/wormholelabs-xyz/example-messaging-executor){target=\_blank}. It explains how quotes, requests, and the off-chain API function within the Executor system.
--->
-
-# Executor
+# Executor Framework
 
 The Executor is a shared execution framework that delivers Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
 
 The [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} enables anyone to act as a relayer within a permissionless network that uses a request-and-quote model for delivering messages. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
 
-At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. The difference lies in how delivery requests are initiated and fulfilled.  
+At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
 
-1. Applications call a lightweight, stateless Executor contract on the source chain, providing the target chain, target address, and a signed fee quote from a chosen provider.  
-2. The contract emits an event representing the execution request, which any off-chain provider can detect.  
-3. A matching provider then retrieves the VAA and performs the delivery on the destination chain.
+## Architecture and Components
 
-By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
+The Executor framework separates responsibilities between three independent participants:
 
-<!-- mermaid added from relayers page -->
+| Actor	            | Responsibility                                                              | 
+|-------------------|-----------------------------------------------------------------------------| 
+| Integrator        | Creates and submits execution requests using valid quotes.                  | 
+| Executor Contract | Publishes requests, transfers payment, and emits observable events.         | 
+| Relay Provider	| Monitors events, issues and validates signed quotes, and executes messages. | 
 
-```mermaid
-sequenceDiagram
-    participant App as Application
-    participant ExContract as Executor Contract (Source Chain)
-    participant ExecNode as Executor Node (Off-chain)
-    participant Dest as Target Contract (Destination Chain)
+This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
 
-    App<<->>ExecNode: Fetch signed quote
-    App->>ExContract: Submit Execution Request<br/>(target chain, target address, signed quote)
-    ExContract->>ExecNode: Emit event with request + escrowed fee
-    ExecNode-->>ExecNode: Listen for events<br/>Match signed quote
-    ExecNode->>Dest: Deliver VAA + execute message payload
-    Dest-->>App: Target contract logic executed
-```
-
-## Components 
+The Executor framework is composed of a small set of on-chain and off-chain components that work together to request, quote, and execute cross-chain messages. The following components define the roles, interfaces, and data structures involved in the execution process.
 
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
 - **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
@@ -71,9 +33,11 @@ sequenceDiagram
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
-For a deeper look at how these components interact, see the [Executor framework documentation](/docs/products/messaging/concepts/executor-framework/){target=\_blank}.
+## Execution Lifecycle
 
-## Request Flow
+The execution lifecycle defines the sequence of interactions between integrators, the Executor contract, and Relay Providers that result in a cross-chain message being executed on the destination chain.
+
+### Request Flow
 
 Message execution starts on the source chain, where an integrator creates an execution request. The request includes a signed quote from a Quoter, along with message data and delivery instructions.
 
@@ -103,7 +67,7 @@ sequenceDiagram
     I->>E: requestExecution
 ```
 
-## Result Flow
+### Result Flow
 
 Once the request is recorded on-chain, off-chain Relay Providers monitor the Executor contract for events that match their signed quotes. When a valid request is detected, the provider retrieves the message from the Guardians and executes it on the destination chain.
 
@@ -130,23 +94,32 @@ sequenceDiagram
     I->>W: parseAndVerifyVM
 ```
 
-## Security Considerations
+## Executor Contract
 
-The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs.
+Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
 
-## Executor Framework
+When called, the Executor contract:
 
-The [Executor framework](https://github.com/wormholelabs-xyz/example-messaging-executor/tree/main){target=\_blank} is a standardized, permissionless system for executing cross-chain messages. It combines a lightweight on-chain contract with off-chain services that quote, monitor, and perform execution. By minimizing on-chain logic and verification, the framework reduces cost and complexity while allowing independent providers to compete and fulfill requests across multiple chains.
+- Accepts execution requests from integrators or clients.
+- Verifies basic parameters (source/destination chain IDs, expiry time).
+- Transfers payment to the designated [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank}.
+- Emits events containing request details for off-chain consumption. 
 
-The Executor framework separates responsibilities between three independent participants:
+The Executor contract exposes the [`requestExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L22){target=\_blank} function, used by both on-chain and off-chain integrations to create an execution request. When `requestExecution` is called, the contract checks that:
 
-| Actor	            | Responsibility                                                              | 
-|-------------------|-----------------------------------------------------------------------------| 
-| Integrator        | Creates and submits execution requests using valid quotes.                  | 
-| Executor Contract | Publishes requests, transfers payment, and emits observable events.         | 
-| Relay Provider	| Monitors events, issues and validates signed quotes, and executes messages. | 
+- The quote’s source chain matches the chain of deployment.
+- The destination matches the provided destination chain.
+- The quote has not expired.
 
-This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
+If all checks pass, payment is transferred to the [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined in the quote, and a [`RequestForExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L61){target=\_blank} event is emitted.
+
+To remain lightweight and chain-agnostic, the Executor contract performs only minimal validation:
+
+- **No signature verification**: The client is responsible for verifying the quote before submission.
+- **No message inspection**: The contract does not parse or validate the message payload.
+- **No payment enforcement**: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
+
+This minimal design keeps the contract generic, inexpensive, and compatible with multiple message formats and future Wormhole protocols.
 
 ## Relay Provider
 
@@ -180,42 +153,6 @@ To improve transparency, providers may also publish a Service-Level Agreement (S
 !!!warning
     The framework does not prevent repeated execution attempts. Providers should implement their own safeguards to avoid duplicate deliveries.
 
-## Executor Contract
+## Security Considerations
 
-Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
-
-When called, the Executor contract:
-
-- Accepts execution requests from integrators or clients.
-- Verifies basic parameters (source/destination chain IDs, expiry time).
-- Transfers payment to the designated [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank}.
-- Emits events containing request details for off-chain consumption. 
-
-The Executor contract exposes the [`requestExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L22){target=\_blank} function, used by both on-chain and off-chain integrations to create an execution request.
-
-```solidity
-requestExecution(
-    uint16 dstChain,
-    bytes32 dstAddr,
-    bytes32 refundAddr,
-    SignedQuote signedQuote,
-    bytes request,
-    bytes relayInstructions
-)
-```
-
-When `requestExecution` is called, the contract checks that:
-
-- The quote’s source chain matches the chain of deployment.
-- The destination matches the provided destination chain.
-- The quote has not expired.
-
-If all checks pass, payment is transferred to the [`payeeAddress`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L59){target=\_blank} defined in the quote, and a [`RequestForExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L61){target=\_blank} event is emitted.
-
-To remain lightweight and chain-agnostic, the Executor contract performs only minimal validation:
-
-- **No signature verification**: The client is responsible for verifying the quote before submission.
-- **No message inspection**: The contract does not parse or validate the message payload.
-- **No payment enforcement**: The contract does not check that the payment matches the quoted fee; providers enforce this off-chain.
-
-This minimal design keeps the contract generic, inexpensive, and compatible with multiple message formats and future Wormhole protocols.
+The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.

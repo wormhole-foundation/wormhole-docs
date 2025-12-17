@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
-categories: Basics
+categories: Basics, Relayers
 ---
 
 # Overview
@@ -27,28 +27,17 @@ Relayers act as delivery mechanisms for cross-chain messages. Their responsibili
 
 When integrating Wormhole messaging, applications can use either manual (client-side) relaying or automated relaying. The difference lies in who is responsible for delivering the VAA to the destination chain.
 
-- **Manual relaying (client-side)**: This approach puts the burden on the user or their client (e.g., a dApp or wallet) to carry out all cross-chain steps. After an action on chain A produces a VAA, the user must manually fetch that VAA (typically via a Wormhole API or explorer) and then submit it in a transaction on chain B. No specialized backend is needed. The relayer role is handled directly by the user via their wallet or web browser. The advantage lies in the simplicity of architecture (no extra services to run) and no additional fees beyond the target chain’s transaction fees. However, this approach provides a limited user experience, as it requires users to sign multiple transactions and maintain funds on each chain involved. In summary, manual relaying is suitable for testing and MVPs, but it's not ideal for production-grade applications.
-- **Automated relaying**: In this approach, the cross-chain delivery is handled automatically by a relayer service or network, rather than the end-user. From the user’s perspective, the message is delivered to the target chain without requiring manual intervention. Automated relaying significantly improves the user experience by allowing an asset transfer to be initiated with a single action, after which the funds are delivered to the destination chain. There are two ways to achieve automated relaying:
+- **Manual relaying (client-side)**: The user or client application (e.g., a dApp or wallet) is responsible for carrying out all cross-chain steps. After an action on the source chain produces a VAA, the user must fetch the VAA (for example via a Wormhole API or explorer) and submit it in a transaction on the destination chain. No backend infrastructure is required, and costs are limited to destination-chain transaction fees. However, this approach requires multiple user interactions and funds on each chain involved, making it best suited for testing, demos, and MVPs rather than production applications.
+- **Automated relaying**: Cross-chain delivery is handled automatically by a relayer service or network instead of the end user. From the user’s perspective, the message is delivered to the destination chain without manual intervention, enabling a smoother, one-step experience. Automated relaying can be implemented in two ways:
 
-    - **Build a relayer service (custom backend)**: Run an off-chain service that listens for VAAs and forwards them. This approach provides full control (e.g., gas optimization, batch transactions, retry handling), but requires building and maintaining backend infrastructure.  
-    - **Use a relayer network provided by Wormhole**: Leverage Wormhole’s decentralized relayer service, which requires minimal integration and no infrastructure to run. Developers can request delivery of messages through on-chain calls, while an untrusted external delivery provider handles execution. This removes the need to run a service, at the cost of service fees, and shifts the complexity away from the user, resulting in a smoother experience.
+    - **Build a relayer service (custom backend)**: Run an off-chain service that listens for VAAs and forwards them to destination chains. This approach provides full control over delivery logic (for example batching, retries, or gas optimization) but requires building and operating backend infrastructure.
+    - **Use a relayer network provided by Wormhole**: Leverage Wormhole’s decentralized relayer infrastructure to request automated delivery through on-chain calls, without running a backend service. This reduces operational complexity at the cost of service fees, while significantly improving user experience.
 
 Choosing between manual and automated relaying depends on the requirements of the application. If the integrator prioritizes convenience, automated relaying (via either a Wormhole service or a custom service) provides a superior experience.
-
-| Aspect          | Manual Relaying (Client-Side)                               | Automated Relaying                                     |
-|-----------------|-------------------------------------------------------------|--------------------------------------------------------|
-| VAA Delivery    | User or client application                                  | Relayer service or network (custom or Wormhole)        |
-| Infrastructure  | None required                                               | Either a backend service or Wormhole’s relayer network |
-| User Experience | Multiple signatures, funds on each chain, extra manual step | One-click transfers, message delivered automatically   |
-| Cost Model      | Only target chain transaction fees                          | Service fees + destination chain gas                   |
-| Reliability     | Depends on user completing all steps                        | Relayer handles retries and execution                  |
-| Best Suited For | Testing, MVPs, demos                                        | Production-grade applications prioritizing UX          |
 
 ## Types of Relayers
 
 Automated relaying can be implemented using Wormhole-provided infrastructure or by running a custom relayer service. Wormhole’s primary relayer solution is the [Executor framework](#){target=\_blank}, which provides permissionless, automated message delivery across supported chains. For advanced use cases or custom logic, applications can also run [custom relayers](#){target=\_blank} using Wormhole’s tooling.
-
-The two common relayer approaches are:
 
 | Aspect          | Executor                                         | Custom Relayer               |
 |-----------------|--------------------------------------------------|------------------------------|
