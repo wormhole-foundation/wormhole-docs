@@ -3,8 +3,8 @@ import evm from '@wormhole-foundation/sdk/platforms/evm';
 import solana from '@wormhole-foundation/sdk/platforms/solana';
 import sui from '@wormhole-foundation/sdk/platforms/sui';
 import '@wormhole-labs/cctp-executor-route';
-import { cctpExecutorRoute } from '@wormhole-labs/cctp-executor-route';
-import type { CCTPExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV1';
+import { cctpV2StandardExecutorRoute } from '@wormhole-labs/cctp-executor-route';
+import type { CCTPv2ExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV2Base';
 import { getSigner } from './helper';
 
 (async function () {
@@ -34,7 +34,7 @@ import { getSigner } from './helper';
     );
   }
 
-  // Build the transfer request for the CCTP v1 executor
+  // Build the transfer request for the CCTP v2 executor
   const tr = await routes.RouteTransferRequest.create(wh, {
     source: Wormhole.tokenId(src.chain, srcUsdc),
     destination: Wormhole.tokenId(dst.chain, dstUsdc),
@@ -45,7 +45,7 @@ import { getSigner } from './helper';
   });
 
   // Configure the executor route (referrer fee off)
-  const ExecutorRoute = cctpExecutorRoute({ referrerFeeDbps: 0n });
+  const ExecutorRoute = cctpV2StandardExecutorRoute({ referrerFeeDbps: 0n });
   const route = new ExecutorRoute(wh);
 
   // Define the amount of USDC to transfer (in the smallest unit, so 1.000001 USDC = 1,000,001 units assuming 6 decimals)
@@ -66,7 +66,8 @@ import { getSigner } from './helper';
   }
 
   // Quote expects the normalized params produced by validate(); cast to that shape
-  const validatedParams = validated.params as CCTPExecutorRoute.ValidatedParams;
+  const validatedParams =
+    validated.params as CCTPv2ExecutorRoute.ValidatedParams;
   const quote = await route.quote(tr, validatedParams);
   if (!quote.success) {
     const { error } = quote as Extract<typeof quote, { success: false }>;
