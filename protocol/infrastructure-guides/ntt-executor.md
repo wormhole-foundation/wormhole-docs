@@ -6,7 +6,7 @@ categories: NTT, Transfer, Executor
 
 # Native Token Transfers Executor Integration
 
-The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
+The [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
 
 This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and SVM chains.
 
@@ -185,7 +185,7 @@ For EVM-based transfers, an `NttManagerWithExecutor` contract combines the stand
 --8<-- 'code/products/messaging/guides/executor/ntt/INttManagerWithExecutor.sol'
 ```
 
-If the NTT Manager is configured with a Transceiver that supports the Standard Relayer, Standard Relayer automation must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor and not by the Standard Relayer.
+If the NTT Manager is configured with a Transceiver that supports the Standard Relayer, Standard Relayer automation must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor and not by the Standard Relayer. This prevents the same transfer from being relayed twice by both the Standard Relayer and the Executor.
 
 ### SVM
 

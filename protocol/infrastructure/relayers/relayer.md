@@ -13,7 +13,7 @@ This page introduces relayers in the Wormhole network and explains their role, a
 
 Relayers are the entities responsible for submitting signed [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} to destination chains, providing message delivery and automation while Guardian signatures and on-chain verification ensure that relayers cannot tamper with message contents and only influence when a VAA is delivered.
 
-Wormhole supports both manual (client-side) and automated relaying. Automated relaying can be implemented either by running a custom relayer or by using Wormhole’s primary relayer infrastructure: the [Executor framework](#){target=\_blank}.
+Wormhole supports both manual (client-side) and automated relaying. Automated relaying can be implemented either by running a custom relayer or by using Wormhole’s primary relayer infrastructure: the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}.
 
 ## Fundamentals
 
@@ -37,7 +37,7 @@ Choosing between manual and automated relaying depends on the requirements of th
 
 ## Types of Relayers
 
-Automated relaying can be implemented using Wormhole-provided infrastructure or by running a custom relayer service. Wormhole’s primary relayer solution is the [Executor framework](#){target=\_blank}, which provides permissionless, automated message delivery across supported chains. For advanced use cases or custom logic, applications can also run [custom relayers](#){target=\_blank} using Wormhole’s tooling.
+Automated relaying can be implemented using Wormhole-provided infrastructure or by running a custom relayer service. Wormhole’s primary relayer solution is the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, which provides permissionless, automated message delivery across supported chains. For advanced use cases or custom logic, applications can also run [custom relayers](#custom-relayer){target=\_blank} using Wormhole’s tooling.
 
 | Aspect          | Executor                                         | Custom Relayer               |
 |-----------------|--------------------------------------------------|------------------------------|
@@ -53,14 +53,12 @@ Automated relaying can be implemented using Wormhole-provided infrastructure or 
 The Executor is a permissionless, next-generation relaying framework that enables anyone to act as a relayer through a request-and-quote model, with support for multichain delivery and flexible pricing.
 
 At a high level, the Executor consists of:
-- A lightweight, stateless [Executor contract](#){target=\_blank} deployed by Wormhole on supported chains
-- A permissionless network of off-chain [relay providers](#){target=\_blank} that fulfill delivery requests
+- A lightweight, stateless [Executor contract](/docs/protocol/infrastructure/relayers/executor-framework/#executor-contract){target=\_blank} deployed by Wormhole on supported chains
+- A permissionless network of off-chain [relay providers](/docs/protocol/infrastructure/relayers/executor-framework/#relay-provider){target=\_blank} that fulfill delivery requests
 
 Applications request automated delivery by submitting an execution request to the Executor contract, along with a signed fee quote obtained off-chain from a relay provider. Relay providers monitor these requests and deliver the corresponding VAAs to destination chains for on-chain execution, extending relaying functionality beyond EVM-only environments.
 
 The Executor does not change Wormhole’s security model. Message integrity and execution correctness are enforced by Guardian signatures and on-chain verification, while relay providers compete on pricing and availability. This creates a decentralized marketplace for relaying rather than a single relayer service.
-
-For execution flows, architecture diagrams, and provider implementation details, see the [Executor framework documentation](#){target=\_blank}.
 
 ### Custom Relayer
 
