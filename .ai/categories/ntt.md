@@ -4493,7 +4493,7 @@ To improve transparency, providers may also publish a Service-Level Agreement (S
 
 ## Security Considerations
 
-The Executor Contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.
+The Executor contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.
 
 
 ---
