@@ -7,7 +7,7 @@ categories: Basics, Relayers
 # Overview
 
 !!!warning 
-    The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\_blank}.
+    The Wormhole Standard Relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\_blank}.
 
 This page introduces relayers in the Wormhole network and explains their role, available approaches, and the trade-offs involved in delivering cross-chain messages.
 
@@ -84,7 +84,7 @@ To simplify development, Wormhole provides the [Relayer Engine](https://github.c
 
     ---
 
-    Overview of key differences between the Executor framework and the Standard Relayer, find guidance for migrating existing integrations.
+    Understand the key differences between the Executor framework and the Standard Relayer, find guidance for migrating existing integrations.
 
     [:custom-arrow: Migrate to Executor](/docs/protocol/infrastructure/relayers/executor-vs-sr/)
 
