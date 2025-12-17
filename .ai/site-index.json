@@ -1283,7 +1283,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-wormhole-relayers.md",
     "html_url": "https://wormhole.com/docs/products/messaging/guides/wormhole-relayers/",
-    "preview": "!!!warning The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\\_blank}.",
+    "preview": "!!!warning The Wormhole Standard Relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\\_blank}.",
     "outline": [
       {
         "depth": 2,
@@ -1342,7 +1342,7 @@
       "headings": 10,
       "estimated_token_count_total": 2109
     },
-    "hash": "sha256:0cb5c0a4932279e28e0648e74140a6b6cd37f586ea72494aad6f6c254c86727f",
+    "hash": "sha256:36b49b0c87c2fbd98d43bf11bdf6f5c4356e26852eee8e0d9f5856ef977fff9f",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7740,7 +7740,7 @@
     ],
     "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md",
     "html_url": "https://wormhole.com/docs/protocol/infrastructure/relayers/relayer/",
-    "preview": "!!!warning The Wormhole standard relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\\_blank}.",
+    "preview": "!!!warning The Wormhole Standard Relayer is being deprecated. Developers are strongly encouraged to [migrate to the Executor framework](/docs/protocol/infrastructure/relayers/executor-vs-sr/){target=\\_blank}.",
     "outline": [
       {
         "depth": 2,
@@ -7774,12 +7774,12 @@
       }
     ],
     "stats": {
-      "chars": 10099,
+      "chars": 10102,
       "words": 1348,
       "headings": 6,
       "estimated_token_count_total": 1758
     },
-    "hash": "sha256:23335de7f87906804330f945142d44342db4156e2da1939246c8f2f4d6a255f5",
+    "hash": "sha256:93382ea04863ebe1d377d3f6f85ec78441352748490464aa8d2c2e621c2a50d4",
     "token_estimator": "heuristic-v1"
   },
   {
