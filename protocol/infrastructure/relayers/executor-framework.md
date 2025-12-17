@@ -44,7 +44,7 @@ Message execution starts on the source chain, where an integrator creates an exe
 1. A client requests a quote from a Quoter, specifying source and destination chains.  
 2. The Quoter returns a signed quote with pricing and parameters.  
 3. The client sends a message through an integrator contract, including the signed quote.  
-4. The integrator publishes the message via the[ Wormhole Core contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}.  
+4. The integrator publishes the message via the [Wormhole Core contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}.  
 5. The integrator then calls the Executor contract to register the execution request.
 
 ```mermaid
@@ -84,13 +84,13 @@ sequenceDiagram
 		box Source Chain
 		participant EC as Executor Contract
 		end
-		participant E as Relayer (Off-Chain)
+		participant RP as Relay Provider (Off-Chain)
 		box Destination Chain
 		participant I as Integrator Contract
 		participant W as Wormhole Core
 		end
-		EC-->>E: event
-    E->>I: executeVaaV1
+		EC-->>RP: event
+    RP->>I: executeVaaV1
     I->>W: parseAndVerifyVM
 ```
 
@@ -123,7 +123,7 @@ This minimal design keeps the contract generic, inexpensive, and compatible with
 
 ## Relay Provider
 
-A Relay Provider is an off-chain service that executes messages between chains. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
+A Relay Provider is an off-chain service that executes messages between chains and operates a Quoter service to issue signed execution quotes. Providers compete in a permissionless marketplace by offering signed execution quotes that define their pricing and delivery terms. This system decentralizes message delivery, allowing integrators to choose providers or run their own, rather than relying on a single relayer service. 
 
 Each provider runs infrastructure that listens for execution requests emitted by the Executor contract on supported chains. When a request matches one of their quotes, the provider retrieves the associated VAA from the Guardians and performs the message execution on the destination chain.  
 

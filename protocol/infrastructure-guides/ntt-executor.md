@@ -32,6 +32,8 @@ Before starting, ensure you have:
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/products/reference/chain-ids/){target=_blank}.
+
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
 ## References
@@ -183,7 +185,7 @@ For EVM-based transfers, an `NttManagerWithExecutor` contract combines the stand
 --8<-- 'code/products/messaging/guides/executor/ntt/INttManagerWithExecutor.sol'
 ```
 
-If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. You can turn off relaying by setting `automatic` to `false`.
+If the NTT Manager is configured with a Transceiver that supports the Standard Relayer, Standard Relayer automation must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor and not by the Standard Relayer.
 
 ### SVM
 

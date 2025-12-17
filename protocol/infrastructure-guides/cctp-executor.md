@@ -15,7 +15,10 @@ This guide covers the core flow for integrating CCTP with Executor, including re
 Before integrating CCTP with Executor, ensure that:
 
 - Both the source and destination chains are supported.
-- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain.
+- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain. 
+
+!!! note 
+    Circle’s Cross-Chain Transfer Protocol supports two versions: CCTPv1 and CCTPv2. These versions differ in how transfers are finalized and how execution can be composed on the destination chain. For a detailed explanation of the differences between CCTPv1 and CCTPv2, see [Circle’s overview](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}. 
 
 ??? info "How to verify chain and relay type support"
 
