@@ -9,7 +9,7 @@ url: https://wormhole.com/docs/protocol/infrastructure/relayers/executor-framewo
 
 The Executor is a shared execution framework that delivers Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
 
-The Executor framework enables anyone to act as a relayer within a permissionless network that uses a request-and-quote model for delivering messages. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
+The Executor framework enables anyone to act as a relayer in a permissionless network that uses a request-and-quote model for message delivery. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
 
 At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
 
@@ -25,12 +25,12 @@ The Executor framework separates responsibilities between three independent part
 
 This modular structure enables permissionless, verifiable, and cost-efficient message execution across multiple blockchains — without persistent on-chain state or protocol-specific relayers.
 
-The Executor framework is composed of a small set of on-chain and off-chain components that work together to request, quote, and execute cross-chain messages. The following components define the roles, interfaces, and data structures involved in the execution process.
+The Executor framework comprises a small set of on-chain and off-chain components that work together to request, quote, and execute cross-chain messages. The following components define the roles, interfaces, and data structures involved in the execution process.
 
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
 - **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
-- **Execution Quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
-- **Execution Request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
+- **Execution quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
+- **Execution request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
 - **Payee**: The wallet address designated by the Quoter to receive payment once the execution is completed. 
 
@@ -132,9 +132,9 @@ Each Relay Provider operates a Quoter service that issues signed quotes and defi
 
 Each quote specifies: 
 
-- The source and destination chains. 
-- Pricing. 
-- An expiry time before which the Executor contract can accept the quote. 
+- The source and destination chains
+- Pricing
+- An expiry time before which the Executor contract can accept the quote
 
 Short expiry windows reduce the risk of stale quotes but must be long enough for users to submit transactions on the source chain. 
 
@@ -144,10 +144,10 @@ Relay Providers may operate multiple wallets, each capable of performing executi
 
 Providers should provide a public API for integrators to track the status of the request such as: 
 
-- Request creation.
-- Added gas fees.
-- Transaction executed.
-- Any issued refunds. 
+- Request creation
+- Added gas fees
+- Transaction executes
+- Any issued refunds
 
 To improve transparency, providers may also publish a Service-Level Agreement (SLA) describing the types of executions they support, their retry and refund policies, and their expected behavior during execution.
 
