@@ -2,18 +2,19 @@
 title: Standard Relayer to Executor Migration
 description: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
 categories: Relayers, Executor
+url: https://wormhole.com/docs/protocol/infrastructure/relayers/executor-vs-sr/
 ---
 
 # Standard Relayer to Executor Migration
 
-This page explains the practical differences between the [Executor framework](/docs/products/messaging/concepts/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
+This page explains the practical differences between the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} and the Legacy Standard Relayer, focusing on how quoting, payments, and message handling differ. It is intended for teams currently integrating with the Standard Relayer who are transitioning to the Executor-based flow. 
 
 The table below summarizes the core differences at a high level before diving into each area in detail.
 
 | Category          | Standard Relayer             | Executor                        |
 | ----------------- | ---------------------------- | ------------------------------- |
 | Quoting           | On-chain price query         | Off-chain signed quote          |
-| Payment           | Paid on `sendPayloadToEvm`   | Paid on [`requestExecution`](/docs/products/messaging/concepts/executor-framework/#executor-contract){target=\_blank} |
+| Payment           | Paid on `sendPayloadToEvm`   | Paid on [`requestExecution`](https://github.com/wormholelabs-xyz/example-messaging-executor/blob/main/evm/src/Executor.sol#L22){target=\_blank} |
 | VAA Verification  | Relayer handles verification | Your contract verifies using the Core Contract |
 | Replay Protection | Built-in                     | You choose sequence / hash      |
 | Delivery Behavior | Opinionated delivery engine  | Stateless request registry      |
@@ -31,7 +32,7 @@ Both models rely on a quote to determine execution cost, but they differ in how 
 
 **Executor**
 
-- **Quoting**: Off-chain via a signed quote returned by a [Quoter](/docs/products/messaging/concepts/executor-framework/#relay-provider){target=\_blank} operated by a Relay Provider. The quote encodes the relay instructions and delivery terms.
+- **Quoting**: Off-chain via a signed quote returned by a [Quoter](/docs/protocol/infrastructure/relayers/executor-framework/#relay-provider){target=\_blank} operated by a Relay Provider. The quote encodes the relay instructions and delivery terms.
 - **Request**: The application calls `Executor.requestExecution(...)` (or the SDK helper `_publishAndRelay`), passing the signed quote and relay instructions.
 - **Payment**: The payment is transferred to the provider’s designated `payee` when the request is registered. The Executor contract is stateless and performs minimal checks (chain match, expiry).
 - **Refunds**: Determined entirely by the provider’s off-chain policy. The Executor contract does not handle refund mechanics, gas accounting, or delivery logic.
@@ -85,8 +86,6 @@ The Executor contract is intentionally minimal. It registers execution requests 
 - Minimal validation (chain match, expiry), with no price enforcement on-chain, no gas accounting, and no message inspection.
 - An open provider marketplace, where any provider can fulfill the request by submitting the VAA.
 
-See the [Executor overview](/docs/products/messaging/concepts/executor-overview/){target=\_blank} and framework pages for a detailed breakdown of actors, flows, and contract behavior.
-
 ## Migration Notes
 
 Moving from the Standard Relayer to the Executor model involves changes to how messages are published, how delivery requests are issued, and how peers and replay protection are handled. The steps below outline the core updates required in a typical integration.
@@ -101,6 +100,6 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 
 The resources below provide deeper technical detail and example implementations. 
 
-- [**Executor framework**](/docs/products/messaging/concepts/executor-framework/){target=\_blank}: Overview of the Executor model, components, and request flow.
+- [**Executor framework**](/docs/protocol/infrastructure/relayers/executor-framework/#relay-provider){target=\_blank}: Overview of the Executor model, components, and request flow.
 - [**Executor addresses**](/docs/products/messaging/reference/executor-addresses/){target=\_blank}: Chain-specific deployed addresses.
 - [**Hello Executor example**](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}: Minimal end-to-end Executor demo showing quoting, request calls, and replay protection.

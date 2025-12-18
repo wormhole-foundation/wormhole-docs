@@ -1,6 +1,5 @@
 title: Guides
 nav:
-- executor
 - solana-shims
 - 'Interact with Legacy Wormhole Relayers': wormhole-relayers.md
 - 'Interact with Core Contracts': core-contracts.md

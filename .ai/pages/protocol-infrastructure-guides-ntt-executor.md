@@ -2,11 +2,12 @@
 title: Integrate Native Token Transfers with Executor
 description: Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 categories: NTT, Transfer, Executor
+url: https://wormhole.com/docs/protocol/infrastructure-guides/ntt-executor/
 ---
 
 # Native Token Transfers Executor Integration
 
-The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
+The [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} extends [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} by enabling permissionless, quote-based relaying and cross-chain execution. Instead of relying on a dedicated relayer, applications can now request a signed quote from an open network of relay providers to automatically complete token redemptions on supported destination chains.
 
 This guide focuses on front-end integration between NTT and Executor. It walks through generating relay instructions, requesting a signed execution quote, invoking your sending contracts, and tracking relay status on-chain, with dedicated implementation details for both EVM and SVM chains.
 
@@ -31,6 +32,8 @@ Before starting, ensure you have:
       - Supported source and destination chains
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
+
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/products/reference/chain-ids/){target=_blank}.
 
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
@@ -127,7 +130,15 @@ For Solana and other SVM chains:
 Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
 
 ```ts
---8<-- 'code/products/messaging/guides/executor/signedQuote.ts'
+const EXECUTOR_URL = 'https://executor-testnet.labsapis.com';
+const { signedQuote: quote, estimatedCost: estimate } = (
+  await axios.post(`${EXECUTOR_URL}/v0/quote`, {
+    srcChain: 10002,
+    dstChain: 10004,
+    relayInstructions,
+  })
+).data;
+
 ```
 
 ??? interface "Parameters"
@@ -180,10 +191,57 @@ Once you have generated your relay instructions and received a signed quote, use
 For EVM-based transfers, an `NttManagerWithExecutor` contract combines the standard NTT `transfer` and the Executor’s `requestExecution` into a single call. The `INttManagerWithExecutor` interface is defined as follows:
 
 ```ts
---8<-- 'code/products/messaging/guides/executor/ntt/INttManagerWithExecutor.sol'
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+struct ExecutorArgs {
+    // The msg value to be passed into the Executor.
+    uint256 value;
+    // The refund address used by the Executor.
+    address refundAddress;
+    // The signed quote to be passed into the Executor.
+    bytes signedQuote;
+    // The relay instructions to be passed into the Executor.
+    bytes instructions;
+}
+
+struct FeeArgs {
+    // The fee in tenths of basis points.
+    uint16 dbps;
+    // To whom the fee should be paid (the "referrer").
+    address payee;
+}
+
+interface INttManagerWithExecutor {
+    /// @notice Error when the refund to the sender fails.
+    error RefundFailed(uint256 refundAmount);
+
+    /// @notice Transfer tokens using the Executor for relaying.
+    /// @param nttManager The NTT manager used for the transfer.
+    /// @param amount The amount to transfer.
+    /// @param recipientChain The Wormhole chain ID for the destination.
+    /// @param recipientAddress The recipient address.
+    /// @param refundAddress The address to which unused gas is refunded.
+    /// @param shouldQueue Whether the transfer should be queued if the outbound limit is hit.
+    /// @param encodedInstructions Additional instructions for the destination chain.
+    /// @param executorArgs The arguments to be passed into the Executor.
+    /// @param feeArgs The arguments used to compute and pay the referrer fee.
+    /// @return msgId The resulting message ID of the transfer.
+    function transfer(
+        address nttManager,
+        uint256 amount,
+        uint16 recipientChain,
+        bytes32 recipientAddress,
+        bytes32 refundAddress,
+        bool shouldQueue,
+        bytes memory encodedInstructions,
+        ExecutorArgs calldata executorArgs,
+        FeeArgs calldata feeArgs
+    ) external payable returns (uint64 msgId);
+}
 ```
 
-If the NTT Manager is configured with a Transceiver that supports Standard Relayer, the `encodedInstructions` should be set to turn off relaying, since the Executor will handle it. You can turn off relaying by setting `automatic` to `false`.
+If the NTT Manager is configured with a Transceiver that supports the Legacy Standard Relayer, the automated relaying must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions that control transceiver behavior. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor. This ensures the transfer follows the intended Executor integration path.
 
 ### SVM
 
@@ -195,7 +253,127 @@ For Solana and other SVM-based chains, two helper programs are available to assi
 Together, these helpers allow you to compose and send a full NTT with Executor transaction using the Wormhole TypeScript SDK. Below is a simplified example adapted from the SDK implementation:
 
 ```ts
---8<-- 'code/products/messaging/guides/executor/ntt/NTTExampleTransfer.ts'
+const ntt = await s.getProtocol("Ntt", {
+  ntt: {
+    chain: "Solana",
+    manager: ...,
+    token: ...,
+    transceiver: { wormhole: ... },
+  },
+});
+...
+// as of this writing, there's only one tx on Solana
+const txs = ntt.transfer(
+  new SolanaAddress(payer.publicKey),
+  1n,
+  {
+    chain: "Sepolia",
+    address: new UniversalAddress(
+      recipientWallet,
+      "hex"
+    ),
+  },
+  { queue: false, automatic: false }
+);
+for await (const tx of txs) {
+	// https://github.com/wormhole-foundation/native-token-transfers/blob/b4aa0e34755f735fca40e4566e07c17ac6b2b812/solana/ts/sdk/ntt.ts#L970C8-L970C20
+	if (tx.description === "Ntt.Transfer") {
+		// Not sure if the first signer will always be the outbox
+	  const outboxKeypair = tx.transaction.signers[0];
+	  // Get the lookup tables configured on the NTT manager
+	  const luts: AddressLookupTableAccount[] = [];
+	  try {
+	    // @ts-ignore
+	    luts.push(await ntt.getAddressLookupTable());
+	  } catch (e) {
+	    console.log(e.message);
+	  }
+	  // Decompile the message
+	  const message = TransactionMessage.decompile(
+	    tx.transaction.transaction.message,
+	    { addressLookupTableAccounts: luts }
+	  );
+	  // Add the execution request to the message
+	  const exampleNttWithExecutorProgram = new Program<ExampleNttWithExecutor>(
+      ExampleNttWithExecutorIdl as ExampleNttWithExecutor,
+      provider
+    );
+    message.instructions.push(
+      await exampleNttWithExecutorProgram.methods
+        .relayNttMesage({
+          execAmount: new BN(estimate.toString()),
+          recipientChain: chainToChainId("Sepolia"),
+          signedQuoteBytes,
+          relayInstructions: Buffer.from(relayInstructions.substring(2), "hex"),
+        })
+        .accounts({
+          payee: new web3.PublicKey(signedQuoteBytes.subarray(24, 56)),
+          nttProgramId,
+          nttPeer: web3.PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("peer"),
+              encoding.bignum.toBytes(chainToChainId("Sepolia")),
+            ],
+            nttProgramId
+          )[0],
+          nttMessage: outboxKeypair.publicKey,
+        })
+        .instruction()
+    );
+    // If the canonical NTT manager lookup table did not exist
+    if (luts.length === 0) {
+      // This should probably check the program version and only do this for versions without the canonical lookup table
+      // Otherwise, it should call `initializeLut` on the manager(?)
+      // I'm not sure if that is already checked somewhere in the SDK
+      console.log("no manager lookup table found, checking helper program");
+      const exampleNttSvmLutProgram = new Program<ExampleNttSvmLut>(
+        ExampleNttSvmLutIdl as ExampleNttSvmLut,
+        provider
+      );
+      const lutPointerAddress = web3.PublicKey.findProgramAddressSync(
+        [Buffer.from("lut"), nttProgramId.toBuffer()],
+        exampleNttSvmLutProgram.programId
+      )[0];
+      let lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+        lutPointerAddress
+      );
+      if (!lutPointer) {
+        console.log("no helper program lookup table found, initializing...");
+        const recentSlot =
+          (await exampleNttSvmLutProgram.provider.connection.getSlot()) - 1;
+        const tx = await exampleNttSvmLutProgram.methods
+          .initializeLut(new BN(recentSlot))
+          .accounts({
+            nttProgramId,
+          })
+          .rpc();
+        console.log(`initialized lookup table: ${tx}`);
+        while (!lutPointer) {
+          // wait for lut to warm up
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          lutPointer = await exampleNttSvmLutProgram.account.lut.fetchNullable(
+            lutPointerAddress
+          );
+        }
+      }
+      const response = await connection.getAddressLookupTable(
+        lutPointer.address
+      );
+      if (!response.value) {
+        throw new Error("unable to fetch lookup table");
+      }
+      luts.push(response.value);
+    }
+    // Recompile the message with the lookup table (whether manager or helper)
+    tx.transaction.transaction.message = message.compileToV0Message(luts);
+    // Broadcast
+    const hash = await provider.sendAndConfirm(
+      tx.transaction.transaction,
+      tx.transaction.signers,
+      { commitment: "confirmed" }
+    );
+  }
+}
 ```
 
 ## Check the Transaction Status
@@ -219,4 +397,4 @@ You can also link directly to the transaction in the Explorer:
 
 ## Conclusion
 
-Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers. For a working reference implementation, see the [NTT with Executor TypeScript demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk/tree/main){target=\_blank}. 
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers. For a working reference implementation, see the [NTT with Executor TypeScript demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk/tree/main){target=\_blank}.

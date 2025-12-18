@@ -100,4 +100,3 @@ Congratulations! You've published your first multichain message using Wormhole's
 - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
-<!-- add get started with executor once we have a get started -->

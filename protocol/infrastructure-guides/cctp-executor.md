@@ -6,7 +6,7 @@ categories: CCTP, Transfer, Executor
 
 # CCTP Executor Integration
 
-The [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.
+The [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} extends Circle’s [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} by enabling permissionless, quote-based relaying and execution of USDC burns and redeems. Instead of relying on a dedicated relayer, applications obtain a signed quote from an open network of relay providers, which then perform the redeem and, optionally, the follow-up execution on the destination chain.
 
 This guide covers the core flow for integrating CCTP with Executor, including relay instruction generation, quote requests, contract wiring, and transaction status checks, applicable across all supported execution environments. 
 
@@ -15,7 +15,10 @@ This guide covers the core flow for integrating CCTP with Executor, including re
 Before integrating CCTP with Executor, ensure that:
 
 - Both the source and destination chains are supported.
-- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain.
+- The required CCTP relay type (CCTPv1 `ERC1` or CCTPv2 `ERC2`) is enabled for the destination chain. 
+
+!!! note 
+    Circle’s Cross-Chain Transfer Protocol supports two versions: CCTPv1 and CCTPv2. These versions differ in how transfers are finalized and how execution can be composed on the destination chain. For a detailed explanation of the differences between CCTPv1 and CCTPv2, see [Circle’s overview](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}. 
 
 ??? info "How to verify chain and relay type support"
 
@@ -186,9 +189,6 @@ With relay instructions and a signed quote, the sending transaction can initiate
 ### EVM
 
 For EVM chains, helper contracts wrap the CCTP calls and the Executor request into a single entry point. These helpers perform the CCTP burn via `depositForBurn`, followed by a `requestExecution` through the Executor using the signed quote and relay instructions you generated earlier. A version specific helper contract is used depending on whether your integration relies on CCTPv1 (`CCTPv1WithExecutor`) or CCTPv2 (`CCTPv2WithExecutor`).
-
-!!! note "Settlement support"
-    `CCTPv2WithExecutor` also supports [Settlement](/docs/products/settlement/overview/){target=\_blank}. The helper forwards both `maxFee` and `minFinalityThreshold` directly to Circle’s [`depositForBurn`](https://developers.circle.com/cctp/evm-smart-contracts#depositforburn){target=\_blank} entrypoint. Circle interprets these two fields to determine whether a transfer should follow normal finalization or Settlement-mode fast finality, based on the fee paid and the finality threshold selected.
 
 Both versions share the same `ExecutorArgs` and `FeeArgs` structs:
 
