@@ -61,7 +61,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 Follow these steps to work with Wormhole Messaging:
 
 - **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- **[Executor Overview](/docs/products/messaging/concepts/executor-overview/){target=\_blank}**: Learn how to use Executors to automate message handling and application logic across chains.
+- **[Executor Overview](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}**: Learn how to use Executors to automate message handling and application logic across chains.
 
 For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
 
