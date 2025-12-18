@@ -185,7 +185,7 @@ For EVM-based transfers, an `NttManagerWithExecutor` contract combines the stand
 --8<-- 'code/products/messaging/guides/executor/ntt/INttManagerWithExecutor.sol'
 ```
 
-If the NTT Manager is configured with a Transceiver that supports the Standard Relayer, Standard Relayer automation must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor and not by the Standard Relayer. This prevents the same transfer from being relayed twice by both the Standard Relayer and the Executor.
+If the NTT Manager is configured with a Transceiver that supports the Legacy Standard Relayer, the automated relaying must be disabled when using the Executor. The `encodedInstructions` parameter contains serialized NTT instructions that control transceiver behavior. When Standard Relayer instructions are included, set the `automatic` flag to `false` so that delivery is handled exclusively by the Executor. This ensures the transfer follows the intended Executor integration path.
 
 ### SVM
 
