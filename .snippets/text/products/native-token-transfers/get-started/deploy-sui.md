@@ -1,9 +1,9 @@
 This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
 
-1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui){target=\_blank} to deploy a Sui Coin contract on testnet.
 
     ```bash
-    git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+    git clone https://github.com/wormhole-foundation/example-ntt-token-sui
     cd example-ntt-token-sui
     ```
 

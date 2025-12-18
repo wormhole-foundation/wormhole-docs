@@ -15,7 +15,7 @@ This guide walks you through deploying NTT on SVM chains, including setting up d
 
 Before deploying NTT on SVM chains, ensure you have the following:
 
-- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed.
+- [Rust](https://rust-lang.org/tools/install/){target=\_blank} installed.
 - The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
 
     === "v3"

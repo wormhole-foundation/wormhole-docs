@@ -71,7 +71,7 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 ## tBTC Route {: #tbtc-route}
 
-You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines WTT and Threshold's contracts. Native tBTC is first locked in the Wormhole WTT, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (e.g., Solana, Polygon, Arbitrum, Optimism, or Base).
+You can bridge [Threshold's Bitcoin](https://www.threshold.network/){target=\_blank} via this hybrid solution that combines WTT and Threshold's contracts. Native tBTC is first locked in the Wormhole WTT, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (e.g., Solana, Polygon, Arbitrum, Optimism, or Base).
 
 Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through WTT, and the resulting asset will be a Wormhole-wrapped token instead of native tBTC.
 

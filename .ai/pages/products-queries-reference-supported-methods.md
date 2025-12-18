@@ -21,7 +21,7 @@ Wormhole currently supports five distinct query types, each designed for specifi
 
 ### eth_call
 
-The [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
+The [`eth_call`](https://ethereum.org/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
 
 - **Batching**: Group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification.
 - **Capacity**: Batch up to 255 individual in a single `eth_call` query.
