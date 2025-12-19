@@ -13,7 +13,7 @@ def normalize_version(version):
         return version
 
     version = version.strip()
-    match = re.search(r"\d+(?:\.\d+){1,3}(?:[-+][0-9A-Za-z.-]+)?", version)
+    match = re.search(r"\d+(?:\.\d+){0,2}(?:[-+][0-9A-Za-z.-]+)?", version)
     if match:
         return match.group(0)
     if version.startswith("v"):
@@ -99,8 +99,8 @@ def main():
         owner, repo_name = parse_github_url(repo["repository"])
         raw_current = repo.get("current_version")
         raw_latest = repo.get("latest_version")
-        current_version = normalize_version(raw_current) or raw_current
-        latest_version = normalize_version(raw_latest) or raw_latest
+        current_version = normalize_version(raw_current)
+        latest_version = normalize_version(raw_latest)
         title = f"Update needed: {repo_name} ({current_version} -> {latest_version})"
         body = f"""A new release has been detected for {repo['repository']}.
 Current version: {current_version}

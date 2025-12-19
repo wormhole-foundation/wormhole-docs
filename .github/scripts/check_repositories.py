@@ -11,7 +11,7 @@ def normalize_version(version):
         return version
 
     version = version.strip()
-    match = re.search(r"\d+(?:\.\d+){1,3}(?:[-+][0-9A-Za-z.-]+)?", version)
+    match = re.search(r"\d+(?:\.\d+){0,2}(?:[-+][0-9A-Za-z.-]+)?", version)
     if match:
         return match.group(0)
     if version.startswith("v"):
