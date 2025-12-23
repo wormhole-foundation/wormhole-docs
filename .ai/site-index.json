@@ -4398,6 +4398,11 @@
       },
       {
         "depth": 2,
+        "title": "Does NTT support a “lock-and-lock” transfer model?",
+        "anchor": "does-ntt-support-a-lock-and-lock-transfer-model"
+      },
+      {
+        "depth": 2,
         "title": "Do you have an example of how cross-chain lending can be implemented using Wormhole?",
         "anchor": "do-you-have-an-example-of-how-cross-chain-lending-can-be-implemented-using-wormhole"
       },
@@ -4478,12 +4483,12 @@
       }
     ],
     "stats": {
-      "chars": 13016,
-      "words": 2013,
-      "headings": 17,
-      "estimated_token_count_total": 2854
+      "chars": 13914,
+      "words": 2156,
+      "headings": 18,
+      "estimated_token_count_total": 3027
     },
-    "hash": "sha256:4999e24d87d4dfec46e83ff8c1bca50bda067bb60d2b19574d8498f526c02d67",
+    "hash": "sha256:aee32e071abdbe088a7adcf32fd4f328bea4faeaaac625f76247faee614b0cbe",
     "token_estimator": "heuristic-v1"
   },
   {

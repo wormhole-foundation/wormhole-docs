@@ -13578,6 +13578,16 @@ Native Token Transfers (NTT) is a framework for moving your own token across mul
 
 NTT includes configurable controls like rate limiting and access control, and supports deployment modes that fit either new or existing tokens. For a quick video summary, watch the [NTT speed round](https://youtu.be/wdU_6tAeGyg?si=-2wWxC8IZegzB1vl){target=\_blank}.
 
+## Does NTT support a “lock-and-lock” transfer model?
+
+No. NTT does not support a lock-and-lock transfer model.
+
+In locking mode, the NTT Manager completes inbound transfers by transferring tokens from its own balance on that chain. This means the NTT Manager can only release tokens that it already holds locally.
+
+A lock-and-lock setup would require both the source and destination chains to use locking mode. In that case, the destination NTT Manager would need to have already enough tokens available to release for every inbound transfer. Without those tokens, the transfer cannot be redeemed on the destination chain.
+
+Because this model depends on maintaining sufficient token balances on each destination chain, NTT does not support lock-and-lock transfers. Instead, NTT relies on minting on chains that do not require pre-funded balances, avoiding destination-side liquidity constraints.
+
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
 Yes, we have an example of cross-chain lending that leverages [Wormhole’s Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} on GitHub.
