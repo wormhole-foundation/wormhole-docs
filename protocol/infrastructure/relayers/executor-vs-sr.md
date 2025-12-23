@@ -99,6 +99,30 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 
 The resources below provide deeper technical detail and example implementations. 
 
-- [**Executor framework**](/docs/protocol/infrastructure/relayers/executor-framework/#relay-provider){target=\_blank}: Overview of the Executor model, components, and request flow.
-- [**Executor addresses**](/docs/products/messaging/reference/executor-addresses/){target=\_blank}: Chain-specific deployed addresses.
-- [**Hello Executor example**](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}: Minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Executor Framework Overview**
+
+    ---
+
+    Learn about the Executor model, components, and request flow.
+
+    [:custom-arrow: Learn About the Framework](/docs/protocol/infrastructure/relayers/executor-framework/#relay-provider)
+
+-   :octicons-book-16:{ .lg .middle } **Executor Addresses**
+
+    ---
+
+    See the chain-specific deployed addresses.
+
+    [:custom-arrow: See Addresses](/docs/products/messaging/reference/executor-addresses/)
+
+-   :octicons-tools-16:{ .lg .middle } **Executor Demo**
+
+    ---
+
+    Check out a minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
+
+    [:custom-arrow: See the Hello Executor Demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}
+
+</div>

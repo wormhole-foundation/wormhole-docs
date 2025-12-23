@@ -49,7 +49,7 @@ To explore detailed information about any NTT CLI command, including its options
 | `ntt solana token-authority <programId>`       | Print the token authority address for a given program ID. | `ntt solana token-authority Sol1234...`         |
 | `ntt solana ata <mint> <owner> <tokenProgram>` | Print the token authority address for a given program ID. | `ntt solana ata Mint123... Owner123... token22` |
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 

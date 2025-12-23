@@ -82,7 +82,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     Learn how to run the needed infrastructure to spin up a Spy daemon locally and subscribe to a stream of Verifiable Action Approvals (VAAs).
 
-    [:custom-arrow: Spin Up a Spy](/docs/protocol/infrastructure-guides/run-spy/){target=\_blank}
+    [:custom-arrow: Spin Up a Spy](/docs/protocol/infrastructure-guides/run-spy/)
 
 -   :octicons-code-16:{ .lg .middle } **Use Queries**
 

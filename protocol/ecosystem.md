@@ -31,4 +31,14 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Visit the Product Comparison**
+
+    ---
+
+    Unsure which bridging solution you need? Match your requirements with the right Wormhole tool.
+
+    [:custom-arrow: Compare Products](/docs/products/overview/)
+
+</div>

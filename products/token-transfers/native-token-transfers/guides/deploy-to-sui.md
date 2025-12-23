@@ -142,7 +142,7 @@ Once you've set up NTT, proceed with deploying the contracts.
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 
@@ -152,15 +152,15 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/)
 
--   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
+-   :octicons-tools-16:{ .lg .middle } **Deploy to SVM Chains**
 
     ---
 
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/)
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -168,14 +168,14 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs)
 
--   :octicons-tools-16:{ .lg .middle } **Deploy NTT to EVM Chains**
+-   :octicons-tools-16:{ .lg .middle } **Deploy to EVM Chains**
 
     ---
 
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for EVM chains.
 
-    [:custom-arrow: Deploy NTT to EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Deploy NTT to EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/)
 
 </div>

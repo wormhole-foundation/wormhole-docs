@@ -70,9 +70,33 @@ The expected output should be similar to this:
 
 ## Next Steps
 
-Now that you've successfully run your first verifiable query, you are ready to go deeper. Check out the following guides to build on what you've learned:
+Now that you've successfully run your first verifiable query, you are ready to go deeper. Check out the following guides to build on what you've learned.
 
-- **[Query Solana](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank}**: Try fetching Solana stake pools to see how cross-chain queries apply beyond EVM.
-- **[Use Queries](/docs/products/queries/guides/use-queries){target=\_blank}**: Take a deeper look at the complete Queries lifecycle.
-- **Browse the [Supported Networks](/docs/products/queries/reference/supported-networks){target=\_blank}**: See where Queries are supported.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Query Solana**
+
+    ---
+
+    Try fetching Solana stake pools to see how cross-chain queries apply beyond EVM.
+
+    [:custom-arrow: See the Queries Demo](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Use Queries**
+
+    ---
+
+    Take a deeper look at the complete Queries lifecycle.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/queries/guides/use-queries/)
+
+-   :octicons-book-16:{ .lg .middle } **Supported Networks**
+
+    ---
+
+    See where Queries are supported.
+
+    [:custom-arrow: Browse Supported Networks](/docs/products/queries/reference/supported-networks/)
+
+</div>
 

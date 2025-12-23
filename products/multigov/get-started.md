@@ -38,7 +38,24 @@ MultiGov deployments follow a similar structure on both EVM and Solana. This sec
 
 ## Next Steps
 
-You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture:
+You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture.
 
- - **[Deploy on EVM Chains](/docs/products/multigov/guides/deploy-to-evm){target=\_blank}**: Configure and deploy MultiGov smart contracts to EVM-compatible chains.
- - **[Deploy on Solana](/docs/products/multigov/guides/deploy-to-solana){target=\_blank}**: Launch the Solana staking program and configure spoke chain participation.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy on EVM Chains**
+
+    ---
+
+    Configure and deploy MultiGov smart contracts to EVM-compatible chains.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/multigov/guides/deploy-to-evm/)
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy on Solana**
+
+    ---
+
+    Launch the Solana staking program and configure spoke chain participation.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/multigov/guides/deploy-to-solana/)
+
+</div>

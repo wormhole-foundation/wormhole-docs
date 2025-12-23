@@ -58,6 +58,16 @@ Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross
 
 The protocol provides mechanisms for unlocking the fee once the bridging process is completed. This can occur immediately upon fulfillment or be batched for efficiency. In the fee unlock flow, the contract verifies the unlock message via Wormhole and then releases the locked fee to the designated unlocker address.
 
-## Where to Go Next
+## Next Steps
 
-- To learn how to integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Integrate Settlement Routes**
+
+    ---
+
+    Learn how to integrate settlement routes into your application using the SDK.
+
+    [:custom-arrow: See the Mayan Swift Demo](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+</div>

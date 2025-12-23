@@ -106,9 +106,41 @@ In the deployment steps, you will add your supported chains, their token address
 
 ## Next Steps
 
-You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
+You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts.
 
- - [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
- - [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
- - [Deploy to Sui](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/){target=\_blank}: Deploy NTT on Sui.
- - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to EVM Chains**
+
+    ---
+
+    Learn how to deploy NTT on EVM-compatible chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/)
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to SVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure NTT for SVM chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to Sui**
+
+    ---
+
+    Learn how to deploy NTT to Sui.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>
+

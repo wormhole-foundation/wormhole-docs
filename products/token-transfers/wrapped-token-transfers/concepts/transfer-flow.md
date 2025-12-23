@@ -200,6 +200,16 @@ sequenceDiagram
 
 ## Next Steps
 
-Now that you’ve seen how a transfer works, try both types yourself to experience the full process:
+Now that you’ve seen how a transfer works, try both types yourself to experience the full process.
 
-- [Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with WTT**
+
+    ---
+
+    Perform token transfers using WTT, including manual and automatic transfers.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
+
+</div>

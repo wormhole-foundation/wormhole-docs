@@ -52,7 +52,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
--   :octicons-tools-16:{ .lg .middle } **Executor Framework**
+-   :octicons-book-16:{ .lg .middle } **Executor Framework**
 
     ---
 

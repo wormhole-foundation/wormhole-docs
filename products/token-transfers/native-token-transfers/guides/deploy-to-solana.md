@@ -193,17 +193,17 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
 
 Failed SVM deployments don't result in loss of tokens. Instead, the native tokens may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 
--   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+-   :octicons-tools-16:{ .lg .middle } **Deploy on EVM Chains**  
 
     ---  
 
     After deploying NTT on SVM chains, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
 
-    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/)
 
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
@@ -211,15 +211,15 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/)
 
--   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+-   :octicons-tools-16:{ .lg .middle } **Add NTT to Your DApp**
 
     ---
 
     Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
-    [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+    [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/)
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -227,6 +227,6 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/)
 
 </div>

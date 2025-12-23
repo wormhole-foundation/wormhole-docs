@@ -191,7 +191,39 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 ## Next Steps
 
-- [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
-- [Send a multichain message](/docs/products/messaging/get-started/)
-- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
-- [Transfer USDC via the CCTP Bridge](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **TypeScript SDK Reference**
+
+    ---
+
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
+    
+
+    [:custom-arrow: Get Familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
+
+-   :octicons-tools-16:{ .lg .middle } **Send a Multichain Message**
+
+    ---
+
+    Use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
+
+    [:custom-arrow: Get Started](/docs/products/messaging/get-started/)
+
+-   :octicons-tools-16:{ .lg .middle } **Transfer Assets via WTT**
+
+    ---
+
+    Build a cross-chain native token transfer app using the TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
+
+-   :octicons-tools-16:{ .lg .middle } **Transfer USDC via the CCTP Bridge**
+
+    ---
+
+    Perform USDC cross-chain transfers using the TypeScript SDK and Circle's CCTP.
+
+    [:custom-arrow: Get Started](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
+
+</div>

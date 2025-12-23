@@ -182,6 +182,30 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 
 ## Next Steps
 
-- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
-- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
-- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Portal Bridge**
+
+    ---
+
+    Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
+
+    [:custom-arrow: Check out the Portal Bridge](https://portalbridge.com/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Interact with WTT Contracts**
+
+    ---
+
+    This guide explores the Solidity functions used in WTT contracts.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/)
+
+-   :octicons-tools-16:{ .lg .middle } **Reference Interfaces**
+
+    ---
+
+    View the source code defining the `TokenBridge` and `AutomaticTokenBridge` interfaces and their associated namespaces.
+
+    [:custom-arrow: See Interfaces](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}
+
+</div>

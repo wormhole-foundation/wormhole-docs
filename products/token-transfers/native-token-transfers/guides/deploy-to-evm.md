@@ -180,7 +180,7 @@ This table compares the configuration parameters available when deploying the NT
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
 
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 
@@ -190,7 +190,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/)
 
 -   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
 
@@ -198,7 +198,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/)
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -206,6 +206,6 @@ This table compares the configuration parameters available when deploying the NT
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/)
 
 </div>
