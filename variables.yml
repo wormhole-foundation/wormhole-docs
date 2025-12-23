@@ -7,7 +7,7 @@ repositories:
     version: 4.7.1
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
-    version: 2.50.0
+    version: 2.51.0
   native_token_transfers_evm:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
     version: 1.6.0+cli
