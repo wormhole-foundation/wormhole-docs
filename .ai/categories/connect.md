@@ -3098,8 +3098,8 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
 - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts.
-- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees.
-- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer.
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Base Sepolia](https://faucets.chain.link/base-sepolia){target=\_blank} to cover gas fees.
+- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Base Sepolia for cross-chain transfer.
 - Wallet private key.
 
 ## Valid Tokens for Transfer
@@ -3142,7 +3142,7 @@ To simplify this process, we've included a tool for verifying if a token has an 
         	<span data-ty> > cross-chain-token-transfer@1.0.0 verify</span>
         	<span data-ty> > npx ts-node script/check-attestation.ts</span>
           <span data-ty> </span>
-        	<span data-ty> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
+        	<span data-ty> Enter the TARGET chain RPC URL: https://base-sepolia-rpc.publicnode.com</span>
         	<span data-ty> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
           <span data-ty> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
           <span data-ty> Enter the SOURCE chain ID: 6</span>
@@ -3297,7 +3297,7 @@ Here’s a breakdown of what happens in each step of the `sendCrossChainDeposit`
 
 You can find the complete code for the `CrossChainSender.sol` below.
 
-??? code "MessageSender.sol"
+??? code "CrossChainSender.sol"
 
     ```solidity
     // SPDX-License-Identifier: MIT
@@ -3537,12 +3537,12 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
                     "wormhole": "0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C"
                 },
                 {
-                    "description": "Celo Testnet",
-                    "chainId": 14,
-                    "rpc": "https://alfajores-forno.celo-testnet.org",
-                    "tokenBridge": "0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153",
-                    "wormholeRelayer": "0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84",
-                    "wormhole": "0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56"
+                    "description": "Base Sepolia",
+                    "chainId": 10004,
+                    "rpc": "https://base-sepolia-rpc.publicnode.com",
+                    "tokenBridge": "0x86F55A04690fd7815A3D802bD587e83eA888B239",
+                    "wormholeRelayer": "0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE",
+                    "wormhole": "0x79A1027a6A159502049F10906D333EC57E95F083"
                 }
             ]
         }
@@ -3554,7 +3554,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
         !!! note
-            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores Testnets.
+            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Base Sepolia Testnets.
 
     4. Create a `contracts.json` file in the `deploy-config` directory:
 
@@ -3602,7 +3602,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     	<span data-ty="input"><span class="file-path"></span>forge build</span>
     	<span data-ty> > [⠒] Compiling...</span>
     	<span data-ty> > [⠰] Compiling 30 files with 0.8.23</span>
-    	<span data-ty> [⠔] Solc 0.8.23 finished in 2.29s</span>
+    	<span data-ty> > [⠔] Solc 0.8.23 finished in 2.29s</span>
     	<span data-ty>Compiler run successful!</span>
     	<span data-ty="input"><span class="file-path"></span></span>
     </div>
@@ -4161,21 +4161,21 @@ If you followed the logic provided in the full code above, your terminal output 
 	<span data-ty> > npx ts-node script/deploy.ts</span>
 	<span data-ty> Select the SOURCE chain:</span>
 	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
+  <span data-ty> 2: Base Sepolia</span>
   <span data-ty> </span>
   <span data-ty> Enter the number for the SOURCE chain: 1</span>
   <span data-ty> </span>
   <span data-ty> Select the TARGET chain:</span>
   <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
+  <span data-ty> 2: Base Sepolia</span>
   <span data-ty> </span>
   <span data-ty> Enter the number for the TARGET chain: 2</span>
   <span data-ty> CrossChainSender Avalanche testnet fuji: 0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3</span>
-  <span data-ty> CrossChainReceiver Celo Testnet: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
+  <span data-ty> CrossChainReceiver Base Sepolia: 0xD720BFF42a0960cfF1118454A907a44dB358f2b1</span>
   <span data-ty> </span>
   <span data-ty> Registering CrossChainSender (0x1Cac52a183D02F9002fdb37b13eC2fAB950d44E3) as a valid sender in CrossChainReceiver (0xD720BFF42a0960cfF1118454A907a44dB358f2b1)...</span>
   <span data-ty> </span>
-  <span data-ty> CrossChainSender registered as a valid sender on Celo Testnet</span>
+  <span data-ty> CrossChainSender registered as a valid sender on Base Sepolia</span>
 	<span data-ty="input"><span class="file-path"></span></span>
 </div>
 ## Transfer Tokens Across Chains
@@ -4683,26 +4683,26 @@ If you followed the logic provided in the `transfer.ts` file above, your termina
   <span data-ty> </span>
 	<span data-ty> Select the source chain:</span>
 	<span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
+  <span data-ty> 2: Base Sepolia</span>
   <span data-ty> </span>
   <span data-ty> Enter the number for the SOURCE chain: 1</span>
   <span data-ty> </span>
   <span data-ty> Select the target chain:</span>
   <span data-ty> 1: Avalanche testnet fuji</span>
-  <span data-ty> 2: Celo Testnet</span>
+  <span data-ty> 2: Base Sepolia</span>
   <span data-ty> </span>
   <span data-ty> Enter the number for the TARGET chain: 2</span>
   <span data-ty> </span>
-  <span data-ty> Initiating transfer from Avalanche testnet fuji to Celo Testnet</span>
+  <span data-ty> Initiating transfer from Avalanche testnet fuji to Base Sepolia</span>
   <span data-ty> Enter the token contract address: 0x5425890298aed601595a70ab815c96711a31bc65</span>
   <span data-ty> Enter the recipient address on the target chain: INSERT_YOUR_WALLET_ADDRESS</span>
   <span data-ty> Enter the amount of tokens to transfer: 2</span>
   <span data-ty> Approved tokens for cross-chain transfer.</span>
-  <span data-ty> Transfer initiated from Avalanche testnet fuji to Celo Testnet. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
+  <span data-ty> Transfer initiated from Avalanche testnet fuji to Base Sepolia. Transaction Hash: 0x4a923975d955c1f226a1c2f61a1a0fa1ab1a9e229dc29ceaeadf8ef40acd071f</span>
 	<span data-ty="input"><span class="file-path"></span></span>
 </div>
 !!! note
-    In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
+    In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Base Sepolia Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
 
 ## Resources
 
