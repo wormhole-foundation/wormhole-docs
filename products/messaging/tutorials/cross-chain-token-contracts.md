@@ -157,7 +157,7 @@ Here’s a breakdown of what happens in each step of the `sendCrossChainDeposit`
 
 You can find the complete code for the `CrossChainSender.sol` below.
 
-??? code "MessageSender.sol"
+??? code "CrossChainSender.sol"
 
     ```solidity
     --8<-- "code/products/messaging/tutorials/cross-chain-token-transfers/snippet-1.sol"
