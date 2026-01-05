@@ -140,8 +140,9 @@ Page Title: Contract Addresses
     <tr><td>Base</td><td><code>0x838a95B6a3E06B6f11C437e22f3C7561a6ec40F1</code></td></tr>
     <tr><td>Fogo</td><td><code>ngoLQ35zgtP3SxWrjAJ8Mz2H8BPFVeZoxyBPotPYwnB</code></td></tr>
     <tr><td>HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
-    <tr><td>Optimism</td><td><code>0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8</code></td></tr>
+    <tr><td>MegaETH</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
     <tr><td>Monad</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
+    <tr><td>Optimism</td><td><code>0x0E09a3081837ff23D2e59B179E0Bc48A349Afbd8</code></td></tr>
     <tr><td>Unichain</td><td><code>0x574b7864119c9223a9870ea614dc91a8ee09e512</code></td></tr>
     <tr><td>XRPL-EVM</td><td><code>0x574B7864119C9223A9870Ea614dC91A8EE09E512</code></td></tr>
     </tbody>
