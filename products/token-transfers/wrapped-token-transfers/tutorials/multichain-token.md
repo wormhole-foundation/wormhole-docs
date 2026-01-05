@@ -91,6 +91,25 @@ It is recommended that you update your token’s metadata on blockchain explorer
    - Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed.
 5. Once the step above is completed, follow the [instructions to update token information](https://info.etherscan.com/how-to-update-token-information-on-token-page/){target=\_blank}.
 
-## Conclusion
+## Next Steps
 
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
+
+    ---
+
+    Looking for more hands-on tutorials? Check out the Wormhole Tutorial Demo repository on GitHub for additional examples.
+
+    [:custom-arrow: Explore the Demo Repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>
+

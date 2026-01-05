@@ -356,3 +356,17 @@ You can also link directly to the transaction in the explorer:
 Integrating CCTP with Executor enables permissionless, quote-based relaying and execution for USDC across EVM, SVM, and Sui. CCTP continues to provide the canonical burn-and-mint flow for USDC, while Executor coordinates cross-chain execution through a network of relay providers rather than a single dedicated relayer.
 
 Applications can build end-to-end CCTP transfers, with redeem and any follow-up logic handled automatically on the destination chain. This pattern lets you keep CCTP as the source of truth for USDC movement, while using Executor to flexibly manage gas, drop-offs, and execution behavior across multiple environments.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Circle CCTP Documentation**
+
+    ---
+
+    Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+
+    [:custom-arrow: See the Circle Docs](https://developers.circle.com/cctp){target=\_blank}
+
+</div>

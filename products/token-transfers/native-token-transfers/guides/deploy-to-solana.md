@@ -213,13 +213,13 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/)
 
--   :octicons-tools-16:{ .lg .middle } **Add NTT to Your DApp**
+-   :octicons-tools-16:{ .lg .middle } **Launch a Multichain Native Memecoin**
 
     ---
 
-    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
-    [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/)
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 

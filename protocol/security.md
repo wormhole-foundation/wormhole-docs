@@ -102,6 +102,16 @@ If you are interested in contributing to Wormhole security, please look at this 
 
 For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\blank}.
 
-## Learn More
+## Next Steps
 
-The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **View Latest Security Policies**
+
+    ---
+
+    The `SECURITY.md` from the official Wormhole repository on GitHub has the latest security policies and updates.
+
+    [:custom-arrow: See SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank}
+
+</div>

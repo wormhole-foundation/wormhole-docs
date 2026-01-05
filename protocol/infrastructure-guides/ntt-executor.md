@@ -221,4 +221,18 @@ You can also link directly to the transaction in the Explorer:
 
 ## Conclusion
 
-Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers. For a working reference implementation, see the [NTT with Executor TypeScript demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk/tree/main){target=\_blank}. 
+Integrating Executor with NTT enables permissionless, quote-based execution of cross-chain transfers. By combining NTT’s native transfer mechanism with Executor’s open relay network, applications can achieve automated, end-to-end redemption across EVM and Solana chains without relying on centralized relayers.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **NTT Executor Integration Demo**
+
+    ---
+
+    For a working reference implementation, see the NTT with Executor TypeScript demo.
+
+    [:custom-arrow: See the Demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk/tree/main){target=\_blank}
+
+</div>

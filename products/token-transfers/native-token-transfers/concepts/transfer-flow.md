@@ -267,3 +267,17 @@ When transfers are rate limited, NTT provides management functions.
 
 - **Complete**: After the rate limit window expires, anyone can complete the queued transfer.
 - **Automatic**: Some implementations may auto-complete queued transfers.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: NTT Fundamentals**
+
+    ---
+
+    Check out the NTT Fundamentals course on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/256e7446-5ed5-818a-bd5d-f96481c79200){target=\_blank}
+
+</div>

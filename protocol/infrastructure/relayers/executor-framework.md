@@ -156,3 +156,25 @@ To improve transparency, providers may also publish a Service-Level Agreement (S
 ## Security Considerations
 
 The Executor contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Migrate to Executor**
+
+    ---
+
+    Understand the key differences between the Executor framework and the Standard Relayer, and find guidance for migrating existing integrations.
+
+    [:custom-arrow: Migrate to Executor](/docs/protocol/infrastructure/relayers/executor-vs-sr/)
+
+-   :octicons-tools-16:{ .lg .middle } **Executor Demo**
+
+    ---
+
+    Check out a minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
+
+    [:custom-arrow: See the Hello Executor Demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}
+
+</div>
