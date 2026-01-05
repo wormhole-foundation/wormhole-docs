@@ -61,5 +61,22 @@ In the following video, Wormhole Foundation DevRel Pauline Barnades walks you th
 
 If you are looking for more guided practice, take a look at:
 
-- **[Get Started with NTT](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank}**: Learn how to deploy and register contracts to transfer native tokens across chains.
-- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Perform token transfers using WTT, including manual and automatic transfers.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with NTT**
+
+    ---
+
+    Learn how to deploy and register contracts to transfer native tokens across chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/native-token-transfers/get-started/)
+
+-   :octicons-book-16:{ .lg .middle } **Get Started with WTT**
+
+    ---
+
+    Perform token transfers using WTT, including manual and automatic transfers.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
+
+</div>

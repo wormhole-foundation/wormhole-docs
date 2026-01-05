@@ -58,13 +58,13 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
--   :octicons-tools-16:{ .lg .middle } **Executor Framework**
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
 
     ---
 
-    Learn how to deliver cross-chain messages automatically using Wormhole’s Executor, a shared, permissionless framework that replaces the legacy relayer system.
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
 
-    [:custom-arrow: Build with the Executor](/docs/products/messaging/concepts/executor-framework/)
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>
 
@@ -2117,6 +2117,14 @@ Because the VAA creation is separate from relaying, the multicast model does not
     This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your multichain contracts.
 
     [:custom-arrow: Build with Core Contracts](/docs/products/messaging/guides/core-contracts/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>
 
@@ -4754,7 +4762,25 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Visit the Product Comparison**
+
+    ---
+
+    Unsure which bridging solution you need? Match your requirements with the right Wormhole tool.
+
+    [:custom-arrow: Compare Products](/docs/products/overview/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
+
+</div>
 
 
 ---
@@ -5080,6 +5106,28 @@ To improve transparency, providers may also publish a Service-Level Agreement (S
 
 The Executor contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.
 
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Migrate to Executor**
+
+    ---
+
+    Understand the key differences between the Executor framework and the Standard Relayer, and find guidance for migrating existing integrations.
+
+    [:custom-arrow: Migrate to Executor](/docs/protocol/infrastructure/relayers/executor-vs-sr/)
+
+-   :octicons-tools-16:{ .lg .middle } **Executor Demo**
+
+    ---
+
+    Check out a minimal end-to-end Executor demo showing quoting, request calls, and replay protection.
+
+    [:custom-arrow: See the Hello Executor Demo](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank}
+
+</div>
+
 
 ---
 
@@ -5277,12 +5325,43 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance and integrate it into your application:
+Use the following guides to configure your Connect instance and integrate it into your application.
 
- - **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
- - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
- - **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
- - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Data Configuration**
+
+    ---
+
+    Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+
+    [:custom-arrow: View Data Configs](/docs/products/connect/configuration/data/)
+
+-   :octicons-tools-16:{ .lg .middle } **Theme Configuration**
+
+    ---
+
+    Learn how to customize Connect's look and feel to match your application's branding.
+
+    [:custom-arrow: View Theme Configs](/docs/products/connect/configuration/theme/)
+
+-   :octicons-book-16:{ .lg .middle } **Integrate Connect into a React DApp**
+
+    ---
+
+    Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
+
+    [:custom-arrow: Get Started](/docs/products/connect/tutorials/react-dapp/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>
 
 
 ---
@@ -5962,8 +6041,25 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
-- **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with WTT**
+
+    ---
+
+    Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>
 
 
 ---
@@ -6143,6 +6239,15 @@ These principles combine to create a clear pathway towards a fully trustless int
     Learn how to use Wormhole Queries to add real-time access to Guardian-attested on-chain data via a REST endpoint to your dApp, enabling secure cross-chain interactions and verifications.
 
     [:custom-arrow: Build with Queries](/docs/products/queries/overview/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
+
 
 </div>
 
@@ -6334,7 +6439,27 @@ By following these steps, you've learned how to:
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Build a Reimbursement App with Connect**
+
+    ---
+
+    Master the core features of Connect by building a real-world reimbursement appplication on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-814a-8177-e087a5d7a6bc){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
+
+    ---
+
+    Looking for more hands-on tutorials? Check out the Wormhole Tutorial Demo repository on GitHub for additional examples.
+
+    [:custom-arrow: Explore the Demo Repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}
+
+</div>
 
 
 ---
@@ -6406,10 +6531,27 @@ wormholeConnectHosted(container, {
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance:
+Use the following guides to configure your Connect instance.
 
-- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
-- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Data Configuration**
+
+    ---
+
+    Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+
+    [:custom-arrow: View Data Configs](/docs/products/connect/configuration/data/)
+
+-   :octicons-tools-16:{ .lg .middle } **Theme Configuration**
+
+    ---
+
+    Learn how to customize Connect's look and feel to match your application's branding.
+
+    [:custom-arrow: View Theme Configs](/docs/products/connect/configuration/theme/)
+
+</div>
 
 
 ---
@@ -6493,6 +6635,28 @@ Demos offer more realistic implementations than tutorials:
 
 Wormhole supports a growing number of blockchains. Check out the [Supported Networks by Product](/docs/products/reference/supported-networks/){target=\_blank} page to see which networks are supported for each Wormhole product.
 
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Architecture Overview**
+
+    ---
+
+    Get an overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
+
+    [:custom-arrow: Learn More](/docs/protocol/architecture/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>
+
 
 ---
 
@@ -6557,14 +6721,37 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 Follow these steps to work with Wormhole Messaging:
 
-- **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- **[Executor Overview](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}**: Learn how to use Executors to automate message handling and application logic across chains.
+<div class="grid cards" markdown>
 
-For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+-   :octicons-tools-16:{ .lg .middle } **Get Started with Messaging**
 
-- [**Solana Shims**](/docs/products/messaging/concepts/solana-shim/){target=\_blank} : Learn about the purpose and benefits of using shims on Solana.
-- [**Emission Shim**](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}: Emit messages without creating permanent accounts, reducing rent costs.
-- [**Verification Shim**](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}: Efficiently verify Wormhole VAAs without leaving rent-exempt accounts.
+    ---
+
+    Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+
+    [:custom-arrow: Get Started](/docs/products/messaging/get-started/)
+
+-   :octicons-book-16:{ .lg .middle } **Executor Overview**
+
+    ---
+
+    Learn how to use Executors to automate message handling and application logic across chains.
+
+    [:custom-arrow: Learn about Executors](/docs/protocol/infrastructure/relayers/executor-framework/)
+
+-   :octicons-tools-16:{ .lg .middle } **Solana Shim Programs**
+
+    ---
+
+    For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+
+    [:custom-arrow: Learn about Solana Shims](/docs/products/messaging/concepts/solana-shim/)
+
+    [:custom-arrow: Emit Messages with the Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/)
+
+    [:custom-arrow: Verify VAAs with the Verification Shim](/docs/products/messaging/guides/solana-shims/sol-verification/)
+
+</div>
 
 
 ---
@@ -7958,6 +8145,14 @@ To simplify development, Wormhole provides the [Relayer Engine](https://github.c
 
     [:custom-arrow: Get Started with Custom Relayers](/docs/protocol/infrastructure-guides/run-relayer/)
 
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
+
 </div>
 
 
@@ -9289,9 +9484,19 @@ If you are interested in contributing to Wormhole security, please look at this 
 
 For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\blank}.
 
-## Learn More
+## Next Steps
 
-The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **View Latest Security Policies**
+
+    ---
+
+    The `SECURITY.md` from the official Wormhole repository on GitHub has the latest security policies and updates.
+
+    [:custom-arrow: See SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank}
+
+</div>
 
 
 ---
@@ -9604,10 +9809,27 @@ Finally, adopting shims may require some integration changes. For emission, deve
 
 ## Next Steps
 
-To put these concepts into practice, explore the dedicated guides for emission and verification on Solana:
+To put these concepts into practice, explore the dedicated guides for emission and verification on Solana.
 
-- [Efficient Emission on Solana](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
-- [Efficient Verification on Solana](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Emit Messages**
+
+    ---
+
+    Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim.
+
+    [:custom-arrow: Use the Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/)
+
+-   :octicons-tools-16:{ .lg .middle } **Verify VAAs**
+
+    ---
+
+    Efficiently verify Wormhole VAAs on Solana using the verification shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
+
+    [:custom-arrow: Use the Verification Shim](/docs/products/messaging/guides/solana-shims/sol-verification/)
+
+</div>
 
 
 ---
@@ -9814,7 +10036,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     Learn how to run the needed infrastructure to spin up a Spy daemon locally and subscribe to a stream of Verifiable Action Approvals (VAAs).
 
-    [:custom-arrow: Spin Up a Spy](/docs/protocol/infrastructure-guides/run-spy/){target=\_blank}
+    [:custom-arrow: Spin Up a Spy](/docs/protocol/infrastructure-guides/run-spy/)
 
 -   :octicons-code-16:{ .lg .middle } **Use Queries**
 
@@ -9823,6 +10045,14 @@ A Spy can access the following categories of messages shared over the gossip pro
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
     [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>
 
@@ -10157,7 +10387,15 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
     Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
 
     [:custom-arrow: Learn About Guardians](/docs/protocol/infrastructure/guardians/)
-    
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
+
 </div>
 
 

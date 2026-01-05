@@ -294,5 +294,22 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
-- **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with WTT**
+
+    ---
+
+    Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>

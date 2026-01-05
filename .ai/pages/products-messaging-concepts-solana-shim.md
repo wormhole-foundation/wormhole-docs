@@ -123,7 +123,24 @@ Finally, adopting shims may require some integration changes. For emission, deve
 
 ## Next Steps
 
-To put these concepts into practice, explore the dedicated guides for emission and verification on Solana:
+To put these concepts into practice, explore the dedicated guides for emission and verification on Solana.
 
-- [Efficient Emission on Solana](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
-- [Efficient Verification on Solana](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Emit Messages**
+
+    ---
+
+    Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim.
+
+    [:custom-arrow: Use the Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/)
+
+-   :octicons-tools-16:{ .lg .middle } **Verify VAAs**
+
+    ---
+
+    Efficiently verify Wormhole VAAs on Solana using the verification shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
+
+    [:custom-arrow: Use the Verification Shim](/docs/products/messaging/guides/solana-shims/sol-verification/)
+
+</div>

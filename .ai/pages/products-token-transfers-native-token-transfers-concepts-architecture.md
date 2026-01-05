@@ -142,3 +142,17 @@ Finally, after the message is verified and attested to, the tokens can be either
 - On SVM, the tokens are unlocked or minted depending on whether the program is in locking or burning mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced.
 
 In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: NTT Fundamentals**
+
+    ---
+
+    Check out the NTT Fundamentals course on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/256e7446-5ed5-818a-bd5d-f96481c79200){target=\_blank}
+
+</div>

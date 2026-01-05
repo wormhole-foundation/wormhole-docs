@@ -102,7 +102,32 @@ Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement
 
 ## Next Steps
 
-Start building with Settlement or dive deeper into specific components:
+Start building with Settlement or dive deeper into specific components.
 
-- **[Get Started with Settlement](/docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
-- **[Architecture Documentation](/docs/products/settlement/concepts/architecture/)**: Explore the Settlement architecture and components.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with Settlement**
+
+    ---
+
+    Follow a hands-on demo using Mayan Swift.
+
+    [:custom-arrow: Get Started](/docs/products/settlement/get-started/)
+
+-   :octicons-book-16:{ .lg .middle } **Architecture Overview**
+
+    ---
+
+    Explore the Settlement architecture and components.
+
+    [:custom-arrow: Explore the Dev Arena](/docs/products/settlement/concepts/architecture/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
+
+    ---
+
+    Check out the Settlement Fundamentals course on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/256e7446-5ed5-8167-89a5-f2102b0090a7){target=\_blank}
+
+</div>

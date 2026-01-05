@@ -32,4 +32,22 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Visit the Product Comparison**
+
+    ---
+
+    Unsure which bridging solution you need? Match your requirements with the right Wormhole tool.
+
+    [:custom-arrow: Compare Products](/docs/products/overview/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
+
+</div>

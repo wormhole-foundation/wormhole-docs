@@ -282,8 +282,33 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 ## Next Steps
 
-Now that you've completed a manual multichain token transfer, explore these guides to continue building:
+Now that you've completed a manual multichain token transfer, explore these guides to continue building.
 
- - **[Complete Token Transfer Workflow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
- - **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/){target=\_blank}**: Learn how to issue tokens that work across chains.
- - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Complete Token Transfer Workflow**
+
+    ---
+
+    Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
+
+-   :octicons-tools-16:{ .lg .middle } **Create Multichain Tokens**
+
+    ---
+
+    Learn how to issue tokens that work across chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)
+
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>

@@ -1,6 +1,6 @@
 ---
 title: Transfer Tokens via Wrapped Token Transfers (WTT) Tutorial
-description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
+description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
 categories: WTT, Transfers
 url: https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/
 ---
@@ -718,4 +718,24 @@ You've successfully built a cross-chain token transfer application using Wormhol
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
 
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Build a Staking and Lending Protocol**
+
+    ---
+
+    Master the core features of Wrapped Token Transfers (WTT) by building a real-world staking and lending protocol on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8188-92ae-c13ee2f78b1c){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
+
+    ---
+
+    Looking for more hands-on tutorials? Check out the Wormhole Tutorial Demo repository on GitHub for additional examples.
+
+    [:custom-arrow: Explore the Demo Repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}
+
+</div>

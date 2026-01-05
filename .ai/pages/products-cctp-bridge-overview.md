@@ -93,8 +93,32 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
 
 ## Next Steps
 
-Now that you're familiar with CCTP, here is a list of resources for more hands-on practice:
+Now that you're familiar with CCTP, here is a list of resources for more hands-on practice.
 
-- **[Get Started with CCTP Bridge](/docs/products/cctp-bridge/get-started/)**: Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
-- **[Complete USDC Transfer Flow](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)**: Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
-- **[Checkout Circle's CCTP Docs](https://developers.circle.com/cctp){target=\_blank}**: Learn more about Circle's cross-chain transfer protocol in their documentation.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with the CCTP Bridge**
+
+    ---
+
+    Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
+
+    [:custom-arrow: Get Started](/docs/products/cctp-bridge/get-started/)
+
+-   :octicons-tools-16:{ .lg .middle } **Complete USDC Transfer Flow**
+
+    ---
+
+    Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
+
+    [:custom-arrow: Get Started](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
+
+-   :octicons-book-16:{ .lg .middle } **Circle CCTP Documentation**
+
+    ---
+
+    Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+
+    [:custom-arrow: See the Circle Docs](https://developers.circle.com/cctp){target=\_blank}
+
+</div>

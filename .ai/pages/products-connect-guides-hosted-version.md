@@ -66,7 +66,24 @@ wormholeConnectHosted(container, {
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance:
+Use the following guides to configure your Connect instance.
 
-- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
-- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Data Configuration**
+
+    ---
+
+    Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+
+    [:custom-arrow: View Data Configs](/docs/products/connect/configuration/data/)
+
+-   :octicons-tools-16:{ .lg .middle } **Theme Configuration**
+
+    ---
+
+    Learn how to customize Connect's look and feel to match your application's branding.
+
+    [:custom-arrow: View Theme Configs](/docs/products/connect/configuration/theme/)
+
+</div>

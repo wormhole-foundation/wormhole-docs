@@ -73,8 +73,33 @@ Here are key use cases that highlight the power and versatility of WTT.
 
 ## Next Steps
 
-If you are looking for more guided practice, take a look at: 
+If you are looking for more guided practice, take a look at the following guides.
 
-- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/)**: Perform token transfers using WTT, including manual and automatic transfers.
-- **[Complete Token Transfer Flow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
-- **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)**: Craft a multichain token using Wormhole's Portal Bridge.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Get Started with WTT**
+
+    ---
+
+    Perform token transfers using WTT, including manual and automatic transfers.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
+
+
+-   :octicons-tools-16:{ .lg .middle } **Complete Token Transfer Workflow**
+
+    ---
+
+    Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
+
+-   :octicons-tools-16:{ .lg .middle } **Create Multichain Tokens**
+
+    ---
+
+    Craft a multichain token using Wormhole's Portal Bridge.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)
+
+</div>

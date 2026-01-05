@@ -506,4 +506,14 @@ Congratulations! You've successfully created and submitted an attestation to reg
 
 ## Next Steps
 
-- [**Transfer Wrapped Assets**](/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Transfer Wrapped Assets**
+
+    ---
+
+    Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
+
+    [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/)
+
+</div>

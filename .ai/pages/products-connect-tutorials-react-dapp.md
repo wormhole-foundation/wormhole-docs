@@ -184,4 +184,24 @@ By following these steps, you've learned how to:
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Build a Reimbursement App with Connect**
+
+    ---
+
+    Master the core features of Connect by building a real-world reimbursement appplication on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-814a-8177-e087a5d7a6bc){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
+
+    ---
+
+    Looking for more hands-on tutorials? Check out the Wormhole Tutorial Demo repository on GitHub for additional examples.
+
+    [:custom-arrow: Explore the Demo Repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}
+
+</div>

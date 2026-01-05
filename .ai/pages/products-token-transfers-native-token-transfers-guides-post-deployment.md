@@ -31,11 +31,11 @@ The following table outlines post-deployment settings available on the NTT Manag
 | `setInboundLimit`       | Sets inbound transfer limit (per chain). |
 | `setTransceiverPauser ` | Changes pauser for a transceiver.        |
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 
-- :octicons-code-16:{ .lg .middle } **Transfer Ownership**
+- :octicons-tools-16:{ .lg .middle } **Transfer Ownership**
 
     ---
 
@@ -43,28 +43,36 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     [:custom-arrow: Follow the Transfer Ownership guide](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/)
 
--   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
+-   :octicons-tools-16:{ .lg .middle } **Wormhole NTT Connect Demo**
 
     ---
 
     Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
-    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
 
--   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
+-   :octicons-tools-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
 
     ---
 
     Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
 
-    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}
 
--   :octicons-eye-16:{ .lg .middle } **Query NTT Token and Transfer Data**
+-   :octicons-tools-16:{ .lg .middle } **Query NTT Token and Transfer Data**
 
     ---
 
     Learn how to explore NTT by querying token metadata and transfer activity using the Wormholescan API in a TypeScript project.
 
-    [:custom-arrow: Try the NTT Token and Transfers Guide](/docs/products/messaging/guides/wormholescan-api)
+    [:custom-arrow: Try the NTT Token and Transfers Guide](/docs/products/messaging/guides/wormholescan-api/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
 
 </div>

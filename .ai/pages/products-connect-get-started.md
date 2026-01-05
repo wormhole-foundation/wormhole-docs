@@ -103,9 +103,40 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance and integrate it into your application:
+Use the following guides to configure your Connect instance and integrate it into your application.
 
- - **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
- - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
- - **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
- - **[Explore the Wormhole Dev Arena](https://arena.wormhole.com/){target=\_blank}**: A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Data Configuration**
+
+    ---
+
+    Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+
+    [:custom-arrow: View Data Configs](/docs/products/connect/configuration/data/)
+
+-   :octicons-tools-16:{ .lg .middle } **Theme Configuration**
+
+    ---
+
+    Learn how to customize Connect's look and feel to match your application's branding.
+
+    [:custom-arrow: View Theme Configs](/docs/products/connect/configuration/theme/)
+
+-   :octicons-book-16:{ .lg .middle } **Integrate Connect into a React DApp**
+
+    ---
+
+    Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
+
+    [:custom-arrow: Get Started](/docs/products/connect/tutorials/react-dapp/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>

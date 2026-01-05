@@ -77,3 +77,25 @@ Demos offer more realistic implementations than tutorials:
 ## Supported Networks by Product
 
 Wormhole supports a growing number of blockchains. Check out the [Supported Networks by Product](/docs/products/reference/supported-networks/){target=\_blank} page to see which networks are supported for each Wormhole product.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Architecture Overview**
+
+    ---
+
+    Get an overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
+
+    [:custom-arrow: Learn More](/docs/protocol/architecture/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
+
+    ---
+
+    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
+
+    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
+
+</div>

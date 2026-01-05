@@ -60,11 +60,34 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 Follow these steps to work with Wormhole Messaging:
 
-- **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- **[Executor Overview](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}**: Learn how to use Executors to automate message handling and application logic across chains.
+<div class="grid cards" markdown>
 
-For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+-   :octicons-tools-16:{ .lg .middle } **Get Started with Messaging**
 
-- [**Solana Shims**](/docs/products/messaging/concepts/solana-shim/){target=\_blank} : Learn about the purpose and benefits of using shims on Solana.
-- [**Emission Shim**](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}: Emit messages without creating permanent accounts, reducing rent costs.
-- [**Verification Shim**](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}: Efficiently verify Wormhole VAAs without leaving rent-exempt accounts.
+    ---
+
+    Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+
+    [:custom-arrow: Get Started](/docs/products/messaging/get-started/)
+
+-   :octicons-book-16:{ .lg .middle } **Executor Overview**
+
+    ---
+
+    Learn how to use Executors to automate message handling and application logic across chains.
+
+    [:custom-arrow: Learn about Executors](/docs/protocol/infrastructure/relayers/executor-framework/)
+
+-   :octicons-tools-16:{ .lg .middle } **Solana Shim Programs**
+
+    ---
+
+    For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+
+    [:custom-arrow: Learn about Solana Shims](/docs/products/messaging/concepts/solana-shim/)
+
+    [:custom-arrow: Emit Messages with the Emission Shim](/docs/products/messaging/guides/solana-shims/sol-emission/)
+
+    [:custom-arrow: Verify VAAs with the Verification Shim](/docs/products/messaging/guides/solana-shims/sol-verification/)
+
+</div>
