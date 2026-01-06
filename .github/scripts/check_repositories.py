@@ -3,9 +3,17 @@ import json
 from urllib.parse import urlparse
 import sys
 import yaml
+import re
 
 def normalize_version(version):
-    """Normalize version strings by removing leading 'v' if present."""
+    """Normalize version strings by extracting a semver-like substring."""
+    if not version:
+        return version
+
+    version = version.strip()
+    match = re.search(r"\d+(?:\.\d+){0,2}(?:[-+][0-9A-Za-z.-]+)?", version)
+    if match:
+        return match.group(0)
     if version.startswith("v"):
         return version[1:]
     return version

@@ -2,9 +2,23 @@ import requests
 import json
 import os
 import sys
+import re
 from urllib.parse import urlparse
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+def normalize_version(version):
+    """Normalize version strings by extracting a semver-like substring."""
+    if not version:
+        return version
+
+    version = version.strip()
+    match = re.search(r"\d+(?:\.\d+){0,2}(?:[-+][0-9A-Za-z.-]+)?", version)
+    if match:
+        return match.group(0)
+    if version.startswith("v"):
+        return version[1:]
+    return version
 
 
 def parse_github_url(url):
@@ -83,10 +97,14 @@ def main():
 
     for repo in data.get("outdated_repos", []):
         owner, repo_name = parse_github_url(repo["repository"])
-        title = f"Update needed: {repo_name} ({repo['current_version']} -> {repo['latest_version']})"
+        raw_current = repo.get("current_version")
+        raw_latest = repo.get("latest_version")
+        current_version = normalize_version(raw_current)
+        latest_version = normalize_version(raw_latest)
+        title = f"Update needed: {repo_name} ({current_version} -> {latest_version})"
         body = f"""A new release has been detected for {repo['repository']}.
-Current version: {repo['current_version']}
-Latest version: {repo['latest_version']}
+Current version: {current_version}
+Latest version: {latest_version}
 
 Please review the change log and update the documentation accordingly."""
 
