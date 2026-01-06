@@ -119,7 +119,7 @@ Start building with Settlement or dive deeper into specific components.
 
     Explore the Settlement architecture and components.
 
-    [:custom-arrow: Explore the Dev Arena](/docs/products/settlement/concepts/architecture/)
+    [:custom-arrow: Learn More](/docs/products/settlement/concepts/architecture/)
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
 
