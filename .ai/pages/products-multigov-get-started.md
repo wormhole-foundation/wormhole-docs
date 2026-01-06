@@ -49,7 +49,7 @@ You've now completed the initial setup and requested access through Tally. Conti
 
     Configure and deploy MultiGov smart contracts to EVM-compatible chains.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/multigov/guides/deploy-to-evm/)
+    [:custom-arrow: Deploy to EVM Chains](/docs/products/multigov/guides/deploy-to-evm/)
 
 -   :octicons-tools-16:{ .lg .middle } **Deploy on Solana**
 
@@ -57,6 +57,6 @@ You've now completed the initial setup and requested access through Tally. Conti
 
     Launch the Solana staking program and configure spoke chain participation.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/multigov/guides/deploy-to-solana/)
+    [:custom-arrow: Deploy to Solana](/docs/products/multigov/guides/deploy-to-solana/)
 
 </div>

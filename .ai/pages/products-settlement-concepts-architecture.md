@@ -69,7 +69,7 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 
     Learn how to integrate settlement routes into your application using the SDK.
 
-    [:custom-arrow: See the Mayan Swift Demo](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: See the Mayan Swift Demo](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
 

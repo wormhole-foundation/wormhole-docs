@@ -7182,7 +7182,7 @@ This table compares the configuration parameters available when deploying the NT
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
@@ -11870,7 +11870,7 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
@@ -12210,7 +12210,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 

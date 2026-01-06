@@ -161,7 +161,7 @@ Now that you've successfully run your first verifiable query, you are ready to g
 
     Take a deeper look at the complete Queries lifecycle.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/queries/guides/use-queries/)
+    [:custom-arrow: Use Queries](/docs/products/queries/guides/use-queries/)
 
 -   :octicons-book-16:{ .lg .middle } **Supported Networks**
 

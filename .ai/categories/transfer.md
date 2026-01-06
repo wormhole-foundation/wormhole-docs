@@ -10025,7 +10025,7 @@ With these tools and knowledge, you're now equipped to build powerful cross-chai
 
     ---
 
-    Master the core features of Connect by building a real-world reimbursement appplication on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Master the core features of Connect by building a real-world reimbursement application on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-814a-8177-e087a5d7a6bc){target=\_blank}
 
@@ -13897,7 +13897,7 @@ This table compares the configuration parameters available when deploying the NT
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
@@ -18585,7 +18585,7 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
@@ -18925,7 +18925,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     ---
 
-    Learn how to use the NTT framework to launch multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
+    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
 
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
@@ -23799,7 +23799,7 @@ Start building with Settlement or dive deeper into specific components.
 
     Explore the Settlement architecture and components.
 
-    [:custom-arrow: Explore the Dev Arena](/docs/products/settlement/concepts/architecture/)
+    [:custom-arrow: Learn More](/docs/products/settlement/concepts/architecture/)
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
 
@@ -23884,7 +23884,7 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 
     Learn how to integrate settlement routes into your application using the SDK.
 
-    [:custom-arrow: See the Mayan Swift Demo](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: See the Mayan Swift Demo](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
 
