@@ -360,10 +360,10 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `4.7.2`.
+2. **Install dependencies**: Install the Wormhole SDK. This tutorial uses the SDK version `4.7.3`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2
+    npm install @wormhole-foundation/sdk@4.7.3
     ```
 
 3. **Set up secure access to your wallets**: This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
@@ -6114,10 +6114,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `4.7.2`:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `4.7.3`:
 
     ```bash
-   npm install @wormhole-foundation/sdk@4.7.2 -D tsx typescript
+   npm install @wormhole-foundation/sdk@4.7.3 -D tsx typescript
    ```
 
 ## Fetch VAA via TypeScript SDK
@@ -6769,12 +6769,12 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `4.7.2`:
+2. Install the required dependencies. This example uses the Mayan Swift route version `1.26.0` and Wormhole SDK version `4.7.3`:
 
     ```bash
-    npm install @wormhole-foundation/sdk-connect@4.7.2 \
-        @wormhole-foundation/sdk-evm@4.7.2 \
-        @wormhole-foundation/sdk-solana@4.7.2 \
+    npm install @wormhole-foundation/sdk-connect@4.7.3 \
+        @wormhole-foundation/sdk-evm@4.7.3 \
+        @wormhole-foundation/sdk-solana@4.7.3 \
         @mayanfinance/wormhole-sdk-route@1.26.0 \
         dotenv
     npm install -D typescript tsx
@@ -7056,10 +7056,10 @@ This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/)
     npm pkg set overrides.ethers=6.15.0
     ```
 
-3. Install the required dependencies. This example uses the SDK version `4.7.2`:
+3. Install the required dependencies. This example uses the SDK version `4.7.3`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2 @wormhole-labs/cctp-executor-route
+    npm install @wormhole-foundation/sdk@4.7.3 @wormhole-labs/cctp-executor-route
     npm install -D tsx typescript
     ```
 
@@ -7985,10 +7985,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.7.2`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.7.3`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2
+    npm install @wormhole-foundation/sdk@4.7.3
     ```
 
 5. Create a new file named `main.ts`:
@@ -22417,10 +22417,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.7.2`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.7.3`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.7.3 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -24659,10 +24659,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm init -y
     ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `4.7.2`:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example uses the SDK version `4.7.3`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2 -D tsx typescript
+    npm install @wormhole-foundation/sdk@4.7.3 -D tsx typescript
     ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
@@ -24741,7 +24741,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
     ```
 
-    You can view the list of [supported platform constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.2/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
+    You can view the list of [supported platform constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.3/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
 
 ## Check for a Wrapped Version of a Token
 
@@ -24808,8 +24808,8 @@ Since attestation is a one-time process, it is good practice when working with e
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
 
     - **Defines the token to check**: Use the contract address on the source chain for this value.
-    - **Calls [`getWrappedAsset`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.2/connect/src/wormhole.ts#L277){target=\_blank}**: Part of the `Wormhole` class, the method does the following:
-        - Accepts a [`TokenId`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.2/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
+    - **Calls [`getWrappedAsset`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.3/connect/src/wormhole.ts#L277){target=\_blank}**: Part of the `Wormhole` class, the method does the following:
+        - Accepts a [`TokenId`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.3/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
         - Checks for a corresponding wrapped version of the destination chain's WTT contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
 
@@ -24871,7 +24871,7 @@ This code does the following:
 
 - **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
-- **Calls `createAttestation`**: Defined in the `TokenBridge` interface, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.2/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L237){target=\_blank} method does the following:
+- **Calls `createAttestation`**: Defined in the `TokenBridge` interface, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/4.7.3/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L237){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
     - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
@@ -25360,10 +25360,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm init -y
    ```
 
-2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `4.7.2`:
+2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `4.7.3`:
 
    ```bash
-   npm install @wormhole-foundation/sdk@4.7.2 -D tsx typescript
+   npm install @wormhole-foundation/sdk@4.7.3 -D tsx typescript
    ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.

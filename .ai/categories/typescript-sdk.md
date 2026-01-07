@@ -5860,10 +5860,10 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.7.2`:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example uses the SDK version `4.7.3`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2
+    npm install @wormhole-foundation/sdk@4.7.3
     ```
 
 5. Create a new file named `main.ts`:
@@ -8289,10 +8289,10 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     ```
 
-4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.7.2`.
+4. **Install dependencies**: Add the required packages. This tutorial uses the SDK version `4.7.3`.
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.2 axios web3 tsx @types/node
+    npm install @wormhole-foundation/sdk@4.7.3 axios web3 tsx @types/node
     ```
 
      - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
@@ -10208,10 +10208,10 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm init -y
    ```
 
-2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `4.7.2`:
+2. Install dependencies, including the Wormhole TypeScript SDK. This example uses the SDK version `4.7.3`:
 
    ```bash
-   npm install @wormhole-foundation/sdk@4.7.2 -D tsx typescript
+   npm install @wormhole-foundation/sdk@4.7.3 -D tsx typescript
    ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.
