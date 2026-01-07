@@ -7083,11 +7083,6 @@
       },
       {
         "depth": 3,
-        "title": "Add Your Token to the Wormhole Metadata List (Legacy)",
-        "anchor": "add-your-token-to-the-wormhole-metadata-list-legacy"
-      },
-      {
-        "depth": 3,
         "title": "Update Metadata on Blockchain Explorers",
         "anchor": "update-metadata-on-blockchain-explorers"
       },
@@ -7098,12 +7093,12 @@
       }
     ],
     "stats": {
-      "chars": 6539,
-      "words": 973,
-      "headings": 8,
-      "estimated_token_count_total": 1291
+      "chars": 5893,
+      "words": 878,
+      "headings": 7,
+      "estimated_token_count_total": 1142
     },
-    "hash": "sha256:cc40ebdcf9ad585bcf7639b7b0196b0d8ff169273379e61a0676dd11382defee",
+    "hash": "sha256:d5080be27de2665584f6c6d0bbfd95449f01a61d5024d3723c0386afd64f17ea",
     "token_estimator": "heuristic-v1"
   },
   {

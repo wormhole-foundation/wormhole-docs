@@ -2387,16 +2387,6 @@ Upon successful creation, you will see a confirmation screen displaying key deta
 
 After creating your multichain token, there are a few optional but highly recommended steps to ensure the best experience for users interacting with your token.
 
-### Add Your Token to the Wormhole Metadata List (Legacy)
-
-For legacy compatibility in the [**Advanced Tools**](https://portalbridge.com/legacy-tools/){target=\_blank} section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
-
-1. Join the [Wormhole Discord server](https://discord.com/invite/wormholecrypto){target=\_blank}.
-2. Submit a request for metadata updates in the appropriate support channel.
-
-!!! note
-    These updates only apply to the **Advanced Tools** section of Portal Bridge and will not update how your token appears in other Wormhole-powered apps or on blockchain explorers like Etherscan.
-
 ### Update Metadata on Blockchain Explorers
 
 It is recommended that you update your token’s metadata on blockchain explorers such as Etherscan. This includes adding details like the token logo, price, and contract verification.
