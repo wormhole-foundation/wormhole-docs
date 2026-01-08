@@ -86,7 +86,7 @@ The functions provided by the Circle Integration contract are as follows:
         `messageSequence` ++"uint64"++
 
         Wormhole sequence number for this contract.
-
+<!--
 - **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
 
     ??? interface "Parameters"
@@ -188,7 +188,7 @@ The functions provided by the Circle Integration contract are as follows:
             `sequence` ++"uint64"++
 
             Sequence of Wormhole message used to mint tokens.
-
+-->
 ## Circle's CCTP Contracts
 
 Three key contracts power Circle's CCTP:
@@ -611,118 +611,65 @@ Most of the methods of the Token Minter contract can be called only by the regis
         
         The local token address.
 
+<!--
 ## How to Interact with CCTP Contracts
 
-Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole CCTP contracts. The primary functionality revolves around the following:
+Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole CCTP contracts. The primary functionality revolves around the following: Initiating CCTP Transfers with Executor
 
-- **Sending tokens with a message payload**: Initiating a cross-chain transfer of Circle-supported assets along with a message payload to a specific target address on the target chain.
-- **Receiving tokens with a message payload**: Validating messages received from other chains via Wormhole and then minting the tokens for the recipient.
+-->
 
-### Sending Tokens and Messages
+## CCTP Transfers with Executor
 
-To initiate a cross-chain transfer, you must call the `transferTokensWithPayload` method of Wormhole's Circle Integration (CCTP) contract. This burns USDC on the source chain using Circle’s CCTP contracts and emits a Wormhole message containing an arbitrary application-defined payload.
+To initiate a cross-chain USDC transfer using Wormhole’s CCTP integration, applications interact directly with the Circle Integration contract on the source chain. 
 
-From there, automated completion of the transfer (including Circle attestation, redemption, and destination execution) is handled through the Executor flow. An off-chain client requests execution using the CCTP Executor route (TypeScript SDK), and a relay provider submits the required transactions to complete the transfer and invoke the destination logic.
+The primary entry point is `CircleIntegration.transferTokensWithPayload`. This function burns USDC on the source chain using Circle’s CCTP contracts and emits a Wormhole message containing an application-defined payload. This message serves as the input for Executor-based completion of the transfer.
 
-The contract below demonstrates the on-chain responsibilities on the source chain: approving USDC for the Circle Integration contract and calling `transferTokensWithPayload` with amount, target Wormhole chain ID, mint recipient, and a payload.
+Under the Executor model, on-chain contracts are only responsible for initiating the transfer. Attestation retrieval, redemption, and destination execution are performed off-chain by a relay provider after an execution request is submitted.
 
-??? code "CCTPExecutorSender"
+### On-chain transfer initiation
 
-    ```solidity
-    --8<-- 'code/products/cctp-bridge/guides/cctp-contracts/CCTPExecutorSender.sol'
-    ```
+When initiating a transfer, a source-chain contract typically performs the following steps:
 
-To complete the transfer automatically, an off-chain client uses the CCTP Executor route to:
+- Approves the Circle Integration contract to spend USDC
+- Calls `transferTokensWithPayload`, specifying:
+    - the USDC amount to burn
+    - the target Wormhole chain ID
+    - the mint recipient on the destination chain
+    - an application-defined payload
 
-- Fetch the Circle message and attestation
-- Request execution so a relay provider submits the destination transaction
-- Redeem and execute on the destination chain
-
-The `CCTPExecutorSender` abstract contract exposes the `sendUSDCWithPayload` helper function, which wraps `CircleIntegration.transferTokensWithPayload` and emits a Wormhole message for the transfer. <!-- double check -->
-
-```solidity
---8<-- 'code/products/cctp-bridge/guides/cctp-contracts/sendUSDCWithPayload.sol'
-```
-
-??? interface "Parameters"
-
-    `targetChain` ++"uint16"++
-
-    The Wormhole chain ID of the destination chain.
-
-    ---
-
-    `targetMintRecipient` ++"address"++
-
-    The recipient of the minted USDC on the destination chain.
-
-    ---
-
-    `amount` ++"uint256"++
-
-    The amount of USDC to burn on the source chain.
-
-    ---
-
-    `userPayload` ++"bytes"++
-
-    Application-defined payload to be delivered alongside the USDC transfer.
-
-    ---
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-
-    Wormhole sequence number emitted by the Circle Integration contract for this transfer.
-
-When `sendUSDCWithPayload` is called, the following occurs:
-
-1. **USDC approval**: The Circle Integration contract is approved to spend the specified amount of USDC.
-2. **Burn and message emission**:
-
-   - `transferTokensWithPayload` is invoked on the Circle Integration contract..
-   - Circle’s CCTP contracts burn USDC on the source chain.
-   - A Wormhole message is emitted containing the provided payload.
-
-3. **Executor-driven completion (off-chain)**:
-
-   - An off-chain client requests execution using the CCTP Executor route.
-   - A relay provider retrieves the Circle message and obtains the attestation.
-   - The relay provider submits the redemption transaction on the destination chain and invokes the destination logic.
-
-At this point, USDC is minted on the destination chain and the application payload becomes available for processing by the receiving contract.
-
-### Receiving Tokens and Messages
-
-To complete the cross-chain transfer, you must invoke the `redeemTokensWithPayload` function on the target Wormhole Circle Integration contract. This function verifies the message's authenticity, decodes the payload, confirms the recipient and sender, checks message delivery, and then calls the `receiveMessage` function of the [Message Transmitter](#message-transmitter-contract) contract.
-
-Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the `WormholeRelayerSDK.sol` contract from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the `CCTPReceiver` abstract contract.
-
-??? code "CCTP Receiver contract"
+??? code "CircleIntegration.sol"
 
     ```solidity
-    --8<-- 'code/products/cctp-bridge/guides/cctp-contracts/CCTPReceiver.sol'
+    --8<-- 'code/products/cctp-bridge/guides/cctp-contracts/CircleIntegration.sol'
     ```
 
-Although you do not need to interact with the `receiveWormholeMessages` function directly, it's important to understand what it does. This function processes cross-chain messages and USDC transfers via Wormhole's Circle (CCTP) Bridge. Here's a summary of what it does:
+Calling `transferTokensWithPayload` performs the following on-chain actions:
 
-1. **Validate additional messages**: The function checks that there is at most one CCTP transfer message in the `additionalMessages` array, as it currently only supports processing a single CCTP transfer.
-2. **Redeem USDC**:
-    - If there is a CCTP message, it calls the `redeemUSDC` function of the `CCTPReceiver` contract to decode and redeem the USDC.
-    - This results in the call of the `receiveMessage` function of Circle's Message Transmitter contract to redeem the USDC based on the provided message and signature.
-    - The amount of USDC received is calculated by subtracting the contract's previous balance from the current balance after redeeming the USDC.
-3. **Decode payload**: The incoming payload is decoded, extracting both the expected amount of USDC and a `userPayload` (which could be any additional data).
-4. **Verify the amount**: It ensures that the amount of USDC received matches the amount encoded in the payload. If the amounts don't match, the transaction is reverted.
-5. **Handle the payload and USDC**: After verifying the amounts, `receivePayloadAndUSDC` is called, which is meant to handle the actual logic for processing the received payload and USDC transfer.
+- USDC is burned on the source chain via Circle’s Token Messenger and Token Minter contracts
+- A Wormhole message is emitted by the Circle Integration contract, encoding:
+    - transfer metadata
+    - the application payload
 
-You'll need to implement the `receivePayloadAndUSDC` function to transfer the USDC and handle the payload as your application needs. A simple example implementation is as follows:
+The function returns a Wormhole sequence number that uniquely identifies the transfer.
 
-```solidity
---8<-- 'code/products/cctp-bridge/guides/cctp-contracts/receivePayloadAndUSDC.sol'
-```
+### Execution and delivery via Executor
+
+Once the transfer is initiated on-chain, completion is handled through the Executor:
+
+1. An off-chain client observes the transfer and constructs an execution request using the CCTP Executor route.
+2. A relay provider:
+    - retrieves the Circle message and attestation
+    - submits the redemption transaction on the destination chain
+    - invokes any destination logic associated with the payload.
+
+This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configuration and the executor route selected, but the on-chain initiation via `transferTokensWithPayload` remains the same.
+
+From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The remaining steps are orchestrated by the Executor framework and relay providers.
+
+<!--
 
 ## Complete Example
 
 To view a complete example of creating a contract that integrates with Wormhole's CCTP contracts to send and receive USDC cross-chain, check out the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub.
 
+-->
