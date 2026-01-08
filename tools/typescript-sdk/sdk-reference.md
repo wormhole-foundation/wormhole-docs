@@ -220,7 +220,9 @@ For automatic transfers, the process ends after initiation. Manual transfers req
 Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
-
+<!--
+You can transfer native USDC using Circle’s CCTP. When the transfer is set to `automatic`, completion is handled by the **Executor** relay provider network: the quote includes the provider’s relay/execution fee (and any requested native gas drop-off), which is deducted from the amount sent. To receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the provider fee.
+-->
 You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
 
 In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.

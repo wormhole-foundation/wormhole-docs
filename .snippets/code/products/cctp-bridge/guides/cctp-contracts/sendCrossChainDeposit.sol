@@ -1,26 +1,11 @@
 function sendCrossChainDeposit(
-    uint16 targetChain,
-    address targetAddress,
-    address recipient,
-    uint256 amount,
-    uint256,
-    gasLimit
-) public payable {
-    uint256 cost = quoteCrossChainDeposit(targetChain);
-    require(
-        msg.value == cost,
-        "msg.value must be quoteCrossChainDeposit(targetChain)"
-    );
+  uint16 targetChain,
+  address targetMintRecipient,
+  uint256 amount,
+  bytes calldata userPayload
+) external returns (uint64 sequence) {
+  // pull USDC from user if your pattern needs it (optional)
+  // IERC20(usdc).transferFrom(msg.sender, address(this), amount);
 
-    IERC20(USDC).transferFrom(msg.sender, address(this), amount);
-
-    bytes memory payload = abi.encode(recipient);
-    sendUSDCWithPayloadToEvm(
-        targetChain,
-        targetAddress, // address (on targetChain) to send token and payload to
-        payload,
-        0, // receiver value
-        gasLimit,
-        amount
-    );
+  sequence = sendUSDCWithPayload(targetChain, targetMintRecipient, amount, userPayload);
 }
