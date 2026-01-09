@@ -47,9 +47,9 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+    Test a transfer or deployment quickly with a standalone [Connect](/docs/products/connect/overview/){target=\_blank} implementation with automatic NTT deployment configuration.
 
-    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/connect-w/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
 
