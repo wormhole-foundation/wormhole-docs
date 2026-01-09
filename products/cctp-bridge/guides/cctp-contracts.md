@@ -37,7 +37,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
 
 The functions provided by the Circle Integration contract are as follows:
 
-- **`transferTokensWithPayload`**: Initiates a CCTP transfer by burning Circle-supported tokens on the source chain and emitting a Wormhole message containing a user-specified payload. When used with the Executor, this Wormhole message serves as the input for off-chain execution. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
+- **`transferTokensWithPayload`**: Initiates a CCTP transfer by burning Circle-supported tokens on the source chain and emitting a Wormhole message containing a user-specified payload. When used with the Executor, this Wormhole message serves as the input for the off-chain execution flow. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
 
     ??? interface "Parameters"
 
@@ -90,7 +90,7 @@ The functions provided by the Circle Integration contract are as follows:
 - **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
 
     !!! note
-        This function is documented here for completeness. When using the Executor, redemption and destination execution are handled off-chain by relay providers and do not require direct contract interaction.
+        This function is documented here for completeness. When using the Executor, redemption and destination execution are handled off-chain by relay providers and do not require applications to invoke this function directly.
 
     ??? interface "Parameters"
 
@@ -654,15 +654,15 @@ The function returns a Wormhole sequence number that uniquely identifies the tra
 
 Once the transfer is initiated on-chain, completion is handled through the Executor:
 
-1. An off-chain client observes the emitted Wormhole message and constructs an execution request using the CCTP Executor route.
+1. An off-chain client observes the emitted Wormhole message and constructs an execution request using the CCTP Executor route (via the TypeScript SDK).
 2. A relay provider:
     - retrieves the Circle message and attestation
     - submits the redemption transaction on the destination chain
     - invokes any destination logic associated with the payload.
 
-This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configuration and the executor route selected, but the on-chain initiation via `transferTokensWithPayload` remains the same.
+This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configurations and the selected executor route, but the on-chain initiation via `transferTokensWithPayload` remains the same.
 
-From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The remaining steps are orchestrated by the Executor framework and relay providers.
+From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The Executor framework and relay providers handle the remaining steps.
 
 ## Resources
 
