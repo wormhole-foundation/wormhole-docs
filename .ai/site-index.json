@@ -3486,12 +3486,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6272,
+      "chars": 6275,
       "words": 1236,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:efe7d38b3039db476d514ce1b3860f4a1389cfd0d49d3a4871c14c1bfdab231c",
+    "hash": "sha256:a3757001954c253439474b6cbb9a8e2b5c1b0c03fea93720752603579f0e3ef0",
     "token_estimator": "heuristic-v1"
   },
   {
