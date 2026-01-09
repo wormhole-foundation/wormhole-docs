@@ -2395,5 +2395,5 @@ From the perspective of a smart contract integrating with CCTP, initiating the t
 
 ## Resources
 
-- For an end-to-end, up-to-date walkthrough of executing CCTP transfers using the Executor, refer to the [CCTP Executor Guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank} guide.
-- For reference, the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub demonstrates a legacy contract-based integration with Wormhole’s CCTP contracts:
+- For an end-to-end, up-to-date walkthrough of executing CCTP transfers using the Executor, refer to the [CCTP Executor Guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank}.
+- For reference, the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub demonstrates a legacy contract-based integration with Wormhole’s CCTP contracts.
