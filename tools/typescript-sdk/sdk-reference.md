@@ -47,9 +47,9 @@ Understanding key Wormhole concepts—and how the SDK abstracts them—will help
 
 The SDK includes `Platform` modules, which create a standardized interface for interacting with the chains of a supported platform. The contents of a module vary by platform but can include:
 
-- [Protocols](#protocols) preconfigured to suit the selected platform.
-- Definitions and configurations for types, signers, addresses, and chains.
-- Helpers configured for dealing with unsigned transactions on the selected platform.
+- [Protocols](#protocols) preconfigured to suit the selected platform
+- Definitions and configurations for types, signers, addresses, and chains 
+- Helpers configured for dealing with unsigned transactions on the selected platform
 
 These modules expose key functions and types from the native ecosystem, reducing the need for full packages and keeping dependencies lightweight.
 
@@ -70,10 +70,10 @@ These modules expose key functions and types from the native ecosystem, reducing
 
 `ChainContext` (from the `@wormhole-foundation/sdk-definitions` package) provides a unified interface for interacting with connected chains. It:
 
-- Holds network, chain, and platform configurations.
-- Caches RPC and protocol clients.
-- Exposes both platform-inherited and chain-specific methods.
-- Defines the core types used across the SDK such as the `Network`, `Chain`, and `Platform`.
+- Holds network, chain, and platform configurations
+- Caches RPC and protocol clients
+- Exposes both platform-inherited and chain-specific methods
+- Defines the core types used across the SDK: `Network`, `Chain`, and `Platform`
 
 ```ts
 // Get the chain context for the source and destination chains
@@ -119,7 +119,7 @@ To sign transactions programmatically with the Wormhole SDK, you can use [Ethers
 These components work together to create, sign, and submit a transaction to the blockchain:
 
 - **`provider`**: Connects to the Ethereum or EVM-compatible network, enabling data access and transaction submission.
-- **`signer`**: Represents the account that signs transactions using a private key.
+- **`signer`** : Represents the account that signs transactions using a private key.
 - **`Wallet`**: Combines provider and signer to create, sign, and send transactions programmatically.
 
 ### Protocols
@@ -131,23 +131,23 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Protocol              | Installation Command                                           |
     |-----------------------|----------------------------------------------------------------|
     | EVM Core              | <pre>```@wormhole-foundation/sdk-evm-core```</pre>             |
-    | EVM WTT               | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
+    | EVM Token Bridge      | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
     | EVM CCTP              | <pre>```@wormhole-foundation/sdk-evm-cctp```</pre>             |
     | EVM Portico           | <pre>```@wormhole-foundation/sdk-evm-portico```</pre>          |
     | EVM TBTC              | <pre>```@wormhole-foundation/sdk-evm-tbtc```</pre>             |
     | Solana Core           | <pre>```@wormhole-foundation/sdk-solana-core```</pre>          |
-    | Solana WTT            | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
+    | Solana Token Bridge   | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
     | Solana CCTP           | <pre>```@wormhole-foundation/sdk-solana-cctp```</pre>          |
     | Solana TBTC           | <pre>```@wormhole-foundation/sdk-solana-tbtc```</pre>          |
     | Algorand Core         | <pre>```@wormhole-foundation/sdk-algorand-core```</pre>        |
-    | Algorand WTT          | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
+    | Algorand Token Bridge | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
     | Aptos Core            | <pre>```@wormhole-foundation/sdk-aptos-core```</pre>           |
-    | Aptos WTT             | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
+    | Aptos Token Bridge    | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
     | Aptos CCTP            | <pre>```@wormhole-foundation/sdk-aptos-cctp```</pre>           |
     | Cosmos Core           | <pre>```@wormhole-foundation/sdk-cosmwasm-core```</pre>        |
-    | Cosmos WTT            | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
+    | Cosmos Token Bridge   | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
     | Sui Core              | <pre>```@wormhole-foundation/sdk-sui-core```</pre>             |
-    | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
+    | Sui Token Bridge      | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
 
@@ -179,15 +179,12 @@ Example workflow on Solana Testnet:
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
-#### Wrapped Token Transfers (WTT)
+#### Token Bridge
 
-The most familiar protocol built on Wormhole is WTT. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
-
-!!! note "Terminology" 
-    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+The most familiar protocol built on Wormhole is the Token Bridge. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/wtt-snippet.ts'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge-snippet.ts'
 ```
 
 ## Transfers
@@ -209,20 +206,18 @@ The example below shows how to initiate and complete a `TokenTransfer`. After cr
 For automatic transfers, the process ends after initiation. Manual transfers require attestation before completion.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts:120:158'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts:120:158'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    --8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts'
+    --8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts'
     ```
 
-Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
 
 ### Native USDC Transfers
-<!--
-You can transfer native USDC using Circle’s CCTP. When the transfer is set to `automatic`, completion is handled by the **Executor** relay provider network: the quote includes the provider’s relay/execution fee (and any requested native gas drop-off), which is deducted from the amount sent. To receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the provider fee.
--->
+
 You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
 
 In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.
