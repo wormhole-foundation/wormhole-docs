@@ -221,20 +221,46 @@ Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol
 
 ### Native USDC Transfers
 
-You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
+Native USDC transfers use Circle’s CCTP burn-and-mint mechanism. In the TypeScript SDK, the recommended way to execute an automatic native USDC transfer is through the routing system using the CCTP Executor route. 
 
-In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.
+At a high level:
 
-When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/cctp/required-block-confirmations#mainnet){target=\_blank}.
+- The source transaction initiates a CCTP burn and emits the messages required to complete the transfer.
+- An off-chain execution request is constructed using the CCTP Executor route.
+- A relay provider completes the transfer by fetching the Circle attestation and submitting the destination transaction(s) required to redeem USDC.
 
-```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/cctp.ts:69:112'
-```
+Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration—see [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank}.
 
-??? code "View the complete script"
+The only difference between v1 and v2 is the route import and type used for validation:
+
+=== "CCTP v1"
+
     ```ts
-    --8<-- 'code/tools/typescript-sdk/sdk-reference/cctp.ts'
+    --8<-- "code/tools/typescript-sdk/sdk-reference/cctp-v1.ts:1:8"
     ```
+
+=== "CCTP v2"
+
+    ```ts
+    --8<-- "code/tools/typescript-sdk/sdk-reference/cctp-v2.ts:1:8"
+    ```
+
+The complete examples below demonstrate how to construct a route request, validate parameters, fetch a quote, and initiate an automatic transfer.
+
+??? code "View complete script"
+    === "CCTP v1"
+
+        ```ts
+        --8<-- "code/tools/typescript-sdk/sdk-reference/cctp-v1.ts"
+        ```
+
+    === "CCTP v2"
+
+        ```ts
+        --8<-- "code/tools/typescript-sdk/sdk-reference/cctp-v2.ts"
+        ```
+
+The initiation and quoting flow is the same for both versions; the only difference is which CCTP Executor route class is selected based on the source/destination configuration.
 
 ### Recovering Transfers
 
