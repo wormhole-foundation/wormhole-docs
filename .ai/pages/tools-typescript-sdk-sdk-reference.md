@@ -221,7 +221,6 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
-
 #### Wormhole Core
 
 The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](/docs/products/reference/glossary/#emitter){target=\_blank}, sequence number, and payload needed for bridging.
@@ -554,190 +553,260 @@ Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol
 
 ### Native USDC Transfers
 
-You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
+Native USDC transfers use Circle’s CCTP burn-and-mint mechanism. In the TypeScript SDK, the recommended way to execute an automatic native USDC transfer is through the routing system using the CCTP Executor route. 
 
-In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.
+At a high level:
 
-When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/cctp/required-block-confirmations#mainnet){target=\_blank}.
+- The source transaction initiates a CCTP burn and emits the messages required to complete the transfer.
+- The CCTP Executor route requests a signed execution quote and registers an execution request with a relay provider.
+- A relay provider completes the transfer by fetching the Circle attestation and submitting the destination transaction(s) required to redeem USDC.
 
-```ts
-  const xfer = await wh.circleTransfer(
-    // Amount as bigint (base units)
-    req.amount,
-    // Sender chain/address
-    src.address,
-    // Receiver chain/address
-    dst.address,
-    // Automatic delivery boolean
-    req.automatic,
-    // Payload to be sent with the transfer
-    undefined,
-    // If automatic, native gas can be requested to be sent to the receiver
-    req.nativeGas
-  );
+Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration — see [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank}.
 
-  // Note, if the transfer is requested to be Automatic, a fee for performing the relay
-  // will be present in the quote. The fee comes out of the amount requested to be sent.
-  // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
-  // The same applies for native gas dropoff
-  const quote = await CircleTransfer.quoteTransfer(
-    src.chain,
-    dst.chain,
-    xfer.transfer
-  );
-  console.log('Quote', quote);
+!!! note "Required packages"
+    Executor-based CCTP transfers require installing the SDK and the CCTP Executor route:
 
-  console.log('Starting Transfer');
-  const srcTxids = await xfer.initiateTransfer(src.signer);
-  console.log(`Started Transfer: `, srcTxids);
-
-  if (req.automatic) {
-    const relayStatus = await waitForRelay(srcTxids[srcTxids.length - 1]!);
-    console.log(`Finished relay: `, relayStatus);
-    return;
-  }
-
-  console.log('Waiting for Attestation');
-  const attestIds = await xfer.fetchAttestation(60_000);
-  console.log(`Got Attestation: `, attestIds);
-
-  console.log('Completing Transfer');
-  const dstTxids = await xfer.completeTransfer(dst.signer);
-  console.log(`Completed Transfer: `, dstTxids);
-}
-```
-
-??? code "View the complete script"
-    ```ts
-    import {
-      Chain,
-      CircleTransfer,
-      Network,
-      Signer,
-      TransactionId,
-      TransferState,
-      Wormhole,
-      amount,
-      wormhole,
-    } from '@wormhole-foundation/sdk';
-    import evm from '@wormhole-foundation/sdk/evm';
-    import solana from '@wormhole-foundation/sdk/solana';
-    import { SignerStuff, getSigner, waitForRelay } from './helpers/index.js';
-
-    /*
-    Notes:
-    Only a subset of chains are supported by Circle for CCTP, see core/base/src/constants/circle.ts for currently supported chains
-
-    AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, which is 1 USDC
-    */
-    //
-
-    (async function () {
-      // Init the Wormhole object, passing in the config for which network
-      // to use (e.g. Mainnet/Testnet) and what Platforms to support
-      const wh = await wormhole('Testnet', [evm, solana]);
-
-      // Grab chain Contexts
-      const sendChain = wh.getChain('Avalanche');
-      const rcvChain = wh.getChain('Solana');
-
-      // Get signer from local key but anything that implements
-      // Signer interface (e.g. wrapper around web wallet) should work
-      const source = await getSigner(sendChain);
-      const destination = await getSigner(rcvChain);
-
-      // 6 decimals for USDC (except for BSC, so check decimals before using this)
-      const amt = amount.units(amount.parse('0.2', 6));
-
-      // Choose whether or not to have the attestation delivered for you
-      const automatic = false;
-
-      // If the transfer is requested to be automatic, you can also request that
-      // during redemption, the receiver gets some amount of native gas transferred to them
-      // so that they may pay for subsequent transactions
-      // The amount specified here is denominated in the token being transferred (USDC here)
-      const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
-
-      await cctpTransfer(wh, source, destination, {
-        amount: amt,
-        automatic,
-        nativeGas,
-      });
-
-    })();
-
-    async function cctpTransfer<N extends Network>(
-      wh: Wormhole<N>,
-      src: SignerStuff<N, any>,
-      dst: SignerStuff<N, any>,
-      req: {
-        amount: bigint;
-        automatic: boolean;
-        nativeGas?: bigint;
-      }
-    ) {
-
-      const xfer = await wh.circleTransfer(
-        // Amount as bigint (base units)
-        req.amount,
-        // Sender chain/address
-        src.address,
-        // Receiver chain/address
-        dst.address,
-        // Automatic delivery boolean
-        req.automatic,
-        // Payload to be sent with the transfer
-        undefined,
-        // If automatic, native gas can be requested to be sent to the receiver
-        req.nativeGas
-      );
-
-      // Note, if the transfer is requested to be Automatic, a fee for performing the relay
-      // will be present in the quote. The fee comes out of the amount requested to be sent.
-      // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
-      // The same applies for native gas dropoff
-      const quote = await CircleTransfer.quoteTransfer(
-        src.chain,
-        dst.chain,
-        xfer.transfer
-      );
-      console.log('Quote', quote);
-
-      console.log('Starting Transfer');
-      const srcTxids = await xfer.initiateTransfer(src.signer);
-      console.log(`Started Transfer: `, srcTxids);
-
-      if (req.automatic) {
-        const relayStatus = await waitForRelay(srcTxids[srcTxids.length - 1]!);
-        console.log(`Finished relay: `, relayStatus);
-        return;
-      }
-
-      console.log('Waiting for Attestation');
-      const attestIds = await xfer.fetchAttestation(60_000);
-      console.log(`Got Attestation: `, attestIds);
-
-      console.log('Completing Transfer');
-      const dstTxids = await xfer.completeTransfer(dst.signer);
-      console.log(`Completed Transfer: `, dstTxids);
-    }
-
-    export async function completeTransfer(
-      wh: Wormhole<Network>,
-      txid: TransactionId,
-      signer: Signer
-    ): Promise<void> {
-
-      const xfer = await CircleTransfer.from(wh, txid);
-
-      const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
-      console.log('Got attestation: ', attestIds);
-
-      const dstTxIds = await xfer.completeTransfer(signer);
-      console.log('Completed transfer: ', dstTxIds);
-    }
-
+    ```sh
+    npm install @wormhole-foundation/sdk @wormhole-labs/cctp-executor-route
     ```
+
+The primary difference between v1 and v2 in the SDK is the route class and the corresponding validation parameter types.
+
+=== "CCTP v1"
+
+    ```ts
+    import { Wormhole, circle, routes } from '@wormhole-foundation/sdk';
+    import evm from '@wormhole-foundation/sdk/platforms/evm';
+    import solana from '@wormhole-foundation/sdk/platforms/solana';
+    import sui from '@wormhole-foundation/sdk/platforms/sui';
+    import '@wormhole-labs/cctp-executor-route';
+    import { cctpExecutorRoute } from '@wormhole-labs/cctp-executor-route';
+    import type { CCTPExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV1';
+    import { getSigner } from './helper';
+    ```
+
+=== "CCTP v2"
+
+    ```ts
+    import { Wormhole, circle, routes } from '@wormhole-foundation/sdk';
+    import evm from '@wormhole-foundation/sdk/platforms/evm';
+    import solana from '@wormhole-foundation/sdk/platforms/solana';
+    import sui from '@wormhole-foundation/sdk/platforms/sui';
+    import '@wormhole-labs/cctp-executor-route';
+    import { cctpV2StandardExecutorRoute } from '@wormhole-labs/cctp-executor-route';
+    import type { CCTPv2ExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV2Base';
+    import { getSigner } from './helper';
+    ```
+
+The complete examples below demonstrate how to construct a route request, validate parameters, fetch a quote, and initiate an automatic transfer.
+
+??? code "View complete script"
+    === "CCTP v1"
+
+        ```ts
+        import { Wormhole, circle, routes } from '@wormhole-foundation/sdk';
+        import evm from '@wormhole-foundation/sdk/platforms/evm';
+        import solana from '@wormhole-foundation/sdk/platforms/solana';
+        import sui from '@wormhole-foundation/sdk/platforms/sui';
+        import '@wormhole-labs/cctp-executor-route';
+        import { cctpExecutorRoute } from '@wormhole-labs/cctp-executor-route';
+        import type { CCTPExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV1';
+        import { getSigner } from './helper';
+
+        (async function () {
+          // Initialize Wormhole for the Testnet environment and add supported chains (evm, solana and sui)
+          const network = 'Testnet';
+          const wh = new Wormhole(network, [
+            evm.Platform,
+            solana.Platform,
+            sui.Platform,
+          ]);
+
+          // Grab chain contexts (cached RPC clients under the hood)
+          const src = wh.getChain('Solana');
+          const dst = wh.getChain('BaseSepolia');
+
+          // Get signers from local keys
+          const srcSigner = await getSigner(src);
+          const dstSigner = await getSigner(dst);
+
+          // Fetch the USDC contract addresses for these chains
+          const srcUsdc = circle.usdcContract.get(network, src.chain);
+          const dstUsdc = circle.usdcContract.get(network, dst.chain);
+
+          if (!srcUsdc || !dstUsdc) {
+            throw new Error(
+              'USDC is not configured on the selected source/destination'
+            );
+          }
+
+          // Build the transfer request for the CCTP v1 executor
+          const tr = await routes.RouteTransferRequest.create(wh, {
+            source: Wormhole.tokenId(src.chain, srcUsdc),
+            destination: Wormhole.tokenId(dst.chain, dstUsdc),
+            sourceDecimals: 6,
+            destinationDecimals: 6,
+            sender: srcSigner.address,
+            recipient: dstSigner.address,
+          });
+
+          // Configure the executor route (referrer fee off)
+          const ExecutorRoute = cctpExecutorRoute({ referrerFeeDbps: 0n });
+          const route = new ExecutorRoute(wh);
+
+          // Define the amount of USDC to transfer (in the smallest unit, so 1.000001 USDC = 1,000,001 units assuming 6 decimals)
+          const transferAmount = '1.000001';
+
+          // Set the native gas drop-off (0 <= nativeGas <= 1)
+          const nativeGasPercent = 0.1;
+
+          const validated = await route.validate(tr, {
+            amount: transferAmount,
+            options: { nativeGas: nativeGasPercent },
+          });
+
+          // Validate inputs and exit early on failure
+          if (!validated.valid) {
+            const { error } = validated as Extract<typeof validated, { valid: false }>;
+            throw new Error(`Validation failed: ${error.message}`);
+          }
+
+          // Quote expects the normalized params produced by validate(); cast to that shape
+          const validatedParams = validated.params as CCTPExecutorRoute.ValidatedParams;
+          const quote = await route.quote(tr, validatedParams);
+          if (!quote.success) {
+            const { error } = quote as Extract<typeof quote, { success: false }>;
+            throw new Error(`Quote failed: ${error.message}`);
+          }
+
+          // Start the transfer on the source chain via the executor
+          const receipt = await route.initiate(
+            tr,
+            srcSigner.signer,
+            quote,
+            dstSigner.address
+          );
+          if ('originTxs' in receipt && Array.isArray(receipt.originTxs)) {
+            console.log('Source transactions:', receipt.originTxs);
+
+            const lastTx = receipt.originTxs[receipt.originTxs.length - 1];
+            if (lastTx) {
+              const txid =
+                typeof lastTx === 'string' ? lastTx : lastTx.txid ?? String(lastTx);
+              const wormholeScanUrl = `https://wormholescan.io/#/tx/${txid}?network=${network}`;
+              console.log('WormholeScan URL:', wormholeScanUrl);
+            }
+          } else {
+            console.log('Receipt returned without origin transactions:', receipt);
+          }
+        })();
+
+        ```
+
+    === "CCTP v2"
+
+        ```ts
+        import { Wormhole, circle, routes } from '@wormhole-foundation/sdk';
+        import evm from '@wormhole-foundation/sdk/platforms/evm';
+        import solana from '@wormhole-foundation/sdk/platforms/solana';
+        import sui from '@wormhole-foundation/sdk/platforms/sui';
+        import '@wormhole-labs/cctp-executor-route';
+        import { cctpV2StandardExecutorRoute } from '@wormhole-labs/cctp-executor-route';
+        import type { CCTPv2ExecutorRoute } from '@wormhole-labs/cctp-executor-route/dist/esm/routes/cctpV2Base';
+        import { getSigner } from './helper';
+
+        (async function () {
+          // Initialize Wormhole for the Testnet environment and add supported chains (evm, solana and sui)
+          const network = 'Testnet';
+          const wh = new Wormhole(network, [
+            evm.Platform,
+            solana.Platform,
+            sui.Platform,
+          ]);
+
+          // Grab chain contexts (cached RPC clients under the hood)
+          const src = wh.getChain('Solana');
+          const dst = wh.getChain('BaseSepolia');
+
+          // Get signers from local keys
+          const srcSigner = await getSigner(src);
+          const dstSigner = await getSigner(dst);
+
+          // Fetch the USDC contract addresses for these chains
+          const srcUsdc = circle.usdcContract.get(network, src.chain);
+          const dstUsdc = circle.usdcContract.get(network, dst.chain);
+
+          if (!srcUsdc || !dstUsdc) {
+            throw new Error(
+              'USDC is not configured on the selected source/destination'
+            );
+          }
+
+          // Build the transfer request for the CCTP v2 executor
+          const tr = await routes.RouteTransferRequest.create(wh, {
+            source: Wormhole.tokenId(src.chain, srcUsdc),
+            destination: Wormhole.tokenId(dst.chain, dstUsdc),
+            sourceDecimals: 6,
+            destinationDecimals: 6,
+            sender: srcSigner.address,
+            recipient: dstSigner.address,
+          });
+
+          // Configure the executor route (referrer fee off)
+          const ExecutorRoute = cctpV2StandardExecutorRoute({ referrerFeeDbps: 0n });
+          const route = new ExecutorRoute(wh);
+
+          // Define the amount of USDC to transfer (in the smallest unit, so 1.000001 USDC = 1,000,001 units assuming 6 decimals)
+          const transferAmount = '1.000001';
+
+          // Set the native gas drop-off (0 <= nativeGas <= 1)
+          const nativeGasPercent = 0.1;
+
+          const validated = await route.validate(tr, {
+            amount: transferAmount,
+            options: { nativeGas: nativeGasPercent },
+          });
+
+          // Validate inputs and exit early on failure
+          if (!validated.valid) {
+            const { error } = validated as Extract<typeof validated, { valid: false }>;
+            throw new Error(`Validation failed: ${error.message}`);
+          }
+
+          // Quote expects the normalized params produced by validate(); cast to that shape
+          const validatedParams =
+            validated.params as CCTPv2ExecutorRoute.ValidatedParams;
+          const quote = await route.quote(tr, validatedParams);
+          if (!quote.success) {
+            const { error } = quote as Extract<typeof quote, { success: false }>;
+            throw new Error(`Quote failed: ${error.message}`);
+          }
+
+          // Start the transfer on the source chain via the executor
+          const receipt = await route.initiate(
+            tr,
+            srcSigner.signer,
+            quote,
+            dstSigner.address
+          );
+          if ('originTxs' in receipt && Array.isArray(receipt.originTxs)) {
+            console.log('Source transactions:', receipt.originTxs);
+
+            const lastTx = receipt.originTxs[receipt.originTxs.length - 1];
+            if (lastTx) {
+              const txid =
+                typeof lastTx === 'string' ? lastTx : lastTx.txid ?? String(lastTx);
+              const wormholeScanUrl = `https://wormholescan.io/#/tx/${txid}?network=${network}`;
+              console.log('WormholeScan URL:', wormholeScanUrl);
+            }
+          } else {
+            console.log('Receipt returned without origin transactions:', receipt);
+          }
+        })();
+
+        ```
+
+The initiation and quoting flow is the same for both versions; the only difference is which CCTP Executor route class is selected based on the source/destination configuration.
 
 ### Recovering Transfers
 
@@ -884,6 +953,8 @@ It may be necessary to recover an abandoned transfer before it is completed. To 
     }
 
     ```
+
+When using Executor-based routes, transfers are typically completed automatically. Manual recovery is only required if execution fails or the transfer is interrupted.
 
 ## Routes
 
@@ -1131,6 +1202,10 @@ export class CustomRoute<N extends Network>
 ```
 
 A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute`](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank} route implementation.
+
+### Executor Routes
+
+Some routes, such as the CCTP Executor routes, are provided as external plugins. These routes integrate with Wormhole’s routing system to enable automated execution via off-chain relay providers.
 
 ## See Also
 
