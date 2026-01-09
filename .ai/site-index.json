@@ -111,32 +111,32 @@
       },
       {
         "depth": 2,
-        "title": "How to Interact with CCTP Contracts",
-        "anchor": "how-to-interact-with-cctp-contracts"
+        "title": "CCTP Transfers with Executor",
+        "anchor": "cctp-transfers-with-executor"
       },
       {
         "depth": 3,
-        "title": "Sending Tokens and Messages",
-        "anchor": "sending-tokens-and-messages"
+        "title": "On-chain transfer initiation",
+        "anchor": "on-chain-transfer-initiation"
       },
       {
         "depth": 3,
-        "title": "Receiving Tokens and Messages",
-        "anchor": "receiving-tokens-and-messages"
+        "title": "Execution and delivery via Executor",
+        "anchor": "execution-and-delivery-via-executor"
       },
       {
         "depth": 2,
-        "title": "Complete Example",
-        "anchor": "complete-example"
+        "title": "Resources",
+        "anchor": "resources"
       }
     ],
     "stats": {
-      "chars": 102463,
-      "words": 9765,
+      "chars": 93882,
+      "words": 8843,
       "headings": 10,
-      "estimated_token_count_total": 16704
+      "estimated_token_count_total": 15144
     },
-    "hash": "sha256:3849d9c9de5700234ecfe4adbe8e312716a74e78c929449c39b965e8bf6f5be2",
+    "hash": "sha256:8c899f4050b9824f4297e03e63badb250ee1926c6379188981da842064fa40fa",
     "token_estimator": "heuristic-v1"
   },
   {

@@ -10917,7 +10917,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
 
 The functions provided by the Circle Integration contract are as follows:
 
-- **`transferTokensWithPayload`**: Calls the Circle Bridge contract to burn Circle-supported tokens. It emits a Wormhole message containing a user-specified payload with instructions for what to do with the Circle-supported assets once they have been minted on the target chain.
+- **`transferTokensWithPayload`**: Initiates a CCTP transfer by burning Circle-supported tokens on the source chain and emitting a Wormhole message containing a user-specified payload. When used with the Executor, this Wormhole message serves as the input for the off-chain execution flow. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
 
     ??? interface "Parameters"
 
@@ -10968,6 +10968,9 @@ The functions provided by the Circle Integration contract are as follows:
         Wormhole sequence number for this contract.
 
 - **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
+
+    !!! note
+        This function is documented here for completeness. When using the Executor, redemption and destination execution are handled off-chain by relay providers and do not require applications to invoke this function directly.
 
     ??? interface "Parameters"
 
@@ -12833,348 +12836,120 @@ Most of the methods of the Token Minter contract can be called only by the regis
         
         The local token address.
 
-## How to Interact with CCTP Contracts
+## CCTP Transfers with Executor
 
-Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole CCTP contracts. The primary functionality revolves around the following:
+This section describes how the Circle Integration contract is used in practice when executing CCTP transfers through the Executor.
 
-- **Sending tokens with a message payload**: Initiating a cross-chain transfer of Circle-supported assets along with a message payload to a specific target address on the target chain.
-- **Receiving tokens with a message payload**: Validating messages received from other chains via Wormhole and then minting the tokens for the recipient.
+To initiate a cross-chain USDC transfer using Wormhole’s CCTP integration, applications interact directly with the Circle Integration contract on the source chain. 
 
-### Sending Tokens and Messages
+The primary entry point is `CircleIntegration.transferTokensWithPayload`. This function burns USDC on the source chain using Circle’s CCTP contracts and emits a Wormhole message containing an application-defined payload. This message serves as the input for Executor-based completion of the transfer.
 
-To initiate a cross-chain transfer, you must call the `transferTokensWithPayload` method of Wormhole's Circle Integration (CCTP) contract. Once you have initiated a transfer, you must fetch the attested Wormhole message and parse the transaction logs to locate a transfer message emitted by the Circle Bridge contract. Then, a request must be sent to Circle's off-chain process with the transfer message to grab the attestation from the process's response, which validates the token mint on the target chain.
+Under the Executor model, on-chain contracts are only responsible for initiating the transfer. Attestation retrieval, redemption, and destination execution are performed off-chain by a relay provider after an execution request is submitted.
 
-To streamline this process, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank}, which exposes the `WormholeRelayerSDK.sol` contract, including the `CCTPSender` abstract contract. By inheriting this contract, you can transfer USDC while automatically relaying the message payload to the destination chain via a Wormhole-deployed relayer.
+### On-chain transfer initiation
 
-??? code "CCTP Sender contract"
+When initiating a transfer, a source-chain contract typically performs the following steps:
 
-    ```solidity
-    abstract contract CCTPSender is CCTPBase {
-        uint8 internal constant CONSISTENCY_LEVEL_FINALIZED = 15;
+- Approves the Circle Integration contract to spend USDC
+- Calls `transferTokensWithPayload`, specifying:
+    - the USDC amount to burn
+    - the target Wormhole chain ID
+    - the mint recipient on the destination chain
+    - an application-defined payload
 
-        using CCTPMessageLib for *;
-
-        mapping(uint16 => uint32) public chainIdToCCTPDomain;
-
-        /**
-         * Sets the CCTP Domain corresponding to chain 'chain' to be 'cctpDomain'
-         * So that transfers of USDC to chain 'chain' use the target CCTP domain 'cctpDomain'
-         *
-         * This action can only be performed by 'cctpConfigurationOwner', who is set to be the deployer
-         *
-         * Currently, cctp domains are:
-         * Ethereum: Wormhole chain id 2, cctp domain 0
-         * Avalanche: Wormhole chain id 6, cctp domain 1
-         * Optimism: Wormhole chain id 24, cctp domain 2
-         * Arbitrum: Wormhole chain id 23, cctp domain 3
-         * Base: Wormhole chain id 30, cctp domain 6
-         *
-         * These can be set via:
-         * setCCTPDomain(2, 0);
-         * setCCTPDomain(6, 1);
-         * setCCTPDomain(24, 2);
-         * setCCTPDomain(23, 3);
-         * setCCTPDomain(30, 6);
-         */
-        function setCCTPDomain(uint16 chain, uint32 cctpDomain) public {
-            require(
-                msg.sender == cctpConfigurationOwner,
-                "Not allowed to set CCTP Domain"
-            );
-            chainIdToCCTPDomain[chain] = cctpDomain;
-        }
-
-        function getCCTPDomain(uint16 chain) internal view returns (uint32) {
-            return chainIdToCCTPDomain[chain];
-        }
-
-        /**
-         * transferUSDC wraps common boilerplate for sending tokens to another chain using IWormholeRelayer
-         * - approves the Circle TokenMessenger contract to spend 'amount' of USDC
-         * - calls Circle's 'depositForBurnWithCaller'
-         * - returns key for inclusion in WormholeRelayer `additionalVaas` argument
-         *
-         * Note: this requires that only the targetAddress can redeem transfers.
-         *
-         */
-
-        function transferUSDC(
-            uint256 amount,
-            uint16 targetChain,
-            address targetAddress
-        ) internal returns (MessageKey memory) {
-            IERC20(USDC).approve(address(circleTokenMessenger), amount);
-            bytes32 targetAddressBytes32 = addressToBytes32CCTP(targetAddress);
-            uint64 nonce = circleTokenMessenger.depositForBurnWithCaller(
-                amount,
-                getCCTPDomain(targetChain),
-                targetAddressBytes32,
-                USDC,
-                targetAddressBytes32
-            );
-            return
-                MessageKey(
-                    CCTPMessageLib.CCTP_KEY_TYPE,
-                    abi.encodePacked(getCCTPDomain(wormhole.chainId()), nonce)
-                );
-        }
-
-        // Publishes a CCTP transfer of 'amount' of USDC
-        // and requests a delivery of the transfer along with 'payload' to 'targetAddress' on 'targetChain'
-        //
-        // The second step is done by publishing a wormhole message representing a request
-        // to call 'receiveWormholeMessages' on the address 'targetAddress' on chain 'targetChain'
-        // with the payload 'abi.encode(amount, payload)'
-        // (and we encode the amount so it can be checked on the target chain)
-        function sendUSDCWithPayloadToEvm(
-            uint16 targetChain,
-            address targetAddress,
-            bytes memory payload,
-            uint256 receiverValue,
-            uint256 gasLimit,
-            uint256 amount
-        ) internal returns (uint64 sequence) {
-            MessageKey[] memory messageKeys = new MessageKey[](1);
-            messageKeys[0] = transferUSDC(amount, targetChain, targetAddress);
-
-            bytes memory userPayload = abi.encode(amount, payload);
-            address defaultDeliveryProvider = wormholeRelayer
-                .getDefaultDeliveryProvider();
-
-            (uint256 cost, ) = wormholeRelayer.quoteEVMDeliveryPrice(
-                targetChain,
-                receiverValue,
-                gasLimit
-            );
-
-            sequence = wormholeRelayer.sendToEvm{value: cost}(
-                targetChain,
-                targetAddress,
-                userPayload,
-                receiverValue,
-                0,
-                gasLimit,
-                targetChain,
-                address(0x0),
-                defaultDeliveryProvider,
-                messageKeys,
-                CONSISTENCY_LEVEL_FINALIZED
-            );
-        }
-
-        function addressToBytes32CCTP(address addr) private pure returns (bytes32) {
-            return bytes32(uint256(uint160(addr)));
-        }
-    }
-
-    ```
-
-The `CCTPSender` abstract contract exposes the `sendUSDCWithPayloadToEvm` function. This function publishes a CCTP transfer of the provided `amount` of USDC and requests that the transfer be delivered along with a `payload` to the specified `targetAddress` on the `targetChain`.
-
-```solidity
-function sendUSDCWithPayloadToEvm(
-    uint16 targetChain,
-    address targetAddress,
-    bytes memory payload,
-    uint256 receiverValue,
-    uint256 gasLimit,
-    uint256 amount
-) internal returns (uint64 sequence) 
-```
-
-??? interface "Parameters"
-
-    `targetChain` ++"uint16"++
-
-    The target chain for the transfer.
-
-    ---
-
-    `targetAddress` ++"address"++
-
-    The target address for the transfer.
-
-    ---
-
-    `payload` ++"bytes"++
-
-    Arbitrary payload to be delivered to the target chain via Wormhole.
-
-    ---
-
-    `gasLimit` ++"uint256"++
-
-    The gas limit with which to call `targetAddress`.
-
-    ---
-
-    `amount` ++"uint256"++
-
-    The amount of USDC to transfer.
-
-    ---
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-
-    Sequence number of the published VAA containing the delivery instructions.
-
-When the `sendUSDCWithPayloadToEvm` function is called, the following series of actions are executed:
-
-1. **USDC transfer initiation**: 
-
-    - The Circle Token Messenger contract is approved to spend the specified amount of USDC.
-    - The `depositForBurnWithCaller` function of the Token Messenger contract is invoked.
-    - A key is returned, which is to be provided to the relayer for message delivery.
-
-2. **Message encoding**: The message `payload` is encoded for transmission via the relayer. The encoded value also includes the `amount` so that it can be checked on the target chain.
-3. **Retrieving delivery provider**: The current default delivery provider's address is retrieved.
-4. **Cost calculation**: The transfer cost is calculated using the relayer's `quoteEVMDeliveryPrice` function.
-5. **Message dispatch**:
-
-    - The `sendToEvm` function of the relayer is called with the encoded payload, the delivery provider's address, and the arguments passed to `sendUSDCWithPayloadToEvm`.
-    - The function must be called with `msg.value` set to the previously calculated cost (from step 4).
-    - This function publishes an instruction for the delivery provider to relay the payload and VAAs specified by the key (from step 1) to the target address on the target chain.
-
-A simple example implementation is as follows:
-
-```solidity
-function sendCrossChainDeposit(
-    uint16 targetChain,
-    address targetAddress,
-    address recipient,
-    uint256 amount,
-    uint256,
-    gasLimit
-) public payable {
-    uint256 cost = quoteCrossChainDeposit(targetChain);
-    require(
-        msg.value == cost,
-        "msg.value must be quoteCrossChainDeposit(targetChain)"
-    );
-
-    IERC20(USDC).transferFrom(msg.sender, address(this), amount);
-
-    bytes memory payload = abi.encode(recipient);
-    sendUSDCWithPayloadToEvm(
-        targetChain,
-        targetAddress, // address (on targetChain) to send token and payload to
-        payload,
-        0, // receiver value
-        gasLimit,
-        amount
-    );
-}
-
-```
-
-The above example sends a specified amount of USDC and the recipient's address as a payload to a target contract on another chain, ensuring that the correct cost is provided for the cross-chain transfer.
-
-### Receiving Tokens and Messages
-
-To complete the cross-chain transfer, you must invoke the `redeemTokensWithPayload` function on the target Wormhole Circle Integration contract. This function verifies the message's authenticity, decodes the payload, confirms the recipient and sender, checks message delivery, and then calls the `receiveMessage` function of the [Message Transmitter](#message-transmitter-contract) contract.
-
-Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the `WormholeRelayerSDK.sol` contract from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the `CCTPReceiver` abstract contract.
-
-??? code "CCTP Receiver contract"
+??? code "transferTokensWithPayload"
 
     ```solidity
-    abstract contract CCTPReceiver is CCTPBase {
-        function redeemUSDC(
-            bytes memory cctpMessage
-        ) internal returns (uint256 amount) {
-            (bytes memory message, bytes memory signature) = abi.decode(
-                cctpMessage,
-                (bytes, bytes)
+        /**
+         * @notice `transferTokensWithPayload` calls the Circle Bridge contract to burn Circle-supported tokens. It emits
+         * a Wormhole message containing a user-specified payload with instructions for what to do with
+         * the Circle-supported assets once they have been minted on the target chain.
+         * @dev reverts if:
+         * - user passes insufficient value to pay Wormhole message fee
+         * - `token` is not supported by Circle Bridge
+         * - `amount` is zero
+         * - `targetChain` is not supported
+         * - `mintRecipient` is bytes32(0)
+         * @param transferParams Struct containing the following attributes:
+         * - `token` Address of the token to be burned
+         * - `amount` Amount of `token` to be burned
+         * - `targetChain` Wormhole chain ID of the target blockchain
+         * - `mintRecipient` The recipient wallet or contract address on the target chain
+         * @param batchId ID for Wormhole message batching
+         * @param payload Arbitrary payload to be delivered to the target chain via Wormhole
+         * @return messageSequence Wormhole sequence number for this contract
+         */
+        function transferTokensWithPayload(
+            TransferParameters memory transferParams,
+            uint32 batchId,
+            bytes memory payload
+        ) public payable nonReentrant returns (uint64 messageSequence) {
+            // cache wormhole instance and fees to save on gas
+            IWormhole wormhole = wormhole();
+            uint256 wormholeFee = wormhole.messageFee();
+
+            // confirm that the caller has sent enough ether to pay for the wormhole message fee
+            require(msg.value == wormholeFee, "insufficient value");
+
+            // Call the circle bridge and `depositForBurnWithCaller`. The `mintRecipient`
+            // should be the target contract (or wallet) composing on this contract.
+            (uint64 nonce, uint256 amountReceived) = _transferTokens{value: wormholeFee}(
+                transferParams.token,
+                transferParams.amount,
+                transferParams.targetChain,
+                transferParams.mintRecipient
             );
-            uint256 beforeBalance = IERC20(USDC).balanceOf(address(this));
-            circleMessageTransmitter.receiveMessage(message, signature);
-            return IERC20(USDC).balanceOf(address(this)) - beforeBalance;
+
+            // encode DepositWithPayload message
+            bytes memory encodedMessage = encodeDepositWithPayload(
+                DepositWithPayload({
+                    token: addressToBytes32(transferParams.token),
+                    amount: amountReceived,
+                    sourceDomain: localDomain(),
+                    targetDomain: getDomainFromChainId(transferParams.targetChain),
+                    nonce: nonce,
+                    fromAddress: addressToBytes32(msg.sender),
+                    mintRecipient: transferParams.mintRecipient,
+                    payload: payload
+                })
+            );
+
+            // send the DepositWithPayload wormhole message
+            messageSequence = wormhole.publishMessage{value: wormholeFee}(
+                batchId,
+                encodedMessage,
+                wormholeFinality()
+            );
         }
-
-        function receiveWormholeMessages(
-            bytes memory payload,
-            bytes[] memory additionalMessages,
-            bytes32 sourceAddress,
-            uint16 sourceChain,
-            bytes32 deliveryHash
-        ) external payable {
-            // Currently, 'sendUSDCWithPayloadToEVM' only sends one CCTP transfer
-            // That can be modified if the integrator desires to send multiple CCTP transfers
-            // in which case the following code would have to be modified to support
-            // redeeming these multiple transfers and checking that their 'amount's are accurate
-            require(
-                additionalMessages.length <= 1,
-                "CCTP: At most one Message is supported"
-            );
-
-            uint256 amountUSDCReceived;
-            if (additionalMessages.length == 1)
-                amountUSDCReceived = redeemUSDC(additionalMessages[0]);
-
-            (uint256 amount, bytes memory userPayload) = abi.decode(
-                payload,
-                (uint256, bytes)
-            );
-
-            // Check that the correct amount was received
-            // It is important to verify that the 'USDC' sent in by the relayer is the same amount
-            // that the sender sent in on the source chain
-            require(amount == amountUSDCReceived, "Wrong amount received");
-
-            receivePayloadAndUSDC(
-                userPayload,
-                amountUSDCReceived,
-                sourceAddress,
-                sourceChain,
-                deliveryHash
-            );
-        }
-
-        // Implement this function to handle in-bound deliveries that include a CCTP transfer
-        function receivePayloadAndUSDC(
-            bytes memory payload,
-            uint256 amountUSDCReceived,
-            bytes32 sourceAddress,
-            uint16 sourceChain,
-            bytes32 deliveryHash
-        ) internal virtual {}
-    }
-
     ```
 
-Although you do not need to interact with the `receiveWormholeMessages` function directly, it's important to understand what it does. This function processes cross-chain messages and USDC transfers via Wormhole's Circle (CCTP) Bridge. Here's a summary of what it does:
+Calling `transferTokensWithPayload` performs the following on-chain actions:
 
-1. **Validate additional messages**: The function checks that there is at most one CCTP transfer message in the `additionalMessages` array, as it currently only supports processing a single CCTP transfer.
-2. **Redeem USDC**:
-    - If there is a CCTP message, it calls the `redeemUSDC` function of the `CCTPReceiver` contract to decode and redeem the USDC.
-    - This results in the call of the `receiveMessage` function of Circle's Message Transmitter contract to redeem the USDC based on the provided message and signature.
-    - The amount of USDC received is calculated by subtracting the contract's previous balance from the current balance after redeeming the USDC.
-3. **Decode payload**: The incoming payload is decoded, extracting both the expected amount of USDC and a `userPayload` (which could be any additional data).
-4. **Verify the amount**: It ensures that the amount of USDC received matches the amount encoded in the payload. If the amounts don't match, the transaction is reverted.
-5. **Handle the payload and USDC**: After verifying the amounts, `receivePayloadAndUSDC` is called, which is meant to handle the actual logic for processing the received payload and USDC transfer.
+- USDC is burned on the source chain via Circle’s Token Messenger and Token Minter contracts
+- A Wormhole message is emitted by the Circle Integration contract, encoding:
+    - transfer metadata
+    - the application payload
 
-You'll need to implement the `receivePayloadAndUSDC` function to transfer the USDC and handle the payload as your application needs. A simple example implementation is as follows:
+The function returns a Wormhole sequence number that uniquely identifies the transfer.
 
-```solidity
-function receivePayloadAndUSDC(
-    bytes memory payload,
-    uint256 amountUSDCReceived,
-    bytes32, // sourceAddress
-    uint16, // sourceChain
-    bytes32 // deliveryHash
-) internal override onlyWormholeRelayer {
-    address recipient = abi.decode(payload, (address));
+### Execution and delivery via Executor
 
-    IERC20(USDC).transfer(recipient, amountUSDCReceived);
-}
+Once the transfer is initiated on-chain, completion is handled through the Executor:
 
-```
+1. An off-chain client observes the emitted Wormhole message and constructs an execution request using the CCTP Executor route (via the TypeScript SDK).
+2. A relay provider:
+    - retrieves the Circle message and attestation
+    - submits the redemption transaction on the destination chain
+    - invokes any destination logic associated with the payload.
 
-## Complete Example
+This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configurations and the selected executor route, but the on-chain initiation via `transferTokensWithPayload` remains the same.
 
-To view a complete example of creating a contract that integrates with Wormhole's CCTP contracts to send and receive USDC cross-chain, check out the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub.
+From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The Executor framework and relay providers handle the remaining steps.
+
+## Resources
+
+- For an end-to-end, up-to-date walkthrough of executing CCTP transfers using the Executor, refer to the [CCTP Executor Guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank} guide.
+- For reference, the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub demonstrates a legacy contract-based integration with Wormhole’s CCTP contracts:
 
 
 ---
