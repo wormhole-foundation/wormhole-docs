@@ -17,12 +17,12 @@
       }
     ],
     "stats": {
-      "chars": 8866,
-      "words": 950,
+      "chars": 10024,
+      "words": 1124,
       "headings": 1,
-      "estimated_token_count_total": 2537
+      "estimated_token_count_total": 3029
     },
-    "hash": "sha256:8b8ef2193873a8e4af6975ecff16f7a4fde6de4dc8c698247d12de26db9f5a8f",
+    "hash": "sha256:08db3e6a2a5844fdc2e919ae77ee01cee42a3afc03dba9844ab23c40634fe0bf",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3486,12 +3486,12 @@
     "preview": "The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interprete",
     "outline": [],
     "stats": {
-      "chars": 6272,
+      "chars": 6275,
       "words": 1236,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:efe7d38b3039db476d514ce1b3860f4a1389cfd0d49d3a4871c14c1bfdab231c",
+    "hash": "sha256:a3757001954c253439474b6cbb9a8e2b5c1b0c03fea93720752603579f0e3ef0",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4825,12 +4825,12 @@
       }
     ],
     "stats": {
-      "chars": 4115,
-      "words": 511,
+      "chars": 4126,
+      "words": 507,
       "headings": 2,
-      "estimated_token_count_total": 635
+      "estimated_token_count_total": 641
     },
-    "hash": "sha256:5d6a058291992c1ab0128a3b602339d223311d304023d03a83ad758e90ebd116",
+    "hash": "sha256:6a4a95a277a37d087bf4602c8708a69bbe39f86cb364d5499afbc0d856511600",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7083,11 +7083,6 @@
       },
       {
         "depth": 3,
-        "title": "Add Your Token to the Wormhole Metadata List (Legacy)",
-        "anchor": "add-your-token-to-the-wormhole-metadata-list-legacy"
-      },
-      {
-        "depth": 3,
         "title": "Update Metadata on Blockchain Explorers",
         "anchor": "update-metadata-on-blockchain-explorers"
       },
@@ -7098,12 +7093,12 @@
       }
     ],
     "stats": {
-      "chars": 6539,
-      "words": 973,
-      "headings": 8,
-      "estimated_token_count_total": 1291
+      "chars": 5893,
+      "words": 878,
+      "headings": 7,
+      "estimated_token_count_total": 1142
     },
-    "hash": "sha256:cc40ebdcf9ad585bcf7639b7b0196b0d8ff169273379e61a0676dd11382defee",
+    "hash": "sha256:d5080be27de2665584f6c6d0bbfd95449f01a61d5024d3723c0386afd64f17ea",
     "token_estimator": "heuristic-v1"
   },
   {
