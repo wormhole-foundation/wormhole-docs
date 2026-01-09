@@ -11341,9 +11341,9 @@ Understanding key Wormhole concepts—and how the SDK abstracts them—will help
 
 The SDK includes `Platform` modules, which create a standardized interface for interacting with the chains of a supported platform. The contents of a module vary by platform but can include:
 
-- [Protocols](#protocols) preconfigured to suit the selected platform
-- Definitions and configurations for types, signers, addresses, and chains 
-- Helpers configured for dealing with unsigned transactions on the selected platform
+- [Protocols](#protocols) preconfigured to suit the selected platform.
+- Definitions and configurations for types, signers, addresses, and chains.
+- Helpers configured for dealing with unsigned transactions on the selected platform.
 
 These modules expose key functions and types from the native ecosystem, reducing the need for full packages and keeping dependencies lightweight.
 
@@ -11364,10 +11364,10 @@ These modules expose key functions and types from the native ecosystem, reducing
 
 `ChainContext` (from the `@wormhole-foundation/sdk-definitions` package) provides a unified interface for interacting with connected chains. It:
 
-- Holds network, chain, and platform configurations
-- Caches RPC and protocol clients
-- Exposes both platform-inherited and chain-specific methods
-- Defines the core types used across the SDK: `Network`, `Chain`, and `Platform`
+- Holds network, chain, and platform configurations.
+- Caches RPC and protocol clients.
+- Exposes both platform-inherited and chain-specific methods.
+- Defines the core types used across the SDK such as the `Network`, `Chain`, and `Platform`.
 
 ```ts
 // Get the chain context for the source and destination chains
@@ -11483,7 +11483,7 @@ sendTransaction();
 These components work together to create, sign, and submit a transaction to the blockchain:
 
 - **`provider`**: Connects to the Ethereum or EVM-compatible network, enabling data access and transaction submission.
-- **`signer`** : Represents the account that signs transactions using a private key.
+- **`signer`**: Represents the account that signs transactions using a private key.
 - **`Wallet`**: Combines provider and signer to create, sign, and send transactions programmatically.
 
 ### Protocols
@@ -11495,23 +11495,23 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Protocol              | Installation Command                                           |
     |-----------------------|----------------------------------------------------------------|
     | EVM Core              | <pre>```@wormhole-foundation/sdk-evm-core```</pre>             |
-    | EVM Token Bridge      | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
+    | EVM WTT               | <pre>```@wormhole-foundation/sdk-evm-tokenbridge```</pre>      |
     | EVM CCTP              | <pre>```@wormhole-foundation/sdk-evm-cctp```</pre>             |
     | EVM Portico           | <pre>```@wormhole-foundation/sdk-evm-portico```</pre>          |
     | EVM TBTC              | <pre>```@wormhole-foundation/sdk-evm-tbtc```</pre>             |
     | Solana Core           | <pre>```@wormhole-foundation/sdk-solana-core```</pre>          |
-    | Solana Token Bridge   | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
+    | Solana WTT            | <pre>```@wormhole-foundation/sdk-solana-tokenbridge```</pre>   |
     | Solana CCTP           | <pre>```@wormhole-foundation/sdk-solana-cctp```</pre>          |
     | Solana TBTC           | <pre>```@wormhole-foundation/sdk-solana-tbtc```</pre>          |
     | Algorand Core         | <pre>```@wormhole-foundation/sdk-algorand-core```</pre>        |
-    | Algorand Token Bridge | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
+    | Algorand WTT          | <pre>```@wormhole-foundation/sdk-algorand-tokenbridge```</pre> |
     | Aptos Core            | <pre>```@wormhole-foundation/sdk-aptos-core```</pre>           |
-    | Aptos Token Bridge    | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
+    | Aptos WTT             | <pre>```@wormhole-foundation/sdk-aptos-tokenbridge```</pre>    |
     | Aptos CCTP            | <pre>```@wormhole-foundation/sdk-aptos-cctp```</pre>           |
     | Cosmos Core           | <pre>```@wormhole-foundation/sdk-cosmwasm-core```</pre>        |
-    | Cosmos Token Bridge   | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
+    | Cosmos WTT            | <pre>```@wormhole-foundation/sdk-cosmwasm-tokenbridge```</pre> |
     | Sui Core              | <pre>```@wormhole-foundation/sdk-sui-core```</pre>             |
-    | Sui Token Bridge      | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
+    | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
 
@@ -11590,12 +11590,21 @@ Example workflow on Solana Testnet:
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
-#### Token Bridge
+#### Wrapped Token Transfers (WTT)
 
-The most familiar protocol built on Wormhole is the Token Bridge. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+The most familiar protocol built on Wormhole is WTT. Each supported chain has a `TokenBridge` client that provides a consistent interface for transferring tokens and handling attestations. While `WormholeTransfer` abstractions are recommended, direct interaction with the protocol is also supported.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ```ts
+import { signSendWait } from '@wormhole-foundation/sdk';
 
+const tb = await srcChain.getTokenBridge(); 
+
+const token = '0xdeadbeef...';
+const txGenerator = tb.createAttestation(token); 
+const txids = await signSendWait(srcChain, txGenerator, src.signer);
 ```
 
 ## Transfers
@@ -11617,15 +11626,224 @@ The example below shows how to initiate and complete a `TokenTransfer`. After cr
 For automatic transfers, the process ends after initiation. Manual transfers require attestation before completion.
 
 ```ts
+  // Create a TokenTransfer object to track the state of the transfer over time
+  const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.delivery?.automatic ?? false,
+    route.payload,
+    route.delivery?.nativeGas
+  );
 
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+  console.log(quote);
+
+  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+  // 1) Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Started transfer: `, srcTxids);
+
+  // If automatic, we're done
+  if (route.delivery?.automatic) return xfer;
+
+  // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  // 3) Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    
+    import {
+      Chain,
+      Network,
+      TokenId,
+      TokenTransfer,
+      Wormhole,
+      amount,
+      isTokenId,
+      wormhole,
+    } from '@wormhole-foundation/sdk';
+
+    import evm from '@wormhole-foundation/sdk/evm';
+    import solana from '@wormhole-foundation/sdk/solana';
+    import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
+
+    (async function () {
+      // Init Wormhole object, passing config for which network
+      // to use (e.g. Mainnet/Testnet) and what Platforms to support
+      const wh = await wormhole('Testnet', [evm, solana]);
+
+      // Grab chain Contexts -- these hold a reference to a cached rpc client
+      const sendChain = wh.getChain('Avalanche');
+      const rcvChain = wh.getChain('Solana');
+
+      // Shortcut to allow transferring native gas token
+      const token = Wormhole.tokenId(sendChain.chain, 'native');
+
+      // A TokenId is just a `{chain, address}` pair and an alias for ChainAddress
+      // The `address` field must be a parsed address.
+      // You can get a TokenId (or ChainAddress) prepared for you
+      // by calling the static `chainAddress` method on the Wormhole class.
+      // e.g.
+      // wAvax on Solana
+      // const token = Wormhole.tokenId("Solana", "3Ftc5hTz9sG4huk79onufGiebJNDMZNL8HYgdMJ9E7JR");
+      // wSol on Avax
+      // const token = Wormhole.tokenId("Avalanche", "0xb10563644a6AB8948ee6d7f5b0a1fb15AaEa1E03");
+
+      // Normalized given token decimals later but can just pass bigints as base units
+      // Note: The WTT (Token Bridge) will dedust past 8 decimals
+      // This means any amount specified past that point will be returned
+      // To the caller
+      const amt = '0.05';
+
+      // With automatic set to true, perform an automatic transfer. This will invoke a relayer
+      // Contract intermediary that knows to pick up the transfers
+      // With automatic set to false, perform a manual transfer from source to destination
+      // Of the token
+      // On the destination side, a wrapped version of the token will be minted
+      // To the address specified in the transfer VAA
+      const automatic = false;
+
+      // The Wormhole relayer has the ability to deliver some native gas funds to the destination account
+      // The amount specified for native gas will be swapped for the native gas token according
+      // To the swap rate provided by the contract, denominated in native gas tokens
+      const nativeGas = automatic ? '0.01' : undefined;
+
+      // Get signer from local key but anything that implements
+      // Signer interface (e.g. wrapper around web wallet) should work
+      const source = await getSigner(sendChain);
+      const destination = await getSigner(rcvChain);
+
+      // Used to normalize the amount to account for the tokens decimals
+      const decimals = isTokenId(token)
+        ? Number(await wh.getDecimals(token.chain, token.address))
+        : sendChain.config.nativeTokenDecimals;
+
+      // Set this to true if you want to perform a round trip transfer
+      const roundTrip: boolean = false;
+
+      // Set this to the transfer txid of the initiating transaction to recover a token transfer
+      // And attempt to fetch details about its progress.
+      let recoverTxid = undefined;
+
+      // Finally create and perform the transfer given the parameters set above
+      const xfer = !recoverTxid
+        ? // Perform the token transfer
+          await tokenTransfer(
+            wh,
+            {
+              token,
+              amount: amount.units(amount.parse(amt, decimals)),
+              source,
+              destination,
+              delivery: {
+                automatic,
+                nativeGas: nativeGas
+                  ? amount.units(amount.parse(nativeGas, decimals))
+                  : undefined,
+              },
+            },
+            roundTrip
+          )
+        : // Recover the transfer from the originating txid
+          await TokenTransfer.from(wh, {
+            chain: source.chain.chain,
+            txid: recoverTxid,
+          });
+
+      const receipt = await waitLog(wh, xfer);
+
+      // Log out the results
+      console.log(receipt);
+    })();
+
+    async function tokenTransfer<N extends Network>(
+      wh: Wormhole<N>,
+      route: {
+        token: TokenId;
+        amount: bigint;
+        source: SignerStuff<N, Chain>;
+        destination: SignerStuff<N, Chain>;
+        delivery?: {
+          automatic: boolean;
+          nativeGas?: bigint;
+        };
+        payload?: Uint8Array;
+      },
+      roundTrip?: boolean
+    ): Promise<TokenTransfer<N>> {
+      // Create a TokenTransfer object to track the state of the transfer over time
+      const xfer = await wh.tokenTransfer(
+        route.token,
+        route.amount,
+        route.source.address,
+        route.destination.address,
+        route.delivery?.automatic ?? false,
+        route.payload,
+        route.delivery?.nativeGas
+      );
+
+      const quote = await TokenTransfer.quoteTransfer(
+        wh,
+        route.source.chain,
+        route.destination.chain,
+        xfer.transfer
+      );
+      console.log(quote);
+
+      if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+        throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+      // 1) Submit the transactions to the source chain, passing a signer to sign any txns
+      console.log('Starting transfer');
+      const srcTxids = await xfer.initiateTransfer(route.source.signer);
+      console.log(`Started transfer: `, srcTxids);
+
+      // If automatic, we're done
+      if (route.delivery?.automatic) return xfer;
+
+      // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+      console.log('Getting Attestation');
+      const attestIds = await xfer.fetchAttestation(60_000);
+      console.log(`Got Attestation: `, attestIds);
+
+      // 3) Redeem the VAA on the dest chain
+      console.log('Completing Transfer');
+      const destTxids = await xfer.completeTransfer(route.destination.signer);
+      console.log(`Completed Transfer: `, destTxids);
+
+      // If no need to send back, dip
+      if (!roundTrip) return xfer;
+
+      const { destinationToken: token } = quote;
+      return await tokenTransfer(wh, {
+        ...route,
+        token: token.token,
+        amount: token.amount,
+        source: route.destination,
+        destination: route.source,
+      });
+    }
+
     ```
 
-Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
 

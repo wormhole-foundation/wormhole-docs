@@ -10564,7 +10564,7 @@ Circle's [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overv
 
 As decentralized finance (DeFi) protocols evolve, the need for flexible, secure cross-chain messaging has expanded, requiring solutions beyond simple asset transfers. Wormhole enhances CCTP's capabilities by allowing developers to compose more complex cross-chain interactions. With Wormhole's generic messaging, applications can execute smart contract logic alongside native USDC transfers, enabling richer, more versatile cross-chain experiences.
 
-This guide will walk you through getting started with Wormhole's CCTP contracts and show you how to integrate CCTP into your smart contracts, enabling the composition of advanced cross-chain functions with native USDC transfers.
+This guide explains how Wormhole integrates with Circle’s CCTP contracts through the Circle Integration contract, and how to initiate CCTP transfers that are completed via the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}.
 
 ## Prerequisites
 
@@ -10575,9 +10575,7 @@ To interact with the Wormhole CCTP, you'll need the following:
 
 ## Wormhole's CCTP Integration Contract
 
-Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract you'll interact with directly. It burns and mints Circle-supported tokens by using [Circle's CCTP contracts](#circles-cctp-contracts).
-
-The Circle Integration contract emits Wormhole messages with arbitrary payloads to allow additional composability when performing cross-chain transfers of Circle-supported assets.
+Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract applications interact with on the source chain. It initiates CCTP burns via [Circle's CCTP contracts](#circles-cctp-contracts) and emits Wormhole messages that can be used to coordinate completion on the destination chain.
 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
@@ -10915,162 +10913,55 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
 
     ```
 
-The functions provided by the Circle Integration contract are as follows:
+The Circle Integration contract is used for source-chain initiation. Calling `transferTokensWithPayload` initiates a CCTP transfer by burning USDC on the source chain and emitting a Wormhole message with an application-defined payload. When used with the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, this Wormhole message serves as the input for the off-chain execution flow. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
 
-- **`transferTokensWithPayload`**: Initiates a CCTP transfer by burning Circle-supported tokens on the source chain and emitting a Wormhole message containing a user-specified payload. When used with the Executor, this Wormhole message serves as the input for the off-chain execution flow. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
+??? interface "Parameters"
 
-    ??? interface "Parameters"
+    `transferParams` ++"TransferParameters"++
 
-        `transferParams` ++"TransferParameters"++
+    A tuple containing the parameters for the transfer.
 
-        A tuple containing the parameters for the transfer.
+    ??? child "`TransferParameters` struct"
 
-        ??? child "`TransferParameters` struct"
+        `token` ++"address"++
 
-            `token` ++"address"++
-
-            Address of the token to be burned.
-
-            ---
-
-            `amount` ++"uint256"++
-
-            Amount of the token to be burned.
-
-            ---
-
-            `targetChain` ++"uint16"++
-
-            Wormhole chain ID of the target blockchain.
-
-            ---
-
-            `mintRecipient` ++"bytes32"++
-
-            The recipient wallet or contract address on the target chain.
+        Address of the token to be burned.
 
         ---
 
-        `batchId` ++"uint32"++
+        `amount` ++"uint256"++
 
-        The ID for Wormhole message batching.
+        Amount of the token to be burned.
 
         ---
 
-        `payload` ++"bytes"++
+        `targetChain` ++"uint16"++
 
-        Arbitrary payload to be delivered to the target chain via Wormhole.
+        Wormhole chain ID of the target blockchain.
 
-    ??? interface "Returns"
+        ---
 
-        `messageSequence` ++"uint64"++
+        `mintRecipient` ++"bytes32"++
 
-        Wormhole sequence number for this contract.
+        The recipient wallet or contract address on the target chain.
 
-- **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
+    ---
 
-    !!! note
-        This function is documented here for completeness. When using the Executor, redemption and destination execution are handled off-chain by relay providers and do not require applications to invoke this function directly.
+    `batchId` ++"uint32"++
 
-    ??? interface "Parameters"
+    The ID for Wormhole message batching.
 
-        `params` ++"RedeemParameters"++
+    ---
 
-        A tuple containing the parameters for the redemption.
+    `payload` ++"bytes"++
 
-        ??? child "`RedeemParameters` struct"
+    Arbitrary payload to be delivered to the target chain via Wormhole.
 
-            `encodedWormholeMessage` ++"bytes"++
+??? interface "Returns"
 
-            Wormhole message emitted by a registered contract including information regarding the token burn on the source chain and an arbitrary message.
+    `messageSequence` ++"uint64"++
 
-            ---
-
-            `circleBridgeMessage` ++"bytes"++
-
-            Message emitted by Circle Bridge contract with information regarding the token burn on the source chain.
-
-            ---
-
-            `circleAttestation` ++"bytes"++
-
-            Serialized EC signature attesting the cross-chain transfer.
-
-    ??? interface "Returns"
-
-        `depositInfo` ++"DepositWithPayload"++
-
-        Information about the deposit.
-
-        ??? child "`DepositWithPayload` struct"
-
-            `token` ++"bytes32"++
-
-            Address (`bytes32` left-zero-padded) of token to be minted.
-
-            ---
-
-            `amount` ++"uint256"++
-
-            Amount of tokens to be minted.
-            
-            ---
-
-            `sourceDomain` ++"uint32"++
-
-            Circle domain for the source chain.
-
-            ---
-
-            `targetDomain` ++"uint32"++
-
-            Circle domain for the target chain.
-
-            ---
-
-            `nonce` ++"uint64"++
-
-            Circle sequence number for the transfer.
-
-            ---
-
-            `fromAddress` ++"bytes32"++
-
-            Source Circle Integration contract caller's address.
-
-            ---
-
-            `mintRecipient` ++"bytes32"++
-
-            Recipient of minted tokens (must be caller of this contract).
-
-            ---
-
-            `payload` ++"bytes"++
-
-            Arbitrary Wormhole message payload.
-
-    ??? interface "Emits"
-
-        **`Redeemed`**: Event emitted when Circle-supported assets have been minted to the `mintRecipient`.
-
-        ??? child "Event arguments"
-
-            `emitterChainId` ++"uint16"++
-
-            Wormhole chain ID of emitter contract on source chain.
-
-            ---
-
-            `emitterAddress` ++"bytes32"++
-
-            Address (`bytes32` zero-left-padded) of emitter on source chain.
-
-            ---
-
-            `sequence` ++"uint64"++
-
-            Sequence of Wormhole message used to mint tokens.
+    Wormhole sequence number for this contract.
 
 ## Circle's CCTP Contracts
 
@@ -12844,7 +12735,7 @@ To initiate a cross-chain USDC transfer using Wormhole’s CCTP integration, app
 
 The primary entry point is `CircleIntegration.transferTokensWithPayload`. This function burns USDC on the source chain using Circle’s CCTP contracts and emits a Wormhole message containing an application-defined payload. This message serves as the input for Executor-based completion of the transfer.
 
-Under the Executor model, on-chain contracts are only responsible for initiating the transfer. Attestation retrieval, redemption, and destination execution are performed off-chain by a relay provider after an execution request is submitted.
+Under the Executor framework, on-chain contracts are only responsible for initiating the transfer. A relay provider completes the transfer by retrieving the Circle attestation and submitting the destination transactions required to redeem USDC and execute any payload-defined logic.
 
 ### On-chain transfer initiation
 
@@ -12936,7 +12827,7 @@ The function returns a Wormhole sequence number that uniquely identifies the tra
 
 Once the transfer is initiated on-chain, completion is handled through the Executor:
 
-1. An off-chain client observes the emitted Wormhole message and constructs an execution request using the CCTP Executor route (via the TypeScript SDK).
+1. An off-chain client observes the emitted Wormhole message and requests execution through the CCTP Executor route (via the TypeScript SDK).
 2. A relay provider:
     - retrieves the Circle message and attestation
     - submits the redemption transaction on the destination chain
