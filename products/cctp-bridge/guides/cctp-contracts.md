@@ -37,7 +37,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
 
 The functions provided by the Circle Integration contract are as follows:
 
-- **`transferTokensWithPayload`**: Calls the Circle Bridge contract to burn Circle-supported tokens. It emits a Wormhole message containing a user-specified payload with instructions for what to do with the Circle-supported assets once they have been minted on the target chain.
+- **`transferTokensWithPayload`**: Initiates a CCTP transfer by burning Circle-supported tokens on the source chain and emitting a Wormhole message containing a user-specified payload. When used with the Executor, this Wormhole message serves as the input for off-chain execution. Attestation retrieval, redemption, and destination execution are handled by a relay provider after an execution request is submitted.
 
     ??? interface "Parameters"
 
@@ -86,8 +86,11 @@ The functions provided by the Circle Integration contract are as follows:
         `messageSequence` ++"uint64"++
 
         Wormhole sequence number for this contract.
-<!--
+
 - **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
+
+    !!! note
+        This function is documented here for completeness. When using the Executor, redemption and destination execution are handled off-chain by relay providers and do not require direct contract interaction.
 
     ??? interface "Parameters"
 
@@ -188,7 +191,7 @@ The functions provided by the Circle Integration contract are as follows:
             `sequence` ++"uint64"++
 
             Sequence of Wormhole message used to mint tokens.
--->
+
 ## Circle's CCTP Contracts
 
 Three key contracts power Circle's CCTP:
@@ -611,14 +614,9 @@ Most of the methods of the Token Minter contract can be called only by the regis
         
         The local token address.
 
-<!--
-## How to Interact with CCTP Contracts
-
-Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole CCTP contracts. The primary functionality revolves around the following: Initiating CCTP Transfers with Executor
-
--->
-
 ## CCTP Transfers with Executor
+
+This section describes how the Circle Integration contract is used in practice when executing CCTP transfers through the Executor.
 
 To initiate a cross-chain USDC transfer using Wormhole’s CCTP integration, applications interact directly with the Circle Integration contract on the source chain. 
 
@@ -637,10 +635,10 @@ When initiating a transfer, a source-chain contract typically performs the follo
     - the mint recipient on the destination chain
     - an application-defined payload
 
-??? code "CircleIntegration.sol"
+??? code "transferTokensWithPayload"
 
     ```solidity
-    --8<-- 'code/products/cctp-bridge/guides/cctp-contracts/CircleIntegration.sol'
+    --8<-- 'code/products/cctp-bridge/guides/cctp-contracts/CircleIntegration.sol:39:99'
     ```
 
 Calling `transferTokensWithPayload` performs the following on-chain actions:
@@ -656,7 +654,7 @@ The function returns a Wormhole sequence number that uniquely identifies the tra
 
 Once the transfer is initiated on-chain, completion is handled through the Executor:
 
-1. An off-chain client observes the transfer and constructs an execution request using the CCTP Executor route.
+1. An off-chain client observes the emitted Wormhole message and constructs an execution request using the CCTP Executor route.
 2. A relay provider:
     - retrieves the Circle message and attestation
     - submits the redemption transaction on the destination chain
@@ -666,10 +664,7 @@ This flow applies to both CCTP v1 and CCTP v2. The version used depends on the s
 
 From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The remaining steps are orchestrated by the Executor framework and relay providers.
 
-<!--
+## Resources
 
-## Complete Example
-
-To view a complete example of creating a contract that integrates with Wormhole's CCTP contracts to send and receive USDC cross-chain, check out the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub.
-
--->
+- For an end-to-end, up-to-date walkthrough of executing CCTP transfers using the Executor, refer to the [CCTP Executor Guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank} guide.
+- For reference, the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub demonstrates a legacy contract-based integration with Wormhole’s CCTP contracts:
