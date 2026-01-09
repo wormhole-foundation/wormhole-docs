@@ -4825,12 +4825,12 @@
       }
     ],
     "stats": {
-      "chars": 4125,
+      "chars": 4126,
       "words": 507,
       "headings": 2,
       "estimated_token_count_total": 641
     },
-    "hash": "sha256:a66424c4ccfc7096b6a5d7d0427389e692d7a1e481116e00b375ae1c3425f2c6",
+    "hash": "sha256:6a4a95a277a37d087bf4602c8708a69bbe39f86cb364d5499afbc0d856511600",
     "token_estimator": "heuristic-v1"
   },
   {

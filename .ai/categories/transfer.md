@@ -18163,7 +18163,7 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Test a transfer or deployment quicky with a standalone [Connect](/docs/products/connect/overview/){target=\_blank} implementation with automatic NTT deployment configuration.
+    Test a transfer or deployment quickly with a standalone [Connect](/docs/products/connect/overview/){target=\_blank} implementation with automatic NTT deployment configuration.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/connect-w/){target=\_blank}
 
