@@ -150,7 +150,6 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
     | Sui WTT               | <pre>```@wormhole-foundation/sdk-sui-tokenbridge```</pre>      |
     | Sui CCTP              | <pre>```@wormhole-foundation/sdk-sui-cctp```</pre>             |
 
-
 #### Wormhole Core
 
 The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](/docs/products/reference/glossary/#emitter){target=\_blank}, sequence number, and payload needed for bridging.
@@ -226,12 +225,19 @@ Native USDC transfers use Circle’s CCTP burn-and-mint mechanism. In the TypeSc
 At a high level:
 
 - The source transaction initiates a CCTP burn and emits the messages required to complete the transfer.
-- An off-chain execution request is constructed using the CCTP Executor route.
+- The CCTP Executor route requests a signed execution quote and registers an execution request with a relay provider.
 - A relay provider completes the transfer by fetching the Circle attestation and submitting the destination transaction(s) required to redeem USDC.
 
-Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration—see [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank}.
+Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration — see [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank}.
 
-The only difference between v1 and v2 is the route import and type used for validation:
+!!! note "Required packages"
+    Executor-based CCTP transfers require installing the SDK and the CCTP Executor route:
+
+    ```sh
+    npm install @wormhole-foundation/sdk @wormhole-labs/cctp-executor-route
+    ```
+
+The primary difference between v1 and v2 in the SDK is the route class and the corresponding validation parameter types.
 
 === "CCTP v1"
 
@@ -274,6 +280,8 @@ It may be necessary to recover an abandoned transfer before it is completed. To 
     ```ts hl_lines="130"
     --8<-- 'code/tools/typescript-sdk/sdk-reference/cctp.ts'
     ```
+
+When using Executor-based routes, transfers are typically completed automatically. Manual recovery is only required if execution fails or the transfer is interrupted.
 
 ## Routes
 
@@ -330,6 +338,10 @@ Routes can be imported from any npm package that exports them and configured wit
 ```
 
 A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute`](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank} route implementation.
+
+### Executor Routes
+
+Some routes, such as the CCTP Executor routes, are provided as external plugins. These routes integrate with Wormhole’s routing system to enable automated execution via off-chain relay providers.
 
 ## See Also
 
