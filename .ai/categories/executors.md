@@ -6777,13 +6777,6 @@ To simplify development, Wormhole provides the [Relayer Engine](https://github.c
 
     [:custom-arrow: Learn More About the Spy](/docs/protocol/infrastructure/spy/)
 
--   :octicons-book-16:{ .lg .middle } **Run a Custom Relayer**
-
-    ---
-
-    Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
-
-    [:custom-arrow: Get Started with Custom Relayers](/docs/protocol/infrastructure-guides/run-relayer/)
 
 </div>
 
@@ -9085,7 +9078,7 @@ Page Title: Wormhole-Deployed Relayers
 
 # Wormhole Relayer
 
-The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
+The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. 
 
 This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
 
