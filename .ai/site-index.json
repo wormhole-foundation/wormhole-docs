@@ -4322,12 +4322,12 @@
       }
     ],
     "stats": {
-      "chars": 17350,
-      "words": 2345,
+      "chars": 17337,
+      "words": 2343,
       "headings": 21,
-      "estimated_token_count_total": 3215
+      "estimated_token_count_total": 3212
     },
-    "hash": "sha256:8d6a7dc915d17f70e17efef208d59561cef58990666dcb80fe53006e0354a51f",
+    "hash": "sha256:fd961e1bb2c6c3b3c9357d053e5f7c2d92a43d302e74de4869b986929fbc4c19",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7216,12 +7216,12 @@
       }
     ],
     "stats": {
-      "chars": 5109,
-      "words": 701,
+      "chars": 4717,
+      "words": 653,
       "headings": 3,
-      "estimated_token_count_total": 697
+      "estimated_token_count_total": 622
     },
-    "hash": "sha256:6a0213e3540069e13ade17a534c10d9c85a8740693abf6fe76202589881c7d81",
+    "hash": "sha256:a1e06856363e1afbaffd38a0e578ce99530b641d0c36dcc8521dea8581bac6a3",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7549,72 +7549,6 @@
     "token_estimator": "heuristic-v1"
   },
   {
-    "id": "protocol-infrastructure-guides-run-relayer",
-    "title": "Run a Relayer",
-    "slug": "protocol-infrastructure-guides-run-relayer",
-    "categories": [
-      "Relayers"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-run-relayer.md",
-    "html_url": "https://wormhole.com/docs/protocol/infrastructure-guides/run-relayer/",
-    "preview": "Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While the [Executor](/docs/protocol/infrastructure/relayer/#executor){target=\\_blank} provides a reliable way to handle these transfers, they might not always meet every application's unique requirements.",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Get Started with a Custom Relayer",
-        "anchor": "get-started-with-a-custom-relayer"
-      },
-      {
-        "depth": 3,
-        "title": "How to Uniquely Identify a VAA",
-        "anchor": "how-to-uniquely-identify-a-vaa"
-      },
-      {
-        "depth": 2,
-        "title": "Use the Relayer Engine",
-        "anchor": "use-the-relayer-engine"
-      },
-      {
-        "depth": 3,
-        "title": "Install the Relayer Engine",
-        "anchor": "install-the-relayer-engine"
-      },
-      {
-        "depth": 3,
-        "title": "Get Started with the Relayer Engine",
-        "anchor": "get-started-with-the-relayer-engine"
-      },
-      {
-        "depth": 2,
-        "title": "Start Background Processes",
-        "anchor": "start-background-processes"
-      },
-      {
-        "depth": 3,
-        "title": "Wormhole Network Spy",
-        "anchor": "wormhole-network-spy"
-      },
-      {
-        "depth": 3,
-        "title": "Redis Persistence",
-        "anchor": "redis-persistence"
-      },
-      {
-        "depth": 2,
-        "title": "Use the Wormhole SDK",
-        "anchor": "use-the-wormhole-sdk"
-      }
-    ],
-    "stats": {
-      "chars": 12590,
-      "words": 1622,
-      "headings": 9,
-      "estimated_token_count_total": 2381
-    },
-    "hash": "sha256:f5d262d69a10ac0e76490a34ffa3c301bd7ceb6a970992230c7a755817b3e5e3",
-    "token_estimator": "heuristic-v1"
-  },
-  {
     "id": "protocol-infrastructure-guides-run-spy",
     "title": "Run a Spy",
     "slug": "protocol-infrastructure-guides-run-spy",
@@ -7789,19 +7723,9 @@
         "anchor": "manual-vs-automated-relaying"
       },
       {
-        "depth": 2,
-        "title": "Types of Relayers",
-        "anchor": "types-of-relayers"
-      },
-      {
         "depth": 3,
         "title": "Executor",
         "anchor": "executor"
-      },
-      {
-        "depth": 3,
-        "title": "Custom Relayer",
-        "anchor": "custom-relayer"
       },
       {
         "depth": 2,
@@ -7810,12 +7734,12 @@
       }
     ],
     "stats": {
-      "chars": 10345,
-      "words": 1382,
-      "headings": 6,
-      "estimated_token_count_total": 1831
+      "chars": 5938,
+      "words": 810,
+      "headings": 4,
+      "estimated_token_count_total": 943
     },
-    "hash": "sha256:32c5c9816f04a234e426b6a9b24e02e6f678a2c3f5b494a56969d52a950f872b",
+    "hash": "sha256:7bc4afc213589a371c9c2413ca9c04398d665b2c1211cf5f1db2b40283e67951",
     "token_estimator": "heuristic-v1"
   },
   {

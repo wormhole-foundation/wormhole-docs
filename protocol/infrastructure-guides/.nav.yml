@@ -2,5 +2,4 @@ title: Infrastructure Guides
 nav:
 - 'Integrate NTT with Executor': ntt-executor.md
 - 'Integrate CCTP with Executor': cctp-executor.md
-- 'Run a Custom Relayer': run-relayer.md
 - 'Run a Spy': run-spy.md

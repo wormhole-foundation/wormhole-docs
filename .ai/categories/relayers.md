@@ -43,8 +43,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.
 - **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain.
-    - **[Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank}**: A decentralized relaying framework operated through Wormhole’s on-chain contracts. Executors deliver messages requested on-chain in a trust-minimized and permissionless manner.
-    - **[Custom relayers](/docs/protocol/infrastructure/relayer/#custom-relayer){target=\_blank}**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
+- **[Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank}**: A decentralized relaying framework operated through Wormhole’s on-chain contracts. Executors deliver messages requested on-chain in a trust-minimized and permissionless manner.
 
 ## Next Steps
 
@@ -6742,7 +6741,7 @@ Page Title: Relayers Overview
 
 - Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md
 - Canonical (HTML): https://wormhole.com/docs/protocol/infrastructure/relayers/relayer/
-- Summary: Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+- Summary: Discover the role of relayers in the Wormhole network, including client-side and automated relaying via the Executor framework, for secure cross-chain communication.
 
 # Overview
 
@@ -6753,7 +6752,7 @@ This page introduces relayers in the Wormhole network and explains their role, a
 
 Relayers are the entities responsible for submitting signed [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} to destination chains, providing message delivery and automation. At the same time, Guardian signatures and on-chain verification ensure that relayers cannot tamper with message contents and only influence when a VAA is delivered.
 
-Wormhole supports both manual (client-side) and automated relaying. Automated relaying can be implemented either by running a custom relayer or by using Wormhole’s primary relayer infrastructure: the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}.
+Wormhole supports both manual (client-side) and automated relaying. Automated relaying is implemented using the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, Wormhole's decentralized relayer infrastructure.
 
 ## Fundamentals
 
@@ -6761,32 +6760,17 @@ Relayers act as delivery mechanisms for cross-chain messages. Their responsibili
 
 - **Anyone can relay a message**: The Guardian Network broadcasts signed VAAs publicly, allowing any entity to submit them to destination chain contracts. Guardian signatures provide universal verifiability, ensuring relaying is permissionless. If one relayer is unavailable, another party can submit the same VAA to complete delivery.
 - **Security is in the VAA**: Guardian signatures authenticate message contents and execution parameters. Contracts should rely only on signed VAAs and on-chain state, not on off-chain data supplied by relayers. As a result, relayers can affect delivery timing, but not message correctness or security, making relaying trustless.
-- **User experience vs. infrastructure**: Relayers automate cross-chain delivery to improve user experience, but introduce considerations around fees and operational complexity. Developers can choose between client-side relaying, Wormhole-provided relayer infrastructure, or custom relayers depending on cost, control, and infrastructure requirements.
+- **User experience vs. infrastructure**: Relayers automate cross-chain delivery to improve user experience, but introduce considerations around fees. Developers can choose between client-side relaying or the Executor framework depending on their needs.
 
 ## Manual vs. Automated Relaying
 
 When integrating Wormhole messaging, applications can use either manual (client-side) relaying or automated relaying. The difference lies in who is responsible for delivering the VAA to the destination chain.
 
 - **Manual relaying (client-side)**: The user or client application (e.g., a dApp or wallet) is responsible for carrying out all cross-chain steps. After an action on the source chain produces a VAA, the user must fetch the VAA (e.g., via a Wormhole API or explorer) and submit it in a transaction on the destination chain. No backend infrastructure is required, and costs are limited to destination-chain transaction fees. However, this approach requires multiple user interactions and funds on each chain involved, making it best suited for testing, demos, and MVPs rather than production applications.
-- **Automated relaying**: Cross-chain delivery is handled automatically by a relayer service or network instead of the end user. From the user’s perspective, the message is delivered to the destination chain without manual intervention, enabling a smoother, one-step experience. Automated relaying can be implemented in two ways:
+- **Automated relaying**: Cross-chain delivery is handled automatically by a relayer service or network instead of the end user. From the user's perspective, the message is delivered to the destination chain without manual intervention, enabling a smoother, one-step experience. With the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, applications can leverage Wormhole's decentralized relayer infrastructure to request automated delivery, without running a backend service. This reduces operational complexity at the cost of service fees, while significantly improving user experience.
 
-    - **Build a relayer service (custom backend)**: Run an off-chain service that listens for VAAs and forwards them to destination chains. This approach provides full control over delivery logic (e.g., batching, retries, or gas optimization) but requires building and operating backend infrastructure.
-    - **Use a relayer network provided by Wormhole**: Leverage Wormhole’s decentralized relayer infrastructure to request automated delivery through on-chain calls, without running a backend service. This reduces operational complexity at the cost of service fees, while significantly improving user experience.
+Choosing between manual and automated relaying depends on the application's requirements. If the integrator prioritizes convenience, automated relaying provides a superior experience.
 
-Choosing between manual and automated relaying depends on the application's requirements. If the integrator prioritizes convenience, automated relaying (via either a Wormhole service or a custom service) provides a superior experience.
-
-## Types of Relayers
-
-Automated relaying can be implemented using Wormhole-provided infrastructure or by running a custom relayer service. Wormhole’s primary relayer solution is the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, which provides permissionless, automated message delivery across supported chains. For advanced use cases or custom logic, applications can also run [custom relayers](#custom-relayer){target=\_blank} using Wormhole’s tooling.
-
-| Aspect          | Executor                                         | Custom Relayer               |
-|-----------------|--------------------------------------------------|------------------------------|
-| Who Runs It     | Permissionless network of providers              | Application team             |
-| Chain Support   | Out of the box on all Wormhole-supported chains  | Any Wormhole-supported chain (manual setup required) |
-| Integration     | Executor contracts with request–quote model      | Custom backend service       |
-| Infrastructure  | None (on-chain only)                             | Full backend required, 24/7 availability |
-| User Experience | Seamless, broader chain support                  | App-specific optimizations possible |
-| Trade-offs      | Early rollout, limited initial availability      | High DevOps cost, must stay secure | 
 
 ### Executor
 
@@ -6801,21 +6785,6 @@ Applications request automated delivery by submitting an execution request to th
 
 The Executor does not change Wormhole’s security model. Guardian signatures and on-chain verification enforce message integrity and execution correctness, while relay providers compete on pricing and availability. This creates a decentralized marketplace for relaying rather than a single relayer service.
 
-### Custom Relayer
-
-For projects with special requirements or the need for complete control, custom relaying is an option. This involves building and running a relayer service tailored to the application. A custom relayer typically runs as a backend service that listens for specific VAAs from the Wormhole network (often via a [Spy](/docs/protocol/infrastructure/spy/){target=\_blank}) and then submits transactions to the destination chain when relevant messages are observed. Because Wormhole VAAs are public and trustless, anyone can run a relayer — an integrator could even operate a private relayer that only handles their own protocol’s messages.
-
-The primary motivation for choosing this route is flexibility and optimization; another reason may be specific chains where an Executor is still not available. With an off-chain component, developers can:  
-
-- Apply conditional logic like aggregating multiple messages and relaying them in a single transaction (batching).  
-- Trigger delivery logic (e.g., timing, price feeds, external signals) before delivery.  
-- Perform computations off-chain to reduce on-chain gas costs.  
-- Design custom incentive structures (e.g., funded by a protocol treasury or user-paid fees).  
-- Enhance the user experience with optimizations specific to an app.
-
-Running a custom relayer requires operating dedicated infrastructure with continuous availability and monitoring. Integrators are responsible for secure message handling, including verifying VAAs and managing delivery logic, as well as handling cross-chain fee payments where applicable. While this approach provides maximum flexibility and application-specific optimization, it comes with higher development, operational, and DevOps overhead than using the Wormhole-provided relayer infrastructure.
-
-To simplify development, Wormhole provides the [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}, a tool that abstracts boilerplate tasks such as listening to Guardians, parsing messages, and handling retries. Developers can then focus on application-specific logic, such as filtering relevant VAAs, forwarding to multiple chains, or applying off-chain checks.
 
 ## Next Steps
 
@@ -6828,14 +6797,6 @@ To simplify development, Wormhole provides the [Relayer Engine](https://github.c
     Understand the key differences between the Executor framework and the Standard Relayer, and find guidance for migrating existing integrations.
 
     [:custom-arrow: Migrate to Executor](/docs/protocol/infrastructure/relayers/executor-vs-sr/)
-
--   :octicons-book-16:{ .lg .middle } **Run a Custom Relayer**
-
-    ---
-
-    Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
-
-    [:custom-arrow: Get Started with Custom Relayers](/docs/protocol/infrastructure-guides/run-relayer/)
 
 -   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
 
@@ -7984,335 +7945,6 @@ You've successfully built a script to fetch, validate, and replace outdated sign
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
 
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
-
-
----
-
-Page Title: Run a Relayer
-
-- Source (raw): https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-run-relayer.md
-- Canonical (HTML): https://wormhole.com/docs/protocol/infrastructure-guides/run-relayer/
-- Summary: Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
-
-# Run a Custom Relayer
-
-Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While the [Executor](/docs/protocol/infrastructure/relayer/#executor){target=\_blank} provides a reliable way to handle these transfers, they might not always meet every application's unique requirements.
-
-Custom relayers address these limitations by offering tailored solutions that cater to the distinct needs of your application. Developing a custom relayer gives you complete control over message processing, delivery mechanisms, and integration with existing systems. This customization allows for optimized performance and the ability to implement specific features that Wormhole-deployed relayers might not support.
-
-A custom relayer might be as simple as an in-browser process that polls the API for the availability of a VAA after submitting a transaction and delivers it to the target chain. It might also be implemented with a Spy coupled with some daemon listening for VAAs from a relevant chain ID and emitter, then taking action when one is observed.
-
-This guide teaches you how to set up and configure a custom relayer for efficient message handling. You'll start by understanding how to uniquely identify a VAA using its emitter address, sequence ID, and chain ID. Then, you'll explore the Relayer Engine, a package that provides a framework for building custom relayers, and learn how to fetch and handle VAAs using the Wormhole SDK.
-
-## Get Started with a Custom Relayer
-
-To start building a custom relayer, it's essential to grasp the components you'll be managing as part of your relaying service. Your relayer must be capable of retrieving and delivering VAAs.
-
-<figure markdown="span">
-  ![Custom relayer](/docs/images/protocol/infrastructure-guides/run-relayer/relayer-1.webp)
-  <figcaption>The off-chain components outlined in blue must be implemented.</figcaption>
-</figure>
-
-### How to Uniquely Identify a VAA
-
-Regardless of the environment, to get the VAA you intend to relay, you need:
-
-- The `emitter` address.
-- The `sequence` ID of the message you're interested in.
-- The `chainId` for the chain that emitted the message.
-
-With these three components, you're able to uniquely identify a VAA and process it.
-
-## Use the Relayer Engine
-
-The [`relayer-engine`](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} is a package that provides the structure and a starting point for a custom relayer.
-
-With the Relayer Engine, a developer can write specific logic for filtering to receive only the messages they care about.
-
-Once a Wormhole message is received, the developer may apply additional logic to parse custom payloads or submit the Verifiable Action Approvals (VAA) to one or many destination chains.
-
-To use the Relayer Engine, a developer may specify how to relay Wormhole messages for their app using an idiomatic Express/Koa middleware-inspired API, then let the library handle all the details.
-
-### Install the Relayer Engine
-
-First, install the `relayer-engine` package with your favorite package manager:
-
-```bash
-npm i @wormhole-foundation/relayer-engine
-```
-
-### Get Started with the Relayer Engine
-
-In the following example, you'll:
-
-1. Set up a `StandardRelayerApp`, passing configuration options for our relayer.
-2. Add a filter to capture only those messages our app cares about, with a callback to do _something_ with the VAA once received.
-3. Start the relayer app.
-
-```typescript
-import {
-  Environment,
-  StandardRelayerApp,
-  StandardRelayerContext,
-} from '@wormhole-foundation/relayer-engine';
-import { CHAIN_ID_SOLANA } from '@certusone/wormhole-sdk';
-
-(async function main() {
-  // Initialize relayer engine app and pass relevant config options
-  const app = new StandardRelayerApp<StandardRelayerContext>(
-    Environment.TESTNET,
-    // Other app specific config options can be set here for things
-    // like retries, logger, or redis connection settings
-    {
-      name: 'ExampleRelayer',
-    }
-  );
-
-  // Add a filter with a callback that will be invoked
-  // on finding a VAA that matches the filter
-  app.chain(CHAIN_ID_SOLANA).address(
-    // Emitter address on Solana
-    'DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe',
-    // Callback function to invoke on new message
-    async (ctx, next) => {
-      const vaa = ctx.vaa;
-      const hash = ctx.sourceTxHash;
-      console.log(
-        `Got a VAA with sequence: ${vaa.sequence} from with txhash: ${hash}`
-      );
-    }
-  );
-
-  // Add and configure any other middleware here
-
-  // Start app. Blocks until unrecoverable error or process is stopped
-  await app.listen();
-})();
-
-```
-
-The first meaningful line instantiates the `StandardRelayerApp`, a subclass of the `RelayerApp` with standard defaults.
-
-```typescript
-export class StandardRelayerApp<
-  ContextT extends StandardRelayerContext = StandardRelayerContext,
-> extends RelayerApp<ContextT> {
-  // ...
-  constructor(env: Environment, opts: StandardRelayerAppOpts) {
-```
-
-The only field you pass in the `StandardRelayerAppOpts` is the name to help identify log messages and reserve a namespace in Redis.
-
-??? code "`StandardRelayerAppOpts`"
-
-    Other options can be passed to the `StandardRelayerApp` constructor to configure the app further.
-
-    ```typescript
-    wormholeRpcs?: string[];  // List of URLs from which to query missed VAAs
-    concurrency?: number;     // How many concurrent requests to make for workflows
-    spyEndpoint?: string;     // The hostname and port of our Spy
-    logger?: Logger;          // A custom Logger
-    privateKeys?: Partial<{ [k in ChainId]: any[]; }>; // A set of keys that can be used to sign and send transactions
-    tokensByChain?: TokensByChain;    // The token list we care about
-    workflows?: { retries: number; }; // How many times to retry a given workflow
-    providers?: ProvidersOpts;        // Configuration for the default providers
-    fetchSourceTxhash?: boolean;      // whether or not to get the original transaction ID/hash
-    // Redis config
-    redisClusterEndpoints?: ClusterNode[];
-    redisCluster?: ClusterOptions;
-    redis?: RedisOptions;
-    ```
-
-The next meaningful line in the example adds a filter middleware component. This middleware will cause the relayer app to request a subscription from the Spy for any VAAs that match the criteria and invoke the callback with the VAA.
-
-If you'd like your program to subscribe to `multiple` chains and addresses, you can call the same method several times or use the `multiple` helper.
-
-```typescript
-app.multiple(
-  {
-    [CHAIN_ID_SOLANA]: 'DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe',
-    [CHAIN_ID_ETH]: ['0xabc1230000000...', '0xdef456000...'],
-  },
-  myCallback
-);
-
-```
-
-The last line in the simple example runs `await app.listen()`, which starts the relayer engine. Once started, the Relayer Engine issues subscription requests to the Spy and begins any other workflows (e.g., tracking missed VAAs).
-
-This will run until the process is killed or encounters an unrecoverable error. To gracefully shut down the relayer, call `app.stop()`.
-
-The source code for this example is available in the [`relayer-engine` repository](https://github.com/wormhole-foundation/relayer-engine/blob/main/examples/simple/src/app.ts){target=\_blank}.
-
-## Start Background Processes
-
-!!! note
-    These processes _must_ be running for the relayer app below to work.
-
-Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. This example uses Redis.
-
-More details about the Spy are available in the [Spy Documentation](/docs/protocol/infrastructure/spy){target=\_blank}.
-
-### Wormhole Network Spy
-
-For our relayer app to receive messages, a local Spy must be running that watches the Guardian network. Our relayer app will receive updates from this Spy.
-
-=== "Mainnet Spy"
-
-    ```bash
-    docker run --pull=always --platform=linux/amd64 \
-    -p 7073:7073 \
-    --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
-    spy \
-    --nodeKey /node.key \
-    --spyRPC "[::]:7073" \
-    --env mainnet
-    ```
-
-=== "Testnet Spy"
-
-    ```bash
-    docker run --pull=always --platform=linux/amd64 \
-    -p 7073:7073 \
-    --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
-    spy \
-    --nodeKey /node.key \
-    --spyRPC "[::]:7073" \
-    --env testnet   
-    ```
-
-### Redis Persistence
-
-!!! note
-    While you're using [Redis](https://redis.io/docs/latest/develop/get-started/){target=\_blank} here, the persistence layer can be swapped out for some other database by implementing the appropriate [interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank}.
-
-A Redis instance must also be available to persist job data for fetching VAAs from the Spy.
-
-```bash
-docker run --rm -p 6379:6379 --name redis-docker -d redis
-```
-
-## Use the Wormhole SDK
-
-!!! note   
-    The example below uses the legacy [`@certusone/wormhole-sdk`](https://www.npmjs.com/package/@certusone/wormhole-sdk){target=\_blank}, which is still supported and used in the Relayer Engine but is no longer actively maintained.
-    
-    For most use cases, it is recommend to use the latest [`@wormhole-foundation/sdk`](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}.
-
-You can also use the Wormhole SDK to poll the Guardian RPC until a signed VAA is ready using the SDK's `getSignedVAAWithRetry` function.
-
-```ts
-import {
-  getSignedVAAWithRetry,
-  parseVAA,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_ETH,
-} from '@certusone/wormhole-sdk';
-
-const RPC_HOSTS = [
-  /* ...*/
-];
-
-async function getVAA(
-  emitter: string,
-  sequence: string,
-  chainId: number
-): Promise<Uint8Array> {
-  // Wait for the VAA to be ready and fetch it from the guardian network
-  const { vaaBytes } = await getSignedVAAWithRetry(
-    RPC_HOSTS,
-    chainId,
-    emitter,
-    sequence
-  );
-  return vaaBytes;
-}
-
-const vaaBytes = await getVAA('INSERT_EMITTER_ADDRESS', 1, CHAIN_ID_ETH);
-
-```
-
-Once you have the VAA, the delivery method is chain-dependent.
-
-=== "EVM"
-
-    On EVM chains, the bytes for the VAA can be passed directly as an argument to an ABI method.
-
-    ```ts
-    // Set up eth wallet
-    const ethProvider = new ethers.providers.StaticJsonRpcProvider(
-      'INSERT_RPC_URL'
-    );
-    const ethWallet = new ethers.Wallet('INSERT_PRIVATE_KEY', ethProvider);
-
-    // Create client to interact with our target app
-    const ethHelloWorld = HelloWorld__factory.connect(
-      'INSERT_CONTRACT_ADDRESS',
-      ethWallet
-    );
-
-    // Invoke the receiveMessage on the ETH contract and wait for confirmation
-    const receipt = await ethHelloWorld
-      .receiveMessage(vaaBytes)
-      .then((tx: ethers.ContractTransaction) => tx.wait())
-      .catch((msg: any) => {
-        console.error(msg);
-        return null;
-      });
-
-    ```
-
-=== "Solana"
-
-    On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA. 
-
-    ```ts
-    import { CONTRACTS } from '@certusone/wormhole-sdk';
-
-    export const WORMHOLE_CONTRACTS = CONTRACTS[NETWORK];
-    export const CORE_BRIDGE_PID = new PublicKey(WORMHOLE_CONTRACTS.solana.core);
-
-    // First, post the VAA to the core bridge
-    await postVaaSolana(
-      connection,
-      wallet.signTransaction,
-      CORE_BRIDGE_PID,
-      wallet.key(),
-      vaaBytes
-    );
-
-    const program = createHelloWorldProgramInterface(connection, programId);
-    const parsed = isBytes(wormholeMessage)
-      ? parseVaa(wormholeMessage)
-      : wormholeMessage;
-
-    const ix = program.methods
-      .receiveMessage([...parsed.hash])
-      .accounts({
-        payer: new PublicKey(payer),
-        config: deriveConfigKey(programId),
-        wormholeProgram: new PublicKey(wormholeProgramId),
-        posted: derivePostedVaaKey(wormholeProgramId, parsed.hash),
-        foreignEmitter: deriveForeignEmitterKey(programId, parsed.emitterChain),
-        received: deriveReceivedKey(
-          programId,
-          parsed.emitterChain,
-          parsed.sequence
-        ),
-      })
-      .instruction();
-
-    const transaction = new Transaction().add(ix);
-    const { blockhash } = await connection.getLatestBlockhash(commitment);
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = new PublicKey(payerAddress);
-
-    const signed = await wallet.signTxn(transaction);
-    const txid = await connection.sendRawTransaction(signed);
-
-    await connection.confirmTransaction(txid);
-
-    ```
 
 
 ---
