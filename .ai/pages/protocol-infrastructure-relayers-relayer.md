@@ -34,7 +34,7 @@ When integrating Wormhole messaging, applications can use either manual (client-
 Choosing between manual and automated relaying depends on the application's requirements. If the integrator prioritizes convenience, automated relaying provides a superior experience.
 
 
-### Executor
+## Executor
 
 The Executor is a permissionless, next-generation relaying framework that enables anyone to act as a relayer through a request-and-quote model, with support for multichain delivery and flexible pricing.
 

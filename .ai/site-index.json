@@ -7216,12 +7216,12 @@
       }
     ],
     "stats": {
-      "chars": 4736,
-      "words": 656,
+      "chars": 4747,
+      "words": 657,
       "headings": 3,
-      "estimated_token_count_total": 617
+      "estimated_token_count_total": 619
     },
-    "hash": "sha256:51ea88831e584c8f5e785be9da2769e8a72ef9e8d66be18ca1db32282f0a3a8f",
+    "hash": "sha256:6b85581ef8936a820ea4037dd972bf5e5b0a2a82e496e8403245a954bacafd8d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7723,7 +7723,7 @@
         "anchor": "manual-vs-automated-relaying"
       },
       {
-        "depth": 3,
+        "depth": 2,
         "title": "Executor",
         "anchor": "executor"
       },
@@ -7734,12 +7734,12 @@
       }
     ],
     "stats": {
-      "chars": 5938,
+      "chars": 5937,
       "words": 810,
       "headings": 4,
-      "estimated_token_count_total": 943
+      "estimated_token_count_total": 942
     },
-    "hash": "sha256:7bc4afc213589a371c9c2413ca9c04398d665b2c1211cf5f1db2b40283e67951",
+    "hash": "sha256:2ee5324f65d7aaed28cc43ab978eeb6be67afa34f822b2606bf79eca9eff5c88",
     "token_estimator": "heuristic-v1"
   },
   {
