@@ -78,6 +78,26 @@ Below is an example of how the `overrides.json` file should be structured:
     }
     ```
 
+## Can I set outbound rate limits on a per-chain basis like inbound limits?
+
+No. Outbound rate limits are a single global value per chain—they cannot be configured for individual destination chains. This means if you set an outbound limit of 1000 tokens, that limit applies to all transfers leaving the chain, regardless of destination.
+
+Inbound rate limits, however, can be configured on a per-chain basis. For example, you can allow 100 tokens to be received from Ethereum but only 50 tokens from Arbitrum.
+
+Here's what a properly configured `deployment.json` limits section looks like:
+
+```json
+"limits": {
+    "outbound": "1000.000000000000000000",
+    "inbound": {
+        "Ethereum": "100.000000000000000000",
+        "Arbitrum": "50.000000000000000000"
+    }
+}
+```
+
+For detailed information on rate limiting behavior, queuing mechanisms, and cancel flows, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} documentation.
+
 ## How can I redeem tokens if NTT rate limits block them on the target chain?
 
 If the rate limits on Wormhole's NTT block tokens from being received on the target chain, the transaction will typically be paused until the rate limits are adjusted. Rate limits are implemented to manage congestion and prevent chain abuse, but they can occasionally delay token redemptions.

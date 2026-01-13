@@ -13820,15 +13820,19 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     Open your `deployment.json` file and adjust the values based on your use case:
 
       ```json
+      "outbound": "1000.000000000000000000",
       "inbound": {
-          "Arbitrum": "1000.000000000000000000" // inbound limit from Arbitrum to Ethereum
-      }
-      "outbound": {
-          "Ethereum": "1000.000000000000000000" // outbound limit from Ethereum to Arbitrum
+          "Arbitrum": "1000.000000000000000000"
       }
       ```
 
-    This configuration ensures your rate limits align with the token’s precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token’s decimals on each chain by checking the token contract on the relevant block explorer.
+    - **`outbound`** - a single value that sets the maximum tokens allowed to leave the chain (applies to all destination chains)
+    - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific source chains (e.g., the example above limits tokens received from Arbitrum)
+
+    !!! note
+        Outbound rate limits cannot be configured on a per-chain basis—there is only one outbound limit per chain that applies to all destinations. Inbound limits, however, can be set individually for each source chain. For more details on rate limiting configuration and behavior, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} page.
+
+    This configuration ensures your rate limits align with the token's precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token's decimals on each chain by checking the token contract on the relevant block explorer.
 
 5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
@@ -13994,6 +13998,26 @@ Below is an example of how the `overrides.json` file should be structured:
         }
     }
     ```
+
+## Can I set outbound rate limits on a per-chain basis like inbound limits?
+
+No. Outbound rate limits are a single global value per chain—they cannot be configured for individual destination chains. This means if you set an outbound limit of 1000 tokens, that limit applies to all transfers leaving the chain, regardless of destination.
+
+Inbound rate limits, however, can be configured on a per-chain basis. For example, you can allow 100 tokens to be received from Ethereum but only 50 tokens from Arbitrum.
+
+Here's what a properly configured `deployment.json` limits section looks like:
+
+```json
+"limits": {
+    "outbound": "1000.000000000000000000",
+    "inbound": {
+        "Ethereum": "100.000000000000000000",
+        "Arbitrum": "50.000000000000000000"
+    }
+}
+```
+
+For detailed information on rate limiting behavior, queuing mechanisms, and cancel flows, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} documentation.
 
 ## How can I redeem tokens if NTT rate limits block them on the target chain?
 
@@ -18555,13 +18579,17 @@ Once you've set up NTT, proceed with deploying the contracts.
     Open your `deployment.json` file and adjust the values based on your use case:  
 
     ```json
+    "outbound": "1000.000000000",
     "inbound": {
-        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Sui
-    },
-    "outbound": {
-        "Sepolia": "1000.000000000" // outbound limit from Sui to Sepolia
+        "Sepolia": "1000.000000000"
     }
     ```
+
+    - **`outbound`** - a single value that sets the maximum tokens allowed to leave the chain (applies to all destination chains)
+    - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific source chains (e.g., the example above limits tokens received from Sepolia)
+
+    !!! note
+        Outbound rate limits cannot be configured on a per-chain basis—there is only one outbound limit per chain that applies to all destinations. Inbound limits, however, can be set individually for each source chain. For more details on rate limiting configuration and behavior, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} page.
 
 5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
@@ -18894,13 +18922,17 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     Open your `deployment.json` file and adjust the values based on your use case:  
 
     ```json
+    "outbound": "1000.000000000",
     "inbound": {
-        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
-    },
-    "outbound": {
-        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+        "Sepolia": "1000.000000000"
     }
     ```
+
+    - **`outbound`** - a single value that sets the maximum tokens allowed to leave the chain (applies to all destination chains)
+    - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific source chains (e.g., the example above limits tokens received from Sepolia)
+
+    !!! note
+        Outbound rate limits cannot be configured on a per-chain basis—there is only one outbound limit per chain that applies to all destinations. Inbound limits, however, can be set individually for each source chain. For more details on rate limiting configuration and behavior, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} page.
 
 4. **Push the final deployment**: Once rate limits are set, push the deployment to the SVM chain using the specified key pair to cover gas fees.
 

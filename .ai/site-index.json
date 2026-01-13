@@ -4438,6 +4438,11 @@
       },
       {
         "depth": 2,
+        "title": "Can I set outbound rate limits on a per-chain basis like inbound limits?",
+        "anchor": "can-i-set-outbound-rate-limits-on-a-per-chain-basis-like-inbound-limits"
+      },
+      {
+        "depth": 2,
         "title": "How can I redeem tokens if NTT rate limits block them on the target chain?",
         "anchor": "how-can-i-redeem-tokens-if-ntt-rate-limits-block-them-on-the-target-chain"
       },
@@ -4498,12 +4503,12 @@
       }
     ],
     "stats": {
-      "chars": 13914,
-      "words": 2156,
-      "headings": 18,
-      "estimated_token_count_total": 3027
+      "chars": 14917,
+      "words": 2295,
+      "headings": 19,
+      "estimated_token_count_total": 3246
     },
-    "hash": "sha256:aee32e071abdbe088a7adcf32fd4f328bea4faeaaac625f76247faee614b0cbe",
+    "hash": "sha256:c655164e6283f09a780b8cfe6a50d6c61ae717407212c0c9c63ef2664cef6aec",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4607,12 +4612,12 @@
       }
     ],
     "stats": {
-      "chars": 15791,
-      "words": 1911,
+      "chars": 16401,
+      "words": 2002,
       "headings": 7,
-      "estimated_token_count_total": 3252
+      "estimated_token_count_total": 3389
     },
-    "hash": "sha256:fda373496c115f6a7dd92b7eb74067a4b9e2286fecae30849ce1885cf423f7c2",
+    "hash": "sha256:113eb075dabd9e91f15dd1b1d63be9ffe3d848aaabc3b34cc80b4b7a05b55eaf",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4669,12 +4674,12 @@
       }
     ],
     "stats": {
-      "chars": 14224,
-      "words": 1881,
+      "chars": 14843,
+      "words": 1972,
       "headings": 8,
-      "estimated_token_count_total": 3104
+      "estimated_token_count_total": 3240
     },
-    "hash": "sha256:494aace24b5681e8f98ccb9abc418eb9f31cacd96e02db56e710e810d180a789",
+    "hash": "sha256:5adddd4bafdb612d33806018e1c9507deba030f68e6efb5f380448dcb56e4512",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4716,12 +4721,12 @@
       }
     ],
     "stats": {
-      "chars": 10716,
-      "words": 1406,
+      "chars": 11341,
+      "words": 1497,
       "headings": 5,
-      "estimated_token_count_total": 2218
+      "estimated_token_count_total": 2354
     },
-    "hash": "sha256:8ec7a0e48d02617d71eb49121098652713a6bce3a59dce33beafd081b395b567",
+    "hash": "sha256:a8d38ce718f46399824e3f808e039b69c489b740a6c596854e7f08e463916084",
     "token_estimator": "heuristic-v1"
   },
   {
