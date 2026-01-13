@@ -124,20 +124,19 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
     Open your `deployment.json` file and adjust the values based on your use case:
 
-      ```json
-      "outbound": "1000.000000000000000000",
-      "inbound": {
-          "Arbitrum": "1000.000000000000000000"
-      }
-      ```
+    ```json
+    "outbound": "1000.000000000000000000",
+    "inbound": {
+        "Arbitrum": "1000.000000000000000000"
+    }
+    ```
 
     - **`outbound`** - a single value that sets the maximum tokens allowed to leave the chain (applies to all destination chains)
     - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific source chains (e.g., the example above limits tokens received from Arbitrum)
 
-    !!! note
-        Outbound rate limits cannot be configured on a per-chain basis—there is only one outbound limit per chain that applies to all destinations. Inbound limits, however, can be set individually for each source chain. For more details on rate limiting configuration and behavior, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} page.
-
     This configuration ensures your rate limits align with the token's precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token's decimals on each chain by checking the token contract on the relevant block explorer.
+
+    For more details on rate limiting configuration and behavior, see the [Rate Limiting](/docs/products/token-transfers/native-token-transfers/configuration/rate-limiting/){target=\_blank} page.
 
 5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
