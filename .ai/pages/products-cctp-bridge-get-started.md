@@ -48,10 +48,10 @@ This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/)
     npm pkg set overrides.ethers=6.15.0
     ```
 
-3. Install the required dependencies. This example uses the SDK version `4.7.3`:
+3. Install the required dependencies. This example uses the SDK version `4.7.4`:
 
     ```bash
-    npm install @wormhole-foundation/sdk@4.7.3 @wormhole-labs/cctp-executor-route
+    npm install @wormhole-foundation/sdk@4.7.4 @wormhole-labs/cctp-executor-route
     npm install -D tsx typescript
     ```
 
