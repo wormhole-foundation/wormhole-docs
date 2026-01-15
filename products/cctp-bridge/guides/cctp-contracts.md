@@ -21,7 +21,7 @@ To interact with the Wormhole CCTP, you'll need the following:
 
 ## Wormhole's CCTP Integration Contract
 
-Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract applications interact with on the source chain. It initiates CCTP burns via [Circle's CCTP contracts](#circles-cctp-contracts) and emits Wormhole messages that can be used to coordinate completion on the destination chain.
+Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract that applications interact with on the source chain. It initiates CCTP burns via [Circle's CCTP contracts](#circles-cctp-contracts) and emits Wormhole messages to coordinate completion on the destination chain.
 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
@@ -515,7 +515,7 @@ The primary entry point is `CircleIntegration.transferTokensWithPayload`. This f
 
 Under the Executor framework, on-chain contracts are only responsible for initiating the transfer. A relay provider completes the transfer by retrieving the Circle attestation and submitting the destination transactions required to redeem USDC and execute any payload-defined logic.
 
-### On-chain transfer initiation
+### On-Chain Transfer Initiation
 
 When initiating a transfer, a source-chain contract typically performs the following steps:
 
@@ -536,20 +536,20 @@ Calling `transferTokensWithPayload` performs the following on-chain actions:
 
 - USDC is burned on the source chain via Circle’s Token Messenger and Token Minter contracts
 - A Wormhole message is emitted by the Circle Integration contract, encoding:
-    - transfer metadata
-    - the application payload
+    - Transfer metadata
+    - The application payload
 
 The function returns a Wormhole sequence number that uniquely identifies the transfer.
 
-### Execution and delivery via Executor
+### Execution and Delivery via Executor
 
 Once the transfer is initiated on-chain, completion is handled through the Executor:
 
 1. An off-chain client observes the emitted Wormhole message and requests execution through the CCTP Executor route (via the TypeScript SDK).
 2. A relay provider:
-    - retrieves the Circle message and attestation
-    - submits the redemption transaction on the destination chain
-    - invokes any destination logic associated with the payload.
+    - Retrieves the Circle message and attestation.
+    - Submits the redemption transaction on the destination chain.
+    - Invokes any destination logic associated with the payload.
 
 This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configurations and the selected executor route, but the on-chain initiation via `transferTokensWithPayload` remains the same.
 
