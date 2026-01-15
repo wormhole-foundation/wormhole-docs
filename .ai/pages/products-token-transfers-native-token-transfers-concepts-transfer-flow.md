@@ -126,7 +126,7 @@ To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_s
 
 ### Sending the Message
 
-Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage` method. The transceiver enforces the method signature, but transceivers are free to determine their implementation for transmitting messages (e.g., a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer or manually published via the core bridge).
+Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage` method. The transceiver enforces the method signature, but transceivers are free to determine their implementation for transmitting messages (e.g., a message routed through the Wormhole transceiver can be sent via the Executor framework or manually published via the core bridge).
 
 Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
 

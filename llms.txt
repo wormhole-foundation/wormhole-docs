@@ -6,7 +6,7 @@
 This directory lists URLs for raw Markdown pages that complement the rendered pages on the documentation site. Use these Markdown files to retain semantic context when prompting models while avoiding passing HTML elements.
 
 ## Metadata
-- Documentation pages: 125
+- Documentation pages: 124
 - Categories: 19
 
 ## Docs
@@ -30,7 +30,7 @@ Docs: Basics
 - [Core Contracts](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-core-contracts.md): Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
 - [Guardians](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guardians.md): Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
 - [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
-- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side and automated relaying via the Executor framework, for secure cross-chain communication.
 - [Spy](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-spy.md): Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
 - [VAAs](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-vaas.md): Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and role in cross-chain communication.
 - [Introduction to Wormhole](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-introduction.md): Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
@@ -102,14 +102,13 @@ Docs: Executor
 - [Integrate Native Token Transfers with Executor](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-ntt-executor.md): Learn how to integrate Native Token Transfers (NTT) with the Executor framework for permissionless, quote-based cross-chain token relaying and execution.
 - [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
 - [Standard Relayer to Executor Migration](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-executor-vs-sr.md): Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
-- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side and automated relaying via the Executor framework, for secure cross-chain communication.
 
 Docs: Relayers
 - [Wormhole-Deployed Relayers](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-messaging-guides-wormhole-relayers.md): Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
-- [Run a Relayer](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-run-relayer.md): Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
 - [Executor Framework](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-executor-framework.md): Learn how the Executor framework enables permissionless cross-chain message execution using on-chain contracts and off-chain providers.
 - [Standard Relayer to Executor Migration](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-executor-vs-sr.md): Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
-- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+- [Relayers Overview](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-relayers-relayer.md): Discover the role of relayers in the Wormhole network, including client-side and automated relaying via the Executor framework, for secure cross-chain communication.
 
 Docs: MultiGov
 - [MultiGov Architecture](https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/products-multigov-concepts-architecture.md): Discover MultiGov's hub-and-spoke architecture, enabling secure cross-chain governance with Wormhole’s interoperability and decentralized coordination.

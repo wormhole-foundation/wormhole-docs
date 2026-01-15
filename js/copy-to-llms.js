@@ -485,11 +485,10 @@
           }
           case 'open-chatgpt': {
             trackButtonClick('open_chatgpt');
-            const mdUrl = getMarkdownUrl(slug);
-            const prompt = `Read ${mdUrl} so I can ask questions about it.`;
-            const chatGPTUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(
-              prompt
-            )}`;
+            const currentUrl = window.location.href;
+            const jinaUrl = `https://r.jina.ai/${currentUrl}`;
+            const prompt = `Analyze the documentation at ${jinaUrl}. Focus on the technical implementation details and code examples. I want to ask you questions about implementing these protocols.`;
+            const chatGPTUrl = `https://chatgpt.com/?q=${encodeURIComponent(prompt)}`;
             window.open(chatGPTUrl, '_blank');
             break;
           }
