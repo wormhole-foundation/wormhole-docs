@@ -116,27 +116,27 @@
       },
       {
         "depth": 3,
-        "title": "On-chain transfer initiation",
+        "title": "On-Chain Transfer Initiation",
         "anchor": "on-chain-transfer-initiation"
       },
       {
         "depth": 3,
-        "title": "Execution and delivery via Executor",
+        "title": "Execution and Delivery via Executor",
         "anchor": "execution-and-delivery-via-executor"
       },
       {
         "depth": 2,
-        "title": "Resources",
-        "anchor": "resources"
+        "title": "Next Steps",
+        "anchor": "next-steps"
       }
     ],
     "stats": {
-      "chars": 90793,
-      "words": 8542,
+      "chars": 91508,
+      "words": 8630,
       "headings": 10,
-      "estimated_token_count_total": 14585
+      "estimated_token_count_total": 14766
     },
-    "hash": "sha256:12d3030047c176cf62cb57dc9bddb8865e505061d26ca54df08d5480971c030c",
+    "hash": "sha256:e968e8328ddd3fb2f733b2941f3e2a6d6ee4fa16cecf68316483caba61e29e37",
     "token_estimator": "heuristic-v1"
   },
   {

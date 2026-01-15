@@ -22,7 +22,7 @@ To interact with the Wormhole CCTP, you'll need the following:
 
 ## Wormhole's CCTP Integration Contract
 
-Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract applications interact with on the source chain. It initiates CCTP burns via [Circle's CCTP contracts](#circles-cctp-contracts) and emits Wormhole messages that can be used to coordinate completion on the destination chain.
+Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract that applications interact with on the source chain. It initiates CCTP burns via [Circle's CCTP contracts](#circles-cctp-contracts) and emits Wormhole messages to coordinate completion on the destination chain.
 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
@@ -2184,16 +2184,16 @@ The primary entry point is `CircleIntegration.transferTokensWithPayload`. This f
 
 Under the Executor framework, on-chain contracts are only responsible for initiating the transfer. A relay provider completes the transfer by retrieving the Circle attestation and submitting the destination transactions required to redeem USDC and execute any payload-defined logic.
 
-### On-chain transfer initiation
+### On-Chain Transfer Initiation
 
 When initiating a transfer, a source-chain contract typically performs the following steps:
 
 - Approves the Circle Integration contract to spend USDC
 - Calls `transferTokensWithPayload`, specifying:
-    - the USDC amount to burn
-    - the target Wormhole chain ID
-    - the mint recipient on the destination chain
-    - an application-defined payload
+    - The USDC amount to burn.
+    - The target Wormhole chain ID.
+    - The mint recipient on the destination chain.
+    - An application-defined payload.
 
 ??? code "transferTokensWithPayload"
 
@@ -2265,26 +2265,53 @@ Calling `transferTokensWithPayload` performs the following on-chain actions:
 
 - USDC is burned on the source chain via Circle’s Token Messenger and Token Minter contracts
 - A Wormhole message is emitted by the Circle Integration contract, encoding:
-    - transfer metadata
-    - the application payload
+    - Transfer metadata.
+    - The application payload.
 
 The function returns a Wormhole sequence number that uniquely identifies the transfer.
 
-### Execution and delivery via Executor
+### Execution and Delivery via Executor
 
 Once the transfer is initiated on-chain, completion is handled through the Executor:
 
 1. An off-chain client observes the emitted Wormhole message and requests execution through the CCTP Executor route (via the TypeScript SDK).
 2. A relay provider:
-    - retrieves the Circle message and attestation
-    - submits the redemption transaction on the destination chain
-    - invokes any destination logic associated with the payload.
+    - Retrieves the Circle message and attestation.
+    - Submits the redemption transaction on the destination chain.
+    - Invokes any destination logic associated with the payload.
 
 This flow applies to both CCTP v1 and CCTP v2. The version used depends on the source and destination chain configurations and the selected executor route, but the on-chain initiation via `transferTokensWithPayload` remains the same.
 
 From the perspective of a smart contract integrating with CCTP, initiating the transfer is sufficient. The Executor framework and relay providers handle the remaining steps.
 
-## Resources
+## Next Steps
 
-- For an end-to-end, up-to-date walkthrough of executing CCTP transfers using the Executor, refer to the [CCTP Executor Guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank}.
-- For reference, the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub demonstrates a legacy contract-based integration with Wormhole’s CCTP contracts.
+Now that you've learned how to interact directly with Circle's CCTP Bridge contracts, you're ready to explore more advanced features and expand your integration.
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **CCTP Executor Guide**
+
+    ---
+
+    A walkthrough for executing CCTP transfers using the Executor, covering quoting, execution, and status tracking.
+
+    [:custom-arrow: Read the guide](/docs/protocol/infrastructure-guides/cctp-executor/){target=\_blank}
+
+-   :octicons-repo-16:{ .lg .middle } **Demo CCTP Transfer Repository**
+
+    ---
+
+    A demo showcasing CCTP transfers using the Executor, intended as a practical reference for local testing and experimentation.
+
+    [:custom-arrow: View the repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=_blank}
+
+-   :octicons-repo-16:{ .lg .middle } **Hello USDC (Legacy Example)**
+
+    ---
+
+    A legacy, contract-based example demonstrating how to integrate with Wormhole’s CCTP contracts.
+
+    [:custom-arrow: Explore on GitHub](https://github.com/wormhole-foundation/hello-usdc){target=\_blank}
+
+</div>
