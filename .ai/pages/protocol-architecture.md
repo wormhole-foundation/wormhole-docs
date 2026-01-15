@@ -37,9 +37,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 - **[Spy](/docs/protocol/infrastructure/spy/){target=\_blank}**: A daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution.
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.
-- **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain.
-    - **[Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank}**: A decentralized relaying framework operated through Wormhole’s on-chain contracts. Executors deliver messages requested on-chain in a trust-minimized and permissionless manner.
-    - **[Custom relayers](/docs/protocol/infrastructure/relayer/#custom-relayer){target=\_blank}**: Relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers.
+- **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain. Wormhole provides the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, a shared execution framework. This framework enables permissionless message delivery through an open marketplace where relay providers compete using a request-and-quote model.
 
 ## Next Steps
 

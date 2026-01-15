@@ -17,12 +17,12 @@
       }
     ],
     "stats": {
-      "chars": 10024,
-      "words": 1124,
+      "chars": 10664,
+      "words": 1220,
       "headings": 1,
-      "estimated_token_count_total": 3029
+      "estimated_token_count_total": 3269
     },
-    "hash": "sha256:08db3e6a2a5844fdc2e919ae77ee01cee42a3afc03dba9844ab23c40634fe0bf",
+    "hash": "sha256:013f9e1febd4a6454771710ef0ae5d0f7006459aa5cb8c851910bc415253e066",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -64,7 +64,7 @@
       "headings": 4,
       "estimated_token_count_total": 3420
     },
-    "hash": "sha256:fe508e0896ea449868bf2ffc143a2f95e2b33fa1fd5d7a2b7582712f4a685089",
+    "hash": "sha256:3aa4362624f1a03f04784083b8e9170c19faa63f1fd02d915d171ba79ffa6d94",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -209,7 +209,7 @@
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:bf8a53bc47b244ac03db0aca99195c29d77afbe17a6c9df9044e68c3e1385061",
+    "hash": "sha256:b78294bc9018e2e87b343bc57595b1237eabc20778e37b73f97a018a9abaae61",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -296,7 +296,7 @@
       "headings": 13,
       "estimated_token_count_total": 4638
     },
-    "hash": "sha256:d02846309c5316e0acd1bbd95b4c3a73199665ff0d94c221a25dade3e513edd1",
+    "hash": "sha256:556088ef7c06a34f5ae45bcfdf558040d2c162205ee03783f9fc7b04ec1c36c3",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -937,12 +937,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 8459,
-      "words": 1337,
+      "chars": 12935,
+      "words": 2057,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:dc0e8fdfd7f22b11047e6abecec4429d3992c646abada7d7b1e5a33ebc03b74f",
+    "hash": "sha256:3ad0a11e22930487942de7d9cc70d262b339bd752066c9d209660451ff931866",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1127,7 +1127,7 @@
       "headings": 4,
       "estimated_token_count_total": 2520
     },
-    "hash": "sha256:865a5cfdeaf0228e1dcd6340ccda82c392a6f4ed54ead9176f506cb6563bafda",
+    "hash": "sha256:2a5c47d0d9f87a69cfa88b116201e5ce77a0f9abb206af6288855c4f200c0558",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1168,12 +1168,12 @@
       }
     ],
     "stats": {
-      "chars": 16768,
-      "words": 1949,
+      "chars": 16632,
+      "words": 1931,
       "headings": 5,
-      "estimated_token_count_total": 3312
+      "estimated_token_count_total": 3273
     },
-    "hash": "sha256:79220f37430a724dfd669f51c78826fdb6c0a4d71f1f60df5470eedb7c48ef8c",
+    "hash": "sha256:aa02d7cc5a3d2eb36a7bbc15a5106b151f60682a8b7892e4479ed427b57de674",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1342,12 +1342,12 @@
       }
     ],
     "stats": {
-      "chars": 11743,
-      "words": 1613,
+      "chars": 11619,
+      "words": 1594,
       "headings": 10,
       "estimated_token_count_total": 2109
     },
-    "hash": "sha256:16ac1c372ad7ff349c864278d931a4401aa0a09f0d6e3bc2f9975a67e15fe87f",
+    "hash": "sha256:1288cbdafe8e6d22112e02e781ac2cbad3be1f7a67cce98da281687d90d24af2",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -1887,12 +1887,12 @@
       }
     ],
     "stats": {
-      "chars": 21256,
-      "words": 2467,
+      "chars": 22119,
+      "words": 2587,
       "headings": 5,
-      "estimated_token_count_total": 7117
+      "estimated_token_count_total": 7387
     },
-    "hash": "sha256:d0d2c8aac747d49c3593189b601ecd4b2e1408d83f7a470bd2af4e2341f9e104",
+    "hash": "sha256:d371d2e51ac64a4041b6424aee064c09d16b3bc3a3c796ef7e866da340c02692",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -2497,7 +2497,7 @@
       "headings": 12,
       "estimated_token_count_total": 8841
     },
-    "hash": "sha256:f0343b04c0b08688b27a86166b422cdd7f5b4262a3f6793678d6a457815af95e",
+    "hash": "sha256:35b2d28862a388e43202edf0e80abf2a1d966b89c586b87b156077a24ce24193",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3021,7 +3021,7 @@
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:290c6a2583f7fbe58c4c56ed3907aa75be194b9b9b523e8d6a53be0a8fc88d10",
+    "hash": "sha256:2efc56c649eeed1a59407273cc6cba8642a48c82ffc1a55934c3facea350ebc5",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3466,12 +3466,12 @@
     "preview": "The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\\_blank}.",
     "outline": [],
     "stats": {
-      "chars": 10518,
-      "words": 1941,
+      "chars": 10529,
+      "words": 1942,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:f6ea48b72b1070da3824e79c6a156c88289afba94d635b18783d0a74822d9119",
+    "hash": "sha256:25cc3a786e52adbfbd9e027ff4d9366f3e9e9828f93ef50eb53ec5077dec4352",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3491,7 +3491,7 @@
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:a3757001954c253439474b6cbb9a8e2b5c1b0c03fea93720752603579f0e3ef0",
+    "hash": "sha256:bcd967e8e00270dfd93cc642df948e9ce1b048795397f6f7e800d58998e37088",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3547,12 +3547,12 @@
       }
     ],
     "stats": {
-      "chars": 32113,
-      "words": 3752,
+      "chars": 32464,
+      "words": 3801,
       "headings": 8,
-      "estimated_token_count_total": 10630
+      "estimated_token_count_total": 10760
     },
-    "hash": "sha256:8f2ffcb20f35f716ab498ae9f0d9283bc9ffaed76f1864592ac474f9f1d7d638",
+    "hash": "sha256:2fd592bc7a66ccac17f726379734c7dbefb02ecc05068e67ade0f5638a09923d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3593,12 +3593,12 @@
       }
     ],
     "stats": {
-      "chars": 21256,
-      "words": 2467,
+      "chars": 22119,
+      "words": 2587,
       "headings": 5,
-      "estimated_token_count_total": 7117
+      "estimated_token_count_total": 7387
     },
-    "hash": "sha256:43552b4abcde39674962fc34ba1fe9108b4f20cd64eb8ec9f3a114652be800eb",
+    "hash": "sha256:00d9a9171091a2afd7bf883e9cc7df2cbe141b8df29fae75b2054fe89fa6032d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3745,12 +3745,12 @@
       }
     ],
     "stats": {
-      "chars": 59953,
-      "words": 9381,
+      "chars": 64414,
+      "words": 10101,
       "headings": 7,
-      "estimated_token_count_total": 25461
+      "estimated_token_count_total": 27416
     },
-    "hash": "sha256:77df58982eb92d4e11c157d405e81faf8b3679d8aefad3d881a450b2b4e38ac2",
+    "hash": "sha256:2444e73c7f523e6e1dbd546532c7532ae60b8e634926a0d77d8dba845be40f76",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -3801,12 +3801,12 @@
       }
     ],
     "stats": {
-      "chars": 7900,
-      "words": 1394,
+      "chars": 7908,
+      "words": 1395,
       "headings": 7,
-      "estimated_token_count_total": 3491
+      "estimated_token_count_total": 3492
     },
-    "hash": "sha256:5690a69d68db87b0ff36532950073889e9a9cb0c8673bbe1cb091a17c4d9a605",
+    "hash": "sha256:b4cc9b251e459d3f1e66f935b28e0872f081554b1d31dc0c7282a931ce4af342",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4018,7 +4018,7 @@
       "headings": 5,
       "estimated_token_count_total": 2162
     },
-    "hash": "sha256:7964257f0a31b1bdc547d91a28053d2d706525417d98c939347051a23573fcb3",
+    "hash": "sha256:884754d27f356f4a6cec55feeb285f7a1b5d74736f1518740069d0e822b87f1b",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4322,12 +4322,12 @@
       }
     ],
     "stats": {
-      "chars": 17350,
-      "words": 2345,
+      "chars": 17337,
+      "words": 2343,
       "headings": 21,
-      "estimated_token_count_total": 3215
+      "estimated_token_count_total": 3212
     },
-    "hash": "sha256:8d6a7dc915d17f70e17efef208d59561cef58990666dcb80fe53006e0354a51f",
+    "hash": "sha256:fd961e1bb2c6c3b3c9357d053e5f7c2d92a43d302e74de4869b986929fbc4c19",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4438,6 +4438,11 @@
       },
       {
         "depth": 2,
+        "title": "Can I set outbound rate limits on a per-chain basis like inbound limits?",
+        "anchor": "can-i-set-outbound-rate-limits-on-a-per-chain-basis-like-inbound-limits"
+      },
+      {
+        "depth": 2,
         "title": "How can I redeem tokens if NTT rate limits block them on the target chain?",
         "anchor": "how-can-i-redeem-tokens-if-ntt-rate-limits-block-them-on-the-target-chain"
       },
@@ -4498,12 +4503,12 @@
       }
     ],
     "stats": {
-      "chars": 13914,
-      "words": 2156,
-      "headings": 18,
-      "estimated_token_count_total": 3027
+      "chars": 14917,
+      "words": 2295,
+      "headings": 19,
+      "estimated_token_count_total": 3246
     },
-    "hash": "sha256:aee32e071abdbe088a7adcf32fd4f328bea4faeaaac625f76247faee614b0cbe",
+    "hash": "sha256:c655164e6283f09a780b8cfe6a50d6c61ae717407212c0c9c63ef2664cef6aec",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4607,12 +4612,12 @@
       }
     ],
     "stats": {
-      "chars": 15791,
-      "words": 1911,
+      "chars": 16160,
+      "words": 1966,
       "headings": 7,
-      "estimated_token_count_total": 3252
+      "estimated_token_count_total": 3344
     },
-    "hash": "sha256:fda373496c115f6a7dd92b7eb74067a4b9e2286fecae30849ce1885cf423f7c2",
+    "hash": "sha256:df34c90200df8ee2cfd7fbe55363fd1929c8f94e60000c87d94a818dab988865",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4669,12 +4674,12 @@
       }
     ],
     "stats": {
-      "chars": 14224,
-      "words": 1881,
+      "chars": 14917,
+      "words": 1981,
       "headings": 8,
-      "estimated_token_count_total": 3104
+      "estimated_token_count_total": 3246
     },
-    "hash": "sha256:494aace24b5681e8f98ccb9abc418eb9f31cacd96e02db56e710e810d180a789",
+    "hash": "sha256:80483c3803da07c332a8bb77bc0e09a945ebb0f7c5ef454769b7cdd730ca5556",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -4716,12 +4721,12 @@
       }
     ],
     "stats": {
-      "chars": 10716,
-      "words": 1406,
+      "chars": 11415,
+      "words": 1506,
       "headings": 5,
-      "estimated_token_count_total": 2218
+      "estimated_token_count_total": 2360
     },
-    "hash": "sha256:8ec7a0e48d02617d71eb49121098652713a6bce3a59dce33beafd081b395b567",
+    "hash": "sha256:8ee939ef676c8fed48f998c5618cfd01c0cdd2a64c85c6a4a7d9ccf70ce52fe2",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6012,12 +6017,12 @@
     "preview": "<div class=\"full-width\" markdown>",
     "outline": [],
     "stats": {
-      "chars": 12456,
+      "chars": 12441,
       "words": 1979,
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:6e8c27400fb781e5781f7aad0e4838b441293c46734680409eb5c66f522c3938",
+    "hash": "sha256:00fd6ca72faca7abc54f999de19d12853c545fef839d7c02cc262db9941d071d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6737,7 +6742,7 @@
       "headings": 5,
       "estimated_token_count_total": 2724
     },
-    "hash": "sha256:f023216597866b039b03d22b789fe0fd85a4af80394a377ade2900008b0714a2",
+    "hash": "sha256:e02645155abaac405ec3ae7d411775256bd6626842abf0c5feceeb34678305ae",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6789,7 +6794,7 @@
       "headings": 6,
       "estimated_token_count_total": 4347
     },
-    "hash": "sha256:ef01b05a01e2d6fd8f6d8773a090ccd2f721afc6959d59802f8dce9ff84c3340",
+    "hash": "sha256:a99b1571a87c301c06c354bb9de373c776bba558f157f9bb04434bda6ffb9c94",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6831,7 +6836,7 @@
       "headings": 4,
       "estimated_token_count_total": 1240
     },
-    "hash": "sha256:07333adb046de2758393a2ae49d0ae6196a7ce9b58847efdae5ff1f1253d2e0b",
+    "hash": "sha256:5232572bdcbb2df765bcaf66806c1c1e69d09b7412e32faefb7a09aea78ec4da",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -6879,7 +6884,7 @@
       "headings": 5,
       "estimated_token_count_total": 5224
     },
-    "hash": "sha256:dc8ead8bac20cc52602af97f12f4fd616c83fce662297378b944740a5db9bc9d",
+    "hash": "sha256:2d8315cbea105cb50a76a1bf7cda44eb3172b8b4855db44a0b02135a55d7a0d6",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7041,7 +7046,7 @@
       "headings": 0,
       "estimated_token_count_total": 0
     },
-    "hash": "sha256:86bf708ec462fad4f3b4913abac7036abfa6442b82d7789f971c7da34cda189e",
+    "hash": "sha256:a023051a9389f1f0d4eaf175c1f4af50e2a49cd1c762c3aa21dc7e8f93e534ed",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7185,7 +7190,7 @@
       "headings": 13,
       "estimated_token_count_total": 6394
     },
-    "hash": "sha256:2acb233969414c19eec7c21fe2e1b92ed5fcf52d3ba4c416f78d8ad6a40a8b4b",
+    "hash": "sha256:4707f4c73ad88802574b7d31ae7157644108a7b6470222efdbb0d7cf142df49c",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7216,12 +7221,12 @@
       }
     ],
     "stats": {
-      "chars": 5109,
-      "words": 701,
+      "chars": 4747,
+      "words": 657,
       "headings": 3,
-      "estimated_token_count_total": 697
+      "estimated_token_count_total": 619
     },
-    "hash": "sha256:6a0213e3540069e13ade17a534c10d9c85a8740693abf6fe76202589881c7d81",
+    "hash": "sha256:6b85581ef8936a820ea4037dd972bf5e5b0a2a82e496e8403245a954bacafd8d",
     "token_estimator": "heuristic-v1"
   },
   {
@@ -7549,72 +7554,6 @@
     "token_estimator": "heuristic-v1"
   },
   {
-    "id": "protocol-infrastructure-guides-run-relayer",
-    "title": "Run a Relayer",
-    "slug": "protocol-infrastructure-guides-run-relayer",
-    "categories": [
-      "Relayers"
-    ],
-    "raw_md_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/main/.ai/pages/protocol-infrastructure-guides-run-relayer.md",
-    "html_url": "https://wormhole.com/docs/protocol/infrastructure-guides/run-relayer/",
-    "preview": "Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While the [Executor](/docs/protocol/infrastructure/relayer/#executor){target=\\_blank} provides a reliable way to handle these transfers, they might not always meet every application's unique requirements.",
-    "outline": [
-      {
-        "depth": 2,
-        "title": "Get Started with a Custom Relayer",
-        "anchor": "get-started-with-a-custom-relayer"
-      },
-      {
-        "depth": 3,
-        "title": "How to Uniquely Identify a VAA",
-        "anchor": "how-to-uniquely-identify-a-vaa"
-      },
-      {
-        "depth": 2,
-        "title": "Use the Relayer Engine",
-        "anchor": "use-the-relayer-engine"
-      },
-      {
-        "depth": 3,
-        "title": "Install the Relayer Engine",
-        "anchor": "install-the-relayer-engine"
-      },
-      {
-        "depth": 3,
-        "title": "Get Started with the Relayer Engine",
-        "anchor": "get-started-with-the-relayer-engine"
-      },
-      {
-        "depth": 2,
-        "title": "Start Background Processes",
-        "anchor": "start-background-processes"
-      },
-      {
-        "depth": 3,
-        "title": "Wormhole Network Spy",
-        "anchor": "wormhole-network-spy"
-      },
-      {
-        "depth": 3,
-        "title": "Redis Persistence",
-        "anchor": "redis-persistence"
-      },
-      {
-        "depth": 2,
-        "title": "Use the Wormhole SDK",
-        "anchor": "use-the-wormhole-sdk"
-      }
-    ],
-    "stats": {
-      "chars": 12590,
-      "words": 1622,
-      "headings": 9,
-      "estimated_token_count_total": 2381
-    },
-    "hash": "sha256:f5d262d69a10ac0e76490a34ffa3c301bd7ceb6a970992230c7a755817b3e5e3",
-    "token_estimator": "heuristic-v1"
-  },
-  {
     "id": "protocol-infrastructure-guides-run-spy",
     "title": "Run a Spy",
     "slug": "protocol-infrastructure-guides-run-spy",
@@ -7790,18 +7729,8 @@
       },
       {
         "depth": 2,
-        "title": "Types of Relayers",
-        "anchor": "types-of-relayers"
-      },
-      {
-        "depth": 3,
         "title": "Executor",
         "anchor": "executor"
-      },
-      {
-        "depth": 3,
-        "title": "Custom Relayer",
-        "anchor": "custom-relayer"
       },
       {
         "depth": 2,
@@ -7810,12 +7739,12 @@
       }
     ],
     "stats": {
-      "chars": 10345,
-      "words": 1382,
-      "headings": 6,
-      "estimated_token_count_total": 1831
+      "chars": 5937,
+      "words": 810,
+      "headings": 4,
+      "estimated_token_count_total": 942
     },
-    "hash": "sha256:32c5c9816f04a234e426b6a9b24e02e6f678a2c3f5b494a56969d52a950f872b",
+    "hash": "sha256:2ee5324f65d7aaed28cc43ab978eeb6be67afa34f822b2606bf79eca9eff5c88",
     "token_estimator": "heuristic-v1"
   },
   {
