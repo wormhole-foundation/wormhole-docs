@@ -1,7 +1,7 @@
 ---
 title: Relayers Overview
 description: Discover the role of relayers in the Wormhole network, including client-side and automated relaying via the Executor framework, for secure cross-chain communication.
-categories: Basics, Relayers, Executor
+categories: Basics, Executor
 ---
 
 # Overview

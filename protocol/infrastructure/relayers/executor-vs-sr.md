@@ -1,7 +1,7 @@
 ---
 title: Standard Relayer to Executor Migration
 description: Overview of key differences between the Executor framework and the Standard Relayer, plus guidance for migrating existing integrations.
-categories: Relayers, Executor
+categories: Executor
 ---
 
 # Standard Relayer to Executor Migration
