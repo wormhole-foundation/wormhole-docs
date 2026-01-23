@@ -39,29 +39,22 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 
 1. Run the installation commands in your terminal:
 
---8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:3:17'
-
-??? warning "Install permission denied?"
-    If the `install.sh` could not be executed due to file permissions, you need to change the ownership of the executable file. For example:
-
-    ```bash
-    chmod u+x ./install.sh
-    ```
+--8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:3:5'
 
 2. Verify the NTT CLI is installed:
 
---8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:21:23'
+--8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md:9:11'
 
-??? warning "Command not found?"
-    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
-    
-    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
+    ??? warning "Command not found?"
+        If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) v1.2.23 is installed and that its binary directory is included in your shell’s PATH.
+        
+        Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
 
-    ```bash
-    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
-    ```
+        ```bash
+        echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
+        ```
 
-    Then, restart your terminal or run `source ~/.zshrc`.
+        Then, restart your terminal or run `source ~/.zshrc`.
 
 ## Initialize a New NTT Project
 
