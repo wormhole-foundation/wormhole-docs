@@ -5,7 +5,7 @@ This directory holds the tooling that keeps the docs in sync with the latest Wor
 - Pull fresh metadata from the Wormhole SDK (via the exported `getContracts` helper).
 - Fetch curated raw contract lists from GitHub (as configured in `src/config/product-support-config.json`) to capture details missing from the SDK.
 - Regenerate reusable HTML/markdown tables (contracts, chain IDs, product support, governance, etc.).
-- Inject the new content between matching `<!--TAG--> ... <!--TAG-->` markers inside `wormhole-docs/.snippets/text`.
+- Inject the new content between matching `<!--TAG--> ... <!--TAG-->` markers inside `docs/.snippets/text`.
 
 Day-to-day operators do not need to touch the TypeScript—just run `npm run update` followed by `npm run generate` inside this directory.
 
@@ -14,7 +14,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 - Node.js **18+** (matches the mkdocs toolchain).
 - This repo checked out locally.
 - Network access for fetching contract constants from the Wormhole SDK (unless you point to local files).
-- Optional environment variable: `DOCS_SNIPPETS_DIR` to override the default snippets path (`../wormhole-docs/.snippets/text`).
+- Optional environment variable: `DOCS_SNIPPETS_DIR` to override the default snippets path (`../docs/.snippets/text`).
 - Notion credentials (required for executor-style contract tables):
   - `NOTION_API_KEY`
   - Use environment variables `NOTION_CONTRACTS_MAINNET_DB_ID` / `NOTION_CONTRACTS_TESTNET_DB_ID` **or** populate `src/config/notion-database-ids.json` with your database IDs.
@@ -27,7 +27,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
    - Installs/refreshes dependencies so the generator uses the latest SDK and helpers.
 3. `npm run generate`
    - Pulls contract data, regenerates JSON, and rewrites snippets. Watch for unmatched-tag warnings.
-4. Review and commit changes in both `scripts/` and `wormhole-docs/.snippets/text`.
+4. Review and commit changes in both `scripts/` and `docs/.snippets/text`.
 5. Open a PR with all modified files (scripts, configs, generated JSON, and snippets).
 
 (Optional) Run `npm run typecheck` if you modified the scripts or need extra confidence.
@@ -110,7 +110,7 @@ Follow the quick-start steps above (`npm run update` then `npm run generate`). A
 
 ### Update governance sources
 1. Modify the URLs inside `src/config/contracts-config.json`.
-2. Ensure both `<!--GOVERNANCE_MAINNET-->` and `<!--GOVERNANCE_TESTNET-->` markers exist in `wormhole-docs/.snippets/text/products/reference/contract-addresses/governance.md`.
+2. Ensure both `<!--GOVERNANCE_MAINNET-->` and `<!--GOVERNANCE_TESTNET-->` markers exist in `docs/.snippets/text/products/reference/contract-addresses/governance.md`.
 3. Run `npm run generate` and verify the governance table outputs (mainnet/testnet). Manual rows in the mainnet table are preserved.
 
 ### Update Connect sources
@@ -141,5 +141,5 @@ Follow the quick-start steps above (`npm run update` then `npm run generate`). A
 ## Covering for the Owner
 
 1. Follow the [quick-start](#quick-start) runbook. Resolve any warnings before moving on.
-2. Review changes in both this directory and `wormhole-docs/.snippets/text`.
+2. Review changes in both this directory and `docs/.snippets/text`.
 3. Open a PR with all modified files (scripts, configs, generated JSON, and snippets). Please mention any manual edits or new tags that have been introduced.

@@ -6,19 +6,18 @@
 # moved at all. If any content has been moved, the script will try to match the moved     #
 # content and add it to the `redirect_maps` config in `mkdocs.yml`.                       #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-# To use the script, ensure that the `moonbeam-docs` repo is nestled inside of the        #
-# `moonbeam-mkdocs` repo and on your branch with the latest changes. Then simply run      #
-# `python scripts/calculate-redirects.py <github_repo> <base_branch> <compare_branch>     #
+# To use the script, run the following command from the repository root:                   #
+# `python py_scripts/calc_redirects.py <github_repo> <base_branch> <compare_branch>       #
 # <language>` in your terminal.                                                           #
 #                                                                                         #
 # Command-line arguments:                                                                 #
-#   - `github_repo`: Repository name (default: moonbeam-foundation/moonbeam-docs)         #
+#   - `github_repo`: Repository name (default: wormhole-foundation/wormhole-docs)         #
 #   - `base_branch`: Base branch name (e.g., main)                                        #
 #   - `compare_branch`: Compare branch name (e.g., new_branch)                            #
 #   - `language`: Language choice for redirects YAML file (choices: en or cn, default: en)#
 #                                                                                         #
 # Example usage:                                                                          #
-#   python py_scripts/calc_redirects.py wormhole-foundation/wormhole-docs main INSERT_NEW_BRANCH #                                                              #
+#   python py_scripts/calc_redirects.py wormhole-foundation/wormhole-docs main INSERT_NEW_BRANCH #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 import os
@@ -210,8 +209,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "github_repo",
         type=str,
-        default="moonbeam-foundation/moonbeam-docs",
-        help="Repository name (default: moonbeam-foundation/moonbeam-docs-cn)",
+        default="wormhole-foundation/wormhole-docs",
+        help="Repository name (default: wormhole-foundation/wormhole-docs)",
     )
     parser.add_argument("base_branch", type=str, help="Base branch name (e.g., main)")
     parser.add_argument(

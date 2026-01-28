@@ -43,6 +43,6 @@ jobs:
       - name: Check Links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --base https://wormhole.com/docs --exclude-path node_modules ./site
+          args: --base-url https://wormhole.com/docs --config .lychee.toml ./site
           fail: true
           jobSummary: false

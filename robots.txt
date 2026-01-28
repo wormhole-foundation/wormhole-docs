@@ -1,4 +1,4 @@
 User-agent: * 
 
-Sitemap: https://docs.wormhole.com/sitemap.xml
+Sitemap: https://wormhole.com/docs/sitemap.xml
 Disallow: /ai/
