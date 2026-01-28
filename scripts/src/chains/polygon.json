@@ -1,0 +1,57 @@
+{
+  "title": "Polygon",
+  "homepage": "https://polygon.technology/",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "137"
+  },
+  "testnet": {
+    "name": "Amoy",
+    "id": "80002"
+  },
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "details": "https://docs.polygon.technology/pos/architecture/heimdall_v2/checkpoints/",
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.polygon.technology/",
+  "explorer": [
+    {
+      "url": "https://polygonscan.com/",
+      "description": "Polygonscan"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

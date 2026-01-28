@@ -1,0 +1,99 @@
+{% extends "main.html" %}
+
+{% block htmltitle %}
+  <title>Wormhole Docs</title>
+{% endblock %}
+
+{% block styles %}
+	{{ super() }}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}">
+{% endblock %}
+
+{% block content %}
+  <div class="md-typeset">
+    <div class="hero">
+      <h1>Wormhole Documentation</h1>
+      <p>Access all the information and resources you need to develop secure multichain applications powered by Wormhole.</p>
+      <a href="/docs/products/overview/"><button class="md-button">Compare Products</button></a>
+    </div>
+    <div class="features">
+      <h2>Explore by Product</h2>
+      <div class="row">
+        <a class="card" href="/docs/products/token-transfers/native-token-transfers/overview/">
+          <img src="./assets/images/home-icons/transfers.svg" alt="Native Token Transfers">
+          <div class="column">
+            <h3>NTT (Native Token Transfers)</h3>
+            <p>Move native tokens across chains.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/settlement/overview/">
+          <img src="./assets/images/home-icons/settlement.svg" alt="Settlement">
+          <div class="column">
+            <h3>Settlement</h3>
+            <p>Bridge faster with intent-based routing.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/connect/overview/">
+          <img src="./assets/images/home-icons/connect.svg" alt="Connect">
+          <div class="column">
+            <h3>Connect</h3>
+            <p>Drop a bridging widget into your app.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/messaging/overview/">
+          <img src="./assets/images/home-icons/messaging.svg" alt="Messaging">
+          <div class="column">
+            <h3>Messaging</h3>
+            <p>Send verified cross-chain messages.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/queries/overview/">
+          <img src="./assets/images/home-icons/queries.svg" alt="Queries">
+          <div class="column">
+            <h3>Queries</h3>
+            <p>Retrieve on-chain data on demand.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/multigov/overview/">
+          <img src="./assets/images/home-icons/multigov.svg" alt="MultiGov">
+          <div class="column">
+            <h3>MultiGov</h3>
+            <p>Create governance solutions.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="features full">
+      <div class="column center"> 
+        <h2>Learn Through Interactive Courses</h2>
+        <p>Learn the fundamentals and build real cross-chain applications in the Dev Arena with interactive, hands-on modules.</p>
+        <a href="https://arena.wormhole.com/" target="_blank" rel="noopener">
+          <button class="md-button secondary">Explore Dev Arena</button>
+        </a>
+      </div>
+    </div>
+    <div class="features">
+      <h2>Level Up with Tutorials</h2>
+      <div class="row">
+        <a class="card" href="/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/">
+          <div class="column">
+            <h3>Create Token Transfer Workflows</h3>
+            <p>Use the Wormhole TypeScript SDK and Token Bridge to power cross-chain token transfers.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/connect/tutorials/react-dapp/">
+          <div class="column">
+            <h3>Create a React Bridging App</h3>
+            <p>Leverage Connect to build a complete UI for multichain transactions with minimal setup.</p>
+          </div>
+        </a>
+        <a class="card" href="/docs/products/messaging/tutorials/cross-chain-contracts/">
+          <div class="column">
+            <h3>Create Messaging Contracts</h3>
+            <p>Deploy contracts on two testnets and learn how to send and receive messages across chains.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

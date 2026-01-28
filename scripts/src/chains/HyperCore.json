@@ -1,0 +1,30 @@
+{
+  "title": "HyperCore",
+  "homepage": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore",
+  "devDocs": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore",
+  "testnet": {
+    "name": "Testnet",
+    "id": "20000"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "20000"
+  },
+  "products": {
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

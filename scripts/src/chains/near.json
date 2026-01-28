@@ -1,0 +1,34 @@
+{
+  "title": "NEAR",
+  "homepage": "https://near.org/",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "mainnet"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "testnet"
+  },
+  "devDocs": "https://docs.near.org/",
+  "explorer": [
+    {
+      "url": "https://nearblocks.io/"
+    }
+  ],
+  "finality": {
+    "details": "https://nomicon.io/ChainSpec/Consensus",
+    "finalized": 0
+  },
+  "faucet": {
+    "url": "https://near-faucet.io/",
+    "token": "NEAR",
+    "description": "Official NEAR Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

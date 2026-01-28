@@ -1,0 +1,32 @@
+{
+  "title": "CreditCoin",
+  "homepage": "https://creditcoin.org/",
+  "explorer": [
+    {
+      "url": "https://creditcoin.subscan.io/"
+    }
+  ],
+  "devDocs": "https://docs.creditcoin.org/",
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "executor": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

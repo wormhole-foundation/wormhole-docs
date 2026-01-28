@@ -1,0 +1,25 @@
+{
+  "title": "Stacks",
+  "homepage": "https://www.stacks.co/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "2147483648"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "1"
+  },
+  "devDocs": "https://docs.stacks.co/",
+  "explorer": [
+    {
+      "url": "https://explorer.hiro.so/",
+      "description": "Hiro Explorer"
+    }
+  ],
+  "faucet": {
+    "url": "https://docs.stacks.co/concepts/network-fundamentals/mainnet-and-testnets#faucets",
+    "token": "STX",
+    "description": "Stacks Faucet"
+  },
+  "products": {}
+}

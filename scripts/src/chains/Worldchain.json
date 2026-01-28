@@ -1,0 +1,50 @@
+{
+  "title": "World Chain",
+  "testnet": {
+    "name": "Testnet",
+    "id": "4801"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "480"
+  },
+  "homepage": "https://world.org/world-chain",
+  "devDocs": "https://docs.world.org/",
+  "faucet": {
+    "url": "https://www.alchemy.com/faucets/world-chain-sepolia",
+    "token": "ETH",
+    "description": "Alchemy Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://docs.world.org/world-chain/providers/explorers"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

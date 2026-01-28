@@ -1,0 +1,47 @@
+{
+  "title": "Monad",
+  "homepage": "https://www.monad.xyz/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "10143"
+  },
+  "devDocs": "https://docs.monad.xyz/",
+  "faucet": {
+    "url": "https://testnet.monad.xyz/",
+    "token": "MON",
+    "description": "Official Monad Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://testnet.monvision.io/",
+      "description": "Monad Testnet Explorer"
+    }
+  ],
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

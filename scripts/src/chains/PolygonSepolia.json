@@ -1,0 +1,43 @@
+{
+  "title": "Polygon Amoy",
+  "homepage": "https://polygon.technology/",
+  "testnet": {
+    "name": "Amoy",
+    "id": "80002"
+  },
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "details": "https://docs.polygon.technology/pos/architecture/heimdall_v2/checkpoints/",
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.polygon.technology/",
+  "faucet": {
+    "url": "https://faucet.polygon.technology/",
+    "token": "POL",
+    "description": "Official Polygon Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://amoy.polygonscan.com/",
+      "description": "Polygonscan"
+    }
+  ],
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

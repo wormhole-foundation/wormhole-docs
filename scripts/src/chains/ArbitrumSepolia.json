@@ -1,0 +1,42 @@
+{
+  "title": "Arbitrum Sepolia",
+  "homepage": "https://arbitrum.io/",
+  "devDocs": "https://docs.arbitrum.io/",
+  "faucet": {
+    "url": "https://docs.arbitrum.io/for-devs/dev-tools-and-resources/chain-info#faucets",
+    "token": "ETH",
+    "description": "List of Faucets"
+  },
+  "testnet": {
+    "name": "Sepolia",
+    "id": "421614"
+  },
+  "explorer": [
+    {
+      "url": "https://sepolia.arbiscan.io/",
+      "description": "Arbitrum Explorer"
+    }
+  ],
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

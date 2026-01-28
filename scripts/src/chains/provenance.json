@@ -1,0 +1,16 @@
+{
+  "title": "Provenance",
+  "homepage": "https://provenance.io/",
+  "devDocs": "https://developer.provenance.io/docs/",
+  "explorer": [
+    {
+      "url": "https://explorer.provenance.io/dashboard",
+      "description": "Provenance Explorer"
+    }
+  ],
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "pio-mainnet-1"
+  },
+  "products": {}
+}

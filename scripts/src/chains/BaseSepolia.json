@@ -1,0 +1,43 @@
+{
+  "title": "Base Sepolia",
+  "homepage": "https://base.org/",
+  "testnet": {
+    "name": "Base Sepolia",
+    "id": "84532"
+  },
+  "explorer": [
+    {
+      "url": "https://sepolia.basescan.org/",
+      "description": "Etherscan"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "devDocs": "https://docs.base.org/",
+  "faucet": {
+    "url": "https://docs.base.org/docs/tools/network-faucets/",
+    "token": "ETH",
+    "description": "List of Faucets"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Ethereum Holesky",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "N/A"
+  },
+  "testnet": {
+    "name": "Holesky",
+    "id": "17000"
+  },
+  "notes": [
+    "Holesky is a testnet only chain and can be used as an alternative to Goerli",
+    "Note that a different chain id is used for Holesky"
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "homepage": "https://ethereum.org/",
+  "devDocs": "https://ethereum.org/en/developers/docs/",
+  "faucet": {
+    "url": "https://www.alchemy.com/faucets/ethereum-holesky",
+    "token": "ETH",
+    "description": "Alchemy Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[
+	{
+		"product": "NTT",
+		"urls": [
+			"https://raw.githubusercontent.com/wormhole-foundation/wormhole-sdk-ts/main/core/base/src/constants/contracts/relayer.ts",
+			"https://raw.githubusercontent.com/wormhole-foundation/wormhole-sdk-ts/main/core/base/src/constants/contracts/executor.ts"
+		],
+		"consts": ["relayerContracts", "executorContracts"],
+		"filterUrls": [
+			"https://raw.githubusercontent.com/wormhole-foundation/wormhole-sdk-ts/main/core/base/src/constants/contracts/core.ts"
+		],
+		"filterConsts": ["coreBridgeContracts"],
+		"excludeChains": ["Aptos"],
+		"manualAdd": {
+			"Mainnet": ["Solana", "Sui"],
+			"Testnet": ["Solana", "Sui", "Fogo"]
+		},
+		"outputFile": "./src/generated/ntt-support.json"
+	},
+	{
+		"product": "CCTP",
+		"url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-sdk-ts/main/core/base/src/constants/circle.ts",
+		"consts": ["usdcContracts"],
+		"outputFile": "./src/generated/cctp-support.json"
+	}
+]

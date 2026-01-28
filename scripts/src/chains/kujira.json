@@ -1,0 +1,25 @@
+{
+  "title": "Kujira",
+  "homepage": "https://kujira.network/",
+  "devDocs": "https://docs.kujira.app/developers/developer-kickstart-page",
+  "faucet": {
+    "url": "https://discord.com/channels/970650215801569330/1009931570263629854",
+    "token": "KUJI",
+    "description": "Discord Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://finder.kujira.network/",
+      "description": "FINDER"
+    }
+  ],
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "kaiyo-1"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "harpoon-4"
+  },
+  "products": {}
+}

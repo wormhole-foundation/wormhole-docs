@@ -1,0 +1,147 @@
+<!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Tags -->
+{% include "partials/tags.html" %}
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+{% if "\x3ch1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+
+{% if "faq" in page.url %}
+  {# Split content for each FAQ by h2 #}
+  {% set h2_sections = page.content.split('<h2') %}
+  {% set intro_content = h2_sections[0] %}
+  
+  {# Keep any introduction content in tact #}
+  {% if intro_content %}
+    {{ intro_content | safe }}
+  {% endif %}
+  
+  {# Process each FAQ section #}
+  {% for i in range(1, h2_sections | length) %}
+    {% set section = h2_sections[i] %}
+    {% set section_counter = loop.index %}
+    
+    {# Extract h2 content #}
+    {% set h2_end = section.find('</h2>') %}
+    {% if h2_end != -1 %}
+      {% set h2_full = section[:h2_end] %}
+      {% set h2_content_start = h2_full.find('>') + 1 %}
+      {% set h2_text = h2_full[h2_content_start:] %}
+      {% set h2_attributes = h2_full[:h2_content_start-1] %}
+      
+      {# Extract ID from h2 attributes #}
+      {% set id_start = h2_attributes.find('id="') %}
+      {% set h2_id = '' %}
+      {% if id_start != -1 %}
+        {% set id_start = id_start + 4 %}
+        {% set id_end = h2_attributes.find('"', id_start) %}
+        {% set h2_id = h2_attributes[id_start:id_end] %}
+      {% endif %}
+      
+      {# Get content after h2 until next h2 or end of page #}
+      {% set section_content = section[h2_end + 5:] %}
+      
+      {# Generate unique details ID #}
+      {% set details_id = (page.url ~ section_counter) | replace('?', '') | replace('#', '') %}      
+      <details class="interface faq" id="{{ details_id }}">
+        <summary>
+          <h2{% if h2_id %} id="{{ h2_id }}"{% endif %}>{{ h2_text | safe }}</h2>
+        </summary>
+        {{ section_content | safe }}
+      </details>
+    {% endif %}
+  {% endfor %}
+  <script>
+  // Use the existing MkDocs analytics function
+  function n() {
+    window.dataLayer.push(arguments);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.faq').forEach(faq => {
+      const faqId = faq.id || 'unknown';
+      const summary = faq.querySelector('summary')?.textContent.trim() || 'Unknown';
+
+      faq.addEventListener('toggle', () => {
+        const isOpen = faq.open;
+        n('event', 'faq_viewed', {
+          section_id: faqId,
+          faq_name: summary,
+          expanded: isOpen,
+          source: 'toggle',
+        });
+      });
+    });
+  });
+  </script>
+{% else %}
+  {{ page.content }}
+{% endif %}
+
+<!-- Source file information -->
+{% include "partials/source-file.html" %}
+
+<!-- Comment system -->
+{% include "partials/comments.html" %}
+
+{% block script %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const OFFSET = 115; // Offset height
+
+    // Fix jump on page load
+    if (window.location.hash) {
+      scrollWithOffset(window.location.hash);
+    }
+
+    // Intercept in-page anchor clicks
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (event) => {
+        const hash = anchor.getAttribute('href');
+        const target = document.querySelector(hash);
+        if (target) {
+          event.preventDefault();
+          scrollWithOffset(hash);
+          history.pushState(null, '', hash);
+        }
+      });
+    });
+
+    function scrollWithOffset(hash) {
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // Give browser time to jump first (important for page load)
+      setTimeout(() => {
+        const y = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 0);
+    }
+  });
+  </script>
+{% endblock %}

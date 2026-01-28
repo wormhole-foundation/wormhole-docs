@@ -1,0 +1,15 @@
+{
+  "homepage": "https://www.stargaze.zone/",
+  "devDocs": "https://docs.stargaze.zone/",
+  "title": "Stargaze",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "stargaze-1"
+  },
+  "explorer": [
+    {
+      "url": "https://www.mintscan.io/stargaze"
+    }
+  ],
+  "products": {}
+}

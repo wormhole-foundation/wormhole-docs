@@ -1,0 +1,8 @@
+{
+	"Mainnet": {
+		"databaseId": "1ed3029e88cb80d5a76ede1f52c2887f"
+	},
+	"Testnet": {
+		"databaseId": "2023029e88cb8045ab4bcef4d9baa2db"
+	}
+}

@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+
+{% block fonts %}
+  {#-
+    Add Google Fonts here
+  -#}
+  {{ super() }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+{% endblock%}
+
+{% block site_meta %}
+  {{ super() }}
+  {% if page and page.meta and page.meta.keywords %}
+    <meta name="keywords" content="{{ page.meta.keywords }}">
+  {% endif %}
+{% endblock %}
+
+{%- block htmltitle -%} 
+  {%- if page.is_homepage -%} 
+    <title>Documentation for Wormhole</title> 
+  {%- elif page and page.meta and page.meta.title -%} 
+    <title>{{ page.meta.title }} | {{ config.site_name }}</title> 
+  {%- elif page and page.title and not page.is_homepage -%} 
+    <title>{{ page.title }} | {{ config.site_name }}</title> 
+  {%- else -%}
+    <title>{{ config.site_name }}</title> 
+  {%- endif -%} 
+{%- endblock -%} 
+
+{% block libs %}
+  <script>
+    document.documentElement.classList.add('js-loading');
+
+    (() => {
+      const BREAKPOINT_EM = 76.25;
+      const BREAKPOINT_PX = BREAKPOINT_EM * 16;
+
+      function isLargeScreen() {
+        return window.innerWidth >= BREAKPOINT_PX;
+      }
+
+      function getActiveSectionId() {
+        const activeLink = document.querySelector('.md-nav__link--active');
+        const section = activeLink?.closest('.nav__item--section');
+        return section?.id || null;
+      }
+
+      function applySectionState(section, isExpanded) {
+        const toggle = section.querySelector(':scope > .md-nav__toggle');
+        const nav = section.querySelector(':scope > nav.md-nav');
+        if (!toggle || !nav) return;
+
+        toggle.checked = isExpanded;
+        nav.setAttribute('aria-expanded', isExpanded);
+        section.classList.toggle('expanded', isExpanded);
+      }
+
+      const sections = [];
+      const toggles = new Map();
+
+      function setupSection(section) {
+        const id = section.id;
+        if (!id) return;
+
+        const toggle = section.querySelector(':scope > .md-nav__toggle');
+        const nav = section.querySelector(':scope > nav.md-nav');
+        if (!toggle || !nav) return;
+
+        // Save toggle ref for later updates
+        toggles.set(section, { toggle, nav });
+
+        // Attach listener once
+        if (!toggle.dataset.listenerAttached) {
+          toggle.addEventListener('change', () => {
+            const checked = toggle.checked;
+            if (isLargeScreen()) {
+              localStorage.setItem(id, checked);
+            }
+            applySectionState(section, checked);
+          });
+          toggle.dataset.listenerAttached = 'true';
+        }
+
+        sections.push(section);
+      }
+
+      function applyInitialState() {
+        const large = isLargeScreen();
+        const activeId = getActiveSectionId();
+
+        sections.forEach((section) => {
+          const id = section.id;
+          let isExpanded = false;
+
+          if (large) {
+            const saved = localStorage.getItem(id);
+            isExpanded = saved === null ? true : saved === 'true';
+
+            // Always expand the active section, even if localStorage says false
+            if (id === activeId) {
+              isExpanded = true;
+              localStorage.setItem(id, 'true');
+            }
+          } else {
+            // On small screens, only expand the active section
+            isExpanded = id === activeId;
+          }
+
+          applySectionState(section, isExpanded);
+        });
+      }
+
+      getTopNavigationState = () => {
+        const path = window.location.pathname;
+        // If on a reference page, highlight the reference top level nav item
+        if (path.includes('products/reference')) {
+          const tabs = document.querySelectorAll('.md-tabs__item');
+
+          tabs.forEach(tab => {
+            // Remove the active class from the active tab
+            if (tab.classList.contains('md-tabs__item--active')) {
+              tab.classList.remove('md-tabs__item--active');
+            }
+
+            // Add the active class to the tab that contains 'Reference'
+            if (tab.children[0].innerText.includes('Reference')) {
+              tab.classList.add('md-tabs__item--active');
+            }
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Handle left navigation state
+        document.querySelectorAll('.nav__item--section').forEach(setupSection);
+        applyInitialState();
+
+        // Handle top navigation state
+        getTopNavigationState();
+
+        document.documentElement.classList.remove('js-loading');
+      });
+
+      window.addEventListener('resize', () => {
+        applyInitialState();
+      });
+    })();
+  </script>
+
+  {{ super() }}
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot/dist/standalone/index.cjs.js" as="script">
+  <script>
+    function initAskCookbook() {
+      // It's a public API key, so it's safe to expose it here
+      const PUBLIC_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmQ3MzdmOTE4MjcyOTljZGJlNTQ5ZDEiLCJpYXQiOjE3MjUzODA2MDEsImV4cCI6MjA0MDk1NjYwMX0.Qp6dEbLWFzju37NsD3VD3kNFGsHo8qJohXUSl5-lSiQ";
+
+      let cookbookContainer = document.getElementById("__cookbook");
+      if (!cookbookContainer) {
+        cookbookContainer = document.createElement("div");
+        cookbookContainer.id = "__cookbook";
+        cookbookContainer.dataset.apiKey = PUBLIC_API_KEY;
+        document.body.appendChild(cookbookContainer);
+      }
+
+      let cookbookScript = document.getElementById("__cookbook-script");
+      if (!cookbookScript) {
+        cookbookScript = document.createElement("script");
+        cookbookScript.id = "__cookbook-script";
+        cookbookScript.src = "https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot/dist/standalone/index.cjs.js";
+        cookbookScript.async = true;
+        document.head.appendChild(cookbookScript);
+      }
+    }
+
+    // Check if the document is already loaded and if so, initialize the script, otherwise wait for the load event
+    if (document.readyState === "complete") {
+      initAskCookbook();
+    } else {
+      window.addEventListener("load", initAskCookbook);
+    }
+  </script>
+{% endblock %}
+
+{% block site_nav %}
+  {#- Navigation (left menu) -#}
+  {% if nav %}
+    {% if page.meta and page.meta.hide %}
+      {% set hidden = "hidden" if "navigation" in page.meta.hide %}
+    {% endif %}
+    <div
+      class="md-sidebar md-sidebar--primary"
+      data-md-component="sidebar"
+      data-md-type="navigation"
+      {{ hidden }}
+    >
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% include "partials/nav.html" %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {#- Table of contents (TOC) -#}
+  {% if "toc.integrate" not in features %}
+    {% if page.meta and page.meta.hide %}
+      {% set hidden = "hidden" if "toc" in page.meta.hide %}
+    {% endif %}
+    <div
+      class="md-sidebar md-sidebar--secondary"
+      data-md-component="sidebar"
+      data-md-type="toc"
+      {{ hidden }}
+    >
+      <div class="md-sidebar__scrollwrap">
+        <div class="page-actions">
+          <label class="md-nav__title" for="__page_actions">
+            Page Actions
+          </label>
+          <div class="actions-container">
+            {#- Edit this Page Section -#}
+            <div class="edit-section">
+              {% include "partials/actions.html" %}
+            </div>
+            {#- Feedback Section -#}
+            <div class="feedback-section">
+              {% include "partials/feedback.html" %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="md-sidebar__inner">
+          {#- TOC -#}
+          {% include "partials/toc.html" %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', (event) => {
+        if (event.target.tagName === 'ASK-COOKBOOK') {
+          event.target.addEventListener('keydown', (event) => {
+            event.stopPropagation();
+          });
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function setTableHeaderOffset(navbarSelector, tableSelector) {
+        const navbar = document.querySelector(navbarSelector);
+        const navbarHeight = navbar ? navbar.offsetHeight - 1 : 0;
+
+        // Loop through each table
+        document.querySelectorAll(tableSelector).forEach((tableWrapper) => {
+          const thead = tableWrapper.querySelector('thead');
+          const table = tableWrapper.querySelector('table');
+
+          // This blocking div is used to prevent the left and right borders from
+          // sticking out of the top of the table
+          const blockingDiv = tableWrapper.querySelector('.header-blocker');
+          thead.style.top = `${navbarHeight + 20}px`;
+          if (blockingDiv) {
+            // If the blocker div already exists, modify the styles          
+            blockingDiv.style.top = `${navbarHeight}px`;
+            return;
+          } else {
+            // Create the blocker div and append it below the header and modify styles           
+            const blockingDiv = document.createElement('div');
+            blockingDiv.classList.add('header-blocker');
+            tableWrapper.appendChild(blockingDiv);
+            blockingDiv.style.top = `${navbarHeight}px`;
+          }
+        });
+      }
+
+      // Call it on load and on resize:
+      window.addEventListener('load', () => setTableHeaderOffset('.md-header', '.md-typeset__table'));
+      window.addEventListener('resize', () => setTableHeaderOffset('.md-header', '.md-typeset__table'));
+    });
+  </script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const SITE_BASE = location.origin.replace(/\/+$/, ''); // current host
+      const AI_BASE = '/ai'; // relative path to AI content on same host
+
+      const stripLeading = (value) => value.replace(/^\/+/, '');
+
+      const toAbsolute = (rawPath) => {
+        if (!rawPath) return null;
+        const dataPath = rawPath.trim();
+        if (/^https?:\/\//i.test(dataPath)) return dataPath; // already absolute
+
+        const normalized = stripLeading(dataPath);
+
+        // All AI content is served from the AI_BASE on the current host
+        if (normalized.startsWith('ai/')) {
+          return `${SITE_BASE}${AI_BASE}/${stripLeading(normalized.replace(/^ai\//, ''))}`;
+        }
+
+        // NOTE: same-origin assets: default for everything we ship in docs/ (llms, ai bundles, etc.)
+        if (dataPath.startsWith('/')) return `${SITE_BASE}/${stripLeading(dataPath)}`;
+        if (normalized === 'llms.txt' || normalized === 'llms-full.jsonl') return `${SITE_BASE}/${normalized}`;
+
+        // Fallback → site-relative
+        return `${SITE_BASE}/${normalized}`;
+      };
+
+      const downloadViaFetch = async (url, filename) => {
+        try {
+          const res = await fetch(url, { credentials: 'omit' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const blob = await res.blob(); // keep original content-type from server
+          const link = document.createElement('a');
+          const objectUrl = URL.createObjectURL(blob);
+          link.href = objectUrl;
+          link.download = filename || 'download.txt';
+          document.body.appendChild(link);
+          link.click();
+          URL.revokeObjectURL(objectUrl);
+          link.remove();
+        } catch (err) {
+          console.error('Download failed, falling back to navigation:', err);
+          // Fallback: just navigate to the URL (will open in browser)
+          window.location.href = url;
+        }
+      };
+
+      const copyTextFromUrl = async (url) => {
+        try {
+          const res = await fetch(url, { credentials: 'omit' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
+          await navigator.clipboard.writeText(text);
+
+          const dlg = document.querySelector('.md-dialog');
+          if (dlg) {
+            dlg.classList.add('md-dialog--active');
+            const msg = dlg.querySelector('.md-dialog__inner');
+            if (msg) msg.textContent = "{{ lang.t('clipboard.copied') }}";
+            setTimeout(() => dlg.classList.remove('md-dialog--active'), 2000);
+          }
+        } catch (err) {
+          console.error('Failed to copy:', err);
+          const dlg = document.querySelector('.md-dialog');
+          if (dlg) dlg.classList.remove('md-dialog--active');
+        }
+      };
+
+      // COPY buttons
+      document.querySelectorAll('.llms-copy').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const url = toAbsolute(btn.getAttribute('data-path'));
+          if (url) copyTextFromUrl(url);
+        });
+      });
+
+      // VIEW buttons: direct link in a new tab
+      document.querySelectorAll('.llms-view').forEach((a) => {
+        const abs = toAbsolute(a.getAttribute('data-path'));
+        if (!abs) return;
+        a.setAttribute('href', abs);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+
+      // DOWNLOAD buttons: force a real download via Blob
+      document.querySelectorAll('.llms-dl').forEach((a) => {
+        // Set href for right-click "Copy link address" convenience
+        const abs = toAbsolute(a.getAttribute('data-path'));
+        if (abs) a.setAttribute('href', abs);
+
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = a.getAttribute('data-path') || '';
+          const url = toAbsolute(path);
+          if (!url) return;
+          // Prefer explicit filename; else derive from last path segment
+          const filename =
+            a.getAttribute('data-filename') ||
+            path.split('/').pop() ||
+            'download.txt';
+          downloadViaFetch(url, filename);
+        });
+      });
+    });
+  </script>
+{% endblock %}

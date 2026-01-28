@@ -1,0 +1,53 @@
+{
+  "homepage": "https://celo.org/",
+  "title": "Celo",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "42220"
+  },
+  "testnet": {
+    "name": "Alfajores",
+    "id": "44787"
+  },
+  "explorer": [
+    {
+      "url": "https://celo.blockscout.com/"
+    },
+    {
+      "url": "https://celoscan.io/"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.celo.org/",
+  "faucet": {
+    "url": "https://faucet.celo.org/alfajores",
+    "token": "CELO",
+    "description": "Official Celo Faucet"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

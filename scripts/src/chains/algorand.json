@@ -1,0 +1,40 @@
+{
+  "homepage": "https://algorandtechnologies.com/",
+  "title": "Algorand",
+  "mainnet": {
+    "id": "mainnet-v1.0",
+    "name": "Mainnet"
+  },
+  "testnet": {
+    "id": "testnet-v1.0",
+    "name": "Testnet"
+  },
+  "explorer": [
+    {
+      "url": "https://allo.info/",
+      "description": "Allo"
+    },
+    {
+      "url": "https://explorer.perawallet.app/",
+      "description": "Pera Explorer"
+    }
+  ],
+  "contractSource": "algorand/wormhole_core.py",
+  "finality": {
+    "finalized": 0,
+    "details": "https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality"
+  },
+  "devDocs": "https://developer.algorand.org",
+  "faucet": {
+    "url": "https://bank.testnet.algorand.network/",
+    "token": "ALGO",
+    "description": "Official Algorand Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

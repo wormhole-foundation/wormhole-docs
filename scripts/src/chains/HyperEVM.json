@@ -1,0 +1,41 @@
+{
+  "title": "HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' }",
+  "testnet": {
+    "name": "Testnet",
+    "id": "998"
+  },
+  "homepage": "https://hyperfoundation.org/",
+  "devDocs": "https://hyperliquid.gitbook.io/hyperliquid-docs",
+  "faucet": {
+    "url": "https://app.hyperliquid-testnet.xyz/drip",
+    "token": "mock USDC",
+    "description": "Official Hyperliquid Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

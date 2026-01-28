@@ -1,0 +1,59 @@
+{
+  "title": "Solana",
+  "homepage": "https://solana.com/",
+  "mainnet": {
+    "name": "Mainnet Beta",
+    "id": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
+  },
+  "testnet": {
+    "name": "Devnet",
+    "id": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
+  },
+  "notes": [
+    "The contract addresess for testnet are on the Solana devnet"
+  ],
+  "explorer": [
+    {
+      "url": "https://explorer.solana.com/",
+      "description": "Solana Explorer"
+    }
+  ],
+  "finality": {
+    "details": "https://docs.anza.xyz/consensus/commitments/",
+    "confirmed": 0,
+    "finalized": 1
+  },
+  "devDocs": "https://solana.com/docs",
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+    "schema_version": "1.2",
+
+    "project": {
+        "id": "wormhole",
+        "name": "Wormhole",
+        "project_url": "https://wormhole.com",
+        "docs_base_url": "https://wormhole.com/docs/"
+    },
+
+    "repository": {
+        "host": "github",
+        "org": "wormhole-foundation",
+        "repo": "wormhole-docs",
+        "default_branch": "main",
+        "docs_path": ".",
+        "ai_artifacts_path": "ai/pages"
+    },
+
+    "content": {
+        "docs_dir": ".",
+        "base_context_categories": ["Basics", "Reference"],
+        "categories_order": [
+            "Basics",
+            "NTT",
+            "Connect",
+            "WTT",
+            "Settlement",
+            "Executor",
+            "MultiGov",
+            "Queries",
+            "Transfer",
+            "Solidity SDK",
+            "Typescript SDK",
+            "CCTP",
+            "Reference"
+        ],
+        "exclusions": {
+            "skip_basenames": [
+                "index.md",
+                "LICENSE.md"
+            ],
+            "skip_paths": [".snippets", ".github", "venv", ".venv"]
+        }
+    },
+
+    "outputs": {
+        "public_root": "/ai/",
+        "files": {
+            "llms_full": "llms-full.jsonl",
+            "pages_dir": "pages"
+        }
+    }
+}

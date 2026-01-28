@@ -1,0 +1,36 @@
+{
+  "title": "Sonic",
+  "homepage": "https://www.soniclabs.com/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "57054"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "146"
+  },
+  "explorer": [
+    {
+      "url": "https://sonicscan.org/",
+      "description": "Sonic Explorer"
+    }
+  ],
+  "devDocs": "https://docs.soniclabs.com/",
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Plume",
+  "homepage": "https://plume.org/",
+  "devDocs": "https://docs.plume.org/plume",
+  "testnet": {
+    "name": "Testnet",
+    "id": "98867"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "98866"
+  },
+  "explorer": [
+    {
+      "url": "https://explorer.plume.org/",
+      "description": "Plume explorer"
+    }
+  ],
+  "faucet": {
+    "url": "https://faucet.plume.org/",
+    "token": "PLUME",
+    "description": "Official Plume Faucet"
+  },
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

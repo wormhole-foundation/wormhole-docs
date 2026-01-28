@@ -1,0 +1,18 @@
+{
+	"sources": {
+		"ntt_mainnet": {
+			"contracts_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/evm/ts-scripts/config/mainnet/contracts.json",
+			"chains_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/evm/ts-scripts/config/mainnet/chains.json"
+		},
+		"ntt_testnet": {
+			"contracts_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/evm/ts-scripts/config/testnet/contracts.json",
+			"chains_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/evm/ts-scripts/config/testnet/chains.json"
+		},
+		"solana_mainnet": {
+			"programs_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/solana/ts/scripts/config/mainnet/programs.json"
+		},
+		"solana_testnet": {
+			"programs_url": "https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/deployment-scripts/solana/ts/scripts/config/devnet/programs.json"
+		}
+	}
+}

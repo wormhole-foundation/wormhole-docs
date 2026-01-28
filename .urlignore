@@ -1,0 +1,18 @@
+# Ignore localhost
+localhost
+127.0.0.1
+
+# Ignore Google Fonts service and all its assets
+https://fonts.gstatic.com/**
+https://fonts.googleapis.com/**
+
+# Allowlist known working URLs
+https://atlantic-2.app.sei.io/faucet
+
+# Ignore sites that block scrapers (403s or 400s)
+https://x.com/
+https://twitter.com/
+https://instagram.com/
+
+# Ignore sites that work
+https://metamask.io/

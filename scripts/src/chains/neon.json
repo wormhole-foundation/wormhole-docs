@@ -1,0 +1,37 @@
+{
+  "title": "Neon",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "245022934"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "245022940"
+  },
+  "homepage": "https://neonevm.org/",
+  "devDocs": "https://neonevm.org/docs/",
+  "faucet": {
+    "url": "https://neonfaucet.org/",
+    "token": "NEON",
+    "description": "Official Neon Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://neonscan.org/",
+      "description": "Neonscan"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

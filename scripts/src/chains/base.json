@@ -1,0 +1,57 @@
+{
+  "title": "Base",
+  "homepage": "https://base.org/",
+  "mainnet": {
+    "name": "Base",
+    "id": "8453"
+  },
+  "testnet": {
+    "name": "Base Goerli",
+    "id": "84531"
+  },
+  "explorer": [
+    {
+      "url": "https://base-goerli.blockscout.com/",
+      "description": "Blockscout"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "safe": 201,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.base.org/",
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

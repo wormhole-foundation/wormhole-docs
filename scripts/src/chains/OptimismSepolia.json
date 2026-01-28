@@ -1,0 +1,47 @@
+{
+  "title": "Optimism Sepolia",
+  "testnet": {
+    "name": "Optimism Sepolia",
+    "id": "11155420"
+  },
+  "homepage": "https://www.optimism.io/",
+  "devDocs": "https://docs.optimism.io/",
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "explorer": [
+    {
+      "url": "https://sepolia-optimistic.etherscan.io/",
+      "description": "OP Sepolia Etherscan"
+    }
+  ],
+  "faucet": {
+    "url": "https://console.optimism.io/faucet",
+    "token": "ETH",
+    "description": "Superchain Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

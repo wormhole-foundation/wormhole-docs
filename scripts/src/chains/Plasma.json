@@ -1,0 +1,23 @@
+{
+  "title": "Plasma",
+  "homepage": "https://www.plasma.to/",
+  "devDocs": "https://www.plasma.to/docs/get-started/introduction/start-here",
+  "explorer": [
+    {
+      "url": "https://plasmascan.to/",
+      "description": "Plasma explorer"
+    }
+  ],
+  "faucet": {
+    "url": "https://www.gas.zip/faucet/plasma",
+    "token": "XPL",
+    "description": "Plasma Faucet"
+  },
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

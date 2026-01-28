@@ -1,0 +1,30 @@
+{
+  "title": "Monad Testnet",
+  "testnet": {
+    "name": "Testnet",
+    "id": "10143"
+  },
+  "faucet": {
+    "url": "https://testnet.monad.xyz/",
+    "token": "MON",
+    "description": "Official Monad Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://testnet.monvision.io/",
+      "description": "Monad Testnet Explorer"
+    }
+  ],
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

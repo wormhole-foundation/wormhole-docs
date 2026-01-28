@@ -1,0 +1,13 @@
+{
+	"sources": {
+		"connect_mainnet": {
+			"chains_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-connect/development/src/config/mainnet/chains.ts"
+		},
+		"connect_testnet": {
+			"chains_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-connect/development/src/config/constants.ts"
+		},
+		"connect_devnet": {
+			"chains_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-connect/development/src/config/devnet/chains.ts"
+		}
+	}
+}

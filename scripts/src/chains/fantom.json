@@ -1,0 +1,50 @@
+{
+  "homepage": "https://fantom.foundation/",
+  "title": "Fantom",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "250"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "4002"
+  },
+  "explorer": [
+    {
+      "url": "https://explorer.fantom.network/"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.fantom.foundation/",
+  "faucet": {
+    "url": "https://faucet.fantom.network/",
+    "token": "FTM",
+    "description": "Official Fantom Faucet"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

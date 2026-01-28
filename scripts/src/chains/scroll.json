@@ -1,0 +1,54 @@
+{
+  "title": "Scroll",
+  "homepage": "https://scroll.io/",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "534352"
+  },
+  "testnet": {
+    "name": "Sepolia",
+    "id": "534351"
+  },
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.scroll.io/en/home/",
+  "faucet": {
+    "url": "https://docs.scroll.io/en/developers/faq/#testnet-eth",
+    "token": "SCR",
+    "description": "List of Faucets"
+  },
+  "explorer": [
+    {
+      "url": "https://scrollscan.com/",
+      "description": "Scrollscan"
+    },
+    {
+      "url": "https://sepolia.scrollscan.com/",
+      "description": "Sepolia Scrollscan"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

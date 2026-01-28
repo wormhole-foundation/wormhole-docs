@@ -1,0 +1,24 @@
+{
+  "title": "Celestia",
+  "homepage": "https://celestia.org",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "celestia"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "mocha-4"
+  },
+  "devDocs": "https://docs.celestia.org/",
+  "faucet": {
+    "url": "https://discord.com/invite/celestiacommunity",
+    "token": "TIA",
+    "description": "Discord Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://docs.celestia.org/how-to-guides/mocha-testnet#explorers"
+    }
+  ],
+  "products": {}
+}

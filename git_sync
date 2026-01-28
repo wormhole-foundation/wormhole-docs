@@ -1,0 +1,53 @@
+#!/bin/bash
+LOGPATH=/var/log/s3_wormhole_docs_sync.log
+DOCPATH=/var/www/wormhole-docs-stage
+STATICPATH=/var/www/wormhole-docs-static
+LOGMRK=0
+force=0
+[ ! -z $1 ] && [ $1 == '-f' ] && force=1
+# check for repo changes
+cd $DOCPATH
+if /usr/bin/git checkout main &&
+    /usr/bin/git fetch origin main &&
+    [ `/usr/bin/git rev-list HEAD...origin/main --count` != 0 ] ||
+    [ $force == 1 ]
+then
+    LOGMRK=1
+    echo . >>$LOGPATH
+    echo +++ $(date +%F' '%H:%M:%S) - Pulling changes from mkdocs repo... >>$LOGPATH
+    # pull changes
+    /usr/bin/git merge origin/main &>>$LOGPATH
+    # rebuild all sites to apply latest mkdocs changes
+    force=1
+fi
+
+cd $DOCPATH/wormhole-docs
+if /usr/bin/git checkout main &&
+    /usr/bin/git fetch origin main &&
+    [ `/usr/bin/git rev-list HEAD...origin/main --count` != 0 ] ||
+    [ $force == 1 ]
+then
+    LOGMRK=1
+    echo . >>$LOGPATH
+    echo +++ $(date +%F' '%H:%M:%S) - Pulling changes from docs repo... >>$LOGPATH
+    # pull changes
+    /usr/bin/git merge origin/main &>>$LOGPATH
+
+    # build mkdoc
+    echo 'Docs updated, building en site' >>$LOGPATH
+    cd ..
+    /usr/local/bin/mkdocs build --clean &>>$LOGPATH
+
+    # copy robots.txt
+    cp $DOCPATH/robots.txt /var/www/wormhole-docs-static/robots.txt
+fi
+[ $LOGMRK -eq 1 ] && echo +++ Finished at $(date +%F' '%H:%M:%S) +++++++++++++++++++ >>$LOGPATH
+
+# reset file and directory permissions
+chown root:users -R $DOCPATH
+find $DOCPATH/ -type d -exec chmod 775 {} \;
+find $DOCPATH/ -type f -exec chmod 664 {} \;
+find $DOCPATH/ -type f -name 'git_sync*' -exec chmod 774 {} \;
+chown root:users -R $STATICPATH
+find $STATICPATH/ -type d -exec chmod 775 {} \;
+find $STATICPATH/ -type f -exec chmod 664 {} \;

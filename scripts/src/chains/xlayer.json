@@ -1,0 +1,51 @@
+{
+  "title": "X Layer",
+  "homepage": "https://web3.okx.com/xlayer",
+  "devDocs": "https://web3.okx.com/xlayer/docs/developer/build-on-xlayer/about-xlayer",
+  "testnet": {
+    "name": "Testnet",
+    "id": "195"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "196"
+  },
+  "finality": {
+    "instant": 200,
+    "safe": 201,
+    "otherwise": "finalized"
+  },
+  "faucet": {
+    "url": "https://web3.okx.com/xlayer/faucet",
+    "token": "OKB",
+    "description": "X Layer Official Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://web3.okx.com/explorer/x-layer",
+      "description": "X Layer Explorer"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

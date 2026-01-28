@@ -1,0 +1,138 @@
+.md-typeset h3,
+.md-typeset h4 {
+  font-weight: 400;
+}
+
+.md-typeset h3 {
+  font-size: 1.25em;
+}
+
+.md-content__inner {
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  border: var(--border-width) solid var(--md-accent-fg-color--active);
+  border-radius: var(--border-radius);
+  padding: 1em;
+  background-image: linear-gradient(
+      to right,
+      var(--md-accent-fg-color--active) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--md-accent-fg-color--active) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  background-position: center;
+}
+
+.md-typeset .hero h1 {
+  margin-bottom: 0;
+}
+
+.hero a {
+  margin-top: 2em;
+  margin-bottom: .3em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.features .row {
+  gap: 1em;
+  margin-bottom: 1em;
+  flex-wrap: wrap;
+}
+
+.md-typeset .hero p {
+  margin-bottom: 0;
+  max-width: 60%;
+}
+
+.md-typeset a.card {
+  color: var(--md-default-fg-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1em;
+  flex: 1 1 0;
+  display: flex;
+  align-items: normal;
+  gap: 2em;
+  min-width: 30%;
+  max-width: 32.5%
+}
+
+.md-typeset a.card:hover {
+  cursor: pointer;
+}
+
+.md-typeset .card h3 {
+  margin: 0 0 0.5em;
+}
+
+.card img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.card p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.features.full {
+  padding-top: 1.6em;
+}
+
+.features.full .column {
+  background-color: var(--plum-transparent-10);
+  border: 1px solid var(--plum);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.features.full h2 {
+  margin: 0;
+}
+
+.md-typeset .md-button.secondary:hover {
+  background-color: var(--plum-transparent-30);
+}
+
+@media screen and (max-width: 1064px) {
+  .md-typeset a.card {
+    min-width: 48.5%;
+    max-width: 48.5%;
+  }
+}
+
+@media screen and (max-width: 642px) {
+  .md-typeset a.card {
+    min-width: 100%;
+  }
+
+  .md-typeset .hero p {
+    max-width: 100%;
+  }
+}

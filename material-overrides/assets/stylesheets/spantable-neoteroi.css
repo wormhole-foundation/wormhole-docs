@@ -1,0 +1,80 @@
+/**
+ *   Extra CSS file for neoteroi spantable, modified from the orginal:
+
+ https://github.com/Neoteroi/mkdocs-plugins/blob/main/styles/spantable.scss
+ *
+ *   https://github.com/Neoteroi/mkdocs-plugins
+**/
+
+/** Span Table CSS **/
+.span-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.span-table-wrapper table {
+  border-collapse: separate;
+  border-radius: var(--border-radius);
+}
+
+.span-table td,
+.span-table th {
+  padding: 0.2rem;
+  font-size: 0.64rem;
+  max-width: 100%;
+  overflow: auto;
+  touch-action: auto;
+  padding: 0.9375em 1.25em;
+  vertical-align: top;
+}
+
+table.span-table tr > *:first-child {
+  border-left: none;
+}
+
+.span-table tr:first-child  {
+  background-color: var(--md-typeset-table-color);
+}
+
+.span-table tr:first-child td:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.span-table tr:first-child td:last-child {
+  border-right: none;
+  border-top-right-radius: 1em;
+}
+
+.span-table tr:first-child td {
+  font-weight: 700;
+  min-width: 5rem;
+  padding: 0.9375em 1.25em;
+  vertical-align: top;
+}
+
+/* This is only applicable to 6 column tables */
+/* Might need to make this more dynamic in the future */
+.span-table tr:not(:first-child):has(:nth-child(5)) > td:first-child {
+  border-left: 0.05rem solid var(--md-typeset-table-color);
+  border-right: 0.05rem solid var(--md-typeset-table-color);
+  font-weight: bold;
+}
+
+/* Only select rows with one column (used to break up tables) */
+.span-table tr:not(:has(:nth-child(2))) {
+  text-align: center;
+  background-color: var(--md-typeset-table-color);
+}
+
+.span-table td:last-child {
+  border-right: 0.05rem solid var(--md-typeset-table-color);
+}
+
+.span-table [colspan],
+.span-table [rowspan] {
+  font-weight: bold;
+  border-left: 0.05rem solid var(--md-typeset-table-color);
+  border-right: 0.05rem solid var(--md-typeset-table-color);
+}
+
+

@@ -1,0 +1,51 @@
+{
+  "title": "Mantle",
+  "homepage": "https://www.mantle.xyz/",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "5000"
+  },
+  "testnet": {
+    "name": "Sepolia",
+    "id": "5003"
+  },
+  "finality": {
+    "instant": 200,
+    "safe": 201,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.mantle.xyz/network/",
+  "faucet": {
+    "url": "https://faucet.sepolia.mantle.xyz/",
+    "token": "MNT",
+    "description": "Official Mantle Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://mantlescan.xyz/",
+      "description": "Mantlescan"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

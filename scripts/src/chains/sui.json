@@ -1,0 +1,56 @@
+{
+  "title": "Sui",
+  "homepage": "https://sui.io/",
+  "explorer": [
+    {
+      "url": "https://suiscan.xyz/",
+      "description": "Suiscan"
+    }
+  ],
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "35834a8a"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "4c78adac"
+  },
+  "finality": {
+    "details": "https://docs.sui.io/concepts/sui-architecture/consensus",
+    "finalized": 0,
+    "otherwise": ""
+  },
+  "devDocs": "https://docs.sui.io/",
+  "faucet": {
+    "url": "https://docs.sui.io/guides/developer/getting-started/get-coins",
+    "token": "SUI",
+    "description": "List of Faucets"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

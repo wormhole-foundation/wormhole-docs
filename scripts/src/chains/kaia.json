@@ -1,0 +1,21 @@
+{
+	"title": "Kaia",
+	"homepage": "https://www.kaia.io/",
+	"mainnet": {
+		"name": "Mainnet",
+		"id": "8217"
+	},
+	"testnet": {
+		"name": "Kairos",
+		"id": "1001"
+	},
+	"devDocs": "https://docs.kaia.io/learn/",
+	"faucet": {
+		"url": "https://www.kaia.io/faucet",
+		"token": "KAIA"
+	},
+	"products": {
+		"connect": { "mainnet": true, "testnet": true, "devnet": false },
+		"tokenBridge": { "mainnet": true, "testnet": true, "devnet": false }
+	}
+}

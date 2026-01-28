@@ -1,0 +1,20 @@
+{
+	"title": "Hyperliquid",
+	"mainnet": {
+		"name": "Mainnet",
+		"id": "998"
+	},
+	"homepage": "https://hyperfoundation.org/",
+	"devDocs": "https://hyperliquid.gitbook.io/hyperliquid-docs",
+	"faucet": {
+		"url": "https://app.hyperliquid-testnet.xyz/drip",
+		"token": "HYPE",
+		"description": "Hyperliquid Faucet"
+	},
+	"explorer": [
+		{
+			"url": "https://app.hyperliquid-testnet.xyz/explorer",
+			"description": "Explorer"
+		}
+	]
+}

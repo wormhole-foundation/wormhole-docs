@@ -1,0 +1,52 @@
+{
+  "title": "Ink",
+  "testnet": {
+    "name": "Testnet",
+    "id": "763373"
+  },
+  "homepage": "https://inkonchain.com/",
+  "devDocs": "https://docs.inkonchain.com/",
+  "faucet": {
+    "url": "https://inkonchain.com/faucet",
+    "token": "ETH",
+    "description": "Official Ink Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://explorer-sepolia.inkonchain.com/",
+      "description": "Ink Sepolia Explorer"
+    }
+  ],
+  "products": {
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "executor": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

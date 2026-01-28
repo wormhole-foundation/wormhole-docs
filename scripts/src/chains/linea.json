@@ -1,0 +1,54 @@
+{
+  "title": "Linea",
+  "homepage": "https://linea.build/",
+  "devDocs": "https://docs.linea.build/",
+  "faucet": {
+    "url": "https://docs.linea.build/get-started/how-to/get-testnet-eth",
+    "token": "ETH",
+    "description": "List of Faucets"
+  },
+  "explorer": [
+    {
+      "url": "https://docs.linea.build/get-started/build/block-explorers"
+    }
+  ],
+  "testnet": {
+    "name": "Testnet",
+    "id": "59141"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "59144"
+  },
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

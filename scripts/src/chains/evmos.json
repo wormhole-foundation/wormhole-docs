@@ -1,0 +1,24 @@
+{
+  "homepage": "https://evmos.org/",
+  "title": "Evmos",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "evmos_9001-2"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "evmos_9000-4"
+  },
+  "explorer": [
+    {
+      "url": "https://www.mintscan.io/evmos"
+    }
+  ],
+  "devDocs": "https://docs.evmos.org/",
+  "faucet": {
+    "url": "",
+    "token": "TEVMOS",
+    "description": "N/A"
+  },
+  "products": {}
+}

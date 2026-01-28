@@ -1,0 +1,55 @@
+{
+  "title": "Kaia",
+  "homepage": "https://www.kaia.io/",
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "8217"
+  },
+  "testnet": {
+    "name": "Kairos",
+    "id": "1001"
+  },
+  "explorer": [
+    {
+      "url": "https://kaiascan.io/",
+      "description": "Kaiascan"
+    },
+    {
+      "url": "https://kaiascope.com/",
+      "description": "Kaiascope"
+    }
+  ],
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.kaia.io/",
+  "faucet": {
+    "url": "https://www.kaia.io/faucet",
+    "token": "KAIA",
+    "description": "Official Kaia Faucet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

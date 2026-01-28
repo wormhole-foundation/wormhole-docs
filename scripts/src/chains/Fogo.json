@@ -1,0 +1,31 @@
+{
+  "title": "Fogo",
+  "homepage": "https://www.fogo.io/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  },
+  "explorer": [
+    {
+      "url": "https://fogoscan.com/?cluster=testnet",
+      "description": "FogoScan"
+    }
+  ]
+}

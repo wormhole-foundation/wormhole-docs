@@ -1,0 +1,267 @@
+/** This is a modified version of the `timelinet.scss` stylesheet from
+Neoteroi Mkdocs timeline extension: https://github.com/Neoteroi/mkdocs-plugins/blob/main/styles/timeline.scss **/
+
+/** Timeline CSS **/
+
+/* displays if timeline doesn't render properly 
+(bad file path to JSON, etc)*/
+[data-md-color-scheme="custom-light"] {
+  --gradient-before-color-1: rgba(193, 187, 246, 1) 0%;
+  --gradient-before-color-2: rgba(193, 187, 246, 1) 100%;
+
+  --gradient-after-color-1: var(--md-default-bg-color) 0%;
+  --gradient-after-color-2: var(--md-default-bg-color) 100%;
+}
+
+[data-md-color-scheme="custom-dark"] {
+  --gradient-before-color-1: rgba(193, 187, 246, 1) 0%;
+  --gradient-before-color-2: rgba(193, 187, 246, 1) 100%;
+
+  --gradient-after-color-1: var(--md-default-bg-color) 0%;
+  --gradient-after-color-2: var(--md-default-bg-color) 100%;
+}
+
+.nt-error {
+  border: 2px dashed darkred;
+  padding: 0 1rem;
+  background: #faf9ba;
+  color: darkred;
+}
+
+/* main timeline element*/
+.nt-timeline {
+  /* top margin entire element */
+  margin-top: 30px;
+  /* adjust to control width of total timeline element*/
+  max-width: 80%;
+
+  /* heading name for each item on timeline */
+  .nt-timeline-title {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  /** content blocks for each timeline item**/
+  /** border between timeline items **/
+  .nt-timeline-content {
+    border-bottom: 2px dashed var(--light-transparent-20);
+    padding-bottom: 1.2rem;
+  }
+
+  &.horizontal {
+    .nt-timeline-items {
+      flex-direction: row;
+      overflow-x: scroll;
+
+      > div {
+        min-width: 400px;
+        margin-right: 50px;
+      }
+    }
+
+    &.reverse {
+      .nt-timeline-items {
+        flex-direction: row-reverse;
+      }
+    }
+    /* base gradient set up*/
+    &.center {
+      .nt-timeline-before {
+        background-image: linear-gradient(
+          var(--gradient-before-color-1),
+          var(--gradient-before-color-2)
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 2px;
+        background-position: 0 center;
+      }
+
+      .nt-timeline-after {
+        background-image: linear-gradient(
+          180deg,
+          var(--gradient-after-color-1),
+          var(--gradient-after-color-2)
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 2px;
+        background-position: 0 center;
+      }
+
+      .nt-timeline-items {
+        background-image: radial-gradient(
+          circle,
+          var(--gradient-before-color-1),
+          var(--gradient-after-color-2)
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 2px;
+        background-position: 0 center;
+      }
+    }
+
+    .nt-timeline-dot {
+      left: 50%;
+
+      &:not(.bigger) {
+        top: calc(50% - 4px);
+      }
+
+      &.bigger {
+        top: calc(50% - 15px);
+      }
+    }
+  }
+
+  &.vertical {
+    .nt-timeline-items {
+      flex-direction: column;
+    }
+
+    &.reverse {
+      .nt-timeline-items {
+        flex-direction: column-reverse;
+      }
+    }
+
+    &.left {
+      padding-left: 20px;
+
+      .nt-timeline-item {
+        padding-left: 70px;
+      }
+
+      /* set gradient for left aligned timeline*/
+      /* px here control left margin/width of timeline */
+      .nt-timeline-before {
+        background: linear-gradient(
+            var(--gradient-before-color-1),
+            var(--gradient-before-color-2)
+          )
+          no-repeat 30px/2px 100%;
+      }
+
+      .nt-timeline-after {
+        background: linear-gradient(
+            var(--gradient-after-color-1),
+            var(--gradient-after-color-2)
+          )
+          no-repeat 30px/2px 100%;
+        display: none;
+      }
+
+      .nt-timeline-items {
+        background: linear-gradient(
+            var(--gradient-before-color-1),
+            var(--gradient-after-color-2)
+          )
+          no-repeat 30px/2px 100%;
+      }
+
+      .nt-timeline-dot {
+        left: 21px;
+        top: 0px;
+
+        &.bigger {
+          top: 0px;
+          left: 10px;
+          background: var(--md-default-bg-color);
+        }
+      }
+    }
+  }
+}
+
+/* sets height, padding for each item on timeline */
+.nt-timeline-items {
+  display: flex;
+  position: relative;
+
+  > div {
+    min-height: 100px;
+    padding-top: 2px;
+    padding-bottom: 20px;
+  }
+}
+
+/* set height for timeline gradient above the first item */
+.nt-timeline-before {
+  content: "";
+  height: 15px;
+}
+
+.nt-timeline-item {
+  position: relative;
+}
+
+/* circles around icons*/
+
+.nt-timeline-dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+
+  border-radius: 100%;
+  background-color: var(--md-default-fg-color);
+  position: absolute;
+  top: 0px;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* border around each icon */
+  border: 2px solid var(--md-default-fg-color);
+
+  &:not(.bigger) {
+    .icon {
+      font-size: 10px;
+    }
+  }
+
+  &.bigger {
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+  }
+
+  .icon {
+    color: var(--md-default-fg-color);
+    position: relative;
+    bottom: 1px;
+  }
+}
+
+/* Fix for webkit (Chrome, Safari) */
+@supports not (-moz-appearance: none) {
+  /* The extension dev created this and the following note */
+  /*
+  This fix is necessary, for some reason, to render the timeline properly
+  inside `details` elements used by pymdownx. Firefox doesn't need this fix,
+  it renders elements properly.
+  */
+  details {
+    .nt-timeline.vertical.center.alternate
+      .nt-timeline-item:nth-child(odd)
+      .nt-timeline-sub-title,
+    .nt-timeline.vertical.center:not(.alternate)
+      .nt-timeline-item
+      .nt-timeline-sub-title {
+      left: -40px;
+    }
+
+    .nt-timeline.vertical.center.alternate
+      .nt-timeline-item:nth-child(even)
+      .nt-timeline-sub-title {
+      right: -40px;
+    }
+
+    .nt-timeline.vertical.center .nt-timeline-dot {
+      left: calc(50% - 12px);
+    }
+
+    .nt-timeline-dot.bigger {
+      font-size: 1rem !important;
+    }
+  }
+}

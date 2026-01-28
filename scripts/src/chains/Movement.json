@@ -1,0 +1,23 @@
+{
+	"title": "Movement",
+	"homepage": "https://movementlabs.xyz/",
+	"mainnet": {
+		"name": "Mainnet",
+		"id": "126"
+	},
+	"testnet": {
+		"name": "Testnet",
+		"id": "250"
+	},
+	"explorer": [
+		{
+			"url": "https://explorer.movementlabs.xyz/?network=mainnet",
+			"description": "Movementlabs"
+		}
+	],
+	"devDocs": "https://docs.movementnetwork.xyz/",
+	"faucet": {
+		"url": "https://faucet.devnet.suzuka.movementnetwork.xyz/",
+		"description": "Official Movement Faucet"
+	}
+}

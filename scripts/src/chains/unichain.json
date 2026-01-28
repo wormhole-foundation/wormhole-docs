@@ -1,0 +1,61 @@
+{
+  "title": "Unichain",
+  "homepage": "https://www.unichain.org/",
+  "mainnet": {
+    "name": "",
+    "id": ""
+  },
+  "testnet": {
+    "name": "Unichain Sepolia",
+    "id": "1301"
+  },
+  "explorer": [
+    {
+      "url": "https://sepolia.uniscan.xyz/",
+      "description": "Unichain Sepolia Testnet Explorer"
+    }
+  ],
+  "finality": {
+    "instant": 200,
+    "safe": 201,
+    "otherwise": "finalized"
+  },
+  "devDocs": "https://docs.unichain.org/docs",
+  "faucet": {
+    "url": "https://faucet.quicknode.com/unichain/sepolia",
+    "token": "ETH",
+    "description": "QuickNode Faucet"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

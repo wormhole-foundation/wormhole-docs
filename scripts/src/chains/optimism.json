@@ -1,0 +1,57 @@
+{
+  "title": "Optimism",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "10"
+  },
+  "testnet": {
+    "name": "Optimism Sepolia",
+    "id": "11155420"
+  },
+  "homepage": "https://www.optimism.io/",
+  "devDocs": "https://docs.optimism.io/",
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "safe": 201,
+    "otherwise": "finalized"
+  },
+  "explorer": [
+    {
+      "url": "https://optimistic.etherscan.io/",
+      "description": "OP Mainnet Etherscan"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Noble",
+  "homepage": "https://www.noble.xyz/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "grand-1"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "noble-1"
+  },
+  "devDocs": "https://docs.noble.xyz/",
+  "faucet": {
+    "url": "https://faucet.circle.com/",
+    "token": "USDC",
+    "description": "Circle Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://docs.noble.xyz/network/resources"
+    }
+  ],
+  "products": {}
+}

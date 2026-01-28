@@ -1,0 +1,37 @@
+{
+  "title": "Mezo",
+  "homepage": "https://mezo.org/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "31611"
+  },
+  "devDocs": "https://mezo.org/docs/developers/",
+  "explorer": [
+    {
+      "url": "https://explorer.test.mezo.org/",
+      "description": "Mezo Testnet Explorer"
+    }
+  ],
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

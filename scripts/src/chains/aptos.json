@@ -1,0 +1,56 @@
+{
+  "title": "Aptos",
+  "homepage": "https://aptosnetwork.com/",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "1"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "2"
+  },
+  "explorer": [
+    {
+      "url": "https://explorer.aptoslabs.com/",
+      "description": "Aptos Explorer"
+    },
+    {
+      "url": "https://aptoscan.com/",
+      "description": "AptoScan"
+    }
+  ],
+  "examples": [
+    {
+      "url": "https://github.com/wormhole-foundation/wormhole/tree/main/aptos/examples",
+      "description": "Message passing on Aptos"
+    }
+  ],
+  "contractSource": "aptos/wormhole/sources/wormhole.move",
+  "finality": {
+    "details": "https://aptos.dev/network/blockchain/validator-nodes#overview",
+    "finalized": 0
+  },
+  "devDocs": "https://aptos.dev/",
+  "faucet": {
+    "url": "https://www.aptosfaucet.com/",
+    "token": "APT",
+    "description": "Official Aptos Faucet"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

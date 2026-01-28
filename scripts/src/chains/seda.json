@@ -1,0 +1,21 @@
+{
+  "homepage": "https://seda.xyz/",
+  "devDocs": "https://docs.seda.xyz/home",
+  "title": "SEDA",
+  "testnet": {
+    "name": "Testnet",
+    "id": "seda-1-testnet"
+  },
+  "faucet": {
+    "url": "https://devnet.explorer.seda.xyz/faucet",
+    "token": "SEDA",
+    "description": "Official SEDA Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://explorer.seda.xyz/",
+      "description": "SEDA Explorer"
+    }
+  ],
+  "products": {}
+}

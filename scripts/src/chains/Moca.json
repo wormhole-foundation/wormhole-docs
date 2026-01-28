@@ -1,0 +1,41 @@
+{
+  "title": "Moca",
+  "homepage": "https://mocachain.org/en",
+  "devDocs": "https://mocacoin.gitbook.io/litepaper",
+  "faucet": {
+    "url": "https://devnet-scan.mocachain.org/faucet",
+    "token": "MOCA",
+    "description": "Official Moca Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://devnet-scan.mocachain.org/",
+      "description": "Moca Devnet Explorer"
+    }
+  ],
+  "testnet": {
+    "name": "Testnet",
+    "id": "222888"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "2288"
+  },
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

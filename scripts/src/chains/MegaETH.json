@@ -1,0 +1,46 @@
+{
+  "title": "MegaETH",
+  "homepage": "https://www.megaeth.com/",
+  "devDocs": "https://docs.megaeth.com/",
+  "explorer": [
+    {
+      "url": "https://www.megaexplorer.xyz/",
+      "description": "MegaETH Explorer"
+    }
+  ],
+  "faucet": {
+    "url": "https://testnet.megaeth.com/",
+    "token": "ETH",
+    "description": "Official MegaETH Faucet"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "6343"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "4326"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    }
+  }
+}

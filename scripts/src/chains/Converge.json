@@ -1,0 +1,20 @@
+{
+  "title": "Converge",
+  "homepage": "https://www.convergeonchain.xyz/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "52085145"
+  },
+  "products": {
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

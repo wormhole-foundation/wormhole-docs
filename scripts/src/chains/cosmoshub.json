@@ -1,0 +1,24 @@
+{
+  "title": "Cosmos Hub",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "cosmoshub-4"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "theta-testnet-001"
+  },
+  "homepage": "https://cosmos.network/",
+  "devDocs": "https://hub.cosmos.network/main",
+  "faucet": {
+    "url": "https://discord.com/invite/cosmosnetwork",
+    "token": "ATOM",
+    "description": "Discord Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://hub.cosmos.network/main/hub-tutorials/join-mainnet#explorers"
+    }
+  ],
+  "products": {}
+}

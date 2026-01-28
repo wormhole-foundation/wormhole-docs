@@ -1,18 +1,26 @@
-name: PR Docs Link Check
+name: Deploy Docs
 
 on:
-  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  check-docs-links:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - uses: actions/setup-python@v5
         with:
@@ -37,11 +45,5 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r requirements.txt
 
-      - name: Build Docs
-        run: mkdocs build
-
-      - name: Check Links
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: --base https://wormhole.com/docs --exclude-path node_modules --exclude-mail ./site
-          fail: true
+      - name: Deploy Docs
+        run: mkdocs gh-deploy --force

@@ -1,0 +1,53 @@
+{
+  "title": "BNB Smart Chain",
+  "homepage": "https://www.bnbchain.org/en/bnb-smart-chain",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "56"
+  },
+  "testnet": {
+    "name": "Testnet",
+    "id": "97"
+  },
+  "explorer": [
+    {
+      "url": "https://bscscan.com/",
+      "description": "BscScan"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "instant": 200,
+    "otherwise": "finalized",
+    "safe": 201,
+    "details": "https://docs.bnbchain.org/bnb-smart-chain/introduction/?h=finality"
+  },
+  "devDocs": "https://docs.bnbchain.org/",
+  "faucet": {
+    "url": "https://www.bnbchain.org/en/testnet-faucet",
+    "token": "BNB",
+    "description": "Official BNB Faucet"
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

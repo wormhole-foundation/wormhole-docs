@@ -1,0 +1,60 @@
+{
+  "homepage": "https://ethereum.org/",
+  "title": "Ethereum",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "1"
+  },
+  "testnet": {
+    "name": "Goerli",
+    "id": "5"
+  },
+  "notes": [
+    "Deployed contracts are also available on the [Sepolia](#sepolia) testnet."
+  ],
+  "devDocs": "https://ethereum.org/developers/docs/",
+  "explorer": [
+    {
+      "url": "https://etherscan.io/"
+    }
+  ],
+  "contractSource": "ethereum/contracts/bridge/Bridge.sol",
+  "finality": {
+    "details": "https://www.alchemy.com/overviews/ethereum-commitment-levels",
+    "instant": 200,
+    "otherwise": "finalized",
+    "safe": 201
+  },
+  "products": {
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "settlement": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

@@ -1,3 +1,19 @@
+# Python
 scripts/__pycache__/*
-**/.DS_Store
 .venv/
+venv
+
+# macOS
+**/.DS_Store
+
+# Node.js
+scripts/node_modules
+
+# Environment
+scripts/.env
+
+# MkDocs build output
+site
+
+# IDE/Tools
+.claude/
