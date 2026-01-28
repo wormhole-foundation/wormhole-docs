@@ -210,7 +210,7 @@ plugins:
         build/toolkit/dev-env.md: tools/dev-env.md
         build/toolkit/faqs.md: tools/faqs.md
         build/toolkit/index.md: tools/typescript-sdk/get-started.md
-        build/toolkit/solidity-sdk.md: tools/solidity-sdk/sdk-reference.md
+        build/toolkit/solidity-sdk.md: tools/typescript-sdk/get-started.md
         build/toolkit/tilt.md: tools/typescript-sdk/get-started.md
         build/toolkit/typescript-sdk/index.md: tools/typescript-sdk/get-started.md
         build/toolkit/typescript-sdk/protocols-payloads.md: tools/typescript-sdk/guides/protocols-payloads.md
@@ -364,7 +364,7 @@ plugins:
         tutorials/multigov/treasury-proposal.md: products/multigov/tutorials/treasury-proposal.md
         tutorials/solidity-sdk/cross-chain-contracts.md: products/messaging/tutorials/cross-chain-contracts.md
         tutorials/solidity-sdk/cross-chain-token-contracts.md: products/messaging/tutorials/cross-chain-token-contracts.md
-        tutorials/solidity-sdk/index.md: tools/solidity-sdk/get-started.md
+        tutorials/solidity-sdk/index.md: tools/typescript-sdk/get-started.md
         tutorials/typescript-sdk/index.md: tools/typescript-sdk/get-started.md
         tutorials/typescript-sdk/tokens-via-token-bridge.md: products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
         tutorials/typescript-sdk/usdc-via-cctp.md: products/cctp-bridge/tutorials/complete-usdc-transfer.md

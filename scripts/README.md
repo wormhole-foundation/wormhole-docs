@@ -12,7 +12,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 ## Prerequisites
 
 - Node.js **18+** (matches the mkdocs toolchain).
-- This repo checked out with **`wormhole-docs` cloned alongside it** (`wormhole-mkdocs/wormhole-docs`).
+- This repo checked out locally.
 - Network access for fetching contract constants from the Wormhole SDK (unless you point to local files).
 - Optional environment variable: `DOCS_SNIPPETS_DIR` to override the default snippets path (`../wormhole-docs/.snippets/text`).
 - Notion credentials (required for executor-style contract tables):
@@ -28,7 +28,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 3. `npm run generate`
    - Pulls contract data, regenerates JSON, and rewrites snippets. Watch for unmatched-tag warnings.
 4. Review and commit changes in both `scripts/` and `wormhole-docs/.snippets/text`.
-5. Open two PRs: one targeting `wormhole-mkdocs` for the mkdocs updates and another targeting `wormhole` if that repo picked up changes; make sure each PR links to the other.
+5. Open a PR with all modified files (scripts, configs, generated JSON, and snippets).
 
 (Optional) Run `npm run typecheck` if you modified the scripts or need extra confidence.
 

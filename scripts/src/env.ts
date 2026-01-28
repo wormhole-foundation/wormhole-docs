@@ -42,7 +42,7 @@ function loadLocalEnv(): void {
 
 loadLocalEnv();
 
-const DEFAULT_SNIPPETS_RELATIVE = '../wormhole-docs/.snippets/text';
+const DEFAULT_SNIPPETS_RELATIVE = '../docs/.snippets/text';
 
 /**
  * Directory that contains the reusable doc snippets. Can be overridden with DOCS_SNIPPETS_DIR.
