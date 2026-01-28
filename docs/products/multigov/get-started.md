@@ -34,7 +34,7 @@ Once approved, review the deployment flow below to understand the integration pr
 
 MultiGov deployments follow a similar structure on both EVM and Solana. This section provides a high-level overview of the end-to-end flow. Each step is explained in more detail in the platform-specific deployment guides linked [below](#next-steps).
 
-[timeline(wormhole-docs/.snippets/text/products/multigov/deployment-flow-timeline.json)]
+[timeline(.snippets/text/products/multigov/deployment-flow-timeline.json)]
 
 ## Next Steps
 
