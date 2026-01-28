@@ -45,3 +45,4 @@ jobs:
         with:
           args: --base https://wormhole.com/docs --exclude-path node_modules ./site
           fail: true
+          jobSummary: false

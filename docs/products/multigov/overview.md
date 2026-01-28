@@ -53,4 +53,4 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 Follow these steps to get started with MultiGov:
 
-[timeline(.snippets/text/products/multigov/multigov-timeline.json)]
+[timeline(docs/.snippets/text/products/multigov/multigov-timeline.json)]

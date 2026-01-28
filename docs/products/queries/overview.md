@@ -65,4 +65,4 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
 Follow these steps to get started with Queries:
 
-[timeline(.snippets/text/products/queries/queries-timeline.json)]
+[timeline(docs/.snippets/text/products/queries/queries-timeline.json)]

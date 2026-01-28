@@ -59,4 +59,4 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 Add Connect to your app with these key setup steps:
 
-[timeline(.snippets/text/products/connect/overview/connect-timeline.json)]
+[timeline(docs/.snippets/text/products/connect/overview/connect-timeline.json)]
