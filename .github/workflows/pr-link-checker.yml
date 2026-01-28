@@ -38,11 +38,65 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Build Docs
-        run: mkdocs build
+        run: mkdocs build -d site/docs
+
+      - name: Initialize Local Web Server
+        id: serve
+        shell: bash
+        run: |
+          python3 -m http.server 8000 --directory site/docs > /tmp/mkdocs_http.log 2>&1 &
+          echo "pid=$!" >> "$GITHUB_OUTPUT"
+
+          echo "Waiting for local server..."
+          for i in {1..15}; do
+            if curl -s http://localhost:8000 > /dev/null; then
+              echo "Server ready."
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Server failed to start." && exit 1
+
+      - name: Configure Lychee
+        id: lychee_cfg
+        shell: bash
+        run: |
+          cat > /tmp/lychee.ci.toml <<'TOML'
+          exclude_all_private = false
+          exclude_loopback = false
+          exclude_private = false
+          exclude_link_local = false
+          include = [
+            '^http://localhost:8000',
+            '^http://127\.0\.0\.1:8000'
+          ]
+          TOML
+          echo "cfg=/tmp/lychee.ci.toml" >> "$GITHUB_OUTPUT"
+
+      - name: Generate Link Checker Arguments
+        id: lychee_args
+        shell: bash
+        run: |
+          ABS_SITE_PATH="$(pwd)/site"
+          LOCAL_SERVER="http://localhost:8000"
+          BASE_URL="https://wormhole.com/docs"
+
+          ARGS="--config ${{ steps.lychee_cfg.outputs.cfg }} --root-dir $ABS_SITE_PATH --verbose --no-progress --accept 429,403 --max-retries 3 --retry-wait-time 10"
+          ARGS="$ARGS --remap \"$BASE_URL/ $LOCAL_SERVER/\" --remap \"$BASE_URL $LOCAL_SERVER\""
+
+          if [[ -f ".urlignore" ]]; then
+            ARGS="$ARGS --exclude-file .urlignore"
+          fi
+
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
 
       - name: Check Links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --base-url https://wormhole.com/docs --config .lychee.toml ./site
+          args: ${{ steps.lychee_args.outputs.args }} './site/**/*.html'
           fail: true
           jobSummary: false
+
+      - name: Cleanup Local Server
+        if: always()
+        run: kill ${{ steps.serve.outputs.pid }} || true
