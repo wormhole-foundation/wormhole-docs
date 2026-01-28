@@ -3,7 +3,7 @@
   "homepage": "https://www.sei.io/",
   "devDocs": "https://docs.sei.io/evm",
   "faucet": {
-    "url": "https://atlantic-2.app.sei.io/faucet",
+    "url": "https://docs.sei.io/learn/faucet",
     "token": "SEI",
     "description": "Sei Atlantic-2 Faucet"
   },

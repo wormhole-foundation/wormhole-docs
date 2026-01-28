@@ -11,7 +11,7 @@
     "id": "atlantic-2"
   },
   "faucet": {
-    "url": "https://atlantic-2.app.sei.io/faucet",
+    "url": "https://docs.sei.io/learn/faucet",
     "token": "SEI",
     "description": "Sei Atlantic-2 Faucet"
   },
