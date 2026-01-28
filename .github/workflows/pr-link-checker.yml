@@ -84,18 +84,18 @@ jobs:
           ARGS="--config ${{ steps.lychee_cfg.outputs.cfg }} --root-dir $ABS_SITE_PATH --verbose --no-progress --accept 429,403 --max-retries 3 --retry-wait-time 10"
           ARGS="$ARGS --remap \"$BASE_URL/ $LOCAL_SERVER/\" --remap \"$BASE_URL $LOCAL_SERVER\""
 
-          if [[ -f ".urlignore" ]]; then
-            ARGS="$ARGS --exclude-file .urlignore"
+          URLIGNORE_PATH="$(pwd)/.urlignore"
+          if [[ -f "$URLIGNORE_PATH" ]]; then
+            ARGS="$ARGS --exclude-file $URLIGNORE_PATH"
           fi
 
           echo "args=$ARGS" >> $GITHUB_OUTPUT
 
       - name: Check Links
-        uses: lycheeverse/lychee-action@v2
+        id: lychee
+        uses: lycheeverse/lychee-action@v2.4.1
         with:
           args: ${{ steps.lychee_args.outputs.args }} './site/**/*.html'
-          fail: true
-          jobSummary: false
 
       - name: Cleanup Local Server
         if: always()
