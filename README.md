@@ -5,6 +5,12 @@ This repository contains the documentation content and MkDocs framework for the 
 - [MkDocs](https://www.mkdocs.org/)
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
+## Workflows
+
+The CI workflows in this repository were adapted from (and inspired by) Papermoon’s MkDocs workflows previously used for Wormhole Docs.
+
+Original reference implementation: [Papermoon Workflows](https://github.com/papermoonio/wormhole-mkdocs/tree/main/.github/workflows)
+
 ## Repository Structure
 
 ```text
@@ -49,15 +55,9 @@ Otherwise, you'll need to stop the server (`control + C`) and restart it (`mkdoc
 
 This repository includes AI-ready files generated from the documentation to support large language models (LLMs) and developer tools:
 
-<<<<<<< HEAD
-- **`llms.txt`**: A plain-text index of all documentation pages with titles and URLs
-- **`llms-full.txt`**: The complete content of all documentation pages in a single file
-- **`llms-*.txt`**: Category-specific files for products like NTT, Token Bridge, Connect, and others
-=======
 - **`llms.txt`**: A plain-text index of all documentation pages with titles and URLs.
 - **`llms-full.jsonl`**: The complete content of all documentation pages in a single file.
 - **`<category>.md`**: Category-specific files for products like NTT, Token Bridge, Connect, and others.
->>>>>>> 1e4e03a57f8a8c8609b9c34b53a17e224643ac87
 
 These files power AI assistants, enable semantic code search, and integrate Wormhole docs into tools like Cursor. For details, visit the [AI Resources](https://wormhole.com/docs/ai-resources/ai-resources/) page.
 
