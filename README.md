@@ -47,11 +47,17 @@ Otherwise, you'll need to stop the server (`control + C`) and restart it (`mkdoc
 
 ## AI Resources
 
-This repository includes AI-ready `.txt` files generated from the documentation to support large language models (LLMs) and developer tools:
+This repository includes AI-ready files generated from the documentation to support large language models (LLMs) and developer tools:
 
+<<<<<<< HEAD
 - **`llms.txt`**: A plain-text index of all documentation pages with titles and URLs
 - **`llms-full.txt`**: The complete content of all documentation pages in a single file
 - **`llms-*.txt`**: Category-specific files for products like NTT, Token Bridge, Connect, and others
+=======
+- **`llms.txt`**: A plain-text index of all documentation pages with titles and URLs.
+- **`llms-full.jsonl`**: The complete content of all documentation pages in a single file.
+- **`<category>.md`**: Category-specific files for products like NTT, Token Bridge, Connect, and others.
+>>>>>>> 1e4e03a57f8a8c8609b9c34b53a17e224643ac87
 
 These files power AI assistants, enable semantic code search, and integrate Wormhole docs into tools like Cursor. For details, visit the [AI Resources](https://wormhole.com/docs/ai-resources/ai-resources/) page.
 

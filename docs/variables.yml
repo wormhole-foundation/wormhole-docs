@@ -4,16 +4,16 @@ ntt:
 repositories:
   wormhole_sdk:
     repository_url: https://github.com/wormhole-foundation/wormhole-sdk-ts
-    version: 4.7.4
+    version: 4.9.1
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
     version: 2.51.0
   native_token_transfers_evm:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
-    version: 1.6.0+cli
+    version: 1.7.0+cli
   native_token_transfers_sol:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
-    version: 1.6.0+cli
+    version: 1.7.0+cli
   connect:
     repository_url: https://github.com/wormhole-foundation/wormhole-connect
     version: 5.0.0
