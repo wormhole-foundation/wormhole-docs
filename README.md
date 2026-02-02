@@ -7,9 +7,9 @@ This repository contains the documentation content and MkDocs framework for the 
 
 ## Workflows
 
-The CI workflows in this repository were adapted from (and inspired by) [Papermoon](https://papermoon.io/)’s MkDocs workflows previously used for Wormhole Docs.
+The CI workflows in this repository were adapted from (and inspired by) [PaperMoon](https://papermoon.io/)’s MkDocs workflows previously used for Wormhole Docs.
 
-Original reference implementation: [Papermoon Workflows](https://github.com/papermoonio/wormhole-mkdocs/tree/main/.github/workflows)
+Original reference implementation: [PaperMoon Workflows](https://github.com/papermoonio/wormhole-mkdocs/tree/main/.github/workflows)
 
 ## Repository Structure
 
