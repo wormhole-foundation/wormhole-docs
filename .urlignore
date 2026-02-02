@@ -1,3 +1,6 @@
 # Ignore Google Fonts service and all its assets
 https://fonts.gstatic.com/**
 https://fonts.googleapis.com/**
+
+# Allowlist known working URLs
+https://atlantic-2.app.sei.io/faucet
