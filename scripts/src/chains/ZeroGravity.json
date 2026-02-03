@@ -1,0 +1,36 @@
+{
+  "title": "0G (Zero Gravity)",
+  "homepage": "https://0g.ai/",
+  "devDocs": "https://docs.0g.ai/",
+  "testnet": {
+    "name": "Testnet",
+    "id": "16602"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "16661"
+  },
+  "faucet": {
+    "url": "https://faucet.0g.ai/",
+    "token": "0G",
+    "description": "0G Official Faucet"
+  },
+  "explorer": [
+    {
+      "url": "https://chainscan.0g.ai",
+      "description": "Zero Gravity Mainnet Explorer"
+    }
+  ],
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

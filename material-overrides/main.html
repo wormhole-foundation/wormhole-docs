@@ -293,7 +293,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const SITE_BASE = location.origin.replace(/\/+$/, ''); // current host
+      const SITE_BASE = location.origin.replace(/\/+$/, '') + `/docs/`; // current host
       const AI_BASE = '/ai'; // relative path to AI content on same host
 
       const stripLeading = (value) => value.replace(/^\/+/, '');
@@ -311,8 +311,9 @@
         }
 
         // NOTE: same-origin assets: default for everything we ship in docs/ (llms, ai bundles, etc.)
+        // llms.txt is served from the site root; other AI artifacts live under /ai
+        if (normalized === 'llms.txt') return `${SITE_BASE}/${normalized}`;  
         if (dataPath.startsWith('/')) return `${SITE_BASE}/${stripLeading(dataPath)}`;
-        if (normalized === 'llms.txt' || normalized === 'llms-full.jsonl') return `${SITE_BASE}/${normalized}`;
 
         // Fallback → site-relative
         return `${SITE_BASE}/${normalized}`;
@@ -368,15 +369,6 @@
         });
       });
 
-      // VIEW buttons: direct link in a new tab
-      document.querySelectorAll('.llms-view').forEach((a) => {
-        const abs = toAbsolute(a.getAttribute('data-path'));
-        if (!abs) return;
-        a.setAttribute('href', abs);
-        a.setAttribute('target', '_blank');
-        a.setAttribute('rel', 'noopener');
-      });
-
       // DOWNLOAD buttons: force a real download via Blob
       document.querySelectorAll('.llms-dl').forEach((a) => {
         // Set href for right-click "Copy link address" convenience
@@ -395,6 +387,16 @@
             'download.txt';
           downloadViaFetch(url, filename);
         });
+      });
+
+      // VIEW buttons: open raw files in a new tab
+      document.querySelectorAll('.llms-view').forEach((a) => {
+        const abs = toAbsolute(a.getAttribute('data-path'));
+        if (abs) {
+          a.setAttribute('href', abs);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener');
+        }
       });
     });
   </script>
