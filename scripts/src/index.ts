@@ -6,7 +6,10 @@ import {
   generateProductSupportTables,
   generateTestnetFaucetsTable,
 } from './details';
-import { generateGovernanceMainnetTable, generateGovernanceTestnetTable } from './governance';
+import {
+  generateGovernanceMainnetTable,
+  generateGovernanceTestnetTable,
+} from './governance';
 import { indentBlock } from './util';
 import { TagManager } from './tagManager';
 import { DOCS_SNIPPETS_DIR } from './env';
@@ -28,7 +31,8 @@ async function main() {
       TagManager.create(DOCS_SNIPPETS_DIR),
     ]);
 
-    const notionTables = await generateNotionContractTables(chains);
+    const notionResult = await generateNotionContractTables(chains);
+    const notionTables = notionResult.tables;
     const notionTags = new Set(notionTables.keys());
 
     const contractTags: Array<{ tag: string; module: ContractModule }> = [
@@ -59,17 +63,20 @@ async function main() {
 
     await tagManager.replace(
       'CONSISTENCY_LEVELS',
-      generateAllConsistencyLevelsTable(chains)
+      generateAllConsistencyLevelsTable(chains),
     );
     await tagManager.replace(
       'TESTNET_FAUCETS',
-      generateTestnetFaucetsTable(chains)
+      generateTestnetFaucetsTable(chains),
     );
     await tagManager.replace('CHAIN_IDS', generateAllChainIdsTable(chains));
 
-    const productTables = generateProductSupportTables(chains);
+    const productTables = generateProductSupportTables(chains, {
+      cctpVersionSupport: notionResult.cctpSupport,
+    });
     for (const [product, table] of Object.entries(productTables)) {
-      const tagSuffix = product === 'tokenBridge' ? 'WTT' : product.toUpperCase();
+      const tagSuffix =
+        product === 'tokenBridge' ? 'WTT' : product.toUpperCase();
       await tagManager.replace(`SUPPORTED_BLOCKCHAIN_${tagSuffix}`, table);
     }
 
@@ -77,18 +84,20 @@ async function main() {
     const govTestnetTable = await generateGovernanceTestnetTable(chains);
     await tagManager.replace(
       'GOVERNANCE_MAINNET',
-      indentBlock(govMainnetTable, 4)
+      indentBlock(govMainnetTable, 4),
     );
     await tagManager.replace(
       'GOVERNANCE_TESTNET',
-      indentBlock(govTestnetTable, 4)
+      indentBlock(govTestnetTable, 4),
     );
 
     const written = await tagManager.commit();
     const modifications = tagManager.getModifications();
 
     if (notionTags.size > 0) {
-      const notionModified = Object.keys(modifications).filter((tag) => notionTags.has(tag));
+      const notionModified = Object.keys(modifications).filter((tag) =>
+        notionTags.has(tag),
+      );
 
       if (notionModified.length === 0) {
         console.log('[notion] is up to date.');
