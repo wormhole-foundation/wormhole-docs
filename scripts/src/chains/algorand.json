@@ -26,7 +26,7 @@
   },
   "devDocs": "https://developer.algorand.org",
   "faucet": {
-    "url": "https://bank.testnet.algorand.network/",
+    "url": "https://lora.algokit.io/testnet/fund",
     "token": "ALGO",
     "description": "Official Algorand Faucet"
   },
