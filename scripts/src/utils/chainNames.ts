@@ -3,6 +3,21 @@ import type { DocChain } from '../types/chains';
 const CHAIN_ALIASES: Record<string, string> = {
   kaia: 'Kaia',
   klaytn: 'Kaia',
+  op: 'Optimism',
+  'op mainnet': 'Optimism',
+  'op sepolia': 'Optimism Sepolia',
+  'polygon pos': 'Polygon',
+  'polygon sepolia (amoy)': 'Polygon Amoy',
+  'polygon amoy': 'Polygon Amoy',
+  'world chain': 'Worldchain',
+  'avalanche fuji': 'Avalanche',
+  'base sepolia': 'Base Sepolia',
+  'arbitrum sepolia': 'Arbitrum Sepolia',
+  'unichain sepolia': 'Unichain Sepolia',
+  'linea sepolia': 'Linea Sepolia',
+  'monad testnet': 'Monad Testnet',
+  'sei evm': 'SeiEVM',
+  'hyper evm': 'HyperEVM',
 };
 
 export function normalizeChainName(name: string): string {
@@ -17,7 +32,8 @@ export function buildChainTitleMap(chains: DocChain[]): Map<string, string> {
   };
 
   for (const chain of chains) {
-    const mainnetTitle = chain.mainnet.extraDetails?.title ?? chain.mainnet.name;
+    const mainnetTitle =
+      chain.mainnet.extraDetails?.title ?? chain.mainnet.name;
     add(chain.mainnet.name, mainnetTitle);
     add(mainnetTitle, mainnetTitle);
 
@@ -37,7 +53,10 @@ export function buildChainTitleMap(chains: DocChain[]): Map<string, string> {
   return map;
 }
 
-export function resolveDisplayChainName(raw: string, chainTitleMap: Map<string, string>): string {
+export function resolveDisplayChainName(
+  raw: string,
+  chainTitleMap: Map<string, string>,
+): string {
   const aliased = resolveChainAliasName(raw);
   const normalized = normalizeChainKey(aliased);
   const direct = chainTitleMap.get(normalized);

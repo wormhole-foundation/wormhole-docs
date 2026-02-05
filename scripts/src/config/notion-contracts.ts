@@ -1,4 +1,4 @@
-import databaseOverrides from './notion-database-ids.json' assert { type: 'json' };
+import databaseOverrides from './notion-database-ids.json' with { type: 'json' };
 
 type DatabaseOverrideEntry = {
   databaseId?: string;
@@ -45,6 +45,10 @@ export type NotionPropertyConfig = {
    * Optional additional properties that should be merged into the same table cell.
    */
   extraProperties?: NotionExtraPropertyConfig[];
+  /**
+   * Indicates that this property contains CCTP support data for a specific version.
+   */
+  cctpVersion?: 'v1' | 'v2';
 };
 
 export type NotionExtraPropertyConfig = {
@@ -88,7 +92,9 @@ export const NOTION_CONTRACT_PROPERTIES: NotionPropertyConfig[] = [
   {
     property: 'NTTWithExecutor',
     tag: 'NTT_EXECUTOR_ADDRESS',
-    extraProperties: [{ property: 'MultiTokenNttWithExecutor', label: 'Multi Ntt' }],
+    extraProperties: [
+      { property: 'MultiTokenNttWithExecutor', label: 'Multi Ntt' },
+    ],
   },
   { property: 'Executor', tag: 'EXECUTOR_ADDRESS' },
   { property: 'TokenBridgeRelayer', tag: 'WTT_EXECUTOR_ADDRESS' },
@@ -96,16 +102,21 @@ export const NOTION_CONTRACT_PROPERTIES: NotionPropertyConfig[] = [
     property: 'TokenBridgeRelayerWithReferrer',
     tag: 'WTT_EXECUTOR_WITH_REFERRER_ADDRESS',
   },
-  { property: 'MayanForwarderWithReferrer', tag: 'MAYAN_FORWARDER_WITH_REFERRER_ADDRESS' },
+  {
+    property: 'MayanForwarderWithReferrer',
+    tag: 'MAYAN_FORWARDER_WITH_REFERRER_ADDRESS',
+  },
   {
     property: 'CCTPv1WithExecutor',
     tag: 'CCTP_EXECUTOR_ADDRESS',
     labelOverrides: { Mainnet: 'Mainnet v1', Testnet: 'Testnet v1' },
+    cctpVersion: 'v1',
   },
   {
     property: 'CCTPv2WithExecutor',
     tag: 'CCTP_EXECUTOR_ADDRESS',
     labelOverrides: { Mainnet: 'Mainnet v2', Testnet: 'Testnet v2' },
+    cctpVersion: 'v2',
   },
   { property: 'M0PortalWithExecutor', tag: 'M0_PORTAL_WITH_EXECUTOR_ADDRESS' },
 ];

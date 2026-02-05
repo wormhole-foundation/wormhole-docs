@@ -1,15 +1,15 @@
 import * as types from './types/chains';
 
 export function fmtNum(n?: number): string {
-  return n === undefined ? " " : n.toString();
+  return n === undefined ? ' ' : n.toString();
 }
 
 export function fmtStr(s?: string): string {
-  return s === undefined ? "**N/A**" : `\`${s}\``;
+  return s === undefined ? '**N/A**' : `\`${s}\``;
 }
 
 export function fmtCodeStr(s?: string): string {
-  return s === undefined ? "<code>-</code>" : `<code>${s}</code>`;
+  return s === undefined ? '<code>-</code>' : `<code>${s}</code>`;
 }
 
 export const CONTRACT_TABLE_HEADER = `
@@ -21,7 +21,7 @@ export const CONTRACT_TABLE_HEADER = `
 const ETHEREUM_ADDRESS_PATTERN = /0x[a-fA-F0-9]{40}/g;
 
 export function buildHTMLTable(tableHeader: string, tableBody: string): string {
-  if (tableBody.trim() == "") {
+  if (tableBody.trim() == '') {
     return 'N/A';
   }
 
@@ -33,7 +33,6 @@ export function buildHTMLTable(tableHeader: string, tableBody: string): string {
       </tbody>
     </table>
   `;
- 
 }
 
 // Function to format an HTML table string with consistent indentation and newlines
@@ -80,6 +79,10 @@ export type ContractTableRow = {
   chain: string;
   address: string;
   href?: string;
+  /**
+   * Canonical doc chain title derived from known metadata; used for downstream matching.
+   */
+  canonicalName?: string;
 };
 
 export function renderSimpleContractTable(rows: ContractTableRow[]): string {
@@ -104,7 +107,10 @@ export function renderSimpleContractTable(rows: ContractTableRow[]): string {
 }
 
 function formatContractCell(raw: string): string {
-  const parts = raw.split(/\n+/).map((p) => p.trim()).filter((p) => p.length > 0);
+  const parts = raw
+    .split(/\n+/)
+    .map((p) => p.trim())
+    .filter((p) => p.length > 0);
   if (parts.length === 0) {
     return fmtCodeStr(raw.trim());
   }
@@ -119,7 +125,9 @@ function formatContractCell(raw: string): string {
   const extras = rest
     .map((line) => {
       const escaped = escapeHtmlText(line);
-      return escaped.replace(ETHEREUM_ADDRESS_PATTERN, (match) => fmtCodeStr(match));
+      return escaped.replace(ETHEREUM_ADDRESS_PATTERN, (match) =>
+        fmtCodeStr(match),
+      );
     })
     .filter((line) => line.length > 0)
     .join('<br>');
@@ -146,8 +154,8 @@ export function sortMainnets(dc: types.DocChain[]): types.DocChain[] {
   });
 }
 
-export function sortTestnets (
-  testnets: types.ChainDetails[]
+export function sortTestnets(
+  testnets: types.ChainDetails[],
 ): types.ChainDetails[] {
   return testnets.sort((a, b) => {
     const aTitle = a.extraDetails?.title || 'N/A';
@@ -209,13 +217,13 @@ export function indentBlock(s: string, spaces = 4): string {
   return s
     .replace(/^\s+|\s+$/g, '')
     .split('\n')
-    .map(line => pad + line)
+    .map((line) => pad + line)
     .join('\n');
 }
 
 // Testnet Ethereum first for governance contracts (governance.ts)
 export function makePrioritizedAlphaCompare(priorities: string[]) {
-  const set = new Set(priorities.map(p => p.toLowerCase()));
+  const set = new Set(priorities.map((p) => p.toLowerCase()));
   return (a: string, b: string) => {
     const aHit = set.has(a.toLowerCase());
     const bHit = set.has(b.toLowerCase());
@@ -228,8 +236,5 @@ export function makePrioritizedAlphaCompare(priorities: string[]) {
 // Escapes HTML special characters in a string to prevent HTML injection
 export function escapeHtmlText(s: string): string {
   const str = String(s);
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }

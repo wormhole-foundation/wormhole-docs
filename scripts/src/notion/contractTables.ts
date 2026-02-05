@@ -1,7 +1,28 @@
-import { NOTION_CONTRACT_DATABASES, NOTION_CONTRACT_PROPERTIES } from '../config/notion-contracts';
+import {
+  NOTION_CONTRACT_DATABASES,
+  NOTION_CONTRACT_PROPERTIES,
+} from '../config/notion-contracts';
 import type { DocChain } from '../types/chains';
 import { renderSimpleContractTable, ContractTableRow } from '../util';
-import { buildChainTitleMap, resolveDisplayChainName } from '../utils/chainNames';
+import {
+  buildChainTitleMap,
+  resolveDisplayChainName,
+} from '../utils/chainNames';
+
+export type CctpVersion = 'v1' | 'v2';
+export type CctpEnvironment = 'Mainnet' | 'Testnet';
+export type CctpVersionSupport = Record<
+  CctpVersion,
+  Record<CctpEnvironment, string[]>
+>;
+
+type CctpCollector = Record<CctpVersion, Record<CctpEnvironment, Set<string>>>;
+type NotionContractTableResult = {
+  tables: Map<string, string>;
+  cctpSupport?: CctpVersionSupport;
+};
+
+const CCTP_ENVIRONMENTS: CctpEnvironment[] = ['Mainnet', 'Testnet'];
 import { NotionClient } from './client';
 import { extractContractRows } from './parser';
 import { NotionPage } from './types';
@@ -21,11 +42,15 @@ const MAPPED_PROPERTIES = new Set<string>(
   ]),
 );
 
-export async function generateNotionContractTables(chains: DocChain[]): Promise<Map<string, string>> {
+export async function generateNotionContractTables(
+  chains: DocChain[],
+): Promise<NotionContractTableResult> {
   const apiKey = process.env.NOTION_API_KEY;
   if (!apiKey) {
-    console.warn('[notion] NOTION_API_KEY is not set; skipping Notion-backed contract tables.');
-    return new Map();
+    console.warn(
+      '[notion] NOTION_API_KEY is not set; skipping Notion-backed contract tables.',
+    );
+    return { tables: new Map() };
   }
 
   const client = new NotionClient(apiKey, process.env.NOTION_VERSION);
@@ -100,15 +125,16 @@ export async function generateNotionContractTables(chains: DocChain[]): Promise<
     console.warn(
       `[notion] Skipping updates due to fetch issues: ${Array.from(failedSources).join(', ')}.`,
     );
-    return new Map();
+    return { tables: new Map() };
   }
 
   if (propertyData.size === 0) {
     logUnmappedProperties(discoveredProperties);
-    return new Map();
+    return { tables: new Map() };
   }
 
   const rendered = new Map<string, string>();
+  const cctpCollector = createCctpCollector();
 
   for (const property of NOTION_CONTRACT_PROPERTIES) {
     const environments = propertyData.get(property.property);
@@ -124,6 +150,14 @@ export async function generateNotionContractTables(chains: DocChain[]): Promise<
       const htmlTable = renderSimpleContractTable(sorted);
 
       blocks.push(`=== "${displayLabel}"\n\n    ${htmlTable}`);
+      if (property.cctpVersion && isCctpEnvironment(label)) {
+        collectCctpRows(
+          cctpCollector,
+          property.cctpVersion,
+          label as CctpEnvironment,
+          sorted,
+        );
+      }
     }
 
     if (blocks.length === 0) continue;
@@ -135,7 +169,66 @@ export async function generateNotionContractTables(chains: DocChain[]): Promise<
 
   logUnmappedProperties(discoveredProperties);
 
-  return rendered;
+  const cctpSupport = finalizeCctpSupport(cctpCollector);
+  return { tables: rendered, cctpSupport };
+}
+
+function createCctpCollector(): CctpCollector {
+  return {
+    v1: {
+      Mainnet: new Set<string>(),
+      Testnet: new Set<string>(),
+    },
+    v2: {
+      Mainnet: new Set<string>(),
+      Testnet: new Set<string>(),
+    },
+  };
+}
+
+function isCctpEnvironment(label: string): label is CctpEnvironment {
+  return (CCTP_ENVIRONMENTS as string[]).includes(label);
+}
+
+function collectCctpRows(
+  collector: CctpCollector,
+  version: CctpVersion,
+  environment: CctpEnvironment,
+  rows: ContractTableRow[],
+) {
+  const bucket = collector[version][environment];
+  for (const row of rows) {
+    const canonical = row.canonicalName ?? row.chain;
+    if (!canonical) continue;
+    bucket.add(canonical.trim());
+  }
+}
+
+function finalizeCctpSupport(
+  collector: CctpCollector,
+): CctpVersionSupport | undefined {
+  const result: CctpVersionSupport = {
+    v1: {
+      Mainnet: Array.from(collector.v1.Mainnet).sort(localeAlphaCompare),
+      Testnet: Array.from(collector.v1.Testnet).sort(localeAlphaCompare),
+    },
+    v2: {
+      Mainnet: Array.from(collector.v2.Mainnet).sort(localeAlphaCompare),
+      Testnet: Array.from(collector.v2.Testnet).sort(localeAlphaCompare),
+    },
+  };
+
+  const hasData =
+    result.v1.Mainnet.length > 0 ||
+    result.v1.Testnet.length > 0 ||
+    result.v2.Mainnet.length > 0 ||
+    result.v2.Testnet.length > 0;
+
+  return hasData ? result : undefined;
+}
+
+function localeAlphaCompare(a: string, b: string): number {
+  return a.localeCompare(b, 'en', { sensitivity: 'base' });
 }
 
 const PRIORITY_PREFIXES: Array<{ prefix: string; rank: number }> = [
@@ -145,8 +238,8 @@ const PRIORITY_PREFIXES: Array<{ prefix: string; rank: number }> = [
 
 function sortRows(rows: ContractTableRow[]): ContractTableRow[] {
   return [...rows].sort((a, b) => {
-    const aName = a.chain.trim();
-    const bName = b.chain.trim();
+    const aName = (a.canonicalName ?? a.chain).trim();
+    const bName = (b.canonicalName ?? b.chain).trim();
     const aKey = aName.toLowerCase();
     const bKey = bName.toLowerCase();
 
@@ -165,22 +258,28 @@ function logUnmappedProperties(discovered: Map<string, Set<string>>): void {
 
   for (const [label, names] of discovered) {
     const unmapped = Array.from(names).filter(
-      (name) => !MAPPED_PROPERTIES.has(name) && !IGNORED_UNMAPPED_PROPERTIES.has(name),
+      (name) =>
+        !MAPPED_PROPERTIES.has(name) && !IGNORED_UNMAPPED_PROPERTIES.has(name),
     );
     if (unmapped.length === 0) continue;
 
-    console.log(`[notion] ${label}: ignoring unmapped properties -> ${unmapped.join(', ')}`);
+    console.log(
+      `[notion] ${label}: ignoring unmapped properties -> ${unmapped.join(', ')}`,
+    );
   }
 }
 
-function normalizeRows(rows: ContractTableRow[], chainTitleMap: Map<string, string>): ContractTableRow[] {
+function normalizeRows(
+  rows: ContractTableRow[],
+  chainTitleMap: Map<string, string>,
+): ContractTableRow[] {
   const normalized = new Map<string, ContractTableRow>();
 
   for (const row of rows) {
     const resolvedName = resolveDisplayChainName(row.chain, chainTitleMap);
-    const key = normalizeChainKey(resolvedName);
+    const key = normalizeChainKey(resolvedName || row.chain);
     if (normalized.has(key)) continue;
-    normalized.set(key, { ...row, chain: resolvedName });
+    normalized.set(key, { ...row, canonicalName: resolvedName });
   }
 
   return Array.from(normalized.values());
