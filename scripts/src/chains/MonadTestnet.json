@@ -25,6 +25,11 @@
       "mainnet": false,
       "testnet": true,
       "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
     }
   }
 }
