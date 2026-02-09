@@ -27,6 +27,11 @@ const CONTRACT_ADDRESS_OVERRIDES: Record<
   string,
   Partial<Record<CctpEnvironment, Record<string, string>>>
 > = {
+  NTTWithExecutor: {
+    Mainnet: {
+      Sui: '0xa55f6f81649b071b5967dc56227bbee289e4c411ab610caeec7abce499e262b8',
+    },
+  },
   CCTPv1WithExecutor: {
     Mainnet: {
       Sui: '0xa55f6f81649b071b5967dc56227bbee289e4c411ab610caeec7abce499e262b8',
