@@ -50,7 +50,7 @@ Beyond asset transfers, Wormhole provides additional tools for cross-chain data 
 
 ## Real-time Data
 
-[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting and data aggregation.
 
 ## Multichain Governance
 
