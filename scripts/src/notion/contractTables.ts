@@ -23,6 +23,21 @@ type NotionContractTableResult = {
 };
 
 const CCTP_ENVIRONMENTS: CctpEnvironment[] = ['Mainnet', 'Testnet'];
+const CONTRACT_ADDRESS_OVERRIDES: Record<
+  string,
+  Partial<Record<CctpEnvironment, Record<string, string>>>
+> = {
+  CCTPv1WithExecutor: {
+    Mainnet: {
+      Sui: '0xa55f6f81649b071b5967dc56227bbee289e4c411ab610caeec7abce499e262b8',
+    },
+  },
+  CCTPv2WithExecutor: {
+    Mainnet: {
+      Sui: '0xa55f6f81649b071b5967dc56227bbee289e4c411ab610caeec7abce499e262b8',
+    },
+  },
+};
 import { NotionClient } from './client';
 import { extractContractRows } from './parser';
 import { NotionPage } from './types';
@@ -117,7 +132,15 @@ export async function generateNotionContractTables(
         propertyData.set(property.property, envMap);
       }
 
-      envMap.set(database.label, rows);
+      envMap.set(
+        database.label,
+        applyContractAddressOverrides(
+          rows,
+          property.property,
+          database.label,
+          chainTitleMap,
+        ),
+      );
     }
   }
 
@@ -283,6 +306,47 @@ function normalizeRows(
   }
 
   return Array.from(normalized.values());
+}
+
+function applyContractAddressOverrides(
+  rows: ContractTableRow[],
+  propertyName: string,
+  environmentLabel: string,
+  chainTitleMap: Map<string, string>,
+): ContractTableRow[] {
+  const env = environmentLabel as CctpEnvironment;
+  const envOverrides = CONTRACT_ADDRESS_OVERRIDES[propertyName]?.[env];
+  if (!envOverrides) return rows;
+
+  const updated = [...rows];
+  const indexByKey = new Map<string, number>();
+  for (let i = 0; i < updated.length; i++) {
+    const row = updated[i];
+    const key = normalizeChainKey(row.canonicalName ?? row.chain);
+    indexByKey.set(key, i);
+  }
+
+  for (const [chainName, address] of Object.entries(envOverrides)) {
+    const resolvedName = resolveDisplayChainName(chainName, chainTitleMap);
+    const displayName = resolvedName ?? chainName;
+    const key = normalizeChainKey(displayName);
+    const existingIndex = indexByKey.get(key);
+
+    if (existingIndex !== undefined) {
+      updated[existingIndex] = {
+        ...updated[existingIndex],
+        address,
+      };
+    } else {
+      updated.push({
+        chain: displayName,
+        address,
+        canonicalName: resolvedName,
+      });
+    }
+  }
+
+  return updated;
 }
 
 function normalizeChainKey(value: string): string {

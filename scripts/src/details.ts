@@ -518,6 +518,8 @@ const CCTP_VERSION_LABELS: Array<{
   { key: 'v2', label: 'CCTP v2' },
 ];
 
+const CCTP_MAINNET_OVERRIDES: string[] = ['Sui'];
+
 function renderVersionedCctpTables(
   chains: types.DocChain[],
   support: CctpVersionSupport,
@@ -527,11 +529,29 @@ function renderVersionedCctpTables(
   const blocks: string[] = [];
 
   for (const { key, label } of CCTP_VERSION_LABELS) {
-    const content = renderSingleCctpTable(ordered, support[key], tableHeader);
+    const content = renderSingleCctpTable(
+      ordered,
+      applyCctpMainnetOverrides(support[key]),
+      tableHeader,
+    );
     blocks.push(`=== "${label}"\n\n${indentBlock(content, 4)}`);
   }
 
   return blocks.join('\n\n');
+}
+
+function applyCctpMainnetOverrides(
+  versionSupport: CctpVersionSlice,
+): CctpVersionSlice {
+  if (CCTP_MAINNET_OVERRIDES.length === 0) return versionSupport;
+
+  return {
+    ...versionSupport,
+    Mainnet: uniqNormalized([
+      ...versionSupport.Mainnet,
+      ...CCTP_MAINNET_OVERRIDES,
+    ]),
+  };
 }
 
 function renderSingleCctpTable(
