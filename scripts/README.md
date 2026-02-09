@@ -4,6 +4,7 @@ This directory holds the tooling that keeps the docs in sync with the latest Wor
 
 - Pull fresh metadata from the Wormhole SDK (via the exported `getContracts` helper).
 - Fetch curated raw contract lists from GitHub (as configured in `src/config/product-support-config.json`) to capture details missing from the SDK.
+- Pull versioned CCTP v1/v2 support from the Notion executor tables (source of truth for CCTP supported networks).
 - Regenerate reusable HTML/markdown tables (contracts, chain IDs, product support, governance, etc.).
 - Inject the new content between matching `<!--TAG--> ... <!--TAG-->` markers inside `docs/.snippets/text`.
 
@@ -19,6 +20,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
   - `NOTION_API_KEY`
   - Use environment variables `NOTION_CONTRACTS_MAINNET_DB_ID` / `NOTION_CONTRACTS_TESTNET_DB_ID` **or** populate `src/config/notion-database-ids.json` with your database IDs.
   - Optional: `NOTION_VERSION` (defaults to `2022-06-28`)
+   - Needed for CCTP: versioned CCTP supported networks are derived from these Notion tables.
 
 ## Quick Start
 
@@ -75,6 +77,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 3. **Render tables (`src/details.ts`, `src/governance.ts`, `src/notion/contractTables.ts`)**  
    - Converts the aggregated data into HTML snippets (contracts, chain IDs, supported networks, governance, etc.).
    - Executor and executor-adjacent tables pull from Notion databases when the accompanying environment variables are provided.
+   - CCTP supported networks: the v1/v2 tabs are rendered from the Notion executor tables (not the SDK list), so a Notion API key and database IDs are required for accurate CCTP output.
 
 4. **Inject snippets (`src/tagManager.ts`)**  
    - Finds matching tag pairs across the snippets directory and replaces the interior with the rendered content.  
