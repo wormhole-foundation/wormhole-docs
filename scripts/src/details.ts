@@ -10,6 +10,7 @@ import {
   sortTestnets,
   sortChainTypes,
   CONTRACT_TABLE_HEADER,
+  indentBlock,
 } from './util';
 import type { CctpVersionSupport } from './notion/contractTables';
 
@@ -527,9 +528,7 @@ function renderVersionedCctpTables(
 
   for (const { key, label } of CCTP_VERSION_LABELS) {
     const content = renderSingleCctpTable(ordered, support[key], tableHeader);
-    blocks.push(`=== "${label}"
-
-    ${content}`);
+    blocks.push(`=== "${label}"\n\n${indentBlock(content, 4)}`);
   }
 
   return blocks.join('\n\n');
