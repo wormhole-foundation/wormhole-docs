@@ -12,9 +12,11 @@ import fs from 'fs';
 import { nttSupport, cctpSupport, connectSupport } from './generated';
 import { NetworkDescription, ChainType, ExtraDetails, Products, ProductSupport, DocChain, ChainDetails } from './types/chains';
 import { normalizeChainName } from './utils/chainNames';
-import { buildCctpSupportLookup, normalizeCctpSupportKey } from './utils/support';
+import { normalizeCctpSupportKey, normalizeSupportKey } from './utils/support';
 
-const cctpSupportLookup = buildCctpSupportLookup(cctpSupport);
+const cctpSupportMainnet = new Set(cctpSupport.Mainnet.map(normalizeSupportKey));
+const cctpSupportTestnet = new Set(cctpSupport.Testnet.map(normalizeCctpSupportKey));
+const cctpSupportDevnet = new Set(cctpSupport.Devnet.map(normalizeSupportKey));
 
 export function networkString(net?: NetworkDescription): string {
   if (!net) return '';
@@ -75,9 +77,16 @@ function getChainDetails(chainName: string): ExtraDetails {
 
     // CCTP
     const effectiveChainName = normalizeChainName(chainName);
-    const isCctpSupported = cctpSupportLookup[net].has(
-      normalizeCctpSupportKey(effectiveChainName)
-    );
+    const cctpKey =
+      net === 'Testnet'
+        ? normalizeCctpSupportKey(effectiveChainName)
+        : normalizeSupportKey(effectiveChainName);
+    const isCctpSupported =
+      net === 'Testnet'
+        ? cctpSupportTestnet.has(cctpKey)
+        : net === 'Devnet'
+        ? cctpSupportDevnet.has(cctpKey)
+        : cctpSupportMainnet.has(cctpKey);
 
     if (!products.cctp) {
       products.cctp = { mainnet: false, testnet: false, devnet: false };
