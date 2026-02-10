@@ -38,11 +38,6 @@
       "testnet": true,
       "devnet": false
     },
-    "cctp": {
-      "mainnet": true,
-      "testnet": true,
-      "devnet": false
-    },
     "settlement": {
       "mainnet": true,
       "testnet": false,
@@ -52,6 +47,11 @@
       "mainnet": true,
       "testnet": true,
       "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
     }
   }
 }

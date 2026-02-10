@@ -3,6 +3,11 @@ import type { DocChain } from '../types/chains';
 const CHAIN_ALIASES: Record<string, string> = {
   kaia: 'Kaia',
   klaytn: 'Kaia',
+  'polygon pos': 'Polygon',
+  'op mainnet': 'Optimism',
+  'ink mainnet': 'Ink',
+  'avalanche fuji': 'Avalanche',
+  'polygon sepolia (amoy)': 'Polygon',
 };
 
 export function normalizeChainName(name: string): string {
@@ -61,7 +66,7 @@ function resolveChainAliasName(raw: string): string {
   return CHAIN_ALIASES[normalized] ?? raw;
 }
 
-function stripNetworkSuffix(value: string): string {
+export function stripNetworkSuffix(value: string): string {
   const suffixes = [' testnet', ' mainnet', ' devnet'];
   for (const suffix of suffixes) {
     if (value.endsWith(suffix)) {

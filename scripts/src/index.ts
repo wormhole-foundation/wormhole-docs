@@ -3,6 +3,7 @@ import {
   generateAllChainIdsTable,
   generateAllConsistencyLevelsTable,
   generateAllContractsTable,
+  generateCctpSupportTabs,
   generateProductSupportTables,
   generateTestnetFaucetsTable,
 } from './details';
@@ -11,6 +12,7 @@ import { indentBlock } from './util';
 import { TagManager } from './tagManager';
 import { DOCS_SNIPPETS_DIR } from './env';
 import { generateNotionContractTables } from './notion/contractTables';
+import { cctpV1Support, cctpV2Support } from './generated';
 
 type ContractModule =
   | 'coreBridge'
@@ -72,6 +74,11 @@ async function main() {
       const tagSuffix = product === 'tokenBridge' ? 'WTT' : product.toUpperCase();
       await tagManager.replace(`SUPPORTED_BLOCKCHAIN_${tagSuffix}`, table);
     }
+
+    await tagManager.replace(
+      'SUPPORTED_BLOCKCHAIN_CCTP',
+      generateCctpSupportTabs(chains, cctpV1Support, cctpV2Support)
+    );
 
     const govMainnetTable = await generateGovernanceMainnetTable(chains);
     const govTestnetTable = await generateGovernanceTestnetTable(chains);

@@ -30,6 +30,11 @@
       "mainnet": true,
       "testnet": true,
       "devnet": true
+    },
+    "cctp": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
     }
   }
 }

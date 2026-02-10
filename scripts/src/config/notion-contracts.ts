@@ -1,4 +1,4 @@
-import databaseOverrides from './notion-database-ids.json' assert { type: 'json' };
+import databaseOverrides from './notion-database-ids.json' with { type: 'json' };
 
 type DatabaseOverrideEntry = {
   databaseId?: string;
