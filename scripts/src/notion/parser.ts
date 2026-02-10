@@ -70,7 +70,7 @@ function buildContractParts(
   extraProperties: NotionExtraPropertyConfig[],
 ): string[] {
   const parts: string[] = [];
-  const normalizedPrimary = primaryValue.trim();
+  const normalizedPrimary = sanitizeContractValue(primaryValue);
 
   if (normalizedPrimary.length > 0 && normalizedPrimary.toLowerCase() !== 'n/a') {
     parts.push(normalizedPrimary);
@@ -80,7 +80,7 @@ function buildContractParts(
     const extraValue = extractRichText(page.properties?.[extra.property]);
     if (!extraValue) continue;
 
-    const normalizedExtra = extraValue.text.trim();
+    const normalizedExtra = sanitizeContractValue(extraValue.text);
     if (normalizedExtra.length === 0 || normalizedExtra.toLowerCase() === 'n/a') continue;
 
     const label = extra.label?.trim();
@@ -88,4 +88,22 @@ function buildContractParts(
   }
 
   return parts;
+}
+
+function sanitizeContractValue(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed.endsWith('?')) {
+    return trimmed;
+  }
+
+  const withoutQuestion = trimmed.slice(0, -1);
+
+  const isHexAddress = /^0x[a-fA-F0-9]{40,64}$/.test(withoutQuestion);
+  const isBase58Address = /^[1-9A-HJ-NP-Za-km-z]{32,64}$/.test(withoutQuestion);
+
+  if (isHexAddress || isBase58Address) {
+    return withoutQuestion;
+  }
+
+  return trimmed;
 }
