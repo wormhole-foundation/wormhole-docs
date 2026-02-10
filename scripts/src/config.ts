@@ -12,6 +12,9 @@ import fs from 'fs';
 import { nttSupport, cctpSupport, connectSupport } from './generated';
 import { NetworkDescription, ChainType, ExtraDetails, Products, ProductSupport, DocChain, ChainDetails } from './types/chains';
 import { normalizeChainName } from './utils/chainNames';
+import { buildCctpSupportLookup, normalizeCctpSupportKey } from './utils/support';
+
+const cctpSupportLookup = buildCctpSupportLookup(cctpSupport);
 
 export function networkString(net?: NetworkDescription): string {
   if (!net) return '';
@@ -72,7 +75,9 @@ function getChainDetails(chainName: string): ExtraDetails {
 
     // CCTP
     const effectiveChainName = normalizeChainName(chainName);
-    const isCctpSupported = (cctpSupport[net] || []).includes(effectiveChainName);
+    const isCctpSupported = cctpSupportLookup[net].has(
+      normalizeCctpSupportKey(effectiveChainName)
+    );
 
     if (!products.cctp) {
       products.cctp = { mainnet: false, testnet: false, devnet: false };
