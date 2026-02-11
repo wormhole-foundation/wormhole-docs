@@ -109,6 +109,15 @@ plugins:
   - glightbox:
       skip_classes:
         - no-lightbox
+  - social:
+      enabled: true
+      cards_layout_dir: layouts
+      cards_layout: wormhole
+      cards_layout_options:
+        background_image: null
+        background_color: "#fff"
+        logo: images/wormhole-button-logo.png
+        title: Wormhole Documentation        
 
   - redirects:
       redirect_maps:
