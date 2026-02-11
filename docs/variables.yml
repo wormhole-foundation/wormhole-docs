@@ -10,10 +10,10 @@ repositories:
     version: 2.55.0
   native_token_transfers_evm:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
-    version: 1.7.0+cli
+    version: 2.0.0+evm
   native_token_transfers_sol:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
-    version: 1.7.0+cli
+    version: 2.0.0+evm
   connect:
     repository_url: https://github.com/wormhole-foundation/wormhole-connect
     version: 5.0.0
