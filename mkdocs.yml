@@ -110,7 +110,7 @@ plugins:
       skip_classes:
         - no-lightbox
   - social:
-      enabled: true
+      enabled: !ENV [SOCIAL_CARDS, True]
       cards_layout_dir: layouts
       cards_layout: wormhole
       cards_layout_options:
