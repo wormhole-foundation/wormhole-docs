@@ -8,6 +8,7 @@ import {
   generateTestnetFaucetsTable,
 } from './details';
 import { generateGovernanceMainnetTable, generateGovernanceTestnetTable } from './governance';
+import { generateQueriesTable } from './generateQueriesTable';
 import { indentBlock } from './util';
 import { TagManager } from './tagManager';
 import { DOCS_SNIPPETS_DIR } from './env';
@@ -79,6 +80,9 @@ async function main() {
       'SUPPORTED_BLOCKCHAIN_CCTP',
       generateCctpSupportTabs(chains, cctpV1Support, cctpV2Support)
     );
+
+    const queriesTable = await generateQueriesTable(chains);
+    await tagManager.replace('SUPPORTED_QUERIES', queriesTable);
 
     const govMainnetTable = await generateGovernanceMainnetTable(chains);
     const govTestnetTable = await generateGovernanceTestnetTable(chains);
