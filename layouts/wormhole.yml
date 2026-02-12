@@ -4,7 +4,9 @@
 definitions:
   # Background image
   - &background_image >-
-    {{ layout.background_image | x }}
+    {%- if layout.background_image -%}
+      {{ layout.background_image | x }}
+    {%- endif -%}
 
   # Background color (default: indigo)
   - &background_color >-
