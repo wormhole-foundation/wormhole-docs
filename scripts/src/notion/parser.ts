@@ -37,7 +37,7 @@ export function extractContractRows(
     const chainName = extractTitle(page.properties?.[chainProp]);
     if (!chainName) continue;
 
-    const normalizedChain = chainName.replace(/\bTesnet\b/gi, 'Testnet');
+    const normalizedChain = sanitizeChainName(chainName);
 
     const property = extractRichText(page.properties?.[propertyName]);
     if (!property) continue;
@@ -64,6 +64,13 @@ function joinPlainText(entries: NotionRichText[]): string {
   return entries.map((entry) => entry.plain_text ?? '').join('').trim();
 }
 
+function sanitizeChainName(value: string): string {
+  return value
+    .replace(/\*+$/g, '')
+    .replace(/\bTesnet\b/gi, 'Testnet')
+    .trim();
+}
+
 function buildContractParts(
   primaryValue: string,
   page: NotionPage,
@@ -72,7 +79,7 @@ function buildContractParts(
   const parts: string[] = [];
   const normalizedPrimary = sanitizeContractValue(primaryValue);
 
-  if (normalizedPrimary.length > 0 && normalizedPrimary.toLowerCase() !== 'n/a') {
+  if (shouldIncludeContractValue(normalizedPrimary)) {
     parts.push(normalizedPrimary);
   }
 
@@ -81,7 +88,7 @@ function buildContractParts(
     if (!extraValue) continue;
 
     const normalizedExtra = sanitizeContractValue(extraValue.text);
-    if (normalizedExtra.length === 0 || normalizedExtra.toLowerCase() === 'n/a') continue;
+    if (!shouldIncludeContractValue(normalizedExtra)) continue;
 
     const label = extra.label?.trim();
     parts.push(label && label.length > 0 ? `${label}: ${normalizedExtra}` : normalizedExtra);
@@ -106,4 +113,13 @@ function sanitizeContractValue(value: string): string {
   }
 
   return trimmed;
+}
+
+function shouldIncludeContractValue(value: string): boolean {
+  const trimmed = value.trim();
+  if (trimmed.length === 0) return false;
+  const lower = trimmed.toLowerCase();
+  if (lower === 'n/a') return false;
+  if (/^[-–—]+$/.test(trimmed)) return false;
+  return true;
 }

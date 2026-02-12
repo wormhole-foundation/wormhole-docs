@@ -4,5 +4,11 @@
 	},
 	"Testnet": {
 		"databaseId": "2023029e88cb8045ab4bcef4d9baa2db"
+	},
+	"Quoter Mainnet": {
+		"databaseId": "9cf7435cc551421889d856da1c8014ec"
+	},
+	"Quoter Testnet": {
+		"databaseId": "88f3d66f855c4a0ba86bf22e67b10a59"
 	}
 }
