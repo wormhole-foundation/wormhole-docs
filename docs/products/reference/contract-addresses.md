@@ -35,6 +35,18 @@ categories: Reference
 ## Executor
 
 --8<-- 'text/products/reference/contract-addresses/executor.md'
+
+## Quoter Router
+
+--8<-- 'text/products/reference/contract-addresses/quoter-router.md'
+
+--8<-- 'text/products/reference/contract-addresses/quoter-public-keys.md'
+
+## Wormhole Labs Quoter Implementation
+
+--8<-- 'text/products/reference/contract-addresses/wh-quoter-implementation.md'
+
+--8<-- 'text/products/reference/contract-addresses/quoter-public-keys.md'
     
 ## Guardian Governance
 
@@ -57,4 +69,3 @@ categories: Reference
 
 !!! note  
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
-

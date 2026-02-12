@@ -107,5 +107,15 @@ export const NOTION_CONTRACT_PROPERTIES: NotionPropertyConfig[] = [
     tag: 'CCTP_EXECUTOR_ADDRESS',
     labelOverrides: { Mainnet: 'Mainnet v2', Testnet: 'Testnet v2' },
   },
+  {
+    property: 'Quoter Router',
+    tag: 'QUOTER_ROUTER_ADDRESS',
+    labelOverrides: { 'Quoter Mainnet': 'Mainnet', 'Quoter Testnet': 'Testnet' },
+  },
+  {
+    property: 'Wormhole Labs Quoter Implementation',
+    tag: 'WH_QUOTER_IMPLEMENTATION_ADDRESS',
+    labelOverrides: { 'Quoter Mainnet': 'Mainnet', 'Quoter Testnet': 'Testnet' },
+  },
   { property: 'M0PortalWithExecutor', tag: 'M0_PORTAL_WITH_EXECUTOR_ADDRESS' },
 ];
