@@ -117,7 +117,7 @@ plugins:
         background_image: null
         background_color: "#fff"
         logo: images/wormhole-button-logo.png
-        title: Wormhole Documentation        
+        title: Wormhole Documentation
 
   - redirects:
       redirect_maps:
