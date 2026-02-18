@@ -36,11 +36,17 @@ A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of
 
 ## Guardian Network
 
-Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
+Validators operating in a dedicated P2P network that serve as Wormhole’s oracle layer. Guardians monitor on-chain activity and generate signed messages (VAAs) attesting to it.
+
+For P0 chains, all 19 Guardians perform direct on-chain observation. For non-P0 chains, a delegated subset monitors and broadcasts signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing. Regardless of the observation path, VAAs are always finalized as standard 13-of-19 multisignature attestations.
 
 ## Guardian Set
 
-The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
+The Guardian Set is the canonical set of 19 Guardians responsible for producing VAAs. A supermajority of 13 signatures is required to generate a valid VAA.
+
+For certain non-P0 chains, governance may configure a delegated subset of the Guardian Set to perform direct on-chain observation with a smaller per-chain quorum. Canonical Guardians wait for a delegated quorum before signing, ensuring that the effective security threshold for a chain cannot fall below its configured level.
+
+The composition of the Guardian Set may change through governance actions.
 
 ## Heartbeat
 

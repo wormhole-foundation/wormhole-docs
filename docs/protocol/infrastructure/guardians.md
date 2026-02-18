@@ -12,14 +12,21 @@ Depending on the chain, messages may be observed either by the full Guardian set
 
 Guardians fulfill their role in the messaging protocol as follows: 
 
-1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians.
-    - For strategic (P0) chains, all Guardians observe events directly.
+1. Guardians observe messages and sign the corresponding payloads in isolation from the other Guardians.
+    - For P0 chains, all Guardians observe events directly.
     - For non-P0 chains, a delegated subset of Guardians performs observation and broadcasts a `DelegateObservation` to the rest of the network. 
-2. Once a sufficient delegated quorum is reached (for non-P0 chains) or once Guardians independently observe the event (P0 chains), signatures accumulate until the required 13-of-19 quorum is achieved.
+2. Once a sufficient delegated quorum is reached or once Guardians independently observe the event, signatures accumulate until the required 13-of-19 quorum is achieved.
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state.
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
 
+!!!note
+
+    Wormhole categorizes supported chains into two tiers for operational purposes. This categorization affects how observations are performed, but it does not change the structure or validity requirements of VAAs:
+
+    - **P0 (strategic) chains**: High-volume or strategically critical chains (such as Ethereum, Solana, Base) secured through direct observation by all 19 Guardians.
+    - **Non-P0 chains**: Expansion or lower-volume chains where a delegated subset of Guardians performs direct observation, while the final VAA signature threshold remains 13-of-19.
+    
 ## Guardian Sets and Delegation
 
 The Guardian network comprises 19 Guardians. However, not all chains are secured in the same way. Strategic chains (such as Ethereum and Solana) are secured by all 19 Guardians. Each Guardian runs a full node and independently observes on-chain events. Lower-volume or expansion chains may be secured by a delegated subset of Guardians.

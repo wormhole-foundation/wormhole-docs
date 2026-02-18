@@ -175,7 +175,8 @@ Anyone can submit a VAA to the target chain. Guardians typically don't perform t
 
 With the concepts now defined, it is possible to illustrate a full flow for message passing between two chains. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
-1. **A message is emitted by a contract running on Chain A**: Any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians.
+1. **A message is emitted by a contract running on Chain A**: Any contract can emit messages, and the Guardian Network observes supported chains for these events. For P0 chains, all 19 Guardians directly observe on-chain messages. For non-P0 chains, a delegated subset performs direct observation and broadcasts signed observations to the rest of the network. In the diagram, Guardians are represented as a single entity for simplicity, but observation and signing are performed independently by each participating Guardian.
+
 2. **Signatures are aggregated**: Guardians independently observe and sign the message. For P0 chains, all Guardians perform on-chain observation. For non-P0 chains, a delegated subset observes and broadcasts signed DelegateObservation messages to the rest of the network. Canonical Guardians wait for delegated quorum before contributing their signatures. Once a two-thirds majority (13 out of 19) have signed, the signatures are combined with the message and metadata to produce a VAA.
 3. **VAA submitted to target chain**: The VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step.
 
