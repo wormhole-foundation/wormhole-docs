@@ -8,7 +8,7 @@ categories: Basics
 
 Verified Action Approvals (VAAs) are Wormhole's core messaging primitive. They are packets of cross-chain data emitted whenever a cross-chain application contract interacts with the Core Contract.
 
-[Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians agree the message is valid, they sign a keccak256 hash of the message body. 
+[Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a two-thirds supermajority of Guardians agree the message is valid, they sign a keccak256 hash of the message body. 
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof. 
 
@@ -176,7 +176,7 @@ Anyone can submit a VAA to the target chain. Guardians typically don't perform t
 With the concepts now defined, it is possible to illustrate a full flow for message passing between two chains. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
 1. **A message is emitted by a contract running on Chain A**: Any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians.
-2. **Signatures are aggregated**: Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA.
+2. **Signatures are aggregated**: Guardians independently observe and sign the message. For P0 chains, all Guardians perform on-chain observation. For non-P0 chains, a delegated subset observes and broadcasts signed DelegateObservation messages to the rest of the network. Canonical Guardians wait for delegated quorum before contributing their signatures. Once a two-thirds majority (13 out of 19) have signed, the signatures are combined with the message and metadata to produce a VAA.
 3. **VAA submitted to target chain**: The VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step.
 
 ![Lifetime of a message diagram](/docs/images/protocol/infrastructure/vaas/lifetime-vaa-diagram.webp)
