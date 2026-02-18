@@ -27,7 +27,7 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain non-P0 chains, a delegdirect on-chain observation while the final VAA signature threshold remains 13-of-19.
+Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain non-P0 chains, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains 13-of-19.
 
 ### Governance
 
