@@ -65,7 +65,7 @@ note over CG,CG2: Standard signing flow continues
 
 ### Delegated Quorum Safeguards
 
-For non-P0 chains, Canonical Guardians will not sign a message until a delegated quorum has been reached. This prevents a minority of delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 delegated Guardians, Canonical Guardians will only sign after at least 7 delegated observations agree. Once a delegated quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
+For non-P0 chains, Canonical Guardians will not sign a message until a delegated quorum has been reached. This prevents a minority of Delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 Delegated Guardians, Canonical Guardians will only sign after at least 7 delegated observations agree. Once a delegated quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
 
 ## Guardian Network
 
