@@ -8,13 +8,68 @@ categories: Basics
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
+Depending on the chain, messages may be observed either by the full Guardian set or by a delegated subset of Guardians. Regardless of the observation path, all VAAs are ultimately produced as standard 13-of-19 multisignature attestations to remain fully compatible with existing contracts and integrators.
+
 Guardians fulfill their role in the messaging protocol as follows: 
 
 1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians.
-2. Guardians combine their independent signatures to form a multisig.
+    - For strategic (P0) chains, all Guardians observe events directly.
+    - For non-P0 chains, a delegated subset of Guardians performs observation and broadcasts a `DelegateObservation` to the rest of the network. 
+2. Once sufficient delegated quorum is reached (non-P0 chains) or direct observation is confirmed (P0 chains), Guardians combine their independent signatures to form a multisig.
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state.
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
+
+## Guardian Sets and Delegation
+
+The Guardian network is composed of 19 Guardians. However, not all chains are secured in the same way. Strategic chains (such as Ethereum and Solana) are secured by all 19 Guardians. Each Guardian runs a full node and independently observes on-chain events. Lower-volume or expansion chains may be secured by a delegated subset of Guardians.
+
+For these chains:
+
+- A configured Delegated Guardian Set performs direct on-chain observation.
+- Delegated Guardians broadcast a signed `DelegateObservation` gossip message.
+- Canonical Guardians wait until delegated quorum is reached before signing.
+- A standard 13-of-19 VAA is ultimately produced.
+
+This design reduces operational costs while maintaining compatibility with the existing Wormhole contract stack.
+
+### Delegated Observation Flow
+
+The following flow shows how a subset of Guardians directly observes events on those chains and broadcasts a signed `DelegateObservation` message over the Guardian gossip network. Canonical Guardians wait until the configured delegated quorum is reached before proceeding with the normal signing process. The final result is still a standard 13-of-19 VAA, fully compatible with existing smart contracts and integrations.
+
+```mermaid
+sequenceDiagram 
+
+participant CB as CoreBridge
+participant DG as DelegatedGuardian
+participant G as Gossip network
+participant CG as CanonicalGuardian 1
+participant CG2 as CanonicalGuardian 2
+
+CB-->>DG: LogMessagePublished
+DG->>DG: Watch & verify
+note over DG: Wait for transfer verifier
+
+alt Non-P0 chain
+  DG-->>G: Broadcast DelegateObservation
+  G-->>CG: Receive DelegateObservation
+  G-->>CG2: Receive DelegateObservation
+  loop Wait for delegated quorum
+    CG->>CG: Mark message valid
+    CG2->>CG2: Mark message valid
+  end
+end
+
+note over CG,CG2: Standard signing flow continues
+```
+
+### Delegated Quorum Safeguards
+
+For non-P0 chains, Canonical Guardians will not sign a message until delegated quorum has been reached.
+
+This prevents a minority of delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 delegated Guardians, Canonical Guardians will only sign after at least 7 delegated observations agree.
+
+Once delegated quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
 
 ## Guardian Network
 
@@ -47,7 +102,8 @@ To answer that, consider these key constraints and design decisions:
 
 - **Threshold signatures allow flexibility, but**: With threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system.
 - **t-Schnorr multisig is more practical**: Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen.
-- **19 validators is the optimal tradeoff**: A set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security.
+- **19 Guardians form the canonical set**: A set of 19 participants represents a practical compromise between decentralization and efficiency. A quorum of 13 signatures is required to produce a valid VAA.
+- **Per-chain delegated thresholds**: For non-P0 chains, a delegated subset of Guardians may be configured with a smaller observation threshold. Canonical Guardians wait for delegated quorum before contributing their signatures, ensuring that the effective security threshold for a chain cannot be reduced below its configured level.
 - **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
 
 This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
@@ -64,14 +120,17 @@ Today, Wormhole supports a broader range of ecosystems than any other interopera
 
 Wormhole scales well, as demonstrated by its ability to handle substantial total value locked (TVL) and transaction volume even during tumultuous events.
 
-Every Guardian must run a full node for every blockchain in the ecosystem. This requirement can be computationally heavy to set up; however, once all the full nodes are running, the Guardian Network's actual computation needs become lightweight. 
+For strategic (P0) chains, all Guardians run full nodes and independently observe events. This requirement can be computationally heavy to set up; however, once all the full nodes are running, the Guardian Network's actual computation needs become lightweight. 
 
-Performance is generally limited by the speed of the underlying blockchains, not the Guardian Network itself.
+For non-P0 chains, only the delegated subset of Guardians runs full nodes. Canonical Guardians rely on delegated observations broadcast through the gossip network and wait for delegated quorum before signing. 
+
+This reduces operational overhead while preserving the security model of the network. Performance is generally limited by the speed of the underlying blockchains, not the Guardian Network itself.
 
 ### Upgradeable
 
 Wormhole is designed to adapt and evolve in the following ways:
 
+- **Per-chain security configuration**: The delegated guardian configuration is managed via governance through the `WormholeDelegatedGuardians` contract, allowing per-chain threshold adjustments without requiring upgrades to existing Core contracts.
 - **Guardian Set expansion**: Future updates may introduce threshold signatures to allow for more Guardians in the set.
 - **ZKP integration**: As Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model.
 
