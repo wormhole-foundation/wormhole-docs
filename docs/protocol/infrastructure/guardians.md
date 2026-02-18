@@ -6,7 +6,7 @@ categories: Basics
 
 # Guardians
 
-Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are called Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 Depending on the chain, messages may be observed either by the full Guardian set or by a delegated subset of Guardians. Regardless of the observation path, all VAAs are ultimately produced as standard 13-of-19 multisignature attestations to remain fully compatible with existing contracts and integrators.
 
@@ -15,20 +15,20 @@ Guardians fulfill their role in the messaging protocol as follows:
 1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians.
     - For strategic (P0) chains, all Guardians observe events directly.
     - For non-P0 chains, a delegated subset of Guardians performs observation and broadcasts a `DelegateObservation` to the rest of the network. 
-2. Once sufficient delegated quorum is reached (non-P0 chains) or direct observation is confirmed (P0 chains), Guardians combine their independent signatures to form a multisig.
+2. Once a sufficient delegated quorum is reached (for non-P0 chains) or once Guardians independently observe the event (P0 chains), signatures accumulate until the required 13-of-19 quorum is achieved.
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state.
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
 
 ## Guardian Sets and Delegation
 
-The Guardian network is composed of 19 Guardians. However, not all chains are secured in the same way. Strategic chains (such as Ethereum and Solana) are secured by all 19 Guardians. Each Guardian runs a full node and independently observes on-chain events. Lower-volume or expansion chains may be secured by a delegated subset of Guardians.
+The Guardian network comprises 19 Guardians. However, not all chains are secured in the same way. Strategic chains (such as Ethereum and Solana) are secured by all 19 Guardians. Each Guardian runs a full node and independently observes on-chain events. Lower-volume or expansion chains may be secured by a delegated subset of Guardians.
 
 For these chains:
 
-- A configured Delegated Guardian Set performs direct on-chain observation.
+- A configured delegated subset of the 19 Guardians performs direct on-chain observation.
 - Delegated Guardians broadcast a signed `DelegateObservation` gossip message.
-- Canonical Guardians wait until delegated quorum is reached before signing.
+- Canonical Guardians wait until a delegated quorum is reached before signing.
 - A standard 13-of-19 VAA is ultimately produced.
 
 This design reduces operational costs while maintaining compatibility with the existing Wormhole contract stack.
@@ -65,11 +65,7 @@ note over CG,CG2: Standard signing flow continues
 
 ### Delegated Quorum Safeguards
 
-For non-P0 chains, Canonical Guardians will not sign a message until delegated quorum has been reached.
-
-This prevents a minority of delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 delegated Guardians, Canonical Guardians will only sign after at least 7 delegated observations agree.
-
-Once delegated quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
+For non-P0 chains, Canonical Guardians will not sign a message until a delegated quorum has been reached. This prevents a minority of delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 delegated Guardians, Canonical Guardians will only sign after at least 7 delegated observations agree. Once a delegated quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
 
 ## Guardian Network
 
