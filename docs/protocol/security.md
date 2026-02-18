@@ -12,7 +12,7 @@ At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infra
 
 - Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}).
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
-- Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
+- Guardians produce signed state attestations (signed VAAs) when valid on-chain events are observed and verified according to Wormhole’s security rules.
 - For strategic (P0) chains, all Guardians run full nodes rather than light clients. For non-P0 chains, a delegated subset of Guardians runs full nodes and broadcasts signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
 - The [Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
@@ -27,7 +27,7 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain non-P0 chains, a delegated subset performs observation while the final VAA signature threshold remains 13-of-19.
+Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain non-P0 chains, a delegdirect on-chain observation while the final VAA signature threshold remains 13-of-19.
 
 ### Governance
 
