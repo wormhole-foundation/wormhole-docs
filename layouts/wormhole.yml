@@ -127,10 +127,10 @@ definitions:
   - &logo >-
     {%- if layout.logo is defined -%}
       {%- if layout.logo -%}
-        {{ config.docs_dir }}/{{ layout.logo | x }}
+        {{ layout.logo | x }}
       {%- endif -%}
     {%- elif config.theme.logo -%}
-      {{ config.docs_dir }}/{{ config.theme.logo | x }}
+      {{ config.theme.logo | x }}
     {%- endif -%}
 
   # Logo (icon)

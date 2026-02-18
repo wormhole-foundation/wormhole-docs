@@ -116,7 +116,7 @@ plugins:
       cards_layout_options:
         background_image: null
         background_color: "#fff"
-        logo: images/wormhole-button-logo.png
+        logo: layouts/wormhole-social-logo.png
         title: Wormhole Documentation
 
   - redirects:
