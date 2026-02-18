@@ -26,7 +26,7 @@ The Wormhole Core Contract is central in facilitating secure and efficient multi
 The following describes the role of the Wormhole Core Contract in message transfers:
 
 1. **Message submission**: When a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification.
-2. **Guardian verification**: The Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA.
+2. **Guardian verification**: Guardians independently observe and sign the message. For P0 chains, all Guardians perform direct on-chain observation. For non-P0 chains, a delegated subset signs and broadcasts signed observations to the rest of the network. Guardians wait for delegated quorum before contributing their signatures. Once a supermajority of 13 out of 19 Guardians have signed, the signatures are combined with the message and metadata to produce a VAA.
 3. **Message reception and execution**: On the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions.
 
 For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/protocol/architecture/) page.
@@ -43,7 +43,7 @@ There are no fees to publish a message except when publishing on Solana, but thi
 
 ### Message Reception
 
-When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/protocol/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
+When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/protocol/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains. The Core Contract does not distinguish between P0 and non-P0 chains; it verifies only that a valid 13-of-19 VAA has been produced.
 
 ## Multicast
 
