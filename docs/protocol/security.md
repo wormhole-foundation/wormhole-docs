@@ -13,7 +13,7 @@ At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infra
 - Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}).
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 - Guardians produce signed state attestations (signed VAAs) when valid on-chain events are observed and verified according to Wormhole’s security rules.
-- For strategic (P0) chains, all Guardians run full nodes rather than light clients. For non-P0 chains, a delegated subset of Guardians runs full nodes and broadcasts signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing.
+- For full Guardian Set chains, all Guardians run full nodes rather than light clients. For chains configured for delegated observation, a delegated subset of Guardians runs full nodes and broadcasts signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
 - The [Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
 
@@ -27,7 +27,7 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain non-P0 chains, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains 13-of-19.
+Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For certain chains configured for delegated observation, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains 13-of-19.
 
 ### Governance
 
@@ -52,7 +52,7 @@ The governance system is fully open source in the core repository. See the [Open
 
 A key element of Wormhole's defense-in-depth strategy is that each Guardian is a highly competent validator company with its own in-house processes for running, monitoring, and securing blockchain operations. This heterogeneous approach to monitoring increases the likelihood that fraudulent activity is detected and reduces the number of single failure points in the system.
 
-For P0 chains, all Guardians run full nodes and independently monitor block production and contract activity. For non-P0 chains, Delegated Guardians perform direct on-chain monitoring while Canonical Guardians monitor delegated observations and enforce quorum safeguards.
+For full Guardian Set chains, all Guardians run full nodes and independently monitor block production and contract activity. For chains configured for delegated observation, Delegated Guardians perform direct on-chain monitoring while Canonical Guardians monitor delegated observations and enforce quorum safeguards.
 
 Guardians monitor:
 
@@ -66,7 +66,7 @@ One key strength of the Wormhole ecosystem is the Guardians’ ability to valida
 
 To enforce the Wormhole Asset Layer’s core protections, the Global Accountant tracks the total circulating supply of all Wormhole assets across all chains, preventing any blockchain from bridging assets that could violate the supply invariant.
 
-For non-P0 chains, delegated quorum must be reached before Canonical Guardians contribute signatures, ensuring that per-chain delegated thresholds are respected without altering the Global Accountant’s 13-of-19 security model.
+For chains configured for delegated observation, delegated quorum must be reached before Canonical Guardians contribute signatures, ensuring that per-chain delegated thresholds are respected without altering the Global Accountant’s 13-of-19 security model.
 
 In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The [Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank} tracks inflows and outflows of all blockchains and delays suspicious transfers that may indicate an exploit.
 
