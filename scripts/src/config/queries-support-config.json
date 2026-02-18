@@ -1,0 +1,19 @@
+{
+  "sources": {
+    "perChainConfig": "https://raw.githubusercontent.com/wormhole-foundation/wormhole/main/node/pkg/query/query.go",
+    "chainIds": "https://raw.githubusercontent.com/wormhole-foundation/wormhole/main/sdk/vaa/structs.go"
+  },
+  "overrides": {
+    "Ethereum":  { "ethCallWithFinality": "✅", "expectedHistory": "128 blocks" },
+    "Bsc":       { "ethCallWithFinality": "✅", "expectedHistory": "128 blocks" },
+    "Polygon":   { "ethCallWithFinality": "✅", "expectedHistory": "128 blocks" },
+    "Avalanche": { "ethCallWithFinality": "✅", "expectedHistory": "32 blocks" },
+    "Fantom":    { "ethCallWithFinality": "✅", "expectedHistory": "16 blocks" },
+    "Kaia":      { "ethCallWithFinality": "✅", "expectedHistory": "128 blocks" },
+    "Celo":      { "ethCallByTimestamp": "ℹ️", "ethCallWithFinality": "✅", "expectedHistory": "128 blocks" },
+    "Moonbeam":  { "ethCallByTimestamp": "ℹ️", "ethCallWithFinality": "✅", "expectedHistory": "256 blocks" },
+    "Arbitrum":  { "ethCallWithFinality": "✅", "expectedHistory": "~6742 blocks" },
+    "Optimism":  { "ethCallWithFinality": "❌", "expectedHistory": "128 blocks" },
+    "Base":      { "ethCallWithFinality": "✅", "expectedHistory": "archive" }
+  }
+}

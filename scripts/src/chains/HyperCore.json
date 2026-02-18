@@ -11,11 +11,6 @@
     "id": "20000"
   },
   "products": {
-    "cctp": {
-      "mainnet": true,
-      "testnet": false,
-      "devnet": false
-    },
     "multigov": {
       "mainnet": true,
       "testnet": true,

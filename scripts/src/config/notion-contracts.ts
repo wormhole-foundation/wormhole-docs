@@ -1,4 +1,4 @@
-import databaseOverrides from './notion-database-ids.json' assert { type: 'json' };
+import databaseOverrides from './notion-database-ids.json' with { type: 'json' };
 
 type DatabaseOverrideEntry = {
   databaseId?: string;
@@ -106,6 +106,16 @@ export const NOTION_CONTRACT_PROPERTIES: NotionPropertyConfig[] = [
     property: 'CCTPv2WithExecutor',
     tag: 'CCTP_EXECUTOR_ADDRESS',
     labelOverrides: { Mainnet: 'Mainnet v2', Testnet: 'Testnet v2' },
+  },
+  {
+    property: 'Quoter Router',
+    tag: 'QUOTER_ROUTER_ADDRESS',
+    labelOverrides: { 'Quoter Mainnet': 'Mainnet', 'Quoter Testnet': 'Testnet' },
+  },
+  {
+    property: 'Wormhole Labs Quoter Implementation',
+    tag: 'WH_QUOTER_IMPLEMENTATION_ADDRESS',
+    labelOverrides: { 'Quoter Mainnet': 'Mainnet', 'Quoter Testnet': 'Testnet' },
   },
   { property: 'M0PortalWithExecutor', tag: 'M0_PORTAL_WITH_EXECUTOR_ADDRESS' },
 ];

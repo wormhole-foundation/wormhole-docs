@@ -24,7 +24,7 @@
     },
     "cctp": {
       "mainnet": true,
-      "testnet": true,
+      "testnet": false,
       "devnet": false
     },
     "connect": {
