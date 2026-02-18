@@ -37,7 +37,7 @@ export function extractContractRows(
     const chainName = extractTitle(page.properties?.[chainProp]);
     if (!chainName) continue;
 
-    const normalizedChain = chainName.replace(/\bTesnet\b/gi, 'Testnet');
+    const normalizedChain = sanitizeChainName(chainName);
 
     const property = extractRichText(page.properties?.[propertyName]);
     if (!property) continue;
@@ -64,15 +64,22 @@ function joinPlainText(entries: NotionRichText[]): string {
   return entries.map((entry) => entry.plain_text ?? '').join('').trim();
 }
 
+function sanitizeChainName(value: string): string {
+  return value
+    .replace(/\*+$/g, '')
+    .replace(/\bTesnet\b/gi, 'Testnet')
+    .trim();
+}
+
 function buildContractParts(
   primaryValue: string,
   page: NotionPage,
   extraProperties: NotionExtraPropertyConfig[],
 ): string[] {
   const parts: string[] = [];
-  const normalizedPrimary = primaryValue.trim();
+  const normalizedPrimary = sanitizeContractValue(primaryValue);
 
-  if (normalizedPrimary.length > 0 && normalizedPrimary.toLowerCase() !== 'n/a') {
+  if (shouldIncludeContractValue(normalizedPrimary)) {
     parts.push(normalizedPrimary);
   }
 
@@ -80,12 +87,39 @@ function buildContractParts(
     const extraValue = extractRichText(page.properties?.[extra.property]);
     if (!extraValue) continue;
 
-    const normalizedExtra = extraValue.text.trim();
-    if (normalizedExtra.length === 0 || normalizedExtra.toLowerCase() === 'n/a') continue;
+    const normalizedExtra = sanitizeContractValue(extraValue.text);
+    if (!shouldIncludeContractValue(normalizedExtra)) continue;
 
     const label = extra.label?.trim();
     parts.push(label && label.length > 0 ? `${label}: ${normalizedExtra}` : normalizedExtra);
   }
 
   return parts;
+}
+
+function sanitizeContractValue(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed.endsWith('?')) {
+    return trimmed;
+  }
+
+  const withoutQuestion = trimmed.slice(0, -1);
+
+  const isHexAddress = /^0x[a-fA-F0-9]{40,64}$/.test(withoutQuestion);
+  const isBase58Address = /^[1-9A-HJ-NP-Za-km-z]{32,64}$/.test(withoutQuestion);
+
+  if (isHexAddress || isBase58Address) {
+    return withoutQuestion;
+  }
+
+  return trimmed;
+}
+
+function shouldIncludeContractValue(value: string): boolean {
+  const trimmed = value.trim();
+  if (trimmed.length === 0) return false;
+  const lower = trimmed.toLowerCase();
+  if (lower === 'n/a') return false;
+  if (/^[-–—]+$/.test(trimmed)) return false;
+  return true;
 }

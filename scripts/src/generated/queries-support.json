@@ -1,0 +1,166 @@
+{
+  "Mainnet": {
+    "Solana": {
+      "timestampSupported": false,
+      "chainId": 1
+    },
+    "Ethereum": {
+      "timestampSupported": true,
+      "chainId": 2
+    },
+    "Bsc": {
+      "timestampSupported": true,
+      "chainId": 4
+    },
+    "Polygon": {
+      "timestampSupported": true,
+      "chainId": 5
+    },
+    "Avalanche": {
+      "timestampSupported": true,
+      "chainId": 6
+    },
+    "Fantom": {
+      "timestampSupported": true,
+      "chainId": 10
+    },
+    "Kaia": {
+      "timestampSupported": true,
+      "chainId": 13
+    },
+    "Celo": {
+      "timestampSupported": true,
+      "chainId": 14
+    },
+    "Moonbeam": {
+      "timestampSupported": true,
+      "chainId": 16
+    },
+    "Arbitrum": {
+      "timestampSupported": true,
+      "chainId": 23
+    },
+    "Optimism": {
+      "timestampSupported": true,
+      "chainId": 24
+    },
+    "Base": {
+      "timestampSupported": true,
+      "chainId": 30
+    },
+    "Scroll": {
+      "timestampSupported": true,
+      "chainId": 34
+    },
+    "Mantle": {
+      "timestampSupported": true,
+      "chainId": 35
+    },
+    "Xlayer": {
+      "timestampSupported": true,
+      "chainId": 37
+    },
+    "Linea": {
+      "timestampSupported": true,
+      "chainId": 38
+    },
+    "Berachain": {
+      "timestampSupported": true,
+      "chainId": 39
+    },
+    "Unichain": {
+      "timestampSupported": true,
+      "chainId": 44
+    },
+    "Worldchain": {
+      "timestampSupported": true,
+      "chainId": 45
+    },
+    "Ink": {
+      "timestampSupported": true,
+      "chainId": 46
+    },
+    "HyperEvm": {
+      "timestampSupported": true,
+      "chainId": 47
+    },
+    "Monad": {
+      "timestampSupported": true,
+      "chainId": 48
+    },
+    "Seievm": {
+      "timestampSupported": true,
+      "chainId": 40
+    },
+    "Mezo": {
+      "timestampSupported": true,
+      "chainId": 50
+    },
+    "Fogo": {
+      "timestampSupported": true,
+      "chainId": 51
+    },
+    "Converge": {
+      "timestampSupported": true,
+      "chainId": 53
+    },
+    "Plume": {
+      "timestampSupported": true,
+      "chainId": 55
+    },
+    "XrplEvm": {
+      "timestampSupported": true,
+      "chainId": 57
+    },
+    "Plasma": {
+      "timestampSupported": true,
+      "chainId": 58
+    },
+    "CreditCoin": {
+      "timestampSupported": true,
+      "chainId": 59
+    },
+    "Moca": {
+      "timestampSupported": true,
+      "chainId": 63
+    },
+    "MegaEth": {
+      "timestampSupported": true,
+      "chainId": 64
+    },
+    "ZeroGravity": {
+      "timestampSupported": true,
+      "chainId": 67
+    }
+  },
+  "Testnet": {
+    "Sepolia": {
+      "timestampSupported": true,
+      "chainId": 10002
+    },
+    "Holesky": {
+      "timestampSupported": true,
+      "chainId": 10006
+    },
+    "ArbitrumSepolia": {
+      "timestampSupported": true,
+      "chainId": 10003
+    },
+    "BaseSepolia": {
+      "timestampSupported": true,
+      "chainId": 10004
+    },
+    "OptimismSepolia": {
+      "timestampSupported": true,
+      "chainId": 10005
+    },
+    "PolygonSepolia": {
+      "timestampSupported": true,
+      "chainId": 10007
+    },
+    "MonadTestnet": {
+      "timestampSupported": true,
+      "chainId": 10009
+    }
+  }
+}

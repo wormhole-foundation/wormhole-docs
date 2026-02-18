@@ -1,6 +1,5 @@
 {
   "Mainnet": [
-    "Aptos",
     "Arbitrum",
     "Avalanche",
     "Base",
@@ -21,7 +20,6 @@
     "World Chain"
   ],
   "Testnet": [
-    "Aptos",
     "Arbitrum",
     "Avalanche",
     "Base",

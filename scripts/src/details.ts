@@ -1,7 +1,63 @@
 import { Chain, finality, toChain } from '@wormhole-foundation/sdk';
 import * as types from './types/chains';
 import { networkString } from './config';
+import type { SupportMap } from './types/support';
 import { fmtNum, fmtCodeStr, buildHTMLTable, formatHTMLTable, sortMainnets, sortTestnets, sortChainTypes, CONTRACT_TABLE_HEADER } from './util';
+import { buildCctpSupportLookup, normalizeCctpSupportKey } from './utils/support';
+
+type SupportFlags = {
+  mainnet: boolean;
+  testnet: boolean;
+  devnet: boolean;
+};
+
+function buildQuickLinks(details?: types.ExtraDetails): string {
+  const website = details?.homepage
+    ? `:material-web: <a href="${details.homepage}" target="_blank">Website</a><br>`
+    : '';
+  const devDocs = details?.devDocs
+    ? `:material-file-document: <a href="${details.devDocs}" target="_blank">Developer Docs</a><br>`
+    : '';
+  const explorer = details?.explorer?.[0]?.url
+    ? `:octicons-package-16: <a href="${details.explorer[0].url}" target="_blank">Block Explorer</a>`
+    : '';
+
+  return `${website}${devDocs}${explorer}`;
+}
+
+function buildSupportRow(chain: types.DocChain, support: SupportFlags): string | null {
+  if (!support.mainnet && !support.testnet && !support.devnet) return null;
+
+  const mainnet = support.mainnet ? ':white_check_mark:' : ':x:';
+  const testnet = support.testnet ? ':white_check_mark:' : ':x:';
+  const devnet = support.devnet ? ':white_check_mark:' : ':x:';
+
+  const quickLinks = buildQuickLinks(chain.mainnet.extraDetails);
+  const title = chain.mainnet.extraDetails?.title ?? chain.mainnet.name;
+
+  return `<tr>
+        <td>${title}</td>
+        <td>${chain.chainType}</td>
+        <td>${mainnet}</td>
+        <td>${testnet}</td>
+        <td>${devnet}</td>
+        <td>${quickLinks}</td>
+      </tr>`;
+}
+
+function renderSupportTable(rows: string[]): string {
+  const tableHeader = `
+  <thead>
+    <th>Blockchain</th>
+    <th>Environment</th>
+    <th>Mainnet</th>
+    <th>Testnet</th>
+    <th>Devnet</th>
+    <th>Quick Links</th>
+  </thead>`;
+
+  return formatHTMLTable(buildHTMLTable(tableHeader, rows.join('\n')));
+}
 
 export function generateAllChainIdsTable(dc: types.DocChain[]): string {
   // Create Mainnet Chain Table
@@ -336,26 +392,7 @@ export function generateTestnetFaucetsTable(dc: types.DocChain[]): string {
 }
 
 export function generateProductSupportTables(chains: types.DocChain[]): Record<string, string> {
-  const products = ['connect', 'ntt', 'tokenBridge', 'multigov', 'settlement', 'cctp'];
-
-  const tableHeader = `
-  <thead>
-    <th>Blockchain</th>
-    <th>Environment</th>
-    <th>Mainnet</th>
-    <th>Testnet</th>
-    <th>Devnet</th>
-    <th>Quick Links</th>
-  </thead>`;
-
-  const productDisplayNames: Record<string, string> = {
-    connect: 'Connect',
-    ntt: 'NTT',
-    tokenBridge: 'WTT',
-    multigov: 'MultiGov',
-    settlement: 'Settlement',
-    cctp: 'CCTP',
-  };
+  const products = ['connect', 'ntt', 'tokenBridge', 'multigov', 'settlement'];
 
   const tables: Record<string, string> = {};
 
@@ -366,28 +403,90 @@ export function generateProductSupportTables(chains: types.DocChain[]): Record<s
       const productData = chain.products?.[product];
       if (!productData) continue;
 
-      const mainnet = productData.mainnet ? ':white_check_mark:' : ':x:';
-      const testnet = productData.testnet ? ':white_check_mark:' : ':x:';
-      const devnet = productData.devnet ? ':white_check_mark:' : ':x:';
-
-      const website = chain.mainnet.extraDetails?.homepage ? `:material-web: <a href="${chain.mainnet.extraDetails.homepage}" target="_blank">Website</a><br>` : '';
-      const devDocs = chain.mainnet.extraDetails?.devDocs ? `:material-file-document: <a href="${chain.mainnet.extraDetails.devDocs}" target="_blank">Developer Docs</a><br>` : '';
-      const explorer = chain.mainnet.extraDetails?.explorer?.[0]?.url ? `:octicons-package-16: <a href="${chain.mainnet.extraDetails.explorer[0].url}" target="_blank">Block Explorer</a>` : '';
-
-      rows.push(`<tr>
-        <td>${chain.mainnet.extraDetails?.title ?? chain.mainnet.name}</td>
-        <td>${chain.chainType}</td>
-        <td>${mainnet}</td>
-        <td>${testnet}</td>
-        <td>${devnet}</td>
-        <td>${website}${devDocs}${explorer}</td>
-      </tr>`);
+      const row = buildSupportRow(chain, {
+        mainnet: Boolean(productData.mainnet),
+        testnet: Boolean(productData.testnet),
+        devnet: Boolean(productData.devnet),
+      });
+      if (row) rows.push(row);
     }
 
-    const content = formatHTMLTable(buildHTMLTable(tableHeader, rows.join('\n')));
+    const content = renderSupportTable(rows);
 
     tables[product] = `<div class="full-width" markdown>\n\n${content}\n\n</div>`;
   }
 
   return tables;
+}
+
+function buildRowsFromSupport(chains: types.DocChain[], support: SupportMap): string[] {
+  const lookup = buildCctpSupportLookup(support);
+  const rows: string[] = [];
+
+  for (const chain of chains) {
+    const key = normalizeCctpSupportKey(chain.mainnet.name);
+    const row = buildSupportRow(chain, {
+      mainnet: lookup.Mainnet.has(key),
+      testnet: lookup.Testnet.has(key),
+      devnet: lookup.Devnet.has(key),
+    });
+    if (row) rows.push(row);
+  }
+
+  return rows;
+}
+
+function warnMissingSupportChains(
+  label: string,
+  support: SupportMap,
+  chains: types.DocChain[],
+): void {
+  const knownKeys = new Set(
+    chains.map((chain) => normalizeCctpSupportKey(chain.mainnet.name)),
+  );
+  const missing = new Map<string, { name: string; networks: Set<string> }>();
+
+  const addMissing = (network: string, name: string) => {
+    const key = normalizeCctpSupportKey(name);
+    if (knownKeys.has(key)) return;
+    const entry = missing.get(key);
+    if (entry) {
+      entry.networks.add(network);
+      return;
+    }
+    missing.set(key, { name, networks: new Set([network]) });
+  };
+
+  for (const name of support.Mainnet) addMissing('Mainnet', name);
+  for (const name of support.Testnet) addMissing('Testnet', name);
+  for (const name of support.Devnet) addMissing('Devnet', name);
+
+  if (missing.size === 0) return;
+
+  const details = Array.from(missing.values())
+    .map((entry) => {
+      const networks = Array.from(entry.networks).sort().join(', ');
+      return `${entry.name} (${networks})`;
+    })
+    .join('; ');
+
+  const message =
+    `[cctp] Missing chain metadata for ${label}: ${details}. ` +
+    'Add src/chains/<Chain>.json to include links and chain type, then rerun the generator.';
+  const useColor = Boolean(process.stderr.isTTY);
+  const output = useColor ? `\u001b[33m${message}\u001b[0m` : message;
+  console.warn(output);
+}
+
+export function generateCctpSupportTabs(
+  chains: types.DocChain[],
+  v1Support: SupportMap,
+  v2Support: SupportMap,
+): string {
+  warnMissingSupportChains('CCTP v1', v1Support, chains);
+  warnMissingSupportChains('CCTP v2', v2Support, chains);
+  const v1Table = renderSupportTable(buildRowsFromSupport(chains, v1Support));
+  const v2Table = renderSupportTable(buildRowsFromSupport(chains, v2Support));
+
+  return `<div class="full-width" markdown>\n\n=== \"CCTP v1\"\n\n    ${v1Table}\n\n=== \"CCTP v2\"\n\n    ${v2Table}\n\n</div>`;
 }

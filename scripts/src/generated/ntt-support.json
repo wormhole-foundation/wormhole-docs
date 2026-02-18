@@ -30,7 +30,8 @@
     "Unichain",
     "Worldchain",
     "Xlayer",
-    "XRPLEVM"
+    "XRPLEVM",
+    "ZeroGravity"
   ],
   "Testnet": [
     "Arbitrum",
@@ -61,7 +62,8 @@
     "Solana",
     "Sui",
     "Unichain",
-    "XRPLEVM"
+    "XRPLEVM",
+    "ZeroGravity"
   ],
   "Devnet": [
     "Bsc",
