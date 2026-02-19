@@ -8,10 +8,6 @@ categories: Basics
 
 This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
 
-## Canonical Guardian
-
-A Guardian that does not perform direct on-chain observation for a given chain configured for delegated observation. Canonical Guardians wait for a delegated quorum of `DelegateObservation` messages before contributing their signature to a VAA.
-
 ## Chain ID
 
 Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
@@ -21,18 +17,6 @@ You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products
 ## Consistency Level
 
 The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
-
-## DelegateObservation
-
-A signed gossip message broadcast by a Delegated Guardian after directly observing an on-chain event. Once Canonical Guardians receive enough `DelegateObservation` messages to satisfy the delegated quorum, they proceed with the standard signing flow.
-
-## Delegated Guardian
-
-A Guardian configured to perform direct on-chain observation for a specific chain that uses delegated observation. Delegated Guardians broadcast signed `DelegateObservation` messages to the Guardian gossip network.
-
-## Delegated Quorum
-
-The minimum number of `DelegateObservation` messages that Canonical Guardians must receive before contributing their signatures for a chain configured for delegated observation. Configured per-chain via governance.
 
 ## Delivery Provider
 
@@ -48,7 +32,7 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 
 ## Guardian
 
-A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig. They may be referred as Canonical Guardians in the context of delegated observation.
 
 ## Guardian Network
 
@@ -63,6 +47,14 @@ The Guardian Set is the canonical set of 19 Guardians responsible for producing 
 For certain chains, governance may configure a delegated subset of the Guardian Set to perform direct on-chain observation with a smaller per-chain quorum. Canonical Guardians wait for a delegated quorum before signing, ensuring that the effective security threshold for a chain cannot fall below its configured level.
 
 The composition of the Guardian Set may change through governance actions.
+
+## Delegated Guardian
+
+A Guardian configured to perform direct on-chain observation for a specific chain that uses delegated observation. Delegated Guardians broadcast signed `DelegateObservation` messages to the Guardian gossip network.
+
+In contrast, a Canonical Guardian does not observe that chain directly, it waits for enough `DelegateObservation` messages (the delegated quorum) before contributing its signature to the VAA.
+
+The key distinction: on a chain configured for delegated observation, Delegated Guardians run full nodes and watch the chain themselves, while Canonical Guardians trust the delegated quorum before signing. The final VAA is still a standard 13-of-19 multisig regardless.
 
 ## Heartbeat
 
