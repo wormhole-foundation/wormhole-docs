@@ -32,7 +32,7 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 
 ## Guardian
 
-A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the {{ guardian_count }} parties running validators in the Guardian Network contributing to the VAA multisig.
 
 ## Guardian Network
 

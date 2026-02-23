@@ -8,10 +8,10 @@ categories: Basics
 
 ## Core Security Assumptions
 
-At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., {{ guardian_quorum }} out of {{ guardian_count }}) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
 - Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}).
-- The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+- The Guardian network is currently secured by a collection of {{ guardian_count }} of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
@@ -27,7 +27,7 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the Guardian set currently comprises 19 validators, this is a limitation of current blockchain technology.
+Wormhole is an evolving platform. While the Guardian set currently comprises {{ guardian_count }} validators, this is a limitation of current blockchain technology.
 
 ### Governance
 
