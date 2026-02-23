@@ -19,22 +19,69 @@
 
     "content": {
         "docs_dir": ".",
-        "base_context_categories": ["Basics", "Reference"],
-        "categories_order": [
-            "Basics",
-            "NTT",
-            "Connect",
-            "WTT",
-            "Settlement",
-            "Executor",
-            "MultiGov",
-            "Queries",
-            "Transfer",
-            "Solidity SDK",
-            "Typescript SDK",
-            "CCTP",
-            "Reference"
-        ],
+        "base_context_categories": ["basics", "reference"],
+        "categories_info": {
+            "basics": {
+                "id": "basics",
+                "name": "Basics",
+                "description": "Wormhole's architecture, security, and core components to help understand how the protocol works."
+            },
+            "ntt": {
+                "id": "ntt",
+                "name": "NTT",
+                "description": "All NTT docs, including architecture, deployment guides, CLI usage, and configuration for EVM and Solana."
+            },
+            "connect": {
+                "id": "connect",
+                "name": "Connect",
+                "description": "Setup, features, and configuration details for integrating the Connect widget into your dApp."
+            },
+            "wtt": {
+                "id": "wtt",
+                "name": "WTT",
+                "description": "Architecture overview, transfer flows, and smart contract methods for cross-chain token transfers using WTT."
+            },
+            "settlement": {
+                "id": "settlement",
+                "name": "Settlement",
+                "description": "Architecture, integration guides, and setup instructions for building on the Wormhole Settlement protocol."
+            },
+            "executor": {
+                "id": "executor",
+                "name": "Executor",
+                "description": "Guides and reference for using the Executor shared execution framework to deliver Wormhole messages across chains."
+            },
+            "multigov": {
+                "id": "multigov",
+                "name": "MultiGov",
+                "description": "Architecture, deployment steps, and upgrade instructions for multichain governance on EVM and Solana."
+            },
+            "queries": {
+                "id": "queries",
+                "name": "Queries",
+                "description": "Guides for using the Wormhole Query SDK and Proxy to construct, test, and verify on-chain data queries across chains."
+            },
+            "transfer": {
+                "id": "transfer",
+                "name": "Transfer",
+                "description": "Comprehensive documentation for Wormhole transfer products."
+            },
+            "typescript-sdk": {
+                "id": "typescript-sdk",
+                "name": "TypeScript SDK",
+                "description": "Docs for working with VAAs, payloads, and cross-chain message structures using the TypeScript SDK."
+            },
+            "cctp": {
+                "id": "cctp",
+                "name": "CCTP",
+                "description": "Guides and reference for sending USDC across chains using Circle's CCTP and the Wormhole messaging protocol."
+            },
+            "reference": {
+                "id": "reference",
+                "name": "Reference",
+                "description": "Reference details such as chain IDs, contract addresses, and finality levels."
+            }
+        },
         "exclusions": {
             "skip_basenames": [
                 "index.md",

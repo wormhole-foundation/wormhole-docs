@@ -8,9 +8,9 @@ extra_css:
   - assets/stylesheets/spantable-neoteroi.css
   - assets/stylesheets/timeline-neoteroi.css
   - assets/stylesheets/wormhole.css
-  - assets/stylesheets/copy-to-llm.css
+  - assets/stylesheets/ai-file-actions.css
 extra_javascript:
-  - js/copy-to-llms.js
+  - js/ai-file-actions.js
 theme:
   name: material
   custom_dir: material-overrides
@@ -88,19 +88,21 @@ plugins:
   - awesome-nav
   - resolve_md:
       llms_config: llms_config.json
+  - ai_resources_page
+  - ai_page_actions
   - minify:
       minify_html: true
       minify_js: true
       minify_css: true
       cache_safe: true
       js_files:
-        - js/copy-to-llms.js
+        - js/ai-file-actions.js
       css_files:
         - assets/stylesheets/terminal.css
         - assets/stylesheets/spantable-neoteroi.css
         - assets/stylesheets/timeline-neoteroi.css
         - assets/stylesheets/wormhole.css
-        - assets/stylesheets/copy-to-llm.css
+        - assets/stylesheets/ai-file-actions.css
       scoped_css_templates:
         home.html:
           - assets/stylesheets/home.css
