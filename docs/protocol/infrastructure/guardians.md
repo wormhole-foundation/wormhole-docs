@@ -52,7 +52,6 @@ participant CG2 as CanonicalGuardian 2
 
 CB-->>DG: LogMessagePublished
 DG->>DG: Watch & verify
-note over DG: Wait for transfer verifier
 
 alt DelegatedSet chain
   DG-->>G: Broadcast DelegateObservation

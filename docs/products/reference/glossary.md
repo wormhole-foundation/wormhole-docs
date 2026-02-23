@@ -38,7 +38,7 @@ A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of
 
 Validators operating in a dedicated P2P network that serve as Wormhole’s oracle layer. Guardians monitor on-chain activity and generate signed messages (VAAs) attesting to it.
 
-For P0 chains, all 19 Guardians perform direct on-chain observation. For non-P0 chains, a delegated subset monitors and broadcasts signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing. Regardless of the observation path, VAAs are always finalized as standard 13-of-19 multisignature attestations.
+For P0 chains, all 19 Guardians perform direct on-chain observation. For non-P0 chains, a delegated subset monitors and broadcasts delegated signed observations to the rest of the network. Canonical Guardians wait for a delegated quorum before signing. Regardless of the observation path, VAAs are always finalized as standard 13-of-19 multisignature attestations.
 
 ## Guardian Set
 
