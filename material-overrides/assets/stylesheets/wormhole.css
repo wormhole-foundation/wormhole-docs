@@ -318,7 +318,7 @@
 
 /* Breadcrumbs styling */
 .md-path {
-  padding-top: .45rem;
+  padding-top: 0.45rem;
   margin: 0 1.2rem 1.2rem;
 }
 
@@ -327,9 +327,15 @@
 }
 
 @media screen and (min-width: 86.25em) {
-  [dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-path,
-  [dir="rtl"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-path {
-    margin-left: 3rem;
+  [dir="ltr"]
+    .md-sidebar--primary:not([hidden])
+    ~ .md-content
+    > .md-path,
+  [dir="rtl"]
+    .md-sidebar--secondary:not([hidden])
+    ~ .md-content
+    > .md-path {
+      margin-left: 3rem;
   }
 }
 
