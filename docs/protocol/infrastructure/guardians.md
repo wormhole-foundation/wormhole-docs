@@ -6,7 +6,7 @@ categories: Basics
 
 # Guardians
 
-Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+Wormhole relies on a set of {{ guardian_count }} distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 Guardians fulfill their role in the messaging protocol as follows: 
 
@@ -47,8 +47,8 @@ To answer that, consider these key constraints and design decisions:
 
 - **Threshold signatures allow flexibility, but**: With threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system.
 - **t-Schnorr multisig is more practical**: Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen.
-- **19 validators is the optimal tradeoff**: A set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security.
-- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
+- **{{ guardian_count }} validators is the optimal tradeoff**: A set of {{ guardian_count }} participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only {{ guardian_quorum }} signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security.
+- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These {{ guardian_count }} Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
 
 This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 
