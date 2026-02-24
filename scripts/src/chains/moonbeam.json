@@ -20,6 +20,7 @@
     "instant": 200,
     "safe": 201,
     "otherwise": "finalized",
+    "custom": "N/A",
     "details": "https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api/#finality-rpc-endpoints"
   },
   "devDocs": "https://docs.moonbeam.network/",

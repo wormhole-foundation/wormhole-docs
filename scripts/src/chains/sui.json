@@ -18,6 +18,7 @@
   "finality": {
     "details": "https://docs.sui.io/concepts/sui-architecture/consensus",
     "finalized": 0,
+    "custom": "N/A",
     "otherwise": ""
   },
   "devDocs": "https://docs.sui.io/",

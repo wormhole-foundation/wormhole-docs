@@ -28,7 +28,8 @@
   "contractSource": "aptos/wormhole/sources/wormhole.move",
   "finality": {
     "details": "https://aptos.dev/network/blockchain/validator-nodes#overview",
-    "finalized": 0
+    "finalized": 0,
+    "custom": "N/A"
   },
   "devDocs": "https://aptos.dev/",
   "faucet": {

@@ -21,6 +21,7 @@
   "finality": {
     "details": "https://docs.anza.xyz/consensus/commitments/",
     "confirmed": 0,
+    "custom": "N/A",
     "finalized": 1
   },
   "devDocs": "https://solana.com/docs",

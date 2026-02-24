@@ -126,6 +126,7 @@ export function generateAllConsistencyLevelsTable(dc: types.DocChain[]): string 
   <th>Instant</th>
   <th>Safe</th>
   <th>Finalized</th>
+  <th>Custom</th>
   <th>Otherwise</th>
   <th>Time to Finalize</th>
   <th>Details</th>
@@ -150,6 +151,7 @@ export function generateAllConsistencyLevelsTable(dc: types.DocChain[]): string 
     const instant = fmtNum(f.instant);
     const safe = fmtNum(f.safe !== undefined ? f.safe : f.confirmed !== undefined ? f.confirmed : undefined);
     const finalized = fmtNum(f.finalized);
+    const custom = fmtNum((f as { custom?: number }).custom);
     const otherwise = f.otherwise ? f.otherwise : '';
     const details = f.details ? `<a href="${f.details}" target="_blank">Details</a>` : ' ';
 
@@ -175,6 +177,7 @@ export function generateAllConsistencyLevelsTable(dc: types.DocChain[]): string 
   <td>${instant}</td>
   <td>${safe}</td>
   <td>${finalized}</td>
+  <td>${custom}</td>
   <td>${otherwise}</td>
   <td>${finalizationTime}</td>
   <td>${details}</td>
