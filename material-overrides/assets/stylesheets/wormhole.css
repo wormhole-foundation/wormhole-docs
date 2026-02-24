@@ -60,6 +60,7 @@
 
   --md-typeset-color: var(--dark);
   --md-typeset-a-color: #5b4fc9;
+  --breadcrumb-separator-color: var(--grey-50);
 
   --border-color: var(--grey-80);
   --border: var(--border-width) solid var(--border-color);
@@ -122,6 +123,7 @@
 
   --md-typeset-color: var(--grey-80);
   --md-typeset-a-color: var(--plum);
+  --breadcrumb-separator-color: var(--grey-60);
 
   --border-color: var(--grey-17);
   --border: var(--border-width) solid var(--border-color);
@@ -311,6 +313,35 @@
 @media screen and (min-width: 76.25em) {
   .md-grid {
     padding: 0 5.75em;
+  }
+}
+
+/* Breadcrumbs styling */
+.md-path {
+  padding-top: 0.45rem;
+  margin: 0 1.2rem 1.2rem;
+}
+
+.md-path__item:not(:first-child)::before {
+  background-color: var(--breadcrumb-separator-color);
+}
+
+@media screen and (min-width: 86.25em) {
+  [dir="ltr"]
+    .md-sidebar--primary:not([hidden])
+    ~ .md-content
+    > .md-path,
+  [dir="rtl"]
+    .md-sidebar--secondary:not([hidden])
+    ~ .md-content
+    > .md-path {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 44.984375em) {
+  .md-path__link .md-ellipsis {
+    white-space: nowrap;
   }
 }
 
