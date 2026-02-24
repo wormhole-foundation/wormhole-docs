@@ -125,11 +125,6 @@ table .ai-file-actions-btn {
   border-color: var(--border-color);
 }
 
-/* Reset specific overrides if they exist */
-[data-md-color-scheme='slate'] .ai-file-actions-container {
-  border-color: var(--border-color);
-}
-
 .ai-file-actions-menu.show {
   display: flex;
 }
