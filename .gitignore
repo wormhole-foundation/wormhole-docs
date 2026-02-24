@@ -17,3 +17,6 @@ site
 
 # IDE/Tools
 .claude/
+
+# MkDocs social cards
+.cache/
