@@ -1,5 +1,5 @@
-/** 
-* AI File Actions Styles 
+/**
+* AI File Actions Styles
 * Styling for the AI file actions component, including the split button and dropdown menu.
 */
 
@@ -81,10 +81,6 @@
   display: block;
 }
 
-/* Specific adjustment for spinner placement */
-.ai-file-actions-icon.loading-spinner {
-  margin: 0;
-}
 /* Size and color for the chevron icon */
 .ai-file-actions-chevron {
   background-size: 1em 1em;
@@ -152,58 +148,4 @@ table .ai-file-actions-btn {
 
 .md-typeset a.ai-file-actions-item:hover {
   background-color: var(--md-accent-fg-color--active);
-}
-
-/* --- Toast Notification --- */
-.ai-actions-toast {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 0.75rem 1rem;
-  background-color: var(--md-default-fg-color);
-  color: var(--md-default-bg-color);
-  border-radius: var(--border-radius);
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition:
-    opacity 0.3s,
-    transform 0.3s;
-  pointer-events: none;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.ai-actions-toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Loading Spinner --- */
-.ai-file-actions-container .loading-spinner {
-  animation: spinner-rotate 2s linear infinite;
-}
-.ai-file-actions-container .loading-spinner circle {
-  animation: spinner-dash 1.5s ease-in-out infinite;
-}
-
-@keyframes spinner-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes spinner-dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
 }
