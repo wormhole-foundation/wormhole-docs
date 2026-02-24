@@ -1,0 +1,426 @@
+site_name: Wormhole Docs
+site_url: https://wormhole.com/docs/
+docs_dir: wormhole-docs
+copyright: 2026 © Wormhole Foundation. All Rights Reserved.
+edit_uri: https://github.com/wormhole-foundation/wormhole-docs/edit/dev/
+extra_css:
+  - assets/stylesheets/terminal.css
+  - assets/stylesheets/spantable-neoteroi.css
+  - assets/stylesheets/timeline-neoteroi.css
+  - assets/stylesheets/wormhole.css
+  - assets/stylesheets/copy-to-llm.css
+extra_javascript:
+  - js/copy-to-llms.js
+theme:
+  name: material
+  custom_dir: material-overrides
+  favicon: assets/images/favicon.webp
+  logo_light: assets/images/wormhole-light.webp
+  logo_dark: assets/images/wormhole-dark.webp
+  features:
+    - content.code.annotate # Adds annotations to code blocks
+    - content.code.copy # Adds copy to clipboard button to code snippets
+    - content.tooltips # Adds tooltips
+    - content.action.edit # Adds "Edit this page" button
+    - navigation.tabs # Top-level sections are rendered below the header (can be modified to in-line with CSS)
+    - navigation.tabs.sticky # When scrolling, the tabs remain at the top of the page
+  font:
+    text: Inter
+    code: Roboto Mono
+  icon:
+    edit: material/github
+    admonition:
+      note: octicons/pencil-16
+      warning: octicons/alert-16
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: custom-dark
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: custom-light
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite
+  - md_in_html
+  - meta 
+  - neoteroi.spantable
+  - neoteroi.timeline
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - material-overrides/.icons
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.snippets:
+      base_path: wormhole-docs/.snippets
+      url_download: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      title: Sections
+      permalink: ＃
+plugins:
+  - search
+  - awesome-nav
+  - copy_md:
+      source_dir: wormhole-docs/.ai
+      target_dir: ai
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      cache_safe: true
+      js_files:
+        - js/copy-to-llms.js
+      css_files:
+        - assets/stylesheets/terminal.css
+        - assets/stylesheets/spantable-neoteroi.css
+        - assets/stylesheets/timeline-neoteroi.css
+        - assets/stylesheets/wormhole.css
+        - assets/stylesheets/copy-to-llm.css
+      scoped_css_templates:
+        home.html:
+          - assets/stylesheets/home.css
+        index-page.html:
+          - assets/stylesheets/index-page.css
+  - glightbox:
+      skip_classes:
+        - no-lightbox
+
+  - redirects:
+      redirect_maps:
+        ai-resources.md: ai-resources/ai-resources.md
+        build/applications/connect/configuration-v0.md: products/connect/configuration/configuration-v0.md
+        build/applications/connect/configuration-v1.md: products/connect/guides/upgrade.md
+        build/applications/connect/configuration/configure-data.md: products/connect/configuration/data.md
+        build/applications/connect/configuration/configure-theme.md: products/connect/configuration/theme.md
+        build/applications/connect/configuration/index.md: products/connect/configuration/data.md
+        build/applications/connect/faqs.md: products/connect/faqs.md
+        build/applications/connect/features.md: products/connect/reference/support-matrix.md
+        build/applications/connect/index.md: products/connect/overview.md
+        build/applications/connect/overview.md: products/connect/overview.md
+        build/applications/connect/routes.md: products/connect/concepts/routes.md
+        build/applications/connect/upgrade.md: products/connect/guides/upgrade.md
+        build/applications/index.md: products/overview.md
+        build/applications/queries/faqs.md: products/queries/faqs.md
+        build/applications/queries/index.md: products/queries/overview.md
+        build/applications/queries/overview.md: products/queries/overview.md
+        build/applications/queries/use-queries.md: products/queries/guides/use-queries.md
+        build/applications/wormhole-sdk/index.md: tools/typescript-sdk/get-started.md
+        build/applications/wormhole-sdk/protocols-payloads.md: tools/typescript-sdk/guides/protocols-payloads.md
+        build/applications/wormhole-sdk/sdk-layout.md: tools/typescript-sdk/guides/sdk-layout.md
+        build/applications/wormhole-sdk/vaas-protocols.md: tools/typescript-sdk/guides/vaas-protocols.md
+        build/applications/wormhole-sdk/wormhole-sdk.md: tools/typescript-sdk/get-started.md
+        build/contract-integrations/cctp.md: products/cctp-bridge/guides/cctp-contracts.md
+        build/contract-integrations/core-contracts.md: products/messaging/guides/core-contracts.md
+        build/contract-integrations/dev-env.md: tools/dev-env.md
+        build/contract-integrations/faqs.md: products/overview.md
+        build/contract-integrations/gateway.md: products/overview.md
+        build/contract-integrations/index.md: products/overview.md
+        build/contract-integrations/multigov/deploy-to-evm.md: products/multigov/guides/deploy-to-evm.md
+        build/contract-integrations/multigov/deploy-to-solana.md: products/multigov/guides/deploy-to-solana.md
+        build/contract-integrations/multigov/deployment.md: products/multigov/guides/deploy-to-evm.md
+        build/contract-integrations/multigov/faq.md: products/multigov/faqs.md
+        build/contract-integrations/multigov/index.md: products/multigov/overview.md
+        build/contract-integrations/multigov/upgrade-evm.md: products/multigov/guides/upgrade-evm.md
+        build/contract-integrations/multigov/upgrade-solana.md: products/multigov/guides/upgrade-solana.md
+        build/contract-integrations/multigov/upgrade.md: products/multigov/guides/upgrade-evm.md
+        build/contract-integrations/native-token-transfers/cli-commands.md: products/token-transfers/native-token-transfers/reference/cli-commands.md
+        build/contract-integrations/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
+        build/contract-integrations/native-token-transfers/configuration/index.md: products/token-transfers/native-token-transfers/configuration/access-control.md
+        build/contract-integrations/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
+        build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm.md: products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
+        build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana.md: products/token-transfers/native-token-transfers/guides/deploy-to-solana.md
+        build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad.md: products/token-transfers/native-token-transfers/guides/evm-launchpad.md
+        build/contract-integrations/native-token-transfers/deployment-process/index.md: products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
+        build/contract-integrations/native-token-transfers/deployment-process/installation.md: products/token-transfers/native-token-transfers/get-started.md
+        build/contract-integrations/native-token-transfers/deployment-process/post-deployment.md: products/token-transfers/native-token-transfers/guides/post-deployment.md
+        build/contract-integrations/native-token-transfers/deployment-process/troubleshooting.md: products/token-transfers/native-token-transfers/guides/troubleshoot.md
+        build/contract-integrations/native-token-transfers/faqs.md: products/token-transfers/native-token-transfers/faqs.md
+        build/contract-integrations/native-token-transfers/index.md: products/token-transfers/native-token-transfers/overview.md
+        build/contract-integrations/native-token-transfers/managers-transceivers.md: products/token-transfers/native-token-transfers/concepts/transfer-flow.md
+        build/contract-integrations/settlement/index.md: products/settlement/overview.md
+        build/contract-integrations/settlement/liquidity-layer.md: products/settlement/overview.md
+        build/contract-integrations/settlement/solver.md: products/settlement/overview.md
+        build/contract-integrations/token-bridge.md: products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
+        build/contract-integrations/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md 
+        build/core-messaging/core-contracts.md: products/messaging/guides/core-contracts.md
+        build/core-messaging/index.md: products/messaging/overview.md
+        build/core-messaging/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
+        build/index.md: products/overview.md
+        build/infrastructure/index.md: protocol/infrastructure/relayers/relayer.md
+        build/infrastructure/relayers/index.md: protocol/infrastructure/relayers/relayer.md
+        build/infrastructure/relayers/run-relayer.md: protocol/infrastructure/relayers/executor-framework.md
+        build/infrastructure/spy/index.md: protocol/infrastructure-guides/run-spy.md
+        build/infrastructure/spy/run-spy.md: protocol/infrastructure-guides/run-spy.md
+        build/multigov/deploy-to-evm.md: products/multigov/guides/deploy-to-evm.md
+        build/multigov/deploy-to-solana.md: products/multigov/guides/deploy-to-solana.md
+        build/multigov/faq.md: products/multigov/faqs.md
+        build/multigov/index.md: products/multigov/overview.md
+        build/multigov/upgrade-evm.md: products/multigov/guides/upgrade-evm.md
+        build/multigov/upgrade-solana.md: products/multigov/guides/upgrade-solana.md
+        build/queries/faqs.md: products/queries/faqs.md
+        build/queries/index.md: products/queries/overview.md
+        build/queries/overview.md: products/queries/overview.md
+        build/queries/use-queries.md: products/queries/guides/use-queries.md
+        build/reference/chain-ids.md: products/reference/chain-ids.md
+        build/reference/consistency-levels.md: products/reference/consistency-levels.md
+        build/reference/contract-addresses.md: products/reference/contract-addresses.md
+        build/reference/index.md: products/reference/chain-ids.md
+        build/reference/wormhole-formatted-addresses.md: products/reference/wormhole-formatted-addresses.md
+        build/start-building/demos.md: products/overview.md
+        build/start-building/index.md: products/overview.md
+        build/start-building/products.md: products/overview.md
+        build/start-building/supported-networks.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/algorand.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/aptos.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/cosmos.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/cosmos/cosmos.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/cosmos/gateway.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/evm.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/near.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/solana.md: products/reference/supported-networks.md
+        build/start-building/supported-networks/sui.md: products/reference/supported-networks.md
+        build/start-building/testnet-faucets.md: products/reference/testnet-faucets.md
+        build/start-building/use-cases.md: products/overview.md
+        build/toolkit/cli.md: tools/cli/get-started.md
+        build/toolkit/dev-env.md: tools/dev-env.md
+        build/toolkit/faqs.md: tools/faqs.md
+        build/toolkit/index.md: tools/typescript-sdk/get-started.md
+        build/toolkit/solidity-sdk.md: tools/solidity-sdk/sdk-reference.md
+        build/toolkit/tilt.md: tools/typescript-sdk/get-started.md
+        build/toolkit/typescript-sdk/index.md: tools/typescript-sdk/get-started.md
+        build/toolkit/typescript-sdk/protocols-payloads.md: tools/typescript-sdk/guides/protocols-payloads.md
+        build/toolkit/typescript-sdk/sdk-layout.md: tools/typescript-sdk/guides/sdk-layout.md
+        build/toolkit/typescript-sdk/vaas-protocols.md: tools/typescript-sdk/guides/vaas-protocols.md
+        build/toolkit/typescript-sdk/wormhole-sdk.md: tools/typescript-sdk/get-started.md
+        build/toolkit/wormhole-sdk/index.md: tools/typescript-sdk/get-started.md
+        build/transfers/cctp.md: products/cctp-bridge/guides/cctp-contracts.md
+        build/transfers/connect/configuration-v0.md: products/connect/configuration/configuration-v0.md
+        build/transfers/connect/configuration/configure-data.md: products/connect/configuration/data.md
+        build/transfers/connect/configuration/configure-theme.md: products/connect/configuration/theme.md
+        build/transfers/connect/configuration/index.md: products/connect/configuration/data.md
+        build/transfers/connect/faqs.md: products/connect/faqs.md
+        build/transfers/connect/features.md: products/connect/reference/support-matrix.md
+        build/transfers/connect/index.md: products/connect/overview.md
+        build/transfers/connect/overview.md: products/connect/overview.md
+        build/transfers/connect/routes.md: products/connect/concepts/routes.md
+        build/transfers/connect/upgrade.md: products/connect/guides/upgrade.md
+        build/transfers/index.md: products/overview.md
+        build/transfers/native-token-transfers/cli-commands.md: products/token-transfers/native-token-transfers/reference/cli-commands.md
+        build/transfers/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
+        build/transfers/native-token-transfers/configuration/index.md: products/token-transfers/native-token-transfers/configuration/access-control.md
+        build/transfers/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
+        build/transfers/native-token-transfers/deployment-process/deploy-to-evm.md: products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
+        build/transfers/native-token-transfers/deployment-process/deploy-to-solana.md: products/token-transfers/native-token-transfers/guides/deploy-to-solana.md
+        build/transfers/native-token-transfers/deployment-process/evm-launchpad.md: products/token-transfers/native-token-transfers/guides/evm-launchpad.md
+        build/transfers/native-token-transfers/deployment-process/index.md: products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
+        build/transfers/native-token-transfers/deployment-process/installation.md: products/token-transfers/native-token-transfers/get-started.md
+        build/transfers/native-token-transfers/deployment-process/post-deployment.md: products/token-transfers/native-token-transfers/guides/post-deployment.md
+        build/transfers/native-token-transfers/deployment-process/troubleshooting.md: products/token-transfers/native-token-transfers/guides/troubleshoot.md
+        build/transfers/native-token-transfers/faqs.md: products/token-transfers/native-token-transfers/faqs.md
+        build/transfers/native-token-transfers/index.md: products/token-transfers/native-token-transfers/overview.md
+        build/transfers/native-token-transfers/managers-transceivers.md: products/token-transfers/native-token-transfers/concepts/transfer-flow.md
+        build/transfers/settlement/faqs.md: products/settlement/faqs.md
+        build/transfers/settlement/index.md: products/settlement/overview.md
+        build/transfers/settlement/liquidity-layer.md: products/settlement/overview.md
+        build/transfers/settlement/solver.md: products/settlement/overview.md
+        build/transfers/token-bridge.md: products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
+        infrastructure/index.md: protocol/infrastructure/relayers/relayer.md
+        infrastructure/relayers/index.md: protocol/infrastructure/relayers/relayer.md
+        infrastructure/relayers/run-relayer.md: protocol/infrastructure/relayers/executor-framework.md
+        infrastructure/spy/index.md: protocol/infrastructure-guides/run-spy.md
+        infrastructure/spy/run-spy.md: protocol/infrastructure-guides/run-spy.md
+        learn/fundamentals/architecture.md: protocol/architecture.md
+        learn/fundamentals/glossary.md: products/reference/glossary.md
+        learn/fundamentals/index.md: protocol/introduction.md
+        learn/fundamentals/introduction.md: protocol/introduction.md
+        learn/fundamentals/security.md: protocol/security.md
+        learn/glossary.md: products/reference/glossary.md
+        learn/governance/architecture.md: products/multigov/concepts/architecture.md
+        learn/governance/faq.md: products/multigov/faqs.md
+        learn/governance/index.md: products/multigov/overview.md
+        learn/governance/overview.md: products/multigov/overview.md
+        learn/index.md: protocol/introduction.md
+        learn/infrastructure/architecture.md: protocol/architecture.md
+        learn/infrastructure/core-contracts.md: protocol/infrastructure/core-contracts.md
+        learn/infrastructure/guardians.md: protocol/infrastructure/guardians.md
+        learn/infrastructure/index.md: protocol/infrastructure/core-contracts.md
+        learn/infrastructure/relayer.md: protocol/infrastructure/relayers/relayer.md
+        learn/infrastructure/spy.md: protocol/infrastructure/spy.md
+        learn/infrastructure/vaas.md: protocol/infrastructure/vaas.md
+        learn/introduction.md: protocol/introduction.md
+        learn/messaging/cctp.md: products/cctp-bridge/overview.md
+        learn/messaging/gateway.md: products/overview.md
+        learn/messaging/index.md: protocol/introduction.md
+        learn/messaging/native-token-transfers/architecture.md: products/token-transfers/native-token-transfers/concepts/architecture.md
+        learn/messaging/native-token-transfers/deployment.md: products/token-transfers/native-token-transfers/overview.md
+        learn/messaging/native-token-transfers/index.md: products/token-transfers/native-token-transfers/overview.md
+        learn/messaging/native-token-transfers/overview.md: products/token-transfers/native-token-transfers/overview.md
+        learn/messaging/native-token-transfers/security.md: products/token-transfers/native-token-transfers/concepts/security.md
+        learn/messaging/token-bridge.md: products/token-transfers/wrapped-token-transfers/overview.md
+        learn/messaging/wormhole-settlement/architecture.md: products/settlement/concepts/architecture.md
+        learn/messaging/wormhole-settlement/index.md: products/settlement/overview.md
+        learn/messaging/wormhole-settlement/overview.md: products/settlement/overview.md
+        learn/security.md: protocol/security.md
+        learn/transfers/cctp.md: products/cctp-bridge/overview.md
+        learn/transfers/index.md: products/overview.md
+        learn/transfers/native-token-transfers/architecture.md: products/token-transfers/native-token-transfers/concepts/architecture.md
+        learn/transfers/native-token-transfers/deployment.md: products/token-transfers/native-token-transfers/overview.md
+        learn/transfers/native-token-transfers/index.md: products/token-transfers/native-token-transfers/overview.md
+        learn/transfers/native-token-transfers/overview.md: products/token-transfers/native-token-transfers/overview.md
+        learn/transfers/native-token-transfers/security.md: products/token-transfers/native-token-transfers/concepts/security.md
+        learn/transfers/settlement/architecture.md: products/settlement/concepts/architecture.md
+        learn/transfers/settlement/index.md: products/settlement/overview.md
+        learn/transfers/settlement/overview.md: products/settlement/overview.md
+        learn/transfers/token-bridge.md: products/token-transfers/wrapped-token-transfers/overview.md
+        products/messaging/concepts/executor-framework.md: protocol/infrastructure/relayers/executor-framework.md
+        products/messaging/concepts/executor-overview.md: protocol/infrastructure/relayers/executor-framework.md
+        products/messaging/guides/executor/cctp-executor.md: protocol/infrastructure-guides/cctp-executor.md
+        products/messaging/guides/executor/executor-vs-sr.md: protocol/infrastructure/relayers/executor-vs-sr.md
+        products/messaging/guides/executor/ntt-executor.md: protocol/infrastructure-guides/ntt-executor.md
+        products/messaging/guides/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md 
+        products/messaging/reference/relayer-contract.md: products/reference/executor-addresses.md
+        products/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
+        products/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
+        products/native-token-transfers/concepts/architecture.md: products/token-transfers/native-token-transfers/concepts/architecture.md
+        products/native-token-transfers/concepts/security.md: products/token-transfers/native-token-transfers/concepts/security.md
+        products/native-token-transfers/faqs.md: products/token-transfers/native-token-transfers/faqs.md
+        products/native-token-transfers/guides/deploy-to-evm.md: products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
+        products/native-token-transfers/guides/deploy-to-solana.md: products/token-transfers/native-token-transfers/guides/deploy-to-solana.md
+        products/native-token-transfers/guides/evm-launchpad.md: products/token-transfers/native-token-transfers/guides/evm-launchpad.md
+        products/native-token-transfers/guides/post-deployment.md: products/token-transfers/native-token-transfers/guides/post-deployment.md
+        products/native-token-transfers/guides/troubleshoot.md: products/token-transfers/native-token-transfers/guides/troubleshoot.md
+        products/native-token-transfers/get-started.md: products/token-transfers/native-token-transfers/get-started.md
+        products/native-token-transfers/overview.md: products/token-transfers/native-token-transfers/overview.md
+        products/native-token-transfers/reference/cli-commands.md: products/token-transfers/native-token-transfers/reference/cli-commands.md
+        products/native-token-transfers/reference/managers-transceivers.md: products/token-transfers/native-token-transfers/concepts/transfer-flow.md
+        products/native-token-transfers/reference/supported-networks.md: products/token-transfers/native-token-transfers/reference/supported-networks.md
+        products/token-bridge/concepts/payload-structure.md: products/token-transfers/wrapped-token-transfers/concepts/payload-structure.md
+        products/token-bridge/concepts/transfer-flow.md: products/token-transfers/wrapped-token-transfers/concepts/transfer-flow.md
+        products/token-bridge/faqs.md: products/token-transfers/wrapped-token-transfers/faqs.md
+        products/token-bridge/get-started.md: products/token-transfers/wrapped-token-transfers/get-started.md
+        products/token-bridge/guides/attest-tokens.md: products/token-transfers/wrapped-token-transfers/guides/attest-tokens.md
+        products/token-bridge/guides/fetch-signed-vaa.md: products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa.md
+        products/token-bridge/guides/token-bridge-contracts.md: products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
+        products/token-bridge/guides/transfer-wrapped-assets.md: products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
+        products/token-bridge/overview.md: products/token-transfers/wrapped-token-transfers/overview.md
+        products/token-bridge/portal/faqs.md: products/token-transfers/wrapped-token-transfers/portal/faqs.md
+        products/token-bridge/reference/supported-networks.md: products/token-transfers/wrapped-token-transfers/reference/supported-networks.md
+        products/token-bridge/tutorials/multichain-token.md: products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
+        products/token-bridge/tutorials/transfer-workflow.md: products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
+        protocol/infrastructure/relayer.md: protocol/infrastructure/relayers/relayer.md
+        protocol/infrastructure-guides/run-relayer.md: protocol/infrastructure/relayers/executor-framework.md
+        tutorials/by-product/connect/index.md: products/connect/tutorials/react-dapp.md
+        tutorials/by-product/connect/react-dapp.md: products/connect/tutorials/react-dapp.md
+        tutorials/by-product/contract-integrations/cross-chain-contracts.md: products/messaging/tutorials/cross-chain-contracts.md
+        tutorials/by-product/contract-integrations/cross-chain-token-contracts.md: products/messaging/tutorials/cross-chain-token-contracts.md
+        tutorials/by-product/contract-integrations/index.md: products/overview.md
+        tutorials/by-product/index.md: products/overview.md
+        tutorials/by-product/multichain-assets/index.md: products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
+        tutorials/by-product/multichain-assets/multichain-token.md: products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
+        tutorials/by-product/multigov/index.md: products/multigov/tutorials/treasury-proposal.md
+        tutorials/by-product/multigov/treasury-proposal.md: products/multigov/tutorials/treasury-proposal.md
+        tutorials/by-product/native-token-transfers/index.md: products/token-transfers/native-token-transfers/overview.md
+        tutorials/by-product/native-token-transfers/multichain-token.md: products/token-transfers/native-token-transfers/overview.md
+        tutorials/by-product/wormhole-sdk/index.md: tools/typescript-sdk/get-started.md
+        tutorials/by-product/wormhole-sdk/tokens-via-token-bridge.md: products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
+        tutorials/by-product/wormhole-sdk/usdc-via-cctp.md: products/cctp-bridge/tutorials/complete-usdc-transfer.md
+        tutorials/by-product/wormholescan/index.md: products/messaging/tutorials/replace-signatures.md
+        tutorials/by-product/wormholescan/replace-signatures.md: products/messaging/tutorials/replace-signatures.md
+        tutorials/connect/index.md: products/connect/tutorials/react-dapp.md
+        tutorials/connect/react-dapp.md: products/connect/tutorials/react-dapp.md
+        tutorials/index.md: products/overview.md
+        tutorials/messaging/cctp.md: products/cctp-bridge/tutorials/complete-usdc-transfer.md
+        tutorials/messaging/cross-chain-contracts.md: products/messaging/tutorials/cross-chain-contracts.md
+        tutorials/messaging/cross-chain-token-contracts.md: products/messaging/tutorials/cross-chain-token-contracts.md
+        tutorials/messaging/index.md: products/messaging/tutorials/cross-chain-contracts.md
+        tutorials/messaging/sui-connect.md: products/connect/tutorials/react-dapp.md
+        tutorials/messaging/token-bridge.md: products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
+        tutorials/multichain-assets/index.md: products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
+        tutorials/multichain-assets/multichain-token.md: products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
+        tutorials/multigov/index.md: products/multigov/overview.md
+        tutorials/multigov/treasury-proposal.md: products/multigov/tutorials/treasury-proposal.md
+        tutorials/solidity-sdk/cross-chain-contracts.md: products/messaging/tutorials/cross-chain-contracts.md
+        tutorials/solidity-sdk/cross-chain-token-contracts.md: products/messaging/tutorials/cross-chain-token-contracts.md
+        tutorials/solidity-sdk/index.md: tools/solidity-sdk/get-started.md
+        tutorials/typescript-sdk/index.md: tools/typescript-sdk/get-started.md
+        tutorials/typescript-sdk/tokens-via-token-bridge.md: products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
+        tutorials/typescript-sdk/usdc-via-cctp.md: products/cctp-bridge/tutorials/complete-usdc-transfer.md
+        tutorials/wormholescan/index.md: products/messaging/tutorials/replace-signatures.md
+        tutorials/wormholescan/replace-signatures.md: products/messaging/tutorials/replace-signatures.md
+  - macros:
+      include_yaml:
+        - wormhole-docs/variables.yml
+  - git-revision-date-localized:
+      type: date
+      enable_creation_date: true
+      enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
+extra:
+  consent:
+    title: Cookie consent
+    description: This site uses cookies to deliver its service and to analyze traffic. By browsing this site, you accept the <a href="https://wormhole.com/pages/data-protection-and-privacy-policy" target="_blank" rel="noopener">privacy policy</a>.
+    actions:
+      - accept
+      - reject
+  generator: false
+  social:
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/wormhole
+      name: Twitter
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/wormholecrypto
+      name: Discord
+    - icon: telegram
+      link: https://t.me/wormholecrypto
+      name: Telegram
+    - icon: fontawesome/brands/github
+      link: https://github.com/wormhole-foundation/wormhole
+      name: GitHub
+    - icon: docs
+      link: https://wormhole.com/docs/
+      name: Docs
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@wormholecrypto
+      name: YouTube
+  analytics:
+    provider: google
+    property: G-SGJJFZS9BB
+    feedback:
+      title: Was this helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback! Help us improve this page by submitting
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRjp_CJ2jEC0gPvK242zRzJoN_x9-Nlt_KXkCy7QPYiD4OlA/viewform?usp=pp_url&entry.2090824420=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">additional feedback</a>.
