@@ -56,9 +56,7 @@
 }
 
 .ai-file-actions-container:hover .ai-file-actions-copy {
-  border-right-color: var(
-    --border-color
-  ); /* Keep separator stable on hover */
+  border-right-color: var(--border-color); /* Keep separator stable on hover */
 }
 
 /* --- Right Button (Trigger) --- */
