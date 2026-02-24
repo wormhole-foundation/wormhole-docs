@@ -13,26 +13,26 @@ Guardians fulfill their role in the messaging protocol as follows:
 1. Guardians observe messages and sign the corresponding payloads in isolation from the other Guardians.
     - On chains where all Guardians perform direct on-chain observation, each Guardian independently observes events directly.
     - On delegated chains, a subset performs direct observation and broadcasts a `DelegateObservation` to the rest of the network.
-2. Once a sufficient delegate quorum is reached or once Guardians independently observe the event, signatures accumulate until the required 13-of-19 quorum is achieved.
+2. Once a sufficient delegate quorum is reached or once Guardians independently observe the event, signatures accumulate until the required {{ guardian_quorum }}-of-{{ guardian_count }} quorum is achieved.
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state.
 
 
 ## Guardian Sets and Delegation
 
-The Guardian network comprises 19 Guardians. However, not all chains are secured in the same way. Some chains (such as Ethereum and Solana) are secured by all 19 Guardians. Each Guardian runs a full node and independently observes on-chain events. Other chains may be secured by a delegated subset of Guardians. Chains that are not explicitly configured for delegated observation default to full Guardian Set observation, meaning all 19 Guardians observe directly.
+The Guardian network comprises {{ guardian_count }} Guardians. However, not all chains are secured in the same way. Some chains (such as Ethereum and Solana) are secured by all {{ guardian_count }} Guardians. Each Guardian runs a full node and independently observes on-chain events. Other chains may be secured by a delegated subset of Guardians. Chains that are not explicitly configured for delegated observation default to full Guardian Set observation, meaning all {{ guardian_count }} Guardians observe directly.
 
 For these chains:
 
-- A configured delegated subset of the 19 Guardians performs direct on-chain observation.
+- A configured delegated subset of the {{ guardian_count }} Guardians performs direct on-chain observation.
 - Delegated Guardians broadcast a `SignedDelegateObservation` gossip message.
 - Canonical Guardians wait until a delegate quorum is reached before signing.
-- A standard 13-of-19 VAA is ultimately produced.
+- A standard {{ guardian_quorum }}-of-{{ guardian_count }} VAA is ultimately produced.
 
 This design provides operational flexibility while maintaining compatibility with the existing Wormhole contract stack.
 
 ### Delegated Observation Flow
 
-The following flow shows how a subset of Guardians directly observes events on those chains and broadcasts a `SignedDelegateObservation` message over the Guardian gossip network. Canonical Guardians wait until the configured delegate quorum is reached before proceeding with the normal signing process. The final result is still a standard 13-of-19 VAA, fully compatible with existing smart contracts and integrations.
+The following flow shows how a subset of Guardians directly observes events on those chains and broadcasts a `SignedDelegateObservation` message over the Guardian gossip network. Canonical Guardians wait until the configured delegate quorum is reached before proceeding with the normal signing process. The final result is still a standard {{ guardian_quorum }}-of-{{ guardian_count }} VAA, fully compatible with existing smart contracts and integrations.
 
 ```mermaid
 sequenceDiagram
@@ -61,7 +61,7 @@ note over CG,CG2: Standard signing flow continues
 
 ### Delegate Quorum Safeguards
 
-On delegated chains, Canonical Guardians will not sign a message until a delegate quorum has been reached. This prevents a minority of Delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 Delegated Guardians, Canonical Guardians will only sign after at least 7 delegate observations agree. Once a delegate quorum is satisfied, Canonical Guardians sign to produce a standard 13-of-19 VAA.
+On delegated chains, Canonical Guardians will not sign a message until a delegate quorum has been reached. This prevents a minority of Delegated Guardians from lowering the effective security threshold of a chain. For example, if a chain is configured as 7-of-9 Delegated Guardians, Canonical Guardians will only sign after at least 7 delegate observations agree. Once a delegate quorum is satisfied, Canonical Guardians sign to produce a standard {{ guardian_quorum }}-of-{{ guardian_count }} VAA.
 
 ## Guardian Network
 
@@ -96,7 +96,7 @@ To answer that, consider these key constraints and design decisions:
 - **t-Schnorr multisig is more practical**: Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen.
 - **{{ guardian_count }} Guardians form the canonical set**: A set of {{ guardian_count }} participants represents a practical compromise between decentralization and efficiency. A quorum of {{ guardian_quorum }} signatures is required to produce a valid VAA.
 - **Per-chain delegated thresholds**: On delegated chains, a delegated subset of Guardians may be configured with a smaller observation threshold. Canonical Guardians wait for delegate quorum before contributing their signatures, ensuring that the effective security threshold for a chain cannot be reduced below its configured level.
-- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These {{ guardian_count }} Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
+- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These {{ guardian_count }} Guardians are among the most trusted operators in the industry — real entities with a track record, not anonymous participants.
 
 This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 
