@@ -21,3 +21,22 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
     - For L2s: Wormhole Contributors recommend reviewing L2 block explorers as well as details around whether the sequencer is centralized and how the L2 RPC node treats finality. Typically, the risks one is exposed to when not waiting for full finality from an L2 are: (1) a centralized (or compromised) sequencer censoring transactions, (2) re-orgs if sequencing is not centralized, and (3) L1 reorg risk and the L2 sequencer not re-submitting the transaction batch to the L1.
 
 --8<-- 'text/products/reference/consistency-levels/consistency-levels.md'
+
+## CCL Contract Addresses
+
+Custom Consistency Level (CCL) enables advanced finality control for EVM chains. CCL is currently supported on select EVM chains. The contract addresses below are the on-chain contracts queried when 203 (Custom) is used.
+
+!!! warning
+    Using custom finality exposes users to re-org risk. Lower finality levels increase the chance that a source-chain transaction may be reverted after assets are released or minted on the destination chain. Custom finality should be used only with a clear understanding of these risks.
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr><tr><td>Linea</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr><tr><td>Sepolia</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr><tr><td>Linea</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr></tbody></table>
+
+=== "Devnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x6A4B4A882F5F0a447078b4Fd0b4B571A82371ec2</code></td></tr></tbody></table>
