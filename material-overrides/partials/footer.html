@@ -62,7 +62,7 @@
         <div class="llms">
           <div>
             <span class="footer-title">AI Resources</span>
-            <button class="md-clipboard--inline md-icon llms-copy md-button" data-path="/ai/llms-full.jsonl" >
+            <button class="ai-file-actions-btn ai-file-actions-copy" data-url="{{ config.site_url | d('/', true) }}ai/llms-full.jsonl" data-action="copy-llms-full">
               {% include ".icons/material/content-copy.svg" %} llms-full.jsonl
             </button>
           </div>
