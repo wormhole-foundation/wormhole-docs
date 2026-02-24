@@ -46,7 +46,7 @@ If you'd like to set up a local validator environment, follow the setup guide fo
 
 ### Testnet
 
-When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where 19 Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/products/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
+When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where {{ guardian_count }} Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/products/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
 
 ```text
 https://api.testnet.wormholescan.io

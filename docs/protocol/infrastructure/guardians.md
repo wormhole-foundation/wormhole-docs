@@ -6,7 +6,7 @@ categories: Basics
 
 # Guardians
 
-Wormhole relies on a set of 19 distributed nodes called Guardians that monitor the state on several blockchains. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}. Depending on the chain's operational configuration, messages may be observed directly by all Guardians or by a delegated subset of Guardians. Regardless of how observations are collected, all [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are ultimately produced as standard 13-of-19 multisignature attestations, preserving full compatibility with existing contracts and integrators.
+Wormhole relies on a set of {{ guardian_count }} distributed nodes called Guardians that monitor the state on several blockchains. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}. Depending on the chain's operational configuration, messages may be observed directly by all Guardians or by a delegated subset of Guardians. Regardless of how observations are collected, all [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are ultimately produced as standard {{ guardian_quorum }}-of-{{ guardian_count }} multisignature attestations, preserving full compatibility with existing contracts and integrators.
 
 Guardians fulfill their role in the messaging protocol as follows:
 
@@ -94,9 +94,9 @@ To answer that, consider these key constraints and design decisions:
 
 - **Threshold signatures allow flexibility, but**: With threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system.
 - **t-Schnorr multisig is more practical**: Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen.
-- **19 Guardians form the canonical set**: A set of 19 participants represents a practical compromise between decentralization and efficiency. A quorum of 13 signatures is required to produce a valid VAA.
+- **{{ guardian_count }} Guardians form the canonical set**: A set of {{ guardian_count }} participants represents a practical compromise between decentralization and efficiency. A quorum of {{ guardian_quorum }} signatures is required to produce a valid VAA.
 - **Per-chain delegated thresholds**: On delegated chains, a delegated subset of Guardians may be configured with a smaller observation threshold. Canonical Guardians wait for delegate quorum before contributing their signatures, ensuring that the effective security threshold for a chain cannot be reduced below its configured level.
-- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
+- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These {{ guardian_count }} Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
 
 This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 

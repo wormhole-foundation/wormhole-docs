@@ -1,3 +1,5 @@
+guardian_count: 19
+guardian_quorum: 13
 ntt:
   anchor_version: v0.29.0
   solana_cli_version: v1.18.26

@@ -32,7 +32,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 ## Off-Chain Components
 
 - **Guardian Network**: Validators that exist in their own P2P network. Guardians observe and validate messages emitted by the Core Contract to produce VAAs. For full Guardian Set chains, all Guardians perform direct on-chain observation. For delegated chains, a delegated subset performs observation and broadcasts signed delegate observations to the rest of the network, after which Canonical Guardians wait for delegate quorum before signing.
-- **[Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}**: One of 19 validators in the Guardian Network that contributes to the VAA multisig.
+- **[Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}**: One of {{ guardian_count }} validators in the Guardian Network that contributes to the VAA multisig.
 - **[Spy](/docs/protocol/infrastructure/spy/){target=\_blank}**: A daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution.
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.

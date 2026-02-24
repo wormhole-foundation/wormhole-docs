@@ -8,12 +8,12 @@ categories: Basics
 
 ## Core Security Assumptions
 
-At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a supermajority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., {{ guardian_quorum }} out of {{ guardian_count }}) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
 - Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}).
-- The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
-- Guardians produce signed state attestations (signed VAAs) when valid on-chain events are observed and verified according to Wormhole's security rules.
-- For full Guardian Set chains, all Guardians run full nodes rather than light clients. For delegated chains, a delegated subset of Guardians runs full nodes and broadcasts signed delegate observations to the rest of the network. Canonical Guardians wait for a delegate quorum before signing.
+- The Guardian network is currently secured by a collection of {{ guardian_count }} of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+- Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
+- Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
 - The [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
 
@@ -27,7 +27,7 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the canonical Guardian set consists of 19 members, not all chains require all 19 Guardians to perform direct on-chain observation. For delegated chains, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains 13-of-19.
+Wormhole is an evolving platform. While the canonical Guardian set consists of {{ guardian_count }} members, not all chains require all 19 Guardians to perform direct on-chain observation. For delegated chains, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains {{ guardian_quorum }}-of-{{ guardian_count }}.
 
 Delegated Guardian Sets introduces a per-chain trust assumption: the delegate quorum threshold determines how many Delegated Guardians must independently agree before Canonical Guardians sign. This model does not weaken the final 13-of-19 VAA requirement, but it means the observation layer for that chain depends on fewer nodes. The `WormholeDelegatedGuardians` governance contract allows these thresholds to be adjusted as network requirements evolve.
 
