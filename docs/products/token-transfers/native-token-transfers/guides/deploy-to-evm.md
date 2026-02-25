@@ -106,7 +106,7 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     - Mode - either `burning` or `locking`.
     - Your token contract address.
 
-    For more advanced deployment configuration options, see the [Advanced](#advanced) section below
+    For more advanced deployment configuration options, see the [Advanced](#advanced) section below.
 
     While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
