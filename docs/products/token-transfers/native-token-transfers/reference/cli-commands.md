@@ -36,9 +36,9 @@ To explore detailed information about any NTT CLI command, including its options
 ### Advanced Custom Finality
 
 !!! warning 
-    Custom finality is an advanced feature. Wormhole Contributors recommend to use this with caution. 
+    Custom finality is an advanced feature. Wormhole Contributors recommend using this with caution. 
 
-The ntt `add-chain` command supports an optional flag that enables custom consistency levels for EVM chains. By default, NTT deployments use the `finalized` consistency level.
+The `ntt add-chain` command supports an optional flag that enables custom consistency levels for EVM chains. By default, NTT deployments use the `finalized` consistency level.
 
 Choosing a level of finality other than finalized on EVM chains exposes you to [re-org risk](https://www.alchemy.com/overviews/what-is-a-reorg){target=\_blank}. This is especially dangerous when moving assets cross-chain, because assets released or minted on the destination chain may not have been burned or locked on the source chain.
 
