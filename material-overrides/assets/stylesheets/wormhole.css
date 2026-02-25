@@ -75,7 +75,7 @@
 
   --md-typeset-table-color: var(--grey-80);
   --table-header-bg-color: var(--grey-90);
-  --md-typeset-table-color--light: var(--plum-transparent-30);
+  --md-typeset-table-color--light: var(--plum-transparent-10);
 
   --md-admonition-bg-color: var(--grey-95);
   --md-admonition-fg-color: var(--dark);
@@ -144,7 +144,7 @@
 
   --md-typeset-table-color: var(--grey-17);
   --table-header-bg-color: var(--grey-15);
-  --md-typeset-table-color--light: var(--plum-transparent-15);
+  --md-typeset-table-color--light: var(--plum-transparent-10);
 
   --md-admonition-bg-color: var(--grey-10);
   --md-admonition-fg-color: var(--light);

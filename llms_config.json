@@ -71,6 +71,11 @@
                 "name": "TypeScript SDK",
                 "description": "Docs for working with VAAs, payloads, and cross-chain message structures using the TypeScript SDK."
             },
+            "solidity-sdk": {
+                "id": "solidity-sdk",
+                "name": "Solidity SDK",
+                "description": "Docs for integrating Wormhole in Solidity, including contract interfaces, examples, and cross-chain messaging patterns."
+            },
             "cctp": {
                 "id": "cctp",
                 "name": "CCTP",
@@ -85,9 +90,10 @@
         "exclusions": {
             "skip_basenames": [
                 "index.md",
-                "LICENSE.md"
+                "LICENSE.md",
+                "ai-resources.md"
             ],
-            "skip_paths": [".snippets", ".github", "venv", ".venv"]
+            "skip_paths": ["venv"]
         }
     },
 
