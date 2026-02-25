@@ -13,8 +13,8 @@ Wormhole has several noteworthy components. Before discussing each component in 
 The preceding diagram outlines the end-to-end flow of multichain communication through Wormhole's architecture, which is described as follows:
 
 1. **Source chain**: A source contract emits a message by interacting with the [Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs.
-2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain. Relayers act as the transport layer of the Wormhole network, responsible for carrying signed messages between chains. In Wormhole’s protocol, this role is fulfilled by the [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank}, a shared, permissionless framework for message delivery. The Executor enables anyone to act as a delivery provider through an open request-and-quote model, removing the need for centralized relayer services.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}. For delegated chains, a delegated subset performs direct observation while Canonical Guardians wait for delegate quorum before signing. The final VAA remains a standard {{ guardian_quorum }}-of-{{ guardian_count }} multisignature attestation.
+3. **Relayers**: Off-chain relayers or applications fetch the VAA and relay it to the target chain. Relayers act as the transport layer of the Wormhole network, responsible for carrying signed messages between chains. In Wormhole’s protocol, this role is fulfilled by the [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, a shared, permissionless framework for message delivery. The Executor enables anyone to act as a delivery provider through an open request-and-quote model, removing the need for centralized relayer services.
 
 4. **Target chain**: On the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended multichain operation.
 
@@ -31,12 +31,12 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
 ## Off-Chain Components
 
-- **Guardian Network**: Validators that exist in their own P2P network. Guardians observe and validate the messages emitted by the Core Contract on each supported chain to produce VAAs (signed messages).
+- **Guardian Network**: Validators that exist in their own P2P network. Guardians observe and validate messages emitted by the Core Contract to produce VAAs. For full Guardian Set chains, all Guardians perform direct on-chain observation. For delegated chains, a delegated subset performs observation and broadcasts signed delegate observations to the rest of the network, after which Canonical Guardians wait for delegate quorum before signing.
 - **[Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}**: One of {{ guardian_count }} validators in the Guardian Network that contributes to the VAA multisig.
 - **[Spy](/docs/protocol/infrastructure/spy/){target=\_blank}**: A daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution.
 - **[API](https://docs.wormholescan.io/){target=\_blank}**: A REST server to retrieve details for a VAA or the Guardian Network.
 - **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract.
-- **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain. Wormhole provides the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, a shared execution framework. This framework enables permissionless message delivery through an open marketplace where relay providers compete using a request-and-quote model.
+- **[Relayer](/docs/protocol/infrastructure/relayers/relayer/){target=\_blank}**: Any off-chain process that relays a VAA to the target chain. Wormhole provides the [Executor framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank}, a shared execution framework. This framework enables permissionless message delivery through an open marketplace where relay providers compete using a request-and-quote model.
 
 ## Next Steps
 

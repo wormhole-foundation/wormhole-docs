@@ -8,14 +8,14 @@ categories: Basics
 
 Verified Action Approvals (VAAs) are Wormhole's core messaging primitive. They are packets of cross-chain data emitted whenever a cross-chain application contract interacts with the Core Contract.
 
-[Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians agree the message is valid, they sign a keccak256 hash of the message body. 
+[Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a two-thirds supermajority of Guardians agree the message is valid, they sign a keccak256 hash of the message body.
 
-The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof. 
+The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
 VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank} with this information.
 
-The `sequence` field depends on the final ordering of blocks on the emitter chain. When a lower consistency level is chosen (i.e., not waiting for finality), there is a chance that chain reorganizations could lead to multiple, different VAAs appearing for what looks like the “same” message on the user side. 
-    
+The `sequence` field depends on the final ordering of blocks on the emitter chain. When a lower consistency level is chosen (i.e., not waiting for finality), there is a chance that chain reorganizations could lead to multiple, different VAAs appearing for what looks like the "same" message on the user side.
+
 The tuple (`emitter_chain`, `emitter_address`, `sequence`) can only be considered unique if the chain does not undergo a reorg and the block containing the message has effectively reached finality. However, there is always a small chance of an extended reorg that could invalidate or alter a previously emitted sequence number.
 
 ## VAA Format
@@ -42,7 +42,7 @@ The basic VAA consists of header and body components described as follows:
     - **`consistency_level` ++"u8"++**: The consistency level (finality) required by this emitter.
     - **`payload` ++"[]byte"++**: Arbitrary bytes containing the data to be acted on.
 
-The deterministic nature of the body is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message. This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level
+The deterministic nature of the body is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message. This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level.
 
 The body contains relevant information for entities, such as contracts or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
@@ -50,7 +50,7 @@ Because VAAs have no destination, they are effectively multicast. Any Core Contr
 
 ## Consistency and Finality
 
-The consistency level determines whether Guardians wait for a chain's final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
+The consistency level determines whether Guardians wait for a chain's final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed.
 
 Guardian watchers are specialized processes that monitor each blockchain in real-time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk. A more conservative option takes longer but reduces the likelihood of rollback.
 
@@ -64,7 +64,7 @@ The body of the VAA is hashed twice with `keccak256` to produce the signed diges
 
 !!!tip "Hash vs. double hash"
     Different implementations of the ECDSA signature validation may apply a keccak256 hash to the message passed, so care must be taken to pass the correct arguments.
-    
+
     For example, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 ## Payload Types
@@ -111,7 +111,7 @@ The message format for token attestation is as follows:
 - **`symbol` ++"[32]byte"++**: Short name of asset.
 - **`name` ++"[32]byte"++**: Full name of asset.
 
-#### Attestation Tips 
+#### Attestation Tips
 
 Be aware of the following considerations when working with attestations:
 
@@ -132,7 +132,7 @@ The Token Transfer with Message data structure is identical to the token-only da
 - **`fee` field**: Replaced with the `from_address` field.
 - **`payload` field**: Is added containing arbitrary bytes. A dApp may include additional data in this arbitrary byte field to inform some application-specific behavior.
 
-This VAA type was previously known as Contract Controlled Transfer and is also sometimes referred to as a `payload3` message. The Token Transfer with Message data sructure is as follows:
+This VAA type was previously known as Contract Controlled Transfer and is also sometimes referred to as a `payload3` message. The Token Transfer with Message data structure is as follows:
 
 - **`payload_id` ++"u8"++**: The ID of the payload. This should be set to `3` for a token transfer with message.
 - **`amount` ++"u256"++**: Amount of tokens being transferred.
@@ -175,8 +175,8 @@ Anyone can submit a VAA to the target chain. Guardians typically don't perform t
 
 With the concepts now defined, it is possible to illustrate a full flow for message passing between two chains. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
-1. **A message is emitted by a contract running on Chain A**: Any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the {{ guardian_count }} Guardians.
-2. **Signatures are aggregated**: Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA.
+1. **A message is emitted by a contract running on Chain A**: Any contract can emit messages, and the Guardian Network observes supported chains for these events. For full Guardian Set chains, all {{ guardian_count }} Guardians directly observe on-chain messages. For delegated chains, a delegated subset performs direct observation and broadcasts signed delegate observations to the rest of the network. In the diagram, Guardians are represented as a single entity for simplicity, but observation and signing are performed independently by each participating Guardian.
+2. **Signatures are aggregated**: Guardians independently observe and sign the message. For full Guardian Set chains, all Guardians perform on-chain observation. For delegated chains, a delegated subset observes and broadcasts `SignedDelegateObservation` messages to the rest of the network. Canonical Guardians wait for delegate quorum before contributing their signatures. Once a two-thirds majority ({{ guardian_quorum }} out of {{ guardian_count }}) have signed, the signatures are combined with the message and metadata to produce a VAA.
 3. **VAA submitted to target chain**: The VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step.
 
 ![Lifetime of a message diagram](/docs/images/protocol/infrastructure/vaas/lifetime-vaa-diagram.webp)
@@ -202,5 +202,3 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
     [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>
-
-

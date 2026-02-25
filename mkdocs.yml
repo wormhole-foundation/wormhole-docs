@@ -24,6 +24,7 @@ theme:
     - content.action.edit # Adds "Edit this page" button
     - navigation.tabs # Top-level sections are rendered below the header (can be modified to in-line with CSS)
     - navigation.tabs.sticky # When scrolling, the tabs remain at the top of the page
+    - navigation.path # Adds breadcrumbs path at the top of the page
   font:
     text: Inter
     code: Roboto Mono
@@ -109,6 +110,15 @@ plugins:
   - glightbox:
       skip_classes:
         - no-lightbox
+  - social:
+      enabled: !ENV [SOCIAL_CARDS, True]
+      cards_layout_dir: layouts
+      cards_layout: wormhole
+      cards_layout_options:
+        background_image: null
+        background_color: "#fff"
+        logo: layouts/wormhole-social-logo.png
+        title: Wormhole Documentation
 
   - redirects:
       redirect_maps:

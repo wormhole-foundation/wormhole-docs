@@ -15,11 +15,11 @@ At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infra
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator.
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs.
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain.
-- The [Executor](/docs/products/messaging/concepts/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
+- The [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} is considered untrusted in the Wormhole ecosystem. It can affect message availability (timing of delivery) but cannot alter or forge VAAs, as validity is enforced by Guardian signatures.
 
 In summary:
 
-- **Core integrators aren't exposed to risk from chains and contracts they don't integrate with**.
+- **Core integrators are not exposed to risk from chains and contracts they do not integrate with**.
 - By default, you only trust Wormhole's signing process and the core contracts of the chains you're on.
 - You can expand your contract and chain dependencies as you see fit.
 
@@ -27,7 +27,9 @@ Core assumptions aside, many other factors impact the real-world security of dec
 
 ## Guardian Network
 
-Wormhole is an evolving platform. While the Guardian set currently comprises {{ guardian_count }} validators, this is a limitation of current blockchain technology.
+Wormhole is an evolving platform. While the canonical Guardian set consists of {{ guardian_count }} members, not all chains require all {{ guardian_count }} Guardians to perform direct on-chain observation. For delegated chains, a delegated subset of Guardians performs direct on-chain observation while the final VAA signature threshold remains {{ guardian_quorum }}-of-{{ guardian_count }}.
+
+Delegated Guardian Sets introduces a per-chain trust assumption: the delegate quorum threshold determines how many Delegated Guardians must independently agree before Canonical Guardians sign. This model does not weaken the final {{ guardian_quorum }}-of-{{ guardian_count }} VAA requirement, but it means the observation layer for that chain depends on fewer nodes. The `WormholeDelegatedGuardians` governance contract allows these thresholds to be adjusted as network requirements evolve.
 
 ### Governance
 
@@ -44,6 +46,7 @@ Via governance, the Guardians can:
 - Change the current Guardian set.
 - Expand the Guardian set.
 - Upgrade ecosystem contract implementations.
+- Configure per-chain Delegated Guardian sets and security thresholds via the `WormholeDelegatedGuardians` contract.
 
 The governance system is fully open source in the core repository. See the [Open Source section](#open-source){target=\_blank} for contract source.
 
@@ -51,7 +54,7 @@ The governance system is fully open source in the core repository. See the [Open
 
 A key element of Wormhole's defense-in-depth strategy is that each Guardian is a highly competent validator company with its own in-house processes for running, monitoring, and securing blockchain operations. This heterogeneous approach to monitoring increases the likelihood that fraudulent activity is detected and reduces the number of single failure points in the system.
 
-Guardians are not just running Wormhole validators; they're running validators for every blockchain inside of Wormhole as well, which allows them to perform monitoring holistically across decentralized computing rather than just at a few single points.
+For full Guardian Set chains, all Guardians run full nodes and independently monitor block production and contract activity. For delegated chains, Delegated Guardians perform direct on-chain monitoring while Canonical Guardians monitor delegate observations and enforce quorum safeguards.
 
 Guardians monitor:
 
@@ -61,9 +64,11 @@ Guardians monitor:
 
 ## Asset Layer Protections
 
-One key strength of the Wormhole ecosystem is the Guardians’ ability to validate and protect the integrity of assets across multiple blockchains.
+One key strength of the Wormhole ecosystem is the Guardians' ability to validate and protect the integrity of assets across multiple blockchains.
 
-To enforce the Wormhole Asset Layer’s core protections, the Global Accountant tracks the total circulating supply of all Wormhole assets across all chains, preventing any blockchain from bridging assets that could violate the supply invariant.
+To enforce the Wormhole Asset Layer's core protections, the Global Accountant tracks the total circulating supply of all Wormhole assets across all chains, preventing any blockchain from bridging assets that could violate the supply invariant.
+
+For delegated chains, delegate quorum must be reached before Canonical Guardians contribute signatures, ensuring that per-chain delegate thresholds are respected without altering the Global Accountant's {{ guardian_quorum }}-of-{{ guardian_count }} security model.
 
 In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The [Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank} tracks inflows and outflows of all blockchains and delays suspicious transfers that may indicate an exploit.
 
@@ -90,17 +95,17 @@ Wormhole has been heavily audited, with _29 third-party audits completed_ and mo
 - [Halborn](https://www.halborn.com/){target=\_blank}
 - [Cantina](https://cantina.xyz/welcome){target=\_blank}
 
-All audits and final reports can be found in [security page of the GitHub Repo](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#3rd-party-security-audits){target=\blank}.
+All audits and final reports can be found in [security page of the GitHub Repo](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#3rd-party-security-audits){target=\_blank}.
 
 ## Bug Bounties
 
 Wormhole has one of the largest bug bounty programs in software development and has repeatedly shown commitment to engaging with the white hat community.
 
-Wormhole runs a bug bounty program through [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\blank} program, with a top payout of **5 million dollars**.
+Wormhole runs a bug bounty program through [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\_blank} program, with a top payout of **5 million dollars**.
 
-If you are interested in contributing to Wormhole security, please look at this section for [Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\blank}, and follow the [Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\blank}.
+If you are interested in contributing to Wormhole security, please look at this section for [Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\_blank}, and follow the [Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\_blank}.
 
-For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\blank}.
+For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\_blank}.
 
 ## Next Steps
 
@@ -112,6 +117,6 @@ For more information about submitting to the bug bounty programs, refer to the [
 
     The `SECURITY.md` from the official Wormhole repository on GitHub has the latest security policies and updates.
 
-    [:custom-arrow: See SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank}
+    [:custom-arrow: See SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\_blank}
 
 </div>

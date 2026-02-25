@@ -24,11 +24,11 @@ A Delivery Provider monitors for Executor delivery requests and delivers those r
 
 ## Emitter
 
-The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
+The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address, and a sequence number is tracked to provide a unique ID.
 
 ## Finality
 
-The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
+The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused will not be reverted.
 
 ## Guardian
 
@@ -36,11 +36,25 @@ A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of
 
 ## Guardian Network
 
-Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
+Validators operating in a dedicated P2P network that serve as Wormhole's oracle layer. Guardians monitor on-chain activity and generate signed messages (VAAs) attesting to it.
+
+For full Guardian Set chains, all 19 Guardians perform direct on-chain observation. For delegated chains, a delegated subset monitors and broadcasts signed delegate observations to the rest of the network. Canonical Guardians wait for a delegate quorum before signing. Regardless of the observation path, VAAs are always finalized as standard 13-of-19 multisignature attestations.
 
 ## Guardian Set
 
-The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
+The Guardian Set is the canonical set of 19 Guardians responsible for producing VAAs. A supermajority of 13 signatures is required to generate a valid VAA.
+
+For certain chains, governance may configure a delegated subset of the Guardian Set to perform direct on-chain observation with a smaller per-chain quorum. Canonical Guardians wait for a delegate quorum before signing, ensuring that the effective security threshold for a chain cannot fall below its configured level.
+
+The composition of the Guardian Set may change through governance actions.
+
+## Delegated Guardian
+
+A Guardian configured to perform direct on-chain observation for a delegated chain. Delegated Guardians broadcast `SignedDelegateObservation` messages to the Guardian gossip network.
+
+In contrast, a Canonical Guardian does not observe that chain directly, it waits for enough `DelegateObservation` messages (the delegate quorum) before contributing its signature to the VAA.
+
+The key distinction: on a delegated chain, Delegated Guardians run full nodes and watch the chain themselves, while Canonical Guardians trust the delegate quorum before signing. The final VAA is still a standard 13-of-19 multisig regardless.
 
 ## Heartbeat
 

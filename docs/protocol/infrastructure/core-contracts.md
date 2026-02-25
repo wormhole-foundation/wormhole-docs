@@ -26,7 +26,7 @@ The Wormhole Core Contract is central in facilitating secure and efficient multi
 The following describes the role of the Wormhole Core Contract in message transfers:
 
 1. **Message submission**: When a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification.
-2. **Guardian verification**: The Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA.
+2. **Guardian verification**: Guardians independently observe and sign the message. On chains where all Guardians perform direct on-chain observation, each Guardian signs based on its own verification of the event. On delegated chains, a delegated subset signs and broadcasts signed delegate observations to the rest of the network. Canonical Guardians wait for delegate quorum before contributing their signatures. Once a supermajority of 13 out of 19 Guardians have signed, the signatures are combined with the message and metadata to produce a VAA.
 3. **Message reception and execution**: On the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions.
 
 For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/protocol/architecture/) page.
@@ -43,7 +43,7 @@ There are no fees to publish a message except when publishing on Solana, but thi
 
 ### Message Reception
 
-When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/protocol/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
+When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/protocol/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains. The Core Contract does not distinguish between chains with direct observation and delegated chains; it verifies only that a valid 13-of-19 VAA has been produced.
 
 ## Multicast
 
@@ -51,7 +51,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Executor](/docs/products/messaging/concepts/executor-overview/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Executor](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
