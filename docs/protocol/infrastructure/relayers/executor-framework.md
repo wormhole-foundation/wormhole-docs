@@ -135,23 +135,21 @@ On EVM chains, on-chain quoting introduces two additional contracts:
 - `ExecutorQuoter`: Implements the pricing logic for a specific Relay Provider.
 - `ExecutorQuoterRouter`: Acts as the canonical entrypoint for integrators requesting on-chain quotes.
 
-The Quoter address (EVM public key) identifies the Relay Provider. It is used by the `ExecutorQuoterRouter` to look up the registered `ExecutorQuoter` implementation for that provider. This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
+The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter/){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution.  This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
 
 The Router constructs an unsigned `EQ02` quote on-chain and forwards the execution request to the Executor contract. `EQ02` contains the same pricing fields as the signed `EQ01` quote, but it is constructed on-chain, it does not contain a signature, and Relay Providers verify it by checking for an `OnChainQuote` event emitted by the canonical Router. This preserves compatibility with existing Executor tooling and off-chain validation logic.
 
-Most applications do not need to interact directly with `ExecutorQuoter`, `ExecutorQuoterRouter`, or `EQ02` formatting. The Wormhole SDK abstracts quote resolution, relay instruction formatting, execution request construction, and payment handling.
-
-Unless building a low-level contract integration, developers should rely on the SDK to manage quote construction and execution flows.
+Most applications do not need to interact directly with `ExecutorQuoter`, `ExecutorQuoterRouter`, or `EQ02` formatting. The Wormhole SDK abstracts quote resolution, relay instruction formatting, execution request construction, and payment handling. Unless building a low-level contract integration, developers should rely on the SDK to manage quote construction and execution flows.
 
 ### Quoter Governance
 
-Relay Providers register their `ExecutorQuoter` implementation via signed governance messages.
+Relay Providers register their `ExecutorQuoter` implementation through a signed governance message submitted to the `ExecutorQuoterRouter`.
 
-The governance payload:
+The governance message:
 
-- Binds a Quoter public key to an implementation contract
-- Includes expiry to prevent replay
-- Is verified by the `ExecutorQuoterRouter`
+- Associates a Quoter public key with a specific implementation contract
+- Includes an expiry to prevent replay
+- Is validated by the `ExecutorQuoterRouter`
 
 This ensures that providers can update pricing logic, the Router remains immutable and permissionless, and off-chain infrastructure can verify that a quote originated from the canonical Router.
 
@@ -217,6 +215,11 @@ To improve transparency, providers may also publish a Service-Level Agreement (S
 ## Security Considerations
 
 The Executor contract is explicitly designed to be immutable and sit outside an integrator's security stack. Executor is intended to be used as a mechanism to permissionlessly deliver cross-chain data that includes an independent attestation source, such as Wormhole VAAs. The Executor does not change Wormhole’s security model; it changes how delivery requests are initiated and fulfilled.
+
+## Resources
+
+- [demo-hello-executor](https://github.com/wormhole-foundation/demo-hello-executor){target=_blank} — Minimal end-to-end example demonstrating quote requests and `requestExecution` flows.
+- [Executor Addresses Reference](/docs/products/reference/executor-addresses/){target=_blank} — Deployed Executor contracts, On-chain Quoter contracts, Wormhole Labs’ Quoter implementations, and published Quoter public keys.
 
 ## Next Steps
 
