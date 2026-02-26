@@ -14,11 +14,11 @@ These options provide different trade-offs between latency and re-org resistance
 - `safe` provides additional protection while maintaining reasonable latency.
 - `finalized` offers the strongest guarantees but increases confirmation time.
 
-For most integrations, `instant`, `safe`, or `finalized` are sufficient and do not require additional configuration.
+`finalized` provides the strongest protection against chain re-orgs. Selecting `instant`, `safe`, or a custom finality level increases exposure to re-org risk and should be evaluated carefully based on the application's risk profile.
 
 !!! warning
 
-    Some Wormhole-supported EVM chains support setting a custom finality level. Wormhole Contributors recommend using this advanced feature with caution. Choosing a level of finality other than `finalized` on EVM chains exposes you to [re-org risk](https://www.alchemy.com/overviews/what-is-a-reorg){target=\_blank}. This is especially dangerous when moving assets cross-chain, because assets released or minted on the destination chain may not have been burned or locked on the source chain. This risk can extend to other types of cross-chain data, depending on your application. Most integrations should use `instant`, `safe`, or `finalized`.
+    Some Wormhole-supported EVM chains support setting a custom finality level. Wormhole Contributors recommend using this advanced feature with caution. Choosing a level of finality other than `finalized` — including `instant`, `safe`, or any custom configuration — on EVM chains exposes you to [re-org risk](https://www.alchemy.com/overviews/what-is-a-reorg){target=\_blank}. This is especially dangerous when moving assets cross-chain, because assets released or minted on the destination chain may not have been burned or locked on the source chain. This risk can extend to other types of cross-chain data, depending on your application. 
 
     Assumption of risk; no warranty; no liability. By selecting a Custom finality level, you acknowledge and accept all risk of chain re-orgs/rollbacks and any resulting loss, imbalance, or data inconsistency. Wormhole contributors, and their affiliates (“Wormhole Parties”) provide this feature “as is,” make no warranties of any kind, and will not be liable for any losses or damages arising from your selection or use of Custom finality. You are solely responsible for appropriate safeguards (e.g., caps, delays, monitoring, circuit breakers).
     
