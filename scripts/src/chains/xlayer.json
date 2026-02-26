@@ -13,7 +13,6 @@
   "finality": {
     "instant": 200,
     "safe": 201,
-    "custom": "N/A",
     "otherwise": "finalized"
   },
   "faucet": {

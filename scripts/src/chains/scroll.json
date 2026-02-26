@@ -11,7 +11,6 @@
   },
   "finality": {
     "instant": 200,
-    "custom": "N/A",
     "otherwise": "finalized"
   },
   "devDocs": "https://docs.scroll.io/en/home/",

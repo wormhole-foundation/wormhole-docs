@@ -19,7 +19,6 @@
     "details": "https://docs.arbitrum.io/learn-more/faq#how-many-blocks-are-needed-for-a-transaction-to-be-confirmedfinalized-in-arbitrum",
     "instant": 200,
     "safe": 201,
-    "custom": "N/A",
     "otherwise": "finalized"
   },
   "devDocs": "https://docs.arbitrum.io/",

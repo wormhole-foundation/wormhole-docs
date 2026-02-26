@@ -22,7 +22,6 @@
   "contractSource": "algorand/wormhole_core.py",
   "finality": {
     "finalized": 0,
-    "custom": "N/A",
     "details": "https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality"
   },
   "devDocs": "https://developer.algorand.org",

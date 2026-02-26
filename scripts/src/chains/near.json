@@ -17,7 +17,6 @@
   ],
   "finality": {
     "details": "https://nomicon.io/ChainSpec/Consensus",
-    "custom": "N/A",
     "finalized": 0
   },
   "faucet": {

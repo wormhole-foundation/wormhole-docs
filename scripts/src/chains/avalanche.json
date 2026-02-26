@@ -21,7 +21,6 @@
   "contractSource": "ethereum/contracts/bridge/Bridge.sol",
   "finality": {
     "instant": 200,
-    "custom": "N/A",
     "otherwise": "finalized",
     "details": "https://build.avax.network/docs/primary-network/exchange-integration#determining-finality"
   },
