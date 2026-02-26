@@ -143,7 +143,6 @@ Most applications do not need to interact directly with `ExecutorQuoter`, `Execu
 
 Unless building a low-level contract integration, developers should rely on the SDK to manage quote construction and execution flows.
 
-
 ### Quoter Governance
 
 Relay Providers register their `ExecutorQuoter` implementation via signed governance messages.
