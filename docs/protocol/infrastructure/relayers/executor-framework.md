@@ -135,7 +135,7 @@ On EVM chains, on-chain quoting introduces two additional contracts:
 - `ExecutorQuoter`: Implements the pricing logic for a specific Relay Provider.
 - `ExecutorQuoterRouter`: Acts as the canonical entrypoint for integrators requesting on-chain quotes.
 
-The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter/){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution.  This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
+The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution.  This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
 
 The Router constructs an unsigned `EQ02` quote on-chain and forwards the execution request to the Executor contract. `EQ02` contains the same pricing fields as the signed `EQ01` quote, but it is constructed on-chain, it does not contain a signature, and Relay Providers verify it by checking for an `OnChainQuote` event emitted by the canonical Router. This preserves compatibility with existing Executor tooling and off-chain validation logic.
 
