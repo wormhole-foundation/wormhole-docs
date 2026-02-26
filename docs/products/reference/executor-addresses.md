@@ -30,4 +30,10 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/quoter-public-keys.md'
 
+### Wormhole Labs Quoter Implementation
+
 --8<-- 'text/products/reference/contract-addresses/wh-quoter-implementation.md'
+
+### Quoter Router
+
+--8<-- 'text/products/reference/contract-addresses/quoter-router.md'
