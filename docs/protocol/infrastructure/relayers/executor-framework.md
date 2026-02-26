@@ -96,13 +96,13 @@ sequenceDiagram
 
 ## On-Chain Quote Resolution
 
-While the default execution flow relies on off-chain signed quotes, the Executor framework also supports resolving execution pricing fully on-chain. This mechanism is designed for integrators who cannot modify their off-chain flow or must rely strictly on on-chain state to determine pricing. Instead of passing a signed quote to the Executor contract, the integrator specifies a Quoter public key, and the quote is constructed on-chain through a routing contract.
+While the default execution flow relies on off-chain signed quotes, the Executor framework also supports fully on-chain execution pricing. This mechanism is designed for integrators who cannot modify their off-chain flow or must rely strictly on on-chain state to determine pricing. Instead of passing a signed quote to the Executor contract, the integrator specifies a Quoter public key, and the quote is constructed on-chain through a routing contract.
 
 On-chain quote resolution is appropriate when:
 
 - The integrator must follow a view → payable contract pattern.
 - Execution pricing must be deterministically derived from on-chain logic.
-- The integration composes with protocols that cannot pass arbitrary off-chain signatures.
+- The integration comprises protocols that cannot pass arbitrary off-chain signatures.
 
 For most SDK-based integrations, off-chain signed quotes remain the recommended and more efficient approach.
 
@@ -135,9 +135,9 @@ On EVM chains, on-chain quoting introduces two additional contracts:
 - `ExecutorQuoter`: Implements the pricing logic for a specific Relay Provider.
 - `ExecutorQuoterRouter`: Acts as the canonical entrypoint for integrators requesting on-chain quotes.
 
-The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter/){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution.  This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
+The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter/){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution. This allows multiple providers to register independent pricing logic, support permissionless participation, and form execution quotes on-chain without requiring signatures.
 
-The Router constructs an unsigned `EQ02` quote on-chain and forwards the execution request to the Executor contract. `EQ02` contains the same pricing fields as the signed `EQ01` quote, but it is constructed on-chain, it does not contain a signature, and Relay Providers verify it by checking for an `OnChainQuote` event emitted by the canonical Router. This preserves compatibility with existing Executor tooling and off-chain validation logic.
+The Router constructs an unsigned `EQ02` quote on-chain and forwards the execution request to the Executor contract. `EQ02` contains the same pricing fields as the signed `EQ01` quote. Still, it is constructed on-chain, it does not contain a signature, and Relay Providers verify it by checking for an `OnChainQuote` event emitted by the canonical Router. This preserves compatibility with existing Executor tooling and off-chain validation logic.
 
 Most applications do not need to interact directly with `ExecutorQuoter`, `ExecutorQuoterRouter`, or `EQ02` formatting. The Wormhole SDK abstracts quote resolution, relay instruction formatting, execution request construction, and payment handling. Unless building a low-level contract integration, developers should rely on the SDK to manage quote construction and execution flows.
 
