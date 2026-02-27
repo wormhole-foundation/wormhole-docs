@@ -9,6 +9,7 @@
   "contractSource": "ethereum/contracts/bridge/Bridge.sol",
   "finality": {
     "instant": 200,
+    "custom": 203,
     "otherwise": "finalized"
   },
   "explorer": [

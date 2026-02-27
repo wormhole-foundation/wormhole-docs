@@ -9,6 +9,7 @@
   "finality": {
     "details": "https://docs.polygon.technology/pos/architecture/heimdall_v2/checkpoints/",
     "instant": 200,
+    "custom": 203,
     "otherwise": "finalized"
   },
   "devDocs": "https://docs.polygon.technology/",

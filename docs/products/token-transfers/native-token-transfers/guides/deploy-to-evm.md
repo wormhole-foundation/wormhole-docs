@@ -106,6 +106,8 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     - Mode - either `burning` or `locking`.
     - Your token contract address.
 
+    For more advanced deployment configuration options, see the [Advanced](#advanced) section below.
+
     While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
 3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
@@ -182,6 +184,19 @@ This table compares the configuration parameters available when deploying the NT
 | `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
 
+## Advanced
+
+By default, cross-chain token transfers with NTT wait for full finality on the source chain. On some EVM chains, this can be a few seconds. On other EVM chains, such as Ethereum and L2s, this can be 15-20 minutes. This is the safest option for cross-chain token transfers. For faster cross-chain transfers, we recommend pairing NTT with a fast-transfers product such as [Mayan Swift](/docs/products/settlement/overview/#mayan-swift){target=\_blank}.
+
+If you would like to transfer tokens faster than finality natively, you can use the `--unsafe-custom-finality` flag to configure this. **Custom finality is an advanced feature, and Wormhole Contributors recommend using this with caution.** Choosing a level of finality other than `finalized` on EVM chains exposes you to [re-org risk](https://www.alchemy.com/overviews/what-is-a-reorg){target=\_blank}. This is especially dangerous when moving assets cross-chain, because assets released or minted on the destination chain may not have been burned or locked on the source chain.
+
+To select a custom finality level on an L1 chain, Wormhole Contributors recommend consulting information on forked blocks in blockchain explorers such as [Etherscan](https://etherscan.io/blocks_forked?p=1){target=\_blank}, [Polygonscan](https://polygonscan.com/blocks_forked){target=\_blank}, and others, paying particular attention to the “ReorgDepth” column. Polygon, for instance, has been known to have reorgs with a depth of up to 128 blocks!
+
+To select a custom finality level on an L2 chain, Wormhole Contributors recommend reviewing L2 block explorers and details on whether the sequencer is centralized and how the L2 RPC node handles finality. Typically, the risks one is exposed to when not waiting for full finality from an L2 are: 
+
+1. A centralized (or compromised) sequencer censoring transactions
+2. Re-orgs if sequencing is not centralized
+3. L1 reorg risk and the L2 sequencer not re-submitting the transaction batch to the L1.
 
 ## Next Steps
 
