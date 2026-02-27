@@ -176,10 +176,10 @@ plugins:
         build/contract-integrations/settlement/liquidity-layer.md: products/settlement/overview.md
         build/contract-integrations/settlement/solver.md: products/settlement/overview.md
         build/contract-integrations/token-bridge.md: products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
-        build/contract-integrations/wormhole-relayers.md: products/messaging/guides/wormhole-relayers.md
+        build/contract-integrations/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
         build/core-messaging/core-contracts.md: products/messaging/guides/core-contracts.md
         build/core-messaging/index.md: products/messaging/overview.md
-        build/core-messaging/wormhole-relayers.md: products/messaging/guides/wormhole-relayers.md
+        build/core-messaging/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md 
         build/index.md: products/overview.md
         build/infrastructure/index.md: protocol/infrastructure/relayers/relayer.md
         build/infrastructure/relayers/index.md: protocol/infrastructure/relayers/relayer.md
@@ -312,6 +312,8 @@ plugins:
         products/messaging/guides/executor/cctp-executor.md: protocol/infrastructure-guides/cctp-executor.md
         products/messaging/guides/executor/executor-vs-sr.md: protocol/infrastructure/relayers/executor-vs-sr.md
         products/messaging/guides/executor/ntt-executor.md: protocol/infrastructure-guides/ntt-executor.md
+        products/messaging/guides/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
+        products/messaging/reference/relayer-contract.md: protocol/infrastructure/relayers/executor-framework.md  
         products/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
         products/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
         products/native-token-transfers/concepts/architecture.md: products/token-transfers/native-token-transfers/concepts/architecture.md

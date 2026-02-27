@@ -14,10 +14,6 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/wtt.md'
 
-## Wormhole Relayer <!-- TODO: delete?-->
-
---8<-- 'text/products/reference/contract-addresses/relayer.md'
-
 ## CCTP
 
 --8<-- 'text/products/reference/contract-addresses/cctp.md'
