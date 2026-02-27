@@ -41,7 +41,7 @@ mkdocs serve
 
 After a successful build, the site should be available at `http://127.0.0.1:8000`.
 
-## Editing Theme Files
+### Editing Theme Files
 
 If you're editing any of the files in the `material-overrides` directory, run the following command to watch for changes and render them automatically:
 
@@ -50,6 +50,15 @@ mkdocs serve --watch-theme
 ```
 
 Otherwise, you'll need to stop the server (`control + C`) and restart it (`mkdocs serve`) to see the changes.
+
+### Disable the Git Dates Plugin
+
+The git-revision-date-localized plugin pulls the date of the last git modification of a page. When developing locally, this can slow down your development process, as the plugin checks for the latest dates on every page each time a change is made. To avoid this, you can change your start-up command to turn off the plugin by running:
+
+```bash
+export ENABLED_GIT_REVISION_DATE=false
+mkdocs serve
+```
 
 ## AI Resources
 
