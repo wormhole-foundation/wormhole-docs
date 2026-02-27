@@ -313,7 +313,7 @@ plugins:
         products/messaging/guides/executor/executor-vs-sr.md: protocol/infrastructure/relayers/executor-vs-sr.md
         products/messaging/guides/executor/ntt-executor.md: protocol/infrastructure-guides/ntt-executor.md
         products/messaging/guides/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
-        products/messaging/reference/relayer-contract.md: protocol/infrastructure/relayers/executor-framework.md  
+        products/messaging/reference/relayer-contract.md: protocol/infrastructure/relayers/executor-framework.md
         products/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
         products/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
         products/native-token-transfers/concepts/architecture.md: products/token-transfers/native-token-transfers/concepts/architecture.md
