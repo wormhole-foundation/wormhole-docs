@@ -179,7 +179,7 @@ plugins:
         build/contract-integrations/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
         build/core-messaging/core-contracts.md: products/messaging/guides/core-contracts.md
         build/core-messaging/index.md: products/messaging/overview.md
-        build/core-messaging/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md 
+        build/core-messaging/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
         build/index.md: products/overview.md
         build/infrastructure/index.md: protocol/infrastructure/relayers/relayer.md
         build/infrastructure/relayers/index.md: protocol/infrastructure/relayers/relayer.md
