@@ -89,6 +89,7 @@
         },
         "exclusions": {
             "skip_basenames": [
+                ".CONTRIBUTING.md",
                 "index.md",
                 "LICENSE.md",
                 "ai-resources.md"
