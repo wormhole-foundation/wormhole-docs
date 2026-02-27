@@ -105,8 +105,6 @@ plugins:
       scoped_css_templates:
         home.html:
           - assets/stylesheets/home.css
-        index-page.html:
-          - assets/stylesheets/index-page.css
   - glightbox:
       skip_classes:
         - no-lightbox
