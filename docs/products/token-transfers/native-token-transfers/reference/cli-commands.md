@@ -33,6 +33,19 @@ To explore detailed information about any NTT CLI command, including its options
 | `ntt transfer-ownership <chain>`        | [Transfer NTT manager ownership](/docs/products/token-transfers/native-token-transfers/guides/transfer-ownership/#evm){target=\_blank} to a new wallet (EVM chains only). | `ntt transfer-ownership Ethereum --destination 0x1234...`                                                                                                                                                  |
 | `ntt token-transfer`                    | Transfer tokens between chains using the NTT protocol.                                                                                                                    | `ntt token-transfer --network Testnet --source-chain Sepolia --destination-chain Solana --amount 0.5 --destination-address 9yZwWH... --deployment-path ./deployment.json --destination-msg-value 20000000` |
 
+### Advanced Custom Finality
+
+!!! warning 
+    Custom finality is an advanced feature. Wormhole Contributors recommend using this with caution. 
+
+The `ntt add-chain` command supports an optional flag that enables custom consistency levels for EVM chains. By default, NTT deployments use the `finalized` consistency level.
+
+Choosing a level of finality other than finalized on EVM chains exposes you to [re-org risk](https://www.alchemy.com/overviews/what-is-a-reorg){target=\_blank}. This is especially dangerous when moving assets cross-chain, because assets released or minted on the destination chain may not have been burned or locked on the source chain.
+
+To select a custom finality level, Wormhole Contributors recommend consulting information on forked blocks in blockchain explorers, focusing on the “ReorgDepth” column.
+
+By proceeding, you affirm that you understand and are comfortable with the risks of setting a custom finality level, and you understand the re-org/rollback risks of Custom finality, accept sole responsibility, and agree that the Wormhole Parties have no liability for losses arising from your selection.
+
 ### Configuration Commands
 
 | Command                                      | Description                              | Example                                        |

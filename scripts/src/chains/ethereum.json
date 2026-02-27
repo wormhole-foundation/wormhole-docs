@@ -23,7 +23,8 @@
     "details": "https://www.alchemy.com/overviews/ethereum-commitment-levels",
     "instant": 200,
     "otherwise": "finalized",
-    "safe": 201
+    "safe": 201,
+    "custom": 203
   },
   "products": {
     "connect": {

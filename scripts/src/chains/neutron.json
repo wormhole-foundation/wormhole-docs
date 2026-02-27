@@ -11,13 +11,13 @@
   },
   "devDocs": "https://docs.neutron.org/",
   "faucet": {
-    "url": "https://docs.neutron.org/neutron/faq#where-is-the-testnet-faucet",
+    "url": "https://docs.neutron.org/developers/faq#where-is-the-testnet-faucet",
     "token": "NTRN",
     "description": "List of Faucets"
   },
   "explorer": [
     {
-      "url": "https://docs.neutron.org/neutron/faq#where-is-the-block-explorer"
+      "url": "https://docs.neutron.org/developers/faq#where-is-the-block-explorer"
     }
   ],
   "products": {}

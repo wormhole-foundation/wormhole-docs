@@ -22,6 +22,7 @@
   },
   "finality": {
     "instant": 200,
+    "custom": 203,
     "otherwise": "finalized"
   },
   "products": {
