@@ -65,6 +65,9 @@ After completing this step, the **Progress So Far** panel on the right side of t
 
 This step allocates the initial HIP-1 token supply. For an NTT bridge token, you must mint the genesis supply to the **asset bridge address** so the bridge has reserves to back bridged tokens.
 
+!!! warning
+    Hyperliquidity (Step 5) reserves a portion of the genesis supply for its automated market making. Account for this when choosing your genesis amount.
+
 The asset bridge address is deterministic based on your token index. The format is a fixed prefix followed by the token index as a 4-character hex value:
 
 ```text
@@ -93,10 +96,7 @@ This step creates the trading pair between your token and USDC on HyperCore via 
 
 ### Step 5: Deploy Hyperliquidity
 
-Hyperliquidity commits permanent on-chain liquidity to the order book. It is not required for the asset bridge to function, but the UI requires you to configure it before proceeding to Step 6.
-
-!!! warning
-    Hyperliquidity reserves a portion of the genesis supply for its automated market making. Account for this when choosing your genesis amount in Step 3.
+[Hyperliquidity](https://hyperliquid.gitbook.io/hyperliquid-docs/hyperliquid-improvement-proposals-hips/hip-2-hyperliquidity){target=\_blank} commits permanent on-chain liquidity to the order book. It is not required for the asset bridge to function, but the UI requires you to configure it before proceeding to Step 6.
 
 ### Step 6: Review and Trigger Genesis
 
