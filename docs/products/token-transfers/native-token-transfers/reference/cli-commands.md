@@ -54,6 +54,17 @@ By proceeding, you affirm that you understand and are comfortable with the risks
 | `ntt config unset-chain <chain> <key>`       | Unset a configuration value for a chain. | `ntt config unset-chain Ethereum scan_api_key` |
 | `ntt config get-chain <chain> <key>`         | Get a configuration value for a chain.   | `ntt config get-chain Ethereum scan_api_key`   |
 
+### Hyperliquid Commands
+
+| Command                          | Description                                                                                               | Example                                  |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `ntt hype link`                  | Link a HyperCore spot token to its HyperEVM ERC-20 contract.                                             | `ntt hype link --token-index 1591`       |
+| `ntt hype bridge-in <amount>`    | Bridge tokens from HyperEVM into HyperCore via the asset bridge.                                         | `ntt hype bridge-in 1.0`                 |
+| `ntt hype bridge-out <amount>`   | Bridge tokens from HyperCore back to HyperEVM via spotSend.                                              | `ntt hype bridge-out 1.0`               |
+| `ntt hype status`                | Display HyperCore token index, asset bridge address, and token identifier for the current deployment.     | `ntt hype status`                        |
+
+For a complete walkthrough on using these commands, see the [Deploy to Hyperliquid](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-hyperliquid/){target=\_blank} guide.
+
 ### Solana Commands
 
 | Command                                        | Description                                               | Example                                         |

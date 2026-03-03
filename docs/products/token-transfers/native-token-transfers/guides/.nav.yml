@@ -4,6 +4,7 @@ nav:
 # - 'Deploy to EVM Chains via Launchpad': evm-launchpad.md
 - 'Deploy to SVM Chains': deploy-to-solana.md
 - 'Deploy to Sui': deploy-to-sui.md
+- 'Deploy to Hyperliquid': deploy-to-hyperliquid.md
 - 'Troubleshoot Your Deployment': troubleshoot.md
 - 'Post Deployment': post-deployment.md
 - 'Transfer Ownership': transfer-ownership.md
