@@ -53,11 +53,13 @@ These values must satisfy the constraint: **`szDecimals + 5 <= weiDecimals`** as
 !!! note
     The HIP-1 token on HyperCore uses `weiDecimals`, which may differ from your ERC-20 token's decimals on HyperEVM. The asset bridge handles the conversion between the two.
 
-After this step completes, the **Progress So Far** panel on the right side of the screen displays your **Token Index**, the unique integer identifier for your spot token on HyperCore. Save this value as you'll need it for the `ntt hype link` command after completing the Deploy Spot process.
-
 ### Step 2: Set Deployer Trading Fee Share
 
 Configure the percentage of trading fees on the spot pair that go to your deployer address. The remainder is burned. This value can only be **decreased** after deployment, never increased.
+
+After completing this step, the **Progress So Far** panel on the right side of the screen displays your **Token Index**, the unique integer identifier for your spot token on HyperCore. Save this value as you'll need it for the `ntt hype link` command after completing the Deploy Spot process.
+
+![The Progress So Far panel in the Deploy Spot UI after Step 2, showing Token Index and fee share](/docs/images/products/native-token-transfers/guides/hyperliquid/deploy-spot-progress-step2.jpeg)
 
 ### Step 3: Set Genesis Balances
 
