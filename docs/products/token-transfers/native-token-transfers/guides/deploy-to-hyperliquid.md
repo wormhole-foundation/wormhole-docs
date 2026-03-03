@@ -53,7 +53,7 @@ These values must satisfy the constraint: **`szDecimals + 5 <= weiDecimals`** as
 !!! note
     The HIP-1 token on HyperCore uses `weiDecimals`, which may differ from your ERC-20 token's decimals on HyperEVM. The asset bridge handles the conversion between the two.
 
-After this step completes, the **Progress So Far** panel on the right side of the screen displays your **Token Index**, the unique integer identifier for your spot token on HyperCore. Save this value as you'll need it for the `ntt hype link` command later.
+After this step completes, the **Progress So Far** panel on the right side of the screen displays your **Token Index**, the unique integer identifier for your spot token on HyperCore. Save this value as you'll need it for the `ntt hype link` command after completing the Deploy Spot process.
 
 ### Step 2: Set Deployer Trading Fee Share
 
