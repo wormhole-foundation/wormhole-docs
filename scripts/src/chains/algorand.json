@@ -22,9 +22,9 @@
   "contractSource": "algorand/wormhole_core.py",
   "finality": {
     "finalized": 0,
-    "details": "https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality"
+    "details": "https://dev.algorand.co/getting-started/why-algorand/#instant-finality"
   },
-  "devDocs": "https://developer.algorand.org",
+  "devDocs": "https://dev.algorand.co",
   "faucet": {
     "url": "https://lora.algokit.io/testnet/fund",
     "token": "ALGO",
