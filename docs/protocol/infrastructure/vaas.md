@@ -42,7 +42,7 @@ The basic VAA consists of header and body components described as follows:
     - **`consistency_level` ++"u8"++**: The consistency level (finality) required by this emitter.
     - **`payload` ++"[]byte"++**: Arbitrary bytes containing the data to be acted on.
 
-The deterministic nature of the body is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message. This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level.
+The deterministic nature of the body is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message. This scenario is less likely once a block is sufficiently buried, but it can still happen depending on the consistency level.
 
 The body contains relevant information for entities, such as contracts or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
