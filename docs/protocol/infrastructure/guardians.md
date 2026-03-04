@@ -19,7 +19,7 @@ Guardians fulfill their role in the messaging protocol as follows:
 
 ## Guardian Sets and Delegation
 
-The Guardian network comprises {{ guardian_count }} Guardians; however, some chains may utilize delegated subsets. Some chains (such as Ethereum and Solana) are secured by all {{ guardian_count }} Guardians. Each Guardian runs a full node and independently observes on-chain events. Other chains may be secured by a delegated subset of Guardians based on chain activity. Chains that are not explicitly delegated, default to full Guardian Set observation, meaning all {{ guardian_count }} Guardians observe directly.
+The Guardian network comprises {{ guardian_count }} Guardians. However, some chains may utilize delegated subsets. Some chains (such as Ethereum and Solana) are secured by all {{ guardian_count }} Guardians. Each Guardian runs a full node and independently observes on-chain events. Other chains may be secured by a delegated subset of Guardians based on chain activity. Chains that are not explicitly delegated, default to full Guardian Set observation, meaning all {{ guardian_count }} Guardians observe directly.
 
 For these chains:
 
