@@ -5,12 +5,12 @@ import evm from '@wormhole-foundation/sdk/evm';
 import { getSigner, getTokenDecimals } from './helper';
 
 (async function () {
-  // Initialize Wormhole SDK for Avalanche and Celo on Testnet
+  // Initialize Wormhole SDK for Avalanche and Base Sepolia on Testnet
   const wh = await wormhole('Testnet', [solana, sui, evm]);
 
   // Define the source and destination chains
   const sendChain = wh.getChain('Avalanche');
-  const rcvChain = wh.getChain('Celo');
+  const rcvChain = wh.getChain('BaseSepolia');
 
   // Load signers and addresses from helpers
   const source = await getSigner(sendChain);

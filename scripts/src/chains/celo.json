@@ -5,10 +5,6 @@
     "name": "Mainnet",
     "id": "42220"
   },
-  "testnet": {
-    "name": "Alfajores",
-    "id": "44787"
-  },
   "explorer": [
     {
       "url": "https://celo.blockscout.com/"
@@ -23,31 +19,26 @@
     "otherwise": "finalized"
   },
   "devDocs": "https://docs.celo.org/",
-  "faucet": {
-    "url": "https://faucet.celo.org/alfajores",
-    "token": "CELO",
-    "description": "Official Celo Faucet"
-  },
   "products": {
     "connect": {
       "mainnet": true,
-      "testnet": true,
+      "testnet": false,
       "devnet": false
     },
     "ntt": {
       "mainnet": true,
-      "testnet": true,
+      "testnet": false,
       "devnet": false
     },
     "tokenBridge": {
       "mainnet": true,
-      "testnet": true,
+      "testnet": false,
       "devnet": false
     },
     "multigov": {
       "mainnet": true,
-      "testnet": true,
-      "devnet": true
+      "testnet": false,
+      "devnet": false
     }
   }
 }
