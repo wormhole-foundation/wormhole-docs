@@ -28,7 +28,7 @@ async function main(): Promise<void> {
   );
   console.log(
     'Receiver Contract Address: ',
-    deployedContracts.celo.MessageReceiver
+    deployedContracts.baseSepolia.MessageReceiver
   );
   console.log('...');
 
@@ -64,12 +64,12 @@ async function main(): Promise<void> {
     wallet
   );
 
-  // Define the target chain and target address (the Celo receiver contract)
-  const targetChain = 14; // Wormhole chain ID for Celo Alfajores
-  const targetAddress = deployedContracts.celo.MessageReceiver;
+  // Define the target chain and target address (the Base Sepolia receiver contract)
+  const targetChain = 10004; // Wormhole chain ID for Base Sepolia
+  const targetAddress = deployedContracts.baseSepolia.MessageReceiver;
 
   // The message you want to send
-  const message = 'Hello from Avalanche to Celo!';
+  const message = 'Hello from Avalanche to Base Sepolia!';
 
   // Dynamically quote the cross-chain cost
   const txCost = await MessageSender.quoteCrossChainCost(targetChain);

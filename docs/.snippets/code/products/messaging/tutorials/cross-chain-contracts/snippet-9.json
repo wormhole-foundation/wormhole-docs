@@ -9,12 +9,12 @@
             "wormhole": "0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C"
         },
         {
-            "description": "Celo Testnet",
-            "chainId": 14,
-            "rpc": "https://alfajores-forno.celo-testnet.org",
-            "tokenBridge": "0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153",
-            "wormholeRelayer": "0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84",
-            "wormhole": "0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56"
+            "description": "Base Sepolia testnet",
+            "chainId": 10004,
+            "rpc": "https://sepolia.base.org",
+            "tokenBridge": "0x86F55A04690fd7815A3D802bD587e83eA888B239",
+            "wormholeRelayer": "0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE",
+            "wormhole": "0x79A1027a6A159502049F10906D333EC57E95F083"
         }
     ]
 }

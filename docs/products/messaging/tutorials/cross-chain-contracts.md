@@ -1,6 +1,6 @@
 ---
 title: Create Cross-Chain Contracts
-description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
+description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche Fuji and Base Sepolia and send messages across chains.
 categories: Basics
 ---
 <!-- TODO: adapt this page to the executor -->
@@ -10,7 +10,7 @@ categories: Basics
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
 
-Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two testnets, Avalanche Fuji and Celo Alfajores, and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
+Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two testnets, Avalanche Fuji and Base Sepolia, and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
 
 By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
@@ -30,17 +30,17 @@ Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
 - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts.
-- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees.
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Base-Sepolia](https://docs.base.org/docs/tools/network-faucets/){target=\_blank} to cover gas fees.
 - Wallet private key.
 
 ## Build Cross-Chain Messaging Contracts
 
-In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the relayer to transmit messages across chains.
+In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Base Sepolia. The contracts interact with the relayer to transmit messages across chains.
 
 At a high level, our contracts will:
 
-1. Send a message from Avalanche to Celo using the relayer.
-2. Receive and process the message on Celo, logging the content of the message.
+1. Send a message from Avalanche to Base Sepolia using the relayer.
+2. Receive and process the message on Base Sepolia, logging the content of the message.
 
 Before diving into the deployment steps, let's first break down key parts of the contracts.
 
@@ -104,7 +104,7 @@ You can find the full code for the `MessageReceiver.sol` below.
 
 ## Deploy Contracts
 
-This section will guide you through deploying the cross-chain messaging contracts on the Avalanche Fuji and Celo Alfajores Testnets. Follow these steps to get your contracts up and running.
+This section will guide you through deploying the cross-chain messaging contracts on the Avalanche Fuji and Base Sepolia Testnets. Follow these steps to get your contracts up and running.
 
 ### Deployment Tools
 We use _Foundry_ to deploy our smart contracts. However, you can use any tool you're comfortable with, such as:
@@ -132,13 +132,13 @@ The repository includes:
 - Two Solidity contracts:
 
     - **`MessageSender.sol`**: Contract that sends the cross-chain message from Avalanche.
-    - **`MessageReceiver.sol`**: Contract that receives the cross-chain message on Celo.
+    - **`MessageReceiver.sol`**: Contract that receives the cross-chain message on Base Sepolia.
 
 - Deployment scripts located in the `script` directory:
 
     - **`deploySender.ts`**: Deploys the `MessageSender` contract to Avalanche.
-    - **`deployReceiver.ts`**: Deploys the `MessageReceiver` contract to Celo.
-    - **`sendMessage.ts`**: Sends a message from Avalanche to Celo.
+    - **`deployReceiver.ts`**: Deploys the `MessageReceiver` contract to Base Sepolia.
+    - **`sendMessage.ts`**: Sends a message from Avalanche to Base Sepolia.
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
@@ -200,7 +200,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         ```
 
     !!! note
-        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/products/reference/contract-addresses/){target=\_blank}.
+        The `chains.json` file contains the configuration details for the Avalanche Fuji and Base Sepolia Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/products/reference/contract-addresses/){target=\_blank}.
 
 2. **Set up provider and wallet**: The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
 
@@ -230,7 +230,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-6.ts:51:54"
         ```
 
-4. **Register the `MessageSender` on the target chain**: After you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
+4. **Register the `MessageSender` on the target chain**: After you deploy the `MessageReceiver` contract on the Base Sepolia network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
@@ -277,14 +277,14 @@ The receiver contract listens for cross-chain messages and logs them when receiv
     npm run deploy:receiver
     ```
 
-2. After deployment, note down the contract address. You may check the contract on the [Celo Alfajores Explorer](https://alfajores.celoscan.io/){target=\_blank}.
+2. After deployment, note down the contract address. You may check the contract on the [Base Sepolia Explorer](https://sepolia.basescan.org/){target=\_blank}.
 
 
 ## Send a Cross-Chain Message
 
-Now that both the sender and receiver contracts are deployed, let's move on to the next exciting step: sending a cross-chain message from Avalanche Fuji to Celo Alfajores.
+Now that both the sender and receiver contracts are deployed, let's move on to the next exciting step: sending a cross-chain message from Avalanche Fuji to Base Sepolia.
 
-In this example, we will use the `sendMessage.ts` script to transmit a message from the sender contract on Avalanche to the receiver contract on Celo. The script uses [Ethers.js](https://docs.ethers.org/v6/){target=\_blank} to interact with the deployed contracts, calculate the cross-chain cost dynamically, and handle the transaction.
+In this example, we will use the `sendMessage.ts` script to transmit a message from the sender contract on Avalanche to the receiver contract on Base Sepolia. The script uses [Ethers.js](https://docs.ethers.org/v6/){target=\_blank} to interact with the deployed contracts, calculate the cross-chain cost dynamically, and handle the transaction.
 
 Let's break down the script step by step.
 
@@ -311,7 +311,7 @@ Let's break down the script step by step.
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:51:56"
     ```
 
-3. **Set up the message details**: The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo).
+3. **Set up the message details**: The next part of the script defines the target chain (Base Sepolia) and the target address (the receiver contract on Base Sepolia).
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:68:69"
@@ -349,7 +349,7 @@ Let's break down the script step by step.
     npm run send:message
     ```
 
-If everything is set up correctly, the message will be sent from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. You can monitor the transaction and verify that the message was received on Celo using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
+If everything is set up correctly, the message will be sent from the Avalanche Fuji Testnet to the Base Sepolia Testnet. You can monitor the transaction and verify that the message was received on Base Sepolia using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
 
 The console should output something similar to this:
 

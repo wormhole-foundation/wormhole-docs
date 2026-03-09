@@ -19,16 +19,16 @@ async function main(): Promise<void> {
     )
   );
 
-  // Get the Celo Testnet configuration
-  const celoChain = chains.chains.find((chain) =>
-    chain.description.includes('Celo Testnet')
+  // Get the Base Sepolia configuration
+  const baseSepoliaChain = chains.chains.find((chain) =>
+    chain.description.includes('Base Sepolia testnet')
   );
-  if (!celoChain) {
-    throw new Error('Celo Testnet configuration not found.');
+  if (!baseSepoliaChain) {
+    throw new Error('Base Sepolia testnet configuration not found.');
   }
 
   // Set up the provider and wallet
-  const provider = new ethers.JsonRpcProvider(celoChain.rpc);
+  const provider = new ethers.JsonRpcProvider(baseSepoliaChain.rpc);
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
   // Load the ABI and bytecode of the MessageReceiver contract
@@ -47,9 +47,9 @@ async function main(): Promise<void> {
   // Create a ContractFactory for MessageReceiver
   const MessageReceiver = new ethers.ContractFactory(abi, bytecode, wallet);
 
-  // Deploy the contract using the Wormhole Relayer address for Celo Testnet
+  // Deploy the contract using the Wormhole Relayer address for Base Sepolia
   const receiverContract = await MessageReceiver.deploy(
-    celoChain.wormholeRelayer
+    baseSepoliaChain.wormholeRelayer
   );
   await receiverContract.waitForDeployment();
 
@@ -84,7 +84,7 @@ async function main(): Promise<void> {
     `Registered MessageSender (${avalancheSenderAddress}) for Avalanche chain (${sourceChainId})`
   );
 
-  deployedContracts.celo = {
+  deployedContracts.baseSepolia = {
     MessageReceiver: receiverContract.target as any,
     deployedAt: new Date().toISOString(),
   };
