@@ -72,6 +72,11 @@ Here's a breakdown of the key steps involved when deploying NTT:
     - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
     - **[Messaging](/docs/products/messaging/overview/)**: Moves staking rewards and governance signals across chains.
 
+- **Coordinated Asset Launches**
+
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Delivers canonical tokens to the destination chain from day one.
+    - **[Sunrise](https://www.sunrisedefi.com/){target=\_blank}**: Coordinates bridging, liquidity seeding, and DEX integration on top of NTT so assets arrive tradable across major venues immediately.
+
 ## Next Steps
 
 Follow these steps to get started with NTT:
