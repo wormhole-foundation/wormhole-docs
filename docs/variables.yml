@@ -6,10 +6,10 @@ ntt:
 repositories:
   wormhole_sdk:
     repository_url: https://github.com/wormhole-foundation/wormhole-sdk-ts
-    version: 4.12.0
+    version: 4.13.1
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
-    version: 2.55.0
+    version: 2.56.0
   native_token_transfers_evm:
     repository_url: https://github.com/wormhole-foundation/native-token-transfers
     version: 2.0.0+evm
@@ -18,7 +18,7 @@ repositories:
     version: 2.0.0+evm
   connect:
     repository_url: https://github.com/wormhole-foundation/wormhole-connect
-    version: 5.0.0
+    version: 5.1.0
   settlement:
     repository_url: https://github.com/mayan-finance/wormhole-sdk-route
     version: 1.26.0
