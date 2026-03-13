@@ -54,7 +54,7 @@ Replay protection works very differently between the two models, especially depe
 
 **Standard Relayer**
 
-The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection — the relayer ensures each request is executed exactly once.
+The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection - the relayer ensures each request is executed exactly once.
 
 **Executor**
 
@@ -98,9 +98,9 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 ## Migration for Wormhole Connect Integrators
 
 !!! note
-    If you are using [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} and currently configure NTT routes with `nttRoutes()`, you should migrate to `nttExecutorRoute()`. The `nttRoutes()` helper bundles both the Manual route and the Executor route, but since the Standard Relayer is being deprecated, the recommended path forward is to use the Executor route explicitly.
+    If you are using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} and currently configure NTT routes with `nttRoutes()`, you should migrate to `nttExecutorRoute()`. The `nttRoutes()` helper bundles both the Manual route and the Executor route, but since the Standard Relayer is being deprecated, the recommended path forward is to use the Executor route explicitly.
 
-**Before** — using `nttRoutes()`:
+**Before** - using `nttRoutes()`:
 
 ```typescript
 import { nttRoutes } from '@wormhole-foundation/wormhole-connect';
@@ -114,7 +114,7 @@ const config = {
 };
 ```
 
-**After** — using `nttExecutorRoute()`:
+**After** - using `nttExecutorRoute()`:
 
 ```typescript
 import { nttExecutorRoute } from '@wormhole-foundation/wormhole-connect/ntt';
