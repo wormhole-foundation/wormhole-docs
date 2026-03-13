@@ -66,7 +66,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
 - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
 - **[`nttAutomaticRoute(nttConfig)`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank}**: Function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route.
 - **[`nttManualRoute(nttConfig)`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}**: Function that returns the manually-redeemed NTT route.
-- **`nttRoutes(nttConfig)`**: Function that returns both NTT routes as an array.
+- **`nttExecutorRoute(nttConfig)`**: Function that returns the Executor-powered NTT route for one-click transfers.
 - **[`MayanRoute`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank}**: Route that offers multiple Mayan protocols.
 - **[`MayanRouteSWIFT`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank}**: Route for Mayan's Swift protocol only.
 - **[`MayanRouteMCTP`](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank}**: Route for Mayan's MCTP protocol only.
@@ -115,8 +115,8 @@ Connect supports [NTT](/docs/products/token-transfers/native-token-transfers/ove
 
 To enable NTT in your app, follow these steps:
 
- 1. Add NTT routes to the `routes` array by calling `nttRoutes(...)` with your token deployment config using the spread operator. This sets up the route logic for native token transfers.
- 2. Provide token metadata for each of the tokens listed in `nttRoutes` in the [`tokensConfig`](#custom-tokens) object. These entries must include `symbol`, `decimals`, and the `tokenId`.
+ 1. Add the NTT route to the `routes` array by calling `nttExecutorRoute(...)` with your token deployment config. This sets up the Executor-powered route logic for native token transfers.
+ 2. Provide token metadata for each of the tokens listed in `nttExecutorRoute` in the [`tokensConfig`](#custom-tokens) object. These entries must include `symbol`, `decimals`, and the `tokenId`.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/configure-ntt.tsx'

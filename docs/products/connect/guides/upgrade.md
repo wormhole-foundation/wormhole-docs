@@ -191,7 +191,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
     - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute).
     - **`nttAutomaticRoute(nttConfig)`**: Function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route.
     - **`nttManualRoute(nttConfig)`**: Function that returns the manually-redeemed NTT route.
-    - **`nttRoutes(nttConfig)`**: Function that returns both NTT routes as an array.
+    - **`nttExecutorRoute(nttConfig)`**: Function that returns the Executor-powered NTT route for one-click transfers.
     - **`MayanRoute`**: Route that offers multiple Mayan protocols.
     - **`MayanRouteSWIFT`**: Route for Mayan’s Swift protocol only.
     - **`MayanRouteMCTP`**: Route for Mayan’s MCTP protocol only.
@@ -227,15 +227,15 @@ In this example, Connect is configured with routes for both default protocols (W
 ```typescript
 import WormholeConnect, {
   DEFAULT_ROUTES,
-  nttRoutes,
   MayanRouteSWIFT,
   type config,
 } from '@wormhole-foundation/wormhole-connect';
+import { nttExecutorRoute } from '@wormhole-foundation/wormhole-connect/ntt';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
 const config: config.WormholeConnectConfig = {
-  routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
+  routes: [...DEFAULT_ROUTES, nttExecutorRoute({ ntt: myNttConfig }), MayanRouteSWIFT],
 };
 
 <WormholeConnect config={config} />;
@@ -361,7 +361,7 @@ In Connect version 3.0, the `nttGroups` property, which was used to configure Na
 
 Key changes:
 
- - **Removed `nttGroups`**: The `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttRoutes` function.
+ - **Removed `nttGroups`**: The `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttExecutorRoute` function.
  - **Direct NTT route configuration**: NTT routes are now defined more explicitly, allowing for a more organized structure when specifying tokens, chains, and managers.
 
 This change simplifies the configuration process by providing a cleaner, more flexible way to handle NTT routes across different chains.
@@ -455,42 +455,44 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
 === "v3.x"
 
-    In v3.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
+    In v3.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttExecutorRoute` configuration.
 
     ```typescript
     import WormholeConnect, {
-      nttRoutes,
       type config,
     } from '@wormhole-foundation/wormhole-connect';
+    import { nttExecutorRoute } from '@wormhole-foundation/wormhole-connect/ntt';
 
     const config: config.WormholeConnectConfig = {
       routes: [
-        ...nttRoutes({
-          tokens: {
-            Lido_wstETH: [
-              {
-                chain: 'Ethereum',
-                manager: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
-                token: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
-                transceiver: [
-                  {
-                    address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
-                    type: 'wormhole',
-                  },
-                ],
-              },
-              {
-                chain: 'Bsc',
-                manager: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
-                token: '0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C',
-                transceiver: [
-                  {
-                    address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
-                    type: 'wormhole',
-                  },
-                ],
-              },
-            ],
+        nttExecutorRoute({
+          ntt: {
+            tokens: {
+              Lido_wstETH: [
+                {
+                  chain: 'Ethereum',
+                  manager: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
+                  token: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
+                  transceiver: [
+                    {
+                      address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
+                      type: 'wormhole',
+                    },
+                  ],
+                },
+                {
+                  chain: 'Bsc',
+                  manager: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
+                  token: '0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C',
+                  transceiver: [
+                    {
+                      address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
+                      type: 'wormhole',
+                    },
+                  ],
+                },
+              ],
+            },
           },
         }),
         /* other routes */
@@ -498,7 +500,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
     };
     ```
 
-    In this new structure, NTT routes are passed directly through the `nttRoutes` function, with the `token`, `chain`, `manager` and `transceiver` clearly defined for each supported asset.
+    In this new structure, NTT routes are passed directly through the `nttExecutorRoute` function, with the `token`, `chain`, `manager` and `transceiver` clearly defined for each supported asset.
 
 ### Update UI Configuration
 
