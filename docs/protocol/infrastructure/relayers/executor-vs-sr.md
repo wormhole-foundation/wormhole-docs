@@ -54,7 +54,7 @@ Replay protection works very differently between the two models, especially depe
 
 **Standard Relayer**
 
-The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection — the relayer ensures each request is executed exactly once.
+The Standard Relayer enforces an “execute only once” guarantee at the delivery layer. Applications do not implement custom replay protection - the relayer ensures each request is executed exactly once.
 
 **Executor**
 
@@ -94,6 +94,43 @@ Moving from the Standard Relayer to the Executor model involves changes to how m
 - **Access control and addressing**: Migrate registered senders to a `peers` registry keyed by Wormhole chain ID (universal `bytes32` address). SDK helpers are available for converting and validating peer addresses. 
 - **Finality and replay protection**: If delivery semantics were previously used for replay safety, choose either sequence-based (finalized consistency only), or hash-based replay protection (any consistency level) and wire `_replayProtect` according to your chosen consistency level.
 - **Fees and refunds**: Refunds, retries, and SLAs are provider policy in the Executor model. Use the provider’s API and signed-quote metadata for observability and error handling.
+
+## Migration for Wormhole Connect Integrators
+
+!!! note
+    If you are using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} and currently configure NTT routes with `nttRoutes()`, you should migrate to `nttExecutorRoute()`. The `nttRoutes()` helper bundles both the Manual route and the Executor route, but since the Standard Relayer is being deprecated, the recommended path forward is to use the Executor route explicitly.
+
+**Before** - using `nttRoutes()`:
+
+```typescript
+import { nttRoutes } from '@wormhole-foundation/wormhole-connect';
+
+const config = {
+  routes: [
+    ...nttRoutes({
+      tokens: { /* your token config */ },
+    }),
+  ],
+};
+```
+
+**After** - using `nttExecutorRoute()`:
+
+```typescript
+import { nttExecutorRoute } from '@wormhole-foundation/wormhole-connect/ntt';
+
+const config = {
+  routes: [
+    nttExecutorRoute({
+      ntt: {
+        tokens: { /* your token config */ },
+      },
+    }),
+  ],
+};
+```
+
+The `nttExecutorRoute` provides one-click transfers powered by the Executor, with support for native gas drop-off and referrer fees. For a complete working example, see the [NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
 
 ## Next Steps
 
