@@ -30,6 +30,9 @@ If successful, you will see the following output:
 
 --8<-- 'code/products/native-token-transfers/guides/transfer-ownership/terminal-1.html'
 
+!!! tip "Managing NTT from a Safe Multisig?"
+    If your NTT owner is a Safe multisig, check out the [NTT EVM Safe Multisig Tools](https://github.com/wormhole-foundation/demo-ntt-evm-multisig-tools){target=\_blank} demo for scripts that generate Safe Transaction Builder JSON files for common operations like peer registration, rate limits, pausing, and ownership transfer.
+
 ## Solana
 
 Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L58){target=\_blank} to initiate the transfer.
