@@ -8,7 +8,7 @@ categories: MultiGov
 
 [MultiGov](/docs/products/multigov/overview/){target=\_blank} enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
-This page walks you through the MultiGov deployment flow—from requesting access with Tally to choosing a network and following the appropriate deployment guide.
+This page walks you through the MultiGov deployment flow—from choosing a network to following the appropriate deployment guide.
 
 ## Prerequisites
 
@@ -22,14 +22,6 @@ Before deploying MultiGov, you need a governance token deployed on multiple chai
      - Use an SPL token.
      - Voting eligibility and weight are managed by the [MultiGov staking program](/docs/products/multigov/concepts/architecture/#spoke-solana-staking-program){target=\_blank}.
 
-## Request Tally Access
-
-MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a multichain governance platform that powers proposal creation, voting, and execution.
-
-To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and contact you to discuss deployment and setup requirements.
-
-Once approved, review the deployment flow below to understand the integration process. Then, follow the appropriate deployment guide to integrate MultiGov with your governance token on EVM chains, Solana, or other supported networks.
-
 ## Deployment Flow
 
 MultiGov deployments follow a similar structure on both EVM and Solana. This section provides a high-level overview of the end-to-end flow. Each step is explained in more detail in the platform-specific deployment guides linked [below](#next-steps).
@@ -38,7 +30,7 @@ MultiGov deployments follow a similar structure on both EVM and Solana. This sec
 
 ## Next Steps
 
-You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture.
+Continue to the deployment guide that matches your governance architecture.
 
 <div class="grid cards" markdown>
 

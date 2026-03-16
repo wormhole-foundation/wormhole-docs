@@ -18,7 +18,6 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 - **Cross-chain proposal execution**: Approved proposals can be executed across multiple chains.
 - **Flexible architecture**: Can integrate with any Wormhole-supported blockchain.
 - **Upgradeable and extensible**: Supports upgrades across components while preserving vote history and system continuity.
-- **Backed by Tally**: Proposal creation, voting, and execution are coordinated via  [Tally](https://www.tally.xyz/get-started){target=\_blank}.
 
 ## How It Works
 

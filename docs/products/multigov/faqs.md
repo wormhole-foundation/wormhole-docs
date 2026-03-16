@@ -52,12 +52,6 @@ To use MultiGov, your DAO must meet the following requirements:
 
 ## What do I need to set up MultiGov for my project?
 
-Get started by filling out the form below:
-
-https://www.tally.xyz/get-started
-
-Tally will reach out to help get your DAO set up with MultiGov.
-
 To set up testing MultiGov for your DAO, you'll need:
 
 - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed.

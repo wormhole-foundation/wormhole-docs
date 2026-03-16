@@ -401,18 +401,12 @@ extra:
     - icon: fontawesome/brands/x-twitter
       link: https://x.com/wormhole
       name: Twitter
-    - icon: fontawesome/brands/discord
-      link: https://discord.com/invite/wormholecrypto
-      name: Discord
     - icon: telegram
       link: https://t.me/wormholecrypto
       name: Telegram
     - icon: fontawesome/brands/github
       link: https://github.com/wormhole-foundation/wormhole
       name: GitHub
-    - icon: docs
-      link: https://wormhole.com/docs/
-      name: Docs
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/@wormholecrypto
       name: YouTube
