@@ -59,7 +59,7 @@ categories: Reference
     - **Fogo:** `nWfGbhWvREnvF1zCvhrXiKidzDJ8DzCdHb13YYZeVkV`.
 
 
-## Delegated Guardians Config
+## Delegated Guardians
 
 === "Mainnet"
 
