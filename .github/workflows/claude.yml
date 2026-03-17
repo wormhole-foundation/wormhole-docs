@@ -94,6 +94,8 @@ jobs:
               - High: Misleading or incomplete information likely to cause confusion or failed integrations. Should block merge.
               - Medium: Style inconsistencies, minor inaccuracies, or missing edge cases. Worth fixing but not blocking.
               - Low: Typos, formatting improvements, or minor wording suggestions.
+            - **Show your verification**: Every factual claim (API behavior, parameter name, SDK version, chain ID) must include how you verified it - cite the file path, line number, doc URL, or tool output. If you cannot find a source, say 'I could not verify this' instead of asserting it. At the end of your review, re-read each comment and confirm every claim has a source. Go back and fix any that do not.
+            - **Self-check for contradictions**: After drafting each finding, re-read it and ask: does any sentence weaken or contradict the severity I assigned? If so, either downgrade the severity or remove the hedging language. Never flag something and then immediately explain why it is probably fine.
             - **Be concise**: State the issue, show the problematic content, explain the fix. 2-4 sentences per finding.
             - **Respect the docs conventions**: Follow existing patterns for page structure, admonitions, code block formatting, and terminology.
 
