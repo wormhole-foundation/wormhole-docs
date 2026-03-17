@@ -59,6 +59,12 @@ categories: Reference
     - **Fogo:** `nWfGbhWvREnvF1zCvhrXiKidzDJ8DzCdHb13YYZeVkV`.
 
 
+## Delegated Guardians Config
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x1462800febd49232798132e8c8b721aa86c4c209</code></td></tr></tbody></table>
+
 ## Read-Only Deployments
 
 --8<-- 'text/products/reference/contract-addresses/read-only.md'
