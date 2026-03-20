@@ -50,3 +50,11 @@ While deploying tokens to new chains via Wormhole is fully permissionless, these
 
 - [**Basic Connect Demo**](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 - [**NTT Connect Demo**](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}
+
+## Why is my CCTP transfer stuck and can't be redeemed?
+
+If your transfer is stuck and you're unable to complete it through Portal, it may have been initiated through a third-party app or smart contract that reserved the right to finalize it. In that case, Portal is unable to complete the redemption on your behalf. Only the original app can.
+
+To resolve this, go back to the app or platform you used to start the transfer and look for an option to complete or claim it there.
+
+If you want to investigate further, check the events of your originating transaction for a `destination_caller` field. If it's set to a non-zero address, that's the address exclusively authorized to redeem the message and the reason Portal can't complete it.
