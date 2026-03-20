@@ -2,5 +2,5 @@ nav:
 - products
 - protocol
 - tools
-- 'Reference': '/products/reference/chain-ids/'
+- 'Reference': 'https://wormhole.com/docs/products/reference/chain-ids/'
 - ai-resources
