@@ -20,7 +20,7 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 NTT offers two operational modes for your existing tokens: 
 
-- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
+- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts. A [`wethUnwrap` variant](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#wethunwrap-variant){target=\_blank} is available for bridging native gas tokens (e.g., ETH) on EVM chains.
 - **Burn-and-mint**: Burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
 
 ## Supported Token Standards

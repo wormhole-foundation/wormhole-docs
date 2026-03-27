@@ -176,6 +176,12 @@ Yes. NTT tokens can be used with chains that do not support NTT by leveraging th
 
 This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
 
+## Can I bridge native ETH or other gas tokens with NTT?
+
+Yes. On EVM chains, you can use the `wethUnwrap` manager variant to bridge native gas tokens like ETH. This works in hub-and-spoke mode, where WETH is used as the locked token on the hub chain. When tokens are transferred back to the hub, the NTT Manager automatically unwraps WETH to native ETH and sends it to the recipient.
+
+To deploy with this variant, pass `--manager-variant wethUnwrap` when adding the hub chain. For full setup instructions, see the [WethUnwrap variant](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#wethunwrap-variant){target=\_blank} section in the EVM deployment guide.
+
 ## How can I update my NTT CLI version?
 
 To update an existing NTT CLI installation, run the following command in your terminal:

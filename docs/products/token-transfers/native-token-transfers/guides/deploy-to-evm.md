@@ -55,6 +55,8 @@ Deploying NTT on EVM chains follows a structured process:
 
         This setup maintains a consistent total supply across all chains.
 
+        To bridge native gas tokens (e.g., ETH) in hub-and-spoke mode, see the [WethUnwrap variant](#wethunwrap-variant) below.
+
     Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank}.
 
 3. **Configure your chains**: Use the NTT CLI to add EVM chains and configure deployment parameters.
@@ -183,6 +185,35 @@ This table compares the configuration parameters available when deploying the NT
 | `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202` (finalized) is the standard — lower is not recommended  |
 | `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
+| `managerVariant`        | Input (`MANAGER_VARIANT`)  | `--manager-variant <string>`        | Yes    | Choices: `standard` (default), `noRateLimiting`, `wethUnwrap`. EVM only |
+
+## Manager Variants
+
+The NTT CLI supports three manager variants for EVM deployments, configured via the `--manager-variant` flag on `ntt add-chain`. The default variant is `standard`.
+
+| Variant | Description |
+|---------|-------------|
+| `standard` | Default NTT Manager with rate limiting enabled. Suitable for most deployments. |
+| `noRateLimiting` | Removes the rate limiter to free contract code space. Use when rate limiting is not required. |
+| `wethUnwrap` | Automatically unwraps WETH to native ETH when tokens are unlocked on the hub chain. Use for bridging native gas tokens. |
+
+### WethUnwrap Variant
+
+The `wethUnwrap` variant enables bridging of native gas tokens (e.g., ETH). On the hub chain, WETH is used as the locked token. When tokens arrive back at the hub via an inbound transfer, the manager automatically unwraps WETH and sends native ETH to the recipient.
+
+**Requirements:**
+
+- **EVM only** — no Solana or Sui equivalent
+- **Locking mode only** — the unwrap occurs during token unlock, which only happens in locking mode
+- **Token must be the WETH contract** — the manager casts the token address to the [IWETH interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWETH.sol){target=\_blank}, so it must implement `deposit()` and `withdraw(uint256)`
+
+**Add the hub chain with the `wethUnwrap` variant:**
+
+```bash
+ntt add-chain Ethereum --latest --mode locking \
+  --token <WETH_ADDRESS> \
+  --manager-variant wethUnwrap
+```
 
 ## Advanced
 
