@@ -209,3 +209,41 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
     [:custom-arrow: See Interfaces](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}
 
 </div>
+
+
+## Recovering Stuck Transfers
+
+If your transfer appears stuck or failed to complete automatically, you can recover it manually using the transaction hash from the source chain.
+
+### Using the Recovery Scripts
+
+1. **Get your source transaction hash**: This is the transaction ID from when you initiated the transfer
+
+2. **Choose the right recovery tool**:
+   - **Basic transfers**: Use the [demo-basic-ts-sdk](https://github.com/wormhole-foundation/demo-basic-ts-sdk) recovery script
+   - **NTT transfers**: Use the [demo-ntt-ts-sdk](https://github.com/wormhole-foundation/demo-ntt-ts-sdk) resume script
+
+3. **Run the recovery**:
+   ```bash
+   # For basic transfers
+   git clone https://github.com/wormhole-foundation/demo-basic-ts-sdk
+   cd demo-basic-ts-sdk
+   
+   # Edit src/tx-recover.ts and set recoverTxid to your transaction hash
+   npm run transfer:recover
+   ```
+
+   ```bash
+   # For NTT transfers  
+   git clone https://github.com/wormhole-foundation/demo-ntt-ts-sdk
+   cd demo-ntt-ts-sdk
+   
+   # Edit src/resume.ts and set YOUR_TRANSACTION_ID_HERE to your hash
+   npx ts-node src/resume.ts
+   ```
+
+### When Recovery Might Not Work
+
+- **Wrong destination address**: If tokens were sent to a contract that can't release them
+- **Finality not reached**: Wait up to 15 minutes for Ethereum finality before attempting recovery
+- **Invalid VAA**: The recovery script will indicate if there are issues with the VAA
