@@ -48,6 +48,24 @@ Connect lets you customize the available chains to match your project's needs. Y
 !!! note
     For a complete list of available chain names, see the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank}.
 
+
+### Network Support Limitations
+
+Wormhole Connect only supports chains that are already integrated into the Wormhole network. You cannot add custom or private networks to Connect.
+
+**Supported Testnets:**
+- Sepolia (Ethereum)
+- ArbitrumSepolia
+- BaseSepolia 
+- Avalanche Fuji
+- And other officially supported testnets
+
+**Custom Networks:**
+If you need to test with a custom network not in our supported list, you'll need to:
+1. Use one of the supported testnets for development
+2. Contact the Wormhole team about potential integration
+
+For the complete list of supported networks, see the [Supported Networks reference](../reference/supported-networks.md).
 ### Configuring Routes
 
 By default, Connect offers two bridging protocols: Wrapped Token Transfers (WTT) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
