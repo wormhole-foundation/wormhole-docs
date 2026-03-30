@@ -16,6 +16,14 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 - **No wrapped tokens**: Tokens are used directly within their native ecosystem, eliminating intermediary transfer steps.
 
 
+
+### Supported Token Standards
+
+- **EVM Chains**: ERC-20 tokens
+- **SVM Chains**: Standard SPL tokens (Note: Token2022 is not currently supported)
+- **Sui**: Sui Coin standard
+
+NTT does not support Token2022, token extensions, or other non-standard token implementations.
 ## Deployment Models
 
 NTT offers two operational modes for your existing tokens: 
