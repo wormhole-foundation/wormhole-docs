@@ -219,7 +219,7 @@ If your transfer appears stuck or failed to complete automatically, you can reco
 
 1. **Get your source transaction hash**: This is the transaction ID from when you initiated the transfer
 
-2. **Clone the recovery tool**:
+2. **Clone the recovery script**:
 
     ```bash
     git clone https://github.com/wormhole-foundation/demo-basic-ts-sdk
