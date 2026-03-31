@@ -237,4 +237,3 @@ If your transfer appears stuck or failed to complete automatically, you can reco
 
 - **Wrong destination address**: If tokens were sent to a contract that can't release them
 - **Finality not reached**: Wait up to 20 minutes for Ethereum finality before attempting recovery
-- **Invalid VAA**: The recovery script will indicate if there are issues with the VAA
