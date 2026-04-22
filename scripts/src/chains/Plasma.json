@@ -9,9 +9,9 @@
     }
   ],
   "faucet": {
-    "url": "https://www.gas.zip/faucet/plasma",
+    "url": "https://faucet.quicknode.com/plasma",
     "token": "XPL",
-    "description": "Plasma Faucet"
+    "description": "QuickNode Faucet"
   },
   "products": {
     "multigov": {
