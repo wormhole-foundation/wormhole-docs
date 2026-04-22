@@ -33,12 +33,10 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
     - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
-    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Relay verified data.
-    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
