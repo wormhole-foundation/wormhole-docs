@@ -12,8 +12,8 @@ This guide demonstrates how to fetch a signed [Verified Action Approval (VAA)](/
 
 Before you begin, ensure you have the following installed:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank}
-- [TypeScript](https://www.typescriptlang.org/download/){target=_blank} (installed globally)
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} (installed globally)
 
 ## Set Up Your Developer Environment
 

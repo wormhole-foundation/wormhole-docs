@@ -19,7 +19,7 @@ By the end of this guide, you’ll have a solid understanding of how to define, 
 
 ## What is a Protocol?
 
-In the Wormhole SDK, a protocol represents a significant feature or functionality that operates across multiple blockchains. Protocols provide the framework for handling specific types of messages, transactions, or operations consistently and standardized.
+In the Wormhole SDK, a protocol represents a significant feature or functionality that operates across multiple blockchains. Protocols provide the framework for handling specific types of messages, transactions, or operations in a consistent and standardized way.
 
 Examples of Protocols:
 

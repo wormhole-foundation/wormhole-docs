@@ -17,7 +17,7 @@ Wormhole is distinguished by its focus on robust security, scalability, and tran
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/docs/protocol/architecture/){target=\_blank}.
 
-Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability while maintaining a unified, efficient user experience.
+Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability, while maintaining a unified, efficient user experience.
 
 This page introduces the key concepts and components necessary to understand how Wormhole enables fast, secure, and scalable cross-chain communication.
 

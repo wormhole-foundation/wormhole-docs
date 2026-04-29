@@ -78,7 +78,7 @@ This setup allows Wormhole to convert between human-readable formats and binary-
 
 ### Error Handling
 
-The layout system performs error checks during serialization and deserialization. An error is thrown if data is incorrectly sized or in the wrong format. Refer to the below example:
+The layout system performs error checks during serialization and deserialization. An error is thrown if data is incorrectly sized or in the wrong format. Refer to the example below:
 
 ```typescript
 --8<-- "code/tools/typescript-sdk/guides/sdk-layout/layout-2.ts"

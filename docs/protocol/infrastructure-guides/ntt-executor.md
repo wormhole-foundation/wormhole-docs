@@ -32,7 +32,7 @@ Before starting, ensure you have:
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
-    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/products/reference/chain-ids/){target=_blank}.
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/products/reference/chain-ids/){target=\_blank}.
 
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
@@ -106,7 +106,7 @@ Relay instructions are encoded using the `relayInstructionsLayout`, which always
 | `GasInstruction`        | Defines gas allocation for relay execution                                | `gasLimit`, `msgValue` |
 | `GasDropOffInstruction` | Drops native tokens to a wallet on the destination chain                  | `dropOff`, `recipient` |
 
-Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most CCTP with Executor flows, a single `GasInstruction` is sufficient.
+Relay instructions can include multiple requests (e.g., for gas, value transfer, or drop-off). For most NTT with Executor flows, a single `GasInstruction` is sufficient.
 
 ### EVM
 

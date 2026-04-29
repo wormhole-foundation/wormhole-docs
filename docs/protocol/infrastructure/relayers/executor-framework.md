@@ -218,8 +218,8 @@ The Executor contract is explicitly designed to be immutable and sit outside an 
 
 ## Resources
 
-- [demo-hello-executor](https://github.com/wormhole-foundation/demo-hello-executor){target=_blank} — Minimal end-to-end example demonstrating quote requests and `requestExecution` flows.
-- [Executor Addresses Reference](/docs/products/reference/executor-addresses/){target=_blank} — Deployed Executor contracts, On-chain Quoter contracts, Wormhole Labs’ Quoter implementations, and published Quoter public keys.
+- [demo-hello-executor](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank} — Minimal end-to-end example demonstrating quote requests and `requestExecution` flows.
+- [Executor Addresses Reference](/docs/products/reference/executor-addresses/){target=\_blank} — Deployed Executor contracts, On-chain Quoter contracts, Wormhole Labs’ Quoter implementations, and published Quoter public keys.
 
 ## Next Steps
 

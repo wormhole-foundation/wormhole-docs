@@ -65,7 +65,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
     --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/helper.ts'
     ```
 
-    You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
+    You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=\_blank} in the Wormhole SDK GitHub repo.
 
 ## Check for a Wrapped Version of a Token
 

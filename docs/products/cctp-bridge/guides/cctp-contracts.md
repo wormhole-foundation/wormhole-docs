@@ -575,7 +575,7 @@ Now that you've learned how to interact directly with Circle's CCTP Bridge contr
 
     A demo showcasing CCTP transfers using the Executor, intended as a practical reference for local testing and experimentation.
 
-    [:custom-arrow: View the repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=_blank}
+    [:custom-arrow: View the repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}
 
 -   :octicons-repo-16:{ .lg .middle } **Hello USDC (Legacy Example)**
 

@@ -35,7 +35,7 @@ The basic VAA consists of header and body components described as follows:
 
 - **Body**: _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body to maintain a one-to-one relationship between VAAs and messages to avoid double-processing messages.
     - **`timestamp` ++"u32"++**: The timestamp of the block this message was published in.
-    - `nonce` ++"u32"++.
+    - **`nonce` ++"u32"++**: The nonce associated with this message.
     - **`emitter_chain` ++"u16"++**: The id of the chain that emitted the message.
     - **`emitter_address` ++"[32]byte"++**: The contract address (Wormhole formatted) that called the Core Contract.
     - **`sequence` ++"u64"++**: The auto-incrementing integer that represents the number of messages published by this emitter.
