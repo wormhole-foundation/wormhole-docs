@@ -1,10 +1,154 @@
 ---
-title: Wormhole Connect Migration Guide
-description: Learn how to migrate to Wormhole Connect ^v1.0, with step-by-step guidance on updating your package and configuration.
+title: Wormhole Connect Migration Guides
+description: Step-by-step guidance for migrating between major versions of Wormhole Connect, including configuration changes and route updates.
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect Migration Guide
+# Wormhole Connect Migration Guides
+
+This page collects step-by-step migration guides for major versions of Wormhole Connect. Choose the section that matches the version you are upgrading from:
+
+- [V5 → V6](#v5-to-v6) - Default automatic routes replaced by [Executor](/docs/products/messaging/guides/executor/)-powered routes.
+- [V0/V1/V2 → V3](#v0-v1-v2-to-v3) - Configuration restructure (`networks` → `chains`, capitalized chain names, route plugin system, consolidated `ui` properties).
+
+## V5 to V6 {: #v5-to-v6 }
+
+Wormhole Connect v6 removes the legacy "automatic" routes in favor of [Executor](/docs/products/messaging/guides/executor/)-powered replacements. **Most integrators need no code changes** - default usage and `DEFAULT_ROUTES` are wired to the new routes automatically.
+
+The breaking change was introduced in [PR #4025](https://github.com/wormhole-foundation/wormhole-connect/pull/4025){target=\_blank}. See the full [v6 release notes](https://github.com/wormhole-foundation/wormhole-connect/releases){target=\_blank} for additional context.
+
+### Route Replacements
+
+| Removed | Replacement |
+|---|---|
+| `AutomaticCCTPRoute` | `cctpV2FastExecutorRoute()`, `cctpV2StandardExecutorRoute()` |
+| `AutomaticTokenBridgeRoute`, `TokenBridgeRoute` | `executorTokenBridgeRoute()` |
+| `nttAutomaticRoute` | `nttExecutorRoute` |
+
+Route name strings (used in `filterRoutes`, telemetry):
+
+| Old | New |
+|---|---|
+| `AutomaticCCTP` | `CCTPV2FastExecutorRoute`, `CCTPV2StandardExecutorRoute` |
+| `AutomaticTokenBridge` | `TokenBridgeExecutorRoute` |
+| `AutomaticNtt` | `NttExecutorRoute` |
+
+**Unchanged**: `CCTPRoute`, `TBTCRoute`, `nttManualRoute`, `nttExecutorRoute`, `nttRoutes`, and all Mayan and LiFi routes.
+
+### When You Need to Change Code
+
+You only need changes if you:
+
+- Import any removed route by name.
+- Build a custom `routes: [...]` array using a removed route.
+- Compare against old route name strings (in `filterRoutes`, telemetry handlers, etc.).
+
+Default usage (`<WormholeConnect />` with no `routes` config) and `DEFAULT_ROUTES` are wired to the new routes automatically.
+
+!!! tip "Note"
+    The new Executor routes are **factory functions** - invoke them with `()` when adding to a `routes` array. The legacy automatic routes were class constructors passed directly.
+
+### Update the Connect Package
+
+Install the v6 release:
+
+```bash
+npm install @wormhole-foundation/wormhole-connect@^6.0
+```
+
+### `DEFAULT_ROUTES` Has Been Updated
+
+The default route set used when integrators don't specify a `routes` array now uses Executor-based routes:
+
+=== "v5.x"
+
+    ```typescript
+    DEFAULT_ROUTES = [
+      AutomaticCCTPRoute,
+      CCTPRoute,
+      AutomaticTokenBridgeRoute,
+      TokenBridgeRoute,
+      TBTCRoute,
+    ];
+    ```
+
+=== "v6.x"
+
+    ```typescript
+    DEFAULT_ROUTES = [
+      cctpV2FastExecutorRoute(),
+      cctpV2StandardExecutorRoute(),
+      CCTPRoute,
+      executorTokenBridgeRoute(),
+      TBTCRoute,
+    ];
+    ```
+
+If you rely on `DEFAULT_ROUTES` without overriding it, no code changes are required.
+
+### Update Custom `routes` Arrays
+
+If you pass a custom `routes` array, replace removed routes with their Executor equivalents and remember to invoke the new factory functions with `()`:
+
+=== "v5.x"
+
+    ```typescript
+    import {
+      AutomaticCCTPRoute,
+      CCTPRoute,
+      AutomaticTokenBridgeRoute,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config = {
+      routes: [AutomaticCCTPRoute, CCTPRoute, AutomaticTokenBridgeRoute],
+    };
+    ```
+
+=== "v6.x"
+
+    ```typescript
+    import {
+      cctpV2FastExecutorRoute,
+      cctpV2StandardExecutorRoute,
+      CCTPRoute,
+      executorTokenBridgeRoute,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config = {
+      routes: [
+        cctpV2FastExecutorRoute(),
+        cctpV2StandardExecutorRoute(),
+        CCTPRoute,
+        executorTokenBridgeRoute(),
+      ],
+    };
+    ```
+
+### Update NTT Routes
+
+If you use the `nttRoutes(...)` helper, no changes are needed. Otherwise, swap `nttAutomaticRoute` for `nttExecutorRoute`:
+
+=== "v5.x"
+
+    ```typescript
+    import { nttAutomaticRoute } from '@wormhole-foundation/wormhole-connect/ntt';
+
+    const config = {
+      routes: [nttAutomaticRoute(myNttConfig)],
+    };
+    ```
+
+=== "v6.x"
+
+    ```typescript
+    import { nttExecutorRoute } from '@wormhole-foundation/wormhole-connect/ntt';
+
+    const config = {
+      routes: [nttExecutorRoute({ ntt: myNttConfig })],
+    };
+    ```
+
+## V0/V1/V2 to V3 {: #v0-v1-v2-to-v3 }
 
 The Wormhole Connect feature has been updated to **version 3.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
