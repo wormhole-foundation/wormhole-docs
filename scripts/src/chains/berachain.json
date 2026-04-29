@@ -11,7 +11,7 @@
   "homepage": "https://www.berachain.com/",
   "devDocs": "https://docs.berachain.com/",
   "faucet": {
-    "url": "https://bartio.faucet.berachain.com/",
+    "url": "https://bepolia.faucet.berachain.com/",
     "token": "BERA",
     "description": "Official Berachain Faucet"
   },
