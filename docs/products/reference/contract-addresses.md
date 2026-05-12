@@ -43,7 +43,7 @@ categories: Reference
 --8<-- 'text/products/reference/contract-addresses/wh-quoter-implementation.md'
 
 --8<-- 'text/products/reference/contract-addresses/quoter-public-keys.md'
-    
+
 ## Guardian Governance
 
 --8<-- 'text/products/reference/contract-addresses/governance.md'
@@ -65,9 +65,15 @@ categories: Reference
 
     <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x1462800febd49232798132e8c8b721aa86c4c209</code></td></tr></tbody></table>
 
+## Shim Contracts
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Solana</td><td><code>EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX</code></td></tr><tr><td>Fogo</td><td><code>EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX</code></td></tr></tbody></table>
+
 ## Read-Only Deployments
 
 --8<-- 'text/products/reference/contract-addresses/read-only.md'
 
-!!! note  
+!!! note
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
