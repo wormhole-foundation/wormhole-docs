@@ -4,3 +4,6 @@ https://fonts.googleapis.com/**
 
 # Allowlist known working URLs
 https://atlantic-2.app.sei.io/faucet
+
+# Moca devnet explorer/faucet has TLS cert issues but is still the canonical URL
+https://devnet-scan.mocachain.org/**

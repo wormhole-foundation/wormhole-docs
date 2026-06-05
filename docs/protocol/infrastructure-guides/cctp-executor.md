@@ -140,7 +140,7 @@ CCTP transfers to Solana are redeemed into a USDC token account that must exist 
 
 For Sui:
 
-- `gasLimit` represents the [gas budget](https://sdk.mystenlabs.com/typescript/transaction-building/gas#budget){target=\_blank} for the transaction.
+- `gasLimit` represents the gas budget for the transaction.
 - As with native Sui transactions, the budget often needs to exceed the actual cost to account for variable execution and storage usage.
 - A direct gas budget is used instead of a simulated CU-style model due to the [non-linear gas cost structure](https://docs.sui.io/concepts/tokenomics/gas-in-sui#gas-prices){target=\_blank} on Sui.
 
