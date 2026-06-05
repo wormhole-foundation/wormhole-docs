@@ -13,17 +13,18 @@ jobs:
   check-docs-links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.10'
 
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
@@ -84,7 +85,7 @@ jobs:
           LOCAL_SERVER="http://localhost:8000"
           BASE_URL="https://wormhole.com/docs"
 
-          ARGS="--config ${{ steps.lychee_cfg.outputs.cfg }} --root-dir $ABS_SITE_PATH --verbose --no-progress --accept 429,403 --max-retries 3 --retry-wait-time 10"
+          ARGS="--config $LYCHEE_CFG --root-dir $ABS_SITE_PATH --verbose --no-progress --accept 429,403 --max-retries 3 --retry-wait-time 10"
           ARGS="$ARGS --remap \"$BASE_URL/ $LOCAL_SERVER/\" --remap \"$BASE_URL $LOCAL_SERVER\""
 
           URLIGNORE_PATH="$(pwd)/.urlignore"
@@ -93,13 +94,17 @@ jobs:
           fi
 
           echo "args=$ARGS" >> $GITHUB_OUTPUT
+        env:
+          LYCHEE_CFG: ${{ steps.lychee_cfg.outputs.cfg }}
 
       - name: Check Links
         id: lychee
-        uses: lycheeverse/lychee-action@v2.4.1
+        uses: lycheeverse/lychee-action@82202e5e9c2f4ef1a55a3d02563e1cb6041e5332 # v2.4.1
         with:
           args: ${{ steps.lychee_args.outputs.args }} './site/**/*.html'
 
       - name: Cleanup Local Server
         if: always()
-        run: kill ${{ steps.serve.outputs.pid }} || true
+        run: kill $SERVER_PID || true
+        env:
+          SERVER_PID: ${{ steps.serve.outputs.pid }}

@@ -22,6 +22,7 @@ jobs:
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude'))
     runs-on: ubuntu-latest
+    environment: production
     env:
       PR_NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
     permissions:
@@ -32,16 +33,17 @@ jobs:
       - name: Check repo access
         id: auth
         run: |
-          permission=$(gh api repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission --jq '.permission' 2>/dev/null || echo "none")
+          permission=$(gh api repos/${{ github.repository }}/collaborators/$ACTOR/permission --jq '.permission' 2>/dev/null || echo "none")
           echo "permission=$permission"
           if [ "$permission" = "write" ] || [ "$permission" = "admin" ]; then
             echo "authorized=true" >> "$GITHUB_OUTPUT"
           else
             echo "authorized=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Actor ${{ github.actor }} has no access to this repository"
+            echo "::warning::Actor $ACTOR has no access to this repository"
           fi
         env:
           GH_TOKEN: ${{ github.token }}
+          ACTOR: ${{ github.actor }}
 
       - name: Resolve PR head SHA for issue_comment events
         id: pr-sha
