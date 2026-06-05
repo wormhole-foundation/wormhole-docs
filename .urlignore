@@ -7,3 +7,6 @@ https://atlantic-2.app.sei.io/faucet
 
 # Moca devnet explorer/faucet has TLS cert issues but is still the canonical URL
 https://devnet-scan.mocachain.org/**
+
+# Sunrise Finance site is geo-blocked from US-based CI runners
+https://www.sunrisedefi.com/**
