@@ -7,5 +7,6 @@ nav:
 - 'Executor Addresses': executor-addresses.md
 - 'Supported Networks': supported-networks.md
 - 'Testnet Faucets': testnet-faucets.md
+- 'Delegated Guardian Set': delegated-guardian-set.md
 - 'Glossary': glossary.md
 - 'Wormhole Dev Arena': https://arena.wormhole.com/
