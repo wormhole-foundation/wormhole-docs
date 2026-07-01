@@ -73,6 +73,14 @@ This configuration is for the `ibc` feature for guardians.
 
     <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Wormchain</td><td><code>wormhole1wkwy0xh89ksdgj9hr347dyd2dw7zesmtrue6kfzyml4vdtz6e5ws2y050r</code></td></tr></tbody></table>
 
+## Gateway
+
+This configuration is for the `gatewayContract` guardian configuration.
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Wormchain</td><td><code>wormhole1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqaqfk2j</code></td></tr></tbody></table>
+
 ## Read-Only Deployments
 
 --8<-- 'text/products/reference/contract-addresses/read-only.md'
