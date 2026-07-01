@@ -52,7 +52,7 @@ Connect lets you customize the available chains to match your project's needs. Y
 
 By default, Connect offers two bridging protocols: Wrapped Token Transfers (WTT) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
 
-!!! note "Terminology" 
+!!! note "Terminology"
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 #### Available Route Plugins
@@ -60,7 +60,7 @@ By default, Connect offers two bridging protocols: Wrapped Token Transfers (WTT)
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
 - **[`TokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}**: Manually redeemed Wormhole WTT route.
-- **[`AutomaticTokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) WTT route.
+- **[`ExecutorTokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/executor.ts){target=\_blank}**: Executor.
 - **[`CCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}**: Manually redeemed CCTP route.
 - **[`AutomaticCCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) CCTP route.
 - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
