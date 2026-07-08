@@ -51,12 +51,14 @@ categories: Reference
 !!! note
     Guardian-governed ownership contracts are used where an owner is required, without adding new trust assumptions. They only accept instructions signed by a quorum of Wormhole Guardians, validated on-chain by the Wormhole Core contracts. Implementations: [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/wormhole/Governance.sol){target=\_blank} and [SVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/wormhole-governance/src/instructions/governance.rs){target=\_blank}.
 
-    On SVM chains, deployments set the admin to a [governance PDA](https://solana.com/docs/core/pda){target=\_blank} derived from the Guardian governance program. The admin address may differ from the program ID when inspecting deployments on-chain.
+    On SVM chains (Solana, Fogo), deployments set the admin to a [governance PDA](https://solana.com/docs/core/pda){target=\_blank} derived from the Guardian governance program. The admin address may differ from the program ID when inspecting deployments on-chain.
 
     The following governance PDAs are used as the admin for deployments on SVM chains:
 
     - **Solana:** `4iUtozoQLdJ2FV7vXe9q215ETSw1Mnt8WKP4NyqNgAxz`.
     - **Fogo:** `nWfGbhWvREnvF1zCvhrXiKidzDJ8DzCdHb13YYZeVkV`.
+
+    On Sui, separate instances for the Move governance contract need to be deployed for each individual token due to technical reasons. The NTT CLI is able to perform such deployments for your token via "ntt sui deploy-governance --transfer".
 
 
 ## Delegated Guardians
