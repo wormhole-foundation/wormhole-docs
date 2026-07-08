@@ -58,7 +58,7 @@ categories: Reference
     - **Solana:** `4iUtozoQLdJ2FV7vXe9q215ETSw1Mnt8WKP4NyqNgAxz`.
     - **Fogo:** `nWfGbhWvREnvF1zCvhrXiKidzDJ8DzCdHb13YYZeVkV`.
 
-    On Sui, separate instances for the Move governance contract need to be deployed for each individual token due to technical reasons. The NTT CLI is able to perform such deployments for your token via "ntt sui deploy-governance --transfer".
+    On Sui, separate instances of the Move governance contract need to be deployed for each individual token due to technical reasons. The NTT CLI is able to perform such deployments for your token via "ntt sui deploy-governance --transfer".
 
 
 ## Delegated Guardians
