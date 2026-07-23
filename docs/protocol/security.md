@@ -101,7 +101,7 @@ All audits and final reports can be found in [security page of the GitHub Repo](
 
 Wormhole has one of the largest bug bounty programs in software development and has repeatedly shown commitment to engaging with the white hat community.
 
-Wormhole runs a bug bounty program through [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\_blank} program, with a top payout of **5 million dollars**.
+Wormhole runs a bug bounty program through [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\_blank} program.
 
 If you are interested in contributing to Wormhole security, please look at this section for [Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\_blank}, and follow the [Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\_blank}.
 
