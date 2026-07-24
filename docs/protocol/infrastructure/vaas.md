@@ -54,6 +54,10 @@ The consistency level determines whether Guardians wait for a chain's final comm
 
 Guardian watchers are specialized processes that monitor each blockchain in real-time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk. A more conservative option takes longer but reduces the likelihood of rollback.
 
+### Observed Finalization Latency
+
+For a public, passive view of how long VAAs actually take to finalize per source chain, [OpenChainBench](https://openchainbench.com/benchmarks/wormhole-vaa-latency){target=\_blank} publishes an open benchmark computed from the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank}. The benchmark polls `/api/v1/vaas` every 60 seconds and records `indexedAt - timestamp` per VAA as a Prometheus histogram bucketed by `emitterChain`. Source code is available on [GitHub](https://github.com/ChainBench/openchainbench){target=\_blank}.
+
 ## Signatures
 
 The body of the VAA is hashed twice with `keccak256` to produce the signed digest message.
