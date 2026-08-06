@@ -32,7 +32,7 @@ Before starting, ensure you have:
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
-    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/reference/chain-ids/){target=\_blank}.
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Supported Networks reference](/docs/reference/supported-networks/){target=\_blank}.
 
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
@@ -126,7 +126,7 @@ For Solana and other SVM chains:
 
 ## Request a Signed Quote
 
-Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/reference/chain-ids/){target=\_blank}.
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/reference/supported-networks/){target=\_blank}.
 
 ```ts
 --8<-- 'code/products/messaging/guides/executor/signedQuote.ts'

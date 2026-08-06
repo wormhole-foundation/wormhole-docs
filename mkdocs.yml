@@ -196,10 +196,10 @@ plugins:
         build/queries/index.md: products/queries/overview.md
         build/queries/overview.md: products/queries/overview.md
         build/queries/use-queries.md: products/queries/guides/use-queries.md
-        build/reference/chain-ids.md: reference/chain-ids.md
+        build/reference/chain-ids.md: reference/supported-networks.md
         build/reference/consistency-levels.md: reference/consistency-levels.md
         build/reference/contract-addresses.md: reference/contract-addresses.md
-        build/reference/index.md: reference/chain-ids.md
+        build/reference/index.md: reference/supported-networks.md
         build/reference/wormhole-formatted-addresses.md: reference/wormhole-formatted-addresses.md
         build/start-building/demos.md: products/overview.md
         build/start-building/index.md: products/overview.md
@@ -330,7 +330,7 @@ plugins:
         products/native-token-transfers/reference/cli-commands.md: products/token-transfers/native-token-transfers/reference/cli-commands.md
         products/native-token-transfers/reference/managers-transceivers.md: products/token-transfers/native-token-transfers/concepts/transfer-flow.md
         products/native-token-transfers/reference/supported-networks.md: products/token-transfers/native-token-transfers/reference/supported-networks.md
-        products/reference/chain-ids.md: reference/chain-ids.md
+        products/reference/chain-ids.md: reference/supported-networks.md
         products/reference/consistency-levels.md: reference/consistency-levels.md
         products/reference/contract-addresses.md: reference/contract-addresses.md
         products/reference/delegated-guardian-set.md: reference/delegated-guardian-set.md
