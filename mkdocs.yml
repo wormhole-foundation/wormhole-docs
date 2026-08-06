@@ -196,25 +196,25 @@ plugins:
         build/queries/index.md: products/queries/overview.md
         build/queries/overview.md: products/queries/overview.md
         build/queries/use-queries.md: products/queries/guides/use-queries.md
-        build/reference/chain-ids.md: products/reference/chain-ids.md
-        build/reference/consistency-levels.md: products/reference/consistency-levels.md
-        build/reference/contract-addresses.md: products/reference/contract-addresses.md
-        build/reference/index.md: products/reference/chain-ids.md
-        build/reference/wormhole-formatted-addresses.md: products/reference/wormhole-formatted-addresses.md
+        build/reference/chain-ids.md: reference/chain-ids.md
+        build/reference/consistency-levels.md: reference/consistency-levels.md
+        build/reference/contract-addresses.md: reference/contract-addresses.md
+        build/reference/index.md: reference/chain-ids.md
+        build/reference/wormhole-formatted-addresses.md: reference/wormhole-formatted-addresses.md
         build/start-building/demos.md: products/overview.md
         build/start-building/index.md: products/overview.md
         build/start-building/products.md: products/overview.md
-        build/start-building/supported-networks.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/algorand.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/aptos.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/cosmos.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/cosmos/cosmos.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/cosmos/gateway.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/evm.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/near.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/solana.md: products/reference/supported-networks.md
-        build/start-building/supported-networks/sui.md: products/reference/supported-networks.md
-        build/start-building/testnet-faucets.md: products/reference/testnet-faucets.md
+        build/start-building/supported-networks.md: reference/supported-networks.md
+        build/start-building/supported-networks/algorand.md: reference/supported-networks.md
+        build/start-building/supported-networks/aptos.md: reference/supported-networks.md
+        build/start-building/supported-networks/cosmos.md: reference/supported-networks.md
+        build/start-building/supported-networks/cosmos/cosmos.md: reference/supported-networks.md
+        build/start-building/supported-networks/cosmos/gateway.md: reference/supported-networks.md
+        build/start-building/supported-networks/evm.md: reference/supported-networks.md
+        build/start-building/supported-networks/near.md: reference/supported-networks.md
+        build/start-building/supported-networks/solana.md: reference/supported-networks.md
+        build/start-building/supported-networks/sui.md: reference/supported-networks.md
+        build/start-building/testnet-faucets.md: reference/testnet-faucets.md
         build/start-building/use-cases.md: products/overview.md
         build/toolkit/cli.md: tools/cli/get-started.md
         build/toolkit/dev-env.md: tools/dev-env.md
@@ -265,11 +265,11 @@ plugins:
         infrastructure/spy/index.md: protocol/infrastructure-guides/run-spy.md
         infrastructure/spy/run-spy.md: protocol/infrastructure-guides/run-spy.md
         learn/fundamentals/architecture.md: protocol/architecture.md
-        learn/fundamentals/glossary.md: products/reference/glossary.md
+        learn/fundamentals/glossary.md: reference/glossary.md
         learn/fundamentals/index.md: protocol/introduction.md
         learn/fundamentals/introduction.md: protocol/introduction.md
         learn/fundamentals/security.md: protocol/security.md
-        learn/glossary.md: products/reference/glossary.md
+        learn/glossary.md: reference/glossary.md
         learn/governance/architecture.md: products/multigov/concepts/architecture.md
         learn/governance/faq.md: products/multigov/faqs.md
         learn/governance/index.md: products/multigov/overview.md
@@ -313,6 +313,7 @@ plugins:
         products/messaging/guides/executor/executor-vs-sr.md: protocol/infrastructure/relayers/executor-vs-sr.md
         products/messaging/guides/executor/ntt-executor.md: protocol/infrastructure-guides/ntt-executor.md
         products/messaging/guides/wormhole-relayers.md: protocol/infrastructure/relayers/executor-framework.md
+        products/messaging/reference/executor-addresses.md: reference/executor-addresses.md
         products/messaging/reference/relayer-contract.md: protocol/infrastructure/relayers/executor-framework.md
         products/native-token-transfers/configuration/access-control.md: products/token-transfers/native-token-transfers/configuration/access-control.md
         products/native-token-transfers/configuration/rate-limiting.md: products/token-transfers/native-token-transfers/configuration/rate-limiting.md
@@ -329,6 +330,15 @@ plugins:
         products/native-token-transfers/reference/cli-commands.md: products/token-transfers/native-token-transfers/reference/cli-commands.md
         products/native-token-transfers/reference/managers-transceivers.md: products/token-transfers/native-token-transfers/concepts/transfer-flow.md
         products/native-token-transfers/reference/supported-networks.md: products/token-transfers/native-token-transfers/reference/supported-networks.md
+        products/reference/chain-ids.md: reference/chain-ids.md
+        products/reference/consistency-levels.md: reference/consistency-levels.md
+        products/reference/contract-addresses.md: reference/contract-addresses.md
+        products/reference/delegated-guardian-set.md: reference/delegated-guardian-set.md
+        products/reference/executor-addresses.md: reference/executor-addresses.md
+        products/reference/glossary.md: reference/glossary.md
+        products/reference/supported-networks.md: reference/supported-networks.md
+        products/reference/testnet-faucets.md: reference/testnet-faucets.md
+        products/reference/wormhole-formatted-addresses.md: reference/wormhole-formatted-addresses.md
         products/token-bridge/concepts/payload-structure.md: products/token-transfers/wrapped-token-transfers/concepts/payload-structure.md
         products/token-bridge/concepts/transfer-flow.md: products/token-transfers/wrapped-token-transfers/concepts/transfer-flow.md
         products/token-bridge/faqs.md: products/token-transfers/wrapped-token-transfers/faqs.md

@@ -6,4 +6,4 @@ categories: NTT, Transfer
 
 # Supported Networks
 
---8<-- 'text/products/reference/supported-networks/ntt.md'
+--8<-- 'text/reference/supported-networks/ntt.md'

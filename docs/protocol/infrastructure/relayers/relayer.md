@@ -59,14 +59,6 @@ The Executor does not change Wormhole’s security model. Guardian signatures an
 
     [:custom-arrow: Migrate to Executor](/docs/protocol/infrastructure/relayers/executor-vs-sr/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
-
 </div>
 
 

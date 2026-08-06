@@ -16,8 +16,8 @@ This guide explains how Wormhole integrates with Circle’s CCTP contracts throu
 
 To interact with the Wormhole CCTP, you'll need the following:
 
-- [The address of the CCTP contract](/docs/products/reference/contract-addresses/#cctp){target=\_blank} on the chains you're deploying your contract on.
-- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on.
+- [The address of the CCTP contract](/docs/reference/contract-addresses/#cctp){target=\_blank} on the chains you're deploying your contract on.
+- [The Wormhole chain ID](/docs/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on.
 
 ## Wormhole's CCTP Integration Contract
 
@@ -26,7 +26,7 @@ Wormhole's Circle Integration contract, `CircleIntegration.sol`, is the contract
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
 !!! note
-    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/cctp/cctp-supported-blockchains#cctp-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
+    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/cctp/cctp-supported-blockchains#cctp-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
 
 ??? code "Circle Integration contract"
     ```solidity

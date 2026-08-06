@@ -1,0 +1,38 @@
+{
+  "title": "Ethereum",
+  "testnet": {
+    "name": "Testnet",
+    "id": "5"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "1"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

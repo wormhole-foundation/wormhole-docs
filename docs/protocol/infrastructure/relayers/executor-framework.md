@@ -27,7 +27,7 @@ This modular structure enables permissionless, verifiable, and cost-efficient me
 The Executor framework comprises a small set of on-chain and off-chain components that work together to request, quote, and execute cross-chain messages. The following components define the roles, interfaces, and data structures involved in the execution process.
 
 - **Relay Provider**: An off-chain party responsible for performing message execution between chains. 
-- **[Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
+- **[Executor contract](/docs/reference/executor-addresses/){target=\_blank}**: The shared on-chain contract or program used to make execution requests. 
 - **Execution quote**: A signed quote defining cost and parameters for execution between a source and destination chain. 
 - **Execution request**: A request generated on-chain or off-chain for a given message (e.g., NTT, VAA v1, etc.) to be executed on another chain. 
 - **Quoter**: An off-chain service that produces signed quotes. It's Quoter’s EVM public key that identifies each Relay Provider.
@@ -135,7 +135,7 @@ On EVM chains, on-chain quoting introduces two additional contracts:
 - `ExecutorQuoter`: Implements the pricing logic for a specific Relay Provider.
 - `ExecutorQuoterRouter`: Acts as the canonical entrypoint for integrators requesting on-chain quotes.
 
-The [Quoter public key](/docs/products/reference/executor-addresses/#on-chain-quoter){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution. This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
+The [Quoter public key](/docs/reference/executor-addresses/){target=\_blank} identifies a Relay Provider and is used to select which provider’s pricing logic will be applied during execution. This allows multiple providers to register independent pricing logic, permissionless participation, and on-chain formation of execution quotes without requiring signatures.
 
 The Router constructs an unsigned `EQ02` quote on-chain and forwards the execution request to the Executor contract. `EQ02` contains the same pricing fields as the signed `EQ01` quote. Still, it is constructed on-chain, it does not contain a signature, and Relay Providers verify it by checking for an `OnChainQuote` event emitted by the canonical Router. This preserves compatibility with existing Executor tooling and off-chain validation logic.
 
@@ -155,7 +155,7 @@ This ensures that providers can update pricing logic, the Router remains immutab
 
 ## Executor Contract
 
-Each supported chain hosts a stateless, permissionless [Executor contract](/docs/products/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
+Each supported chain hosts a stateless, permissionless [Executor contract](/docs/reference/executor-addresses/){target=\_blank}. The contract provides an interface for submitting execution requests and emitting observable events for off-chain providers. It maintains no persistent state; all requests exist as events that off-chain agents can detect.
 
 When called, the Executor contract:
 
@@ -219,7 +219,7 @@ The Executor contract is explicitly designed to be immutable and sit outside an 
 ## Resources
 
 - [demo-hello-executor](https://github.com/wormhole-foundation/demo-hello-executor){target=\_blank} — Minimal end-to-end example demonstrating quote requests and `requestExecution` flows.
-- [Executor Addresses Reference](/docs/products/reference/executor-addresses/){target=\_blank} — Deployed Executor contracts, On-chain Quoter contracts, Wormhole Labs’ Quoter implementations, and published Quoter public keys.
+- [Executor Addresses Reference](/docs/reference/executor-addresses/){target=\_blank} — Deployed Executor contracts, On-chain Quoter contracts, Wormhole Labs’ Quoter implementations, and published Quoter public keys.
 
 ## Next Steps
 

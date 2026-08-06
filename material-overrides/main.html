@@ -113,33 +113,10 @@
         });
       }
 
-      getTopNavigationState = () => {
-        const path = window.location.pathname;
-        // If on a reference page, highlight the reference top level nav item
-        if (path.includes('products/reference')) {
-          const tabs = document.querySelectorAll('.md-tabs__item');
-
-          tabs.forEach(tab => {
-            // Remove the active class from the active tab
-            if (tab.classList.contains('md-tabs__item--active')) {
-              tab.classList.remove('md-tabs__item--active');
-            }
-
-            // Add the active class to the tab that contains 'Reference'
-            if (tab.children[0].innerText.includes('Reference')) {
-              tab.classList.add('md-tabs__item--active');
-            }
-          });
-        }
-      }
-
       document.addEventListener('DOMContentLoaded', () => {
         // Handle left navigation state
         document.querySelectorAll('.nav__item--section').forEach(setupSection);
         applyInitialState();
-
-        // Handle top navigation state
-        getTopNavigationState();
 
         document.documentElement.classList.remove('js-loading');
       });

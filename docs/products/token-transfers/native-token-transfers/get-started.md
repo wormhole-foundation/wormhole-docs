@@ -127,13 +127,5 @@ You have scaffolded your NTT project and initialized the configuration file. Nex
 
     [:custom-arrow: Get Started](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-sui/){target=\_blank}
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
-
 </div>
 

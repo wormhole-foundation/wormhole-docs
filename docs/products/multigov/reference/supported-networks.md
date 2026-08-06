@@ -6,4 +6,4 @@ categories: MultiGov
 
 # Supported Networks
 
---8<-- 'text/products/reference/supported-networks/multigov.md'
+--8<-- 'text/reference/supported-networks/multigov.md'

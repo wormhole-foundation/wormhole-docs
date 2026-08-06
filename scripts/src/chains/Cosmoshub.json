@@ -1,0 +1,12 @@
+{
+  "title": "Cosmoshub",
+  "testnet": {
+    "name": "Testnet",
+    "id": "theta-testnet-001"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "cosmoshub-4"
+  },
+  "products": {}
+}

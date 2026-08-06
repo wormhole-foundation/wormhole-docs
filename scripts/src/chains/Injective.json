@@ -1,0 +1,18 @@
+{
+  "title": "Injective",
+  "testnet": {
+    "name": "Testnet",
+    "id": "injective-888"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "injective-1"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

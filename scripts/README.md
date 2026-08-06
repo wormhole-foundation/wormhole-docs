@@ -15,7 +15,7 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 - This repo checked out locally.
 - Network access for fetching contract constants from the Wormhole SDK (unless you point to local files).
 - Optional environment variable: `DOCS_SNIPPETS_DIR` to override the default snippets path (`../docs/.snippets/text`).
-- Notion credentials (required for executor-style contract tables):
+- Notion credentials (required for CCTP support data):
   - `NOTION_API_KEY`
   - Use environment variables `NOTION_CONTRACTS_MAINNET_DB_ID` / `NOTION_CONTRACTS_TESTNET_DB_ID` **or** populate `src/config/notion-database-ids.json` with your database IDs.
   - Optional: `NOTION_VERSION` (defaults to `2022-06-28`)
@@ -50,7 +50,6 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
 | `src/util.ts`                                | Shared formatting helpers (table builder, indentation, sorting).                                                     |
 | `src/notion/client.ts`                       | Minimal Notion API wrapper that handles auth, versioning, and pagination.                                            |
 | `src/notion/parser.ts`                       | Extracts chain names and contract addresses from Notion page payloads.                                               |
-| `src/notion/contractTables.ts`               | Fetches Notion databases and renders executor-style tables with priority sorting and fallback handling.              |
 | `src/utils/http.ts` / `src/utils/parsing.ts` | Lightweight HTTP client (supports HTTP and local file paths) and TypeScript array parsing utilities.                 |
 | `src/tagManager.ts`                          | Indexes snippet files once, tracks matching tag markers, and replaces the content between them.                      |
 | `src/env.ts`                                 | Resolves environment-dependent paths such as the snippets directory.                                                 |
@@ -74,9 +73,8 @@ Day-to-day operators do not need to touch the TypeScript—just run `npm run upd
    - Fetches Wormhole Connect chain lists from `config/connect-support-config.json` and generates `src/generated/connect-support.json`.
    - Fetches CCTP v1/v2 support from Notion (when credentials are available) and updates `src/generated/cctp-*-support.json`.
 
-3. **Render tables (`src/details.ts`, `src/governance.ts`, `src/notion/contractTables.ts`)**  
+3. **Render tables (`src/details.ts`, `src/governance.ts`)**  
    - Converts the aggregated data into HTML snippets (contracts, chain IDs, supported networks, governance, etc.).
-   - Executor and executor-adjacent tables pull from Notion databases when the accompanying environment variables are provided.
 
 4. **Inject snippets (`src/tagManager.ts`)**  
    - Finds matching tag pairs across the snippets directory and replaces the interior with the rendered content.  
@@ -112,7 +110,7 @@ Follow the quick-start steps above (`npm run update` then `npm run generate`). A
 
 ### Update governance sources
 1. Modify the URLs inside `src/config/contracts-config.json`.
-2. Ensure both `<!--GOVERNANCE_MAINNET-->` and `<!--GOVERNANCE_TESTNET-->` markers exist in `docs/.snippets/text/products/reference/contract-addresses/governance.md`.
+2. Ensure both `<!--GOVERNANCE_MAINNET-->` and `<!--GOVERNANCE_TESTNET-->` markers exist in `docs/.snippets/text/reference/contract-addresses/governance.md`.
 3. Run `npm run generate` and verify the governance table outputs (mainnet/testnet). Manual rows in the mainnet table are preserved.
 
 ### Update Connect sources

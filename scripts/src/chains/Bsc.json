@@ -1,0 +1,33 @@
+{
+  "title": "Bsc",
+  "testnet": {
+    "name": "Testnet",
+    "id": "97"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "56"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

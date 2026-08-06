@@ -50,12 +50,4 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
-
 </div>

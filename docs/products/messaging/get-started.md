@@ -106,14 +106,6 @@ Congratulations! You've published your first multichain message using Wormhole's
 
     [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/get-started/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
-
 </div>
 
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.

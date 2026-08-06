@@ -38,7 +38,7 @@ Deploying NTT with the CLI on SVM chains follows a structured process:
 
 1. Choose your token setup:
 
-     - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/products/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
+     - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new SPL token**: If you don't already have an SPL token deployed, you'll need to deploy and configure it on a supported SVM chain before integrating with Wormhole's NTT.
 
         ???- interface "Create and Mint an SPL Token"
@@ -217,14 +217,6 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
     [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/)
-
--   :octicons-tools-16:{ .lg .middle } **Launch a Multichain Native Memecoin**
-
-    ---
-
-    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 

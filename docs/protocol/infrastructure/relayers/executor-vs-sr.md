@@ -152,7 +152,7 @@ The resources below provide deeper technical detail and example implementations.
 
     See the chain-specific deployed addresses.
 
-    [:custom-arrow: See Addresses](/docs/products/messaging/reference/executor-addresses/)
+    [:custom-arrow: See Addresses](/docs/reference/executor-addresses/)
 
 -   :octicons-tools-16:{ .lg .middle } **Executor Demo**
 

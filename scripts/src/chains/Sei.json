@@ -1,0 +1,18 @@
+{
+  "title": "Sei",
+  "testnet": {
+    "name": "Testnet",
+    "id": "atlantic-2"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "pacific-1"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

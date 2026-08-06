@@ -1,0 +1,33 @@
+{
+  "title": "Berachain",
+  "testnet": {
+    "name": "Testnet",
+    "id": "80069"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "80094"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

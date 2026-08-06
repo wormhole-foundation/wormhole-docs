@@ -6,4 +6,4 @@ categories: WTT, Transfer
 
 # Supported Networks
 
---8<-- 'text/products/reference/supported-networks/wtt.md'
+--8<-- 'text/reference/supported-networks/wtt.md'

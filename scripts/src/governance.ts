@@ -54,7 +54,6 @@ type ParsedRow = {
 };
 
 const GOVERNANCE_SNIPPET_RELATIVE = path.join(
-  'products',
   'reference',
   'contract-addresses',
   'governance.md'

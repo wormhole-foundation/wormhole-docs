@@ -6,4 +6,4 @@ categories: Connect, Transfer
 
 # Supported Networks
 
---8<-- 'text/products/reference/supported-networks/connect.md'
+--8<-- 'text/reference/supported-networks/connect.md'

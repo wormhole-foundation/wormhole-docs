@@ -6,22 +6,18 @@
 |:-------------:|:-----------------:|:--------:|:---------------------:|:----------------------:|:----------------:|
 | Solana | 1 | ✅ | ❌ | - | - |
 | Ethereum | 2 | ✅ | ✅ | ✅ | 128 blocks |
-| BNB Smart Chain | 4 | ✅ | ✅ | ✅ | 128 blocks |
+| Bsc | 4 | ✅ | ✅ | ✅ | 128 blocks |
 | Polygon | 5 | ✅ | ✅ | ✅ | 128 blocks |
 | Avalanche | 6 | ✅ | ✅ | ✅ | 32 blocks |
-| Fantom | 10 | ✅ | ✅ | ✅ | 16 blocks |
 | Kaia | 13 | ✅ | ✅ | ✅ | 128 blocks |
 | Celo | 14 | ✅ | ℹ️ | ✅ | 128 blocks |
 | Moonbeam | 16 | ✅ | ℹ️ | ✅ | 256 blocks |
 | Arbitrum | 23 | ✅ | ✅ | ✅ | ~6742 blocks |
 | Optimism | 24 | ✅ | ✅ | ❌ | 128 blocks |
 | Base | 30 | ✅ | ✅ | ✅ | archive |
-| Scroll | 34 | ✅ | ✅ | - | - |
-| Mantle | 35 | ✅ | ✅ | - | - |
-| X Layer | 37 | ✅ | ✅ | - | - |
 | Linea | 38 | ✅ | ✅ | - | - |
 | Berachain | 39 | ✅ | ✅ | - | - |
-| SeiEVM | 40 | ✅ | ✅ | - | - |
+| Seievm | 40 | ✅ | ✅ | - | - |
 | Unichain | 44 | ✅ | ✅ | - | - |
 | World Chain | 45 | ✅ | ✅ | - | - |
 | Ink | 46 | ✅ | ✅ | - | - |
@@ -37,16 +33,22 @@
 | Moca | 63 | ✅ | ✅ | - | - |
 | MegaETH | 64 | ✅ | ✅ | - | - |
 | 0G (Zero Gravity) | 67 | ✅ | ✅ | - | - |
+| Tempo | 68 | ✅ | ✅ | - | - |
+| Nexus | 69 | ✅ | ✅ | - | - |
+| Tron | 70 | ✅ | ✅ | - | - |
+| Arc | 71 | ✅ | ✅ | - | - |
+| RobinhoodChain | 72 | ✅ | ✅ | - | - |
+| Hydration | 73 | ✅ | ✅ | - | - |
 
 ## Testnet
 
 |     Chain     | Wormhole Chain ID | eth_call | eth_call_by_timestamp | eth_call_with_finality | Expected History |
 |:-------------:|:-----------------:|:--------:|:---------------------:|:----------------------:|:----------------:|
-| Ethereum Sepolia | 10002 | ✅ | ✅ | - | - |
+| Sepolia | 10002 | ✅ | ✅ | - | - |
 | Arbitrum Sepolia | 10003 | ✅ | ✅ | - | - |
 | Base Sepolia | 10004 | ✅ | ✅ | - | - |
 | Optimism Sepolia | 10005 | ✅ | ✅ | - | - |
-| Ethereum Holesky | 10006 | ✅ | ✅ | - | - |
+| Holesky | 10006 | ✅ | ✅ | - | - |
 | Polygon Amoy | 10007 | ✅ | ✅ | - | - |
 | Monad Testnet | 10009 | ✅ | ✅ | - | - |
 <!--SUPPORTED_QUERIES-->

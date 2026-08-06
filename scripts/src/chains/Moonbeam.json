@@ -1,0 +1,33 @@
+{
+  "title": "Moonbeam",
+  "testnet": {
+    "name": "Testnet",
+    "id": "1287"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "1284"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

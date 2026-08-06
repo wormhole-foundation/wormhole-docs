@@ -10,7 +10,7 @@ Developers building for smart contract integration will want to set up a develop
 
 ## Tooling Installation
 
-The [Wormhole CLI Tool](/docs/tools/cli/get-started/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/products/reference/supported-networks/){target=\_blank}.
+The [Wormhole CLI Tool](/docs/tools/cli/get-started/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/reference/supported-networks/){target=\_blank}.
 
 ## Development Stages
 
@@ -28,7 +28,7 @@ Relying on native tools when possible allows for more rapid prototyping and iter
 
 ### Integration
 
-For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/products/reference/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/reference/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
 
 !!! note
     Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
@@ -46,7 +46,7 @@ If you'd like to set up a local validator environment, follow the setup guide fo
 
 ### Testnet
 
-When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where {{ guardian_count }} Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/products/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
+When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where {{ guardian_count }} Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
 
 ```text
 https://api.testnet.wormholescan.io
@@ -54,7 +54,7 @@ https://api.testnet.wormholescan.io
 
 ### Mainnet
 
-The Mainnet contract addresses are available on the page for each [environment](/docs/products/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
+The Mainnet contract addresses are available on the page for each [environment](/docs/reference/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
 
 ```text
 https://api.wormholescan.io

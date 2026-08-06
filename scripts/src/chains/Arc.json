@@ -1,0 +1,23 @@
+{
+  "title": "Arc",
+  "testnet": {
+    "name": "Testnet",
+    "id": "5042002"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "5042"
+  },
+  "products": {
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

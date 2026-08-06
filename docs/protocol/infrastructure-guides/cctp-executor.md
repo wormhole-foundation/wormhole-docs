@@ -39,7 +39,7 @@ Before integrating CCTP with Executor, ensure that:
 
 Use the following resources throughout this guide:
 
-- [**CCTP with Executor addresses**](/docs/products/messaging/reference/executor-addresses/#cctp-with-executor){target=\_blank}: List of deployed contracts for CCTP with Executor.
+- [**Executor Addresses**](/docs/reference/executor-addresses/){target=\_blank}: Links to the live Executor Explorer for the current CCTP with Executor contract addresses.
 - **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |

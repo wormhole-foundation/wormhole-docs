@@ -35,7 +35,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the [supported networks page](/docs/products/reference/supported-networks/#cctp){target=\_blank}, which covers both Testnet and Mainnet environments.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the [supported networks page](/docs/reference/supported-networks/#cctp){target=\_blank}, which covers both Testnet and Mainnet environments.
 
 ## Project Setup
 

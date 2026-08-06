@@ -200,7 +200,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         ```
 
     !!! note
-        The `chains.json` file contains the configuration details for the Avalanche Fuji and Base Sepolia Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/products/reference/contract-addresses/){target=\_blank}.
+        The `chains.json` file contains the configuration details for the Avalanche Fuji and Base Sepolia Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/reference/contract-addresses/){target=\_blank}.
 
 2. **Set up provider and wallet**: The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
 

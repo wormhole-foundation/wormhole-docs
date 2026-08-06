@@ -41,7 +41,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Supported Networks](/docs/products/reference/supported-networks/#wtt){target=\_blank} page, which includes every network where WTT is supported, across both mainnet and testnet.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Supported Networks](/docs/reference/supported-networks/#wtt){target=\_blank} page, which includes every network where WTT is supported, across both mainnet and testnet.
 
 ## Project Setup
 
@@ -347,14 +347,6 @@ The same transfer logic will apply if you’d like to extend this application to
 ## Next Steps
 
 <div class="grid cards" markdown>
-
--   :octicons-tools-16:{ .lg .middle } **Build a Staking and Lending Protocol**
-
-    ---
-
-    Master the core features of Wrapped Token Transfers (WTT) by building a real-world staking and lending protocol on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8188-92ae-c13ee2f78b1c){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
 

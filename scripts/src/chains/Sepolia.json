@@ -1,0 +1,29 @@
+{
+  "title": "Sepolia",
+  "testnet": {
+    "name": "Testnet",
+    "id": "11155111"
+  },
+  "products": {
+    "cctp": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "tokenBridge": {
+      "mainnet": false,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}
