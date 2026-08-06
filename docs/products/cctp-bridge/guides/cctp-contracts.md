@@ -17,7 +17,7 @@ This guide explains how Wormhole integrates with Circle’s CCTP contracts throu
 To interact with the Wormhole CCTP, you'll need the following:
 
 - [The address of the CCTP contract](/docs/reference/contract-addresses/#cctp){target=\_blank} on the chains you're deploying your contract on.
-- [The Wormhole chain ID](/docs/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on.
+- [The Wormhole chain ID](/docs/reference/supported-networks/){target=\_blank} of the chains you're deploying your contract on.
 
 ## Wormhole's CCTP Integration Contract
 

@@ -12,7 +12,7 @@ This glossary is an index of technical term definitions for words commonly used 
 
 Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
 
-You can find each chain ID documented on the [Wormhole Chain IDs](/docs/reference/chain-ids/){target=\_blank} page.
+You can find each chain ID documented on the [Supported Networks](/docs/reference/supported-networks/){target=\_blank} page.
 
 ## Consistency Level
 

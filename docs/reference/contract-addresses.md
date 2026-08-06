@@ -11,6 +11,8 @@ categories: Reference
 !!! note
     The Core Contract is the on-chain contract deployed on each supported chain that verifies and publishes Wormhole messages. See [Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} for more details.
 
+    A Core Contract being present in this list is not necessarily a guarantee that the chain is currently connected to Wormhole. Please check the [Supported Networks](/docs/reference/supported-networks/#live-connections){target=\_blank} section for details.
+
 --8<-- 'text/reference/contract-addresses/core-contracts.md'
 
 ## Wrapped Token Transfers (WTT)
