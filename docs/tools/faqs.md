@@ -46,7 +46,7 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
 
 3. **Submit the VAA through Etherscan (for EVM chains)**: Once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`).
 
-    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/products/reference/contract-addresses/){target=\_blank} section.
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/reference/contract-addresses/){target=\_blank} section.
 
     - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field.
 

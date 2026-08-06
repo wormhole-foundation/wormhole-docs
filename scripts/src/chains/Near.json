@@ -1,0 +1,18 @@
+{
+  "title": "Near",
+  "testnet": {
+    "name": "Testnet",
+    "id": "testnet"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "mainnet"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

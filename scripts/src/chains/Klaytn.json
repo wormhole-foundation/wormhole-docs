@@ -1,0 +1,33 @@
+{
+  "title": "Klaytn",
+  "testnet": {
+    "name": "Testnet",
+    "id": "1001"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "8217"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

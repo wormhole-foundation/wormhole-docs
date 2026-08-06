@@ -152,7 +152,7 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
 
 #### Wormhole Core
 
-The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](/docs/products/reference/glossary/#emitter){target=\_blank}, sequence number, and payload needed for bridging.
+The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](/docs/reference/glossary/#emitter){target=\_blank}, sequence number, and payload needed for bridging.
 
 Example workflow on Solana Testnet:
 
@@ -228,7 +228,7 @@ At a high level:
 - The CCTP Executor route requests a signed execution quote and registers an execution request with a relay provider.
 - A relay provider completes the transfer by fetching the Circle attestation and submitting the destination transaction(s) required to redeem USDC.
 
-Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration — see [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank}.
+Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK exposes a route for each version. The version to use depends on the source/destination configuration — see [CCTP-supported executors](/docs/reference/executor-addresses/){target=\_blank}.
 
 !!! note "Required packages"
     Executor-based CCTP transfers require installing the SDK and the CCTP Executor route:

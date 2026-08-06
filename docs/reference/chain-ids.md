@@ -16,4 +16,4 @@ The following table documents the chain IDs used by Wormhole and places them alo
     
     Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it. See the recommended security practices for chains in [Wormhole's security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank}.
 
---8<-- 'text/products/reference/chain-ids/chain-ids.md'
+--8<-- 'text/reference/chain-ids/chain-ids.md'

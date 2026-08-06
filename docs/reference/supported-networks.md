@@ -12,24 +12,24 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 ### Connect
 
---8<-- 'text/products/reference/supported-networks/connect.md'
+--8<-- 'text/reference/supported-networks/connect.md'
 
 ### NTT
 
---8<-- 'text/products/reference/supported-networks/ntt.md'
+--8<-- 'text/reference/supported-networks/ntt.md'
 
 ### WTT
 
---8<-- 'text/products/reference/supported-networks/wtt.md'
+--8<-- 'text/reference/supported-networks/wtt.md'
 
 ### CCTP
 
---8<-- 'text/products/reference/supported-networks/cctp.md'
+--8<-- 'text/reference/supported-networks/cctp.md'
 
 ### Settlement
 
---8<-- 'text/products/reference/supported-networks/settlement.md'
+--8<-- 'text/reference/supported-networks/settlement.md'
 
 ### Multigov
 
---8<-- 'text/products/reference/supported-networks/multigov.md'
+--8<-- 'text/reference/supported-networks/multigov.md'

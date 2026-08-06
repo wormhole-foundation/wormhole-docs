@@ -32,7 +32,7 @@ Before starting, ensure you have:
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
-    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/products/reference/chain-ids/){target=\_blank}.
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/reference/chain-ids/){target=\_blank}.
 
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 
@@ -40,7 +40,7 @@ Before starting, ensure you have:
 
 Use the following resources throughout this guide:
 
-- [**NTT With Executor addresses**](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank}: List of deployed contracts for NTT with Executor.
+- [**Executor Addresses**](/docs/reference/executor-addresses/){target=\_blank}: Links to the live Executor Explorer for the current NTT with Executor contract addresses.
 - **Executor endpoints**: Used for quote requests, transaction status checks, and capability queries.
 
     | Environment | URL                                                                            |
@@ -126,7 +126,7 @@ For Solana and other SVM chains:
 
 ## Request a Signed Quote
 
-Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/products/reference/chain-ids/){target=\_blank}.
+Once your relay instructions are generated, request a `SignedQuote` from the Executor Relay Provider. A signed quote authorizes the relay provider to execute the transfer and includes the estimated cost of execution. The following is an example of a quote request from Sepolia to Base Sepolia. See the complete list of supported [chain IDs](/docs/reference/chain-ids/){target=\_blank}.
 
 ```ts
 --8<-- 'code/products/messaging/guides/executor/signedQuote.ts'
@@ -175,7 +175,7 @@ Signed quotes have an expiry time and must be generated for each request. The Ex
 
 ## Call Sending Contract
 
-Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [NTT With Executor Addresses](/docs/products/reference/executor-addresses/#ntt-with-executor){target=\_blank} page for the complete list of deployed helper contracts.
+Once you have generated your relay instructions and received a signed quote, use them to call your sending-side contract. Refer to the [Executor Addresses](/docs/reference/executor-addresses/){target=\_blank} page for the current NTT with Executor contract addresses.
 
 ### EVM
 

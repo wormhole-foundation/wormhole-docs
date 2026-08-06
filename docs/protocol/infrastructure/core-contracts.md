@@ -37,7 +37,7 @@ You can send multichain messages by calling a function against the source chain 
 
 - **`emitterAddress`**: The contract which made the call to publish the message.
 - **`sequenceNumber`**: A unique number that increments for every message for a given emitter (and implicitly chain).
-- **`consistencyLevel`**: The level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page.
+- **`consistencyLevel`**: The level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/reference/consistency-levels/){target=\_blank} reference page.
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
@@ -74,13 +74,5 @@ Because the VAA creation is separate from relaying, the multicast model does not
     This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your multichain contracts.
 
     [:custom-arrow: Build with Core Contracts](/docs/products/messaging/guides/core-contracts/)
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>

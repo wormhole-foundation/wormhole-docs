@@ -17,9 +17,9 @@ You will initiate the transfer on the source chain, and Wormhole's relayer will 
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
- - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}.
+ - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/reference/supported-networks/#cctp){target=\_blank}.
 
-This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [SOL](https://faucet.solana.com/){target=\_blank}, as well as a Base Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/base-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any [supported EVM chains](/docs/products/reference/supported-networks/#cctp){target=\_blank} that support CCTP.
+This example uses a Solana Devnet wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [SOL](https://faucet.solana.com/){target=\_blank}, as well as a Base Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/base-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any [supported EVM chains](/docs/reference/supported-networks/#cctp){target=\_blank} that support CCTP.
 
 ## Configure Your Token Transfer Environment
 
@@ -77,7 +77,7 @@ Start by defining utility functions for signer and token setup:
     --8<-- "code/products/cctp-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP. Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK provides executors for each version. See the [CCTP-supported executors](/docs/products/reference/executor-addresses/#cctp-with-executor){target=\_blank} to determine which version applies to your case:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP. Wormhole supports both CCTP v1 and [CCTP v2](https://www.circle.com/blog/cctp-v2-the-future-of-cross-chain){target=\_blank}, and the SDK provides executors for each version. See the [CCTP-supported executors](/docs/reference/executor-addresses/){target=\_blank} to determine which version applies to your case:
 
     === "CCTP v1"
 
@@ -116,13 +116,5 @@ Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're re
     Learn how USDC cross-chain transfers work and explore advanced CCTP features.
 
     [:custom-arrow: See the Circle Docs](https://developers.circle.com/cctp){target=\_blank}
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
 
 </div>

@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # Deploy NTT to EVM Chains
 
-[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
@@ -248,14 +248,6 @@ To select a custom finality level on an L2 chain, Wormhole Contributors recommen
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
 
     [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/)
-
--   :octicons-tools-16:{ .lg .middle } **Launch a Multichain Native Memecoin**
-
-    ---
-
-    Learn how to use the NTT framework to launch a multi-chain native Memecoin on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-8140-9ec4-e800f40a41bc){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 

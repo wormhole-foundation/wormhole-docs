@@ -1,0 +1,12 @@
+{
+  "title": "Kujira",
+  "testnet": {
+    "name": "Testnet",
+    "id": "harpoon-4"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "kaiyo-1"
+  },
+  "products": {}
+}

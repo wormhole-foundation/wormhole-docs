@@ -1,0 +1,12 @@
+{
+  "title": "Osmosis",
+  "testnet": {
+    "name": "Testnet",
+    "id": "osmo-test-5"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "osmosis-1"
+  },
+  "products": {}
+}

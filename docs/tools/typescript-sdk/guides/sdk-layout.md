@@ -314,7 +314,7 @@ VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a s
 The Wormhole SDK organizes the VAA structure into three key components:
 
  - **[Header](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank}**: Contains metadata such as the Guardian set index and an array of Guardian signatures.
- - **[Envelope](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank}**: Includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/products/reference/consistency-levels/){target=\_blank}.
+ - **[Envelope](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank}**: Includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/reference/consistency-levels/){target=\_blank}.
  - **Payload**: Provides application-specific data, such as the actual message or operation being performed.
 
 **Header layout:**

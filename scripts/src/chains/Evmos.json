@@ -1,0 +1,12 @@
+{
+  "title": "Evmos",
+  "testnet": {
+    "name": "Testnet",
+    "id": "evmos_9000-4"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "evmos_9001-2"
+  },
+  "products": {}
+}

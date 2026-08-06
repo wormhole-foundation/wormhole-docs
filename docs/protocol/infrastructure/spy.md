@@ -34,11 +34,11 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     - The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time multichain verification.
 
-- **[Observations](/docs/products/reference/glossary/#observation){target=\_blank}**: Emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network.
+- **[Observations](/docs/reference/glossary/#observation){target=\_blank}**: Emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network.
 
     - A Spy allow users to monitor these messages, adding transparency and insight into blockchain events.
 
-- **[Guardian heartbeats](/docs/products/reference/glossary/#heartbeat){target=\_blank}**: Heartbeat messages represent Guardian node status.
+- **[Guardian heartbeats](/docs/reference/glossary/#heartbeat){target=\_blank}**: Heartbeat messages represent Guardian node status.
 
     - By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network.
 
@@ -91,13 +91,5 @@ A Spy can access the following categories of messages shared over the gossip pro
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
     [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
 
 </div>

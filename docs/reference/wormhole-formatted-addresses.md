@@ -90,13 +90,13 @@ Example conversions for EVM and Solana:
 === "EVM"
 
     ```typescript
-    --8<-- 'code/products/reference/formatted-addresses/evm.ts'
+    --8<-- 'code/reference/formatted-addresses/evm.ts'
     ```
 
 === "Solana"
 
     ```typescript
-    --8<-- 'code/products/reference/formatted-addresses/solana.ts'
+    --8<-- 'code/reference/formatted-addresses/solana.ts'
     ```
 
 The result is a standardized address format that is ready for cross-chain operations.

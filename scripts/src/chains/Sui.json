@@ -1,0 +1,33 @@
+{
+  "title": "Sui",
+  "testnet": {
+    "name": "Testnet",
+    "id": "4c78adac"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "35834a8a"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    },
+    "cctp": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "connect": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    }
+  }
+}

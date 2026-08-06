@@ -14,7 +14,7 @@ This overview covers WTT's main features, general processes, and possible next s
 
 WTT is built to solve interoperability problems in multichain token transfers. Key features include:
 
-- **Interoperability**: Transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#wtt){target=\_blank}.
+- **Interoperability**: Transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/reference/supported-networks/#wtt){target=\_blank}.
 - **Lock-and-mint mechanism**: Mint wrapped tokens backed 1:1 by locked assets on the source chain.
 - **Preserved metadata**: Ensure that token properties like name, symbol, and decimals persist across chains.
 - **Transfer with payload**: Attach arbitrary data to token transfers, enabling the triggering of specific actions.

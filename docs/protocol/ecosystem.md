@@ -41,12 +41,4 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
     [:custom-arrow: Compare Products](/docs/products/overview/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
-
 </div>

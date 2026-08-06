@@ -1,0 +1,12 @@
+{
+  "title": "Celestia",
+  "testnet": {
+    "name": "Testnet",
+    "id": "mocha-4"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "celestia"
+  },
+  "products": {}
+}

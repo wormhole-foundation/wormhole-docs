@@ -1,0 +1,12 @@
+{
+  "title": "Neutron",
+  "testnet": {
+    "name": "Testnet",
+    "id": "pion-1"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "neutron-1"
+  },
+  "products": {}
+}

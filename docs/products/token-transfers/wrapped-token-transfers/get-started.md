@@ -25,7 +25,7 @@ These examples will help you understand how WTT works across EVM and non-EVM cha
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
- - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#wtt){target=\_blank}.
+ - Wallets funded with tokens on two [supported chains](/docs/reference/supported-networks/#wtt){target=\_blank}.
 
 This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and an EVM wallet with [Sepolia ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank} for the manual transfer example, and [Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [Base Sepolia](https://docs.base.org/docs/tools/network-faucets/){target=\_blank} wallets funded with testnet tokens for the automatic transfer. You can adapt the examples to match your preferred chains.
 
@@ -120,13 +120,5 @@ Now that you've completed a manual multichain token transfer, explore these guid
 
     [:custom-arrow: Get Started](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/)
 
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
 
 </div>

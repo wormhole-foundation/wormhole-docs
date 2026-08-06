@@ -1,0 +1,19 @@
+{
+  "title": "Hydration",
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "222222"
+  },
+  "products": {
+    "ntt": {
+      "mainnet": true,
+      "testnet": false,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

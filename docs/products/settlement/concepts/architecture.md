@@ -53,7 +53,7 @@ Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross
     
     The contract constructs a `BridgeWithFeeMsg` structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash.
 
-2. **Intent submission**: The contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified [consistency (finality) level](/docs/products/reference/consistency-levels/){target=\_blank}.
+2. **Intent submission**: The contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified [consistency (finality) level](/docs/reference/consistency-levels/){target=\_blank}.
 3. **Fulfillment**: On the destination chain, the protocol receives a CCTP message with corresponding signatures and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules.
 
 The protocol provides mechanisms for unlocking the fee once the bridging process is completed. This can occur immediately upon fulfillment or be batched for efficiency. In the fee unlock flow, the contract verifies the unlock message via Wormhole and then releases the locked fee to the designated unlocker address.
@@ -69,13 +69,5 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
     Learn how to integrate settlement routes into your application using the SDK.
 
     [:custom-arrow: See the Mayan Swift Demo](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}
-
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena: Settlement Fundamentals**
-
-    ---
-
-    Check out the Settlement Fundamentals course on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/256e7446-5ed5-8167-89a5-f2102b0090a7){target=\_blank}
 
 </div>

@@ -20,10 +20,6 @@
       "timestampSupported": true,
       "chainId": 6
     },
-    "Fantom": {
-      "timestampSupported": true,
-      "chainId": 10
-    },
     "Kaia": {
       "timestampSupported": true,
       "chainId": 13
@@ -47,18 +43,6 @@
     "Base": {
       "timestampSupported": true,
       "chainId": 30
-    },
-    "Scroll": {
-      "timestampSupported": true,
-      "chainId": 34
-    },
-    "Mantle": {
-      "timestampSupported": true,
-      "chainId": 35
-    },
-    "Xlayer": {
-      "timestampSupported": true,
-      "chainId": 37
     },
     "Linea": {
       "timestampSupported": true,
@@ -131,6 +115,30 @@
     "ZeroGravity": {
       "timestampSupported": true,
       "chainId": 67
+    },
+    "Tempo": {
+      "timestampSupported": true,
+      "chainId": 68
+    },
+    "Nexus": {
+      "timestampSupported": true,
+      "chainId": 69
+    },
+    "Tron": {
+      "timestampSupported": true,
+      "chainId": 70
+    },
+    "Arc": {
+      "timestampSupported": true,
+      "chainId": 71
+    },
+    "Hydration": {
+      "timestampSupported": true,
+      "chainId": 73
+    },
+    "RobinhoodChain": {
+      "timestampSupported": true,
+      "chainId": 72
     }
   },
   "Testnet": {

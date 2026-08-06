@@ -193,12 +193,4 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 
     [:custom-arrow: Learn About Guardians](/docs/protocol/infrastructure/guardians/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/ecosystem){target=\_blank}
-
 </div>

@@ -1,0 +1,23 @@
+{
+  "title": "Nexus",
+  "testnet": {
+    "name": "Testnet",
+    "id": "3945"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "3946"
+  },
+  "products": {
+    "ntt": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": false
+    },
+    "multigov": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

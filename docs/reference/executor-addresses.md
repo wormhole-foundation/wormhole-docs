@@ -1,39 +1,18 @@
 ---
 title: Executor Addresses
-description: Reference list of deployed Executor contract addresses across integrations, including CCTP, NTT, WTT, and referrer variants.
+description: Learn about the Wormhole Executor framework and find the link to the live Executor Explorer for up-to-date contract addresses.
 categories: Reference
 ---
 
 # Executor Addresses
 
-## Executor
+!!! note "Live Executor Contract Addresses"
+    The [Executor Explorer](https://wormholelabs-xyz.github.io/executor-explorer/#/addresses?endpoint=https%3A%2F%2Fexecutor.labsapis.com&env=Mainnet){target=\_blank} is a live tool for browsing active Executor deployments across chains. The canonical, up-to-date Executor addresses have moved there.
 
---8<-- 'text/products/reference/contract-addresses/executor.md'
+The Executor is a shared execution framework that delivers Wormhole messages across chains. It standardizes how message execution is requested, quoted, and performed, enabling any service or protocol to execute messages permissionlessly through on-chain contracts.
 
-## CCTP With Executor
+The Executor framework enables anyone to act as a relayer in a permissionless network that uses a request-and-quote model for message delivery. Instead of relying on a single, centralized relayer service, the Executor framework creates an open marketplace where multiple providers can compete to deliver messages based on signed execution quotes.
 
---8<-- 'text/products/reference/contract-addresses/cctp-executor.md'
+At its core, the Executor relies on Wormhole’s existing guarantees: messages are still secured by VAAs and verified by the Guardian network. By decentralizing message execution and supporting both EVM and non-EVM environments, the Executor framework enables developers to integrate Wormhole relaying with broader chain compatibility, without deploying or maintaining their own relayers.
 
-## NTT With Executor
-
---8<-- 'text/products/reference/contract-addresses/ntt-executor.md'
-
-## WTT Executor
-
---8<-- 'text/products/reference/contract-addresses/wtt-executor.md'
-
-## WTT Executor With Referrer
-
---8<-- 'text/products/reference/contract-addresses/wtt-executor-with-referrer.md'
-
-## On-Chain Quoter
-
---8<-- 'text/products/reference/contract-addresses/quoter-public-keys.md'
-
-### Wormhole Labs Quoter Implementation
-
---8<-- 'text/products/reference/contract-addresses/wh-quoter-implementation.md'
-
-### Quoter Router
-
---8<-- 'text/products/reference/contract-addresses/quoter-router.md'
+Learn more in the [Executor Framework](/docs/protocol/infrastructure/relayers/executor-framework/){target=\_blank} guide.

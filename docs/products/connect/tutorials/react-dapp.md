@@ -147,14 +147,6 @@ With these tools and knowledge, you're now equipped to build powerful cross-chai
 
 <div class="grid cards" markdown>
 
--   :octicons-tools-16:{ .lg .middle } **Build a Reimbursement App with Connect**
-
-    ---
-
-    Master the core features of Connect by building a real-world reimbursement application on the Wormhole Dev Arena, a structured learning hub with hands-on tutorials across the Wormhole ecosystem. 
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/courses/1bee7446-5ed5-814a-8177-e087a5d7a6bc){target=\_blank}
-
 -   :octicons-tools-16:{ .lg .middle } **Demo Tutorials Repository**
 
     ---

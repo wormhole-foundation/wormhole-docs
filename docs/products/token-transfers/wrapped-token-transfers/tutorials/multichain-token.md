@@ -93,13 +93,5 @@ It is recommended that you update your token’s metadata on blockchain explorer
 
     [:custom-arrow: Explore the Demo Repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
-
 </div>
 

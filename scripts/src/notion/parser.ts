@@ -1,8 +1,19 @@
-import type { NotionExtraPropertyConfig } from '../config/notion-contracts';
 import { ContractTableRow } from '../util';
 import { NotionPage, NotionPropertyValue, NotionRichText } from './types';
 
 export type ContractRow = ContractTableRow;
+
+export type NotionExtraPropertyConfig = {
+  /**
+   * Property name inside the Notion database.
+   */
+  property: string;
+  /**
+   * Optional label prefix to render before the value.
+   */
+  label?: string;
+};
+
 type ExtractContractRowOptions = {
   chainProperty?: string;
   extraProperties?: NotionExtraPropertyConfig[];

@@ -90,7 +90,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     ```
 
      - **`RPC`**: Endpoint for interacting with an Ethereum RPC node.
-     - **`ETH_CORE`**: [Wormhole's Core Contract address on Ethereum](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs.
+     - **`ETH_CORE`**: [Wormhole's Core Contract address on Ethereum](/docs/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs.
      - **`WORMHOLESCAN_API`**: Base URL for querying the Wormholescan API to fetch VAA data and Guardian sets.
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`**: The event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts.
      - **`TXS`**: List of example transaction hashes that will be used for testing.
@@ -120,7 +120,7 @@ The VAA ID is structured as follows:
 chain/emitter/sequence
 ```
 
- - **`chain`**: The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} (Ethereum is 2).
+ - **`chain`**: The [Wormhole chain ID](/docs/reference/chain-ids/){target=\_blank} (Ethereum is 2).
  - **`emitter`**: The contract address that emitted the VAA.
  - **`sequence`**: A unique identifier for the event.
 

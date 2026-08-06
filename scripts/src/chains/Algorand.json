@@ -1,0 +1,18 @@
+{
+  "title": "Algorand",
+  "testnet": {
+    "name": "Testnet",
+    "id": "testnet-v1.0"
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "id": "mainnet-v1.0"
+  },
+  "products": {
+    "tokenBridge": {
+      "mainnet": true,
+      "testnet": true,
+      "devnet": true
+    }
+  }
+}

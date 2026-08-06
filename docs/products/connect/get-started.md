@@ -103,14 +103,6 @@ Use the following guides to configure your Connect instance and integrate it int
 
     [:custom-arrow: Get Started](/docs/products/connect/tutorials/react-dapp/)
 
--   :octicons-tools-16:{ .lg .middle } **Wormhole Dev Arena**
-
-    ---
-
-    A structured learning hub with hands-on tutorials across the Wormhole ecosystem.
-
-    [:custom-arrow: Explore the Dev Arena](https://arena.wormhole.com/){target=\_blank}
-
 </div>
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
