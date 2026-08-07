@@ -32,7 +32,7 @@ Before starting, ensure you have:
       - Available relay types (e.g., `wormhole` or `ERN1`).
       - Gas drop-off limits, which define the maximum gas the relay provider can allocate.
 
-    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Chain IDs reference](/docs/reference/chain-ids/){target=\_blank}.
+    Chain identifiers returned by this endpoint use Wormhole chain IDs. A complete list of supported Wormhole chain IDs is available in the [Supported Networks reference](/docs/reference/supported-networks/){target=\_blank}.
 
     The relay provider will only respect the first `GasDropOffInstruction` and will drop off the lesser of the requested amount and the configured limit.
 

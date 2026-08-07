@@ -1,6 +1,5 @@
 import { Chain, finality, toChain } from '@wormhole-foundation/sdk';
 import * as types from './types/chains';
-import { networkString } from './config';
 import type { SupportMap } from './types/support';
 import { fmtNum, fmtCodeStr, buildHTMLTable, formatHTMLTable, sortMainnets, sortTestnets, sortChainTypes, CONTRACT_TABLE_HEADER } from './util';
 import { buildCctpSupportLookup, normalizeCctpSupportKey } from './utils/support';
@@ -57,64 +56,6 @@ function renderSupportTable(rows: string[]): string {
   </thead>`;
 
   return formatHTMLTable(buildHTMLTable(tableHeader, rows.join('\n')));
-}
-
-export function generateAllChainIdsTable(dc: types.DocChain[]): string {
-  // Create Mainnet Chain Table
-  const orderedDc = sortMainnets(dc);
-  const tableHeader = `
-    <thead>
-      <th>Chain Name</th>
-      <th style="width:26%">Wormhole Chain ID</th>
-      <th>Network ID</th>
-    </thead>`;
-  let mainNetTableBody: string[] = [];
-  let testNetTableBody: string[] = [];
-
-  for (const c of orderedDc) {
-    // Assemble the Mainnet table data
-    const mainnetAlias = networkString(c.mainnet.extraDetails?.mainnet);
-    const mainnetName = c.mainnet.extraDetails?.title ? c.mainnet.extraDetails.title : c.mainnet.name;
-
-    mainNetTableBody.push(
-      `<tr>
-        <td>${mainnetName}</td>
-        <td><code>${c.mainnet.id}</code></td>
-        <td>${mainnetAlias}</td>
-      </tr>`,
-    );
-
-    function processTestnets(testnets: types.ChainDetails[]) {
-      testnets.forEach((testnet) => {
-        const testnetAlias = networkString(testnet.extraDetails?.testnet);
-
-        testNetTableBody.push(`
-          <tr>
-            <td>${testnet.extraDetails ? testnet.extraDetails.title : testnet.name}</td>
-            <td><code>${testnet.id}</code></td>
-            <td>${testnetAlias}</td>
-          </tr>`);
-      });
-    }
-
-    // Assemble the Testnet table data
-    if (c.testnets.length > 1) {
-      const orderedTestnets = sortTestnets(c.testnets);
-      processTestnets(orderedTestnets);
-    } else {
-      processTestnets(c.testnets);
-    }
-  }
-
-  return `
-=== "Mainnet"
-
-    ${formatHTMLTable(buildHTMLTable(tableHeader, mainNetTableBody.join('')))}
-
-=== "Testnet"
-
-    ${formatHTMLTable(buildHTMLTable(tableHeader, testNetTableBody.join('')))}
-`;
 }
 
 export function generateAllConsistencyLevelsTable(dc: types.DocChain[]): string {

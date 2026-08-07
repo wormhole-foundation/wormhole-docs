@@ -1,6 +1,5 @@
 import * as cfg from './config';
 import {
-  generateAllChainIdsTable,
   generateAllConsistencyLevelsTable,
   generateAllContractsTable,
   generateCctpSupportTabs,
@@ -41,8 +40,6 @@ async function main() {
       'TESTNET_FAUCETS',
       generateTestnetFaucetsTable(chains)
     );
-    await tagManager.replace('CHAIN_IDS', generateAllChainIdsTable(chains));
-
     const productTables = generateProductSupportTables(chains);
     for (const [product, table] of Object.entries(productTables)) {
       const tagSuffix = product === 'tokenBridge' ? 'WTT' : product.toUpperCase();

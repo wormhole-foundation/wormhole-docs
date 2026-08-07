@@ -120,7 +120,7 @@ The VAA ID is structured as follows:
 chain/emitter/sequence
 ```
 
- - **`chain`**: The [Wormhole chain ID](/docs/reference/chain-ids/){target=\_blank} (Ethereum is 2).
+ - **`chain`**: The [Wormhole chain ID](/docs/reference/supported-networks/){target=\_blank} (Ethereum is 2).
  - **`emitter`**: The contract address that emitted the VAA.
  - **`sequence`**: A unique identifier for the event.
 

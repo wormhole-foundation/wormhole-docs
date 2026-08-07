@@ -1,11 +1,10 @@
 title: Reference
 nav:
-- 'Chain IDs': chain-ids.md
+- 'Supported Networks': supported-networks.md
 - 'Contract Addresses': contract-addresses.md
 - 'Executor Addresses': executor-addresses.md
 - 'Wormhole Finality': consistency-levels.md
 - 'Wormhole-Formatted Addresses': wormhole-formatted-addresses.md
-- 'Supported Networks': supported-networks.md
 - 'Testnet Faucets': testnet-faucets.md
 - 'Delegated Guardian Set': delegated-guardian-set.md
 - 'Glossary': glossary.md
