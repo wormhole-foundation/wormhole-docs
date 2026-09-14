@@ -6,7 +6,7 @@ ntt:
 repositories:
   wormhole_sdk:
     repository_url: https://github.com/wormhole-foundation/wormhole-sdk-ts
-    version: 4.14.1
+    version: 6.1.5
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
     version: 2.56.0
