@@ -1,4 +1,4 @@
-import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
+import { wormhole, Wormhole, TokenId, TokenTransfer } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { getSigner, getTokenDecimals } from './helpers';
@@ -41,30 +41,46 @@ async function transferTokens() {
     );
   }
   // Insert Initiate Transfer on Source Chain code
-  // Optional native gas amount for automatic transfers only
-  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
-  // Get the decimals for the source chain
-  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
-  // Convert to raw units, otherwise set to 0n
-  const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
-
-  // Build the token transfer object
+  // Build the token transfer object using the executor protocol, which relays
+  // the transfer to the destination chain on your behalf
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     sourceSigner.address,
     destinationSigner.address,
-    'AutomaticTokenBridge',
-    nativeGas
+    'ExecutorTokenBridge'
   );
   console.log('🚀 Built transfer object:', xfer.transfer);
+
+  // Estimate the destination gas requirements before quoting. The resulting
+  // executor quote must be attached before the transfer can be initiated
+  const dstTb = await destinationChain.getExecutorTokenBridge();
+  const dstToken = await TokenTransfer.lookupDestinationToken(
+    sourceChain,
+    destinationChain,
+    tokenId
+  );
+  const { msgValue, gasLimit } = await dstTb.estimateMsgValueAndGasLimit(dstToken);
+
+  // Optionally deliver native gas to the destination account
+  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
+  const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
+
+  const quote = await TokenTransfer.quoteTransfer(wh, sourceChain, destinationChain, {
+    ...xfer.transfer,
+    msgValue,
+    gasLimit,
+    nativeGas,
+  });
+  xfer.transfer.executorQuote = quote.details.executorQuote;
 
   // Initiate, sign, and send the token transfer
   const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
   console.log('🔗 Source chain tx sent:', srcTxs);
 
-  // If automatic, no further action is required. The relayer completes the transfer.
-  console.log('✅ Automatic transfer: relayer is handling redemption.');
+  // The executor relays and redeems the transfer, so no further action is required
+  console.log('✅ Automatic transfer: the executor is handling redemption.');
 
   process.exit(0);
 }

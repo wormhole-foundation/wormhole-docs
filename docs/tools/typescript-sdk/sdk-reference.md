@@ -208,7 +208,7 @@ The example below shows how to initiate and complete a `TokenTransfer`. After cr
 For automatic transfers, the process ends after initiation. Manual transfers require attestation before completion.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts:120:158'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts:120:162'
 ```
 
 ??? code "View the complete script"
