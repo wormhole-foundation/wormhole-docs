@@ -12,7 +12,7 @@ The Global Accountant is a defense-in-depth security feature that checks the int
 
 This feature ensures native asset fungibility remains in 1:1 parity. At no time will assets coming from a spoke chain exceed the number of native assets sent to that spoke chain. The Guardians, with their role in enforcing accounting transparency, provide a reassuring layer of security, attesting to a Native Token Transfer (NTT) only if it passes integrity checks.
 
-[Contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors if you are interested in configuring the Global Accountant for your multichain deployment.
+[Contact](https://discord.com/invite/auDY79q5sD){target=\_blank} Wormhole contributors if you are interested in configuring the Global Accountant for your multichain deployment.
 
 ## Governance and Upgradeability
 
