@@ -1,5 +1,5 @@
 {
-  "title": "Injective",
+  "title": "Injective :material-alert:{ title='⚠️ Injective has migrated to a closed-source model. Use Wormhole messaging on Injective with caution.' }",
   "testnet": {
     "name": "Testnet",
     "id": "injective-888"
