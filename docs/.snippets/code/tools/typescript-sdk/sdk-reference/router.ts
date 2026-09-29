@@ -24,7 +24,7 @@ import { getSigner } from './helpers/index.js';
   // Create new resolver, passing the set of routes to consider
   const resolver = wh.resolver([
     routes.TokenBridgeRoute, // manual WTT (Token Bridge)
-    routes.AutomaticTokenBridgeRoute, // automatic WTT (Token Bridge)
+    routes.ExecutorTokenBridgeRoute, // automatic WTT (Token Bridge)
     routes.CCTPRoute, // manual CCTP
     routes.AutomaticCCTPRoute, // automatic CCTP
     routes.AutomaticPorticoRoute, // Native eth transfers
