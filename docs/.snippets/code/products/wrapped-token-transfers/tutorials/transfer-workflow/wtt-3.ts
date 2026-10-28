@@ -54,7 +54,7 @@ async function tokenTransfer<N extends Network>(
     amount: bigint;
     source: SignerStuff<N, Chain>;
     destination: SignerStuff<N, Chain>;
-    route: string;
+    route: TokenTransfer.Protocol;
     payload?: Uint8Array;
   }
 ) {
@@ -76,7 +76,7 @@ async function tokenTransfer<N extends Network>(
     xfer.transfer
   );
 
-  if (xfer.transfer.route === 'AutomaticTokenBridge' && quote.destinationToken.amount < 0)
+  if (xfer.transfer.protocol === 'ExecutorTokenBridge' && quote.destinationToken.amount < 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // Submit the transactions to the source chain, passing a signer to sign any txns

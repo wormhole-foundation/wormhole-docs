@@ -231,14 +231,14 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:30:30"
     ```
 
-8. **Set transfer mode**: Specify manual or automatic transfer using `route`. Set `route  = 'TokenBridge'` for manual transfers, where you will handle the attestation and finalization steps yourself. To use automatic relaying on EVM chains, set `route = 'AutomaticTokenBridge'`.
+8. **Set transfer mode**: Specify manual or automatic transfer using `route`. Set `route = 'TokenBridge'` for manual transfers, where you will handle the attestation and finalization steps yourself. To use automatic relaying, set `route = 'ExecutorTokenBridge'`.
 
     ```typescript
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:33:33"
     ```
 
     !!! note
-        Automatic transfers are only supported for EVM chains. For non-EVM chains, such as Solana and Sui, you must manually handle the attestation and finalization steps.
+        Automatic transfers are relayed by the executor service and require an executor quote before they can be initiated. See the [Transfer Wrapped Assets](/docs/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets/){target=\_blank} guide for a complete automatic transfer example.
     
 9. **Define decimals**: Fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function.
 
@@ -281,7 +281,7 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:63:70"
     ```
 
-2. **Estimate transfer fees and validate amount**: We obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode (`automatic = true`), where the quote will include additional fees for relaying.
+2. **Estimate transfer fees and validate amount**: We obtain a fee quote for the transfer before proceeding. This step is significant for automatic transfers, where the quote includes the executor's additional relaying fees and the amount is validated to ensure it covers them.
 
     ```typescript
     --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/wtt-3.ts:72:80"

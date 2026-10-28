@@ -71,7 +71,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
 
 2. In `transfer.ts`, choose your transfer mode by selecting the [route](/docs/products/connect/concepts/routes/#wtt-routes){target=\_blank} you pass to the `tokenTransfer()` object: 
     - `TokenBridge` for manual transfers.
-    - `AutomaticTokenBridge` for automatic transfers.
+    - `ExecutorTokenBridge` for automatic transfers.
 
     === "Manual Transfer"
 

@@ -41,18 +41,18 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
   // To the caller
   const amt = '0.05';
 
-  // With automatic set to true, perform an automatic transfer. This will invoke a relayer
-  // Contract intermediary that knows to pick up the transfers
-  // With automatic set to false, perform a manual transfer from source to destination
-  // Of the token
-  // On the destination side, a wrapped version of the token will be minted
+  // Protocol options:
+  // - "TokenBridge": Manual transfer requiring VAA redemption on the destination chain
+  // - "ExecutorTokenBridge": Automatic transfer relayed by the executor service
+  // With an automatic transfer, the executor picks up the transfer and redeems it
+  // For you. On the destination side, a wrapped version of the token will be minted
   // To the address specified in the transfer VAA
-  const automatic = false;
+  const protocol: TokenTransfer.Protocol = 'TokenBridge';
 
-  // The Wormhole relayer has the ability to deliver some native gas funds to the destination account
+  // The executor has the ability to deliver some native gas funds to the destination account
   // The amount specified for native gas will be swapped for the native gas token according
   // To the swap rate provided by the contract, denominated in native gas tokens
-  const nativeGas = automatic ? '0.01' : undefined;
+  const nativeGas = protocol === 'ExecutorTokenBridge' ? '0.01' : undefined;
 
   // Get signer from local key but anything that implements
   // Signer interface (e.g. wrapper around web wallet) should work
@@ -82,7 +82,7 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
           source,
           destination,
           delivery: {
-            automatic,
+            protocol,
             nativeGas: nativeGas
               ? amount.units(amount.parse(nativeGas, decimals))
               : undefined,
@@ -110,7 +110,7 @@ async function tokenTransfer<N extends Network>(
     source: SignerStuff<N, Chain>;
     destination: SignerStuff<N, Chain>;
     delivery?: {
-      automatic: boolean;
+      protocol: TokenTransfer.Protocol;
       nativeGas?: bigint;
     };
     payload?: Uint8Array;
@@ -123,20 +123,24 @@ async function tokenTransfer<N extends Network>(
     route.amount,
     route.source.address,
     route.destination.address,
-    route.delivery?.automatic ?? false,
-    route.payload,
-    route.delivery?.nativeGas
+    route.delivery?.protocol ?? 'TokenBridge',
+    route.payload
   );
 
-  const quote = await TokenTransfer.quoteTransfer(
-    wh,
-    route.source.chain,
-    route.destination.chain,
-    xfer.transfer
-  );
+  // Automatic transfers are relayed on your behalf, so they need an executor
+  // quote. Manual transfers only need the fees, so the plain quote is enough
+  const quote =
+    xfer.transfer.protocol === 'ExecutorTokenBridge'
+      ? await executorQuote(wh, route, xfer)
+      : await TokenTransfer.quoteTransfer(
+          wh,
+          route.source.chain,
+          route.destination.chain,
+          xfer.transfer
+        );
   console.log(quote);
 
-  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+  if (xfer.transfer.protocol === 'ExecutorTokenBridge' && quote.destinationToken.amount < 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // 1) Submit the transactions to the source chain, passing a signer to sign any txns
@@ -144,10 +148,10 @@ async function tokenTransfer<N extends Network>(
   const srcTxids = await xfer.initiateTransfer(route.source.signer);
   console.log(`Started transfer: `, srcTxids);
 
-  // If automatic, we're done
-  if (route.delivery?.automatic) return xfer;
+  // If the transfer is automatic, the executor relays it and we're done
+  if (xfer.transfer.protocol === 'ExecutorTokenBridge') return xfer;
 
-  // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+  // 2) Wait for the VAA to be signed and ready (not required for an automatic transfer)
   console.log('Getting Attestation');
   const attestIds = await xfer.fetchAttestation(60_000);
   console.log(`Got Attestation: `, attestIds);
@@ -168,4 +172,46 @@ async function tokenTransfer<N extends Network>(
     source: route.destination,
     destination: route.source,
   });
+}
+
+// An automatic transfer cannot be initiated until the executor quote is fetched
+// and attached to the transfer, since the quote carries the relay instructions
+// the executor uses to redeem the transfer on the destination chain
+async function executorQuote<N extends Network>(
+  wh: Wormhole<N>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<N, Chain>;
+    destination: SignerStuff<N, Chain>;
+    delivery?: {
+      protocol: TokenTransfer.Protocol;
+      nativeGas?: bigint;
+    };
+  },
+  xfer: TokenTransfer<N>
+) {
+  // The executor needs to know the gas it will spend redeeming the transfer
+  const dstTb = await route.destination.chain.getExecutorTokenBridge();
+  const dstToken = await TokenTransfer.lookupDestinationToken(
+    route.source.chain,
+    route.destination.chain,
+    route.token
+  );
+  const { msgValue, gasLimit } = await dstTb.estimateMsgValueAndGasLimit(dstToken);
+
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    {
+      ...xfer.transfer,
+      msgValue,
+      gasLimit,
+      nativeGas: route.delivery?.nativeGas,
+    }
+  );
+  xfer.transfer.executorQuote = quote.details.executorQuote;
+
+  return quote;
 }
