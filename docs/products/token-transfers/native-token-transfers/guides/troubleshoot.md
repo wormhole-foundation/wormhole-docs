@@ -54,7 +54,7 @@ If you encounter issues during the NTT deployment process, check the following c
             ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 
             # Install Anchor using avm
-            RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force \
+            RUN cargo install --git https://github.com/otter-sec/anchor avm --locked --force \
                 && avm install 0.29.0 \
                 && avm use 0.29.0
             ENV PATH="/root/.avm/bin:$PATH"

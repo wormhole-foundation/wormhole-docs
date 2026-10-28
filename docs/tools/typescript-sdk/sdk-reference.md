@@ -101,7 +101,7 @@ The `TokenId` type identifies any token by its chain and address. For standardiz
 
 The SDK's `Signer` interface can be implemented as either a `SignOnlySigner` or a `SignAndSendSigner`, created by wrapping an offline or web wallet:
 
-- **`SignOnlySigner`**: Signs and serializes unsigned transactions without broadcasting them. Transactions can be inspected or modified before signing. Serialization is chain-specific. See testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank}, [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for implementation examples.
+- **`SignOnlySigner`**: Signs and serializes unsigned transactions without broadcasting them. Transactions can be inspected or modified before signing. Serialization is chain-specific. See testing signers (e.g., [EVM](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/platforms/evm/src/signer.ts){target=\_blank}, [Solana](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for implementation examples.
 - **`SignAndSendSigner`**: Signs and broadcasts transactions, returning their transaction IDs in order.
 
 ```ts

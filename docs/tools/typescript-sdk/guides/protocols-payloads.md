@@ -231,4 +231,4 @@ While this guide focuses on the `TokenBridge` protocol, other protocols, like NT
  - Payloads such as `WormholeTransfer` and `WormholeTransferStandardRelayer` are registered to the protocol using the same patterns for payload literals and layouts.
  - The same mechanisms for type-safe registration and payload discriminators apply, ensuring reliability and extensibility.
 
-For more details, you can explore the [NTT implementation in the SDK](https://github.com/wormhole-foundation/example-native-token-transfers/blob/00f83aa215338b1b8fd66f522bd0f45be3e98a5a/sdk/definitions/src/ntt.ts){target=\_blank}.
+For more details, you can explore the [NTT implementation in the SDK](https://github.com/wormhole-foundation/native-token-transfers/blob/00f83aa215338b1b8fd66f522bd0f45be3e98a5a/sdk/definitions/src/ntt.ts){target=\_blank}.
